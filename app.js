@@ -1,5 +1,6 @@
 /**
  * FACHARZTPRÜFUNG ANÄSTHESIOLOGIE - APPLICATION LOGIC & SMART PRACTICE ENGINE
+ * Supports: Open Q&A Flashcards (self-assessment) + Multi-Choice Questions
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Storage Keys ---
-  const STORAGE_KEY = 'facharzt_anaesthesie_state_v1';
+  const STORAGE_KEY = 'facharzt_anaesthesie_state_v2';
   const AUTH_KEY = 'facharzt_auth_v1';
   const CORRECT_PASS = 'egemelis';
 
   // --- Initial Application State ---
   let state = {
     currentIndex: 0,
-    answers: {},       // { questionId: { selected: [indices], submitted: true/false, isCorrect: true/false } }
+    answers: {},       // { questionId: { selected: [indices], submitted: true/false, isCorrect: true/false, revealed: true/false } }
     flagged: {},       // { questionId: true/false }
     theme: 'light',
     subtitleMode: false,
@@ -58,6 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const elOptionsContainer = document.getElementById('options-container');
   const elExplanationCard = document.getElementById('explanation-card');
   const elExplanationText = document.getElementById('explanation-text');
+
+  // New flashcard elements
+  const elQuestionImageContainer = document.getElementById('question-image-container');
+  const elQuestionImage = document.getElementById('question-image');
+  const elRevealContainer = document.getElementById('reveal-container');
+  const elBtnReveal = document.getElementById('btn-reveal');
+  const elAnswerCard = document.getElementById('answer-card');
+  const elAnswerText = document.getElementById('answer-text');
+  const elSelfAssessContainer = document.getElementById('self-assess-container');
+  const elBtnKnewIt = document.getElementById('btn-knew-it');
+  const elBtnDidntKnow = document.getElementById('btn-didnt-know');
   
   const elBtnPrev = document.getElementById('btn-prev');
   const elBtnNext = document.getElementById('btn-next');
@@ -120,18 +132,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Dual-Language Hover Overlay Helper ---
   function renderDualLanguageText(textDE, textTR) {
-    if (!textTR || textTR === textDE) {
-      return textDE;
+    if (!textTR) {
+      return formatAnswerText(textDE);
+    }
+    
+    // Show translation if Turkish text differs from German in any way
+    const hasAnnotation = textTR !== textDE;
+    
+    if (!hasAnnotation) {
+      return formatAnswerText(textDE);
     }
     
     if (state.subtitleMode) {
-      return `<div>${textDE}</div><span class="subtitle-block">🇹🇷 ${textTR}</span>`;
+      return `<div>${formatAnswerText(textDE)}</div><span class="subtitle-block">🇹🇷 ${formatAnswerText(textTR)}</span>`;
     } else {
-      return `<span class="tr-hover" data-tr="${escapeHtml(textTR)}">${textDE}</span>`;
+      return `<span class="tr-hover" data-tr="${escapeHtml(textTR)}">${formatAnswerText(textDE)}</span>`;
     }
   }
 
+  function formatAnswerText(text) {
+    if (!text) return '';
+    // Convert newlines to <br> for multi-line answers
+    return text
+      .replace(/\n/g, '<br>')
+      .replace(/•/g, '<br>•')
+      .replace(/([✅❌])/g, '<strong>$1</strong>');
+  }
+
   function escapeHtml(str) {
+    if (!str) return '';
     return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
@@ -172,6 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
     elCategoryFilter.value = state.categoryFilter;
   }
 
+  // --- Determine question type ---
+  function isOpenQuestion(q) {
+    return q.question_type === 'open' || !q.options_de || q.options_de.length === 0;
+  }
+
   // --- Render Question Card ---
   function renderCurrentQuestion() {
     filteredQuestions = getFilteredQuestions();
@@ -183,6 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>`;
       elOptionsContainer.innerHTML = '';
       elExplanationCard.classList.remove('visible');
+      elAnswerCard.classList.remove('visible');
+      elRevealContainer.style.display = 'none';
+      elSelfAssessContainer.style.display = 'none';
+      elQuestionImageContainer.style.display = 'none';
       elQuestionNumber.textContent = `0 von 0`;
       return;
     }
@@ -195,16 +233,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const currentQ = filteredQuestions[state.currentIndex];
-    const qState = state.answers[currentQ.id] || { selected: [], submitted: false };
+    const qState = state.answers[currentQ.id] || { selected: [], submitted: false, revealed: false };
     const isFlagged = !!state.flagged[currentQ.id];
+    const isOpen = isOpenQuestion(currentQ);
 
+    // Header badges
     elBadgeCategory.textContent = currentQ.category;
     elBadgeSource.textContent = currentQ.source_book.split(' - ')[0];
     
     if (isFlagged) {
       elBadgeReview.style.display = 'inline-block';
       elBtnReview.classList.add('flagged');
-      elBtnReview.innerHTML = `<span>★</span> Flagged (Wiederholen)`;
+      elBtnReview.innerHTML = `<span>★</span> Markiert`;
     } else {
       elBadgeReview.style.display = 'none';
       elBtnReview.classList.remove('flagged');
@@ -214,74 +254,165 @@ document.addEventListener('DOMContentLoaded', () => {
     const globalIdx = EXAM_QUESTIONS.findIndex(q => q.id === currentQ.id) + 1;
     elQuestionNumber.textContent = `Frage ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
 
+    // Question text with translation
     elQuestionText.innerHTML = renderDualLanguageText(currentQ.question_de, currentQ.question_tr);
 
-    elOptionsContainer.innerHTML = '';
-    currentQ.options_de.forEach((optDe, idx) => {
-      const optTr = currentQ.options_tr[idx] || {};
-      const isSelected = qState.selected.includes(idx);
-      
-      const optEl = document.createElement('div');
-      optEl.className = 'option-item';
-      if (isSelected) optEl.classList.add('selected');
+    // Question image
+    if (currentQ.image) {
+      elQuestionImageContainer.style.display = 'block';
+      elQuestionImage.src = currentQ.image;
+      elQuestionImage.alt = `Abbildung zu: ${currentQ.question_de.substring(0, 60)}...`;
+    } else {
+      elQuestionImageContainer.style.display = 'none';
+    }
+
+    // ──────────── OPEN Q&A FLASHCARD MODE ────────────
+    if (isOpen) {
+      elOptionsContainer.innerHTML = '';
+      elOptionsContainer.style.display = 'none';
+      elBtnCheck.style.display = 'none';
+      elExplanationCard.classList.remove('visible');
 
       if (qState.submitted) {
-        optEl.classList.add('show-eval');
-        if (optDe.correct) {
-          optEl.classList.add('correct-answer');
-        } else if (isSelected && !optDe.correct) {
-          optEl.classList.add('incorrect-answer');
+        // Already answered - show the answer and self-assessment result
+        elRevealContainer.style.display = 'none';
+        elAnswerCard.classList.add('visible');
+        elAnswerText.innerHTML = renderDualLanguageText(
+          currentQ.answer_de || currentQ.explanation_de,
+          currentQ.answer_tr || currentQ.explanation_tr
+        );
+        
+        // Show assessment result
+        elSelfAssessContainer.style.display = 'flex';
+        if (qState.isCorrect) {
+          elBtnKnewIt.classList.add('selected');
+          elBtnDidntKnow.classList.remove('selected');
+        } else {
+          elBtnKnewIt.classList.remove('selected');
+          elBtnDidntKnow.classList.add('selected');
         }
+      } else if (qState.revealed) {
+        // Answer revealed but not yet self-assessed
+        elRevealContainer.style.display = 'none';
+        elAnswerCard.classList.add('visible');
+        elAnswerText.innerHTML = renderDualLanguageText(
+          currentQ.answer_de || currentQ.explanation_de,
+          currentQ.answer_tr || currentQ.explanation_tr
+        );
+        elSelfAssessContainer.style.display = 'flex';
+        elBtnKnewIt.classList.remove('selected');
+        elBtnDidntKnow.classList.remove('selected');
+      } else {
+        // Not yet revealed - show the reveal button
+        elRevealContainer.style.display = 'flex';
+        elAnswerCard.classList.remove('visible');
+        elSelfAssessContainer.style.display = 'none';
       }
 
-      optEl.innerHTML = `
-        <div class="option-radio">${qState.submitted && optDe.correct ? '✓' : (qState.submitted && isSelected && !optDe.correct ? '✗' : '')}</div>
-        <div class="option-text-group">
-          <div class="option-de">${renderDualLanguageText(optDe.text, optTr.text)}</div>
-          ${qState.submitted && optDe.explanation ? `
-            <div class="option-expl-box">
-              ${renderDualLanguageText(optDe.explanation, optTr.explanation)}
-            </div>
-          ` : ''}
-        </div>
-      `;
+    // ──────────── MULTI-CHOICE MODE (legacy) ────────────
+    } else {
+      elOptionsContainer.style.display = '';
+      elBtnCheck.style.display = '';
+      elRevealContainer.style.display = 'none';
+      elAnswerCard.classList.remove('visible');
+      elSelfAssessContainer.style.display = 'none';
 
-      optEl.addEventListener('click', () => {
-        if (qState.submitted) return;
+      elOptionsContainer.innerHTML = '';
+      currentQ.options_de.forEach((optDe, idx) => {
+        const optTr = currentQ.options_tr[idx] || {};
+        const isSelected = qState.selected.includes(idx);
         
-        if (currentQ.options_de.filter(o => o.correct).length > 1) {
-          if (isSelected) {
-            qState.selected = qState.selected.filter(i => i !== idx);
-          } else {
-            qState.selected.push(idx);
+        const optEl = document.createElement('div');
+        optEl.className = 'option-item';
+        if (isSelected) optEl.classList.add('selected');
+
+        if (qState.submitted) {
+          optEl.classList.add('show-eval');
+          if (optDe.correct) {
+            optEl.classList.add('correct-answer');
+          } else if (isSelected && !optDe.correct) {
+            optEl.classList.add('incorrect-answer');
           }
-        } else {
-          qState.selected = [idx];
         }
 
-        state.answers[currentQ.id] = qState;
-        saveState();
-        renderCurrentQuestion();
+        optEl.innerHTML = `
+          <div class="option-radio">${qState.submitted && optDe.correct ? '✓' : (qState.submitted && isSelected && !optDe.correct ? '✗' : '')}</div>
+          <div class="option-text-group">
+            <div class="option-de">${renderDualLanguageText(optDe.text, optTr.text)}</div>
+            ${qState.submitted && optDe.explanation ? `
+              <div class="option-expl-box">
+                ${renderDualLanguageText(optDe.explanation, optTr.explanation)}
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        optEl.addEventListener('click', () => {
+          if (qState.submitted) return;
+          
+          if (currentQ.options_de.filter(o => o.correct).length > 1) {
+            if (isSelected) {
+              qState.selected = qState.selected.filter(i => i !== idx);
+            } else {
+              qState.selected.push(idx);
+            }
+          } else {
+            qState.selected = [idx];
+          }
+
+          state.answers[currentQ.id] = qState;
+          saveState();
+          renderCurrentQuestion();
+        });
+
+        elOptionsContainer.appendChild(optEl);
       });
 
-      elOptionsContainer.appendChild(optEl);
-    });
-
-    if (qState.submitted) {
-      elBtnCheck.textContent = 'Erneut beantworten';
-      elBtnCheck.className = 'btn btn-secondary';
-      elExplanationCard.classList.add('visible');
-      elExplanationText.innerHTML = renderDualLanguageText(currentQ.explanation_de, currentQ.explanation_tr);
-    } else {
-      elBtnCheck.textContent = 'Antwort Überprüfen';
-      elBtnCheck.className = 'btn btn-primary';
-      elExplanationCard.classList.remove('visible');
+      if (qState.submitted) {
+        elBtnCheck.textContent = 'Erneut beantworten';
+        elBtnCheck.className = 'btn btn-secondary';
+        elExplanationCard.classList.add('visible');
+        elExplanationText.innerHTML = renderDualLanguageText(currentQ.explanation_de, currentQ.explanation_tr);
+      } else {
+        elBtnCheck.textContent = 'Antwort Überprüfen';
+        elBtnCheck.className = 'btn btn-primary';
+        elExplanationCard.classList.remove('visible');
+      }
     }
 
     updateAnalytics();
   }
 
-  // --- Check & Submit Answer ---
+  // --- Reveal Answer (Open Q&A) ---
+  function revealAnswer() {
+    filteredQuestions = getFilteredQuestions();
+    if (!filteredQuestions.length) return;
+
+    const currentQ = filteredQuestions[state.currentIndex];
+    let qState = state.answers[currentQ.id] || { selected: [], submitted: false, revealed: false };
+
+    qState.revealed = true;
+    state.answers[currentQ.id] = qState;
+    saveState();
+    renderCurrentQuestion();
+  }
+
+  // --- Self Assessment (Open Q&A) ---
+  function selfAssess(knewIt) {
+    filteredQuestions = getFilteredQuestions();
+    if (!filteredQuestions.length) return;
+
+    const currentQ = filteredQuestions[state.currentIndex];
+    let qState = state.answers[currentQ.id] || { selected: [], submitted: false, revealed: false };
+
+    qState.submitted = true;
+    qState.isCorrect = knewIt;
+    state.answers[currentQ.id] = qState;
+    saveState();
+    renderCurrentQuestion();
+  }
+
+  // --- Check & Submit Answer (Multi-choice) ---
   function checkAnswer() {
     filteredQuestions = getFilteredQuestions();
     if (!filteredQuestions.length) return;
@@ -292,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (qState.submitted) {
       qState.submitted = false;
       qState.selected = [];
+      qState.revealed = false;
       state.answers[currentQ.id] = qState;
       saveState();
       renderCurrentQuestion();
@@ -412,7 +544,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loadState() {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      // Try loading v2 state first, then fall back to v1
+      let saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) {
+        saved = localStorage.getItem('facharzt_anaesthesie_state_v1');
+      }
       if (saved) {
         const parsed = JSON.parse(saved);
         state = { ...state, ...parsed };
@@ -432,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Export Progress (JSON Backup) ---
   elBtnExportProgress.addEventListener('click', () => {
     const backupData = {
-      version: '1.0',
+      version: '2.0',
       timestamp: new Date().toISOString(),
       state: state
     };
@@ -506,6 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   elBtnCheck.addEventListener('click', checkAnswer);
   elBtnReview.addEventListener('click', toggleFlagForReview);
+  elBtnReveal.addEventListener('click', revealAnswer);
+  elBtnKnewIt.addEventListener('click', () => selfAssess(true));
+  elBtnDidntKnow.addEventListener('click', () => selfAssess(false));
 
   elThemeToggle.addEventListener('click', () => {
     state.theme = state.theme === 'light' ? 'dark' : 'light';
@@ -574,9 +713,36 @@ document.addEventListener('DOMContentLoaded', () => {
       elBtnPrev.click();
     } else if (e.key === ' ') {
       e.preventDefault();
-      elBtnCheck.click();
+      // For open questions: reveal answer on space
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (currentQ && isOpenQuestion(currentQ)) {
+        const qState = state.answers[currentQ.id] || {};
+        if (!qState.revealed && !qState.submitted) {
+          revealAnswer();
+        }
+      } else {
+        elBtnCheck.click();
+      }
     } else if (e.key.toLowerCase() === 'r') {
       elBtnReview.click();
+    } else if (e.key === '1' || e.key === 'j') {
+      // Quick self-assess: 1 or J = knew it
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (currentQ && isOpenQuestion(currentQ)) {
+        const qState = state.answers[currentQ.id] || {};
+        if (qState.revealed && !qState.submitted) {
+          selfAssess(true);
+        }
+      }
+    } else if (e.key === '2' || e.key === 'n') {
+      // Quick self-assess: 2 or N = didn't know
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (currentQ && isOpenQuestion(currentQ)) {
+        const qState = state.answers[currentQ.id] || {};
+        if (qState.revealed && !qState.submitted) {
+          selfAssess(false);
+        }
+      }
     }
   });
 

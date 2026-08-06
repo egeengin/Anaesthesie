@@ -149,18 +149,53 @@
         Fragetext wird geladen...
       </div>
 
-      <!-- Options Container -->
+      <!-- Question Image Container -->
+      <div id="question-image-container" class="question-image-container" style="display: none;">
+        <img id="question-image" src="" alt="Abbildung zur Frage" class="question-image" />
+      </div>
+
+      <!-- Options Container (for multi-choice questions, hidden for open Q&A) -->
       <div id="options-container" class="options-list">
         <!-- Dynamically rendered via app.js -->
       </div>
 
-      <!-- Explanation Card -->
+      <!-- Reveal Answer Button (for open Q&A flashcard mode) -->
+      <div id="reveal-container" class="reveal-container" style="display: none;">
+        <button id="btn-reveal" class="btn btn-reveal">
+          <span>👁️</span> Antwort anzeigen
+        </button>
+      </div>
+
+      <!-- Answer Card (for open Q&A flashcard mode) -->
+      <div id="answer-card" class="answer-card">
+        <div class="answer-header">
+          <span>🩺</span> Antwort & Erklärung:
+        </div>
+        <div id="answer-text" class="answer-body">
+          <!-- Dynamically populated when answer is revealed -->
+        </div>
+      </div>
+
+      <!-- Explanation Card (kept for backward compat) -->
       <div id="explanation-card" class="explanation-card">
         <div class="explanation-header">
           <span>🩺</span> Medizinische Erklärung & Auswertung:
         </div>
         <div id="explanation-text" class="explanation-body">
           <!-- Dynamically populated upon checking answer -->
+        </div>
+      </div>
+
+      <!-- Self-Assessment Buttons (for open Q&A flashcard mode) -->
+      <div id="self-assess-container" class="self-assess-container" style="display: none;">
+        <div class="self-assess-label">Wie gut wussten Sie die Antwort?</div>
+        <div class="self-assess-buttons">
+          <button id="btn-knew-it" class="btn btn-knew-it">
+            <span>✅</span> Wusste ich
+          </button>
+          <button id="btn-didnt-know" class="btn btn-didnt-know">
+            <span>❌</span> Wusste ich nicht
+          </button>
         </div>
       </div>
 
