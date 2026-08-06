@@ -1,0 +1,19 @@
+# Ignore medical PDF books and source materials
+Books/
+
+# Ignore Python build & parser scripts
+*.py
+
+# Ignore OS & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignore logs
+*.log
+
+# Ignore local temporary/brain directories
+.system_generated/
+scratch/
+EOF

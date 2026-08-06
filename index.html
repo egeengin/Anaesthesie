@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facharztprüfung Anästhesiologie - Smart Study System (NRW)</title>
+  <meta name="description" content="Interaktive Prüfungsvorbereitung für die Facharztprüfung Anästhesiologie NRW mit verknüpften zweisprachigen Übersetzungen (DE/TR), Spaced Repetition und detaillierten Erklärungen.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Password Authentication Gate Overlay -->
+  <div id="auth-modal" class="auth-backdrop">
+    <div class="auth-card" id="auth-card-box">
+      <div class="auth-icon">🔒</div>
+      <h2>Anmeldung Anästhesie-Trainer</h2>
+      <p>Bitte geben Sie das Zugangspasswort ein, um fortzufahren:</p>
+
+      <form id="auth-form" onsubmit="return false;">
+        <div class="auth-input-group">
+          <input type="password" id="auth-password" class="auth-input" placeholder="Passwort eingeben..." autocomplete="current-password" autofocus required />
+          <div id="auth-error" class="auth-error">❌ Falsches Passwort. Bitte erneut versuchen.</div>
+        </div>
+
+        <button type="submit" id="auth-submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          Anmelden & Starten
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">⚕</div>
+        <div class="brand-text">
+          <h1>Facharzt Anästhesie</h1>
+          <span>Smart Study & Dual Translation (DE / TR)</span>
+        </div>
+      </a>
+      
+      <div class="nav-actions">
+        <button id="sub-toggle" class="btn-toggle-sub" title="Untertitelmodus für Türkisch umschalten">
+          <span>🇹🇷</span> Untertitel
+        </button>
+
+        <button id="grid-trigger" class="btn-icon" title="Fragenübersicht & Navigation">
+          <span>📑</span>
+        </button>
+
+        <button id="settings-trigger" class="btn-icon" title="Einstellungen & Daten-Backup">
+          <span>⚙️</span>
+        </button>
+
+        <button id="theme-toggle" class="btn-icon" title="Dunkel-/Hellmodus umschalten">
+          <span>🌙</span>
+        </button>
+
+        <button id="lock-trigger" class="btn-icon" title="App Sperren">
+          <span>🔒</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Progress & Analytics Dashboard -->
+    <section class="dashboard">
+      <div class="stat-card">
+        <div class="stat-icon total">📚</div>
+        <div class="stat-info">
+          <h3>Gesamtfragen</h3>
+          <div class="stat-value" id="stat-total">0</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon success">✓</div>
+        <div class="stat-info">
+          <h3>Beantwortet</h3>
+          <div class="stat-value" id="stat-answered">0</div>
+          <div class="progress-bar-container">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon danger">🎯</div>
+        <div class="stat-info">
+          <h3>Erfolgsquote</h3>
+          <div class="stat-value" id="stat-accuracy">0%</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon warning">★</div>
+        <div class="stat-info">
+          <h3>Wiederholen</h3>
+          <div class="stat-value" id="stat-review">0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolbar: Filter Chips & Category Selector -->
+    <section class="toolbar">
+      <div class="filter-group">
+        <button class="filter-chip active" data-filter="all">Alle Fragen</button>
+        <button class="filter-chip" data-filter="unanswered">Offen (Unbeantwortet)</button>
+        <button class="filter-chip" data-filter="incorrect">Falsch beantwortet</button>
+        <button class="filter-chip" data-filter="review">★ Wiederholen (Flagged)</button>
+      </div>
+
+      <div class="mode-selector">
+        <select id="category-filter">
+          <option value="all">Alle Kategorien</option>
+        </select>
+
+        <select id="mode-select">
+          <option value="sequential">Modus: Sequentiell</option>
+          <option value="random">Modus: Zufall</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Main Quiz Card -->
+    <section class="quiz-card">
+      <div class="quiz-header">
+        <div class="quiz-meta">
+          <span id="badge-category" class="badge badge-category">Kategorie</span>
+          <span id="badge-source" class="badge badge-source">Quelle</span>
+          <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
+        </div>
+        <div id="question-number" class="question-number">Frage 1 von 599</div>
+      </div>
+
+      <!-- Question Text Container -->
+      <div id="question-text" class="question-body">
+        Fragetext wird geladen...
+      </div>
+
+      <!-- Options Container -->
+      <div id="options-container" class="options-list">
+        <!-- Dynamically rendered via app.js -->
+      </div>
+
+      <!-- Explanation Card -->
+      <div id="explanation-card" class="explanation-card">
+        <div class="explanation-header">
+          <span>🩺</span> Medizinische Erklärung & Auswertung:
+        </div>
+        <div id="explanation-text" class="explanation-body">
+          <!-- Dynamically populated upon checking answer -->
+        </div>
+      </div>
+
+      <!-- Action Control Bar -->
+      <div class="action-bar">
+        <button id="btn-review" class="btn btn-warning">
+          <span>☆</span> Wiederholen
+        </button>
+
+        <div class="btn-group">
+          <button id="btn-prev" class="btn btn-secondary">
+            <span>←</span> Zurück
+          </button>
+
+          <button id="btn-check" class="btn btn-primary">
+            Antwort Überprüfen
+          </button>
+
+          <button id="btn-next" class="btn btn-secondary">
+            Nächste <span>→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Question Direct Jump Modal Grid -->
+  <div id="jump-modal" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Fragenübersicht & Navigation</h2>
+        <button id="modal-close" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="question-grid" class="question-grid">
+          <!-- Dynamically rendered buttons -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings & Backup Modal -->
+  <div id="settings-modal" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Einstellungen & Geräte-Synchronisation</h2>
+        <button id="settings-modal-close" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          
+          <div class="settings-box">
+            <h3>📲 Lernfortschritt Sichern & Übertragen</h3>
+            <p>Exportieren Sie Ihren Fortschritt als Datei, um ihn auf Ihr Smartphone, Tablet oder ein anderes Gerät zu übertragen.</p>
+            <div class="settings-actions">
+              <button id="btn-export-progress" class="btn btn-secondary">
+                <span>📥</span> Fortschritt Exportieren (Backup JSON)
+              </button>
+              
+              <button id="btn-import-trigger" class="btn btn-secondary">
+                <span>📤</span> Fortschritt Importieren
+              </button>
+              <input type="file" id="import-file-input" accept=".json" style="display: none;" />
+            </div>
+          </div>
+
+          <div class="settings-box" style="border-color: var(--danger-border); background-color: var(--danger-bg);">
+            <h3 style="color: var(--danger);">⚠️ Lernfortschritt Zurücksetzen</h3>
+            <p>Löscht alle gespeicherten Antworten, Erfolgsquoten und Markierungen für einen kompletten Neustart.</p>
+            <button id="btn-reset-progress" class="btn btn-danger-outline">
+              <span>🗑️</span> Lernfortschritt Zurücksetzen...
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      Facharztprüfung Anästhesiologie Preparation System &bull; Designed for Optimum Learning & Medical Retention
+    </div>
+  </footer>
+
+  <!-- Question Data & Application Scripts -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
