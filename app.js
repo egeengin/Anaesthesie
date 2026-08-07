@@ -1289,9 +1289,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (elThemeToggle) {
+    // Restore saved theme on load
+    if (state.theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      elThemeToggle.querySelector('span').textContent = '☀️';
+      elThemeToggle.classList.add('active');
+    }
     elThemeToggle.addEventListener('click', () => {
       state.theme = state.theme === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', state.theme);
+      elThemeToggle.querySelector('span').textContent = state.theme === 'dark' ? '☀️' : '🌙';
+      elThemeToggle.classList.toggle('active', state.theme === 'dark');
       saveState();
     });
   }
