@@ -10,6 +10,7 @@ __pycache__/
 !view_login_logs.py
 !expand_to_all_subquestions.py
 !find_question_bugs.py
+!clean_text_artifacts.py
 env/
 venv/
 .venv/
