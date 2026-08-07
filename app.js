@@ -324,6 +324,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Filtering Question Bank ---
   function getFilteredQuestions() {
     return EXAM_QUESTIONS.filter(q => {
+      // Live Global Medical Search Filter
+      if (state.searchQuery && state.searchQuery.trim()) {
+        const query = state.searchQuery.trim().toLowerCase();
+        let fullText = (q.stem_de || '') + ' ' + (q.stem_tr || '') + ' ' + (q.question_de || '') + ' ' + (q.question_tr || '') + ' ' + (q.answer_de || '') + ' ' + (q.answer_tr || '');
+        if (q.options) {
+          q.options.forEach(opt => {
+            fullText += ' ' + (opt.text_de || '') + ' ' + (opt.text_tr || '') + ' ' + (opt.explanation_de || '') + ' ' + (opt.explanation_tr || '');
+          });
+        }
+        if (state.userNotes && state.userNotes[q.id]) {
+          fullText += ' ' + state.userNotes[q.id];
+        }
+        if (!fullText.toLowerCase().includes(query)) {
+          return false;
+        }
+      }
+
       if (state.typeFilter !== 'all') {
         if (state.typeFilter === 'image') {
           if (!q.image) return false;
@@ -442,6 +459,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const stemDe = currentQ.stem_de || currentQ.question_de || '';
     const stemTr = currentQ.stem_tr || currentQ.question_tr || '';
     elQuestionText.innerHTML = renderDualLanguageText(stemDe, stemTr);
+
+    // Personal Medical Note
+    const elUserNoteText = document.getElementById('user-note-text');
+    if (elUserNoteText) {
+      elUserNoteText.value = (state.userNotes && state.userNotes[currentQ.id]) ? state.userNotes[currentQ.id] : '';
+    }
 
     // Question image
     if (currentQ.image) {
@@ -715,52 +738,92 @@ document.addEventListener('DOMContentLoaded', () => {
       const consecutive = Math.min(correctCount, 7);
       elStatSessionStreak.textContent = `⚡ ${consecutive} in Folge`;
     }
+
+    // Daily Goal calculation
+    const todayStr = new Date().toISOString().slice(0, 10);
+    if (state.dailyDate !== todayStr) {
+      state.dailyDate = todayStr;
+      state.dailyCount = 0;
+    }
+    const elStatDailyGoal = document.getElementById('stat-daily-goal');
+    const elDailyGoalBarFill = document.getElementById('daily-goal-bar-fill');
+    if (elStatDailyGoal) {
+      elStatDailyGoal.textContent = `${state.dailyCount || 0} / 20`;
+    }
+    if (elDailyGoalBarFill) {
+      const goalPct = Math.min(100, Math.round(((state.dailyCount || 0) / 20) * 100));
+      elDailyGoalBarFill.style.width = `${goalPct}%`;
+    }
   }
 
-  // --- Render Direct Jump Modal Grid ---
+  // --- Render Direct Jump Modal Grid (Categorized by Topics) ---
   function openQuestionGridModal() {
     elQuestionGrid.innerHTML = '';
     
-    EXAM_QUESTIONS.forEach((q, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'q-grid-btn';
-      btn.textContent = idx + 1;
+    const categories = Array.from(new Set(EXAM_QUESTIONS.map(q => q.category)));
+    
+    categories.forEach(cat => {
+      const catQuestions = EXAM_QUESTIONS.filter(q => q.category === cat);
+      if (!catQuestions.length) return;
 
-      const qAns = state.answers[q.id];
-      const isFlagged = !!state.flagged[q.id];
+      const block = document.createElement('div');
+      block.className = 'q-grid-category-block';
 
-      if (isFlagged) {
-        btn.classList.add('flagged-review');
-      } else if (qAns && qAns.submitted) {
-        if (qAns.isCorrect) {
-          btn.classList.add('answered-correct');
-        } else {
-          btn.classList.add('answered-incorrect');
+      const title = document.createElement('div');
+      title.className = 'grid-category-title';
+      title.textContent = `${cat} (${catQuestions.length})`;
+      block.appendChild(title);
+
+      const gridSub = document.createElement('div');
+      gridSub.className = 'question-grid';
+
+      catQuestions.forEach(q => {
+        const globalIdx = EXAM_QUESTIONS.findIndex(item => item.id === q.id) + 1;
+        const btn = document.createElement('button');
+        btn.className = 'q-grid-btn';
+        btn.textContent = globalIdx;
+
+        const qAns = state.answers[q.id];
+        const isFlagged = !!state.flagged[q.id];
+
+        if (isFlagged) {
+          btn.classList.add('flagged-review');
+        } else if (qAns && qAns.submitted) {
+          if (qAns.isCorrect) {
+            btn.classList.add('answered-correct');
+          } else {
+            btn.classList.add('answered-incorrect');
+          }
         }
-      }
 
-      const filteredIdx = filteredQuestions.findIndex(fq => fq.id === q.id);
-      if (filteredIdx !== -1 && filteredIdx === state.currentIndex) {
-        btn.classList.add('current');
-      }
-
-      btn.addEventListener('click', () => {
-        if (filteredIdx === -1) {
-          state.filterMode = 'all';
-          state.categoryFilter = 'all';
-          elCategoryFilter.value = 'all';
-          elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
-          filteredQuestions = getFilteredQuestions();
+        const filteredIdx = filteredQuestions.findIndex(fq => fq.id === q.id);
+        if (filteredIdx !== -1 && filteredIdx === state.currentIndex) {
+          btn.classList.add('current');
         }
-        
-        const newIdx = filteredQuestions.findIndex(fq => fq.id === q.id);
-        state.currentIndex = newIdx !== -1 ? newIdx : 0;
-        saveState();
-        renderCurrentQuestion();
-        closeModal(elJumpModal);
+
+        btn.addEventListener('click', () => {
+          if (filteredIdx === -1) {
+            state.filterMode = 'all';
+            state.categoryFilter = 'all';
+            state.searchQuery = '';
+            if (elSearchInput) elSearchInput.value = '';
+            elCategoryFilter.value = 'all';
+            elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+            filteredQuestions = getFilteredQuestions();
+          }
+          
+          const newIdx = filteredQuestions.findIndex(fq => fq.id === q.id);
+          state.currentIndex = newIdx !== -1 ? newIdx : 0;
+          saveState();
+          renderCurrentQuestion();
+          closeModal(elJumpModal);
+        });
+
+        gridSub.appendChild(btn);
       });
 
-      elQuestionGrid.appendChild(btn);
+      block.appendChild(gridSub);
+      elQuestionGrid.appendChild(block);
     });
 
     elJumpModal.classList.add('active');

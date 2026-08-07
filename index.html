@@ -126,6 +126,17 @@
           <div class="stat-subtext" id="stat-session-streak">⚡ 0 in Folge</div>
         </div>
       </div>
+
+      <div class="stat-card daily-goal-card">
+        <div class="stat-icon goal">🎯</div>
+        <div class="stat-info">
+          <h3>Tagesziel</h3>
+          <div class="stat-value" id="stat-daily-goal">0 / 20</div>
+          <div class="progress-bar-container">
+            <div id="daily-goal-bar-fill" class="progress-bar-fill goal-fill"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Exam Simulation Active Banner -->
@@ -142,6 +153,12 @@
 
     <!-- Toolbar: Filter Chips & Category Selector -->
     <section class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Medikament, Symptom oder Begriff suchen..." />
+        <button id="btn-clear-search" class="btn-clear-search" style="display: none;">✕</button>
+      </div>
+
       <div class="filter-group">
         <button class="filter-chip active" data-filter="all">Alle Fragen</button>
         <button class="filter-chip" data-filter="high_yield">⭐ ÄKNO NRW Top-Fragen</button>
@@ -222,6 +239,20 @@
         </div>
         <div id="explanation-text" class="explanation-body">
           <!-- Dynamically populated upon checking answer -->
+        </div>
+      </div>
+
+      <!-- Personal Medical Notes Card -->
+      <div id="user-note-card" class="user-note-card">
+        <div class="note-header">
+          <span>📝</span> Eigene Klinik-Notiz & Eselbrücke:
+        </div>
+        <textarea id="user-note-text" class="user-note-textarea" placeholder="Schreiben Sie hier persönliche Notizen, Klinik-SOPs oder Eselbrücken zu dieser Frage..."></textarea>
+        <div class="note-actions">
+          <button id="btn-save-note" class="btn btn-sm btn-primary">
+            <span>💾</span> Notiz Speichern
+          </button>
+          <span id="note-save-toast" class="note-save-toast" style="display: none;">✓ Notiz gespeichert & synchronisiert</span>
         </div>
       </div>
 

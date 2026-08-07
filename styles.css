@@ -1545,6 +1545,149 @@ footer {
   background: linear-gradient(135deg, rgba(45, 212, 191, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
   border-left-color: #2dd4bf;
 }
+
+/* --- Live Global Medical Search Bar --- */
+.search-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+/* --- Daily Goal Card --- */
+.stat-card.daily-goal-card {
+  border-left: 4px solid #10b981;
+}
+
+.stat-icon.goal {
+  background: #d1fae5;
+  color: #059669;
+}
+
+[data-theme="dark"] .stat-icon.goal {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.goal-fill {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+}
+
+/* --- Personal Medical Notes Card --- */
+.user-note-card {
+  margin-top: 1.2rem;
+  padding: 1rem 1.25rem;
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .user-note-card {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.note-header {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #b45309;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+[data-theme="dark"] .note-header {
+  color: #fbbf24;
+}
+
+.user-note-textarea {
+  width: 100%;
+  min-height: 70px;
+  padding: 0.6rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-card);
+  color: var(--text-main);
+  resize: vertical;
+
+}
+
+.user-note-textarea:focus {
+  outline: none;
+  border-color: #f59e0b;
+}
+
+.note-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+.note-save-toast {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #10b981;
+}
+
+/* --- Categorized Question Grid Modal --- */
+.q-grid-category-block {
+  margin-bottom: 1.5rem;
+}
+
+.grid-category-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--primary-light);
+}
 .question-image.zoomed {
   transform: scale(1);
 }
