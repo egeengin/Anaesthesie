@@ -205,6 +205,125 @@ body {
   border-color: var(--primary);
 }
 
+/* --- Navigation Action Pill Group --- */
+.nav-action-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.4rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.pill-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
+}
+
+.pill-btn:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.pill-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* --- Compact Executive Progress Banner (Single Row) --- */
+.dashboard-compact {
+  margin: 1rem 0 1.25rem 0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.dash-compact-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.dash-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.dash-label {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.dash-val {
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--primary);
+}
+
+.dash-progress-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.dash-compact-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.dash-badge-item {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dash-badge-item strong {
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .dashboard-compact {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .dash-compact-right {
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+}
+
 /* Dashboard Analytics Grid */
 .dashboard {
   margin: 1.5rem 0;

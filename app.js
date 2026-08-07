@@ -731,11 +731,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const accuracyPct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
     const progressPct = Math.round((answeredCount / total) * 100);
 
-    elStatTotal.textContent = total;
-    elStatAnswered.textContent = answeredCount;
-    elStatAccuracy.textContent = `${accuracyPct}%`;
-    elStatReview.textContent = reviewCount;
-    elProgressBar.style.width = `${progressPct}%`;
+    if (elStatTotal) elStatTotal.textContent = total;
+    if (elStatAnswered) elStatAnswered.textContent = answeredCount;
+    if (elStatAccuracy) elStatAccuracy.textContent = `${accuracyPct}%`;
+    if (elStatReview) elStatReview.textContent = reviewCount;
+    if (elProgressBar) elProgressBar.style.width = `${progressPct}%`;
+
+    const elStatProgressText = document.getElementById('stat-progress-text');
+    if (elStatProgressText) {
+      elStatProgressText.textContent = `${answeredCount} / ${total} (${progressPct}%)`;
+    }
 
     // Streak calculations
     const elStatStreak = document.getElementById('stat-streak');

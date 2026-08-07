@@ -59,29 +59,20 @@
           <span class="cloud-icon">☁️</span> <span class="cloud-text">Synchronisiert</span>
         </div>
 
-        <button id="pocket-trigger" class="btn-toggle-sub" style="border-color: #0d9488; color: #0d9488;" title="Notfall- & Medikamenten-Taschenkarte">
-          <span>📇</span> Notfallkarte
-        </button>
-
-        <button id="sub-toggle" class="btn-toggle-sub" title="Untertitelmodus für Türkisch umschalten">
-          <span>🇹🇷</span> Untertitel
-        </button>
-
-        <button id="grid-trigger" class="btn-icon" title="Fragenübersicht & Navigation">
-          <span>📑</span>
-        </button>
-
-        <button id="settings-trigger" class="btn-icon" title="Einstellungen & Daten-Backup">
-          <span>⚙️</span>
-        </button>
-
-        <button id="theme-toggle" class="btn-icon" title="Dunkel-/Hellmodus umschalten">
-          <span>🌙</span>
-        </button>
-
-        <button id="lock-trigger" class="btn-icon" title="App Sperren">
-          <span>🔒</span>
-        </button>
+        <div class="nav-action-pill">
+          <button id="pocket-trigger" class="pill-btn" title="Notfall- & Medikamenten-Taschenkarte">
+            <span>📇</span> Notfallkarte
+          </button>
+          <button id="sub-toggle" class="pill-btn active" title="Untertitelmodus für Türkisch umschalten">
+            <span>🇹🇷</span> Untertitel
+          </button>
+          <button id="grid-trigger" class="pill-btn" title="Fragenübersicht & Navigation">
+            <span>📑</span> Übersicht
+          </button>
+          <button id="settings-trigger" class="pill-btn" title="Einstellungen & Daten-Backup">
+            <span>⚙️</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -89,60 +80,30 @@
   <!-- Main Container -->
   <main class="container">
 
-    <!-- Progress & Analytics Dashboard (6 Symmetrical Cards for iPhone 15 Pro Max & MacBook Air) -->
-    <section class="dashboard">
-      <div class="stat-card">
-        <div class="stat-icon total">📚</div>
-        <div class="stat-info">
-          <h3>Gesamtfragen</h3>
-          <div class="stat-value" id="stat-total">580</div>
+    <!-- Compact Executive Progress Banner (Single Tidy Row) -->
+    <section class="dashboard-compact">
+      <div class="dash-compact-left">
+        <div class="dash-stat-item">
+          <span class="dash-label">Lernfortschritt:</span>
+          <span id="stat-progress-text" class="dash-val">0 / 580 (0%)</span>
+        </div>
+        <div class="dash-progress-bar-wrap">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
         </div>
       </div>
 
-      <div class="stat-card">
-        <div class="stat-icon success">✓</div>
-        <div class="stat-info">
-          <h3>Beantwortet</h3>
-          <div class="stat-value" id="stat-answered">0</div>
-          <div class="progress-bar-container">
-            <div id="progress-bar-fill" class="progress-bar-fill"></div>
-          </div>
+      <div class="dash-compact-right">
+        <div class="dash-badge-item">
+          <span>🎯 Quote:</span> <strong id="stat-accuracy">0%</strong>
         </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon danger">🎯</div>
-        <div class="stat-info">
-          <h3>Erfolgsquote</h3>
-          <div class="stat-value" id="stat-accuracy">0%</div>
+        <div class="dash-badge-item">
+          <span>⭐ ÄKNO Top:</span> <strong>264</strong>
         </div>
-      </div>
-
-      <div class="stat-card hy-card">
-        <div class="stat-icon hy">⭐</div>
-        <div class="stat-info">
-          <h3>ÄKNO Top-Fragen</h3>
-          <div class="stat-value" id="stat-hy">264</div>
+        <div class="dash-badge-item">
+          <span>🎯 Tagesziel:</span> <strong id="stat-daily-goal">0/20</strong>
         </div>
-      </div>
-
-      <div class="stat-card streak-card">
-        <div class="stat-icon streak">🔥</div>
-        <div class="stat-info">
-          <h3>Lern-Streak</h3>
-          <div class="stat-value" id="stat-streak">0 Tage</div>
-          <div class="stat-subtext" id="stat-session-streak">⚡ 0 in Folge</div>
-        </div>
-      </div>
-
-      <div class="stat-card daily-goal-card">
-        <div class="stat-icon goal">🎯</div>
-        <div class="stat-info">
-          <h3>Tagesziel</h3>
-          <div class="stat-value" id="stat-daily-goal">0 / 20</div>
-          <div class="progress-bar-container">
-            <div id="daily-goal-bar-fill" class="progress-bar-fill goal-fill"></div>
-          </div>
+        <div class="dash-badge-item">
+          <span>🔥 Streak:</span> <strong id="stat-streak">0 Tage</strong>
         </div>
       </div>
     </section>
