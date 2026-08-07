@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleAuthSubmit() {
     if (!elAuthPassword) return;
-    const enteredPass = elAuthPassword.value.trim().toLowerCase();
-    if (enteredPass === 'egemelis' || enteredPass === 'ege' || enteredPass === 'melis' || enteredPass === CORRECT_PASS) {
+    const enteredPass = elAuthPassword.value.trim();
+    if (enteredPass === 'egemelis' || enteredPass === CORRECT_PASS) {
       localStorage.setItem(AUTH_KEY, 'true');
       if (elAuthError) elAuthError.style.display = 'none';
       if (elAuthModal) elAuthModal.style.display = 'none';
