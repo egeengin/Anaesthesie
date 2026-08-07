@@ -1132,8 +1132,8 @@ body {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  max-width: 650px;
-  width: 90%;
+  max-width: 750px;
+  width: 92%;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
@@ -1157,6 +1157,12 @@ body {
 .modal-body {
   padding: 1.5rem;
   overflow-y: auto;
+}
+
+.question-grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .question-grid {
