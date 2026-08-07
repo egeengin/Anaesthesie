@@ -8,6 +8,8 @@ __pycache__/
 *.pyd
 *.py
 !view_login_logs.py
+!expand_to_all_subquestions.py
+!find_question_bugs.py
 env/
 venv/
 .venv/

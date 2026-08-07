@@ -46,7 +46,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann auf ein TUR-Syndrom hinweisen.",
         "text_tr": "TUR sendromunu gösterebilir.",
         "is_correct": true,
-        "explanation_de": "Eine mentale Störung in Verbindung mit einer Hyponatriämie weist auf das Bestehen eines TUR-Syndroms hin. 9 1.1 · Klinische Chemie1",
+        "explanation_de": "Eine mentale Störung in Verbindung mit einer Hyponatriämie weist auf das Bestehen eines TUR-Syndroms hin.",
         "explanation_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1"
       }
     ],
@@ -147,7 +147,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Eine mittelschwere Leberfunktionsstörung führt als alleinige Ursache nicht zu einem Anstieg des Serumlaktatspiegels. 10 1Kapitel 1 · Allgem eines",
+        "text_de": "Eine mittelschwere Leberfunktionsstörung führt als alleinige Ursache nicht zu einem Anstieg des Serumlaktatspiegels.",
         "text_tr": "Tek neden olan orta derecede karaciğer yetmezliği serum laktat düzeylerinde artışa yol açmaz. 10 1Bölüm 1 · Genel bir",
         "is_correct": true,
         "explanation_de": "Auch eine stark geschädigte Leber kann aufgrund der hohen Organreserven die anfallenden Laktationen zur Glukoneogenese heran-ziehen. Erst bei schwerster Schädigung der Leberfunktion (>90 % Funk-tionsverlust) kann die Laktatverstoffwechslung nicht mehr stattfinden, und die Leber kann selbst zu einem laktatproduzierenden Organ werden.",
@@ -170,7 +170,7 @@ const EXAM_QUESTIONS = [
         "text_de": "sind für eine Gewebeischämie/-hypoxie spezifisch.",
         "text_tr": "doku iskemisi/hipoksisine spesifiktir.",
         "is_correct": false,
-        "explanation_de": "Erhöhte Serumlaktatwerte sind für eine Gewebeischämie/-hypoxie weder spezifisch noch sensitiv. Einerseits kommt es bei einem Vitamin-B 1 - Mangel zu einer Laktatazidose, obwohl kein inadäquates O 2 -Angebot vorliegt, und andererseits kommt es trotz bestehender Einzelorganhypoxie nicht zu erhöhten Laktatwerten. 11 1.1 · Klinische Chemie1",
+        "explanation_de": "Erhöhte Serumlaktatwerte sind für eine Gewebeischämie/-hypoxie weder spezifisch noch sensitiv. Einerseits kommt es bei einem Vitamin-B 1 - Mangel zu einer Laktatazidose, obwohl kein inadäquates O 2 -Angebot vorliegt, und andererseits kommt es trotz bestehender Einzelorganhypoxie nicht zu erhöhten Laktatwerten.",
         "explanation_tr": "Yüksek serum laktat düzeyleri doku iskemisi/hipoksiye karşı ne spesifik ne de duyarlıdır. Bir yandan, B1 vitamini eksikliği, yetersiz O2 kaynağı olmamasına rağmen laktik asidoza neden olur, diğer yandan mevcut bireysel organ hipoksisine rağmen yüksek laktat seviyeleri yoktur. 11 1.1 · Klinik Kimya1"
       },
       {
@@ -178,24 +178,24 @@ const EXAM_QUESTIONS = [
         "text_de": "korrelieren bei längerfristiger Erhöhung bei kritisch Kranken mit einem negativen Outcome.",
         "text_tr": "kritik hastalarda uzun bir süre boyunca yükseldiğinde olumsuz sonuçla ilişkilidir.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "können die Folge einer Gabe großer Mengen laktathaltiger Infusions-lösungen sein.",
         "text_tr": "laktat içeren infüzyon solüsyonlarının büyük miktarlarda uygulanmasının sonucu olabilir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "sollten Anlass geben, serielle Laktatkontrollen durchzuführen.",
         "text_tr": "seri laktat kontrollerinin yapılmasına neden olmalıdır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -230,56 +230,32 @@ const EXAM_QUESTIONS = [
         "text_de": "Auch metabolische Azidosen mit einem pH-Wert von 7,20–7,34 sollten grundsätzlich durch Gabe von Puffersubstanzen therapiert werden.",
         "text_tr": "PH değeri 7,20-7,34 olan metabolik asidoz da genellikle tampon maddelerin uygulanmasıyla tedavi edilmelidir.",
         "is_correct": false,
-        "explanation_de": "Mäßige Azidosen werden i. allg. gut toleriert, weil sie zu verschie- denen positiven Wirkungen beitragen. Eine Azidose erhöht über eine Freisetzung aus der Albuminbindung das freie ionisierte Kalzium, was zu einem Anstieg der Inotropie des Herzens und des Blutdrucks, durch eine Tonisierung des Gefäßsystems, führen kann. Gleichsinnig wirkt die unter 12 1Kapitel 1 · Allgem eines",
-        "explanation_tr": "Aşağıdaki semptomlar primer hiperaldosteronizm (Conn sendromu) tanısıyla uyumludur:"
+        "explanation_de": "Mäßige Azidosen werden i. allg. gut toleriert, weil sie zu verschie- denen positiven Wirkungen beitragen. Eine Azidose erhöht über eine Freisetzung aus der Albuminbindung das freie ionisierte Kalzium, was zu einem Anstieg der Inotropie des Herzens und des Blutdrucks, durch eine Tonisierung des Gefäßsystems, führen kann. Gleichsinnig wirkt die unter",
+        "explanation_tr": ""
       },
       {
         "key": "c",
         "text_de": "Eine schwere metabolische Azidose geht häufig mit einer Hypokaliämie einher.",
         "text_tr": "Şiddetli metabolik asidoza sıklıkla hipokalemi eşlik eder.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Eine metabolische Azidose führt zu einer Verschlechterung der O 2 -Abgabe an das Gewebe.",
         "text_tr": "Metabolik asidoz dokulara O2 iletiminin bozulmasına yol açar.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Eine metabolische Azidose ist mit einem Abfall des ionisierten Kalziums im Plasma verbunden. b. Richtig. Trotz geringer Sensitivität und Spezifität sind konstant erhöhte erumlaktatwerte prädiktiv für eine erhöhte Mortalität bei septischen Patienten.",
+        "text_de": "Eine metabolische Azidose ist mit einem Abfall des ionisierten Kalziums im Plasma verbunden.",
         "text_tr": "Metabolik asidoz, plazma iyonize kalsiyumun azalmasıyla ilişkilidir. B. Doğru. Duyarlılık ve özgüllüğün düşük olmasına rağmen, sürekli olarak yükselen serum laktat düzeyleri, septik hastalarda artan mortalitenin göstergesidir.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
-      },
-      {
-        "key": "c",
-        "text_de": "Richtig. Laktat kann von der Leber zur Glukoneogenese verwandt werden. Die Laktatverwertungskapazität auch der vorgeschädigten Leber ist sehr hoch. Erst eine >90 %ige Schädigung der Leberfunktion kann wie bei exo-gener Laktatzufuhr eine Laktatämie hervorrufen.",
-        "text_tr": "Doğru. Laktat karaciğer tarafından glukoneogenez için kullanılabilir. Daha önce hasar görmüş karaciğerin bile laktattan yararlanma kapasitesi çok yüksektir. Eksojen laktat alımında olduğu gibi, karaciğer fonksiyonunda yalnızca %90'ın üzerinde hasar laktatemiye neden olabilir.",
-        "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Aufgrund der geringen Sensitivität und Spezifität eines einzelnen erhöhten Laktatwertes sind serielle Untersuchungen notwendig.",
-        "text_tr": "Doğru. Tek bir yüksek laktat değerinin düşük duyarlılığı ve özgüllüğü nedeniyle seri incelemeler gereklidir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Bei Überwucherung des Darms mit Milchsäure produzierenden Bakterien kann es zur Laktatazidose kommen. Häufig jedoch verbirgt sich hinter erhöhten Laktatwerten eine Darmischämie . Sie sollte deshalb gezielt ausgeschlossen werden.",
-        "text_tr": "Doğru. Bağırsak laktik asit üreten bakterilerle aşırı büyümüşse laktik asidoz meydana gelebilir. Ancak artan laktat seviyeleri sıklıkla bağırsak iskemisini gizler. Bu nedenle özellikle hariç tutulmalıdır.",
-        "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -434,8 +410,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Hypotension",
         "text_tr": "Hipotansiyon",
         "is_correct": false,
-        "explanation_de": "Siehe Antwort a. 14 1Kapitel 1 · Allgem eines",
-        "explanation_tr": "Cevap a'ya bakınız. 14 1Bölüm 1 · Genel bir"
+        "explanation_de": "Siehe Antwort a.",
+        "explanation_tr": "Cevap a'ya bakınız."
       }
     ],
     "is_high_yield": true
@@ -514,7 +490,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Niereninsuffizienz.",
         "text_tr": "Böbrek yetmezliği.",
         "is_correct": true,
-        "explanation_de": "Bei der Niereninsuffizienz ist die renale Kaliumexkretion vermindert. 15 1.1 · Klinische Chemie1",
+        "explanation_de": "Bei der Niereninsuffizienz ist die renale Kaliumexkretion vermindert.",
         "explanation_tr": "Böbrek yetmezliğinde renal potasyum atılımı azalır. 15 1.1 · Klinik Kimya1"
       },
       {
@@ -522,16 +498,16 @@ const EXAM_QUESTIONS = [
         "text_de": "ausgedehnten Gewebeschäden.",
         "text_tr": "geniş doku hasarı.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "intravasaler Hämolyse.",
         "text_tr": "intravasküler hemoliz.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -644,22 +620,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Es wird die Gabe von 1–2 mg/kgKG i.v. empfohlen. Methylenblau vermittelt den Transfer von Elektronen des NADPH auf Met-Hb.",
         "explanation_tr": "1-2 mg/kg vücut ağırlığı i.v. tavsiye edilen. Metilen mavisi, elektronların NADPH'den Met-Hb'ye transferine aracılık eder."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Auch eine Hämolyse setzt intrazelluläres Kalium frei.",
-        "text_tr": "Doğru. Hemoliz aynı zamanda hücre içi potasyumun da salınmasına neden olur.",
-        "is_correct": true,
-        "explanation_de": "Normales Hämoglobin enthält 2-wertiges Eisen. 3-wertiges Eisen bindet O 2 irreversibel, sodass Met-Hb für den O 2 -Transport ausfällt. Methämoglobin hat eine auffällige braune Farbe und entsteht in geringen Mengen auch physiologischerweise. Es wird durch das im Erythrozyten vorliegende Enzym Met-Hb-Reduktase zu 2-wertigem Eisen reduziert.",
-        "explanation_tr": "Normal hemoglobin iki değerlikli demir içerir. Üç değerlikli demir, O2'yi geri dönülemez şekilde bağlar, böylece O2 taşınması için artık Met-Hb'ye ihtiyaç duyulmaz. Methemoglobin çarpıcı bir kahverengi renge sahiptir ve fizyolojik olarak da küçük miktarlarda üretilir. Eritrositte bulunan Met-Hb redüktaz enzimi ile iki değerlikli demire indirgenir."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Beim hypovolämischen Schock kommt es aufgrund der Minder- perfusion der Gewebe zu einer metabolischen Laktatazidose , welche zu einem Kaliumanstieg führt (s. Antwort a). 16 1Kapitel 1 · Allgem eines",
-        "text_tr": "Doğru. Hipovolemik şokta, doku perfüzyonunun azalması nedeniyle metabolik laktik asidoz meydana gelir ve bu da potasyumda artışa yol açar (cevap a'ya bakınız). 16 1Bölüm 1 · Genel bir şey",
-        "is_correct": true,
-        "explanation_de": "Es wird die Gabe von 1–2 mg/kgKG i.v. empfohlen. Methylenblau vermittelt den Transfer von Elektronen des NADPH auf Met-Hb.",
-        "explanation_tr": "1-2 mg/kg vücut ağırlığı i.v. tavsiye edilen. Metilen mavisi, elektronların NADPH'den Met-Hb'ye transferine aracılık eder."
       }
     ],
     "is_high_yield": false
@@ -710,7 +670,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Ascorbinsäure",
         "text_tr": "Askorbik asit",
         "is_correct": false,
-        "explanation_de": "Ascorbinsäure (Vitamin C) kann ebenfalls zur Behandlung der Met- hämoglobinämie eingesetzt werden, die Dosierung ist hier 2 mg/kgKG. 17 1.1 · Klinische Chemie1",
+        "explanation_de": "Ascorbinsäure (Vitamin C) kann ebenfalls zur Behandlung der Met- hämoglobinämie eingesetzt werden, die Dosierung ist hier 2 mg/kgKG.",
         "explanation_tr": "Askorbik asit (C vitamini) methemoglobinemiyi tedavi etmek için de kullanılabilir; Buradaki dozaj 2 mg/kg vücut ağırlığıdır. 17 1.1 · Klinik Kimya1"
       }
     ],
@@ -762,7 +722,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Exposition gegenüber einer einzigen Einheit »fresh frozen plasma« (FFP) kann zu einem transfusionsassoziierten Lungenschaden (TRALI) führen.",
         "text_tr": "Tek bir ünite taze donmuş plazmaya (FFP) maruz kalmak, transfüzyonla ilişkili akciğer hasarına (TRALI) neden olabilir.",
         "is_correct": true,
-        "explanation_de": "Beim TRALI handelt es sich um ein immunologisches Phänomen. Es wird postuliert, dass Antikörper im Spenderplasma in der Lunge des Empfängers Komplement aktivieren, was zu Leukozytensequestration mit (massiver) Entzündungsreaktion in der Empfängerlunge führt. Für die Aus-lösung eines TRALI genügt auch schon die Transfusion nur einer Einheit FFP . Es gibt Plasmapräparate, die so gereinigt sind, dass keine Spender-antikörper mehr enthalten sind und somit kein TRALI ausgelöst wird. 18 1Kapitel 1 · Allgem eines 1.2 Physik",
+        "explanation_de": "Beim TRALI handelt es sich um ein immunologisches Phänomen. Es wird postuliert, dass Antikörper im Spenderplasma in der Lunge des Empfängers Komplement aktivieren, was zu Leukozytensequestration mit (massiver) Entzündungsreaktion in der Empfängerlunge führt. Für die Aus-lösung eines TRALI genügt auch schon die Transfusion nur einer Einheit FFP . Es gibt Plasmapräparate, die so gereinigt sind, dass keine Spender-antikörper mehr enthalten sind und somit kein TRALI ausgelöst wird. .2 Physik",
         "explanation_tr": "TRALI immünolojik bir olgudur. Donör plazmasındaki antikorların, alıcının akciğerindeki komplemanı aktive ederek, alıcının akciğerinde (masif) inflamatuar reaksiyonla birlikte lökosit sekestrasyonuna yol açtığı varsayılmaktadır. TRALI'yi tetiklemek için yalnızca bir ünite FFP transfüzyonu yeterlidir. Artık donör antikorları içermeyecek ve dolayısıyla TRALI'yi tetiklemeyecek şekilde saflaştırılmış plazma preparatları vardır. 18 1Bölüm 1 · Genel 1.2 Fizik"
       }
     ],
@@ -814,7 +774,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Luftblasen im Schlauchsystem vermindern die Resonanzfrequenz und erhöhen die Dämpfung.",
         "text_tr": "Hortum sistemindeki hava kabarcıkları rezonans frekansını azaltır ve sönümü artırır.",
         "is_correct": true,
-        "explanation_de": "Luftblasen erhöhen die Compliance des Systems (weicher) und vermindern damit die Resonanzfrequenz. Zum anderen erhöht sich die Reibung (Luft ist kompressibel) und damit die Dämpfung. Hierbei gilt: Je mehr Masse dazwischengeschaltet wird, d. h. je dicker der Schlauch ist (mehr Flüssigkeit mehr Masse), desto größer wird die Dämpfung. Im klinischen Alltag kann man die Resonanzeigenschaften einer gegebe-nen Messanordnung leicht überprüfen. Man betätigt die Spülvorrichtung der arteriellen Kanüle für einige Sekunden und zeichnet den Kurvenverlauf 19 1 1.2 · Physik",
+        "explanation_de": "Luftblasen erhöhen die Compliance des Systems (weicher) und vermindern damit die Resonanzfrequenz. Zum anderen erhöht sich die Reibung (Luft ist kompressibel) und damit die Dämpfung. Hierbei gilt: Je mehr Masse dazwischengeschaltet wird, d. h. je dicker der Schlauch ist (mehr Flüssigkeit mehr Masse), desto größer wird die Dämpfung. Im klinischen Alltag kann man die Resonanzeigenschaften einer gegebe-nen Messanordnung leicht überprüfen. Man betätigt die Spülvorrichtung der arteriellen Kanüle für einige Sekunden und zeichnet den Kurvenverlauf 19",
         "explanation_tr": "Hava kabarcıkları sistemin kompliyansını arttırır (daha yumuşak) ve dolayısıyla rezonans frekansını azaltır. Öte yandan sürtünme artar (hava sıkıştırılabilir) ve dolayısıyla sönümleme olur. Şu geçerlidir: Araya ne kadar fazla kütle eklenirse, yani h. tüp ne kadar kalınsa (daha fazla sıvı, daha fazla kütle), zayıflama o kadar büyük olur. Günlük klinik uygulamada belirli bir ölçüm kurulumunun rezonans özellikleri kolayca kontrol edilebilir. Arteriyel kanülün yıkama cihazını birkaç saniye çalıştırıp eğriyi çiziyorsunuz 19 1 1.2 · Fizik"
       }
     ],
@@ -866,7 +826,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Eine Verminderung der Dämpfung führt zu einer Vergrößerung des systoli-schen Druckwerts.",
         "text_tr": "Sönümlemedeki bir azalma sistolik basınç değerinde bir artışa yol açar.",
         "is_correct": true,
-        "explanation_de": "Siehe Antwort c. Eine Verminderung der Dämpfung führt zu einer Vergrößerung der Blutdruckamplitude. nach Beendigung der Spülung mit. Es treten dann Schwingungen auf, die innerhalb von maximal 2 Perioden abgeklungen sein sollten. Schwingt das System länger, ist die Eigenfrequenz zu nah an der Messsignalfrequenz. Aus der Anzahl der Schwingungen pro Sekunde lässt sich dann die Resonanzfrequenz bestimmen und aus der Abnahme der Schwingungs-amplitude der aufeinanderfolgenden Schwingungen die Dämpfung. 20 1Kapitel 1 · Allgem eines",
+        "explanation_de": "Siehe Antwort c. Eine Verminderung der Dämpfung führt zu einer Vergrößerung der Blutdruckamplitude. nach Beendigung der Spülung mit. Es treten dann Schwingungen auf, die innerhalb von maximal 2 Perioden abgeklungen sein sollten. Schwingt das System länger, ist die Eigenfrequenz zu nah an der Messsignalfrequenz. Aus der Anzahl der Schwingungen pro Sekunde lässt sich dann die Resonanzfrequenz bestimmen und aus der Abnahme der Schwingungs-amplitude der aufeinanderfolgenden Schwingungen die Dämpfung.",
         "explanation_tr": "Cevap c'ye bakınız. Zayıflamadaki bir azalma kan basıncı amplitüdünde bir artışa yol açar. durulamanın ardından tamamlanır. Daha sonra maksimum 2 dönem içinde azalması gereken salınımlar meydana gelir. Sistem daha uzun süre salınırsa doğal frekans, ölçüm sinyali frekansına çok yakındır. Rezonans frekansı daha sonra saniyedeki salınım sayısından belirlenebilir ve sönümleme, ardışık salınımların salınım genliğindeki azalmadan belirlenebilir. 20 1Bölüm 1 · Genel bir"
       }
     ],
@@ -918,7 +878,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird zur Impulsmessung eingesetzt.",
         "text_tr": "Nabız ölçümü için kullanılır.",
         "is_correct": false,
-        "explanation_de": "Es findet keine Impulsmessung statt. In der Physik beschreibt Impuls die Bewegung eines massereichen Körpers. Anschaulich entspricht der Impuls ungefähr der »Wucht« zweier aufeinanderprallender Gegen-stände. Jeder bewegliche Körper kann seinen Impuls bei einem Stoßvor-gang ganz oder teilweise auf andere Körper übertragen bzw. von anderen Körpern übernehmen. 21 1 1.2 · Physik",
+        "explanation_de": "Es findet keine Impulsmessung statt. In der Physik beschreibt Impuls die Bewegung eines massereichen Körpers. Anschaulich entspricht der Impuls ungefähr der »Wucht« zweier aufeinanderprallender Gegen-stände. Jeder bewegliche Körper kann seinen Impuls bei einem Stoßvor-gang ganz oder teilweise auf andere Körper übertragen bzw. von anderen Körpern übernehmen. 21",
         "explanation_tr": "Nabız ölçümü yok. Fizikte momentum, büyük bir cismin hareketini tanımlar. Görsel olarak, dürtü kabaca çarpışan iki nesnenin \"kuvvetine\" karşılık gelir. Hareket eden her cisim, çarpışma sırasında momentumunu kısmen veya tamamen başka cisimlere aktarabilir veya başka cisimlerden devralabilir. 21 1 1.2 · Fizik"
       }
     ],
@@ -1022,7 +982,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Reynolds-Zahl",
         "text_tr": "Reynolds sayısı",
         "is_correct": true,
-        "explanation_de": "Die Reynolds-Zahl gibt an, wann eine laminare in eine turbulente Strömung umschlägt. Unterhalb der kritischen Reynolds-Zahl bleibt die Strömung laminar. 22 1Kapitel 1 · Allgem eines",
+        "explanation_de": "Die Reynolds-Zahl gibt an, wann eine laminare in eine turbulente Strömung umschlägt. Unterhalb der kritischen Reynolds-Zahl bleibt die Strömung laminar.",
         "explanation_tr": "Reynolds sayısı laminer akışın ne zaman türbülanslı akışa dönüştüğünü gösterir. Kritik Reynolds sayısının altında akış laminer kalır. 22 1Bölüm 1 · Genel bir şey"
       }
     ],
@@ -1123,7 +1083,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Ein Rotameter, das für Cyclopropan kalibriert ist, zeigt für die Messung des Gasflusses von CO 2 bei einem Flussbereich von 1 000 ml/min einen Fehler von rund 18 % und bei einem Flussbereich von 100 ml/min einen Fehler von 100 % an (Cyclopropan hat die gleiche Dichte, aber nur 60 % der Visko-sität von CO 2 ). 23 1 1.2 · Physik",
+        "text_de": "Ein Rotameter, das für Cyclopropan kalibriert ist, zeigt für die Messung des Gasflusses von CO 2 bei einem Flussbereich von 1 000 ml/min einen Fehler von rund 18 % und bei einem Flussbereich von 100 ml/min einen Fehler von 100 % an (Cyclopropan hat die gleiche Dichte, aber nur 60 % der Visko-sität von CO 2 ).",
         "text_tr": "CO2'nin gaz akışını ölçerken, siklopropan için kalibre edilmiş bir rotametre, 1.000 ml/dak'lık bir akış aralığında yaklaşık %18'lik bir hata ve 100 ml/dak'lık bir akış aralığında %100'lük bir hata gösterir (siklopropan aynı yoğunluğa sahiptir ancak CO2'nin viskozitesinin yalnızca %60'ına sahiptir). 23 1 1.2 · Fizik",
         "is_correct": true,
         "explanation_de": "Dies ist die Veranschaulichung des oben Gesagten. Da bei niedri- gem Flussbereich die Viskosität eine große Rolle spielt und die in diesem Beispiel genannten Gase eine unterschiedliche Viskosität aufweisen, zeigt der Rotameter anstelle von 100 ml/min 200 ml/min an, da ein deutlicher Viskositätsunterschied zwischen den Gasen besteht. Im hohen Flussbe-reich kommt hingegen mehr die Abhängigkeit von der Dichte zum Tragen (gleiche Dichte der Gase), sodass das Rotameter einen geringeren Mess-fehler anzeigt, nämlich anstatt 1 000 ml/min »nur« 1 180 ml/min.",
@@ -1170,7 +1130,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Oberflächenspannung ist für rund 2/3 der elastischen Rückstellkräfte der Lunge verantwortlich.",
         "text_tr": "Yüzey gerilimi akciğerlerin elastik geri getirme kuvvetlerinin yaklaşık 2/3'ünden sorumludur.",
         "is_correct": true,
-        "explanation_de": "Rund 1/3 der elastischen Rückstellkräfte ist den elastischen Fasern zuzuschreiben. Der intrapleurale Druck, der notwendig ist, um den Lungenkollaps zu verhindern, beträgt –4 mmHg. Bei einem Fehlen des Surfactant ist hierzu ein intrapleuraler Druck von –30 mmHg notwendig. 24 1Kapitel 1 · Allgem eines",
+        "explanation_de": "Rund 1/3 der elastischen Rückstellkräfte ist den elastischen Fasern zuzuschreiben. Der intrapleurale Druck, der notwendig ist, um den Lungenkollaps zu verhindern, beträgt –4 mmHg. Bei einem Fehlen des Surfactant ist hierzu ein intrapleuraler Druck von –30 mmHg notwendig.",
         "explanation_tr": "Elastik geri yükleme kuvvetlerinin yaklaşık 1/3'ü elastik liflere atfedilebilir. Akciğer kollapsını önlemek için gerekli intraplevral basınç -4 mmHg'dir. Sürfaktan eksikse -30 mmHg'lik intraplevral basınç gereklidir. 24 1Bölüm 1 · Genel bir şey"
       },
       {
@@ -1279,7 +1239,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Bei i.v.-Gabe von Methylenblau kann die S a O 2 kurzfristig auf <85 % abfallen. e. Richtig. Durch Verkleinerung des Alveolenradius wird die Oberflächenspan- nung größer. Je mehr sich die Alveole verkleinert, umso mehr wird der Surfac-tant konzentriert. Der Surfac tant vermindert die Oberlächenspannung also umso mehr, je kleiner der Alveolenradius wird, und stabilisiert so die Alveole. 25 1 1.2 · Physik",
+        "text_de": "Bei i.v.-Gabe von Methylenblau kann die S a O 2 kurzfristig auf <85 % abfallen.",
         "text_tr": "Metilen mavisi intravenöz olarak uygulandığında, S aO2 kısa süreliğine <%85'e düşebilir. e. Doğru. Alveol yarıçapı küçültüldüğünde yüzey gerilimi artar. Alveol ne kadar küçülürse sürfaktan da o kadar konsantre hale gelir. Yüzey aktif madde, alveol yarıçapı küçüldükçe yüzey gerilimini azaltır, böylece alveolü stabilize eder. 25 1 1.2 · Fizik",
         "is_correct": true,
         "explanation_de": "Verschiedene parenteral applizierbare Farbstoffe können die Sätti- gungsmessung stören, obwohl keine wirkliche Änderung der O 2 -Sättigung stattgefunden hat. Bekanntestes Beispiel ist das Methylen-Blau, das wie auch Indozyaningrün und weniger Indigocarmin zu einem falschen Abfall der mittels Pulsoximetrie gemessenen S a O 2 führt.",
@@ -1330,16 +1290,8 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "MO'nun etki süresi yaklaşık 4 saattir. İ.v.'den sonra maksimum etki. uygulama yalnızca 15-30 dakika sonra gerçekleşir."
       },
       {
-        "key": "d",
-        "text_de": "h. V 1 = V 0 /2.",
-        "text_tr": "H. V1 = V0/2.",
-        "is_correct": false,
-        "explanation_de": "Der Umgebungsdruck nimmt pro 10 m Wassertiefe um 1 bar zu,",
-        "explanation_tr": "MO'nun etki süresi yaklaşık 4 saattir. İ.v.'den sonra maksimum etki. uygulama yalnızca 15-30 dakika sonra gerçekleşir."
-      },
-      {
         "key": "e",
-        "text_de": "Der relative prozentuale Gasanteil eines Gasgemisches ändert sich nicht in Abhängigkeit vom Umgebungsdruck. 26 1Kapitel 1 · Allgem eines",
+        "text_de": "Der relative prozentuale Gasanteil eines Gasgemisches ändert sich nicht in Abhängigkeit vom Umgebungsdruck.",
         "text_tr": "Bir gaz karışımındaki gazın bağıl yüzdesi ortam basıncına bağlı olarak değişmez. 26 1Bölüm 1 · Genel bir şey",
         "is_correct": true,
         "explanation_de": "Das Gesetz nach Dalton besagt, dass die Summe der prozentualen Gasanteile bei sich ändernden Umgebungsdrücken gleich bleibt. Dies be-deutet, dass Sauerstoff 21 % des Volumenanteils der Luft ausmacht, sowohl in Meereshöhe als auch auf dem Mount Everest/Großglockner. Dies bedeu-tet aber auch, dass bei fallendem Umgebungsdruck die einzelnen Partial-drücke prozentual abnehmen. Die Summe der Partialdrücke ist gleich dem Umgebungsdruck.",
@@ -1362,7 +1314,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Sie beruht auf dem Prinzip der Erhöhung des O 2 -Angebots.",
         "text_tr": "O 2 arzının arttırılması prensibine dayanmaktadır.",
         "is_correct": true,
-        "explanation_de": "Das O 2 -Angebot wird durch eine Erhöhung der physikalischen Lösung des Sauerstoffs im Blut erhöht. Hierbei gilt das Gesetz nach Henry , nachdem die gelöste Gasmenge in einer Flüssigkeit mit dem Gasdruck des ungelösten Gases in einer direkt proportionalen Beziehung steht. Für die 27 1 1.2 · Physik physikalische Lösung von Blut bei 37 °C und 760 mmHg Umgebungsdruck wird pro mmHg pO 2 0,024 ml Sauerstoff in 1 ml Blut gelöst.",
+        "explanation_de": "Das O 2 -Angebot wird durch eine Erhöhung der physikalischen Lösung des Sauerstoffs im Blut erhöht. Hierbei gilt das Gesetz nach Henry , nachdem die gelöste Gasmenge in einer Flüssigkeit mit dem Gasdruck des ungelösten Gases in einer direkt proportionalen Beziehung steht. Für die 27",
         "explanation_tr": "Kandaki oksijenin fiziksel çözeltisinin arttırılmasıyla O2 kaynağı arttırılır. Burada Henry kanunu geçerlidir; buna göre bir sıvıdaki çözünmüş gaz miktarı, çözünmemiş gazın gaz basıncıyla doğru orantılıdır. 37 °C ve 760 mmHg ortam basıncındaki 27 1 1.2 · Physics kanın fiziksel çözeltisi için, mmHg pO2 başına 1 ml kanda 0,024 ml oksijen çözülür."
       },
       {
@@ -1394,7 +1346,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Sie kann die O 2 -Versorgung des Organismus selbst bei Hb-Werten unter 1 mg/dl aufrechterhalten.",
         "text_tr": "1 mg/dl'nin altındaki Hb değerlerinde dahi organizmaya O2 sağlanmasını sürdürebilir.",
         "is_correct": true,
-        "explanation_de": "Unter Ruhebedingungen beträgt der O 2 -Verbrauch eines Men- schen rund 250 ml/min. Eine einfache Rechnung zeigt, dass unter HBOT allein der physikalisch gelöste Sauerstoff diesen Verbrauch decken kann und damit theoretisch kein Hämoglobin vorhanden sein muss. Bei einem Umgebungsdruck von 2,5 bar (in einer Wassertiefe von 15 m) entspricht der O 2 -Partialdruck 1900 mmHg bei Atmung von reinem Sauerstoff. Im Blut entsteht unter idealen Bedingungen nach der Alveolargasgleichung dabei ein pO 2 von 1813 mmHg (abzüglich Wasserdampf- und Kohlendioxid- partialdruck). Die Menge des physikalisch gelösten Sauerstoffs pro ml Blut ergibt sich nach der Formel 0,024/760×pO 2 =0,057 ml Sauerstoff pro ml Blut. Dies entspricht bei einem HZV von 5 l/min einem O 2 -Angebot von 285 ml/min und ist somit ausreichend, den Bedarf an Sauerstoff unter Ruhebedingungen zu decken. 28 1Kapitel 1 · Allgem eines 1.3 Statistik",
+        "explanation_de": "Unter Ruhebedingungen beträgt der O 2 -Verbrauch eines Men- schen rund 250 ml/min. Eine einfache Rechnung zeigt, dass unter HBOT allein der physikalisch gelöste Sauerstoff diesen Verbrauch decken kann und damit theoretisch kein Hämoglobin vorhanden sein muss. Bei einem Umgebungsdruck von 2,5 bar (in einer Wassertiefe von 15 m) entspricht der O 2 -Partialdruck 1900 mmHg bei Atmung von reinem Sauerstoff. Im Blut entsteht unter idealen Bedingungen nach der Alveolargasgleichung dabei ein pO 2 von 1813 mmHg (abzüglich Wasserdampf- und Kohlendioxid- partialdruck). Die Menge des physikalisch gelösten Sauerstoffs pro ml Blut ergibt sich nach der Formel 0,024/760×pO 2 =0,057 ml Sauerstoff pro ml Blut. Dies entspricht bei einem HZV von 5 l/min einem O 2 -Angebot von 285 ml/min und ist somit ausreichend, den Bedarf an Sauerstoff unter Ruhebedingungen zu decken. .3 Statistik",
         "explanation_tr": "Dinlenme koşullarında kişinin O 2 tüketimi 250 ml/dakika civarındadır. Basit bir hesaplama, HBOT altında bu tüketimi yalnızca fiziksel olarak çözünmüş oksijenin karşılayabildiğini ve dolayısıyla teorik olarak hiçbir hemoglobinin mevcut olmasına gerek olmadığını gösterir. 2,5 bar ortam basıncında (15 m su derinliğinde), saf oksijen solunduğunda O2 kısmi basıncı 1900 mmHg'ye karşılık gelir. İdeal koşullar altında, alveoler gaz denklemine göre kanda 1813 mmHg'lik bir pO2 (eksi su buharı ve karbondioksit kısmi basıncı) ortaya çıkar. Bir ml kan başına fiziksel olarak çözünmüş oksijen miktarı, ml kan başına 0,024/760×pO2 =0,057 ml oksijen formülüyle verilir. 5 l/dak'lık bir kalp atış hızında bu, 285 ml/dak'lık bir O2 kaynağına karşılık gelir ve dolayısıyla dinlenme koşulları altında oksijen ihtiyacını karşılamaya yeterlidir. 28 1Bölüm 1 · Genel 1.3 İstatistikler"
       }
     ],
@@ -1446,7 +1398,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die statistische Power einer Studie nimmt mit der Anzahl der Beobach-tungen ab.",
         "text_tr": "Bir çalışmanın istatistiksel gücü gözlem sayısı arttıkça azalır.",
         "is_correct": false,
-        "explanation_de": "Die statistische Power einer Untersuchung ist ein Maß für die Mög- lichkeit, einen Unterschied zwischen 2 Datensätzen zu finden, wenn dieser tatsächlich vorhanden ist. Für ein festgesetztes α-Niveau erhöht die Anzahl der Untersuchungen die statistische Power. Die statistische Power ist defi-niert als P=1– β . Dabei gilt: Je kleiner α gewählt wird, desto größer ist β . Neben mehreren theoretischen Überlegungen ist die Vergrößerung der Studienpopulation die einzige Möglichkeit, in praxi die Power zu erhöhen. 29 1 1.3 · Statistik",
+        "explanation_de": "Die statistische Power einer Untersuchung ist ein Maß für die Mög- lichkeit, einen Unterschied zwischen 2 Datensätzen zu finden, wenn dieser tatsächlich vorhanden ist. Für ein festgesetztes α-Niveau erhöht die Anzahl der Untersuchungen die statistische Power. Die statistische Power ist defi-niert als P=1– β . Dabei gilt: Je kleiner α gewählt wird, desto größer ist β . Neben mehreren theoretischen Überlegungen ist die Vergrößerung der Studienpopulation die einzige Möglichkeit, in praxi die Power zu erhöhen. 29",
         "explanation_tr": "Bir çalışmanın istatistiksel gücü, eğer gerçekten mevcutsa, 2 veri seti arasında bir fark bulma olasılığının bir ölçüsüdür. Sabit bir α düzeyi için çalışma sayısı istatistiksel gücü artırır. İstatistiksel güç P=1–β olarak tanımlanır. Şu geçerlidir: α ne kadar küçük seçilirse β da o kadar büyük olur. Çeşitli teorik değerlendirmelere ek olarak, pratikte gücü arttırmanın tek yolu çalışma popülasyonunun boyutunu arttırmaktır. 29 1 1.3 · İstatistikler"
       }
     ],
@@ -1550,7 +1502,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die MAC von Inhalationsanästhetika ändert sich nicht in Berghöhen.",
         "text_tr": "İnhalasyon anesteziklerinin MAC değeri dağ yüksekliklerinde değişmez.",
         "is_correct": false,
-        "explanation_de": "Der pharmakologische Effekt der Inhalationsanästhetika ist eine Funktion des Partialdrucks und nicht des Volumengehalts. Da mit steigen-der Berghöhe der Umgebungsdruck und damit auch der Partialdruck des Inhalationsanästhetikums fällt, muss entsprechend der Volumenanteil 32 2Kapitel 2 · Physiologie",
+        "explanation_de": "Der pharmakologische Effekt der Inhalationsanästhetika ist eine Funktion des Partialdrucks und nicht des Volumengehalts. Da mit steigen-der Berghöhe der Umgebungsdruck und damit auch der Partialdruck des Inhalationsanästhetikums fällt, muss entsprechend der Volumenanteil",
         "explanation_tr": "İnhalasyon anesteziklerinin farmakolojik etkisi hacim içeriğinin değil kısmi basıncın bir fonksiyonudur. Dağın yüksekliği arttıkça ortam basıncı ve dolayısıyla inhalasyon anesteziğinin kısmi basıncı da düştüğü için hacim oranının şu şekilde olması gerekir: 32 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -1602,7 +1554,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Ein Body-Plethysmograph misst die Resistance .",
         "text_tr": "Vücut pletismografı direnci ölçer.",
         "is_correct": true,
-        "explanation_de": "Ein Body-Plethysmograph kann sowohl die direkt als auch die indirekt messbaren Größen erfassen. Hierzu gehören die Resistance der Atemwege und das Residualvolumen. gesteigert werden, um die gleiche Anästhesietiefe beizubehalten. In See-höhe beträgt der Umgebungsdruck 760 mmHg, in 3 000 m Höhe 526 mmHg. Die MAC 50 für Isofluran sei 1,15 Vol.-%, also 8,74 mmHg Partial- druck. Um den Partialdruck von 8,74 mmHg in 3 000 m Höhe (Umgebungs-druck 526 mmHg) zu erreichen, muss Isofluran einen Volumenanteil von 1,66 % haben. Dies entspricht einer Änderung der MAC von rund 45 %. 33 2 · Physiologie2",
+        "explanation_de": "Ein Body-Plethysmograph kann sowohl die direkt als auch die indirekt messbaren Größen erfassen. Hierzu gehören die Resistance der Atemwege und das Residualvolumen. gesteigert werden, um die gleiche Anästhesietiefe beizubehalten. In See-höhe beträgt der Umgebungsdruck 760 mmHg, in 3 000 m Höhe 526 mmHg. Die MAC 50 für Isofluran sei 1,15 Vol.-%, also 8,74 mmHg Partial- druck. Um den Partialdruck von 8,74 mmHg in 3 000 m Höhe (Umgebungs-druck 526 mmHg) zu erreichen, muss Isofluran einen Volumenanteil von 1,66 % haben. Dies entspricht einer Änderung der MAC von rund 45 %.",
         "explanation_tr": "Bir vücut pletismografı hem doğrudan hem de dolaylı olarak ölçülebilir miktarları kaydedebilir. Bunlar hava yollarının direncini ve kalan hacmi içerir. Aynı anestezi derinliğini korumak için arttırıldı. Deniz seviyesinde ortam basıncı 760 mmHg, 3000 m yükseklikte ise 526 mmHg'dir. İzofluran için MAC 50 hacimce %1,15'tir, yani 8,74 mmHg kısmi basınçtır. 3.000 m yükseklikte (ortam basıncı 526 mmHg) 8,74 mmHg kısmi basınca ulaşmak için izofluranın hacim oranının %1,66 olması gerekir. Bu, MAC'de yaklaşık %45'lik bir değişime karşılık gelir. 33 2 · Fizyoloji2"
       }
     ],
@@ -1654,7 +1606,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die primären und sekundären Muskelspindelafferenzen versorgen nur die Kernsackfasern.",
         "text_tr": "Birincil ve ikincil kas iğciği afferentleri yalnızca nükleer kese liflerini besler.",
         "is_correct": false,
-        "explanation_de": "Die primären Muskelspindelafferenzen versorgen sowohl die Kern- sack- als auch die Kernkettenfasern. Sie werden aufgrund ihrer Geometrie auch anulospirale Afferenzen genannt. Die sekundären Muskelspindel-afferenzen versorgen nur die Kernkettenfasern. Die primären Muskelspin-delafferenzen werden auch Typ-1a-Fasern genannt, die sekundären auch Typ-2-Fasern (Klassifikation nach Lloyd u. Hunt). Nach der Klassifikation der Nervenfasern nach Erlanger und Gasser gehören die primären Muskel-spindelafferenzen zu den A α -Fasern , die sekundären zu den A β -Fasern und die Muskelspindelefferenzen zu den A γ -Fasern. 34 2Kapitel 2 · Physiologie",
+        "explanation_de": "Die primären Muskelspindelafferenzen versorgen sowohl die Kern- sack- als auch die Kernkettenfasern. Sie werden aufgrund ihrer Geometrie auch anulospirale Afferenzen genannt. Die sekundären Muskelspindel-afferenzen versorgen nur die Kernkettenfasern. Die primären Muskelspin-delafferenzen werden auch Typ-1a-Fasern genannt, die sekundären auch Typ-2-Fasern (Klassifikation nach Lloyd u. Hunt). Nach der Klassifikation der Nervenfasern nach Erlanger und Gasser gehören die primären Muskel-spindelafferenzen zu den A α -Fasern , die sekundären zu den A β -Fasern und die Muskelspindelefferenzen zu den A γ -Fasern.",
         "explanation_tr": "Birincil kas iğciği afferentleri hem nükleer keseyi hem de nükleer zincir liflerini besler. Geometrilerinden dolayı annulospiral afferentler olarak da adlandırılırlar. İkincil kas iğciği afferentleri yalnızca nükleer zincir liflerini besler. Birincil kas spin delafferentlerine aynı zamanda tip 1a lifleri, ikincil olanlara da tip 2 lifleri denir (Lloyd ve Hunt'a göre sınıflandırma). Sinir liflerinin Erlanger ve Gasser'e göre sınıflandırılmasına göre, birincil kas iğciği afferentleri A α liflerine, ikincil olanlar A β liflerine ve kas iğciği afferentleri A γ liflerine aittir. 34 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -1755,7 +1707,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Nernst-Gleichung beschreibt die Leitfähigkeit von Na-Kanälen. 35 2 · Physiologie2",
+        "text_de": "Die Nernst-Gleichung beschreibt die Leitfähigkeit von Na-Kanälen.",
         "text_tr": "Nernst denklemi Na kanallarının iletkenliğini açıklar. 35 2 · Fizyoloji2",
         "is_correct": false,
         "explanation_de": "Die Nernst-Gleichung beschreibt nicht die Leitfähigkeit von Ionen- kanälen. Sie erlaubt es aufgrund des Verhältnisses von intra- und extrazel-lulären Ionenkonzentrationen, das resultierende elektrochemische Poten-zial zu berechnen. Die vereinfachte Gleichung lautet: E = –61×log(K i + /K a + ) [mV]. Für Kalium entsteht so bei Einsetzen von 40 für das Verhältnis Ionen innen/außen ein Potenzial von –97 mV.",
@@ -1807,7 +1759,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Verlängerung des Aktionspotenzials im Herzmuskel (Plateauphase) wird hauptsächlich durch eine Abnahme der Kalziumleitfähigkeit hervor-gerufen. 36 2Kapitel 2 · Physiologie",
+        "text_de": "Die Verlängerung des Aktionspotenzials im Herzmuskel (Plateauphase) wird hauptsächlich durch eine Abnahme der Kalziumleitfähigkeit hervor-gerufen.",
         "text_tr": "Kalp kasındaki aksiyon potansiyelinin uzamasına (plato fazı) esas olarak kalsiyum iletkenliğinin azalması neden olur. 36 2Bölüm 2 · Fizyoloji",
         "is_correct": false,
         "explanation_de": "Die Zunahme der Kalziumleitfähigkeit ist die Grundlage für die Plateauphase des Aktionspotenzials einer Herzmuskelfaser.",
@@ -1838,7 +1790,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die postsynaptische Membran enthält eine hohe Konzentration Acetyl- cholinesterase.",
         "text_tr": "Postsinaptik membran yüksek konsantrasyonda asetilkolinesteraz içerir.",
         "is_correct": true,
-        "explanation_de": "Acetylcholinesterase hydrolysiert ACh in Acetat und Cholin und beendet so die Wirkung von ACh am Rezeptor innerhalb von Millisekun-den. Neben der Acetylcholinesterase gibt es auch noch die Pseudocholin-esterase (Butyrylcholinesterase), die aber bei der Beendigung der Wirkung 37 2 · Physiologie2",
+        "explanation_de": "Acetylcholinesterase hydrolysiert ACh in Acetat und Cholin und beendet so die Wirkung von ACh am Rezeptor innerhalb von Millisekun-den. Neben der Acetylcholinesterase gibt es auch noch die Pseudocholin-esterase (Butyrylcholinesterase), die aber bei der Beendigung der Wirkung",
         "explanation_tr": "Asetilkolinesteraz, ACh'yi asetat ve koline hidrolize ederek ACh'nin reseptör üzerindeki etkisini milisaniyeler içinde sona erdirir. Asetilkolinesterazın yanı sıra psödokolin esteraz (bütirilkolinesteraz) da vardır ancak etkisi sona erdiğinde 37 2 · Fizyoloji2"
       },
       {
@@ -1846,16 +1798,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Die postsynaptischen ACh-Rezeptoren treten beim Gesunden häufig auch extrajunktional auf.",
         "text_tr": "Postsinaptik ACh reseptörleri sıklıkla sağlıklı bireylerde eklem dışı olarak ortaya çıkar.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Die postsynaptischen ACh-Rezeptoren sind sog. m-Cholinozeptoren.",
         "text_tr": "Postsinaptik ACh reseptörlerine m-kolinoseptörler denir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -1898,7 +1850,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Das Gesamtkörperwasser nimmt mit zunehmendem Alter ab.",
         "text_tr": "Toplam vücut suyu yaşla birlikte azalır.",
         "is_correct": true,
-        "explanation_de": "Bei Männern im Alter von 18–40 Jahren beträgt das Gesamtkörper- wasser 61 % und im Alter von über 60 Jahren nur noch 52 %. Für Frauen fällt in den genannten Altersstufen das Gesamtkörperwasser von 51 % auf 46 % (Stoelting 2005, S. 587). 38 2Kapitel 2 · Physiologie",
+        "explanation_de": "Bei Männern im Alter von 18–40 Jahren beträgt das Gesamtkörper- wasser 61 % und im Alter von über 60 Jahren nur noch 52 %. Für Frauen fällt in den genannten Altersstufen das Gesamtkörperwasser von 51 % auf 46 % (Stoelting 2005, S. 587).",
         "explanation_tr": "18-40 yaş arası erkeklerde toplam vücut suyunun %61'i, 60 yaş üstü erkeklerde ise sadece %52'dir. Kadınlarda ise söz konusu yaş gruplarında toplam vücut suyu %51'den %46'ya düşmektedir (Stoelting 2005, s. 587). 38 2Bölüm 2 · Fizyoloji"
       },
       {
@@ -1906,39 +1858,15 @@ const EXAM_QUESTIONS = [
         "text_de": "Der Hauptunterschied in der Zusammensetzung zwischen Plasma und interstitieller Flüssigkeit besteht im Proteingehalt.",
         "text_tr": "Plazma ve interstisyel sıvı arasındaki bileşimdeki temel fark, protein içeriğidir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Die intrazelluläre Flüssigkeit enthält ungefähr 40-mal mehr Kalium-ionen als die extrazelluläre Flüssigkeit und rund 10-mal weniger Natrium-ionen. von ACh am Rezeptor aufgrund ihres geringen Substratumsatzes keine Rolle spielt. Sie wird in der Leber synthetisiert und zirkuliert im Blut, wo sie beim Abbau von verschiedenen Muskelrelaxanzien beteiligt ist.",
+        "text_de": "Die intrazelluläre Flüssigkeit enthält ungefähr 40-mal mehr Kalium-ionen als die extrazelluläre Flüssigkeit und rund 10-mal weniger Natrium-ionen.",
         "text_tr": "Hücre içi sıvı, hücre dışı sıvıdan yaklaşık 40 kat daha fazla potasyum iyonu ve yaklaşık 10 kat daha az sodyum iyonu içerir. ACh'nin reseptördeki etkisi, substrat dönüşümlerinin düşük olması nedeniyle hiçbir rol oynamaz. Karaciğerde sentezlenir ve çeşitli kas gevşeticilerin parçalanmasında rol aldığı kanda dolaşır.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig. Bei Männern im Alter von 18–40 Jahren beträgt das Gesamtkörper- wasser 61 % und im Alter von über 60 Jahren nur noch 52 %. Für Frauen fällt in den genannten Altersstufen das Gesamtkörperwasser von 51 % auf 46 % (Stoelting 2005, S. 587). 38 2Kapitel 2 · Physiologie",
-        "explanation_tr": "C. ✅Doğru. 18-40 yaş arası erkeklerde toplam vücut suyunun %61'i, 60 yaş üstü erkeklerde ise sadece %52'dir. Kadınlarda ise söz konusu yaş gruplarında toplam vücut suyu %51'den %46'ya düşmektedir (Stoelting 2005, s. 587). 38 2Bölüm 2 · Fizyoloji"
-      },
-      {
-        "key": "c",
-        "text_de": "Falsch. Die ACh-Rezeptoren kommen beim Gesunden nur in unmittelbarer Nachbarschaft zu den Axonterminalen vor und liegen dort an der neuro-muskulären Synapse (junktional). Extrajunktionalen ACh-Rezeptoren kommt bei verschiedenen Krankheitszuständen eine Bedeutung zu, da sie für eine Supersensitivität für ACh bzw. depolarisierende Muskelrelaxanzien verantwortlich gemacht werden.",
-        "text_tr": "Yanlış. Sağlıklı insanlarda, ACh reseptörleri yalnızca akson terminallerinin hemen yakınında bulunur ve orada nöro-kas kavşağında (kavşakta) bulunur. Eklem dışı ACh reseptörleri çeşitli hastalık durumlarında önemlidir çünkü ACh'ye veya depolarize edici kas gevşeticilere karşı aşırı duyarlılıktan sorumlu oldukları düşünülmektedir.",
-        "is_correct": true,
-        "explanation_de": "Bei Männern im Alter von 18–40 Jahren beträgt das Gesamtkörper- wasser 61 % und im Alter von über 60 Jahren nur noch 52 %. Für Frauen fällt in den genannten Altersstufen das Gesamtkörperwasser von 51 % auf 46 % (Stoelting 2005, S. 587). 38 2Kapitel 2 · Physiologie",
-        "explanation_tr": "18-40 yaş arası erkeklerde toplam vücut suyunun %61'i, 60 yaş üstü erkeklerde ise sadece %52'dir. Kadınlarda ise söz konusu yaş gruplarında toplam vücut suyu %51'den %46'ya düşmektedir (Stoelting 2005, s. 587). 38 2Bölüm 2 · Fizyoloji"
-      },
-      {
-        "key": "d",
-        "text_de": "Falsch. Die postsynaptischen ACh-Rezeptoren sind sog. n-Cholinozepto- ren , d. h. nikotinische Cholinorezeptoren. Es existieren nach heutigem Kenntnisstand rund 5 m-Cholinozeptoren (m 1 –m 5 ) und 8 nikotinische Rezeptoren.",
-        "text_tr": "Yanlış. Postsinaptik ACh reseptörlerine n-kolinoseptörler denir, yani h. nikotinik kolinoreseptörler. Mevcut bilgilere göre yaklaşık 5 m-kolinoseptör (m1-m5) ve 8 kadar nikotinik reseptör bulunmaktadır.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Die Ausschüttung von ACh geschieht nicht kontinuierlich, sondern in Form von Quanten, die dem Inhalt an ACh von einem präsynaptischen Vesikel entsprechen. Ein Vesikel enthält rund 1 000 Moleküle ACh, wobei 100 Vesikel bei einem ankommenden Aktionspotenzial eines Motoneurons entleert werden (100 000 Moleküle/Aktionspotenzial; vgl. Stoelting 2005, S. 187).",
-        "text_tr": "Yanlış. ACh salınımı sürekli olarak gerçekleşmez, ancak presinaptik keseciğin ACh içeriğine karşılık gelen kuantum formunda meydana gelir. Bir kesecik yaklaşık 1.000 ACh molekülü içerir ve bir motor nöronun aksiyon potansiyeli geldiğinde 100 kesecik boşalır (100.000 molekül/aksiyon potansiyeli; bkz. Stoelting 2005, s. 187).",
-        "is_correct": true,
-        "explanation_de": "c. ✅ Richtig. Bei Männern im Alter von 18–40 Jahren beträgt das Gesamtkörper- wasser 61 % und im Alter von über 60 Jahren nur noch 52 %. Für Frauen fällt in den genannten Altersstufen das Gesamtkörperwasser von 51 % auf 46 % (Stoelting 2005, S. 587). 38 2Kapitel 2 · Physiologie",
+        "explanation_de": "Bei Männern im Alter von 18–40 Jahren beträgt das Gesamtkörper- wasser 61 % und im Alter von über 60 Jahren nur noch 52 %. Für Frauen fällt in den genannten Altersstufen das Gesamtkörperwasser von 51 % auf 46 % (Stoelting 2005, S. 587).",
         "explanation_tr": "C. ✅Doğru. 18-40 yaş arası erkeklerde toplam vücut suyunun %61'i, 60 yaş üstü erkeklerde ise sadece %52'dir. Kadınlarda ise söz konusu yaş gruplarında toplam vücut suyu %51'den %46'ya düşmektedir (Stoelting 2005, s. 587). 38 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -2091,7 +2019,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die BR reagieren auf Blutdruckänderungen nur langsam. 40 2Kapitel 2 · Physiologie",
+        "text_de": "Die BR reagieren auf Blutdruckänderungen nur langsam.",
         "text_tr": "BR, kan basıncındaki değişikliklere yalnızca yavaş tepki verir. 40 2Bölüm 2 · Fizyoloji",
         "is_correct": false,
         "explanation_de": "Im Gegenteil, die BR reagieren sehr schnell auf Blutdruckschwan- kungen, so schnell, dass sogar die Druckschwankungen der Pulsamplitude zu einer Veränderung der Entladungsrate während Systole und Diastole führen.",
@@ -2143,7 +2071,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "spielen für die Kurzzeitblutdruckregulierung eine wichtige Rolle. 41 2 · Physiologie2",
+        "text_de": "spielen für die Kurzzeitblutdruckregulierung eine wichtige Rolle.",
         "text_tr": "Kısa süreli kan basıncının düzenlenmesinde önemli bir rol oynar. 41 2 · Fizyoloji2",
         "is_correct": true,
         "explanation_de": "Kurzzeitige Schwankungen des Blutdrucks auszugleichen ist die Funktion des BR-Reflexes.",
@@ -2195,7 +2123,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "CHR reagieren auf einen erhöhten pO 2. 42 2Kapitel 2 · Physiologie",
+        "text_de": "CHR reagieren auf einen erhöhten pO 2.",
         "text_tr": "CHR artan pO 2'ye yanıt verir. 42 2Bölüm 2 · Fizyoloji",
         "is_correct": false,
         "explanation_de": "Die pCHR reagieren auf eine Verminderung des pO 2 , nicht auf eine Erhöhung. Im Gegensatz dazu reagieren die zentralen Chemorezepto-ren überhaupt nicht auf eine Verminderung des pO 2 . Dies bedeutet einen totalen Ausfall der Steuerung der Atmung als Antwort auf eine Hypoxämie bei Ausfall der pCHR.",
@@ -2226,7 +2154,7 @@ const EXAM_QUESTIONS = [
         "text_de": "verlaufen vom Aortenbogen afferent mit dem N. glossopharyngeus.",
         "text_tr": "Aortik arkın afferentinden glossofaringeal sinire kadar uzanır.",
         "is_correct": false,
-        "explanation_de": "Vom Aortenbogen laufen die Nervenfasern der pCHR mit dem N. vagus . Sie haben damit die gleichen Nervenbahnen wie die peripheren Barorezeptoren. 43 2 · Physiologie2",
+        "explanation_de": "Vom Aortenbogen laufen die Nervenfasern der pCHR mit dem N. vagus . Sie haben damit die gleichen Nervenbahnen wie die peripheren Barorezeptoren.",
         "explanation_tr": "PCHR'nin sinir lifleri aort kemerinden vagus siniri ile birlikte uzanır. Bu nedenle periferik baroreseptörlerle aynı sinir yollarına sahiptirler. 43 2 · Fizyoloji2"
       },
       {
@@ -2234,16 +2162,16 @@ const EXAM_QUESTIONS = [
         "text_de": "reagieren stärker auf eine Hypercarbämie als auf eine Hypoxämie.",
         "text_tr": "Hiperkarbemiye hipoksemiden daha güçlü tepki verirler.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "reagieren auf eine Abnahme an H + -Ionen.",
         "text_tr": "H + iyonlarındaki azalmaya yanıt verir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -2286,7 +2214,7 @@ const EXAM_QUESTIONS = [
         "text_de": "der koronare Blutfluss",
         "text_tr": "koroner kan akışı",
         "is_correct": true,
-        "explanation_de": "Einerseits nimmt durch die Aktivierung des Sympathikus die Kontraktilität des Herzens zu, und andererseits wird durch Hemmung des kardioinhibitorischen Zentrums die Herzfrequenz erhöht, was zusammen das HZV steigert und einen erhöhten koronaren Blutfluss bewirkt. Das Ge-fäßbett der verschiedenen Organsysteme reagiert nicht einheitlich auf eine Sympathikusaktivierung. So tritt eine Vasokonstriktion der Haut, der Mus-kulatur und des Splanchnikusgebietes auf, während der Gefäßwiderstand für das Gehirn und das Herz gleichbleibt oder sogar abnimmt. Dies bedeu-tet eine Blutumverteilung zugunsten von Herz und Gehirn. Die Niere zeigt 44 2Kapitel 2 · Physiologie",
+        "explanation_de": "Einerseits nimmt durch die Aktivierung des Sympathikus die Kontraktilität des Herzens zu, und andererseits wird durch Hemmung des kardioinhibitorischen Zentrums die Herzfrequenz erhöht, was zusammen das HZV steigert und einen erhöhten koronaren Blutfluss bewirkt. Das Ge-fäßbett der verschiedenen Organsysteme reagiert nicht einheitlich auf eine Sympathikusaktivierung. So tritt eine Vasokonstriktion der Haut, der Mus-kulatur und des Splanchnikusgebietes auf, während der Gefäßwiderstand für das Gehirn und das Herz gleichbleibt oder sogar abnimmt. Dies bedeu-tet eine Blutumverteilung zugunsten von Herz und Gehirn. Die Niere zeigt",
         "explanation_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1"
       },
       {
@@ -2294,32 +2222,16 @@ const EXAM_QUESTIONS = [
         "text_de": "der Pulsdruck (vergrößerte Pulsamplitude)",
         "text_tr": "nabız basıncı (artan nabız genliği)",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
         "text_de": "die venöse Compliance c. Richtig. Ein stärkerer Stimulus als der pO 2 -Abfall ist der pCO 2 -Anstieg .",
         "text_tr": "Venöz uyum c. Doğru. pO2 azalmasından daha güçlü bir uyarı pCO2 artışıdır.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Außerdem reagieren die pCHR auf einen Abfall des pH-Wertes. Es besteht eine abgestufte Reaktion, wobei ein pCO 2 -Anstieg als stärkster Sti- mulus wirkt, gefolgt von Hypoxämie und als schwächster Stimulus Azidose.",
-        "text_tr": "Doğru. Ek olarak, pCHR pH'taki bir düşüşe tepki verir. En güçlü uyarı olarak pCO2'deki artışın, ardından en zayıf uyarı olarak hipoksemi ve asidozun geldiği dereceli bir yanıt vardır.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Dieser außerordentlich hohe Blutfluss ermöglicht den Zellen der pCHR, ihren eigenen O 2 -Bedarf aus dem physikalisch gelösten O 2 zu de- cken und somit als pO 2 -Sensoren zu fungieren, nicht als S a O 2 -Sensoren. Veränderungen der Hb-Funktion (z. B. CO-Vergiftung ) werden nicht detek- tiert, da der physikalisch gelöste O 2 -Anteil unverändert bleibt (Stoelting 2005, S. 690).",
-        "text_tr": "Doğru. Bu olağanüstü derecede yüksek kan akışı, pCHR hücrelerinin kendi O2 gereksinimlerini fiziksel olarak çözünmüş O2'den karşılamasını ve dolayısıyla SaO2 sensörleri olarak değil pO2 sensörleri olarak işlev görmesini sağlar. Hb fonksiyonundaki değişiklikler (örn. CO zehirlenmesi), fiziksel olarak çözünmüş O2 kısmı değişmeden kaldığı için tespit edilmez (Stoelting 2005, s. 690).",
-        "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -2471,7 +2383,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Große v-Wellen deuten auf eine Trikuspidalstenose hin. 46 2Kapitel 2 · Physiologie",
+        "text_de": "Große v-Wellen deuten auf eine Trikuspidalstenose hin.",
         "text_tr": "Büyük v dalgaları triküspit stenozu düşündürüyor. 46 2Bölüm 2 · Fizyoloji",
         "is_correct": false,
         "explanation_de": "Hohe v-Wellen deuten auf eine Trikuspidalinsuffizienz hin. Da bei einer Trikuspidalinsuffizienz die x-Wellen fehlen, kommt es zu großen Ver-schmelzungswellen von c und v. Diese cv-Wellen (= große v-Welle) sieht man auch bei einer konstriktiven Perikarditis.",
@@ -2526,7 +2438,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Sie enthält 5 mmol/l Kalzium.",
         "text_tr": "5 mmol/l kalsiyum içerir.",
         "is_correct": false,
-        "explanation_de": "RL enthält 1,8 mmol/l Kalzium. 47 2 · Physiologie2",
+        "explanation_de": "RL enthält 1,8 mmol/l Kalzium.",
         "explanation_tr": "RL 1,8 mmol/l kalsiyum içerir. 47 2 · Fizyoloji2"
       }
     ],
@@ -2627,7 +2539,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Rund 10 % des CO 2 wird als Carbaminohämoglobin transportiert. 48 2Kapitel 2 · Physiologie",
+        "text_de": "Rund 10 % des CO 2 wird als Carbaminohämoglobin transportiert.",
         "text_tr": "CO2'nin yaklaşık %10'u karbaminohemoglobin olarak taşınır. 48 2Bölüm 2 · Fizyoloji",
         "is_correct": true,
         "explanation_de": "10 % des Gesamt-CO 2 werden als Carbaminohämoglobin im Blut transportiert. Zusammengefasst: Das Gesamt-CO 2 wird zu 80 % als Bikar- bonat (35 % innerhalb, 45 % außerhalb der Erythrozyten im Plasma), zu 10 % als Carbaminohämoglobin und zu 10 % als physikalisch gelöstes Gas transportiert.",
@@ -2679,7 +2591,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird durch die Bindung an Hämoglobin inaktiviert. 49 2 · Physiologie2",
+        "text_de": "wird durch die Bindung an Hämoglobin inaktiviert.",
         "text_tr": "Hemoglobin'e bağlanarak inaktive olur. 49 2 · Fizyoloji2",
         "is_correct": true,
         "explanation_de": "NO hat eine HWZ unter 5 s, da es an das Fe-Atom des Hämoglo- bins gebunden wird. Bei inhalativer Gabe kann es zu Stickstoffdioxid oxi-diert werden, was zu einer pulmonalen Schädigung führen kann. Daneben kommt es zur Methämoglobinbildung .",
@@ -2734,7 +2646,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann durch Phenytoin behandelt werden.",
         "text_tr": "fenitoin ile tedavi edilebilir.",
         "is_correct": true,
-        "explanation_de": "Die Therapie mit Magnesium i.v. und evtl. mit Phenytoin gehört zur Behandlung der 1. Wahl. Phenytoin ist außerdem geeignet, um digita-lisinduzierte Tachyarrythmien zu supprimieren. 50 2Kapitel 2 · Physiologie",
+        "explanation_de": "Die Therapie mit Magnesium i.v. und evtl. mit Phenytoin gehört zur Behandlung der 1. Wahl. Phenytoin ist außerdem geeignet, um digita-lisinduzierte Tachyarrythmien zu supprimieren.",
         "explanation_tr": "Magnezyum i.v. ile tedavi ve muhtemelen fenitoin ile tedavi ilk seçenektir. Fenitoin aynı zamanda dijital kaynaklı taşiaritmilerin baskılanması için de uygundur. 50 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -2962,7 +2874,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die abhängige (unten liegende) Lunge besser belüftet als die nicht abhängige Lunge.",
         "text_tr": "bağımlı (alt) akciğer, bağımlı olmayan akciğerden daha iyi havalandırılır.",
         "is_correct": true,
-        "explanation_de": "Aufgrund der Schwerkraft nimmt der intrapleurale Druck von oben nach unten zu, d. h. im Stehen ist in den apikalen Lungenabschnitten der Druck negativer als in den basalen, und in Seitenlage ist der Druck in den oben liegenden (nicht abhängigen) Lungenpartien negativer als in den abhängigen (unten liegenden) Lungenabschnitten. Je negativer der intra-pleurale Druck, desto größer ist die Vordehnung der Alveolen und desto 53 2 · Physiologie2",
+        "explanation_de": "Aufgrund der Schwerkraft nimmt der intrapleurale Druck von oben nach unten zu, d. h. im Stehen ist in den apikalen Lungenabschnitten der Druck negativer als in den basalen, und in Seitenlage ist der Druck in den oben liegenden (nicht abhängigen) Lungenpartien negativer als in den abhängigen (unten liegenden) Lungenabschnitten. Je negativer der intra-pleurale Druck, desto größer ist die Vordehnung der Alveolen und desto",
         "explanation_tr": "Yer çekimi nedeniyle intraplevral basınç yukarıdan aşağıya doğru artar, yani h. Ayakta dururken akciğerin apikal bölümlerindeki basınç bazal bölümlere göre daha negatiftir ve yan yatarken üst (bağımlı olmayan) akciğer bölümlerindeki basınç bağımlı (alt) akciğer bölümlerine göre daha negatiftir. Plevra içi basınç ne kadar negatif olursa alveollerin ilerlemesi de o kadar fazla olur ve 53 2 · Fizyoloji2"
       },
       {
@@ -2970,24 +2882,24 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die nicht abhängige Lunge besser belüftet als die abhängige Lunge.",
         "text_tr": "bağımlı olmayan akciğer bağımlı akciğerden daha iyi havalanır.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "werden beide Lungen gleich belüftet.",
         "text_tr": "Her iki akciğer eşit şekilde havalandırılır.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "ist die abhängige Lunge besser durchblutet.",
         "text_tr": "bağımlı akciğerler daha iyi kanla beslenir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -3098,7 +3010,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist nach Gabe eines β -Blockers nicht mehr wirksam.",
         "text_tr": "β-bloker uygulanmasından sonra artık etkili değildir.",
         "is_correct": false,
-        "explanation_de": "Der Frank-Starling-Mechanismus funktioniert unabhängig von ner- valen und humoralen Einflüssen und ist daher auch bei einer β -Blockade wirksam. Durch die Gabe von β -Blockern wird die modulierende positiv inotrope Wirkung des Sympathikus geblockt und entsprechend die Frank-Starling-Kurve nach rechts verschoben. 55 2 · Physiologie2",
+        "explanation_de": "Der Frank-Starling-Mechanismus funktioniert unabhängig von ner- valen und humoralen Einflüssen und ist daher auch bei einer β -Blockade wirksam. Durch die Gabe von β -Blockern wird die modulierende positiv inotrope Wirkung des Sympathikus geblockt und entsprechend die Frank-Starling-Kurve nach rechts verschoben.",
         "explanation_tr": "Frank-Starling mekanizması sinirsel ve humoral etkilerden bağımsız olarak çalışır ve bu nedenle β-blokaj durumunda da etkilidir. β-blokerlerin uygulanmasıyla sempatik sistemin modüle edici pozitif inotropik etkisi bloke edilir ve Frank-Starling eğrisi sağa kaydırılır. 55 2 · Fizyoloji2"
       }
     ],
@@ -3199,7 +3111,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Lage außerhalb der Zone III nach West 56 2Kapitel 2 · Physiologie",
+        "text_de": "Lage außerhalb der Zone III nach West",
         "text_tr": "Bölge III'ün dışında Batı'daki konum 56 2Bölüm 2 · Fizyoloji",
         "is_correct": true,
         "explanation_de": "Streng genommen ist nur in der Zone III nach West (basale Lun- genabschnitte) eine kontinuierliche Übertragung der Drücke vom linken Vorhof bis zur Pulmonalarterie gegeben. Nur in der Zone III besteht ein von den Atemexkursionen nicht unterbrochener Blutfluss zwischen distaler Pulmonaliskatheteröffnung und linkem Vorhof.",
@@ -3246,7 +3158,7 @@ const EXAM_QUESTIONS = [
         "text_de": "bei Gabe von Vasodilatatoren",
         "text_tr": "vazodilatörler uygulanırken",
         "is_correct": true,
-        "explanation_de": "Die Gabe von Vasodilatatoren senkt den Druck in den Pulmonal- venen, und damit sinkt auch der PCWP . Diese Drucksenkung überträgt sich 57 2 · Physiologie2",
+        "explanation_de": "Die Gabe von Vasodilatatoren senkt den Druck in den Pulmonal- venen, und damit sinkt auch der PCWP . Diese Drucksenkung überträgt sich",
         "explanation_tr": "Vazodilatörlerin uygulanması pulmoner venlerdeki basıncı azaltır ve dolayısıyla PCWP de azalır. Basınçtaki bu azalma beyine iletilir. 57 2 · Fizyoloji2"
       },
       {
@@ -3358,7 +3270,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Gabe von Succinylcholin ist absolut kontraindiziert.",
         "text_tr": "Süksinilkolin uygulaması kesinlikle kontrendikedir.",
         "is_correct": false,
-        "explanation_de": "Succinylcholin ist nicht absolut kontraindiziert. Die meisten Patienten haben aber eine latente Hyperkaliämie, die aufgrund des succi-nylcholininduzierten Kaliumaustroms aus den Muskelzellen (bis zu 1,0 mmol/l Plasmakaliumanstieg) bedrohlich verstärkt werden kann. Bei hochnormalen Kaliumwerten wird deshalb empfohlen, auf Succinylcholin zu verzichten. 59 2 · Physiologie2",
+        "explanation_de": "Succinylcholin ist nicht absolut kontraindiziert. Die meisten Patienten haben aber eine latente Hyperkaliämie, die aufgrund des succi-nylcholininduzierten Kaliumaustroms aus den Muskelzellen (bis zu 1,0 mmol/l Plasmakaliumanstieg) bedrohlich verstärkt werden kann. Bei hochnormalen Kaliumwerten wird deshalb empfohlen, auf Succinylcholin zu verzichten.",
         "explanation_tr": "Süksinilkolin kesinlikle kontrendike değildir. Ancak çoğu hastada, kas hücrelerinden süksinilkolin kaynaklı potasyum çıkışı nedeniyle tehlikeli biçimde artabilen latent hiperkalemi vardır (plazma potasyumunda 1,0 mmol/l'ye kadar artış). Potasyum seviyeleri çok normalse süksinilkolinden kaçınılması önerilir. 59 2 · Fizyoloji2"
       }
     ],
@@ -3430,7 +3342,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöht die kardiale Arrythmiebereitschaft.",
         "text_tr": "Kardiyak aritmi hazırlığını arttırır.",
         "is_correct": false,
-        "explanation_de": "Eine Beeinträchtigung des kardialen Reizleitungssystems tritt erst unterhalb einer Körperkerntemperatur von 33 °C auf. Es kann eine Sinus- bradykardie auftreten, häufiger sind jedoch AV-Knotenrhythmen, ventriku-läre und supraventrikuläre Extrasystolen sowie Vorhof- und Kammerflim-mern. Die Pharmako- und Elektrotherapie dieser Arrhythmien ist deutlich weniger erfolgreich als unter Normothermie. 60 2Kapitel 2 · Physiologie",
+        "explanation_de": "Eine Beeinträchtigung des kardialen Reizleitungssystems tritt erst unterhalb einer Körperkerntemperatur von 33 °C auf. Es kann eine Sinus- bradykardie auftreten, häufiger sind jedoch AV-Knotenrhythmen, ventriku-läre und supraventrikuläre Extrasystolen sowie Vorhof- und Kammerflim-mern. Die Pharmako- und Elektrotherapie dieser Arrhythmien ist deutlich weniger erfolgreich als unter Normothermie.",
         "explanation_tr": "Kardiyak iletim sisteminin bozulması yalnızca 33 °C'lik çekirdek vücut sıcaklığının altında meydana gelir. Sinüs bradikardisi meydana gelebilir, ancak AV düğüm ritimleri, ventriküler ve supraventriküler ekstrasistoller ve atriyal ve ventriküler fibrilasyon daha yaygındır. Bu aritmilerin farmakoterapisi ve elektroterapisi, normotermiye göre önemli ölçüde daha az başarılıdır. 60 2Bölüm 2 · Fizyoloji"
       },
       {
@@ -3438,24 +3350,24 @@ const EXAM_QUESTIONS = [
         "text_de": "verbessert die Gerinnungsfähigkeit des Blutes.",
         "text_tr": "kanın pıhtılaşma yeteneğini artırır.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "hat keinen signifikanten Effekt auf den zerebralen O 2 -Bedarf.",
         "text_tr": "serebral O2 gereksinimleri üzerinde anlamlı bir etkisi yoktur.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "verdoppelt die Infektionsrate.",
         "text_tr": "enfeksiyon oranını iki katına çıkarır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -3498,7 +3410,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Erhöhung des hydrostatischen Kapillardrucks.",
         "text_tr": "Hidrostatik kılcal basınçta artış.",
         "is_correct": true,
-        "explanation_de": "Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks. 61 2 · Physiologie2",
+        "explanation_de": "Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks.",
         "explanation_tr": "Hidrostatik basınçtaki bir artış, etkin filtrasyon basıncında bir artışa yol açar. 61 2 · Fizyoloji2"
       },
       {
@@ -3506,39 +3418,15 @@ const EXAM_QUESTIONS = [
         "text_de": "Erniedrigung des kolloidosmotischen Drucks.",
         "text_tr": "Kolloid ozmotik basıncında azalma.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "erhöhte Kapillarpermeabilität für Protein. b. Falsch. Schon die milde Hypothermie verschlechtert die Gerinnungsfähig- keit des Blutes, wahrscheinlich durch Inhibierung der Faktorenaktivierung. Dieser Gerinnungsdefekt wird durch die Gabe von »fresh frozen plasma « (FFP) nicht aufgehoben. Der intraoperative Blutverlust erhöht sich um etwa 10 % pro°C Temperaturabfall!",
+        "text_de": "erhöhte Kapillarpermeabilität für Protein.",
         "text_tr": "Proteine ​​karşı kılcal geçirgenliğin artması. B. Yanlış. Hafif hipotermi bile muhtemelen faktör aktivasyonunu engelleyerek kanın pıhtılaşma yeteneğini kötüleştirir. Bu pıhtılaşma kusuru taze dondurulmuş plazma (FFP) uygulanarak tersine çevrilemez. Sıcaklıktaki her °C düşüşte ameliyat sırasında kan kaybı yaklaşık %10 artar!",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig. Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks. 61 2 · Physiologie2",
-        "explanation_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1"
-      },
-      {
-        "key": "c",
-        "text_de": "Falsch. Pro 1 °C Temperaturabfall sinkt der zerebrale O 2 -Bedarf um ca. 5 %. Selbst bei leichter Hypothermie wird der O 2 -Bedarf der Neuronen redu- ziert. Durch Hypothermie wird sowohl der O 2 -Bedarf des neuralen Funkti- onsstoffwechsels als auch des Erhaltungsstoffwechsels (=Stoffwechsel zum Erhalt der Zellintegrität) drastisch gesenkt. So liegt der neurale O 2 -Bedarf bei 17 °C bei ca. 8 % des Bedarfs unter Normothermie. Bei Kerntemperatu-ren zwischen 12 °C und 17 °C wird ein zerebraler Perfussionsstop (»no flow«) länger als 60 min toleriert.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O2 gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O2 ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O2 ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O2 gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
-        "is_correct": true,
-        "explanation_de": "Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks. 61 2 · Physiologie2",
-        "explanation_tr": "Hidrostatik basınçtaki bir artış, etkin filtrasyon basıncında bir artışa yol açar. 61 2 · Fizyoloji2"
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Schon eine über 60 min anhaltende leichte Hypothermie verdop- pelt bis verdreifacht die Infektionsrate. Die immunologische Beeinträchti-gung ist also erheblich und unterstreicht die Wichtigkeit des Erhalts der Normothermie.",
-        "text_tr": "Doğru. 60 dakikadan uzun süren hafif hipotermi bile enfeksiyon oranını ikiye veya üçe katlıyor. Bu nedenle immünolojik bozukluk önemlidir ve normoterminin korunmasının öneminin altını çizer.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Am effektivsten ist der Einsatz von Warmluftdecken (»forced air warming «), dies kann durch Abdecken mit Tüchern und Warmhalte folien unterstützt werden. Die Gabe von ca. 1 l kristalloider Infusionslösung von 20 °C oder die Gabe eines Erythrozytenkonzentrats von 4 °C reduziert die Kerntemperatur des durchschnittlichen Erwachsenen um ca. 0,25 °C.",
-        "text_tr": "Yanlış. En etkili yol, sıcak hava battaniyeleri (“zorla havayla ısıtma”) kullanmaktır; bu, bezlerle örtülerek ve folyoyla ısıtılarak desteklenebilir. 20 °C'de yaklaşık 1 litre kristalloid infüzyon çözeltisinin uygulanması veya 4 °C'de bir eritrosit konsantresinin uygulanması, ortalama bir yetişkinin vücut ısısını yaklaşık 0,25 °C azaltır.",
-        "is_correct": true,
-        "explanation_de": "c. ✅ Richtig. Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks. 61 2 · Physiologie2",
+        "explanation_de": "Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks.",
         "explanation_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1"
       }
     ],
@@ -3691,7 +3579,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "kann Thrombosen verursachen. 63 2 2.1 · Gerinnung",
+        "text_de": "kann Thrombosen verursachen. 63",
         "text_tr": "tromboza neden olabilir. 63 2 2.1 · Pıhtılaşma",
         "is_correct": true,
         "explanation_de": "Aufgrund einer heparininduzierten Thrombozytopenie (HIT ) kann es paradoxerweise unter An tikoagulationstherapie mit Heparin zu Throm- bosen kommen. Bei der schwerwiegenderen Form, HIT Typ II, werden Anti-köper gegen Heparin-Plättchenfaktor-4-Komplexe gebildet, die Thrombo-zyten anbinden. Dadurch kommt es zu Thrombosen und evtl. zu einer Ver-brauchskoagulopathie .",
@@ -3730,7 +3618,7 @@ const EXAM_QUESTIONS = [
         "text_de": "sollte bei massiven Blutungen in einer Dosierung von 2 g gegeben werden.",
         "text_tr": "Masif kanamalarda 2 gr dozunda verilmelidir.",
         "is_correct": false,
-        "explanation_de": "Bei massiven Blutungen sollte Tranexamsäure in einer Dosierung von 1 g i.v. als Kurzinfusion gegeben werden. Hierdurch kommt es zu einer relevanten Einsparung von Fremdblut. 64 2Kapitel 2 · Physiologie",
+        "explanation_de": "Bei massiven Blutungen sollte Tranexamsäure in einer Dosierung von 1 g i.v. als Kurzinfusion gegeben werden. Hierdurch kommt es zu einer relevanten Einsparung von Fremdblut.",
         "explanation_tr": "Masif kanama durumunda traneksamik asit 1 g i.v. dozunda verilmelidir. kısa bir infüzyon olarak verilir. Bu, yabancı kandan önemli ölçüde tasarruf edilmesini sağlar. 64 2Bölüm 2 · Fizyoloji"
       },
       {
@@ -3738,8 +3626,8 @@ const EXAM_QUESTIONS = [
         "text_de": "wird im Wesentlichen hepatisch eliminiert.",
         "text_tr": "esas olarak hepatik yolla elimine edilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -3850,7 +3738,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Quick-Wert 10 % der Norm",
         "text_tr": "Hızlı değer normun %10'u",
         "is_correct": true,
-        "explanation_de": "Bei Dauerantikoagulation mit Vitamin-K-Antagonisten (z. B. nach Implantation einer künstlichen Herzklappe) wird ein Quick-Wert von ca. 25 % der Norm angestrebt. Bei einem Wert <10 % ist die Gefahr einer Spontanblutung deutlich erhöht. 66 2Kapitel 2 · Physiologie",
+        "explanation_de": "Bei Dauerantikoagulation mit Vitamin-K-Antagonisten (z. B. nach Implantation einer künstlichen Herzklappe) wird ein Quick-Wert von ca. 25 % der Norm angestrebt. Bei einem Wert <10 % ist die Gefahr einer Spontanblutung deutlich erhöht.",
         "explanation_tr": "K vitamini antagonistleriyle uzun süreli antikoagülasyon için (örneğin yapay kalp kapakçığının implantasyonundan sonra), yakl. Normun %25’i hedefleniyor. Değer <%10 ise spontan kanama riski önemli ölçüde artar. 66 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -3930,7 +3818,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöhte Kapillarfragilität",
         "text_tr": "artan kılcal kırılganlık",
         "is_correct": true,
-        "explanation_de": "Die Intaktheit des Kapillarendothels ist für einen normalen Wert der Blutungszeit nach Duke wichtig. Eine Angiopathie führt daher zu einer Verlängerung der Blutungszeit. 67 2 2.1 · Gerinnung",
+        "explanation_de": "Die Intaktheit des Kapillarendothels ist für einen normalen Wert der Blutungszeit nach Duke wichtig. Eine Angiopathie führt daher zu einer Verlängerung der Blutungszeit. 67",
         "explanation_tr": "Duke'a göre, kılcal damar endotelinin bütünlüğü kanama zamanının normal değeri için önemlidir. Anjiyopati bu nedenle kanama süresinin artmasına neden olur. 67 2 2.1 · Pıhtılaşma"
       },
       {
@@ -3938,16 +3826,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Thrombozytopenie",
         "text_tr": "Trombositopeni",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Thrombozytopathie",
         "text_tr": "Trombositopati",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -4055,24 +3943,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "können durch die gleichzeitige Gabe von Acetylsalicylsäure in ihrer Wirkung verstärkt werden. c. Richtig. Die Thrombozytenzahl beeinflusst die Blutungszeit nach Duke erst bei deutlich erniedrigten Werten (<50 000 Thrombozyten/μl).",
+        "text_de": "können durch die gleichzeitige Gabe von Acetylsalicylsäure in ihrer Wirkung verstärkt werden.",
         "text_tr": "Etki, asetilsalisilik asitin eşzamanlı uygulanmasıyla arttırılabilir. C. Doğru. Duke'a göre trombosit sayısı, yalnızca değerler önemli ölçüde azaldığında (<50.000 trombosit/μl) kanama süresini etkiliyor.",
-        "is_correct": true,
-        "explanation_de": "Wenn zusätzlich Thrombozytenaggregationshemmer wie ASS im Rahmen einer Kumarintherapie gegeben werden, ist die Gefahr einer Spontanblutung erhöht.",
-        "explanation_tr": "Kumarin tedavisinin bir parçası olarak ASA gibi trombosit agregasyon inhibitörleri de verilirse spontan kanama riski artar."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Die Thrombozytenfunktion hat entscheidenden Einfluss auf die Blutungszeit; so ist die Blutungszeit nach Duke bei normaler Thrombozy-tenzahl, aber gestörter Funktion (z. B. im Rahmen der Gabe von Acetylsali-cylsäure) deutlich verlängert.",
-        "text_tr": "Doğru. Trombosit fonksiyonunun kanama zamanı üzerinde belirleyici etkisi vardır; Duke'a göre, normal trombosit sayısında ancak fonksiyon bozukluğunda (örn. asetilsalisilik asit uygulandığında) kanama süresi önemli ölçüde uzar.",
-        "is_correct": false,
-        "explanation_de": "Eine Kumarintherapie (z. B. nach Implantation einer künstlichen Herzklappe) wird üblicherweise durch den Quick-Wert überwacht. (therapeutischer Bereich: Quick-Wert ca. 25 % der Norm).",
-        "explanation_tr": "Kumarin tedavisi (örn. yapay kalp kapakçığının implantasyonundan sonra) genellikle Quick değeri kullanılarak izlenir. (terapötik aralık: hızlı değer, normun yaklaşık %25'i)."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Der Hämatokrit hat einen starken Einfluss auf die Viskosität des Blutes, aber keinen Einfluss auf die Blutungszeit nach Duke. Zusammengefasst gilt, dass eine verlängerte Blutungszeit nach Duke in erster Linie entweder für eine Thrombozytopathie, eine Thrombozytopenie oder eine Angiopathie spricht. 68 2Kapitel 2 · Physiologie",
-        "text_tr": "Yanlış. Duke'a göre hematokrit kanın viskozitesi üzerinde güçlü bir etkiye sahiptir ancak kanama süresi üzerinde hiçbir etkisi yoktur. Özet olarak Duke'a göre kanama süresinin uzaması öncelikle trombositopatiyi, trombositopeniyi veya anjiyopatiyi gösterir. 68 2Bölüm 2 · Fizyoloji",
         "is_correct": true,
         "explanation_de": "Wenn zusätzlich Thrombozytenaggregationshemmer wie ASS im Rahmen einer Kumarintherapie gegeben werden, ist die Gefahr einer Spontanblutung erhöht.",
         "explanation_tr": "Kumarin tedavisinin bir parçası olarak ASA gibi trombosit agregasyon inhibitörleri de verilirse spontan kanama riski artar."
@@ -4126,7 +3998,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann Überempfindlichkeitsreaktionen hervorrufen.",
         "text_tr": "aşırı duyarlılık reaksiyonlarına neden olabilir.",
         "is_correct": true,
-        "explanation_de": "Besonders bei wiederholter Anwendung sowie bei Patienten mit multiallergischer Diathese wurde über schwere allergische Reaktionen berichtet. Es sollte daher grundsätzlich zunächst eine Testdosis vor Appli-kation der Gesamtdosis verabreicht werden. 69 2 2.1 · Gerinnung",
+        "explanation_de": "Besonders bei wiederholter Anwendung sowie bei Patienten mit multiallergischer Diathese wurde über schwere allergische Reaktionen berichtet. Es sollte daher grundsätzlich zunächst eine Testdosis vor Appli-kation der Gesamtdosis verabreicht werden. 69",
         "explanation_tr": "Özellikle tekrarlanan kullanımlarda ve multialerjik diyatezi olan hastalarda ciddi alerjik reaksiyonlar rapor edilmiştir. Bu nedenle toplam dozu uygulamadan önce her zaman bir test dozu uygulanmalıdır. 69 2 2.1 · Pıhtılaşma"
       }
     ],
@@ -4227,7 +4099,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Antikoagulation mit Heparinoiden kann über die PTT überwacht werden. 70 2Kapitel 2 · Physiologie",
+        "text_de": "Die Antikoagulation mit Heparinoiden kann über die PTT überwacht werden.",
         "text_tr": "Heparinoidlerle antikoagülasyon PTT ile izlenebilir. 70 2Bölüm 2 · Fizyoloji",
         "is_correct": false,
         "explanation_de": "Die Therapie mit Heparinoiden (Danaparoin ) muss mit Hilfe der Anti-Faktor-Xa-Aktivität evaluiert werden.",
@@ -4282,7 +4154,7 @@ const EXAM_QUESTIONS = [
         "text_de": "können ohne Monitoring angewendet werden.",
         "text_tr": "izlemeden kullanılabilir.",
         "is_correct": true,
-        "explanation_de": "Die genannten Substanzen sind zuverlässig wirksam; ein Routine- monitoring ist daher nicht notwendig. 71 2 2.1 · Gerinnung",
+        "explanation_de": "Die genannten Substanzen sind zuverlässig wirksam; ein Routine- monitoring ist daher nicht notwendig. 71",
         "explanation_tr": "Bahsedilen maddeler güvenilir bir şekilde etkilidir; bu nedenle rutin izleme gerekli değildir. 71 2 2.1 · Pıhtılaşma"
       }
     ],
@@ -4334,7 +4206,7 @@ const EXAM_QUESTIONS = [
         "text_de": "sind mit einem geringeren intrinsischen Blutungsrisiko behaftet als z. B. Vitamin-K-Antagonisten oder Heparin.",
         "text_tr": "daha düşük bir içsel kanama riski ile ilişkilidir; B. K vitamini antagonistleri veya heparin.",
         "is_correct": false,
-        "explanation_de": "Wie der Einsatz beispielsweise von Vitamin-K-Antagonisten geht auch der Einsatz der NOAK mit einem eigenen Risiko potenziell schwer-wiegender Blutungen einher. Nach derzeitiger Studienlage scheint dies Risiko jedoch zumindest nicht höher zu sein als bei den traditionellen Gerinnungshemmern. Ob das Blutungsrisiko unter NOAK-Anwendung geringer als bei konventionellen Substanzen ist, ist noch nicht geklärt und erscheint fraglich. 72 2Kapitel 2 · Physiologie",
+        "explanation_de": "Wie der Einsatz beispielsweise von Vitamin-K-Antagonisten geht auch der Einsatz der NOAK mit einem eigenen Risiko potenziell schwer-wiegender Blutungen einher. Nach derzeitiger Studienlage scheint dies Risiko jedoch zumindest nicht höher zu sein als bei den traditionellen Gerinnungshemmern. Ob das Blutungsrisiko unter NOAK-Anwendung geringer als bei konventionellen Substanzen ist, ist noch nicht geklärt und erscheint fraglich.",
         "explanation_tr": "Örneğin K vitamini antagonistlerinin kullanımı gibi, NOAC'ların kullanımı da potansiyel olarak ciddi kanama riskini taşır. Ancak mevcut çalışmalara göre bu risk geleneksel antikoagülanlardan daha yüksek görünmüyor. NOAC'ları kullanırken kanama riskinin geleneksel maddelere göre daha düşük olup olmadığı henüz açıklığa kavuşturulmamıştır ve şüpheli görünmektedir. 72 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -4386,7 +4258,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Bei Patienten über 80 Jahren muss mit einem höheren Blutungsrisiko gerechnet werden.",
         "text_tr": "Heparin bir lipoproteindir.",
         "is_correct": true,
-        "explanation_de": "Hohes Alter ist ein unabhängiger Risikofaktor für das Auftreten einer Blutungskomplikation (z. B. zerebrale Blutung). Der Einsatz von Dabigatran in dieser Patientengruppe wird das Blutungsrisiko daher (weiter) erhöhen. 73 2 2.2 · Hormonsystem 2.2 Hormonsystem",
+        "explanation_de": "Hohes Alter ist ein unabhängiger Risikofaktor für das Auftreten einer Blutungskomplikation (z. B. zerebrale Blutung). Der Einsatz von Dabigatran in dieser Patientengruppe wird das Blutungsrisiko daher (weiter) erhöhen. 73",
         "explanation_tr": "Yaşlılık, kanama komplikasyonlarının (örn. beyin kanaması) ortaya çıkması açısından bağımsız bir risk faktörüdür. Bu nedenle bu hasta grubunda dabigatran kullanımı kanama riskini (daha da) artıracaktır. 73 2 2,2 · Hormon sistemi 2,2 Hormon sistemi"
       }
     ],
@@ -4487,8 +4359,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "erhöhter Hämatokrit 74 2Kapitel 2 · Physiologie",
-        "text_tr": "hematokrit artışı 74 2Bölüm 2 · Fizyoloji",
+        "text_de": "erhöhter Hämatokrit",
+        "text_tr": "hematokrit artışı",
         "is_correct": false,
         "explanation_de": "Aufgrund der Expansion des extrazellulären Volumens kommt es zu einem Abfall des Hämatokrit .",
         "explanation_tr": "Hücre dışı hacmin genişlemesi nedeniyle hematokritte azalma olur."
@@ -4526,7 +4398,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Langzeiteinnahme von Steroiden",
         "text_tr": "Uzun süreli steroid kullanımı",
         "is_correct": true,
-        "explanation_de": "Jede langzeitige Steroidmedikation ist in der Lage, eine NNR- Suppression herbeizuführen, da die Hypophyse durch negatives Feedback der Kortikoide gehemmt ist. Wird nun in einer Stresssituation vermehrt Kortison benötigt (Infekt, Trauma), kann es zu einer relativen NNR-Insuf-fizienz kommen. 75 2 2.2 · Hormonsystem",
+        "explanation_de": "Jede langzeitige Steroidmedikation ist in der Lage, eine NNR- Suppression herbeizuführen, da die Hypophyse durch negatives Feedback der Kortikoide gehemmt ist. Wird nun in einer Stresssituation vermehrt Kortison benötigt (Infekt, Trauma), kann es zu einer relativen NNR-Insuf-fizienz kommen. 75",
         "explanation_tr": "Herhangi bir uzun süreli steroid ilacı, hipofiz bezinin kortikosteroidlerden gelen negatif geri bildirim tarafından inhibe edilmesi nedeniyle NNR baskılanmasına neden olabilir. Stresli bir durumda (enfeksiyon, travma) kortizona giderek daha fazla ihtiyaç duyulursa göreceli NNR yetersizliği ortaya çıkabilir. 75 2 2,2 · Endokrin sistemi"
       },
       {
@@ -4534,8 +4406,8 @@ const EXAM_QUESTIONS = [
         "text_de": "hohe ACTH-Serumspiegel",
         "text_tr": "yüksek serum ACTH seviyeleri",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -4643,16 +4515,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Angiotensin II stimuliert die Aldosteronfreisetzung aus der Nebenniere und führt zu einer Vasokonstriktion. d. Richtig. Bei der primären NNR-Insuffizienz, nicht jedoch bei einer sekun- dären NNR-Insuffizienz, finden sich erhöhte ACTH-Serumspiegel. Dies kennzeichnet die Situation bei einem M. Addison .",
+        "text_de": "Angiotensin II stimuliert die Aldosteronfreisetzung aus der Nebenniere und führt zu einer Vasokonstriktion.",
         "text_tr": "Anjiyotensin II, adrenal bezden aldosteron salınımını uyarır ve vazokonstriksiyona yol açar. D. Doğru. Primer NNR yetmezliğinde artan ACTH serum seviyeleri bulunur, ancak sekonder NNR yetmezliğinde bulunmaz. Bu, M. Addison'daki durumu karakterize ediyor.",
-        "is_correct": true,
-        "explanation_de": "Angiotensin II hat zwei Hauptwirkungen: es führt zu einer genera- lisierten Vasokonstriktion und damit zu einer Blutdruckerhöhung , und es stimuliert die Freisetzung von Aldosteron, welches über eine erhöhte Natriumrückresorption volumenexpandierend und blutdrucksteigernd wirkt. Aldosteron selbst inhibiert die Freisetzung von Renin aus dem juxta-glomerulären Apparat.",
-        "explanation_tr": "Anjiyotensin II'nin iki ana etkisi vardır: genelleştirilmiş bir vazokonstriksiyona ve dolayısıyla kan basıncında bir artışa yol açar ve hacim genişletici etkisi olan ve artan sodyum yeniden emilimi yoluyla kan basıncını artıran aldosteron salınımını uyarır. Aldosteronun kendisi juksta-glomerüler aparattan renin salınmasını engeller."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Die katecholaminrefraktäre arterielle Hypotonie ist ein Symptom, das an eine akute NNR-Insuffizienz denken lassen sollte. Die Glukokorti koide ha-ben eine bekannte permissive Wirkung auf den Vasotonus, d. h. die Gabe von aureichend hoch dosiertem Kortison (Stressdosis) stabilisiert den Blutdruck. 76 2Kapitel 2 · Physiologie",
-        "text_tr": "Doğru. Katekolaminlere dirençli arteriyel hipotansiyon, akut NNR yetmezliğini düşündürmesi gereken bir semptomdur. Glukokortikoidlerin vazotonus üzerinde bilinen bir izin verici etkisi vardır, yani h. Yeterince yüksek dozda kortizon verilmesi (stres dozu) kan basıncını stabilize eder. 76 2Bölüm 2 · Fizyoloji",
         "is_correct": true,
         "explanation_de": "Angiotensin II hat zwei Hauptwirkungen: es führt zu einer genera- lisierten Vasokonstriktion und damit zu einer Blutdruckerhöhung , und es stimuliert die Freisetzung von Aldosteron, welches über eine erhöhte Natriumrückresorption volumenexpandierend und blutdrucksteigernd wirkt. Aldosteron selbst inhibiert die Freisetzung von Renin aus dem juxta-glomerulären Apparat.",
         "explanation_tr": "Anjiyotensin II'nin iki ana etkisi vardır: genelleştirilmiş bir vazokonstriksiyona ve dolayısıyla kan basıncında bir artışa yol açar ve hacim genişletici etkisi olan ve artan sodyum yeniden emilimi yoluyla kan basıncını artıran aldosteron salınımını uyarır. Aldosteronun kendisi juksta-glomerüler aparattan renin salınmasını engeller."
@@ -4703,7 +4567,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Intraoperativ sind regelmäßige Blutzuckerkontrollen notwendig. 77 2 2.2 · Hormonsystem",
+        "text_de": "Intraoperativ sind regelmäßige Blutzuckerkontrollen notwendig. 77",
         "text_tr": "Ameliyat sırasında düzenli kan şekeri kontrolleri gereklidir. 77 2 2.2 · Endokrin sistemi",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.",
@@ -4758,8 +4622,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann es zum Abfall des Plasmamagnesiumspiegels kommen.",
         "text_tr": "Bu, plazma magnezyum seviyelerinde bir düşüşe yol açabilir.",
         "is_correct": false,
-        "explanation_de": "Siehe Antwort b. 78 2Kapitel 2 · Physiologie",
-        "explanation_tr": "Cevap b'ye bakınız. 78 2Bölüm 2 · Fizyoloji"
+        "explanation_de": "Siehe Antwort b.",
+        "explanation_tr": "Cevap b'ye bakınız."
       }
     ],
     "is_high_yield": false
@@ -4846,7 +4710,7 @@ const EXAM_QUESTIONS = [
         "text_de": "sind die Thoraxexkursionen kleiner als bei konventioneller Beatmung.",
         "text_tr": "Torasik geziler geleneksel ventilasyona göre daha küçüktür.",
         "is_correct": true,
-        "explanation_de": "Aufgrund der extrem kleinen Atemzugvolumina und der passiven Exspiration sind die Thoraxexkursionen nur gering; es kommt zur effektiven »Lungenruhigstellung «. 79 2 2.3 · Lungenphysiologie",
+        "explanation_de": "Aufgrund der extrem kleinen Atemzugvolumina und der passiven Exspiration sind die Thoraxexkursionen nur gering; es kommt zur effektiven »Lungenruhigstellung «. 79",
         "explanation_tr": "Son derece küçük tidal hacimler ve pasif ekspirasyon nedeniyle torasik geziler yalnızca küçüktür; Bu etkili bir “akciğer immobilizasyonu” ile sonuçlanır. 79 2 2.3 · Akciğer fizyolojisi"
       },
       {
@@ -4854,8 +4718,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist der intrakranielle Druck höher als bei konventioneller Beatmung.",
         "text_tr": "kafa içi basıncı geleneksel ventilasyona göre daha yüksektir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -4906,24 +4770,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Die frühzeitige Glukokortikoidtherapie im Rahmen eines ARDS verbessert das Outcome.",
         "text_tr": "ARDS bağlamında erken glukokortikoid tedavisi sonucu iyileştirir.",
         "is_correct": false,
-        "explanation_de": "Keine große randomisierte, prospektive und doppelblinde Studie konn- te bislang den Nutzen einer frühzeitigen Kortisongabe beim ARDS nachweisen. 80 2Kapitel 2 · Physiologie",
+        "explanation_de": "Keine große randomisierte, prospektive und doppelblinde Studie konn- te bislang den Nutzen einer frühzeitigen Kortisongabe beim ARDS nachweisen.",
         "explanation_tr": "Bugüne kadar hiçbir büyük randomize, prospektif ve çift-kör çalışma ARDS'de kortizonun erken uygulanmasının faydasını gösterememiştir. 80 2Bölüm 2 · Fizyoloji"
       },
       {
         "key": "e",
-        "text_de": "Die Mortalität von ARDS-Patienten wird durch die kinetische Lagerungs-therapie gesenkt. d. Falsch. Der venöse Abstrom aus dem Gehirn ist bei der HFV aufgrund des konstanten negativen intrapleuralen Drucks im Vergleich zur Überdruck- beatmung verbessert.",
+        "text_de": "Die Mortalität von ARDS-Patienten wird durch die kinetische Lagerungs-therapie gesenkt.",
         "text_tr": "ARDS hastalarının mortalitesi kinetik konumlandırma tedavisi ile azaltılmaktadır. D. Yanlış. Sürekli negatif intraplevral basınç nedeniyle pozitif basınçlı ventilasyona kıyasla HFV'de beyinden venöz çıkış artar.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Bei der HFV ist in der Tat die Atemgasklimatisierung schwer zu bewerkstelligen. Die Hauptgefahr stellt aber das akzidentelle Barotrauma infolge des Aufbaus eines großen intrinsischen PEEP bei behindertem Abstrom der Atemgase aus der Lunge dar.",
-        "text_tr": "Yanlış. HFV ile solunum gazı iklimlendirmesini sağlamak gerçekten zordur. Ancak asıl tehlike, solunum gazlarının akciğerlerden dışarı çıkışının engellenmesiyle birlikte büyük bir içsel PEEP'in birikmesi sonucu oluşan kazara barotravmadır.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -4958,7 +4814,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Das aktuelle Beatmungskonzept beim ARDS hat primär die Wieder-herstellung, bzw. Aufrechterhaltung normaler p a O 2 - und p a CO 2 -Werte zum Ziel.",
         "text_tr": "ARDS için mevcut ventilasyon konsepti öncelikle normal pa O 2 ve pa CO 2 değerlerini yeniden sağlamayı veya korumayı amaçlamaktadır.",
         "is_correct": false,
-        "explanation_de": "Das moderne Beatmungskonzept beim ARDS beinhaltet natürlich die Wiederherstellung bzw. den Erhalt der Oxygenierung, hat aber darüber hinaus die Minimierung des beatmungsinduzierten Lungenschadens (»ventilation associated lung injury«, VALI) zum Ziel. Eine arterielle Normo-kapnie ist zwar wünschenswert, aber nicht primäres Therapieziel, wie es im Beatmungskonzept der permissiven Hyperkapnie verwirklicht wird. 81 2 2.3 · Lungenphysiologie",
+        "explanation_de": "Das moderne Beatmungskonzept beim ARDS beinhaltet natürlich die Wiederherstellung bzw. den Erhalt der Oxygenierung, hat aber darüber hinaus die Minimierung des beatmungsinduzierten Lungenschadens (»ventilation associated lung injury«, VALI) zum Ziel. Eine arterielle Normo-kapnie ist zwar wünschenswert, aber nicht primäres Therapieziel, wie es im Beatmungskonzept der permissiven Hyperkapnie verwirklicht wird. 81",
         "explanation_tr": "ARDS için modern ventilasyon konsepti doğal olarak oksijenasyonun restorasyonunu veya bakımını içerir, ancak aynı zamanda ventilasyonun neden olduğu akciğer hasarını (VALI) en aza indirmeyi de amaçlar. Arteriyel normokapni arzu edilir olmasına rağmen, izin verilen hiperkapninin ventilasyon konseptinde elde edildiği gibi birincil terapötik hedef değildir. 81 2 2.3 · Akciğer fizyolojisi"
       },
       {
@@ -4966,12 +4822,12 @@ const EXAM_QUESTIONS = [
         "text_de": "Mit dem Begriff »wet lung« wird die Zunahme des extravaskulären Lungen-wassers beim ARDS beschrieben.",
         "text_tr": "“Islak akciğer” terimi ARDS'de ekstravasküler akciğer suyunun artışını tanımlamaktadır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Die Letalität eines ARDS wird hauptsächlich vom Lebensalter bestimmt. e. Falsch. Bei einem Vergleich einer Beatmungstherapie ohne Lagerungs- maßnahmen mit einer Beatmungstherapie mit kinetischer Therapie (dorso-ventrale Wechsellagerung bzw. kontinuierliche axiale Rotation) konnte zwar die Oxygenierung verbessern, erbrachte jedoch keine Reduktion der Beatmungsdauer und der Letalität (Guerin et al. Effects of systematic prone positioning in hypoxemic acute respiratory failure: a randomized con-trolled trial. JAMA 2004; 292 (19): 2379-87).",
+        "text_de": "Die Letalität eines ARDS wird hauptsächlich vom Lebensalter bestimmt.",
         "text_tr": "ARDS'nin ölümcüllüğü esas olarak yaşa göre belirlenir. e. Yanlış. Pozisyonlama önlemleri olmadan ventilasyon terapisinin kinetik terapili ventilasyon terapisi (dorsoventral alternatif pozisyonlama veya sürekli eksenel rotasyon) ile karşılaştırılması oksijenlenmeyi iyileştirebildi, ancak ventilasyon süresinde veya mortalitede bir azalmayla sonuçlanmadı (Guerin ve ark. Hipoksemik akut solunum yetmezliğinde sistematik yüzüstü pozisyonun etkileri: randomize kontrollü bir çalışma. JAMA 2004; 292 (19): 2379-87).",
         "is_correct": true,
         "explanation_de": "",
@@ -5026,15 +4882,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ein vorausgegangenes, prädisponierendes Ereignis d. Richtig. Die Patienten mit ARDS haben eine Erhöhung des extravaskulären Lungenwassers von normal ca. 5 ml/kgKG auf >15 ml/kgKG.",
         "text_tr": "Önceki bir predispozan olay d. Doğru. ARDS hastalarında ekstravasküler akciğer suyunda normal yaklaşık 5 ml/kgVA'dan >15 ml/kgVA'ya kadar bir artış vardır.",
         "is_correct": true,
-        "explanation_de": "Dem ARDS geht häufig ein induzierendes Ereignis voraus: z. B. SIRS/Sepsis , Schock , Polytrauma , Pankreatitis , Massivtransfusion oder Into- 82 2Kapitel 2 · Physiologie",
-        "explanation_tr": "ARDS'den önce genellikle tetikleyici bir olay gelir: ör. B. SIRS/sepsis, şok, çoklu travma, pankreatit, masif transfüzyon veya intoleransı 82 2Bölüm 2 · Fizyoloji"
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Neuere Studien haben gezeigt, dass das Outcome des ARDS nicht mono-, sondern multifaktoriell bedingt ist und von Faktoren wie Patien- tenalter, Grunderkrankung und Anzahl der zusätzlich geschädigten Organe abhängt. Jüngere Patienten haben aber bei einem durch ein Polytrauma ausgelösten ARDS tatsächlich eine bessere Prognose als ältere Patienten.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O2 gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O2 ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O2 ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O2 gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
-        "is_correct": true,
-        "explanation_de": "Dem ARDS geht häufig ein induzierendes Ereignis voraus: z. B. SIRS/Sepsis , Schock , Polytrauma , Pankreatitis , Massivtransfusion oder Into- 82 2Kapitel 2 · Physiologie",
+        "explanation_de": "Dem ARDS geht häufig ein induzierendes Ereignis voraus: z. B. SIRS/Sepsis , Schock , Polytrauma , Pankreatitis , Massivtransfusion oder Into-",
         "explanation_tr": "ARDS'den önce genellikle tetikleyici bir olay gelir: ör. B. SIRS/sepsis, şok, çoklu travma, pankreatit, masif transfüzyon veya intoleransı 82 2Bölüm 2 · Fizyoloji"
       }
     ],
@@ -5086,7 +4934,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird die zerebrale Resistance vermindert.",
         "text_tr": "beyin direnci azalır.",
         "is_correct": true,
-        "explanation_de": "Durch die Hyperkapnie kommt es im systemischen Kreislauf zur Vasodilatation, und die zerebrale Resistance nimmt ab. Ein Hirnödem oder ein erhöhter intrakranieller Druck sind Kontraindikationen für die Anwen- dung der PHC. xikation . Hier führt der primär extrapulmonale Prozess, z. B. über eine Toxin einschwemmung, zur sekundären Schädigung des pulmonalen Gefäßendothels. Das ARDS kann sich aber auch aufgrund einer primären Alveolarschädigung entwickeln. Dies ist bei der Aspiration von saurem Mageninhalt, bei Lungenkontusion, Pneumonie oder nach Inhalation toxi-scher Gase der Fall. 83 2 2.3 · Lungenphysiologie",
+        "explanation_de": "Durch die Hyperkapnie kommt es im systemischen Kreislauf zur Vasodilatation, und die zerebrale Resistance nimmt ab. Ein Hirnödem oder ein erhöhter intrakranieller Druck sind Kontraindikationen für die Anwen- dung der PHC. xikation . Hier führt der primär extrapulmonale Prozess, z. B. über eine Toxin einschwemmung, zur sekundären Schädigung des pulmonalen Gefäßendothels. Das ARDS kann sich aber auch aufgrund einer primären Alveolarschädigung entwickeln. Dies ist bei der Aspiration von saurem Mageninhalt, bei Lungenkontusion, Pneumonie oder nach Inhalation toxi-scher Gase der Fall. 83",
         "explanation_tr": "Hiperkapni sistemik dolaşımda vazodilatasyona neden olur ve serebral direnç azalır. Serebral ödem veya artmış kafa içi basıncı PHC kullanımına kontrendikasyonlardır. iksir. Burada birincil ekstrapulmoner süreç, ör. B. toksin infiltrasyonu yoluyla pulmoner vasküler endotele ikincil hasara yol açar. Ancak ARDS primer alveolar hasara bağlı olarak da gelişebilir. Bu, asidik mide içeriğinin aspirasyonu, akciğer kontüzyonu, zatürre veya zehirli gazların solunması sonrası görülen durumdur. 83 2 2.3 · Akciğer fizyolojisi"
       }
     ],
@@ -5174,7 +5022,7 @@ const EXAM_QUESTIONS = [
         "text_de": "eine totale intravenöse Anästhesietechnik gewählt werden.",
         "text_tr": "total intravenöz anestezi tekniği seçilebilir.",
         "is_correct": false,
-        "explanation_de": "Es kann sowohl eine totale intravenöse (TIVA) als auch inhalative Anästhesie durchgeführt werden. 84 2Kapitel 2 · Physiologie",
+        "explanation_de": "Es kann sowohl eine totale intravenöse (TIVA) als auch inhalative Anästhesie durchgeführt werden.",
         "explanation_tr": "Hem total intravenöz (TİVA) hem de inhalasyon anestezisi yapılabilmektedir. 84 2Bölüm 2 · Fizyoloji"
       },
       {
@@ -5182,8 +5030,8 @@ const EXAM_QUESTIONS = [
         "text_de": "immer mit einer F I O 2 von 1,0 beatmet werden.",
         "text_tr": "her zaman 1,0 F I O 2 ile havalandırılmalıdır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -5218,7 +5066,7 @@ const EXAM_QUESTIONS = [
         "text_de": "eine Vermeidung eines exzessiven PEEP der ventilierten Lunge.",
         "text_tr": "havalandırılan akciğerde aşırı PEEP'ten kaçınılması.",
         "is_correct": true,
-        "explanation_de": "Bei der ELV ist die Neigung der unten liegenden, ventilierten Lunge zur Entwicklung von Atelektasen erhöht, weswegen die Applikation eines moderaten PEEP nützlich sein kann. Ein exzessiver PEEP auf die venti-lierte Lunge würde aber zu einer Erhöhung der Totraumventilation und zur 85 2 2.3 · Lungenphysiologie",
+        "explanation_de": "Bei der ELV ist die Neigung der unten liegenden, ventilierten Lunge zur Entwicklung von Atelektasen erhöht, weswegen die Applikation eines moderaten PEEP nützlich sein kann. Ein exzessiver PEEP auf die venti-lierte Lunge würde aber zu einer Erhöhung der Totraumventilation und zur 85",
         "explanation_tr": "ELV'de altta yatan, hava alan akciğerin atelektazi geliştirme eğilimi artar, bu nedenle orta derecede PEEP uygulanması faydalı olabilir. Ancak havalandırılan akciğerde aşırı PEEP, ölü boşluk ventilasyonunda artışa neden olur ve 85 2 2.3 · Akciğer fizyolojisi"
       },
       {
@@ -5226,32 +5074,24 @@ const EXAM_QUESTIONS = [
         "text_de": "chirurgische Abklemmung der Pulmonalarterie, welche die nichtventilierte Lunge versorgt.",
         "text_tr": "Havalandırılmayan akciğeri besleyen pulmoner arterin cerrahi olarak klemplenmesi.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "vorsichtiges manuelles Blähen der ventilierten Lunge zwecks Wieder-öffnung kollabierter Alveolen.",
         "text_tr": "Çöken alveolleri yeniden açmak için havalandırılan akciğerlerin dikkatli bir şekilde manuel olarak şişirilmesi.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Anlegen eines CPAP von 5–10 cm Wassersäule an der nichtventilierten Lunge. d. Falsch. Eine alveoläre Hypoxie kann die hypoxische pulmonale Vaso- konstriktion (HPV) auslösen und Blut möglicherweise in die nichtventilierte Lunge umleiten, was durch eine F I O 2 von 1,0 verhindert werden kann. Insbesondere vor Umlagerungen schafft eine F I O 2 von 1,0 Sicherheitsreser- ven für den Patienten im Fall einer Tubusdislokation. Unter Überwachung mit der Pulsoximetrie und mit wiederholten Blutgasanalysen kann durch-aus während der Narkose die F I O 2 von 1,0 reduziert werden.",
+        "text_de": "Anlegen eines CPAP von 5–10 cm Wassersäule an der nichtventilierten Lunge.",
         "text_tr": "Havalandırılmayan akciğere 5-10 cm'lik su sütunundan oluşan bir CPAP uygulayın. D. Yanlış. Alveolar hipoksi, hipoksik pulmoner vazokonstriksiyonu (HPV) tetikleyebilir ve potansiyel olarak kanı havalandırılmayan akciğere yönlendirebilir ve bu da 1,0'lık bir F IO 2 ile önlenebilir. Özellikle yeniden konumlandırmadan önce 1,0'lık bir F I O 2, tüpün yerinden çıkması durumunda hasta için güvenlik rezervleri oluşturur. Nabız oksimetresi ve tekrarlanan kan gazı analizleri ile izleme altında F I O 2, anestezi sırasında 1,0'dan düşürülebilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Ein PEEP an der unten liegenden, beatmeten Lunge hat keinen genau vorhersehbaren Effekt, weswegen zunächst ohne PEEP beatmet werden sollte. Ein PEEP erhöht den in trathorakalen Druck und interferiert mit der HPV und leitet evtl. Blut durch Erhöhung des pulmonalarteriellen Widerstands in die oben liegende, nichtventilierte Lunge um.",
-        "text_tr": "Yanlış. Aşağıdaki ventile edilen akciğerde PEEP'in kesin olarak öngörülebilir bir etkisi yoktur, bu nedenle ventilasyon başlangıçta PEEP olmadan gerçekleştirilmelidir. PEEP intratorasik basıncı arttırır ve HPV'ye müdahale eder ve pulmoner arter direncini artırarak kanı havalandırılmayan üst akciğere yönlendirebilir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -5278,7 +5118,7 @@ const EXAM_QUESTIONS = [
         "text_de": "sollte bei Hypoxämie auf Zwei-Lungen-Ventilation übergegangen werden, bis der Patient wieder stabil ist und die Ursache für die Hypoxie behoben wurde.",
         "text_tr": "Hipoksemi durumunda, hasta stabil olana ve hipoksinin nedeni düzeltilene kadar iki akciğer ventilasyonuna geçilmelidir.",
         "is_correct": true,
-        "explanation_de": "Ist eine Tubusdislokation und eine Lumenverlegung als Ursache der Hypoxämie bronchoskopisch ausgeschlossen, sollte nach dem Stufen-plan von Benumof vorgegangen werden und, beginnend mit einem CPAP von 5 cm H 2 O an der nichtventilierten Lunge, stufenweise ein PEEP an der ventilierten Lunge von 5 cm H 2 O, dann ein CPAP von 10 cm H 2 O an der nichtventilierten und schließlich ein PEEP von 10 cm H 2 O an der ventilier- ten Lunge angelegt werden. Ist mit diesen Beatmungsparametern die Hy-poxie nicht zu beeinflussen, ist an eine Pulmonalisdrosselung zu denken. 86 2Kapitel 2 · Physiologie",
+        "explanation_de": "Ist eine Tubusdislokation und eine Lumenverlegung als Ursache der Hypoxämie bronchoskopisch ausgeschlossen, sollte nach dem Stufen-plan von Benumof vorgegangen werden und, beginnend mit einem CPAP von 5 cm H 2 O an der nichtventilierten Lunge, stufenweise ein PEEP an der ventilierten Lunge von 5 cm H 2 O, dann ein CPAP von 10 cm H 2 O an der nichtventilierten und schließlich ein PEEP von 10 cm H 2 O an der ventilier- ten Lunge angelegt werden. Ist mit diesen Beatmungsparametern die Hy-poxie nicht zu beeinflussen, ist an eine Pulmonalisdrosselung zu denken.",
         "explanation_tr": "Bronkoskopik olarak hipokseminin nedeni olarak tüpün yerinden çıkması ve lümen tıkanıklığı dışlanırsa, Benumof'un adım adım planı takip edilmeli ve havalandırılmayan akciğerde 5 cm H2O'luk bir CPAP ile başlayarak, havalandırılan akciğerde kademeli olarak 5 cm H2O'luk bir PEEP, ardından havalandırılmayan akciğerde 10 cm H2O'luk bir CPAP ve son olarak 10 cm H2O'luk bir PEEP uygulanmalıdır. havalandırılan akciğerlerde. Hipoksi bu ventilasyon parametrelerinden etkilenemiyorsa pulmoner arterin daraltılması düşünülmelidir. 86 2Bölüm 2 · Fizyoloji"
       },
       {
@@ -5286,48 +5126,24 @@ const EXAM_QUESTIONS = [
         "text_de": "sollte bei guter Compliance der ventilierten Lunge diese mit einem hohen Tidalvolumen (8–12 ml/kgKG) und relativ niedrigen Atemfrequenzen (8–12/min) beatmet werden.",
         "text_tr": "Havalandırılan akciğerler iyi uyum sağlıyorsa yüksek tidal hacim (8-12 ml/kg vücut ağırlığı) ve nispeten düşük solunum hızları (8-12/dk) ile havalandırılmalıdır.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "sollte bei schlechter Compliance der ventilierten Lunge mit niedrigen Tidalvolumina (5–7 ml/kgKG) und relativ hohen Frequenzen (12–16/min) beatmet werden.",
         "text_tr": "Havalandırılan akciğerin kompliyansı zayıfsa, düşük tidal hacimlerle (5-7 ml/kg vücut ağırlığı) ve nispeten yüksek frekanslarla (12-16/dk) ventilasyon yapılmalıdır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
         "text_de": "eine Normokapnie angestrebt werden. Perfusionsminderung dieser Lungenhälfte führen und muss deshalb ver-mieden werden.",
         "text_tr": "normokapni hedeflenmelidir. Bu, akciğerin bu yarısında perfüzyonun azalmasına neden olabilir ve bu nedenle bundan kaçınılmalıdır.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
-      },
-      {
-        "key": "c",
-        "text_de": "Richtig. Dies vermindert den Shunt. Wird die Pulmonalarterie, welche die kollabierte Lungenhälfte versorgt, durch den Chirurgen abgeklemmt, kann die Shuntfraktion deutlich reduziert werden. Der Nachteil dieser Maß-nahme ist eine akute Nachlasterhöhung des rechten Herzens.",
-        "text_tr": "Doğru. Bu şant azaltır. Akciğerin kollabe olan yarısını besleyen pulmoner arter cerrah tarafından klemplenirse şant fraksiyonu önemli ölçüde azaltılabilir. Bu önlemin dezavantajı sağ kalpteki art yükte keskin bir artıştır.",
-        "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Die Atelektasenbildung (und Ödemneigung) in der unten liegen- den Lunge ist erhöht (»dependent lung syndrome «); wiederholtes Blähen wirkt der Ateletasenbildung entgegen.",
-        "text_tr": "Doğru. Alttaki akciğerde atelektazi oluşumu (ve ödem eğilimi) artar (“bağımlı akciğer sendromu”); tekrarlanan gaz, ateletaz oluşumunu engeller.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Durch die Applikation eines mäßigen PEEP/CPAP wird die nicht- ventilierte Lunge nur minimal gebläht, fördert aber die Aufnahme des Sauerstoffs in die Kapillaren und reduziert den Shunt. Wie bei der O 2 -Insuf- flation handelt es sich um eine partielle (eine Lunge wird ventiliert) apnoeische Oxygenierung.",
-        "text_tr": "Doğru. Orta düzeyde PEEP/CPAP uygulandığında, havalandırılmayan akciğer yalnızca minimal düzeyde şişirilir, ancak kılcal damarlara oksijen emilimini artırır ve şant azaltır. O2 insüflasyonunda olduğu gibi bu da kısmi (bir akciğerin havalandırılması) apneik oksijenasyondur.",
-        "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -5370,31 +5186,15 @@ const EXAM_QUESTIONS = [
         "text_de": "arterieller pO 2 = 55 mmHg unter Raumluft",
         "text_tr": "oda havası altında arteriyel pO 2 = 55 mmHg",
         "is_correct": false,
-        "explanation_de": "Der normale p a O 2 bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87 2 2.3 · Lungenphysiologie",
+        "explanation_de": "Der normale p a O 2 bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87",
         "explanation_tr": "Oda havasındaki normal paO2 değeri 65 ila 100 mmHg arasındadır. Bildirilen 55 mmHg değeri patolojiktir ancak tek başına postoperatif pulmoner komplikasyonları öngörmez. 87 2 2.3 · Akciğer fizyolojisi"
       },
       {
         "key": "e",
-        "text_de": "Atemgrenzwert <65 % des Sollwertes c. Richtig. Hohe Tidalvolumina wirken den bei hoher inspiratorischer O 2 -Kon- zentration bevorzugt auftretenden Resorptionsatelektasen entgegen und vermindern die Atelektaseneigung. Dies setzt allerdings eine gute Lungen-compliance voraus. Ist die Lungencompliance eingeschränkt, sollten klei-nere Tidalvolumina und höhere Atemfrequenzen gewählt werden, um die Beatmungsdrücke niedrig zu halten und damit eine akute Rechtsherz-belastung und eine Blutumverteilung in die nichtventilierte Lunge zu ver-meiden.",
+        "text_de": "Atemgrenzwert <65 % des Sollwertes c.",
         "text_tr": "Solunum sınırı < hedef değerin %65'i c. Doğru. Yüksek tidal hacimler, yüksek inspiratuar O2 konsantrasyonlarıyla ortaya çıkan rezorpsiyon atelektazisini etkisiz hale getirir ve atelektazi eğilimini azaltır. Ancak bunun için iyi bir akciğer kompliyansı gerekir. Akciğer kompliyansı sınırlıysa, ventilasyon basınçlarını düşük tutmak ve böylece akut sağ kalp zorlanmasını ve kanın ventile olmayan akciğere yeniden dağılımını önlemek için daha küçük tidal hacimler ve daha yüksek solunum hızları seçilmelidir.",
         "is_correct": true,
-        "explanation_de": "d. ❌ Falsch. Der normale p a O 2 bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87 2 2.3 · Lungenphysiologie",
-        "explanation_tr": "D. ❌ Yanlış. Oda havasındaki normal paO2 değeri 65 ila 100 mmHg arasındadır. Bildirilen 55 mmHg değeri patolojiktir ancak tek başına postoperatif pulmoner komplikasyonları öngörmez. 87 2 2.3 · Akciğer fizyolojisi"
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Siehe Antwort c.",
-        "text_tr": "Doğru. Cevap c'ye bakınız.",
-        "is_correct": false,
-        "explanation_de": "Der normale p a O 2 bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87 2 2.3 · Lungenphysiologie",
-        "explanation_tr": "Oda havasındaki normal paO2 değeri 65 ila 100 mmHg arasındadır. Bildirilen 55 mmHg değeri patolojiktir ancak tek başına postoperatif pulmoner komplikasyonları öngörmez. 87 2 2.3 · Akciğer fizyolojisi"
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Eine Normokapnie wird angestrebt, da eine ausgeprägte Hypo- oder Hyperkapnie die hypoxische pulmonale Vasokonstriktion beeinträchtigt. Eine Hypokapnie führt zu einer Vasodilatation im Pulmonalkreislauf, während eine Hyperkapnie eine Vasokonstriktion bewirkt.",
-        "text_tr": "Doğru. Normokapni aranır çünkü derin hipokapni veya hiperkapni hipoksik pulmoner vazokonstriksiyonu bozar. Hipokapni pulmoner dolaşımda vazodilatasyona neden olurken, hiperkapni vazokonstriksiyona neden olur.",
-        "is_correct": true,
-        "explanation_de": "d. ❌ Falsch. Der normale p a O 2 bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87 2 2.3 · Lungenphysiologie",
+        "explanation_de": "Der normale p a O 2 bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87",
         "explanation_tr": "D. ❌ Yanlış. Oda havasındaki normal paO2 değeri 65 ila 100 mmHg arasındadır. Bildirilen 55 mmHg değeri patolojiktir ancak tek başına postoperatif pulmoner komplikasyonları öngörmez. 87 2 2.3 · Akciğer fizyolojisi"
       }
     ],
@@ -5500,14 +5300,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Mit dem Alter erhöht sich die Anzahl rarefizierter Lungenkapil laren bei weiterbestehender Ventilation der zugehörigen Alveolen. Der Totraum ist erhöht.",
         "explanation_tr": "Yaşla birlikte, ilgili alveollerin ventilasyonunun devam etmesiyle birlikte seyrekleşmiş pulmoner kılcal damarların sayısı artar. Ölü alan artar."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Ein Atemgrenzwert <50 % ist mit perioperativen pulmonalen Kom- plikationen assoziiert. Allgemein gilt also, dass bei chronischen Lungen-erkrankungen erst ab deutlich erniedrigten Lungenfunktionstestwerten, d. h. <50 % des Sollwertes, eine Aussage über die Wahrscheinlichkeit peri-operativer Lungenkomplikationen möglich ist. 88 2Kapitel 2 · Physiologie",
-        "text_tr": "Yanlış. Solunum eşiğinin <%50 olması perioperatif pulmoner komplikasyonlarla ilişkilidir. Genel olarak kronik akciğer hastalıkları yalnızca akciğer fonksiyon testi değerleri önemli ölçüde düştüğünde ortaya çıkar, yani h. Hedef değerin <%50'si, perioperatif pulmoner komplikasyon olasılığı hakkında bir açıklama yapmak mümkündür. 88 2Bölüm 2 · Fizyoloji",
-        "is_correct": true,
-        "explanation_de": "Mit dem Alter erhöht sich die Anzahl rarefizierter Lungenkapil laren bei weiterbestehender Ventilation der zugehörigen Alveolen. Der Totraum ist erhöht.",
-        "explanation_tr": "Yaşla birlikte, ilgili alveollerin ventilasyonunun devam etmesiyle birlikte seyrekleşmiş pulmoner kılcal damarların sayısı artar. Ölü alan artar."
       }
     ],
     "is_high_yield": true
@@ -5558,7 +5350,7 @@ const EXAM_QUESTIONS = [
         "text_de": "In Zone III nach West ist das Ventilations-Perfusions-Verhältnis <1.",
         "text_tr": "Batıdaki zon III'te ventilasyon-perfüzyon oranı <1'dir.",
         "is_correct": true,
-        "explanation_de": "An der Lungenbasis werden viele Alveolen sehr gut perfun- diert, aber nicht gut ventiliert, das Ventilations-Perfusions-Verhältnis sinkt unter 1, d. h. eine relative Zunahme des Shunts. Das Ventilations-Perfu-sions-Verhältnis aller Alveolen der gesamten Lunge liegt im Mittel bei 0,8. 89 2 2.3 · Lungenphysiologie",
+        "explanation_de": "An der Lungenbasis werden viele Alveolen sehr gut perfun- diert, aber nicht gut ventiliert, das Ventilations-Perfusions-Verhältnis sinkt unter 1, d. h. eine relative Zunahme des Shunts. Das Ventilations-Perfu-sions-Verhältnis aller Alveolen der gesamten Lunge liegt im Mittel bei 0,8. 89",
         "explanation_tr": "Akciğerin tabanında birçok alveol çok iyi perfüze edilir ancak iyi havalandırılmaz, ventilasyon-perfüzyon oranı 1'in yani h'nin altına düşer. şantta göreceli bir artış. Akciğerin tamamındaki tüm alveollerin ventilasyon-perfüzyon oranı ortalama 0,8'dir. 89 2 2.3 · Akciğer fizyolojisi"
       }
     ],
@@ -5659,7 +5451,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Mm. intercostales externi werden bei der forcierten Exspiration einge-setzt. 90 2Kapitel 2 · Physiologie",
+        "text_de": "Die Mm. intercostales externi werden bei der forcierten Exspiration einge-setzt.",
         "text_tr": "mm. intercostales externi zorla son kullanma tarihi için kullanılır. 90 2Bölüm 2 · Fizyoloji",
         "is_correct": false,
         "explanation_de": "Die Mm. intercostales interni kontrahieren bei der forcierten Exspiration. F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3_ 3 , © Springer-Verlag GmbH Deutschland 201791 3 Pharma kologie Franz Kehl, Hans-Joachim Wilke",
@@ -5714,7 +5506,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöht den O 2 -Verbrauch .",
         "text_tr": "O 2 tüketimini arttırır.",
         "is_correct": true,
-        "explanation_de": "Die Erhöhung des O 2 -Verbrauchs ist dabei der Vergrößerung des Atemminutenvolumens proportional. Doxapram ist ein in der deutschen klinischen Praxis wenig geläufiges Medika-ment. Da es in England Verwendung findet, ist es für die EAA-Prüfung durchaus relevant. Es kann in der postoperativen Atemdepressionsphase das Atem-minutenvolumen steigern, ebenso bei Patienten mit obstruktiven Atemwegs-erkrankungen. 92 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Die Erhöhung des O 2 -Verbrauchs ist dabei der Vergrößerung des Atemminutenvolumens proportional. Doxapram ist ein in der deutschen klinischen Praxis wenig geläufiges Medika-ment. Da es in England Verwendung findet, ist es für die EAA-Prüfung durchaus relevant. Es kann in der postoperativen Atemdepressionsphase das Atem-minutenvolumen steigern, ebenso bei Patienten mit obstruktiven Atemwegs-erkrankungen.",
         "explanation_tr": "O 2 tüketimindeki artış, dakika ventilasyon hacmindeki artışla orantılıdır. Doxapram, Alman klinik pratiğinde pek yaygın olmayan bir ilaçtır. İngiltere'de kullanıldığı için EAA sınavıyla oldukça alakalıdır. Postoperatif solunum depresyonu aşamasında ve obstrüktif hava yolu hastalıkları olan hastalarda dakika ventilasyonunu artırabilir. 92 3Bölüm 3 · Farmakoloji"
       }
     ],
@@ -5870,7 +5662,7 @@ const EXAM_QUESTIONS = [
         "text_de": "H+-Ionen",
         "text_tr": "H+ iyonları",
         "is_correct": false,
-        "explanation_de": "H + -Ionen führen wie K + -Ionen zu einer Relaxierung der glatten Muskulatur der Gefäße. 94 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "H + -Ionen führen wie K + -Ionen zu einer Relaxierung der glatten Muskulatur der Gefäße.",
         "explanation_tr": "H+ iyonları da K+ iyonları gibi damarların düz kaslarının gevşemesine yol açar. 94 3Bölüm 3 · Farmakoloji"
       }
     ],
@@ -5942,7 +5734,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist ein Benzodiazepin",
         "text_tr": "bir benzodiazepindir",
         "is_correct": true,
-        "explanation_de": "Flumazenil ist ein Imidazolbenzodiazepin und damit den Benzo- diazepinen zuzurechnen. Es hat jedoch keine intrinsische Wirkung und ist somit ein Benzodiazepinrezeptorantagonist . Vorsicht Fangfrage! 95 3.1 · i.v.-Anästhetika3",
+        "explanation_de": "Flumazenil ist ein Imidazolbenzodiazepin und damit den Benzo- diazepinen zuzurechnen. Es hat jedoch keine intrinsische Wirkung und ist somit ein Benzodiazepinrezeptorantagonist . Vorsicht Fangfrage!",
         "explanation_tr": "Flumazenil bir imidazol benzodiazepindir ve bu nedenle benzodiazepin olarak sınıflandırılır. Ancak kendine özgü bir etkisi yoktur ve bu nedenle bir benzodiazepin reseptör antagonistidir. Dikkatli ol, hileli soru! 95 3.1 · IV anestezikler3"
       },
       {
@@ -5950,24 +5742,24 @@ const EXAM_QUESTIONS = [
         "text_de": "sollte bei Patienten mit erhöhtem ICP nicht angewandt werden",
         "text_tr": "ICP'si yüksek olan hastalarda kullanılmamalıdır",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "hat eine Plasmahalbwertszeit von 4 h",
         "text_tr": "plazma yarılanma ömrü 4 saattir",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "kann die Aufwachzeit nach einer Inhalationsanästhesie verkürzen",
         "text_tr": "inhalasyon anestezisinden sonra iyileşme süresini kısaltabilir",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -6114,7 +5906,7 @@ const EXAM_QUESTIONS = [
         "text_de": "führt zu Myoklonien",
         "text_tr": "miyoklonusa yol açar",
         "is_correct": true,
-        "explanation_de": "Myoklonien sind eine häufige Nebenwirkung von Etomidat und dürfen nicht mit Krampfäquivalenten verwechselt werden. Sie werden wahrscheinlich durch eine Disinhibition des extrapyramidalen Systems 97 3.1 · i.v.-Anästhetika3",
+        "explanation_de": "Myoklonien sind eine häufige Nebenwirkung von Etomidat und dürfen nicht mit Krampfäquivalenten verwechselt werden. Sie werden wahrscheinlich durch eine Disinhibition des extrapyramidalen Systems",
         "explanation_tr": "Miyoklonus, etomidatın yaygın bir yan etkisidir ve konvülsif eşdeğerleriyle karıştırılmamalıdır. Bunlar muhtemelen ekstrapiramidal sistemin disinhibisyonundan kaynaklanmaktadır 97 3.1 · IV anestezikler3"
       },
       {
@@ -6122,8 +5914,8 @@ const EXAM_QUESTIONS = [
         "text_de": "wirkt nicht negativ inotrop",
         "text_tr": "negatif inotropik etkisi yoktur",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -6236,22 +6028,6 @@ const EXAM_QUESTIONS = [
         "is_correct": false,
         "explanation_de": "Ketamin ist das einzige Anästhetikum, das erregend auf den zentra- len Sympathikus wirkt und zu Tachykardien und Anstieg des arteriellen Blutdrucks führt.",
         "explanation_tr": "Ketamin, merkezi sempatik sinir sistemini uyaran, taşikardiye ve arteriyel kan basıncında artışa neden olan tek anesteziktir."
-      },
-      {
-        "key": "d",
-        "text_de": "Falsch. Obwohl Etomidat als eines die kardiozirkulatorischen Funktionen am wenigsten beeinflussendes Anästhetikum gilt, wirkt auch dieses negativ inotrop.",
-        "text_tr": "Yanlış. Etomidat, kalp-dolaşım fonksiyonlarına en az etkisi olan anesteziklerden biri olarak kabul edilse de negatif inotropik etkiye de sahiptir.",
-        "is_correct": false,
-        "explanation_de": "S-Ketamin zeichnet sich durch eine erhöhte Potenz bei gleichzeitig verminderten psychomimetischen Nebenwirkungen aus.",
-        "explanation_tr": "S-ketamin, psikomimetik yan etkileri azaltırken aynı zamanda artan etki gücüyle karakterize edilir."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Etomidat wird fast vollständig von Plasmaesterasen und von der Leber hydrolytisch gespalten und hat eine 5-fach höhere Clearance als Thiopental. 98 3Kapitel 3 · Pharma kologie",
-        "text_tr": "Doğru. Etomidat, plazma esterazları ve karaciğer tarafından neredeyse tamamen hidrolitik olarak parçalanır ve tiyopentalden 5 kat daha yüksek klerense sahiptir. 98 3Bölüm 3 · Farmakoloji",
-        "is_correct": false,
-        "explanation_de": "Ketamin ist das einzige Anästhetikum, das erregend auf den zentra- len Sympathikus wirkt und zu Tachykardien und Anstieg des arteriellen Blutdrucks führt.",
-        "explanation_tr": "Ketamin, merkezi sempatik sinir sistemini uyaran, taşikardiye ve arteriyel kan basıncında artışa neden olan tek anesteziktir."
       }
     ],
     "is_high_yield": false
@@ -6302,7 +6078,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann psychomotorische Unruhezustände auslösen",
         "text_tr": "psikomotor huzursuzluğu tetikleyebilir",
         "is_correct": true,
-        "explanation_de": "Unruhezustände nach Erwachen sind häufig; aus diesem Grund wird die Gabe von Benzodiazepinen empfohlen, welche die psychomimeti-schen Nebenwirkungen deutlich abmildern. 99 3 3.2 · Inhalationsanästhetika",
+        "explanation_de": "Unruhezustände nach Erwachen sind häufig; aus diesem Grund wird die Gabe von Benzodiazepinen empfohlen, welche die psychomimeti-schen Nebenwirkungen deutlich abmildern. 99",
         "explanation_tr": "Uyandıktan sonra huzursuzluk yaygındır; Bu nedenle psikomimetik yan etkileri önemli ölçüde azaltan benzodiazepinlerin uygulanması önerilmektedir. 99 3 3,2 · İnhalasyon anestezikleri"
       }
     ],
@@ -6403,7 +6179,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "ist größer in der Schwangerschaft 100 3Kapitel 3 · Pharma kologie",
+        "text_de": "ist größer in der Schwangerschaft",
         "text_tr": "gebelikte daha büyüktür 100 3Bölüm 3 · Farmakoloji",
         "is_correct": false,
         "explanation_de": "In der Schwangerschaft und bis ca. 72 h postpartal ist die MAC erheblich reduziert (30 %).",
@@ -6442,7 +6218,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird zu rund 20 % hepatisch metabolisiert.",
         "text_tr": "Yaklaşık %20'si hepatik olarak metabolize edilir.",
         "is_correct": true,
-        "explanation_de": "Als Faustregel gilt: Halothan wird zu 20 % hepatisch metabolisiert, Sevofluran zu 5 %, Enfluran zu 3 %, Isofluran zu 0,2 % und Desfluran zu 0,02 %. 101 3 3.2 · Inhalationsanästhetika",
+        "explanation_de": "Als Faustregel gilt: Halothan wird zu 20 % hepatisch metabolisiert, Sevofluran zu 5 %, Enfluran zu 3 %, Isofluran zu 0,2 % und Desfluran zu 0,02 %. 101",
         "explanation_tr": "Genel bir kural olarak: halotan hepatik olarak %20, sevofluran %5, enfluran %3, izofluran %0,2 ve desfluran %0,02 oranında metabolize edilir. 101 3 3,2 · İnhalasyon anestezikleri"
       },
       {
@@ -6450,8 +6226,8 @@ const EXAM_QUESTIONS = [
         "text_de": "führt bei 20 % der Patienten zu milden Transaminasenanstiegen.",
         "text_tr": "hastaların %20'sinde transaminazlarda hafif artışlara neden olur.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -6486,7 +6262,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Je größer der Blut-Gas-Verteilungskoeffizient, desto kürzer ist die An- und Abflutung der IHA",
         "text_tr": "Kan gazı dağılım katsayısı ne kadar büyük olursa, IHA'nın yükselişi ve düşüşü o kadar kısa olur",
         "is_correct": false,
-        "explanation_de": "Das Umgekehrte trifft zu: Je größer der Blut-Gas-Verteilungskoeffi- zient , desto länger ist die An- und Abflutung der IHA. Um eine gewünschte klinische Wirkung der IHA zu erreichen, muss ein entsprechender Partial-druck im Gehirn entstehen, der im »steady state« im Gleichgewicht mit dem gewählten inspiratorischen Partialdruck des jeweiligen IHA steht. Je löslicher das Gas im Blut ist, desto mehr Moleküle eines IHA können sich im Blut verteilen und desto länger dauert es, bis sich ein Gleichgewicht der Partialdrücke gebildet hat. 102 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Das Umgekehrte trifft zu: Je größer der Blut-Gas-Verteilungskoeffi- zient , desto länger ist die An- und Abflutung der IHA. Um eine gewünschte klinische Wirkung der IHA zu erreichen, muss ein entsprechender Partial-druck im Gehirn entstehen, der im »steady state« im Gleichgewicht mit dem gewählten inspiratorischen Partialdruck des jeweiligen IHA steht. Je löslicher das Gas im Blut ist, desto mehr Moleküle eines IHA können sich im Blut verteilen und desto länger dauert es, bis sich ein Gleichgewicht der Partialdrücke gebildet hat.",
         "explanation_tr": "Bunun tersi doğrudur: Kan gazı dağılım katsayısı ne kadar yüksek olursa, IHA'nın yükselişi ve düşüşü de o kadar uzun olur. IHA'nın istenen klinik etkisini elde etmek için beyinde, \"kararlı durumda\" ilgili IHA'nın seçilen inspiratuar kısmi basıncı ile dengede olan karşılık gelen bir kısmi basıncın ortaya çıkması gerekir. Gaz kanda ne kadar çözünürse, kanda o kadar fazla IHA molekülü dağıtılabilir ve kısmi basınçların dengeye ulaşması o kadar uzun sürer. 102 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -6494,32 +6270,24 @@ const EXAM_QUESTIONS = [
         "text_de": "Je geringer das HZV, desto langsamer ist die Anflutung der IHA",
         "text_tr": "Kalp debisi ne kadar düşük olursa, IHA'nın başlangıcı da o kadar yavaş olur",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Je höher die inspiratorische Gaskonzentration, desto schneller wird eine entsprechende alveoläre Gaskonzentration des IHA erreicht",
         "text_tr": "İnspiratuar gaz konsantrasyonu ne kadar yüksek olursa, IHA'nın karşılık gelen alveolar gaz konsantrasyonuna o kadar hızlı ulaşılır",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Je höher die alveoläre Ventilation, desto schneller erfolgt die Anflutung der IHA d. Richtig. Bei Halothananästhesien kann in bis zu 20 % der Fälle eine postan- ästhesiologische milde Hepatotoxizität beobachtet werden, die mit den Symptomen Lethargie, Übelkeit Fieber und Serumtransaminasenanstieg einhergeht.",
+        "text_de": "Je höher die alveoläre Ventilation, desto schneller erfolgt die Anflutung der IHA d.",
         "text_tr": "Alveoler havalandırma ne kadar yüksek olursa, IHA taşması da o kadar hızlı olur. Doğru. Halotan anestezisi sırasında, vakaların %20'sine kadarında anestezi sonrası hafif hepatotoksisite gözlemlenebilir; buna uyuşukluk, bulantı, ateş ve serum transaminazlarında artış semptomları da eşlik eder.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Von der unter Antwort d angeführten Hepatotoxizität ist die sog. »Halothanhepatitis « streng zu trennen, die zu einer massiven Lebernekrose führen kann. Die Pathogenese dieses in einer Häufigkeit von bis zu 1:10 000 vorkommenden Krankheitsbildes wird auf eine Autoimmungene-se zurückgeführt. Hierbei werden IgG-Antikörper gegen hepatische mito-chondriale Membranen gebildet, die zuvor durch das im oxidativen Zyto-chrom-P-450-abhängigen Stoffwechsel entstandene Trifluoracetylchlorid verändert wurden und als Neoantigen erkannt werden.",
-        "text_tr": "Yanlış. \"Halotan hepatiti\", cevap d'de listelenen ve ağır karaciğer nekrozuna yol açabilen hepatotoksisiteden kesin olarak ayrılmalıdır. Sıklığı 1:10.000'e kadar çıkan bu hastalığın patogenezi otoimmün geneze bağlanmaktadır. Burada, daha önce oksidatif sitokrom P-450'ye bağımlı metabolizmada oluşan trifloroasetil klorür tarafından değiştirilmiş olan ve neoantijenler olarak tanınan hepatik mitokondriyal membranlara karşı IgG antikorları oluşturulur.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": false
@@ -6554,7 +6322,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist kontraindiziert bei einem früheren halothanassoziiertem Leberschaden.",
         "text_tr": "Daha önce halotanla ilişkili karaciğer hasarı olması durumunda kontrendikedir.",
         "is_correct": true,
-        "explanation_de": "Bei anamnestisch bekannten früheren halothanassoziierten Leber- schäden ist die Anwendung von halogenierten IHA kontraindiziert. Mit Ausnahme von Sevofluran unterliegen alle anderen gebräuchlichen halogenierten IHA dem Zytochrom-P-450-abhängigen oxidativen Meta-bolismus, der zur Bildung von Trifluoracetylchlorid (TFA) führt. TFA wirkt als Hapten auf der Leberzelloberfläche und ist für die autoimmunologische Hepatitis nach wiederholter Halothananästhesie verantwortlich. Da auch die oben genananten IHA zur Bildung von TFA führen, sind diese bei anam-nestisch bekannten halothanassoziierten Leberschäden kontraindiziert, auch wenn sie durch ihren geringeren hepatischen Metabolismus zu einer geringeren TFA-Bildung führen. 103 3 3.2 · Inhalationsanästhetika",
+        "explanation_de": "Bei anamnestisch bekannten früheren halothanassoziierten Leber- schäden ist die Anwendung von halogenierten IHA kontraindiziert. Mit Ausnahme von Sevofluran unterliegen alle anderen gebräuchlichen halogenierten IHA dem Zytochrom-P-450-abhängigen oxidativen Meta-bolismus, der zur Bildung von Trifluoracetylchlorid (TFA) führt. TFA wirkt als Hapten auf der Leberzelloberfläche und ist für die autoimmunologische Hepatitis nach wiederholter Halothananästhesie verantwortlich. Da auch die oben genananten IHA zur Bildung von TFA führen, sind diese bei anam-nestisch bekannten halothanassoziierten Leberschäden kontraindiziert, auch wenn sie durch ihren geringeren hepatischen Metabolismus zu einer geringeren TFA-Bildung führen. 103",
         "explanation_tr": "Daha önce halotanla ilişkili karaciğer hasarı öyküsü varsa halojenli IHA kullanımı kontrendikedir. Sevofluran dışında tüm diğer yaygın halojenli IHA'lar sitokrom P-450'ye bağımlı oksidatif metabolizmaya uğrar ve bu da trifloroasetil klorür (TFA) oluşumuna yol açar. TFA, karaciğer hücre yüzeyinde bir hapten görevi görür ve tekrarlanan halotan anestezisinden sonra otoimmün hepatitten sorumludur. Yukarıda bahsedilen IHA'lar aynı zamanda TFA oluşumuna da yol açtığından, daha düşük hepatik metabolizmaları nedeniyle daha düşük TFA oluşumuna yol açsalar bile, halotanla ilişkili olduğu bilinen karaciğer hasarı vakalarında kontrendikedirler. 103 3 3,2 · İnhalasyon anestezikleri"
       },
       {
@@ -6562,32 +6330,16 @@ const EXAM_QUESTIONS = [
         "text_de": "hat die gleiche Summenformel wie Enfluran.",
         "text_tr": "Enfluran ile aynı moleküler formüle sahiptir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "erhöht die Produktion von Liquor. c. Falsch. Je geringer das HZV, desto schneller ist die Anflutung der IHA. Der Ausgleich der Partialdruckdifferenzen spielt die entscheidende Rolle und nicht eine bestimmte Anzahl an gelösten Molekülen eines IHA. Ist das HZV erhöht, besteht ein scheinbar größeres Verteilungsvolumen, und mehr Moleküle müssen gelöst werden, bevor es zu einem Ausgleich der Partial-druckdifferenzen kommt.",
+        "text_de": "erhöht die Produktion von Liquor.",
         "text_tr": "beyin omurilik sıvısının üretimini arttırır. C. Yanlış. Kalp debisi ne kadar düşük olursa, IHA'nın başlangıcı o kadar hızlı olur. Bir IHA'nın belirli sayıda çözünmüş molekülü değil, kısmi basınç farklılıklarının telafisi belirleyici rol oynar. CO arttırılırsa, görünürde daha büyük bir dağılım hacmi olur ve kısmi basınç farkları eşitlenmeden önce daha fazla molekülün çözülmesi gerekir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Dies ist die Umschreibung für den sog. Konzentrationseffekt . Setzt man z. B. als am Vapor gewählt e inspiratorische IHA-Konzentration (F I ) 1 Vol.-% ein, wird eine alveoläre Konzentration (F A ) von 0,5 Vol.-% (F A / F I =0,5) später erreicht als die alveoläre Konzentration (F A ) von 1 Vol.-% bei einer am Vapor gewählten inspirat orischen IHA-Konzentration (F I ) von 2 Vol.-% (gleicher fraktionaler Anteil von 0,5=F A /F I ).",
-        "text_tr": "Doğru. Bu, sözde konsantrasyon etkisinin açıklamasıdır. Örneğin; Örneğin, vaporizatörde hacimce %1'lik bir inspiratuar IHA konsantrasyonu (F I) seçilirse, hacimce %0,5'lik (FA / F I =0,5) bir alveolar konsantrasyonuna (FA), hacimce %2'lik bir inspiratuar IHA konsantrasyonunda (F I) %1 hacimlik alveolar konsantrasyonundan (FA) daha sonra ulaşılır (aynı fraksiyonel Oran 0,5=F A /F I).",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Das im Atemstrom aufgenommene IHA wird in der Lunge mit dem dort verbleibenden Gasvolumen der FRC »verdünnt«. Je größer der Anteil der alveolären Ventilation in Relation zur FRC ist, desto schneller wird die Anflutungsphase sein. Das Verhältnis von alveolärer Ventilation zu Größe der FRC beträgt beim Neugeborenen 5:1 und beim Erwachsenen 1,5:1.",
-        "text_tr": "Doğru. Solunum akışında emilen IHA, akciğerlerde \"seyreltilir\" ve orada FRC gaz hacmi kalır. FRC'ye göre alveoler ventilasyonun oranı ne kadar büyük olursa, içeri akış aşaması o kadar hızlı olacaktır. Alveolar ventilasyonun FRC boyutuna oranı yenidoğanlarda 5:1, yetişkinlerde ise 1,5:1'dir.",
-        "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": false
@@ -6692,14 +6444,6 @@ const EXAM_QUESTIONS = [
         "is_correct": false,
         "explanation_de": "Sevofluran hat eine MAC von 2,05 Vol.-% in Sauerstoff. Ein 80-Jähri- ger hat dagegen eine MAC von 1,4 Vol.-%. Die MAC mit 70 % Lachgas beträgt dagegen nur 0,6 Vol.-%.",
         "explanation_tr": "Sevofluran oksijende hacimce %2,05'lik bir MAC değerine sahiptir. Öte yandan 80 yaşındaki bir kişinin MAC'i hacimce %1,4'tür. %70 nitro oksit içeren MAC ise hacimce yalnızca %0,6'dır."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Die Liquorproduktion wird unter Isofluran nicht beeinflusst. Halothan führt zu einer Verminderung der Liquorproduktion, vermindert gleichzeitig aber dessen Reabsorption. Enfluran erhöht die Liquorproduk-tion und vermindert gleichzeitig dessen Reabsorption und ist damit am wenigsten für die Neuroanästhesie geeignet. 104 3Kapitel 3 · Pharma kologie",
-        "text_tr": "Yanlış. BOS üretimi izoflurandan etkilenmez. Halotan, BOS üretiminde bir azalmaya yol açar, ancak aynı zamanda yeniden emilimini de azaltır. Enfluran, BOS üretimini arttırır ve aynı zamanda yeniden emilimini azaltır ve bu nedenle nöroanestezi için en az uygundur. 104 3Bölüm 3 · Farmakoloji",
-        "is_correct": false,
-        "explanation_de": "Sevofluran hat eine MAC von 2,05 Vol.-% in Sauerstoff. Ein 80-Jähri- ger hat dagegen eine MAC von 1,4 Vol.-%. Die MAC mit 70 % Lachgas beträgt dagegen nur 0,6 Vol.-%.",
-        "explanation_tr": "Sevofluran oksijende hacimce %2,05'lik bir MAC değerine sahiptir. Öte yandan 80 yaşındaki bir kişinin MAC'i hacimce %1,4'tür. %70 nitro oksit içeren MAC ise hacimce yalnızca %0,6'dır."
       }
     ],
     "is_high_yield": false
@@ -6742,7 +6486,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöht ab einer Konzentration von 1 MAC die Herzfrequenz.",
         "text_tr": "1 MAC konsantrasyonundan itibaren kalp atış hızını artırır.",
         "is_correct": false,
-        "explanation_de": "Halothan führt im Gegensatz zu den anderen IHA bei gesunden Probanden bis zu einer MAC von 2,5 zu keiner Erhöhung der Herzfrequenz. Sevofluran erhöht die Herzfrequenz erst jenseits von 1,5 MAC, während 105 3 3.2 · Inhalationsanästhetika",
+        "explanation_de": "Halothan führt im Gegensatz zu den anderen IHA bei gesunden Probanden bis zu einer MAC von 2,5 zu keiner Erhöhung der Herzfrequenz. Sevofluran erhöht die Herzfrequenz erst jenseits von 1,5 MAC, während 105",
         "explanation_tr": "Diğer IHA'ların aksine halotan, sağlıklı bireylerde MAC değeri 2,5'a kadar kalp atış hızında bir artışa yol açmaz. Sevofluran kalp atış hızını yalnızca 1,5 MAC'ın üzerine çıkarırken 105 3 3,2 · İnhalasyon anestezikleri"
       },
       {
@@ -6835,7 +6579,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "c",
-        "text_de": "Für Isofluran konnte tierexperimentell eine teratogene Potenz aus-geschlossen werden. 106 3Kapitel 3 · Pharma kologie",
+        "text_de": "Für Isofluran konnte tierexperimentell eine teratogene Potenz aus-geschlossen werden.",
         "text_tr": "Hayvan deneylerinde izofluran için teratojenik etki göz ardı edilmiştir. 106 3Bölüm 3 · Farmakoloji",
         "is_correct": true,
         "explanation_de": "Die volatilen Anästhetika Halothan, Enfluran und Isofluran haben bei Applikation einer MAC von 0,75 über weniger als 6 h keine teratogene Potenz.",
@@ -6892,14 +6636,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Bei längerer Anwendung diffundiert Xenon in luftgefüllte Hohlräume. Inwieweit dies von klinischer Bedeutung ist, ist nicht geklärt. Auch die Ausbildung einer Diffusionshypoxie unter Narkoseausleitung erscheint möglich. 3.3 Muskelrelaxanzien",
         "explanation_tr": "Uzun süre kullanıldığında ksenon hava dolu boşluklara yayılır. Bunun klinik açıdan ne ölçüde anlamlı olduğu açık değildir. Anestezi altında difüzyon hipoksisinin gelişmesi de mümkün görünmektedir. 3.3 Kas gevşeticiler"
-      },
-      {
-        "key": "e",
-        "text_de": "Für eine Teratogenität von Lachgas gibt es keine Hinweise. 107 3 3.3 · Muskelrelaxanzien",
-        "text_tr": "Azot oksidin teratojenik olduğuna dair hiçbir kanıt yoktur. 107 3 3.3 · Kas gevşeticiler",
-        "is_correct": true,
-        "explanation_de": "Bei längerer Anwendung diffundiert Xenon in luftgefüllte Hohlräume. Inwieweit dies von klinischer Bedeutung ist, ist nicht geklärt. Auch die Ausbildung einer Diffusionshypoxie unter Narkoseausleitung erscheint möglich. 3.3 Muskelrelaxanzien",
-        "explanation_tr": "Uzun süre kullanıldığında ksenon hava dolu boşluklara yayılır. Bunun klinik açıdan ne ölçüde anlamlı olduğu açık değildir. Anestezi altında difüzyon hipoksisinin gelişmesi de mümkün görünmektedir. 3.3 Kas gevşeticiler"
       }
     ],
     "is_high_yield": false
@@ -6918,7 +6654,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Der »train of four (TOF) count« erfasst die muskuläre Antwort von 4 Reizen unterschiedlicher Reizstärke.",
         "text_tr": "\"Dörtlü dizi (TOF) sayımı\", farklı uyaran gücündeki 4 uyarana karşı kas tepkisini kaydeder.",
         "is_correct": false,
-        "explanation_de": "Beim TOF-count wird die muskuläre Reizantwort auf 4 gleich starke und jeweils supramaximale Reize erfasst. Dies kann taktil geschehen und stellt eine semiquantitative Auswertung der TOF-Reizung dar. Genauere Aussagen bezüglich der Tiefe einer neuromuskulären Blockade lassen sich mit der TOF-Ratio treffen. 108 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Beim TOF-count wird die muskuläre Reizantwort auf 4 gleich starke und jeweils supramaximale Reize erfasst. Dies kann taktil geschehen und stellt eine semiquantitative Auswertung der TOF-Reizung dar. Genauere Aussagen bezüglich der Tiefe einer neuromuskulären Blockade lassen sich mit der TOF-Ratio treffen.",
         "explanation_tr": "TOF sayımı ile eşit derecede güçlü ve supramaksimal 4 uyarana karşı kas yanıtı kaydedilir. Bu dokunsal olarak yapılabilir ve TOF tahrişinin yarı niceliksel bir değerlendirmesini temsil eder. TOF oranı kullanılarak nöromüsküler bloğun derinliğine ilişkin daha kesin ifadeler yapılabilir. 108 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -6926,24 +6662,24 @@ const EXAM_QUESTIONS = [
         "text_de": "Die TOF-Ratio wird gebildet durch Division der Stärke der Reizantwort des ersten Reizes (A) geteilt durch die Stärke der Reizantwort des 4. Reizes (D), TOF-Ratio = A/D.",
         "text_tr": "TOF oranı, birinci uyaranın (A) uyarıcı tepki kuvvetinin 4. uyarıcının (D) uyarıcı tepki kuvvetine bölünmesiyle oluşur, TOF oranı = A/D.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "Das Reizstrommuster für den TOF besteht aus einer Salve von 4 Reizen mit einer Frequenz von 2 Hz gefolgt von einer Pause von mindestens 10 s.",
         "text_tr": "TOF için stimülasyon akımı modeli, 2 Hz frekansında 4 uyarıdan oluşan bir yaylım ateşi ve ardından en az 10 saniyelik bir duraklamadan oluşur.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Die Double-burst-Stimulation (DBS 3,3 ) besteht aus 2 Dreier-Reizsalven einer Frequenz von 50 Hz mit einer Pause von 750 ms.",
         "text_tr": "Çift patlamalı uyarım (DBS 3.3), 750 ms'lik duraklamalarla 50 Hz frekansında 2 üçlü uyarı voleybolundan oluşur.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -7054,7 +6790,7 @@ const EXAM_QUESTIONS = [
         "text_de": "SCh wird von der Acetylcholinesterase rasch in Succinylmonocholin und Cholin gespalten.",
         "text_tr": "SCh, asetilkolinesteraz tarafından hızla süksinil monokolin ve koline bölünür.",
         "is_correct": false,
-        "explanation_de": "SCh wird nur langsam von der ACh-esterase gespalten. Die Pseudo- cholinesterase des Plasmas ist für die Hydrolyse von SCh verantwortlich, wobei Succinylmonocholin nur noch eine Restwirkung von ca. 2 % auf-weist. Succinylmonocholin wird dann in Succinat und Cholin gespalten, die beide keine blockierende Wirkung mehr entfalten. Die i.v. gegebene Dosis SCh wird also, bevor SCh am Wirkort ankommen kann, von der Pseudo-cholinesterase erheblich vermindert. Die Wirkbeendigung von SCh ist aus der Abdiffusion, weg vom ACh-Rezeptor, zu erklären. 110 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "SCh wird nur langsam von der ACh-esterase gespalten. Die Pseudo- cholinesterase des Plasmas ist für die Hydrolyse von SCh verantwortlich, wobei Succinylmonocholin nur noch eine Restwirkung von ca. 2 % auf-weist. Succinylmonocholin wird dann in Succinat und Cholin gespalten, die beide keine blockierende Wirkung mehr entfalten. Die i.v. gegebene Dosis SCh wird also, bevor SCh am Wirkort ankommen kann, von der Pseudo-cholinesterase erheblich vermindert. Die Wirkbeendigung von SCh ist aus der Abdiffusion, weg vom ACh-Rezeptor, zu erklären.",
         "explanation_tr": "SCh, ACh esteraz tarafından yalnızca yavaşça parçalanır. Plazmadaki psödokolinesteraz, SCh'nin hidrolizinden sorumludur; süksinil monokolinin yalnızca yaklaşık %20'lik bir kalıntı etkisi vardır. %2. Süksinil monokolin daha sonra süksinat ve koline parçalanır ve bunların her ikisinin de artık bloke edici etkisi yoktur. i.v. Bu nedenle belirli bir SCh dozu, SCh'nin etki alanına ulaşmasından önce psödo-kolinesteraz tarafından önemli ölçüde azaltılır. SCh'nin etkisinin sona ermesi, ACh reseptöründen difüzyonla açıklanabilir. 110 3Bölüm 3 · Farmakoloji"
       }
     ],
@@ -7155,7 +6891,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Succinylcholin kann gefahrlos querschnittgelähmten Patienten gegeben werden. 111 3 3.3 · Muskelrelaxanzien",
+        "text_de": "Succinylcholin kann gefahrlos querschnittgelähmten Patienten gegeben werden. 111",
         "text_tr": "Belden aşağısı felçli hastalara süksinilkolin güvenle verilebilir. 111 3 3.3 · Kas gevşeticiler",
         "is_correct": false,
         "explanation_de": "Jede Erkrankung, die mit einer muskulären Denervierung einher- geht, führt zur Bildung extrajunktionaler ACh-Rezeptoren. Durch die Gabe von SCh wird dabei soviel K + freigesetzt, dass rasche Anstiege um mehr als weitere 7 mmol/l im Plasma (Serum-K + >12 mmol/l) zur Asystolie führen können. Daher ist SCh absolut kontraindiziert bei Patienten, die Lähmun-gen aufweisen, insbesondere bei Vorliegen eines Querschnittsyndroms.",
@@ -7178,7 +6914,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Tetrodotoxin und Lokalanästhetika stören die Freisetzung der synapti- schen Vesikel.",
         "text_tr": "Tetrodotoksin ve lokal anestezikler sinaptik veziküllerin salınımını bozar.",
         "is_correct": false,
-        "explanation_de": "Tetrodotoxin (TTX) und Lokalanästhetika (LA) blockieren das Aktionspotenzial in der Nervenfaser und nicht die Freisetzung der synapti-schen Vesikel. TTX, das u. a. in viszeralen Geweben des Kugelfischs vor-kommt, blockiert den Natriumkanal von der Außenseite der Zellmembran. Lokalanästhetika blockieren den Natriumkanal von innen, d. h. der Kanal muss geöffnet sein, um Zugang zu der Bindungsstelle für das LA zu bekommen (Hardman, Limbird, Goodman Gilman 2001, S. 186). 112 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Tetrodotoxin (TTX) und Lokalanästhetika (LA) blockieren das Aktionspotenzial in der Nervenfaser und nicht die Freisetzung der synapti-schen Vesikel. TTX, das u. a. in viszeralen Geweben des Kugelfischs vor-kommt, blockiert den Natriumkanal von der Außenseite der Zellmembran. Lokalanästhetika blockieren den Natriumkanal von innen, d. h. der Kanal muss geöffnet sein, um Zugang zu der Bindungsstelle für das LA zu bekommen (Hardman, Limbird, Goodman Gilman 2001, S. 186).",
         "explanation_tr": "Tetrodotoksin (TTX) ve lokal anestezikler (LA), sinaptik veziküllerin salınımını değil, sinir lifindeki aksiyon potansiyelini bloke eder. Diğer şeylerin yanı sıra kirpi balığının iç dokularında bulunan TTX, hücre zarının dışından gelen sodyum kanalını bloke eder. Lokal anestezikler sodyum kanalını içeriden bloke eder, yani h. LA'nın bağlanma bölgesine erişim sağlamak için kanalın açık olması gerekir (Hardman, Limbird, Goodman Gilman 2001, s. 186). 112 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -7186,24 +6922,24 @@ const EXAM_QUESTIONS = [
         "text_de": "Botulismustoxin blockiert das Aktionspotenzial in der Nervenfaser.",
         "text_tr": "Botulizm toksini sinir lifindeki aksiyon potansiyelini bloke eder.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "Dantrolen blockiert die Muskelkontraktion.",
         "text_tr": "Dantrolen kas kasılmasını engeller.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Succinylcholin blockiert die Depolarisation der postsynaptischen Membran.",
         "text_tr": "Süksinilkolin postsinaptik membranın depolarizasyonunu bloke eder.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -7350,7 +7086,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Magnesium",
         "text_tr": "magnezyum",
         "is_correct": true,
-        "explanation_de": "Durch seine membranstabilisierende Eigenschaft wird wahrschein- lich die postsynaptische Membran weniger leicht erregbar. Ein anderer Wirkmechanismus könnte die Verminderung der Freisetzung der prä-synaptischen Vesikel sein. 114 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Durch seine membranstabilisierende Eigenschaft wird wahrschein- lich die postsynaptische Membran weniger leicht erregbar. Ein anderer Wirkmechanismus könnte die Verminderung der Freisetzung der prä-synaptischen Vesikel sein.",
         "explanation_tr": "Membran stabilize edici özellikleri muhtemelen postsinaptik membranın daha az kolay uyarılabilir olmasını sağlar. Başka bir etki mekanizması, sinaptik öncesi veziküllerin salınımındaki azalma olabilir. 114 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -7358,8 +7094,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Hyperthermie",
         "text_tr": "Hipertermi",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -7446,7 +7182,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Doxacurium",
         "text_tr": "Doksakuryum",
         "is_correct": true,
-        "explanation_de": "Doxacurium hat eine Wirkdauer von über 60 min. Es ist ein Benzy lisochinolin, wird überwiegend renal unverändert eliminiert und 115 3 3.3 · Muskelrelaxanzien",
+        "explanation_de": "Doxacurium hat eine Wirkdauer von über 60 min. Es ist ein Benzy lisochinolin, wird überwiegend renal unverändert eliminiert und 115",
         "explanation_tr": "Doxacurium'un etki süresi 60 dakikanın üzerindedir. Bir benzilizokinolindir, ağırlıklı olarak böbreklerden değişmeden atılır ve 115 3 3.3 · kas gevşeticidir."
       },
       {
@@ -7454,32 +7190,24 @@ const EXAM_QUESTIONS = [
         "text_de": "Pipecuronium",
         "text_tr": "Pipekuronyum",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Rocuronium",
         "text_tr": "Rokuronyum",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Pancuronium d. Falsch. Eine Hypothermie kann einen neuromuskulären Block verstärken. Dies beruht auf einer Reduzierung des Stoffwechsels der Muskelrelaxan- zien wie Pancuronium , Vecuronium oder Atracurium .",
-        "text_tr": "Pankuronyum d. Yanlış. Hipotermi nöromüsküler blokajı güçlendirebilir. Bunun nedeni pankuronyum, vekuronyum veya atrakuryum gibi kas gevşeticilerin metabolizmasındaki azalmadır.",
+        "text_de": "Pancuronium",
+        "text_tr": "Pankuronyum",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Eine Hypokaliämie führt zu einer Hyperpolarisierung der post- synaptischen Membran; dies kann durch akute Kaliumverschiebungen (Alkalose) oder chronischen Diuretikagebrauch bedingt sein.",
-        "text_tr": "Doğru. Hipokalemi postsinaptik membranın hiperpolarizasyonuna yol açar; bunun nedeni akut potasyum değişimleri (alkaloz) veya kronik diüretik kullanımı olabilir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": false
@@ -7631,7 +7359,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "tiefe Atemzüge 117 3 3.4 · Opioide",
+        "text_de": "tiefe Atemzüge 117",
         "text_tr": "derin nefesler 117 3 3,4 · Opioidler",
         "is_correct": true,
         "explanation_de": "Siehe Antwort d.",
@@ -7686,7 +7414,7 @@ const EXAM_QUESTIONS = [
         "text_de": "führt zu einem Abfall des peripher vaskulären Widerstands.",
         "text_tr": "periferik vasküler direncin azalmasına yol açar.",
         "is_correct": true,
-        "explanation_de": "Die i.v.-Gabe von MO führt durch eine Histaminliberation zu einem Abfall des peripher-vaskulären Widerstands . Dies ist auch durch eine Dämpfung des Sympathikus mitbedingt. 118 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Die i.v.-Gabe von MO führt durch eine Histaminliberation zu einem Abfall des peripher-vaskulären Widerstands . Dies ist auch durch eine Dämpfung des Sympathikus mitbedingt.",
         "explanation_tr": "MO'nun IV uygulaması, histamin salınımı yoluyla periferik vasküler dirençte bir azalmaya yol açar. Bu aynı zamanda sempatik sinir sisteminin zayıflamasından da kaynaklanmaktadır. 118 3Bölüm 3 · Farmakoloji"
       }
     ],
@@ -7790,7 +7518,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann die MAC von Inhalationsanästhetika erhöhen.",
         "text_tr": "inhalasyon anesteziklerinin MAC değerini artırabilir.",
         "is_correct": false,
-        "explanation_de": "Opioidvermittelte Wirkungen spielen bei der Erzeugung von Anästhesie durch IHA keine Rolle. Somit hat Naloxon keine Auswirkung auf die MAC. 119 3 3.4 · Opioide",
+        "explanation_de": "Opioidvermittelte Wirkungen spielen bei der Erzeugung von Anästhesie durch IHA keine Rolle. Somit hat Naloxon keine Auswirkung auf die MAC. 119",
         "explanation_tr": "Opioid aracılı etkiler İHA'nın anestezi üretiminde rol oynamaz. Dolayısıyla naloksonun MAC üzerinde hiçbir etkisi yoktur. 119 3 3,4 · Opioidler"
       }
     ],
@@ -7878,7 +7606,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Pentazocin",
         "text_tr": "Pentazosin",
         "is_correct": true,
-        "explanation_de": "Pentazocin führt zu einem geringeren Druckanstieg im Gallenwegs- system als Morphin, Fentanyl oder auch Meperidin (Stoelting 2005, S. 89). 120 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Pentazocin führt zu einem geringeren Druckanstieg im Gallenwegs- system als Morphin, Fentanyl oder auch Meperidin (Stoelting 2005, S. 89).",
         "explanation_tr": "Pentazosin, safra kanalı sisteminde morfin, fentanil veya meperidine göre daha düşük basınç artışına neden olur (Stoelting 2005, s. 89). 120 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -7886,8 +7614,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Naltrexon",
         "text_tr": "Naltrekson",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -7982,8 +7710,8 @@ const EXAM_QUESTIONS = [
         "text_de": "hat eine schnellere Anschlagzeit als Fentanyl.",
         "text_tr": "fentanilden daha hızlı başlangıç ​​süresine sahiptir.",
         "is_correct": true,
-        "explanation_de": "d. ❌ Falsch. Alfentanil ist nicht negativ inotrop, es kann allerdings in klinisch üblichen Dosierungen zu Bradykardie und Hypotension führen.",
-        "explanation_tr": "D. ❌ Yanlış. Alfentanil negatif inotropik değildir ancak olağan klinik dozlarda bradikardi ve hipotansiyona neden olabilir."
+        "explanation_de": "Alfentanil ist nicht negativ inotrop, es kann allerdings in klinisch üblichen Dosierungen zu Bradykardie und Hypotension führen.",
+        "explanation_tr": "Alfentanil negatif inotropik değildir ancak olağan klinik dozlarda bradikardi ve hipotansiyona neden olabilir."
       },
       {
         "key": "d",
@@ -7995,16 +7723,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird schneller eliminiert als Fentanyl. d. Falsch. Naltrexon ist genauso wie Naloxon in der Lage, einen durch Opioide ausgelösten Sphinkter Oddi-Spasmus zu antagonisieren. Glukagon i.v. wird ebenfalls erfolgreich eingesetzt und hat den Vorteil, dass es die erwünschte Analgesie der Opioide nicht beeinträchtigt.",
+        "text_de": "wird schneller eliminiert als Fentanyl.",
         "text_tr": "fentanilden daha hızlı elimine edilir. D. Yanlış. Naltrekson, nalokson gibi, opioid kaynaklı Oddi spazmının sfinkterini antagonize edebilir. Glukagon i.v. aynı zamanda başarıyla kullanılmaktadır ve opioidlerin istenen analjezisini bozmama avantajına sahiptir.",
-        "is_correct": true,
-        "explanation_de": "Alfentanil hat eine deutlich geringere Eliminationshalbwertzeit und ein geringeres Verteilungsvolumen als Fentanyl.",
-        "explanation_tr": "Minimal invaziv cerrahinin bir parçası olarak kapnoperiton oluşturulması:"
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Meperidin hat eine rund 80 %ige Drucksteigerung im Gallen- wegssystem zur Folge. 121 3 3.4 · Opioide",
-        "text_tr": "Yanlış. Meperidin safra kanalı sistemindeki basıncın yaklaşık %80 artmasına neden olur. 121 3 3,4 · Opioidler",
         "is_correct": true,
         "explanation_de": "Alfentanil hat eine deutlich geringere Eliminationshalbwertzeit und ein geringeres Verteilungsvolumen als Fentanyl.",
         "explanation_tr": "Minimal invaziv cerrahinin bir parçası olarak kapnoperiton oluşturulması:"
@@ -8107,7 +7827,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "ist ein Dopamin- und Noradrenalin-Wiederaufnahmehemmer. 122 3Kapitel 3 · Pharma kologie",
+        "text_de": "ist ein Dopamin- und Noradrenalin-Wiederaufnahmehemmer.",
         "text_tr": "dopamin ve norepinefrin geri alım inhibitörüdür. 122 3Bölüm 3 · Farmakoloji",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a. 3.5 Antihypertensiva",
@@ -8154,7 +7874,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist ein Antihypertonikum .",
         "text_tr": "antihipertansif bir ilaçtır.",
         "is_correct": true,
-        "explanation_de": "Durch die zentrale Sympathikusdämpfung sinkt mit einer Latenz- zeit von einigen Minuten der Blutdruck und die Herzfrequenz. 123 3 3.5 · Antihypertensiva",
+        "explanation_de": "Durch die zentrale Sympathikusdämpfung sinkt mit einer Latenz- zeit von einigen Minuten der Blutdruck und die Herzfrequenz. 123",
         "explanation_tr": "Merkezi sempatik sönümleme nedeniyle kan basıncı ve kalp hızı birkaç dakikalık bir gecikme süresiyle düşer. 123 3 3,5 · Antihipertansifler"
       },
       {
@@ -8263,7 +7983,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "ist mit dem Auftreten eines Lupus erythematodes assoziiert. e. Richtig. Nebenwirkungen sind Bradykardie , begleitende Sedierung und Mundtrockenheit . Abruptes Absetzen einer chronischen Medikation führt zu einem Entzugssyndrom, das mit Exzitationsphänomenen bei der Narkoseausleitung verwechselt werden kann. 124 3Kapitel 3 · Pharma kologie",
+        "text_de": "ist mit dem Auftreten eines Lupus erythematodes assoziiert.",
         "text_tr": "lupus eritematozus oluşumu ile ilişkilidir. e. Doğru. Yan etkiler bradikardi, eşlik eden sedasyon ve ağız kuruluğunu içerir. Kronik ilacın aniden kesilmesi, anesteziden çekilme sırasındaki uyarıcı fenomenlerle karıştırılabilecek bir yoksunluk sendromuna yol açar. 124 3Bölüm 3 · Farmakoloji",
         "is_correct": true,
         "explanation_de": "Die Langzeitanwendung von Hydralazin ist mit einem medika- menteninduzierten Lupus erythematodes behaftet, der sich nach Absetzen von Hydralazin wieder zurückbildet. Außerdem kann es zu einer Auto-immunglomerulonephritis , einer Vaskulitis und einer hämolytischen Anämie kommen.",
@@ -8302,7 +8022,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu einer Zyanidintoxikation führen.",
         "text_tr": "siyanür zehirlenmesine yol açabilir.",
         "is_correct": true,
-        "explanation_de": "Dosisabhängig kommt es bei der i.v.-Infusion von NNP zu einer Zyanidintoxikation , die sich in einer zunehmenden Laktatazidose und einer erhöhten gemischtvenösen O 2 -Sättigung bemerkbar macht. Als Dosis- schwelle, ab der mit einer Zyanidintoxikation zu rechnen ist, gilt eine Infusionsrate von mehr als 2 μg/kgKG/min. Hinweisend auf eine Zyanid- 125 3 3.5 · Antihypertensiva",
+        "explanation_de": "Dosisabhängig kommt es bei der i.v.-Infusion von NNP zu einer Zyanidintoxikation , die sich in einer zunehmenden Laktatazidose und einer erhöhten gemischtvenösen O 2 -Sättigung bemerkbar macht. Als Dosis- schwelle, ab der mit einer Zyanidintoxikation zu rechnen ist, gilt eine Infusionsrate von mehr als 2 μg/kgKG/min. Hinweisend auf eine Zyanid- 125",
         "explanation_tr": "Doza bağlı olarak i.v. NNP infüzyonu, artan laktik asidoz ve artan karışık venöz O2 satürasyonuyla belirginleşen siyanür intoksikasyonuna yol açar. Siyanür intoksikasyonunun beklenebileceği doz eşiği, 2 µg/kg vücut ağırlığı/dakikadan daha yüksek bir infüzyon hızıdır. Siyanür göstergesi 125 3 3,5 · Antihipertansifler"
       },
       {
@@ -8310,8 +8030,8 @@ const EXAM_QUESTIONS = [
         "text_de": "erniedrigt den intrakraniellen Druck.",
         "text_tr": "kafa içi basıncını azaltır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -8471,7 +8191,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "führt zu einer intrazellulären Dehydratation. 127 3 3.6 · Diuretika",
+        "text_de": "führt zu einer intrazellulären Dehydratation. 127",
         "text_tr": "hücre içi dehidrasyona yol açar. 127 3 3.6 · Diüretikler",
         "is_correct": true,
         "explanation_de": "Dadurch, dass interstitielles Wasser nach intravasal verschoben wird, wird wiederum intrazelluläres Wasser nach interstitiell verschoben und somit letztlich intrazellulär dehydriert. Dies ist die Grundlage der Therapie des Hirnödems mit M annit. Voraussetzung ist eine intakte Blut- Hirn-Schranke , da sonst mit einem Rebound-Phänomen gerechnet werden muss. Es kommt zu einem erneuten Anstieg des Hirndrucks durch Einlage-rung von Mannit in das Hirnparenchym.",
@@ -8510,7 +8230,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöht die Kalziumausscheidung.",
         "text_tr": "kalsiyum atılımını arttırır.",
         "is_correct": false,
-        "explanation_de": "Die Kalziumausscheidung wird vermindert, d. h. es kann zu einem Kalziumanstieg unter der Therapie mit Thiaziddiuretika kommen. 128 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Die Kalziumausscheidung wird vermindert, d. h. es kann zu einem Kalziumanstieg unter der Therapie mit Thiaziddiuretika kommen.",
         "explanation_tr": "Kalsiyum atılımı azalır, yani h. Tiyazid diüretikleriyle tedavi sırasında kalsiyumda artış meydana gelebilir. 128 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -8518,8 +8238,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu einer Hyponatriämie und Hypokaliämie führen.",
         "text_tr": "hiponatremi ve hipokalemiye neden olabilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -8679,7 +8399,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "trockener geröteter Haut 130 3Kapitel 3 · Pharma kologie",
+        "text_de": "trockener geröteter Haut",
         "text_tr": "kuru, kızarmış cilt 130 3Bölüm 3 · Farmakoloji",
         "is_correct": true,
         "explanation_de": "Siehe Antwort d. Hinzu kommen myokardiale Depression mit Verlängerung des QRS-Komplexes und ventrikuläre Arrhythmien . Die Behandlung der Vergiftung besteht in der frühen Phase (innerhalb der ersten 10 h) in einer Magenspülung und Kohleinstillation . Eine Hämoperfusion oder Hämodialyse ist aufgrund der hohen Proteinbindung nutzlos. Krampf-anfälle werden mit Diazepam und Phenytoin , das auch antiarrhythmisch wirkt, durchbrochen. Eine Alkalisierung mit Natriumbikarbonat und die kontrollierte Hyperventilation kann die myokardiale Toxizität vorübergehend mildern. Bei AV-Blockierungen ist die Gabe von Isoproterenol , bzw. Orciprenalin indi-ziert, bei Auftreten einer Hypotension steht die Volumen- und Katecholamin-therapie im Vordergrund.",
@@ -8710,7 +8430,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Patienten unter MAO-Hemmerbehandlung klagen häufig über ortho-statische Hypotension.",
         "text_tr": "MAO inhibitörü tedavisi alan hastalar sıklıkla ortostatik hipotansiyondan şikayetçidir.",
         "is_correct": true,
-        "explanation_de": "Die orthostatische Hypotension ist unter MAO-Hemmerbehandlung häufig; sie wird möglicherweise durch die Anhäufung des Neuro transmitters Octopamin verursacht, der zu einer Reduktion des Sympathikotonus führt. 131 3 3.7 · Antidepressiva",
+        "explanation_de": "Die orthostatische Hypotension ist unter MAO-Hemmerbehandlung häufig; sie wird möglicherweise durch die Anhäufung des Neuro transmitters Octopamin verursacht, der zu einer Reduktion des Sympathikotonus führt. 131",
         "explanation_tr": "MAO inhibitörü tedavisi sırasında ortostatik hipotansiyon yaygındır; muhtemelen sempatik tonda bir azalmaya yol açan nörotransmitter oktopaminin birikmesinden kaynaklanmaktadır. 131 3 3,7 · Antidepresanlar"
       },
       {
@@ -8718,16 +8438,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Tranylcypromin hemmt reversibel die Isoenzyme MAO-A und MAO-B.",
         "text_tr": "Tranilsipromin, MAO-A ve MAO-B izoenzimlerini geri dönüşümlü olarak inhibe eder.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Tranylcypromin hat anticholinerge (atropinartige) Nebenwirkungen.",
         "text_tr": "Tranilsiprominin antikolinerjik (atropin benzeri) yan etkileri vardır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -8840,22 +8560,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "TAD hemmen neuronal die Wiederaufnahme von Neurotransmit- tern in die Synapse. TAD hemmen ebenso peripher die Wiederaufnahme endogen freigesetzter Katecholamine , sodass mit einer Wirkungsver-stärkung indirekt wirkender Substanzen gerechnet werden muss. Es ist daher besser, direkt wirkende Sympathomimetika wie z. B. Noradrenalin einzusetzen.",
         "explanation_tr": "TAD'ler nörotransmitterlerin sinapsa geri alımını engeller. TAD'ler ayrıca endojen olarak salınan katekolaminlerin geri alımını periferik olarak inhibe eder, dolayısıyla dolaylı olarak etki eden maddelerin etkisinin artması beklenmelidir. Bu nedenle aşağıdaki gibi doğrudan etkili sempatomimetiklerin kullanılması daha iyidir: B. norepinefrin kullanın."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Aufgrund der atropinartigen Nebenwirkungen kann es besonders bei prädisponierten Patienten (z. B. mit Glaukom oder Prostatahyper-trophie) zu Augeninnendruckerhöhung oder zum Harnverhalt kommen.",
-        "text_tr": "Doğru. Atropin benzeri yan etkiler nedeniyle, özellikle yatkın hastalarda (örn. glokom veya prostat hipertrofisi olanlarda) göz içi basıncında artış veya idrar retansiyonu meydana gelebilir.",
-        "is_correct": true,
-        "explanation_de": "An die mögliche Wirkungsverstärkung z. B. einer Prämedikation muss gedacht werden.",
-        "explanation_tr": "Etkideki olası artış, ör. B. Premedikasyon dikkate alınmalıdır."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Besonders hydrazinenthaltende MAO-Hemmer sind hepatotoxisch. 132 3Kapitel 3 · Pharma kologie",
-        "text_tr": "Doğru. Hidrazin içeren MAO inhibitörleri özellikle hepatotoksiktir. 132 3Bölüm 3 · Farmakoloji",
-        "is_correct": true,
-        "explanation_de": "TAD hemmen neuronal die Wiederaufnahme von Neurotransmit- tern in die Synapse. TAD hemmen ebenso peripher die Wiederaufnahme endogen freigesetzter Katecholamine , sodass mit einer Wirkungsver-stärkung indirekt wirkender Substanzen gerechnet werden muss. Es ist daher besser, direkt wirkende Sympathomimetika wie z. B. Noradrenalin einzusetzen.",
-        "explanation_tr": "TAD'ler nörotransmitterlerin sinapsa geri alımını engeller. TAD'ler ayrıca endojen olarak salınan katekolaminlerin geri alımını periferik olarak inhibe eder, dolayısıyla dolaylı olarak etki eden maddelerin etkisinin artması beklenmelidir. Bu nedenle aşağıdaki gibi doğrudan etkili sempatomimetiklerin kullanılması daha iyidir: B. norepinefrin kullanın."
       }
     ],
     "is_high_yield": false
@@ -8890,7 +8594,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Polyurie und Polydipsie sind häufige Nebenwirkungen der Lithium therapie.",
         "text_tr": "Poliüri ve polidipsi lityum tedavisinin sık görülen yan etkileridir.",
         "is_correct": true,
-        "explanation_de": "Die häufigsten Nebenwirkungen der Lithiumtherapie betreffen die Nieren. Mehr als 20 % der behandelten Patienten scheiden täglich 3 l hypoto-nen Urin aus (Gefahr des Exsikkose bei ungenügender Flüssigkeitsaufnahme). Dies ist darauf zurückzuführen, dass die Konz entrationsfähigkeit der Nieren durch Lithium gestört wird. Eine hypothyreote Struma tritt bei 5 % der Patien-ten auf, weswegen häufig eine L-Thyroxintherapie notwendig wird. 133 3 3.8 · Katecholamine 3.8 Katecholamine",
+        "explanation_de": "Die häufigsten Nebenwirkungen der Lithiumtherapie betreffen die Nieren. Mehr als 20 % der behandelten Patienten scheiden täglich 3 l hypoto-nen Urin aus (Gefahr des Exsikkose bei ungenügender Flüssigkeitsaufnahme). Dies ist darauf zurückzuführen, dass die Konz entrationsfähigkeit der Nieren durch Lithium gestört wird. Eine hypothyreote Struma tritt bei 5 % der Patien-ten auf, weswegen häufig eine L-Thyroxintherapie notwendig wird. 133",
         "explanation_tr": "Lityum tedavisinin en sık görülen yan etkileri böbrekleri etkiler. Tedavi edilen hastaların %20'sinden fazlası günde 3 litre hipotonik idrar atar (sıvı alımı yetersizse desikkoz riski). Bunun nedeni lityumun böbreklerin konsantre olma yeteneğini bozmasıdır. Hipotiroid guatr hastaların %5'inde görülür, bu nedenle L-tiroksin tedavisi sıklıkla gereklidir. 133 3 3,8 · Katekolaminler 3,8 Katekolaminler"
       },
       {
@@ -8898,8 +8602,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Wirkung von Muskelrelaxanzien kann verstärkt sein.",
         "text_tr": "Kas gevşeticilerin etkisi artabilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -9012,14 +8716,6 @@ const EXAM_QUESTIONS = [
         "is_correct": false,
         "explanation_de": "Der MAP ändert sich nur geringfügig, weil sich systolischer Blutdruckanstieg und diastolischer Blutdruckabfall gegenseitig aufheben. In Gegenwart von β -Rezeptoren-Blockern kommt es zur sog. Adrenalin- umkehr (Adrenalin verhält sich wie Noradrenalin), d. h. niedrige Dosierun- gen führen zu einem massiven Blutdruckanstieg.",
         "explanation_tr": "MAP çok az değişir çünkü sistolik kan basıncındaki artış ve diyastolik kan basıncındaki azalma birbirini iptal eder. β-reseptör blokerlerinin varlığında, adrenalinin tersine çevrilmesi adı verilen olay meydana gelir (adrenalin, norepinefrin gibi davranır), yani h. Düşük dozlar kan basıncında büyük bir artışa neden olur."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Ein Absetzen der Lithiumtherapie ist nicht notwendig; allerdings sollte vor Wahleingriffen eine aktuelle Bestimmung des Lithiumspiegels vorliegen. 134 3Kapitel 3 · Pharma kologie",
-        "text_tr": "Yanlış. Lityum tedavisinin kesilmesi gerekli değildir; Bununla birlikte, elektif prosedürlerden önce lityum seviyesinin güncel bir tespiti mevcut olmalıdır. 134 3Bölüm 3 · Farmakoloji",
-        "is_correct": false,
-        "explanation_de": "Der MAP ändert sich nur geringfügig, weil sich systolischer Blutdruckanstieg und diastolischer Blutdruckabfall gegenseitig aufheben. In Gegenwart von β -Rezeptoren-Blockern kommt es zur sog. Adrenalin- umkehr (Adrenalin verhält sich wie Noradrenalin), d. h. niedrige Dosierun- gen führen zu einem massiven Blutdruckanstieg.",
-        "explanation_tr": "MAP çok az değişir çünkü sistolik kan basıncındaki artış ve diyastolik kan basıncındaki azalma birbirini iptal eder. β-reseptör blokerlerinin varlığında, adrenalinin tersine çevrilmesi adı verilen olay meydana gelir (adrenalin, norepinefrin gibi davranır), yani h. Düşük dozlar kan basıncında büyük bir artışa neden olur."
       }
     ],
     "is_high_yield": false
@@ -9054,7 +8750,7 @@ const EXAM_QUESTIONS = [
         "text_de": "10 μg/min i.v. führen zu einem vergrößerten MAP .",
         "text_tr": "Aşırı PEEP seviyeleri alveolokapiller membranın aşırı gerilmesine ve pulmoner kılcal damarların sıkışmasına neden olabilir. Sonuç, ölü boşluk ventilasyonunda bir artıştır (= perfüze olmayan akciğer alanlarının ventilasyonu) ve artan sağ ventriküler afterload ile birlikte pulmoner dolaşımdaki dirençte bir artıştır.",
         "is_correct": true,
-        "explanation_de": "Durch die α -sympathomimetische Wirkung wird der peripher vaskuläre und der pulmonal-vaskuläre Widerstand erhöht; der diastolische, mittlere und systolische Blutdruck wird erhöht, der Pulsdruck steigt ebenso wie das Schlagvolumen, das HZV bleibt gleich oder fällt ab. 135 3 3.9 · Adrenerge Rezeptorenblocker 3.9 Adrenerge Rezeptorenblocker",
+        "explanation_de": "Durch die α -sympathomimetische Wirkung wird der peripher vaskuläre und der pulmonal-vaskuläre Widerstand erhöht; der diastolische, mittlere und systolische Blutdruck wird erhöht, der Pulsdruck steigt ebenso wie das Schlagvolumen, das HZV bleibt gleich oder fällt ab. 135",
         "explanation_tr": "α-sempatomimetik etki periferik vasküler ve pulmoner vasküler direnci arttırır; Diyastolik, ortalama ve sistolik kan basıncı artar, nabız basıncı ve atım hacmi artar, kalp debisi aynı kalır veya düşer. 135 3 3,9 · Adrenerjik reseptör blokerleri 3,9 Adrenerjik reseptör blokerleri"
       },
       {
@@ -9062,8 +8758,8 @@ const EXAM_QUESTIONS = [
         "text_de": "führt zu einem β1-rezeptorvermittelten Anstieg der Herzfrequenz.",
         "text_tr": "kalp hızında β1 reseptör aracılı artışa yol açar.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -9176,14 +8872,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Urapidil ist ein selektiver α 1 -Rezeptoren-Blocker, der vermutlich aufgrund seiner zentralen α 2 -agonistischen Wirkung keine Reflextachy- kardie hervorruft. Prompter Wirkbeginn, eine HWZ von 3 h und eine überwiegend renale Elimination der Metabolite kennzeichnen die Phama-kokinetik.",
         "explanation_tr": "Urapidil, muhtemelen merkezi α2-agonistik etkisi nedeniyle refleks taşikardiye neden olmayan seçici bir α1-reseptör blokeridir. Etkinin hemen başlaması, 3 saatlik HWZ ve metabolitlerin ağırlıklı olarak renal eliminasyonu, fama-kokinetiği karakterize eder."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Diese Aussage trifft nur auf Adrenalin zu. NA hat bezüglich des Glukosestoffwechsels (Hyperglykämie) keine Hormonwirkung in klinischen Dosierungen. 136 3Kapitel 3 · Pharma kologie",
-        "text_tr": "Yanlış. Bu ifade yalnızca adrenalin için geçerlidir. NA'nın klinik dozlarda glukoz metabolizması (hiperglisemi) üzerinde hormonal etkisi yoktur. 136 3Bölüm 3 · Farmakoloji",
-        "is_correct": true,
-        "explanation_de": "Urapidil ist ein selektiver α 1 -Rezeptoren-Blocker, der vermutlich aufgrund seiner zentralen α 2 -agonistischen Wirkung keine Reflextachy- kardie hervorruft. Prompter Wirkbeginn, eine HWZ von 3 h und eine überwiegend renale Elimination der Metabolite kennzeichnen die Phama-kokinetik.",
-        "explanation_tr": "Urapidil, muhtemelen merkezi α2-agonistik etkisi nedeniyle refleks taşikardiye neden olmayan seçici bir α1-reseptör blokeridir. Etkinin hemen başlaması, 3 saatlik HWZ ve metabolitlerin ağırlıklı olarak renal eliminasyonu, fama-kokinetiği karakterize eder."
       }
     ],
     "is_high_yield": true
@@ -9218,7 +8906,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kann die Clearance von Bupivacain um 35 % vermindern.",
         "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
         "is_correct": true,
-        "explanation_de": "Propranolol führt zu einer Verminderung des hepatischen Blut- flusses und zu einer Verminderung der Metabolisierungsleistung der Leber. Amidlokalanästhetika können daher in Gegenwart von Propranolol ver-mindert metabolisiert werden, was zu einer Erhöhung der Toxizität beitra-gen kann. 137 3 3.9 · Adrenerge Rezeptorenblocker",
+        "explanation_de": "Propranolol führt zu einer Verminderung des hepatischen Blut- flusses und zu einer Verminderung der Metabolisierungsleistung der Leber. Amidlokalanästhetika können daher in Gegenwart von Propranolol ver-mindert metabolisiert werden, was zu einer Erhöhung der Toxizität beitra-gen kann. 137",
         "explanation_tr": "Propranolol hepatik kan akışında azalmaya ve karaciğerin metabolik kapasitesinde azalmaya yol açar. Bu nedenle amid lokal anesteziklerin propranolol varlığında metabolizması azalabilir ve bu da toksisitenin artmasına katkıda bulunabilir. 137 3 3,9 · Adrenerjik reseptör blokerleri"
       },
       {
@@ -9226,8 +8914,8 @@ const EXAM_QUESTIONS = [
         "text_de": "führt zu einem Anstieg des HZV.",
         "text_tr": "kalp atış hızının artmasına neden olur.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -9340,14 +9028,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Labetalol hat darüber hinaus eine intrinsische Aktivität an β 1 - Rezeptoren. Diese agonistische Aktivität sollte theoretisch dazu beitragen, das Risiko unerwünschter Nebenwirkungen der β 1 -Blockierung zu verrin- gern (Bradykardie, Herzinsuffizienz). Das Risiko für einen Bronchospasmus ist vergleichbar mit den β 1 -selektiven β -Blockern. 3.10 Antiarrhythmika",
         "explanation_tr": "Labetalol ayrıca β 1 ​​reseptörlerinde içsel aktiviteye sahiptir. Bu agonist aktivite teorik olarak p1 blokajın istenmeyen yan etkileri (bradikardi, kalp yetmezliği) riskinin azaltılmasına yardımcı olmalıdır. Bronkospazm riski β1-selektif β-blokerlerinkiyle karşılaştırılabilir düzeydedir. 3.10 Antiaritmik ilaçlar"
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Rund 90 % der oral verabreichten Dosis von Propranolol wird in der Leber durch einen First-pass-Effekt metabolisiert. 138 3Kapitel 3 · Pharma kologie",
-        "text_tr": "Doğru. Oral olarak uygulanan propranolol dozunun yaklaşık %90'ı, ilk geçiş etkisi yoluyla karaciğerde metabolize edilir. 138 3Bölüm 3 · Farmakoloji",
-        "is_correct": true,
-        "explanation_de": "Labetalol hat darüber hinaus eine intrinsische Aktivität an β 1 - Rezeptoren. Diese agonistische Aktivität sollte theoretisch dazu beitragen, das Risiko unerwünschter Nebenwirkungen der β 1 -Blockierung zu verrin- gern (Bradykardie, Herzinsuffizienz). Das Risiko für einen Bronchospasmus ist vergleichbar mit den β 1 -selektiven β -Blockern. 3.10 Antiarrhythmika",
-        "explanation_tr": "Labetalol ayrıca β 1 ​​reseptörlerinde içsel aktiviteye sahiptir. Bu agonist aktivite teorik olarak p1 blokajın istenmeyen yan etkileri (bradikardi, kalp yetmezliği) riskinin azaltılmasına yardımcı olmalıdır. Bronkospazm riski β1-selektif β-blokerlerinkiyle karşılaştırılabilir düzeydedir. 3.10 Antiaritmik ilaçlar"
       }
     ],
     "is_high_yield": false
@@ -9366,7 +9046,7 @@ const EXAM_QUESTIONS = [
         "text_de": "muss bei i.v.-Gabe extrem langsam appliziert werden, um pro-arrhythmische Wirkungen zu vermeiden.",
         "text_tr": "i.v. uygulandığında son derece yavaş uygulanmalıdır. Pro-aritmik etkilerden kaçınmak için.",
         "is_correct": false,
-        "explanation_de": "Adenosin muss extrem schnell als Bolus i.v. gegeben werden, damit es überhaupt eine Wirkung entfalten kann. Die initiale Dosis für den Er-wachsenen beträgt 6 mg. Ist diese nicht effektiv, kann die Dosis verdoppelt und verdreifacht werden. 139 3 3.10 · Antiarrhythmika",
+        "explanation_de": "Adenosin muss extrem schnell als Bolus i.v. gegeben werden, damit es überhaupt eine Wirkung entfalten kann. Die initiale Dosis für den Er-wachsenen beträgt 6 mg. Ist diese nicht effektiv, kann die Dosis verdoppelt und verdreifacht werden. 139",
         "explanation_tr": "Adenozin çok hızlı bir şekilde bolus i.v. olarak verilmelidir. herhangi bir etkiye sahip olabilmesi için verilmelidir. Yetişkinler için başlangıç ​​dozu 6 mg'dır. Bu etkili olmazsa doz iki veya üç katına çıkarılabilir. 139 3 3,10 · Antiaritmik ilaçlar"
       },
       {
@@ -9374,24 +9054,24 @@ const EXAM_QUESTIONS = [
         "text_de": "ist indiziert für die Behandlung ventrikulärer Tachykardien.",
         "text_tr": "ventriküler taşikardinin tedavisinde endikedir.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "ist indiziert für die Behandlung von supraventrikulären Tachykardien.",
         "text_tr": "supraventriküler taşikardinin tedavisinde endikedir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "hat eine Serumhalbwertszeit von 10 min.",
         "text_tr": "Serum yarılanma ömrü 10 dakikadır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -9434,7 +9114,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Propranolol",
         "text_tr": "Propranolol",
         "is_correct": false,
-        "explanation_de": "Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes. 140 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes.",
         "explanation_tr": "Sınıf II antiaritmik ilaç olarak propranololün aksiyon potansiyeli veya QRS kompleksinin süresi üzerinde hiçbir etkisi yoktur. 140 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -9442,39 +9122,15 @@ const EXAM_QUESTIONS = [
         "text_de": "Amiodaron",
         "text_tr": "Amiodaron",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
         "text_de": "Verapamil b. Falsch. Ventrikuläre Tachykardien und Vorhofflattern und -flimmern sprechen auf die Gabe von Adenosin nicht an. Es ist kontraindiziert bei Patienten mit einem AV-Block höheren Grades.",
         "text_tr": "Verapamil b. Yanlış. Ventriküler taşikardi ve atriyal flutter ve fibrilasyon, adenozin uygulamasına yanıt vermez. Yüksek derecede AV bloğu olan hastalarda kontrendikedir.",
         "is_correct": true,
-        "explanation_de": "c. ❌ Falsch. Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes. 140 3Kapitel 3 · Pharma kologie",
-        "explanation_tr": "C. ❌ Yanlış. Sınıf II antiaritmik ilaç olarak propranololün aksiyon potansiyeli veya QRS kompleksinin süresi üzerinde hiçbir etkisi yoktur. 140 3Bölüm 3 · Farmakoloji"
-      },
-      {
-        "key": "c",
-        "text_de": "Richtig. Die Behandlung und Diagnostik der supraventrikulären Tachy- kardie (Schmalkomplextachykardie) ist die Domäne von Adenosin. Über die Aktivierung von Adenosinrezeptoren und die Wirkung auf ACh-sensitive Kaliumkanäle wird das atrioventrikuläre Reizleitungssystem hyperpolarisiert und verlangsamt. Dies kann zu kurzfristigen Asystolien führen. Unter EKG-Monitoring kann dann bei verlangsamter Herzfrequenz nach Gabe von Adenosin die Differenzialdiagnose gestellt werden, und manchmal ist dies auch schon die definitive pharmakologische Therapie.",
-        "text_tr": "Doğru. Supraventriküler taşikardinin (dar kompleks taşikardi) tedavisi ve tanısı adenozin alanıdır. Atriyoventriküler iletim sistemi, adenosin reseptörlerinin aktivasyonu ve ACh'ye duyarlı potasyum kanalları üzerindeki etki yoluyla hiperpolarize olur ve yavaşlar. Bu kısa süreli asistoliye yol açabilir. Adenozin uygulanmasından sonra kalp atış hızı yavaşlarsa ayırıcı tanı yapmak için EKG izleme kullanılabilir ve bazen bu, kesin farmakolojik tedavidir.",
-        "is_correct": false,
-        "explanation_de": "Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes. 140 3Kapitel 3 · Pharma kologie",
-        "explanation_tr": "Sınıf II antiaritmik ilaç olarak propranololün aksiyon potansiyeli veya QRS kompleksinin süresi üzerinde hiçbir etkisi yoktur. 140 3Bölüm 3 · Farmakoloji"
-      },
-      {
-        "key": "d",
-        "text_de": "Falsch. Adenosin hat nur eine Plasmahalbwertszeit von Sekunden. Daher können repetitive Gaben oder eine intravenöse Infusion ohne Gefahr der Kumulation gegeben werden. Adenosin wird von Transportproteinen in praktisch alle Gewebe (auch Erythrozyten und Endothel) aufgenommen und zu Inosin deaminiert.",
-        "text_tr": "Yanlış. Adenozinin plazma yarı ömrü yalnızca saniyelerdir. Bu nedenle tekrarlayan dozlar veya intravenöz infüzyon birikme riski olmadan verilebilir. Adenozin hemen hemen tüm dokularda (eritrositler ve endotel dahil) taşıma proteinleri tarafından alınır ve inozine deamine edilir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Unerwünschte Nebenwirkungen von Adenosin umfassen Broncho- spasmus, Luftnot, Engegefühl der Brust und Gesichtsröte (»flush«). Patien-ten, die unter Medikation mit Theophyllinpräparaten stehen, benötigen eine höhere Dosierung, da Methylxanthine eine adenosinrezeptorblockie-rende Eigenschaft haben. Dosisreduktionen sind nötig bei Patienten, die eine Herztransplantation hatten (vermehrte Anzahl an Adenosinrezepto-ren) oder die Dipyridamol einnehmen (Adenosinaufnahmehemmer).",
-        "text_tr": "Doğru. Adenozinin olumsuz yan etkileri arasında bronkospazm, nefes darlığı, göğüste sıkışma ve yüz kızarması sayılabilir. Metilksantinlerin adenosin reseptörünü bloke edici özelliği olduğundan, teofilin preparatları ile ilaç kullanan hastalar daha yüksek bir doza ihtiyaç duyarlar. Kalp nakli geçirmiş (adenozin reseptörlerinin sayısında artış) veya dipiridamol (adenozin alım inhibitörleri) alan hastalarda dozun azaltılması gereklidir.",
-        "is_correct": true,
-        "explanation_de": "c. ❌ Falsch. Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes. 140 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes.",
         "explanation_tr": "C. ❌ Yanlış. Sınıf II antiaritmik ilaç olarak propranololün aksiyon potansiyeli veya QRS kompleksinin süresi üzerinde hiçbir etkisi yoktur. 140 3Bölüm 3 · Farmakoloji"
       }
     ],
@@ -9580,14 +9236,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Bei einer lebensbedrohlichen Digitalistoxizität können spezifische Anti-Digoxin-Fab-Antikörperfragmen te im Sinne einer Immuno therapie eingesetzt werden.",
         "explanation_tr": "Hayatı tehdit eden digitalis toksisitesi durumunda, spesifik anti-digoksin Fab antikor fragmanları immünoterapi olarak kullanılabilir."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Verapamil , als Kalziumkanalblocker, verkürzt die Aktionspotenzial- dauer und hat keinen Einfluss auf die Dauer des QRS-Komplexes. 141 3 3.10 · Antiarrhythmika",
-        "text_tr": "Yanlış. Verapamil, bir kalsiyum kanal blokeri olarak aksiyon potansiyeli süresini kısaltır ve QRS kompleksinin süresi üzerinde hiçbir etkisi yoktur. 141 3 3.10 · Antiaritmik ilaçlar",
-        "is_correct": true,
-        "explanation_de": "Bei einer lebensbedrohlichen Digitalistoxizität können spezifische Anti-Digoxin-Fab-Antikörperfragmen te im Sinne einer Immuno therapie eingesetzt werden.",
-        "explanation_tr": "Hayatı tehdit eden digitalis toksisitesi durumunda, spesifik anti-digoksin Fab antikor fragmanları immünoterapi olarak kullanılabilir."
       }
     ],
     "is_high_yield": false
@@ -9622,7 +9270,7 @@ const EXAM_QUESTIONS = [
         "text_de": "äußert sich in Nausea und Erbrechen.",
         "text_tr": "bulantı ve kusma şeklinde kendini gösterir.",
         "is_correct": true,
-        "explanation_de": "Gastrointestinale Symptome wie Appetitlosigkeit, Nausea und Erbrechen sind hinweisende Symptome, die durch die direkte Aktivierung der im Hirnstamm gelegenen Chemorezeptortriggerzone hervorgerufen wird. 142 3Kapitel 3 · Pharma kologie",
+        "explanation_de": "Gastrointestinale Symptome wie Appetitlosigkeit, Nausea und Erbrechen sind hinweisende Symptome, die durch die direkte Aktivierung der im Hirnstamm gelegenen Chemorezeptortriggerzone hervorgerufen wird.",
         "explanation_tr": "İştahsızlık, bulantı ve kusma gibi gastrointestinal semptomlar, beyin sapında bulunan kemoreseptör tetik bölgesinin doğrudan aktivasyonundan kaynaklanan gösterge niteliğindeki semptomlardır. 142 3Bölüm 3 · Farmakoloji"
       },
       {
@@ -9630,8 +9278,8 @@ const EXAM_QUESTIONS = [
         "text_de": "zeigt sich in Störungen des visuellen Systems.",
         "text_tr": "Görme sistemi bozukluklarında kendini gösterir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -9739,16 +9387,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird im Plasma durch unspezifische Esterasen hydrolysiert. d. Richtig. Störungen des visuellen Systems wie Doppelbilder, Gelbsehen, verschleiertes Sehen oder das Auftreten von Skotomen können als toxische Nebenwirkungen auftreten.",
+        "text_de": "wird im Plasma durch unspezifische Esterasen hydrolysiert.",
         "text_tr": "spesifik olmayan esterazlar tarafından plazmada hidrolize edilir. D. Doğru. Toksik yan etkiler olarak çift görme, sarı görme, bulanık görme veya skotomların ortaya çıkması gibi görme sistemi bozuklukları ortaya çıkabilir.",
-        "is_correct": false,
-        "explanation_de": "Atropin wird nicht im Plasma hydrolysiert, sondern in der Leber. Etwa 50 % werden unverändert renal eliminiert. Atropin hat eine Wirkdauer von ca. 60 min und eine Plasmahalbwertszeit von 4 h.",
-        "explanation_tr": "Atropin plazmada değil karaciğerde hidrolize edilir. Yaklaşık %50'si değişmeden böbrekler yoluyla elimine edilir. Atropinin etki süresi yaklaşık 60 dakika, plazma yarı ömrü ise 4 saattir."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Neben einer Zunahme der Autonomie der Myokardzellen, die zu einem Vorhofflimmern und letalem Kammerflimmern führen können, wird indirekt die AV-Überleitung verlängert, sodass alle Grade eines AV-Blocks auftreten können. Zur Therapie eignen sich die Gabe von Atropin, eine vor-übergehende Schrittmachertherapie des Herzens und die Anwendung von Phenytoin. 143 3 3.10 · Antiarrhythmika",
-        "text_tr": "Doğru. Atriyal fibrilasyona ve ölümcül ventriküler fibrilasyona yol açabilen miyokardiyal hücrelerin otonomisindeki artışa ek olarak, AV iletimi dolaylı olarak uzar, böylece tüm derecelerde AV blok meydana gelebilir. Atropin uygulanması, kalbin geçici kalp pili tedavisi ve fenitoin kullanımı tedaviye uygundur. 143 3 3,10 · Antiaritmik ilaçlar",
         "is_correct": false,
         "explanation_de": "Atropin wird nicht im Plasma hydrolysiert, sondern in der Leber. Etwa 50 % werden unverändert renal eliminiert. Atropin hat eine Wirkdauer von ca. 60 min und eine Plasmahalbwertszeit von 4 h.",
         "explanation_tr": "Atropin plazmada değil karaciğerde hidrolize edilir. Yaklaşık %50'si değişmeden böbrekler yoluyla elimine edilir. Atropinin etki süresi yaklaşık 60 dakika, plazma yarı ömrü ise 4 saattir."
@@ -9854,7 +9494,7 @@ const EXAM_QUESTIONS = [
         "text_de": "CO 2 -Nachweis in der Exspirationsluft",
         "text_tr": "Solunan havada CO 2 tespiti",
         "is_correct": true,
-        "explanation_de": "Der Nachweis von exspiratorischem CO 2 über mehrere Minuten ist ein sicheres Zeichen. Eine Fehlerquelle sind CO 2 -produzierende Antazida und CO 2 -haltige Getränke, die kurz vor Intubation noch oral eingenommen wurden. Zum anderen kann ein Fehlen des CO 2 -Nachweises auch auf einer Lungenembolie oder einem »cardiac low output syndrome « beruhen und damit falsch-negativ sein. 146 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Der Nachweis von exspiratorischem CO 2 über mehrere Minuten ist ein sicheres Zeichen. Eine Fehlerquelle sind CO 2 -produzierende Antazida und CO 2 -haltige Getränke, die kurz vor Intubation noch oral eingenommen wurden. Zum anderen kann ein Fehlen des CO 2 -Nachweises auch auf einer Lungenembolie oder einem »cardiac low output syndrome « beruhen und damit falsch-negativ sein.",
         "explanation_tr": "Birkaç dakika boyunca ekspiratuar CO2'nin saptanması kesin bir işarettir. Hata kaynaklarından biri, entübasyondan kısa bir süre önce ağız yoluyla alınan CO2 üreten antiasitler ve CO2 içeren içeceklerdir. Öte yandan, CO2 tespitinin eksikliği pulmoner emboli veya \"kardiyak düşük debi sendromu\" nedeniyle de olabilir ve bu nedenle yanlış negatif olabilir. 146 4Bölüm 4 · Anestezi"
       }
     ],
@@ -10002,7 +9642,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Ein Mallampati Grad IV sagt eine schwierige In tubation zu 90 % richtig voraus.",
         "text_tr": "Mallampati evre IV, zor entübasyonu %90 doğrulukla öngörür.",
         "is_correct": false,
-        "explanation_de": "Ein Mallampati Grad IV sagt leider nur zu 50 % eine schwierige Intubation richtig voraus. 148 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Ein Mallampati Grad IV sagt leider nur zu 50 % eine schwierige Intubation richtig voraus.",
         "explanation_tr": "Ne yazık ki, Mallampati evre IV, vakaların %50'sinde zor entübasyonu doğru bir şekilde öngörmektedir. 148 4Bölüm 4 · Anestezi"
       },
       {
@@ -10111,7 +9751,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Ein Aufwachraum muss vorgehalten werden. e. Richtig. Syndrome wie Pierre-Robin , Treacher-Collins , Francheschetti , Klippel-Feil , Pfaundler-Hurler und Akromegalie sind mit einer erhöhten Inzidenz der schwierigen Intubation verknüpft. 149 4 · Anäst hesie4",
+        "text_de": "Ein Aufwachraum muss vorgehalten werden.",
         "text_tr": "Bir iyileşme odası sağlanmalıdır. e. Doğru. Pierre-Robin, Treacher-Collins, Francheschetti, Klippel-Feil, Pfaundler-Hurler ve akromegali gibi sendromlar, zor entübasyon insidansının artmasıyla ilişkilidir. 149 4 · Anestezi4",
         "is_correct": true,
         "explanation_de": "Es müssen Liege- und Überwachungsplätze vorgehalten werden, an denen ggf. auch reanimiert werden kann.",
@@ -10158,7 +9798,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird durch Opioide nicht beeinflusst.",
         "text_tr": "opioidlerden etkilenmez.",
         "is_correct": true,
-        "explanation_de": "Opioide haben keinen Einfluss auf die HPVe. Falsch. Im Tierexperiment wurden Hinweise für eine Abschwächung der HPV gefunden. In neueren Untersuchungen an Patienten konnte dieser Effekt der volatilen Anästhetika nicht nachgewiesen werden. 150 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Opioide haben keinen Einfluss auf die HPVe. Falsch. Im Tierexperiment wurden Hinweise für eine Abschwächung der HPV gefunden. In neueren Untersuchungen an Patienten konnte dieser Effekt der volatilen Anästhetika nicht nachgewiesen werden.",
         "explanation_tr": "Poliüri ve polidipsi lityum tedavisinin sık görülen yan etkileridir."
       },
       {
@@ -10322,7 +9962,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Flüssigkeitsrestriktion",
         "text_tr": "Sıvı kısıtlaması",
         "is_correct": true,
-        "explanation_de": "Die Gabe von Kristalloiden sollte gestoppt und eine entwässernde Therapie eingeleitet werden. 152 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Die Gabe von Kristalloiden sollte gestoppt und eine entwässernde Therapie eingeleitet werden.",
         "explanation_tr": "Kristalloidlerin uygulanması durdurulmalı ve diüretik tedavisi başlatılmalıdır. 152 4Bölüm 4 · Anestezi"
       }
     ],
@@ -10410,16 +10050,16 @@ const EXAM_QUESTIONS = [
         "text_de": "verminderter Reninspiegel",
         "text_tr": "azaltılmış renin seviyeleri",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "erhöhter Hämatokrit",
         "text_tr": "hematokrit artışı",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -10470,31 +10110,15 @@ const EXAM_QUESTIONS = [
         "text_de": "Bei ambulanten Eingriffen kann die Anästhesieaufklärung am Operations-tag erfolgen.",
         "text_tr": "Ayakta yapılan işlemlerde anestezi bilgisi operasyonun yapılacağı gün gerçekleşebilir.",
         "is_correct": true,
-        "explanation_de": "Dem Patienten muss vor der Anästhesie genügend Zeit verblei- ben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn 154 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Dem Patienten muss vor der Anästhesie genügend Zeit verblei- ben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn",
         "explanation_tr": "Anestezi öncesinde hastaya anestezi işleminin risklerini dikkate alması için yeterli süre verilmelidir. Ayakta anestezi için, operasyon gününe ilişkin anestezi bilgilerine şu durumlarda izin verilebilir: 154 4Bölüm 4 · Anestezi"
       },
       {
         "key": "e",
-        "text_de": "Vor ambulanten Eingriffen ist bei Patienten ab 40 Jahren grundsätzlich die Bestimmung des Hämoglobingehalts und des Blutzuckerspiegels notwendig. c. Falsch. Das Reninsystem ist nicht gestört. Es werden in der Regel normale Werte gemessen.",
+        "text_de": "Vor ambulanten Eingriffen ist bei Patienten ab 40 Jahren grundsätzlich die Bestimmung des Hämoglobingehalts und des Blutzuckerspiegels notwendig.",
         "text_tr": "Ayakta tedavi işlemlerinden önce genellikle 40 yaş ve üzeri hastalarda hemoglobin içeriğinin ve kan şekeri düzeyinin belirlenmesi gerekir. C. Yanlış. Renin sistemi bozulmaz. Genellikle normal değerler ölçülür.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig. Dem Patienten muss vor der Anästhesie genügend Zeit verblei- ben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn 154 4Kapitel 4 · Anäst hesie",
-        "explanation_tr": "artan afterload ile"
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Durch Hypovolämie kommt es auch zu einer Erhöhung des Hämatokrits.",
-        "text_tr": "Doğru. Hipovolemi ayrıca hematokritte artışa neden olur.",
-        "is_correct": true,
-        "explanation_de": "Dem Patienten muss vor der Anästhesie genügend Zeit verblei- ben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn 154 4Kapitel 4 · Anäst hesie",
-        "explanation_tr": "Anestezi öncesinde hastaya anestezi işleminin risklerini dikkate alması için yeterli süre verilmelidir. Ayakta anestezi için, operasyon gününe ilişkin anestezi bilgilerine şu durumlarda izin verilebilir: 154 4Bölüm 4 · Anestezi"
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Siehe Antwort b. Der Nachweis eines Phäochromozytoms wird durch fraktionierte Bestimmung des 24-h-Urins vorgenommen, wobei der Urin auf Abbauprodukte der Katecholamine untersucht wird. Katecho-lamine führen zu einer erhöhten Aufnahme von Kalium in die Zelle; es kommt zu einer Hypokaliämie.",
-        "text_tr": "Doğru. Cevap b'ye bakınız. Feokromasitoma tespiti, 24 saatlik idrarın fraksiyonel tespiti ile gerçekleştirilir; bu sayede idrar, katekolaminlerin bozunma ürünleri açısından incelenir. Katekolaminler hücreye potasyum alımının artmasına yol açar; hipokalemi oluşur.",
-        "is_correct": true,
-        "explanation_de": "d. ✅ Richtig. Dem Patienten muss vor der Anästhesie genügend Zeit verblei- ben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn 154 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Dem Patienten muss vor der Anästhesie genügend Zeit verblei- ben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn",
         "explanation_tr": "artan afterload ile"
       }
     ],
@@ -10543,19 +10167,11 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Der Arbeitgeber des angestellten oder beamteten Arztes ist verpflichtet, für den Arzt eine Berufshaftpflichtversicherung abzuschließen. 1. die chirurgische Eingriffsaufklärung am Vortag schon erfolgt ist, 2. keine risikoerhöhenden Begleiterkrank ungen beim Patienten vorliegen, 3. der Patient einwilligungsfähig ist (z. B. nicht schon prämediziert wurde) und 4. er sein Einverständnis in freier Selbstbestimmung erteilt.",
+        "text_de": "Der Arbeitgeber des angestellten oder beamteten Arztes ist verpflichtet, für den Arzt eine Berufshaftpflichtversicherung abzuschließen.",
         "text_tr": "Çalışan veya memur doktorun işvereni, doktor için mesleki sorumluluk sigortası yaptırmak zorundadır. 1. Cerrahi işlemin önceki gün açıklanmış olması, 2. Hastada risk artırıcı yandaş hastalıkların bulunmaması, 3. Hastanın rıza gösterebilecek durumda olması (örn. önceden premedikasyon uygulanmamış olması) ve 4. Rızasının özgür ve bağımsız olarak verilmiş olması.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Der Wert von Routineuntersuchungen bei Patienten ohne klinische Symptomatik ist heftig umstritten. Der Berufsverband Deutscher Anästhe-sisten fordert vor einer ambulanten Anästhesie nur die sorgfältige Anam-nese und klinische Untersuchung des Patienten.",
-        "text_tr": "Yanlış. Klinik semptomları olmayan hastalarda rutin muayenelerin değeri hararetle tartışılmaktadır. Alman anestezistlerin meslek birliği, ayakta tedavi anestezisinden önce yalnızca dikkatli bir anamnez alınmasını ve hastanın klinik muayenesini gerektirir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -10613,34 +10229,6 @@ const EXAM_QUESTIONS = [
     "is_high_yield": true
   },
   {
-    "id": "q_198",
-    "category": "Atemwegsmanagement & Beatmung",
-    "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
-    "image": null,
-    "question_type": "options",
-    "stem_de": "Welche der Aussagen zur Anästhesie in der Augenheilkunde sind richtig?",
-    "stem_tr": "Oftalmolojide anestezi ile ilgili ifadelerden hangisi doğrudur?",
-    "options": [
-      {
-        "key": "a",
-        "text_de": "Eine Retrobulbäranästhesie eignet sich zur Versorgung einer perforieren- den Augenverletzung.",
-        "text_tr": "Retrobulber anestezi delici göz yaralanmasının tedavisi için uygundur.",
-        "is_correct": false,
-        "explanation_de": "Eine Retrobulbäranästhesie ist bei Vorliegen einer perforierenden Augenverletzung kontraindiziert, da durch die Injektion des Lokalanästhe- tikums hinter den Bulbus der intraokulare Druck erhöht wird. Dies kann zum Glaskörperprolaps und kompletten Visusverlust des Auges führen.",
-        "explanation_tr": "Retrobulber anestezi, globun arkasına lokal anestezik enjekte edilerek göz içi basıncının artması nedeniyle delici göz yaralanması varlığında kontrendikedir. Bu, vitreus prolapsusuna ve gözde tamamen görme kaybına neden olabilir."
-      },
-      {
-        "key": "b",
-        "text_de": "Eine durch Retrobulbäranästhesie ausgelöste Hypoventilation ist klinisch nicht relevant. 156 4Kapitel 4 · Anäst hesie",
-        "text_tr": "Retrobulber anestezinin neden olduğu hipoventilasyonun klinik açıdan önemi yoktur. 156 4Bölüm 4 · Anestezi",
-        "is_correct": false,
-        "explanation_de": "Die Applikation eines Lokalanästhetikums in die Orbita (z. B. ca. 5 ml Lidocain 1 %ig) kann zu einer Anästhesie des Hirnstamms mit anhal-tender Apnoe führen, die eine Intubation und Beatmung erforderlich macht. Es wird vermutet, dass das Lokalanästhetikum über die Nerven-scheide des Sehnervs in den zerebralen Liquor gelangt. Mit dem Auftreten einer Apnoe ist innerhalb von 20 min nach Injektion des Lokalanästheti-kums zu rechnen. Sie ist von einem Bewusstseinsverlust begleitet.",
-        "explanation_tr": "Orbitaya lokal anestezik uygulanması (örneğin yaklaşık 5 ml %1'lik lidokain), entübasyon ve ventilasyon gerektiren kalıcı apne ile beyin sapının anestezisine yol açabilir. Lokal anesteziğin optik sinirin sinir kılıfı yoluyla beyin sıvısına girdiği varsayılmaktadır. Lokal anestezik enjeksiyonundan sonraki 20 dakika içinde apnenin oluşması beklenebilir. Buna bilinç kaybı da eşlik eder."
-      }
-    ],
-    "is_high_yield": false
-  },
-  {
     "id": "q_199",
     "category": "Atemwegsmanagement & Beatmung",
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
@@ -10688,22 +10276,6 @@ const EXAM_QUESTIONS = [
         "is_correct": false,
         "explanation_de": "Die Sensibilität dieser Patienten auf Opioide ist häufig extrem er- höht. Opioide sollten vorsichtig titriert gegeben werden. Bei 40 % dieser Patienten kommt es im Rahmen eines über 2 h dauernden operativen Ein-griffs zu pulmonalen und kardialen Komplikationen.",
         "explanation_tr": "Bu hastaların opioidlere duyarlılığı genellikle aşırı derecede artar. Opioidler dikkatli bir şekilde titre edilerek verilmelidir. Bu hastaların %40'ında 2 saatten uzun süren cerrahi işlem sırasında pulmoner ve kardiyak komplikasyonlar ortaya çıkmaktadır."
-      },
-      {
-        "key": "d",
-        "text_de": "Barbiturate reduzieren den intraokularen Druck.",
-        "text_tr": "Barbitüratlar göz içi basıncını azaltır.",
-        "is_correct": true,
-        "explanation_de": "Aufgrund der anatomischen Verhältnisse kann eine Intubation er- heblich erschwert sein, nicht selten kommt es zur Ausbildung einer profun-den Hypoxie kurz nach Induktion der Narkose (RSI, »rapid sequence induc-tion «). Einige Autoren empfehlen daher die primäre fiberoptische Wach-intubation dieser Patienten.",
-        "explanation_tr": "Anatomik koşullar nedeniyle entübasyon çok daha zor olabilir; Anestezi indüksiyonundan (RSI, “hızlı sıralı indüksiyon”) kısa süre sonra derin hipoksinin gelişmesi alışılmadık bir durum değildir. Bu nedenle bazı yazarlar bu hastaların primer fiberoptik uyanık entübasyonunu önermektedir."
-      },
-      {
-        "key": "e",
-        "text_de": "Bei wiederholter Auslösung des okulokardialen Reflexes kommt es zu einer Steigerung der Reflexantwort. 157 4 · Anäst hesie4",
-        "text_tr": "Okülokardiyal refleksin tekrar tekrar tetiklenmesi, refleks tepkisinde bir artışa yol açar. 157 4 · Anestezi4",
-        "is_correct": false,
-        "explanation_de": "Die Sensibilität dieser Patienten auf Opioide ist häufig extrem er- höht. Opioide sollten vorsichtig titriert gegeben werden. Bei 40 % dieser Patienten kommt es im Rahmen eines über 2 h dauernden operativen Ein-griffs zu pulmonalen und kardialen Komplikationen.",
-        "explanation_tr": "Bu hastaların opioidlere duyarlılığı genellikle aşırı derecede artar. Opioidler dikkatli bir şekilde titre edilerek verilmelidir. Bu hastaların %40'ında 2 saatten uzun süren cerrahi işlem sırasında pulmoner ve kardiyak komplikasyonlar ortaya çıkmaktadır."
       }
     ],
     "is_high_yield": false
@@ -10730,7 +10302,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Für eine optimale Kopfposition zur Intubation wird die Neutral-Null- Lagerung gewählt, bei leicht erhöhtem Oberkörper.",
         "text_tr": "Entübasyon için en uygun baş pozisyonu için, üst gövde hafifçe yükseltilmiş olacak şekilde nötr-sıfır pozisyonu seçilir.",
         "is_correct": false,
-        "explanation_de": "Es wird die Jackson-Position empfohlen. Diese ist allerdings nicht leicht herzustellen. Es reicht nicht, den Patienten wie üblich auf dem OP-Tisch zu lagern. Es wurde vor einiger Zeit die Rampenlagerung vorgeschlagen, bei der man mit einer großen Anzahl von Decken den Patienten von der Lumbal-region angefangen nach kranial keilförmig lagert wie auf einer Rampe. In der Praxis hat sich das seit Kurzem erhältliche Troop-Kissen sehr bewährt. 158 4Kapitel 4 · Anäst hesie",
+        "explanation_de": "Es wird die Jackson-Position empfohlen. Diese ist allerdings nicht leicht herzustellen. Es reicht nicht, den Patienten wie üblich auf dem OP-Tisch zu lagern. Es wurde vor einiger Zeit die Rampenlagerung vorgeschlagen, bei der man mit einer großen Anzahl von Decken den Patienten von der Lumbal-region angefangen nach kranial keilförmig lagert wie auf einer Rampe. In der Praxis hat sich das seit Kurzem erhältliche Troop-Kissen sehr bewährt.",
         "explanation_tr": "Jackson pozisyonu tavsiye edilir. Ancak bunu üretmek kolay değil. Hastayı her zamanki gibi ameliyat masasına yatırmak yeterli değildir. Bir süre önce hastanın bel bölgesinden kraniyal bölgeye kadar çok sayıda battaniye kullanılarak sanki bir rampa üzerindeymiş gibi kama şeklinde konumlandırıldığı rampa konumlandırması önerildi. Uygulamada, yakın zamanda piyasaya sürülen Troop yastığının çok etkili olduğu kanıtlandı. 158 4Bölüm 4 · Anestezi"
       },
       {
@@ -10738,16 +10310,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Succinylcholin wird nach Idealgewicht dosiert.",
         "text_tr": "Süksinilkolin ideal kiloya göre dozlanır.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Propofol wird nach Istgewicht dosiert.",
         "text_tr": "Propofol gerçek ağırlığa göre dozlanır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -10860,22 +10432,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "IPPV und auch PEEP reduzieren die linksventrikuläre Nachlast durch eine Erhöhung des intrathorak alen Drucks. Somit wird der zu über- windende Druckgradient des linken Ventrikels geringer, die Nachlast nimmt ab.",
         "explanation_tr": "IPPV ve PEEP intratorasik basıncı artırarak sol ventriküler afterload'ı azaltır. Bu, sol ventrikülde aşılması gereken basınç gradyanının küçülmesi ve art yükün azalması anlamına gelir."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Propofol wird mit 2 mg/kg Istgewicht dosiert.",
-        "text_tr": "Doğru. Propofol 2 mg/kg gerçek ağırlıkta dozlanır.",
-        "is_correct": false,
-        "explanation_de": "Die Leberdurchblutung sinkt aufgrund des reduzierten HZV ebenso.e. Richtig. IPPV und auch PEEP reduzieren die linksventrikuläre Nachlast durch eine Erhöhung des intrathorak alen Drucks. Somit wird der zu über- windende Druckgradient des linken Ventrikels geringer, die Nachlast nimmt ab.",
-        "explanation_tr": "Kalp debisinin azalması nedeniyle karaciğer kan akışı da azalır. Doğru. IPPV ve PEEP intratorasik basıncı artırarak sol ventriküler afterload'ı azaltır. Bu, sol ventrikülde aşılması gereken basınç gradyanının küçülmesi ve art yükün azalması anlamına gelir."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Fentanyl wird zur RSI mit 2 μg/kg Istgewicht dosiert. 159 4 · Anäst hesie4",
-        "text_tr": "Yanlış. Fentanil, RSI için 2 μg/kg gerçek ağırlıkta dozlanır. 159 4 · Anestezi4",
-        "is_correct": true,
-        "explanation_de": "IPPV und auch PEEP reduzieren die linksventrikuläre Nachlast durch eine Erhöhung des intrathorak alen Drucks. Somit wird der zu über- windende Druckgradient des linken Ventrikels geringer, die Nachlast nimmt ab.",
-        "explanation_tr": "IPPV ve PEEP intratorasik basıncı artırarak sol ventriküler afterload'ı azaltır. Bu, sol ventrikülde aşılması gereken basınç gradyanının küçülmesi ve art yükün azalması anlamına gelir."
       }
     ],
     "is_high_yield": true
@@ -10975,7 +10531,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Doxorubicin ist ausgesprochen kardiotoxisch. 160 4Kapitel 4 · Anäst hesie",
+        "text_de": "Doxorubicin ist ausgesprochen kardiotoxisch.",
         "text_tr": "Doksorubisin son derece kardiyotoksiktir. 160 4Bölüm 4 · Anestezi",
         "is_correct": true,
         "explanation_de": "Doxorubicin , ein Anthracyclin, wird u. a. in der Behandlung von Hodentumoren eingesetzt. Es hat eine akute, dosisunabhängige Kardio-toxizität, die sich in einer Linksherzinsuffizienz, malignen Herzrhythmus-störungen und einer erhöhten Inzidenz des plötzlichen Herztodes mani-festiert. Darüber hinaus wird eine chronische, dosisabhängige Kardio-toxizität beschrieben, die zum biventrikulären Herzversagen führen kann.",
@@ -11082,7 +10638,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wie z. B. Morphin kann auch nach 36 h zu einer späten Atemdepression führen.",
         "text_tr": "B. Morfin gibi ilaçlar 36 saat sonra bile geç solunum depresyonuna neden olabiliyor.",
         "is_correct": false,
-        "explanation_de": "Die späte Atemdepression tritt nach 6–12 h auf, klinisch relevante Atemdepressionen nach Ablauf von 24 h sind bisher nicht beschrieben worden. 164 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Die späte Atemdepression tritt nach 6–12 h auf, klinisch relevante Atemdepressionen nach Ablauf von 24 h sind bisher nicht beschrieben worden.",
         "explanation_tr": "Geç solunum depresyonu 6-12 saat sonra ortaya çıkar; 24 saat sonra klinik olarak anlamlı solunum depresyonu henüz tanımlanmamıştır. 164 5Bölüm 5 · Bölgesel anestezi"
       }
     ],
@@ -11206,7 +10762,7 @@ const EXAM_QUESTIONS = [
         "text_de": "am häufigsten allergische Reaktionen",
         "text_tr": "en yaygın alerjik reaksiyonlar",
         "is_correct": false,
-        "explanation_de": "Die häufigsten Nebenwirkungen (NW) sind nicht allergischer Genese, im Gegenteil, allergische Reaktionen gehören zu den seltenen NW der LA. Viel häufiger sind toxische NW aufgrund zu hoher Plasmaspiegel. Bei den Ester-LA ist häufig die Metabolisierung zu Paraaminobenzoesäure das Allergen, für das Patienten durch Sulfonamide oder Konservierungs-stoffe sensibilisiert wurden. Bei den Amid-LA ist eine allergische Reaktion häufiger auf den Zusatz der Konservierungsstoffe Methylparaben oder Natriumdisulfit (in 50-ml-Flaschen) zurückzuführen als auf eine allergische Reaktion auf die Substanz selbst. Es besteht keine Kreuzallergie zwischen den Ester- und Amid-LA. 166 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Die häufigsten Nebenwirkungen (NW) sind nicht allergischer Genese, im Gegenteil, allergische Reaktionen gehören zu den seltenen NW der LA. Viel häufiger sind toxische NW aufgrund zu hoher Plasmaspiegel. Bei den Ester-LA ist häufig die Metabolisierung zu Paraaminobenzoesäure das Allergen, für das Patienten durch Sulfonamide oder Konservierungs-stoffe sensibilisiert wurden. Bei den Amid-LA ist eine allergische Reaktion häufiger auf den Zusatz der Konservierungsstoffe Methylparaben oder Natriumdisulfit (in 50-ml-Flaschen) zurückzuführen als auf eine allergische Reaktion auf die Substanz selbst. Es besteht keine Kreuzallergie zwischen den Ester- und Amid-LA.",
         "explanation_tr": "En yaygın yan etkiler (NW'ler) alerjik kökenli değildir; tam tersine alerjik reaksiyonlar Los Angeles'ın nadir görülen Kuzeybatı kesimleri arasındadır. Aşırı yüksek plazma seviyelerine bağlı toksik NW'ler çok daha yaygındır. Ester LA durumunda, paraaminobenzoik asit metabolizması sıklıkla hastaların sülfonamidler veya koruyucular tarafından duyarlılaştırıldığı alerjendir. Amit LA ile alerjik reaksiyon, maddenin kendisine karşı alerjik reaksiyondan ziyade, metilparaben veya sodyum disülfit koruyucularının (50 ml'lik şişelerde) eklenmesinden kaynaklanır. Ester ve amid LA arasında çapraz alerji yoktur. 166 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -11214,24 +10770,24 @@ const EXAM_QUESTIONS = [
         "text_de": "Cauda-equina-Syndrom",
         "text_tr": "Kauda ekuina sendromu",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "Tinnitus",
         "text_tr": "Kulak çınlaması",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Grand-mal-Anfälle",
         "text_tr": "Büyük mal nöbetleri",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -11375,7 +10931,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "c",
-        "text_de": "Bei Auftreten von präkonvulsiven Warnzeichen sollte der Patient auf-gefordert werden zu hyperventilieren. 168 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "Bei Auftreten von präkonvulsiven Warnzeichen sollte der Patient auf-gefordert werden zu hyperventilieren.",
         "text_tr": "Prekonvülsif uyarı işaretleri ortaya çıkarsa hastadan hiperventilasyon yapması istenmelidir. 168 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": true,
         "explanation_de": "Das Auftreten von präkonvulsiven Warnzeichen erfordert: 1. Abbruch der weiteren Gabe des Lokalanästhetikums; 2. Hyperventilation, da eine zerebrale Vasokonstriktion durch Hypokapnie den Antransport von LA vermindert; 3. i.v.-Gabe von Diazepam 2,5–5 mg (Antikonvulsivum).",
@@ -11422,24 +10978,16 @@ const EXAM_QUESTIONS = [
         "text_de": "kann durch Bolusgabe von 1,5 ml/kgKG einer 20 %igen Lipidlösung die toxische Wirkung »reversiert« werden.",
         "text_tr": "Toksik etki, vücut ağırlığına göre 1,5 ml/kg oranında %20'lik bir lipit solüsyonunun bolus olarak verilmesiyle \"tersine çevrilebilir\".",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "darf Suprarenin nicht angewendet werden, da es zu einem »stone heart« kommt. d. Bei Auftreten von präkonvulsiven Warnzeichen muss mit einer Beeinträchtigung des Herz-Kreislauf-Systems gerechnet werden.",
+        "text_de": "darf Suprarenin nicht angewendet werden, da es zu einem »stone heart« kommt.",
         "text_tr": "Suprarenin “kalp taşı” oluşturduğundan kullanılmamalıdır. D. Prekonvülsif uyarı işaretleri ortaya çıkarsa, kardiyovasküler sistemin bozulması beklenmelidir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Die Gabe von Benzodiazepinen kann die Krampfschwelle des Gehirns gegenüber Lokalanästhetika heraufsetzten.",
-        "text_tr": "Benzodiazepinlerin uygulanması, lokal anesteziklere kıyasla beynin nöbet eşiğini artırabilir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": false
@@ -11643,16 +11191,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Beimischung von Vasokonstriktoren zum LA ist bei der Leitungsanäs-thesie nach Oberst und beim Peniswurzelblock absolut kontraindiziert. zuverlässige chirurgische Anästhesie ohne Beeinträchtigung der Motorik möglich ist.",
+        "text_de": "Die Beimischung von Vasokonstriktoren zum LA ist bei der Leitungsanäs-thesie nach Oberst und beim Peniswurzelblock absolut kontraindiziert.",
         "text_tr": "Oberst iletim anestezisi ve penis kökü bloğunda LA'ya vazokonstriktör eklenmesi kesinlikle kontrendikedir. Motor becerileri bozmadan güvenilir cerrahi anestezi mümkündür.",
-        "is_correct": true,
-        "explanation_de": "Der Zusatz von Vasokonstriktoren kann in Endstrombahngebieten (Akren) zu schwerster Ischämie mit nachfolgender Nekrose führen.",
-        "explanation_tr": "Vazokonstriktörlerin eklenmesi ciddi iskemiye ve ardından terminal vasküler alanlarda (akraller) nekroza yol açabilir."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Allergische Reaktionen auf amidartige Lokalanästhetika sind sehr selten. Treten sie dennoch auf, sind sie in der Regel auf einen dem Lokal-anästhetikum beigegebenen Stabilisator (z. B. Methylparaben ) zurück-zuführen. 172 5Kapitel 5 · Regionala nästhesie",
-        "text_tr": "Yanlış. Amit benzeri lokal anesteziklere karşı alerjik reaksiyonlar çok nadirdir. Oluşurlarsa, genellikle lokal anesteziğe eklenen bir stabilizatörden (örn. metilparaben) kaynaklanırlar. 172 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": true,
         "explanation_de": "Der Zusatz von Vasokonstriktoren kann in Endstrombahngebieten (Akren) zu schwerster Ischämie mit nachfolgender Nekrose führen.",
         "explanation_tr": "Vazokonstriktörlerin eklenmesi ciddi iskemiye ve ardından terminal vasküler alanlarda (akraller) nekroza yol açabilir."
@@ -11778,7 +11318,7 @@ const EXAM_QUESTIONS = [
         "text_de": "weniger neurotoxisch.",
         "text_tr": "daha az nörotoksiktir.",
         "is_correct": false,
-        "explanation_de": "Bei Einsatz von Ropivacain zur Spinalanästhesie hat sich im Ver- gleich zu Bupivacain eine höhere Inzidenz transienter neurologischer Symptome (TNS) ergeben. TNS sind gekennzeichnet durch lumbale Rü-ckenschmerzen und Dysästhesien und treten meist nach einer Single-shot-Spinalanästhesie auf. Lidocain und Mepivacain hat in dieser Hinsicht die höchste Auftretenswahrscheinlichkeit; als sicherste LA gelten Bupivacain und Prilocain. 174 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Bei Einsatz von Ropivacain zur Spinalanästhesie hat sich im Ver- gleich zu Bupivacain eine höhere Inzidenz transienter neurologischer Symptome (TNS) ergeben. TNS sind gekennzeichnet durch lumbale Rü-ckenschmerzen und Dysästhesien und treten meist nach einer Single-shot-Spinalanästhesie auf. Lidocain und Mepivacain hat in dieser Hinsicht die höchste Auftretenswahrscheinlichkeit; als sicherste LA gelten Bupivacain und Prilocain.",
         "explanation_tr": "Spinal anestezi için ropivakain kullanımı, bupivakaine kıyasla daha yüksek oranda geçici nörolojik semptomlar (TNS) göstermiştir. TNS, bel ağrısı ve dizestezi ile karakterizedir ve genellikle tek doz spinal anestezi sonrasında ortaya çıkar. Lidokain ve mepivakain bu açıdan en yüksek görülme olasılığına sahiptir; Bupivakain ve prilokain en güvenli LA'lar olarak kabul edilir. 174 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -11786,24 +11326,16 @@ const EXAM_QUESTIONS = [
         "text_de": "durch eine schnellere Anschlagzeit ausgezeichnet.",
         "text_tr": "Daha hızlı bir saldırı süresi ile ayırt edilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
         "text_de": "bei gleich guter Analgesie weniger motorisch blockierend. d. Die Lipidlöslichkeit eines Lokalanästhetikums korreliert direkt mit dessen Wirkstärke.",
         "text_tr": "eşit derecede iyi analjezi ile daha az motor blokajı. D. Lokal anestetiğin lipit çözünürlüğü doğrudan onun gücüyle ilişkilidir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Lidocain ist bei ventrikulären und supraventrikulären Tachyarrhythmien wirksam und indiziert.",
-        "text_tr": "Lidokain etkilidir ve ventriküler ve supraventriküler taşiaritmilerde endikedir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -11955,7 +11487,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Bupivacain 176 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "Bupivacain",
         "text_tr": "Bupivakain 176 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": false,
         "explanation_de": "Bupivacain hat, wie andere Lokalanästhetika auch, membranstabili- sierende Eigenschaften. Es führt zunächst zu einer Dämpfung höherer kortikaler Zentren und damit evtl. zu einer Aktivierung untergeordneter Zentren (Temporallappenanfälle) durch Disinhibition. Hieraus erklären sich die bekannten klinischen Nebenwirkungen wie Exzitation, Nausea und epi-leptische Anfälle (initial Erregung, dann Dämpfung). Erst zuletzt entsteht eine komplette zerebrale Depression. Bupivacain hat demnach keine kli-nisch nutzbaren antikonvulsiven Eigenschaften.",
@@ -12010,7 +11542,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Edrophonium",
         "text_tr": "Edrofonyum",
         "is_correct": false,
-        "explanation_de": "Edrophonium (ein kurzwirksames indirektes Parasympathomi- metikum) trägt eine quarternäre Ammoniumgruppe und kann somit die Blut-Hirn-Schranke nicht passieren. Es wirkt nur peripher. Physostigmin hat keine quarternäre Ammoniumgruppe und kann daher eine zentrale para-sympathikomimetische Wirkung entfalten. 177 5 5.1 · Neuroanästhesie",
+        "explanation_de": "Edrophonium (ein kurzwirksames indirektes Parasympathomi- metikum) trägt eine quarternäre Ammoniumgruppe und kann somit die Blut-Hirn-Schranke nicht passieren. Es wirkt nur peripher. Physostigmin hat keine quarternäre Ammoniumgruppe und kann daher eine zentrale para-sympathikomimetische Wirkung entfalten. 177",
         "explanation_tr": "Edrofonyum (kısa etkili dolaylı bir parasempatomimetik) dördüncül bir amonyum grubu taşır ve bu nedenle kan-beyin bariyerini geçemez. Sadece çevresel bir etkisi vardır. Fizostigmin kuaterner amonyum grubuna sahip değildir ve bu nedenle merkezi bir para-sempatomimetik etkiye sahip olabilir. 177 5 5.1 · Nöroanestezi"
       }
     ],
@@ -12114,7 +11646,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die Funktion der Basalganglien beeinträchtigt.",
         "text_tr": "bazal ganglionların işlevi bozulur.",
         "is_correct": false,
-        "explanation_de": "Die Basalganglien, bestehend aus Nucleus caudatus, Putamen und Globus pallidus, funktionieren unabhängig vom Kleinhirn. Sie sind für die Speicherung eingeübter Motorik verantwortlich und dienen als subkortika-le Schaltstelle bei der Ausführung unterbewusst ablaufender Motorik. 178 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Die Basalganglien, bestehend aus Nucleus caudatus, Putamen und Globus pallidus, funktionieren unabhängig vom Kleinhirn. Sie sind für die Speicherung eingeübter Motorik verantwortlich und dienen als subkortika-le Schaltstelle bei der Ausführung unterbewusst ablaufender Motorik.",
         "explanation_tr": "Kaudat çekirdek, putamen ve globus pallidustan oluşan bazal gangliyonlar beyincikten bağımsız olarak işlev görür. Uygulanmış motor becerilerin depolanmasından sorumludurlar ve bilinçaltı motor becerilerin yürütülmesinde subkortikal bir geçiş noktası görevi görürler. 178 5Bölüm 5 · Bölgesel anestezi"
       }
     ],
@@ -12215,7 +11747,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Diuretika vom Typ des Furosemid vermindern den ICP . 179 5 5.1 · Neuroanästhesie",
+        "text_de": "Diuretika vom Typ des Furosemid vermindern den ICP . 179",
         "text_tr": "Furosemid tipi diüretikler ICP'yi azaltır. 179 5 5.1 · Nöroanestezi",
         "is_correct": true,
         "explanation_de": "Furosemid wirkt nicht nur auf das Natriumchloridtransportprotein der Tubuluszellen der Nieren, sondern auch auf die Ependym- und Plexus-choroideus-Zellen des Gehirns und führt damit zu einer Verminderung der Liquorproduktion und damit zu einer Abnahme des ICP . Die Kammerwas-serproduktion des Auge s wird über denselben Wirkmechanismus reduziert.",
@@ -12262,7 +11794,7 @@ const EXAM_QUESTIONS = [
         "text_de": "beträgt bei Erwachsenen 50 ml/100 g Hirngewebe/min.",
         "text_tr": "yetişkinlerde 50 ml/100 g beyin dokusu/dakikadır.",
         "is_correct": true,
-        "explanation_de": "Das entspricht rund 650–750 ml/min oder 15 % des HZV.e. Falsch. Ein als »hirntot« diagnostizierter Patient hat keinen zerebralen Blutfluss mehr. Dies wurde früher durch eine arterielle zerebrale Angio-graphie nachgewiesen, neuerdings mittels der weniger invasiven PET- Perfusionsmessung . 180 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Das entspricht rund 650–750 ml/min oder 15 % des HZV.e. Falsch. Ein als »hirntot« diagnostizierter Patient hat keinen zerebralen Blutfluss mehr. Dies wurde früher durch eine arterielle zerebrale Angio-graphie nachgewiesen, neuerdings mittels der weniger invasiven PET- Perfusionsmessung .",
         "explanation_tr": "Bu, yaklaşık 650-750 ml/dakika veya kalp debisinin %15'ine karşılık gelir. Yanlış. “Beyin ölümü” tanısı konan bir hastanın artık beyin kan akışı yoktur. Bu daha önce arteriyel serebral anjiyografi kullanılarak kanıtlandı, ancak daha yakın zamanda daha az invazif PET perfüzyon ölçümü kullanılarak kanıtlandı. 180 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -12270,7 +11802,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist auch bei einem als »hirntot« diagnostizierten Patienten vorhanden.",
         "text_tr": "“Beyin ölümü” tanısı konulan bir hastada da mevcut.",
         "is_correct": false,
-        "explanation_de": "Ein als »hirntot« diagnostizierter Patient hat keinen zerebralen Blutfluss mehr. Dies wurde früher durch eine arterielle zerebrale Angio-graphie nachgewiesen, neuerdings mittels der weniger invasiven PET- Perfusionsmessung . 180 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Ein als »hirntot« diagnostizierter Patient hat keinen zerebralen Blutfluss mehr. Dies wurde früher durch eine arterielle zerebrale Angio-graphie nachgewiesen, neuerdings mittels der weniger invasiven PET- Perfusionsmessung .",
         "explanation_tr": "“Beyin ölümü” tanısı konan bir hastanın artık beyin kan akışı yoktur. Bu daha önce arteriyel serebral anjiyografi kullanılarak kanıtlandı, ancak daha yakın zamanda daha az invazif PET perfüzyon ölçümü kullanılarak kanıtlandı. 180 5Bölüm 5 · Bölgesel anestezi"
       }
     ],
@@ -12374,7 +11906,7 @@ const EXAM_QUESTIONS = [
         "text_de": "die Konjunktiven",
         "text_tr": "dilek kipi",
         "is_correct": true,
-        "explanation_de": "Ausbreitungsgebiet des N. ophthalmicus V 1 . 181 5 5.2 · Neurologie",
+        "explanation_de": "Ausbreitungsgebiet des N. ophthalmicus V 1 . 181",
         "explanation_tr": "N. ophthalmicus'un dağılım alanı V 1. 181 5 5.2 · Nöroloji"
       }
     ],
@@ -12475,7 +12007,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Es wird hauptsächlich im Hypothalamus verschaltet. 182 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "Es wird hauptsächlich im Hypothalamus verschaltet.",
         "text_tr": "Esas olarak hipotalamusta bağlantılıdır. 182 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": true,
         "explanation_de": "Hauptintegrationsort des ANS ist der Hypothalamus. Von hier aus wird auch auf hormonellem Weg über die Adeno - und Neurohypophyse der Stoffwechsel gesteuert.",
@@ -12530,7 +12062,7 @@ const EXAM_QUESTIONS = [
         "text_de": "können Metoclopramid ohne nachteilige Folgen erhalten.",
         "text_tr": "Metoklopramid'i olumsuz etkiler olmadan alabilirler.",
         "is_correct": false,
-        "explanation_de": "Siehe Antwort d. Metoclopramid verstärkt durch seine antidopa- minerge Wirkung die Parkinson-Symptome. Es sollten keine Antiemetika eingesetzt werden, die die Blut-Hirn-Schranke passieren und eine antido-paminerge Wirkung haben. Daher sind auch Neuroleptika kontraindiziert. 183 5 5.2 · Neurologie",
+        "explanation_de": "Siehe Antwort d. Metoclopramid verstärkt durch seine antidopa- minerge Wirkung die Parkinson-Symptome. Es sollten keine Antiemetika eingesetzt werden, die die Blut-Hirn-Schranke passieren und eine antido-paminerge Wirkung haben. Daher sind auch Neuroleptika kontraindiziert. 183",
         "explanation_tr": "Cevap d'ye bakınız. Metoklopramid, antidopaminerjik etkisinden dolayı Parkinson semptomlarını artırmaktadır. Kan-beyin bariyerini geçen ve antidopaminerjik etkisi olan antiemetikler kullanılmamalıdır. Bu nedenle nöroleptikler de kontrendikedir. 183 5 5.2 · Nöroloji"
       }
     ],
@@ -12610,7 +12142,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird am besten verhindert durch eine adäquate Allgemein- oder Regional-anästhesie.",
         "text_tr": "Yeterli genel veya bölgesel anestezi ile en iyi şekilde önlenir.",
         "is_correct": true,
-        "explanation_de": "Eine adäquate Allgemein- oder Regionalanästhesie ist die beste Prävention für eine AHR. Man kann die AHR als vegetatives Äquivalent einer motorischen Hyperreflexie bei einem QSS auffassen. Hierbei kommt es durch Stimulation unterhalb der Rückenmarkdurchtrennung zu einer Reizung der im intakten Rückenmarkgrau anterolateral liegenden sympathischen Nerven-zellen auf spinaler Ebene. Dadurch werden entsprechend Katecholamine aus-geschüttet, die zu einem plötzlichen Blutdruckanstieg führen. 184 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Eine adäquate Allgemein- oder Regionalanästhesie ist die beste Prävention für eine AHR. Man kann die AHR als vegetatives Äquivalent einer motorischen Hyperreflexie bei einem QSS auffassen. Hierbei kommt es durch Stimulation unterhalb der Rückenmarkdurchtrennung zu einer Reizung der im intakten Rückenmarkgrau anterolateral liegenden sympathischen Nerven-zellen auf spinaler Ebene. Dadurch werden entsprechend Katecholamine aus-geschüttet, die zu einem plötzlichen Blutdruckanstieg führen.",
         "explanation_tr": "Yeterli genel veya bölgesel anestezi, AHR'nin en iyi önlenmesidir. AHR, QSS'deki motor hiperrefleksinin bitkisel eşdeğeri olarak görülebilir. Bu durumda omurilik kesiğinin altındaki uyarı, omurilik seviyesinde sağlam omurilik grisinin anterolateralinde yer alan sempatik sinir hücrelerinin tahriş olmasına yol açar. Bu, katekolaminlerin salınmasına neden olur ve bu da kan basıncında ani bir artışa yol açar. 184 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -12618,16 +12150,16 @@ const EXAM_QUESTIONS = [
         "text_de": "besteht in einer ausgeprägten arteriellen Hypertension.",
         "text_tr": "belirgin arteriyel hipertansiyondan oluşur.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "kann zu einer Gesichtsröte führen.",
         "text_tr": "yüz kızarmasına neden olabilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -12766,7 +12298,7 @@ const EXAM_QUESTIONS = [
         "text_de": "sind nichtdepolarisierende Muskelrelaxanzien absolut kontraindiziert.",
         "text_tr": "Depolarizan olmayan kas gevşeticiler kesinlikle kontrendikedir.",
         "is_correct": false,
-        "explanation_de": "Myastheniker reagieren extrem sensibel auf nichtdepolarisierende Muskelrelaxanzien . Ihre Anwendung ist aber nicht absolut kontraindiziert. Ist ihre Anwendung unvermeidbar, müssen sie in deutlich reduzierter 186 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Myastheniker reagieren extrem sensibel auf nichtdepolarisierende Muskelrelaxanzien . Ihre Anwendung ist aber nicht absolut kontraindiziert. Ist ihre Anwendung unvermeidbar, müssen sie in deutlich reduzierter",
         "explanation_tr": "Spinal anestezinin hangi komplikasyonlarını biliyorsunuz?"
       },
       {
@@ -12774,16 +12306,16 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die oropharyngeale Muskulatur nur wenig beeinträchtigt.",
         "text_tr": "orofaringeal kaslar sadece hafifçe etkilenir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "können Benzodiazepine problemlos eingesetzt werden.",
         "text_tr": "Benzodiazepinler sorunsuz olarak kullanılabilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -12922,7 +12454,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Inzidenz des postspinalen Kopfschmerzes wird durch das Einhalten einer 24-stündigen Rückenlage post punctionem deutlich gemindert.",
         "text_tr": "Delinme sonrası 24 saat boyunca sırtüstü pozisyonun sürdürülmesiyle post-spinal baş ağrısının görülme sıklığı önemli ölçüde azalır.",
         "is_correct": false,
-        "explanation_de": "Die postpunktionelle Flachlagerung hat keinen protektiven Effekt.c. Falsch. Der postspinale Kopfschmerz tritt gehäuft ab dem 2. Tag nach Punktion auf. Seine genaue Ursache ist nach wie vor unklar. Es besteht eine gute Korrelation zwischen dem Spinalnadelkaliber und der Häufigkeit des postspinalen Kopfschmerzes. Nach versehentlicher Duraperforation mit einer 16–18 G starken Tuohy-Nadel liegt die Kopfschmerzinzidenz bei ca. 85 %; bei Punktion des Subarachnoidalraumes mit einer 26-G-Nadel sinkt die Inzidenz auf etwa 1 %. Auch die Spinalnadelform ist von einer gewissen Bedeutung; werden Spinalnadeln mit konischer Spitze (»pencil point«) verwendet, ist die Kopfschmerzinzidenz ebenfalls geringer als bei Verwen-dung gleichkalibriger Nadeln mit nicht konischem Schliff. Auch das Alter 188 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Die postpunktionelle Flachlagerung hat keinen protektiven Effekt.c. Falsch. Der postspinale Kopfschmerz tritt gehäuft ab dem 2. Tag nach Punktion auf. Seine genaue Ursache ist nach wie vor unklar. Es besteht eine gute Korrelation zwischen dem Spinalnadelkaliber und der Häufigkeit des postspinalen Kopfschmerzes. Nach versehentlicher Duraperforation mit einer 16–18 G starken Tuohy-Nadel liegt die Kopfschmerzinzidenz bei ca. 85 %; bei Punktion des Subarachnoidalraumes mit einer 26-G-Nadel sinkt die Inzidenz auf etwa 1 %. Auch die Spinalnadelform ist von einer gewissen Bedeutung; werden Spinalnadeln mit konischer Spitze (»pencil point«) verwendet, ist die Kopfschmerzinzidenz ebenfalls geringer als bei Verwen-dung gleichkalibriger Nadeln mit nicht konischem Schliff. Auch das Alter",
         "explanation_tr": "Delinme sonrası düz yatmanın koruyucu etkisi yoktur.c. Yanlış. Postspinal baş ağrıları, delinmeden sonraki ikinci günden itibaren daha sık görülür. Kesin nedeni belirsizliğini koruyor. Spinal iğne çapı ile spinal sonrası baş ağrısı sıklığı arasında iyi bir korelasyon vardır. 16-18 G Tuohy iğnesi ile kazara dura perforasyonu sonrası baş ağrısı görülme sıklığı yaklaşık %85'tir; Subaraknoid boşluğa 26-G iğne ile girildiğinde görülme sıklığı yaklaşık %1'e düşer. Spinal iğnenin şekli de bir miktar önemlidir; Konik uçlu (\"kalem ucu\") omurga iğneleri kullanılırsa baş ağrısı görülme sıklığı, aynı kalibrede, konik olmayan kesimli iğnelerin kullanılmasına göre daha düşüktür. Yaşı da 188 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -12930,7 +12462,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Der postspinale Kopfschmerz tritt in der Regel in den ersten 24 h nach Spinalanästhesie auf.",
         "text_tr": "Postspinal baş ağrısı genellikle spinal anesteziden sonraki ilk 24 saatte ortaya çıkar.",
         "is_correct": false,
-        "explanation_de": "Der postspinale Kopfschmerz tritt gehäuft ab dem 2. Tag nach Punktion auf. Seine genaue Ursache ist nach wie vor unklar. Es besteht eine gute Korrelation zwischen dem Spinalnadelkaliber und der Häufigkeit des postspinalen Kopfschmerzes. Nach versehentlicher Duraperforation mit einer 16–18 G starken Tuohy-Nadel liegt die Kopfschmerzinzidenz bei ca. 85 %; bei Punktion des Subarachnoidalraumes mit einer 26-G-Nadel sinkt die Inzidenz auf etwa 1 %. Auch die Spinalnadelform ist von einer gewissen Bedeutung; werden Spinalnadeln mit konischer Spitze (»pencil point«) verwendet, ist die Kopfschmerzinzidenz ebenfalls geringer als bei Verwen-dung gleichkalibriger Nadeln mit nicht konischem Schliff. Auch das Alter 188 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Der postspinale Kopfschmerz tritt gehäuft ab dem 2. Tag nach Punktion auf. Seine genaue Ursache ist nach wie vor unklar. Es besteht eine gute Korrelation zwischen dem Spinalnadelkaliber und der Häufigkeit des postspinalen Kopfschmerzes. Nach versehentlicher Duraperforation mit einer 16–18 G starken Tuohy-Nadel liegt die Kopfschmerzinzidenz bei ca. 85 %; bei Punktion des Subarachnoidalraumes mit einer 26-G-Nadel sinkt die Inzidenz auf etwa 1 %. Auch die Spinalnadelform ist von einer gewissen Bedeutung; werden Spinalnadeln mit konischer Spitze (»pencil point«) verwendet, ist die Kopfschmerzinzidenz ebenfalls geringer als bei Verwen-dung gleichkalibriger Nadeln mit nicht konischem Schliff. Auch das Alter",
         "explanation_tr": "Postspinal baş ağrıları, delinmeden sonraki ikinci günden itibaren daha sık görülür. Kesin nedeni belirsizliğini koruyor. Spinal iğne çapı ile spinal sonrası baş ağrısı sıklığı arasında iyi bir korelasyon vardır. 16-18 G Tuohy iğnesi ile kazara dura perforasyonu sonrası baş ağrısı görülme sıklığı yaklaşık %85'tir; Subaraknoid boşluğa 26-G iğne ile girildiğinde görülme sıklığı yaklaşık %1'e düşer. Spinal iğnenin şekli de bir miktar önemlidir; Konik uçlu (\"kalem ucu\") omurga iğneleri kullanılırsa baş ağrısı görülme sıklığı, aynı kalibrede, konik olmayan kesimli iğnelerin kullanılmasına göre daha düşüktür. Yaşı da 188 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -12938,8 +12470,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Der postspinale Kopfschmerz hält gewöhnlich nicht länger als 24 h an.",
         "text_tr": "MH'ye yatkınlığı bilinen hastalarda tetiksiz anestezi uygulanmalıdır, ancak isteğe bağlı olarak dantrolen ile profilaksi de yapılabilir. Kanıtlanmış etkinliği profilaksi lehine konuşuyor. MH profilaksisi yapılacaksa anestezi başlamadan 30 dakika önce tek doz IV doz olarak 2,5 mg/kg vücut ağırlığı verilebilir. Üretici maksimum dozu 10 mg/kgKG/gün olarak belirtmektedir. Belirgin bir MH krizini tedavi etmek için, bireysel vakalarda bu dozun önemli ölçüde aşılması gerekir (40 mg/kg vücut ağırlığı/güne kadar). Önerilen terapötik doz, klinik semptomlar ortadan kalkana kadar 2 mg/kg vücut ağırlığı/10 dakika IV'ün tekrarlayan IV uygulamasıdır. C. Doğru. MH'de hem amid hem de ester lokal anesteziklerin güvenli olduğu düşünülmektedir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -13099,8 +12631,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Adrenalin 190 5Kapitel 5 · Regionala nästhesie",
-        "text_tr": "Adrenalin 190 5Bölüm 5 · Bölgesel anestezi",
+        "text_de": "Adrenalin",
+        "text_tr": "adrenalin",
         "is_correct": true,
         "explanation_de": "Adrenalin hat, wie auch andere Katecholamine , eine positiv bath- motrope Wirkung, d. h. die Reizschwelle wird herabgesetzt.",
         "explanation_tr": "Adrenalin, diğer katekolaminler gibi, pozitif bir batmotropik etkiye sahiptir; uyaran eşiği azalır."
@@ -13138,7 +12670,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Beim beatmeten und sedierten Koronarkranken ist jede unklare Arrhythmie und/oder Hypotension auf einen Myokardinfarkt verdächtig.",
         "text_tr": "Ventile edilen ve sedasyon uygulanan koroner hastalarda, belirsiz herhangi bir aritmi ve/veya hipotansiyon, miyokard enfarktüsü açısından şüphelidir.",
         "is_correct": true,
-        "explanation_de": "Der beatmete und sedierte Koronarkranke kann die typischen prä- kordialen Schmerzen (z. B. Vernichtungsschmerz mit Ausstrahlung in den Kiefer und/oder den Arm) natürlich nicht äußern. Daher gilt, dass jede un- 191 5 5.3 · Herz-Thorax-Chirurgie",
+        "explanation_de": "Der beatmete und sedierte Koronarkranke kann die typischen prä- kordialen Schmerzen (z. B. Vernichtungsschmerz mit Ausstrahlung in den Kiefer und/oder den Arm) natürlich nicht äußern. Daher gilt, dass jede un- 191",
         "explanation_tr": "Tabii ki, ventile edilen ve sedasyon uygulanan koroner hasta tipik prekordiyal ağrıyı (örneğin çeneye ve/veya kola yayılan yok edici ağrı) ifade edemez. Bu nedenle her un- 191 5 5.3 · Kardiyotorasik cerrahi"
       },
       {
@@ -13146,8 +12678,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Der Nachweis von Troponin T ist ein relativ unempfindlicher Indikator einer Myokardischämie.",
         "text_tr": "Troponin T'nin saptanması miyokard iskemisinin nispeten duyarsız bir göstergesidir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -13260,22 +12792,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Vasokonstriktoren , wie z. B. Noradrenalin , erhöhen die Nachlast.",
         "explanation_tr": "B. norepinefrin gibi vazokonstriktörler afterload'ı artırır."
-      },
-      {
-        "key": "d",
-        "text_de": "Falsch. Das kardiale Protein Troponin T ist ein hochempfindlicher Indikator einer Myokardischämie (Sensitivität und Spezifität >90 %). Es erreicht schon innerhalb von 6 h nach Symptombeginn sein Maximum.",
-        "text_tr": "Yanlış. Kardiyak protein troponin T, miyokard iskemisinin oldukça duyarlı bir göstergesidir (duyarlılık ve özgüllük >%90). Semptomların başlamasından sonraki 6 saat içinde maksimuma ulaşır.",
-        "is_correct": true,
-        "explanation_de": "Vasodilatatoren , wie z. B. Phentolamin , senken die Nachlast.e. Richtig. Vasokonstriktoren , wie z. B. Noradrenalin , erhöhen die Nachlast.",
-        "explanation_tr": "B. Phentolamine gibi vazodilatörler art yükü azaltır. Doğru. B. norepinefrin gibi vazokonstriktörler afterload'ı artırır."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Die Enzymspiegel erreichen ihre Maxima wie folgt: Troponin T ca. 6 h, CPK/CPK-MB etwa 12 h, GOT etwa 24 h und LDH etwa 48 h nach Symptombeginn. 192 5Kapitel 5 · Regionala nästhesie",
-        "text_tr": "Doğru. Enzim seviyeleri şu şekilde maksimuma ulaşır: Troponin T yaklaşık 6 saat, CPK/CPK-MB yaklaşık 12 saat, GOT yaklaşık 24 saat ve LDH semptomların başlamasından yaklaşık 48 saat sonra. 192 5Bölüm 5 · Bölgesel anestezi",
-        "is_correct": true,
-        "explanation_de": "Vasokonstriktoren , wie z. B. Noradrenalin , erhöhen die Nachlast.",
-        "explanation_tr": "B. norepinefrin gibi vazokonstriktörler afterload'ı artırır."
       }
     ],
     "is_high_yield": true
@@ -13318,7 +12834,7 @@ const EXAM_QUESTIONS = [
         "text_de": "bei erhöhter Kontraktilität",
         "text_tr": "artan kontraktilite ile",
         "is_correct": true,
-        "explanation_de": "Eine erhöhte Kontraktilität ist gleichbedeutend mit einer erhöhten Herzleistung, welche zu einem erhöhten O 2 -Bedarf führt. 193 5 5.3 · Herz-Thorax-Chirurgie",
+        "explanation_de": "Eine erhöhte Kontraktilität ist gleichbedeutend mit einer erhöhten Herzleistung, welche zu einem erhöhten O 2 -Bedarf führt. 193",
         "explanation_tr": "Artan kontraktilite, artan O2 gereksinimine yol açan artan kalp debisi ile eş anlamlıdır. 193 5 5.3 · Kardiyotorasik cerrahi"
       },
       {
@@ -13414,7 +12930,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Eine Anämie kann teilweise durch eine Steigerung des Herzzeitvolumens kompensiert werden.",
         "text_tr": "Preeklampsi genellikle gebeliğin 20. haftasından sonra ortaya çıkan bir sendromdur. Tanı şu 3 bulguyu içerir (EPH): genel ödem, proteinüri >2 g/gün ve RR >140/90. Anemi ve hiperglisemi dahil değildir.",
         "is_correct": true,
-        "explanation_de": "Der Gesunde kann den erniedrigten O 2 -Gehalt des arteriellen Blutes durch eine Erhöhung des HZV ausgleichen. Eine einfache Überle- 194 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Der Gesunde kann den erniedrigten O 2 -Gehalt des arteriellen Blutes durch eine Erhöhung des HZV ausgleichen. Eine einfache Überle-",
         "explanation_tr": "Sağlıklı bir kişi, kalp debisini artırarak arteriyel kandaki azalan O2 içeriğini telafi edebilir. Basit bir müdahale- 194 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -13422,12 +12938,12 @@ const EXAM_QUESTIONS = [
         "text_de": "Eine ungenügende Relaxation des Ventrikels in der Diastole kann zu einem Herzversagen führen.",
         "text_tr": "Diyastolde ventrikülün yeterince gevşememesi kalp yetmezliğine yol açabilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Ein hypertrophierter Ventrikel ist für eine Ischämie besonders anfällig. e. Richtig. Ein steifer Ventrikel muss mehr Arbeit zum Auswurf eines gegebe- nen Schlagvolumens leisten als ein elastischer, er benötigt zu diesem Mehr an Arbeit auch mehr Sauerstoff.",
+        "text_de": "Ein hypertrophierter Ventrikel ist für eine Ischämie besonders anfällig.",
         "text_tr": "Hipertrofik bir ventrikül iskemiye özellikle duyarlıdır. e. Doğru. Sert bir ventrikülün belirli bir atım hacmini dışarı atmak için elastik olandan daha fazla iş yapması gerekir; Bu ekstra çalışmanın yanı sıra daha fazla oksijene de ihtiyaç duyulur.",
         "is_correct": true,
         "explanation_de": "",
@@ -13562,7 +13078,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Barbiturate sind als Induktionshypnotika gut geeignet.",
         "text_tr": "Barbitüratlar indüksiyon hipnotikleri olarak çok uygundur.",
         "is_correct": false,
-        "explanation_de": "Barbiturate haben eine negativ inotrope Wirkung und vermindern den systemischen Widerstand (TPR) und damit den mittleren arteriellen Blutdruck (MAP). Die Myokarddurchblutung ist bei AKS kritisch einge-schränkt. Zum einen besteht eine Myokardhypertrophie und zum anderen ist der myokardiale Perfusionsdruck (MPP) vermindert (MPP=MAP–LVEDP). Daher muss besonders auch darauf geachtet werden, den MAP bei der Narkoseinduktion nicht abfallen zu lassen. 196 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Barbiturate haben eine negativ inotrope Wirkung und vermindern den systemischen Widerstand (TPR) und damit den mittleren arteriellen Blutdruck (MAP). Die Myokarddurchblutung ist bei AKS kritisch einge-schränkt. Zum einen besteht eine Myokardhypertrophie und zum anderen ist der myokardiale Perfusionsdruck (MPP) vermindert (MPP=MAP–LVEDP). Daher muss besonders auch darauf geachtet werden, den MAP bei der Narkoseinduktion nicht abfallen zu lassen.",
         "explanation_tr": "Barbitüratlar negatif inotropik etkiye sahiptir ve sistemik direnci (TPR) ve dolayısıyla ortalama arteriyel kan basıncını (MAP) azaltır. AKS'de miyokardiyal kan akışı kritik derecede kısıtlanmıştır. Bir yanda miyokard hipertrofisi olur, diğer yanda miyokard perfüzyon basıncı (MPP) azalır (MPP=MAP-LVEDP). Bu nedenle anestezi indüksiyonu sırasında MAP'ın düşmemesine özellikle dikkat edilmelidir. 196 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -13570,16 +13086,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Ein Blutdruckabfall sollte mit Adrenalin therapiert werden.",
         "text_tr": "Kan basıncındaki düşüş adrenalin ile tedavi edilmelidir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Ein Vorhofflimmern lässt das HZV nicht abfallen.",
         "text_tr": "Atriyal fibrilasyon kalp debisinin düşmesine neden olmaz.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -13622,7 +13138,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Das effektive HZV ist immer vermindert.",
         "text_tr": "Etkin kalp atış hızı her zaman azalır.",
         "is_correct": false,
-        "explanation_de": "Das effektive HZV (HZV, das dem Systemkreislauf zur Verfügung steht) ist bei einer chronischen AKI bis zum Stadium NYHA III normal. Es kommt zu einer exzentrischen Ventrikelhypertrophie, die das anfallende erhöhte linksventrikuläre enddiastolische Volumen (LVEDV) ohne deutliche Steigerung des enddiastolischen Drucks (LVEDP) kompensieren kann. 197 5 5.3 · Herz-Thorax-Chirurgie",
+        "explanation_de": "Das effektive HZV (HZV, das dem Systemkreislauf zur Verfügung steht) ist bei einer chronischen AKI bis zum Stadium NYHA III normal. Es kommt zu einer exzentrischen Ventrikelhypertrophie, die das anfallende erhöhte linksventrikuläre enddiastolische Volumen (LVEDV) ohne deutliche Steigerung des enddiastolischen Drucks (LVEDP) kompensieren kann. 197",
         "explanation_tr": "Kronik AKI'da NYHA III evresine kadar etkin CO (sistemik dolaşımda bulunan CO) normaldir. Eksantrik ventriküler hipertrofi meydana gelir ve bu durum, diyastol sonu basıncında (LVEDP) önemli bir artış olmadan, sol ventriküler diyastol sonu hacminde (LVEDV) ortaya çıkan artışı telafi edebilir. 197 5 5.3 · Kardiyotorasik cerrahi"
       },
       {
@@ -13630,32 +13146,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Der Pulsdruck ist drastisch vermindert.",
         "text_tr": "Nabız basıncı büyük ölçüde azalır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Die linksventrikuläre Ventrikelcompliance ist erhöht. c. Falsch. Auch die fraktionierte Gabe von Suprarenin führt zu Tachykardien und sollte deshalb zugunsten von Noradrenalin oder Phenylephrin nicht eingesetzt werden, um den MAP anzuheben. Die Vorlast sollte auf hoch-normale Werte eingestellt werden, d. h. eine adäquate Volumentherapie zur optimalen Füllung des linken Ventrikels mit seiner erniedrigten Compli-ance ist für die Behandlung der arteriellen Hypotonie ebenso wichtig.",
+        "text_de": "Die linksventrikuläre Ventrikelcompliance ist erhöht.",
         "text_tr": "Sol ventriküler ventriküler kompliyans artar. C. Yanlış. Suprarenin'in fraksiyonel uygulanması da taşikardiye yol açar ve bu nedenle OAB'yi arttırmak için norepinefrin veya fenilefrin lehine kullanılmamalıdır. Ön yük yüksek normal değerlere (ör. h) ayarlanmalıdır. Sol ventrikülün azaltılmış kompliyansı ile optimal dolumu için yeterli hacim tedavisi, arteriyel hipotansiyonun tedavisi için de aynı derecede önemlidir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
-      },
-      {
-        "key": "d",
-        "text_de": "Falsch. Bei der AKS sind bis zu 40 % der Ventrikelfüllung von der intakten Vorhofkontraktion abhängig. Akut auftretende supraventrikuläre Herz-rhythmusstörungen oder Vorhofflimmern müssen daher behandelt wer-den, um das SV aufrechtzuerhalten.",
-        "text_tr": "Yanlış. AKS'de ventriküler dolumun %40'a kadarı atriyal kasılmanın sağlam olmasına bağlıdır. Bu nedenle, akut olarak ortaya çıkan supraventriküler kardiyak aritmiler veya atriyal fibrilasyon, SV'yi sürdürmek için tedavi edilmelidir.",
-        "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
-      },
-      {
-        "key": "e",
-        "text_de": "Richtig. Eine Bradykardie ist genauso zu vermeiden wie eine Tachykardie. Die Begründung liegt darin, dass das HZV, bei relativ fixiertem SV, haupt-sächlich von der Herzfrequenz abhängt und eine Bradykardie zu einem Abfall des HZV und des MAP führt, was sich wiederum negativ auf die Myokarddurchblutung auswirkt. Angestrebt wird eine Herzfrequenz von etwa 70–90/min.",
-        "text_tr": "Doğru. Bradikardiden taşikardi ile aynı şekilde kaçınılmalıdır. Bunun nedeni, SV nispeten sabit olduğunda CO'nun temel olarak kalp hızına bağlı olması ve bradikardinin CO ve MAP'ta bir azalmaya yol açması ve bunun da miyokardiyal kan akışı üzerinde olumsuz bir etkiye sahip olmasıdır. Amaç kalp atış hızının 70-90/dakika civarında olmasıdır.",
-        "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       }
     ],
     "is_high_yield": true
@@ -13778,7 +13278,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erfordert zur effektiven Nutzung ein hohes Maß an Erfahrung seitens des Anwenders.",
         "text_tr": "etkili bir şekilde kullanmak, kullanıcının yüksek düzeyde deneyime sahip olmasını gerektirir.",
         "is_correct": true,
-        "explanation_de": "Eine »Gelegenheitsechokardiographie« ist nicht möglich. Diese Tatsache hat in vielen Ländern zur Einführung von Standards und Zertifi-zierungen in der Echokardiographie geführt. In Deutschland wird nach den Richtlinien der DGAI zur Zertifizierung »TEE« gefordert, dass ein 40-stündi-ger Kurs an einer Weiterbildungsstätte abgeleistet wird und 200 TEE-Unter-suchungen durchgeführt werden. Zusätzlich muss noch eine mündliche Prüfung bestanden werden. 199 5 5.3 · Herz-Thorax-Chirurgie",
+        "explanation_de": "Eine »Gelegenheitsechokardiographie« ist nicht möglich. Diese Tatsache hat in vielen Ländern zur Einführung von Standards und Zertifi-zierungen in der Echokardiographie geführt. In Deutschland wird nach den Richtlinien der DGAI zur Zertifizierung »TEE« gefordert, dass ein 40-stündi-ger Kurs an einer Weiterbildungsstätte abgeleistet wird und 200 TEE-Unter-suchungen durchgeführt werden. Zusätzlich muss noch eine mündliche Prüfung bestanden werden. 199",
         "explanation_tr": "“Gündelik ekokardiyografi” mümkün değildir. Bu gerçek, birçok ülkede ekokardiyografide standartların ve sertifikaların getirilmesine yol açmıştır. Almanya'da “TEE” sertifikasyonu için DGAI yönergelerine göre bir eğitim merkezinde 40 saatlik bir kursun tamamlanması ve 200 TEE sınavının yapılması gerekmektedir. Ayrıca sözlü sınavdan geçilmesi gerekmektedir. 199 5 5.3 · Kardiyotorasik cerrahi"
       },
       {
@@ -13786,24 +13286,24 @@ const EXAM_QUESTIONS = [
         "text_de": "ist in der Detektion einer Myokardischämie dem EKG überlegen.",
         "text_tr": "Miyokardiyal iskemi tespitinde EKG'den üstündür.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "ist das sensitivste Monitoringverfahren zur Detektion intrakardialer Luft.",
         "text_tr": "intrakardiyak havayı tespit etmek için en hassas izleme yöntemidir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "ist bei Vorliegen eines Vorhofmyxoms absolut kontraindiziert.",
         "text_tr": "atriyal miksoma varlığında kesinlikle kontrendikedir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -13854,32 +13354,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Nervenschädigung",
         "text_tr": "Sinir hasarı",
         "is_correct": true,
-        "explanation_de": "Schädigungen des N. recurrens , des sympathischen Grenzstrangs und des N. phrenicus sind typisch. 200 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Schädigungen des N. recurrens , des sympathischen Grenzstrangs und des N. phrenicus sind typisch.",
         "explanation_tr": "Tekrarlayan laringeal sinir, sempatik gövde ve frenik sinirin hasar görmesi tipiktir. 200 5Bölüm 5 · Bölgesel anestezi"
       },
       {
         "key": "e",
-        "text_de": "schwere Blutung b. Richtig. Ventrikelwandbewegungsstörungen sind sensitive und spezifische Zeichen einer Myokardischämie bei der TEE-Untersuchung. Sie werden durch den geübten Untersucher zuverlässig entdeckt und gehen zeitlich den ischämiebedingten EKG-Veränderungen (ST-Senkung, T-Negativierung) und den Veränderungen mit einem Monitoring mittels Pulmonalarterien-katheter (Anstieg des PCWP) voraus.",
+        "text_de": "schwere Blutung",
         "text_tr": "şiddetli kanama b. Doğru. Ventriküler duvar hareket anormallikleri TEE incelemesinde miyokard iskemisinin hassas ve spesifik belirtileridir. Bunlar eğitimli muayeneci tarafından güvenilir bir şekilde tespit edilir ve iskemi ile ilişkili EKG değişikliklerinden (ST depresyonu, T negatifliği) ve pulmoner arter kateteri kullanılarak yapılan izlemedeki değişikliklerden (PCWP'de artış) önce gelir.",
-        "is_correct": true,
-        "explanation_de": "c. ✅ Richtig. Im Rahmen einer Mediastinoskopie kommt es nicht selten zu einer Verletzung der verdrängten Lunge mit Ausbildung eines Pneumothorax.",
-        "explanation_tr": "C. ✅Doğru. Mediastinoskopi sırasında yer değiştirmiş akciğerin yaralanması ve pnömotoraks gelişmesi alışılmadık bir durum değildir."
-      },
-      {
-        "key": "c",
-        "text_de": "Richtig. Schon Luftmengen unter 0,5 ml werden zuverlässig entdeckt.d. Falsch. Das Vorliegen eines Vorhofmyxoms mit anamnestischer Embolisa- tion stellt eine relative Kontraindikation dar; als absolute Kontraindikatio-nen gelten Strikturen sowie Varizen des Ösophagus oder vorangegangene Ösophaguschirurgie .",
-        "text_tr": "Doğru. 0,5 ml'nin altındaki hava hacimleri bile güvenilir bir şekilde algılanır.d. Yanlış. Embolizasyon öyküsü olan bir atriyal miksoma varlığı göreceli bir kontrendikasyonu temsil eder; Özofagustaki darlıklar ve varisler veya daha önce özofagus ameliyatı geçirilmiş olması mutlak kontrendikasyon olarak kabul edilir.",
         "is_correct": true,
         "explanation_de": "Im Rahmen einer Mediastinoskopie kommt es nicht selten zu einer Verletzung der verdrängten Lunge mit Ausbildung eines Pneumothorax.",
         "explanation_tr": "Mediastinoskopi sırasında yer değiştirmiş akciğerin yaralanması ve pnömotoraks gelişmesi alışılmadık bir durum değildir."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Es wurde über folgende z. T. schwerwiegende Komplikationen berichtet: Ösophagusperforation, (passagere) Stimmbandlähmung, Blu-tungen sowie Auslösung von hämodynamisch relevanten Arrhythmien.",
-        "text_tr": "Yanlış. Aşağıdaki z ile ilgiliydi. Bazı ciddi komplikasyonlar rapor edilmiştir: özofagus perforasyonu, (geçiş) ses teli felci, kanama ve hemodinamik olarak önemli aritmilerin tetiklenmesi.",
-        "is_correct": true,
-        "explanation_de": "c. ✅ Richtig. Im Rahmen einer Mediastinoskopie kommt es nicht selten zu einer Verletzung der verdrängten Lunge mit Ausbildung eines Pneumothorax.",
-        "explanation_tr": "C. ✅Doğru. Mediastinoskopi sırasında yer değiştirmiş akciğerin yaralanması ve pnömotoraks gelişmesi alışılmadık bir durum değildir."
       }
     ],
     "is_high_yield": false
@@ -13979,10 +13463,10 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird die Oxygenierung durch die Anwendung eines PEEP verbessert. e. Richtig. Die schwere Blutung, ausgelöst durch die Verletzung verdrängter Gefäße, ist häufig im Rahmen einer Mediastinoskopie, und entsprechende Vorbereitungen sollten getroffen sein. 201 5 5.3 · Herz-Thorax-Chirurgie",
+        "text_de": "wird die Oxygenierung durch die Anwendung eines PEEP verbessert.",
         "text_tr": "PEEP kullanılarak oksijenasyon iyileştirilir. e. Doğru. Mediastinoskopi sırasında yer değiştirmiş damarların yaralanmasından kaynaklanan şiddetli kanama sıklıkla görülür ve uygun hazırlıkların yapılması gerekir. 201 5 5.3 · Kardiyotorasik cerrahi",
         "is_correct": false,
-        "explanation_de": "Ein PEEP führt zu einer Erhöhung der rechtsventrikulären Nachlast und reduziert die ohnehin eingeschränkte Lungenperfusion noch weiter. Sinnvoll ist die Applikation reinen Sauerstoffs, welche zwar den anatomisch bedingten Shunt nicht zu reduzieren vermag, aber den physikalisch gelös-ten O 2 -Anteil des Blutes erhöht und darüber die Oxygenierung verbessert. 202 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Ein PEEP führt zu einer Erhöhung der rechtsventrikulären Nachlast und reduziert die ohnehin eingeschränkte Lungenperfusion noch weiter. Sinnvoll ist die Applikation reinen Sauerstoffs, welche zwar den anatomisch bedingten Shunt nicht zu reduzieren vermag, aber den physikalisch gelös-ten O 2 -Anteil des Blutes erhöht und darüber die Oxygenierung verbessert.",
         "explanation_tr": "PEEP sağ ventriküler afterload'da artışa neden olur ve zaten sınırlı olan akciğer perfüzyonunu daha da azaltır. Anatomik olarak oluşan şantları azaltamayan ancak kanın fiziksel olarak çözünmüş O2 içeriğini artıran ve böylece oksijenlenmeyi artıran saf oksijenin uygulanması mantıklıdır. 202 5Bölüm 5 · Bölgesel anestezi"
       }
     ],
@@ -14034,7 +13518,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Pulmonalstenose",
         "text_tr": "Pulmoner darlık",
         "is_correct": true,
-        "explanation_de": "Der rechte Ventrikel muss einen erhöhten Druck aufbringen, um das Blut auszuwerfen. Dies kann dazu führen, dass der rechtsventrikuläre Druck den diastolischen Druck übersteigt und die normalerweise kontinu-ierliche Durchblutung in der Diastole vermindert bzw. gestoppt wird. Dies kann der rechte Ventrikel aber nur schlecht kompensieren. Daher sollte bei einem erhöhten pumonalen Widerstand der systemische (diastolische) Druck angehoben werden. 203 5 5.4 · Kinderanästhesie 5.4 Kinderanästhesie",
+        "explanation_de": "Der rechte Ventrikel muss einen erhöhten Druck aufbringen, um das Blut auszuwerfen. Dies kann dazu führen, dass der rechtsventrikuläre Druck den diastolischen Druck übersteigt und die normalerweise kontinu-ierliche Durchblutung in der Diastole vermindert bzw. gestoppt wird. Dies kann der rechte Ventrikel aber nur schlecht kompensieren. Daher sollte bei einem erhöhten pumonalen Widerstand der systemische (diastolische) Druck angehoben werden. 203",
         "explanation_tr": "Sağ ventrikül kanı dışarı atmak için artan basınç uygulamalıdır. Bu, sağ ventriküler basıncın diyastolik basıncı aşmasına ve diyastolde normalde sürekli olan kan akışının azalmasına veya durmasına neden olabilir. Ancak sağ ventrikül bunu ancak zayıf bir şekilde telafi edebilir. Bu nedenle akciğer direnci artmışsa sistemik (diyastolik) basıncın da arttırılması gerekir. 203 5 5,4 · Pediatrik anestezi 5,4 Pediatrik anestezi"
       }
     ],
@@ -14114,7 +13598,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die Verschlusskapazität kleiner als die funktionelle Residualkapazität.",
         "text_tr": "kapatma kapasitesi fonksiyonel artık kapasiteden daha küçüktür.",
         "is_correct": false,
-        "explanation_de": "Die Verschlusskapazität ist größer als die Residualkapazität, in der Folge kommt es am Ende der Exspiration zu einem Verschluss der kleineren Atemwege (Erhöhung des Shunts!) 204 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Die Verschlusskapazität ist größer als die Residualkapazität, in der Folge kommt es am Ende der Exspiration zu einem Verschluss der kleineren Atemwege (Erhöhung des Shunts!)",
         "explanation_tr": "QRS kompleksinin süresi aşağıdaki antiaritmik ilaçlarla uzatılır:"
       },
       {
@@ -14122,16 +13606,16 @@ const EXAM_QUESTIONS = [
         "text_de": "ist durch Auskultation eine Abschätzung des Volumenstatus möglich.",
         "text_tr": "Oskültasyon yoluyla hacim durumunu tahmin etmek mümkündür.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "ist der Anteil der Totraumventilation [ml/kgKG] so groß wie beim Erwach-senen.",
         "text_tr": "Ölü boşluk ventilasyonunun oranı [ml/kgBW] yetişkinlerdeki kadar yüksektir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -14291,7 +13775,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Thiopental wird in einer Dosierung von 8 mg/kgKG i.v. zur Einleitung bei Säuglingen gegeben. 206 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "Thiopental wird in einer Dosierung von 8 mg/kgKG i.v. zur Einleitung bei Säuglingen gegeben.",
         "text_tr": "Tiyopental i.v. olarak uygulanır. 8 mg/kg vücut ağırlığı dozunda. Bebeklerde indüksiyon için verilir. 206 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.",
@@ -14346,7 +13830,7 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die Schleimhaut der Luftwege empfindlicher als die des Erwachsenen.",
         "text_tr": "Solunum yollarının mukoza zarı yetişkinlere göre daha hassastır.",
         "is_correct": true,
-        "explanation_de": "Forcierte Intubationsversuche und/oder übergroße Beatmungs- tuben können schnell zu starker Ödembildung mit konsekutiver Atemnot führen. 207 5 5.5 · Geburtshilfe",
+        "explanation_de": "Forcierte Intubationsversuche und/oder übergroße Beatmungs- tuben können schnell zu starker Ödembildung mit konsekutiver Atemnot führen. 207",
         "explanation_tr": "Zorla entübasyon girişimleri ve/veya aşırı büyük ventilasyon tüpleri, hızla ciddi ödem oluşumuna ve ardından nefes darlığına yol açabilir. 207 5 5.5 · Kadın Doğum"
       }
     ],
@@ -14434,7 +13918,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Blut fließt als Rechts-links-Shunt durch das Foramen ovale.",
         "text_tr": "Kan foramen ovaleden sağdan sola şant şeklinde akar.",
         "is_correct": true,
-        "explanation_de": "Mit der Geburt ändern sich die Druckverhältnisse im Vorhof, so- dass sich das Foramen ovale funktionell verschließt. Vor der Geburt besteht 208 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Mit der Geburt ändern sich die Druckverhältnisse im Vorhof, so- dass sich das Foramen ovale funktionell verschließt. Vor der Geburt besteht",
         "explanation_tr": "Doğumla birlikte atriyumdaki basınç koşulları değişir, böylece foramen ovale işlevsel olarak kapanır. Doğumdan önce 208 5Bölüm 5 · Bölgesel anestezi vardır"
       },
       {
@@ -14442,8 +13926,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Blut fließt als Links-rechts-Shunt durch den Ductus arteriosus Botalli.",
         "text_tr": "Kan, Botalli duktus arteriyozus boyunca sol-sağ şant şeklinde akar.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -14535,7 +14019,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "c",
-        "text_de": "Fällt bei einer Schwangeren der Blutdruck unter Spinalanästhesie ab, sollte ein α-Rezeptor-Agonist verabreicht werden. 209 5 5.5 · Geburtshilfe",
+        "text_de": "Fällt bei einer Schwangeren der Blutdruck unter Spinalanästhesie ab, sollte ein α-Rezeptor-Agonist verabreicht werden. 209",
         "text_tr": "Kokain:",
         "is_correct": false,
         "explanation_de": "Die Gabe eines α-Agonisten hebt zwar den maternalen arteriellen Blutdruck zuverlässig an, führt aber gleichzeitig zu einer Minderdurchblu-tung der uteroplazentaren Einheit durch Konstriktion der uterinen Gefäße. Aus diesem Grund wird die Gabe eines gemischten α- und β -Agonisten (Vasodilatation) wie z. B. Ephedrin empfohlen, um die Perfusionsminde- rung des Uterus so gering wie möglich zu halten.",
@@ -14558,21 +14042,21 @@ const EXAM_QUESTIONS = [
         "text_de": "Der Schmerz in der Eröffnungsphase der Geburt korreliert am besten mit der Stärke der Uteruskontraktionen.",
         "text_tr": "Doğumun başlangıç ​​aşamalarındaki ağrı, uterus kasılmalarının gücüyle en iyi şekilde ilişkilidir.",
         "is_correct": true,
-        "explanation_de": "b. ✅ Richtig.",
-        "explanation_tr": "B. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "b",
         "text_de": "In der Eröffnungsphase der Geburt erfolgt die Schmerzleitung über Nerven-fasern, die zwischen L2 und S4 in den Spinalkanal eintreten.",
         "text_tr": "Doğumun açılış döneminde ağrı, L2 ile S4 arasındaki omurilik kanalına giren sinir lifleri aracılığıyla iletilir.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
-        "text_de": "Die Blockade des N. pudendus ist ein zuverlässiges Verfahren zur Schmerz-ausschaltung unter der Geburt. 210 5Kapitel 5 · Regionala nästhesie",
-        "text_tr": "Pudendal sinirin blokajı doğum sırasında ağrının giderilmesi için güvenilir bir prosedürdür. 210 5Bölüm 5 · Bölgesel anestezi",
+        "text_de": "Die Blockade des N. pudendus ist ein zuverlässiges Verfahren zur Schmerz-ausschaltung unter der Geburt.",
+        "text_tr": "Pudendal sinirin blokajı doğum sırasında ağrının giderilmesi için güvenilir bir prosedürdür.",
         "is_correct": true,
         "explanation_de": "",
         "explanation_tr": ""
@@ -14623,18 +14107,10 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die notwendige Anästhesieausbreitung für eine Sectio caesarea in Peri-duralanästhesie muss Th12 erreichen. d. Der Parazervikalblock ist ein risikoarmes Verfahren zur Schmerzausschaltung während der Eröffnungsphase der Geburt.",
+        "text_de": "Die notwendige Anästhesieausbreitung für eine Sectio caesarea in Peri-duralanästhesie muss Th12 erreichen.",
         "text_tr": "Peridural anestezi altında sezaryen için gerekli anestezi yayılımı Th12'ye ulaşmalıdır. D. Paraservikal blok, doğumun açılış aşamasında ağrıyı ortadan kaldırmak için düşük riskli bir işlemdir.",
         "is_correct": false,
-        "explanation_de": "Zur adäquaten Schmerzausschaltung muss das Dermatom TH6 erreicht werden; also 17 (7+5+5) Segmente! 211 5 5.5 · Geburtshilfe",
-        "explanation_tr": "Ağrıyı yeterince ortadan kaldırmak için TH6 dermatomuna ulaşılmalıdır; yani 17 (7+5+5) segment! 211 5 5.5 · Kadın Doğum"
-      },
-      {
-        "key": "e",
-        "text_de": "Die notwendige Anästhesieausbreitung für eine Sectio caesarea in Peri dural-anästhesie muss Th12 erreichen.",
-        "text_tr": "Peridural anestezi altında sezaryen için gerekli anestezi yayılımı Th12'ye ulaşmalıdır.",
-        "is_correct": false,
-        "explanation_de": "Zur adäquaten Schmerzausschaltung muss das Dermatom TH6 erreicht werden; also 17 (7+5+5) Segmente! 211 5 5.5 · Geburtshilfe",
+        "explanation_de": "Zur adäquaten Schmerzausschaltung muss das Dermatom TH6 erreicht werden; also 17 (7+5+5) Segmente! 211",
         "explanation_tr": "Ağrıyı yeterince ortadan kaldırmak için TH6 dermatomuna ulaşılmalıdır; yani 17 (7+5+5) segment! 211 5 5.5 · Kadın Doğum"
       }
     ],
@@ -14670,8 +14146,8 @@ const EXAM_QUESTIONS = [
         "text_de": "frühe Dezelerationen (Typ I)",
         "text_tr": "erken yavaşlamalar (Tip I)",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig. Unter späten Dezelerationen versteht man den Abfall der fetalen Herzfrequenz nach einer Uteruskontraktion. Sie gelten als Zeichen eines »fetal distress«.",
-        "explanation_tr": "D. ✅Doğru. Geç yavaşlamalar, uterus kasılmasının ardından fetal kalp atış hızının düşmesidir. Bunlar “fetal sıkıntının” işareti olarak kabul edilir."
+        "explanation_de": "Unter späten Dezelerationen versteht man den Abfall der fetalen Herzfrequenz nach einer Uteruskontraktion. Sie gelten als Zeichen eines »fetal distress«.",
+        "explanation_tr": "Geç yavaşlamalar, uterus kasılmasının ardından fetal kalp atış hızının düşmesidir. Bunlar “fetal sıkıntının” işareti olarak kabul edilir."
       },
       {
         "key": "d",
@@ -14735,7 +14211,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Der Ductus venosus verschließt sich innerhalb von 4 Wochen nach der Geburt. 212 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "Der Ductus venosus verschließt sich innerhalb von 4 Wochen nach der Geburt.",
         "text_tr": "Duktus venosus doğumdan sonraki 4 hafta içinde kapanır. 212 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": false,
         "explanation_de": "Der Ductus venosus verschließt sich innerhalb einer Woche nach Geburt.",
@@ -14790,7 +14266,7 @@ const EXAM_QUESTIONS = [
         "text_de": "kommt es häufig zu Intubationsschwierigkeiten.",
         "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O2 gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O2 ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O2 ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O2 gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
         "is_correct": true,
-        "explanation_de": "Es entwickelt sich häufig ein ausgeprägtes Ödem der oberen Luft- wege mit Larynxbeteiligung, welche die Einstellung der Glottis erschweren kann. 213 5 5.5 · Geburtshilfe",
+        "explanation_de": "Es entwickelt sich häufig ein ausgeprägtes Ödem der oberen Luft- wege mit Larynxbeteiligung, welche die Einstellung der Glottis erschweren kann. 213",
         "explanation_tr": "Üst solunum yollarında belirgin ödem sıklıkla gırtlak tutulumuyla gelişir ve bu durum glottisin ayarlanmasını zorlaştırabilir. 213 5 5.5 · Kadın Doğum"
       }
     ],
@@ -14891,7 +14367,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird durch Unterlegen eines Keils unter die linke Gesäßhälfte verhindert. 214 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "wird durch Unterlegen eines Keils unter die linke Gesäßhälfte verhindert.",
         "text_tr": "Kalçanın sol yarısının altına takoz konularak bu durum önlenir. 214 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": false,
         "explanation_de": "Der Keil wird unter die rechte Gesäßhälfte gelegt.",
@@ -14995,7 +14471,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Anämie 215 5 5.6 · Geriatrie",
+        "text_de": "Anämie 215",
         "text_tr": "Anemi 215 5 5,6 · Geriatri",
         "is_correct": false,
         "explanation_de": "Siehe Antwort a.",
@@ -15099,7 +14575,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die linksventrikuläre Nachlast ist im Alter in der Regel erhöht. 216 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "Die linksventrikuläre Nachlast ist im Alter in der Regel erhöht.",
         "text_tr": "Sol ventriküler afterload genellikle yaşla birlikte artar. 216 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": true,
         "explanation_de": "Der periphere Gefäßwiderstand steigt im Alter regelhaft an, und die Nachlast ist somit erhöht.",
@@ -15154,7 +14630,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Die alveoloarterielle Sauerstoffdifferenz (AaDO 2) nimmt ab.",
         "text_tr": "Alveoloarteriyel oksijen farkı (AaDO 2) azalır.",
         "is_correct": false,
-        "explanation_de": "Im Alter steigt der Anteil perfundierter, nichtventilierter Lungen- areale an; es kommt zur Erhöhung der pulmonalen Shuntfraktion und somit zu einem Anstieg der AaDO 2 . 217 5 5.7 · Maligne Hyperthermie",
+        "explanation_de": "Im Alter steigt der Anteil perfundierter, nichtventilierter Lungen- areale an; es kommt zur Erhöhung der pulmonalen Shuntfraktion und somit zu einem Anstieg der AaDO 2 . 217",
         "explanation_tr": "Yaşla birlikte perfüze, havalandırılmayan akciğer alanlarının oranı artar; Pulmoner şant fraksiyonunda bir artış ve dolayısıyla AaDO 2'de bir artış vardır. 217 5 5,7 · Malign hipertermi"
       }
     ],
@@ -15255,7 +14731,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "führt zu einer Kontraktilitätsminderung des Herzmuskels. 218 5Kapitel 5 · Regionala nästhesie",
+        "text_de": "führt zu einer Kontraktilitätsminderung des Herzmuskels.",
         "text_tr": "kalp kasının kontraktilitesinde azalmaya yol açar. 218 5Bölüm 5 · Bölgesel anestezi",
         "is_correct": false,
         "explanation_de": "Eine negativ inotrope Wirkung ist aufgrund der Hemmung der Kalziumfreisetzung aus dem sarkoplasmatischen Retikulum zwar theore-tisch denkbar, spielt aber in der Praxis keine Rolle. Es wird auch keine Vaso-dilatation ausgelöst oder die uterine Kontraktion vermindert.",
@@ -15307,7 +14783,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "ist häufig bei Patienten mit einem »central core disease« vorhanden. 219 5 5.7 · Maligne Hyperthermie",
+        "text_de": "ist häufig bei Patienten mit einem »central core disease« vorhanden. 219",
         "text_tr": "santral çekirdek hastalığı olan hastalarda sıklıkla mevcuttur. 219 5 5,7 · Malign hipertermi",
         "is_correct": true,
         "explanation_de": "Das »central core disease « ist eine mitochondriale Myopathie, die auf eine MH hinweist. Daneben ist eine Vielzahl von Myopathien be-schrieben worden, die mit einer MH vergesellschaftet sind. Eine spezifische Myopathie als ein morphologisches Korrelat der MH gibt es nicht. Praktisch sind alle Myopathien so zu behandeln, als ob sie ein erhöhtes Risiko der MH bedingen.",
@@ -15338,7 +14814,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Succinylcholin",
         "text_tr": "Süksinilkolin",
         "is_correct": false,
-        "explanation_de": "Alle depolarisierenden Muskelrelaxanzien sind Trigger für eine MH und daher zu vermeiden. 220 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Alle depolarisierenden Muskelrelaxanzien sind Trigger für eine MH und daher zu vermeiden.",
         "explanation_tr": "Tüm depolarize edici kas gevşeticiler MH'yi tetikler ve bu nedenle kaçınılmalıdır. 220 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -15346,16 +14822,16 @@ const EXAM_QUESTIONS = [
         "text_de": "Amidlokalanästhetika",
         "text_tr": "plazma sodyum seviyelerinde bir düşüş meydana gelebilir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Pancuronium",
         "text_tr": "Pankuronyum",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -15466,7 +14942,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Eine metabolische Alkalose tritt regelhaft im Rahmen einer MH-Krise auf.",
         "text_tr": "Metabolik alkaloz genellikle MH krizinin bir parçası olarak ortaya çıkar.",
         "is_correct": false,
-        "explanation_de": "Es tritt eine metabolische Laktatazidose auf. Im Vollbild der MH müs- sen F I O 2 und Atemminutenvolumen stark erhöht werden. Der enorm gestei- gerte Stoffwechsel der Skelettmuskulatur erfordert die Gabe von reinem Sauerstoff mit hohem Frischgasflow und eine Vervielfachung des Atem-minutenvolumens, um das entstehende Kohlendioxid zu eliminieren. 222 5Kapitel 5 · Regionala nästhesie 5.8 Porphyrie",
+        "explanation_de": "Es tritt eine metabolische Laktatazidose auf. Im Vollbild der MH müs- sen F I O 2 und Atemminutenvolumen stark erhöht werden. Der enorm gestei- gerte Stoffwechsel der Skelettmuskulatur erfordert die Gabe von reinem Sauerstoff mit hohem Frischgasflow und eine Vervielfachung des Atem-minutenvolumens, um das entstehende Kohlendioxid zu eliminieren. .8 Porphyrie",
         "explanation_tr": "Metabolik laktik asidoz oluşur. MH'nin tam resminde F I O 2 ve dakika ventilasyonunun büyük ölçüde arttırılması gerekir. İskelet kaslarının aşırı derecede artan metabolizması, ortaya çıkan karbondioksiti ortadan kaldırmak için yüksek taze gaz akışıyla saf oksijenin uygulanmasını ve dakikadaki ventilasyon hacminin çoğaltılmasını gerektirir. 222 5Bölüm 5 · Bölgesel anestezi 5.8 Porfiri"
       }
     ],
@@ -15567,7 +15043,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "DHB 223 5 5.8 · Porphyrie",
+        "text_de": "DHB 223",
         "text_tr": "DHB 223 5 5,8 · Porfiri",
         "is_correct": true,
         "explanation_de": "Unter den Antiemetika gilt DHB als »sicher«, während Metoclo- pramid als »unsicher« klassifiziert wurde.",
@@ -15614,7 +15090,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Eine hypotone Hyperhydratation kann sich entwickeln.",
         "text_tr": "Hipotonik hiperhidrasyon gelişebilir.",
         "is_correct": true,
-        "explanation_de": "Auch hypothalamische Strukturen sind mitunter geschädigt, sodass die Ausschüttung von ADH inadäquat ist. Dies kann sich sowohl in einer erhöhten Retention freien Wassers (ADH-Ausschüttung erhöht) als auch in einem Verlust freien Wassers (ADH-Ausschüttung erniedrigt) äußern. 224 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Auch hypothalamische Strukturen sind mitunter geschädigt, sodass die Ausschüttung von ADH inadäquat ist. Dies kann sich sowohl in einer erhöhten Retention freien Wassers (ADH-Ausschüttung erhöht) als auch in einem Verlust freien Wassers (ADH-Ausschüttung erniedrigt) äußern.",
         "explanation_tr": "Hipotalamik yapılar da bazen hasar gördüğünden ADH salınımı yetersiz olur. Bu, hem serbest su tutulumunun artması (ADH salgılanmasının artması) hem de serbest su kaybı (ADH salgılanmasının azalması) ile kendini gösterebilir. 224 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -15674,7 +15150,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Stärkste abdominelle Schmerzen sind im akuten Porphyrieschub typisch.",
         "text_tr": "Şiddetli karın ağrısı, akut porfiri atağının tipik bir örneğidir.",
         "is_correct": true,
-        "explanation_de": "Die abdominellen Schmerzen sind Ausdruck der Beteiligung des vegetativen Nervensystems und auf Darmkoliken zurückzuführen. e. Richtig. Im akuten Schub können eine Tachykardie sowie ein instabiler Kreislauf (Mitbeteiligung und Schädigung des vegetativen Nerven systems) eine intensivmedizinische Betreuung erforderlich machen. Die Therapie eines akuten Schubes beinhaltet die Gabe von Glukoselösungen (Feed-backhemmung der δ -Aminolävulinsäure) und evtl. die Verabreichung von Häm-Arginat. 225 5 5.9 · Schock 5.9 Schock",
+        "explanation_de": "Die abdominellen Schmerzen sind Ausdruck der Beteiligung des vegetativen Nervensystems und auf Darmkoliken zurückzuführen. e. Richtig. Im akuten Schub können eine Tachykardie sowie ein instabiler Kreislauf (Mitbeteiligung und Schädigung des vegetativen Nerven systems) eine intensivmedizinische Betreuung erforderlich machen. Die Therapie eines akuten Schubes beinhaltet die Gabe von Glukoselösungen (Feed-backhemmung der δ -Aminolävulinsäure) und evtl. die Verabreichung von Häm-Arginat. 225",
         "explanation_tr": "Karın ağrısı, otonom sinir sisteminin tutulumunun bir ifadesidir ve bağırsak kolikine atfedilebilir. e. Doğru. Akut atakta taşikardi ve dengesiz dolaşım (otonom sinir sisteminin tutulumu ve hasarı) yoğun tıbbi bakım gerektirebilir. Akut bir atağın tedavisi, glikoz solüsyonlarının uygulanmasını (δ-aminolevulinik asidin geri bildirim inhibisyonu) ve muhtemelen heme arjinatın uygulanmasını içerir. 225 5 5,9 · Şok 5,9 Şok"
       }
     ],
@@ -15718,7 +15194,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Arterenol ist das Katecholamin der 1. Wahl, um eine arterielle Hypotonie zu behandeln.",
         "text_tr": "Arterenol, arteriyel hipotansiyon tedavisinde ilk tercih edilen katekolamindir.",
         "is_correct": false,
-        "explanation_de": "Adrenalin ist das Katecholamin der 1. Wahl. Es erhöht den periphe- ren Widerstand und vermindert über seine β -mimetische Wirkung die Mastzelldegranulation und die Bronchokonstriktion. Arterenol ist das Kate- cholamin der 2. Wahl. Eine Volumenexpansion muss gleichzeitig erfolgen, da bis zu 40 % des intravaskulären Volumens im Rahmen einer allergischen Reaktion in das Interstitium verschoben werden können. 226 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Adrenalin ist das Katecholamin der 1. Wahl. Es erhöht den periphe- ren Widerstand und vermindert über seine β -mimetische Wirkung die Mastzelldegranulation und die Bronchokonstriktion. Arterenol ist das Kate- cholamin der 2. Wahl. Eine Volumenexpansion muss gleichzeitig erfolgen, da bis zu 40 % des intravaskulären Volumens im Rahmen einer allergischen Reaktion in das Interstitium verschoben werden können.",
         "explanation_tr": "Adrenalin ilk tercih edilen katekolamindir. Periferik direnci arttırır ve β-mimetik etkisi sayesinde mast hücre degranülasyonunu ve bronkokonstriksiyonu azaltır. Arterenol ikinci tercih edilen katekolamindir. Alerjik reaksiyonun bir parçası olarak intravasküler hacmin %40'a kadarı interstisyuma yer değiştirebileceğinden hacim genişlemesinin eş zamanlı olarak gerçekleşmesi gerekir. 226 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -15798,7 +15274,7 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöhter ZVD",
         "text_tr": "artan CVP",
         "is_correct": true,
-        "explanation_de": "Die akute Nachlaststeigerung des rechten Ventrikels führt zu einem Abfall des rechtsventrikulären Schlagvolumens und bedingt ein Rückwärtsversagen des Herzens mit Anstieg des ZVD. 227 5 5.9 · Schock",
+        "explanation_de": "Die akute Nachlaststeigerung des rechten Ventrikels führt zu einem Abfall des rechtsventrikulären Schlagvolumens und bedingt ein Rückwärtsversagen des Herzens mit Anstieg des ZVD. 227",
         "explanation_tr": "Sağ ventrikülün art yükündeki akut artış, sağ ventrikül atım hacminde bir azalmaya yol açar ve CVP'de artışla birlikte kalbin geriye doğru yetmezliğine neden olur. 227 5 5,9 · Şok"
       },
       {
@@ -15806,29 +15282,29 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöhter pulmonalkapillärer Verschlussdruck (PCWP)",
         "text_tr": "Artmış pulmoner kılcal kapanma basıncı (PCWP)",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "gestaute Jugularvenen",
         "text_tr": "tıkanmış şah damarları",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "Dyspnoe",
         "text_tr": "Nefes darlığı",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
-        "text_de": "Tachykardie e. Falsch. Anaphylaktische Reaktion bedeutet eine Vermittlung der allergi- schen Reaktion durch Antikörper, während bei einer anaphylaktoiden Reaktion keine Antikörper beteiligt sind (direkte Komplementaktivierung oder unspezifische Histaminliberation). Klinisch können diese unterschied-lichen pathophysiologischen Vorgänge nicht unterschieden werden und müssen der gleichen Therapie zugeführt werden.",
-        "text_tr": "Taşikardi e. Yanlış. Anafilaktik reaksiyon, alerjik reaksiyona antikorların aracılık ettiği anlamına gelirken, anafilaktoid reaksiyon antikorları içermez (doğrudan kompleman aktivasyonu veya spesifik olmayan histamin salınımı). Bu farklı patofizyolojik süreçler klinik olarak ayırt edilemez ve aynı şekilde tedavi edilmelidir.",
+        "text_de": "Tachykardie",
+        "text_tr": "Taşikardi",
         "is_correct": true,
         "explanation_de": "",
         "explanation_tr": ""
@@ -15983,7 +15459,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Hyper- oder Hypalgesie 229 5 5.10 · Schmerztherapie",
+        "text_de": "Hyper- oder Hypalgesie 229",
         "text_tr": "Hiper veya hipaljezi 229 5 5.10 · Ağrı tedavisi",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.",
@@ -16030,7 +15506,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird bei Persistenz durch eine chirurgische Sympathektomie zuverlässig gelindert.",
         "text_tr": "Kalıcı ise cerrahi sempatektomi ile güvenilir bir şekilde hafifletilir.",
         "is_correct": false,
-        "explanation_de": "Bei initial gutem Erfolg, kommt es in über 30 % der Fälle zu einem Rezidiv. Dies hat zur Zurückhaltung bei der Durchführung der chirurgischen Sympathektomie geführt. 230 5Kapitel 5 · Regionala nästhesie",
+        "explanation_de": "Bei initial gutem Erfolg, kommt es in über 30 % der Fälle zu einem Rezidiv. Dies hat zur Zurückhaltung bei der Durchführung der chirurgischen Sympathektomie geführt.",
         "explanation_tr": "Başlangıçtaki başarı iyiyse vakaların %30'undan fazlasında tekrarlama meydana gelir. Bu durum cerrahi sempatektomi yapma konusunda isteksizliğe yol açmıştır. 230 5Bölüm 5 · Bölgesel anestezi"
       },
       {
@@ -16090,7 +15566,7 @@ const EXAM_QUESTIONS = [
         "text_de": "wird perioperativ am häufigsten durch eine renale Minderperfusion hervorgerufen.",
         "text_tr": "Çoğunlukla perioperatif dönemde renal hipoperfüzyondan kaynaklanır.",
         "is_correct": true,
-        "explanation_de": "Die renale Minderperfusion führt ursächlich zur Tubulusnekrose. Daher ist die Therapie auf eine Verbesserung der renalen Perfusion auszu-richten, wobei zunächst einer ausreichend aggressiven Volumentherapie Priorität vor einer evtl. notwendigen Katecholamintherapie zu geben ist. 232 6Kapitel 6 · Intensivmedizin",
+        "explanation_de": "Die renale Minderperfusion führt ursächlich zur Tubulusnekrose. Daher ist die Therapie auf eine Verbesserung der renalen Perfusion auszu-richten, wobei zunächst einer ausreichend aggressiven Volumentherapie Priorität vor einer evtl. notwendigen Katecholamintherapie zu geben ist.",
         "explanation_tr": "Böbrek hipoperfüzyonu tübüler nekroza yol açar. Bu nedenle tedavi renal perfüzyonu iyileştirmeyi amaçlamalı ve yeterince agresif volüm tedavisine gerekli katekolamin tedavisine göre öncelik verilmelidir. 232 6Bölüm 6 · Yoğun bakım tıbbı"
       }
     ],
@@ -16162,7 +15638,7 @@ const EXAM_QUESTIONS = [
         "text_de": "TSH erhöht",
         "text_tr": "TSH arttı",
         "is_correct": true,
-        "explanation_de": "Eine primäre Hypothyreose hat ihre Ursache in der Schilddrüse selbst, z. B. bei Zustand nach Strumektomie oder Radiojodtherapie, ebenso durch Thyreostatikabehandlung, extremen Selen- bzw. Jodmangel und durch eine Hashimoto-Thyreoiditis. Bei den seltenen sekundären Hypo-thyreosen fehlt TSH. Bei der tertiären Hypothyreose, besteht entweder ein Mangel an TRH oder eine Unterbrechung des Portalgefäßsystems zwischen Hypothalamus und Hypophyse (Pickardt-Syndrom). 233 6 · Intensivmedizin6",
+        "explanation_de": "Eine primäre Hypothyreose hat ihre Ursache in der Schilddrüse selbst, z. B. bei Zustand nach Strumektomie oder Radiojodtherapie, ebenso durch Thyreostatikabehandlung, extremen Selen- bzw. Jodmangel und durch eine Hashimoto-Thyreoiditis. Bei den seltenen sekundären Hypo-thyreosen fehlt TSH. Bei der tertiären Hypothyreose, besteht entweder ein Mangel an TRH oder eine Unterbrechung des Portalgefäßsystems zwischen Hypothalamus und Hypophyse (Pickardt-Syndrom).",
         "explanation_tr": "Birincil hipotiroidizme tiroidin kendisi neden olur; B. strumektomi veya radyoiyot tedavisi sonrası, ayrıca antitiroid tedavisi, aşırı selenyum veya iyot eksikliği ve Hashimoto tiroiditi nedeniyle oluşan durumlarda. Nadir görülen sekonder hipotiroidizmde TSH eksiktir. Tersiyer hipotiroidizmde ya TRH eksikliği ya da hipotalamus ile hipofiz bezi arasındaki portal damar sisteminde bir kesinti vardır (Pickardt sendromu). 233 6 · Yoğun bakım hekimliği6"
       },
       {
@@ -16170,24 +15646,24 @@ const EXAM_QUESTIONS = [
         "text_de": "Hypercholesterinämie",
         "text_tr": "Hiperkolesterolemi",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "T3 erniedrigt",
         "text_tr": "Gelgit hacmi tüm yaş gruplarında aynıdır ve yaklaşık 8-10 ml/kg vücut ağırlığıdır. Ancak alveoler dakika hacmi yetişkinlerinkinden iki kat daha yüksektir ve bu, daha yüksek bir solunum hızıyla sağlanır.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "T4 erniedrigt",
         "text_tr": "T4 azaldı",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -16318,7 +15794,7 @@ const EXAM_QUESTIONS = [
         "text_de": "verbessert die Oxygenierung durch die Rekrutierung kollabierter Lungen-bezirke.",
         "text_tr": "Çöken akciğer bölgelerini toplayarak oksijenlenmeyi artırır.",
         "is_correct": true,
-        "explanation_de": "Dies ist ein zentraler Effekt des PEEP , vormals kollabierte Alveolen werden wiedereröffnet und -belüftet, das Ventilations-Perfusions-Verhält-nis wird normalisiert, und die Shuntfraktion nimmt ab. Trotz dieser Vorteile einer Beatmung mit PEEP stellt die Anwendung eines hohen PEEP-Niveaus über längere Zeit eine unphysiologische, invasive Beatmungsform dar, welche mit erheblichen Nachteilen und Gefahren verbunden ist. 235 6 · Intensivmedizin6",
+        "explanation_de": "Dies ist ein zentraler Effekt des PEEP , vormals kollabierte Alveolen werden wiedereröffnet und -belüftet, das Ventilations-Perfusions-Verhält-nis wird normalisiert, und die Shuntfraktion nimmt ab. Trotz dieser Vorteile einer Beatmung mit PEEP stellt die Anwendung eines hohen PEEP-Niveaus über längere Zeit eine unphysiologische, invasive Beatmungsform dar, welche mit erheblichen Nachteilen und Gefahren verbunden ist.",
         "explanation_tr": "Bu PEEP'in merkezi bir etkisidir; önceden kollabe olan alveoller yeniden açılır ve havalandırılır, ventilasyon-perfüzyon oranı normalleştirilir ve şant fraksiyonu azalır. PEEP ile ventilasyonun bu avantajlarına rağmen, uzun bir süre boyunca yüksek düzeyde PEEP kullanımı, önemli dezavantajlar ve tehlikelerle ilişkilendirilen, fizyolojik olmayan, invazif bir ventilasyon biçimini temsil eder. 235 6 ​​· Yoğun bakım tıbbı6"
       },
       {
@@ -16326,24 +15802,24 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu Überblähung der Lunge (»air-trapping«) führen.",
         "text_tr": "akciğerlerin aşırı şişmesine (“hava hapsi”) yol açabilir.",
         "is_correct": true,
-        "explanation_de": "c. ✅ Richtig.",
-        "explanation_tr": "C. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "c",
         "text_de": "kann irreversible schädigende Lungengewebeveränderungen induzieren.",
         "text_tr": "akciğer dokusunda geri dönüşü olmayan, hasar verici değişikliklere neden olabilir.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "erhöht die pulmonalvaskuläre Resistance.",
         "text_tr": "pulmoner vasküler direnci arttırır.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -16479,7 +15955,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "b",
-        "text_de": "ein erniedrigter peripherer Gefäßwiderstand (TPR). 237 6 · Intensivmedizin6",
+        "text_de": "ein erniedrigter peripherer Gefäßwiderstand (TPR).",
         "text_tr": "periferik vasküler direncin (TPR) azalması. 237 6 · Yoğun bakım hekimliği6",
         "is_correct": true,
         "explanation_de": "Der periphere Gefäßwiderstand ist deutlich erniedrigt.",
@@ -16622,7 +16098,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Hypokaliämie",
         "text_tr": "Hipokalemi",
         "is_correct": true,
-        "explanation_de": "Eine Alkalose geht mit einer Hypokaliämie einher, da der Organis- mus bestrebt ist, durch Verschiebung von intrazellulären Wasserstoffionen nach extrazellulär den pH-Wert zu normalisieren. Im Austausch für die 239 6 · Intensivmedizin6",
+        "explanation_de": "Eine Alkalose geht mit einer Hypokaliämie einher, da der Organis- mus bestrebt ist, durch Verschiebung von intrazellulären Wasserstoffionen nach extrazellulär den pH-Wert zu normalisieren. Im Austausch für die",
         "explanation_tr": "Alkaloza hipokalemi eşlik eder çünkü organizma, hücre içi hidrojen iyonlarını hücre dışına kaydırarak pH değerini normalleştirmeye çalışır. 239 6 · Yoğun bakım ilacı6 karşılığında"
       },
       {
@@ -16630,8 +16106,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Erniedrigung des ionisierten Kalziums",
         "text_tr": "İyonize kalsiyumun azalması",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -16739,58 +16215,14 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Bei Verdacht auf akute LE hat die Perfusionsszintigraphie die höchste Aussagekraft. abgegebenen Wasserstoffionen muss Kalium von extrazellulär nach intra-zellulär geschleust werden. Es kommt also zur Hypokaliämie.",
+        "text_de": "Bei Verdacht auf akute LE hat die Perfusionsszintigraphie die höchste Aussagekraft.",
         "text_tr": "Akut PE'den şüpheleniliyorsa perfüzyon sintigrafisi en yüksek bilgilendirici değere sahiptir. Açığa çıkan hidrojen iyonları, potasyumu hücre dışından hücre içine taşımalıdır. Böylece hipokalemi meydana gelir.",
-        "is_correct": false,
-        "explanation_de": "Die Pulmonalisangiographie ist der »golden standard« in der Diag- nostik der LE (Sensitivität und Spezifität >90 %). Es lassen sich u. a. Lungen-gefäße mit einem Durchmesser <0,5 mm beurteilen. Thromboembolische Verschlüsse der Lungenstrombahn können noch nach 7 Tagen nachgewie-sen werden. Unter den anderen Untersuchungsmethoden liegt das Spiral-CT (Sensitivität ca. 90 %; Spezifität ca. 80 %) noch deutlich vor der Perfusi-onsszintigraphie und der Echokardiographie.",
-        "explanation_tr": "Pulmoner anjiyografi PE tanısında “altın standarttır” (duyarlılık ve özgüllük >%90). Diğer şeylerin yanı sıra şunları yapabilirsiniz: Çapı <0,5 mm olan pulmoner damarları değerlendirin. Pulmoner dolaşımın tromboembolik tıkanıklıkları 7 gün sonra hala tespit edilebilir. Diğer inceleme yöntemleri arasında spiral BT (duyarlılık yaklaşık %90, özgüllük yaklaşık %80) perfüzyon sintigrafisi ve ekokardiyografinin çok ilerisindedir."
-      },
-      {
-        "key": "d",
-        "text_de": "Richtig. Bei Alkalose wird ionisiertes Kalzium verstärkt an Albumin gebunden.",
-        "text_tr": "Doğru. Alkalozda iyonize kalsiyum giderek albümine bağlanır.",
-        "is_correct": false,
-        "explanation_de": "Das häufigste EKG-Zeichen bei Lungenembolie ist die Sinustachy- kardie (HF >100/min). Sie kommt in ca. 40 % der Fälle vor. Zeichen der Rechtsherzbelastung (kompletter Rechtsschenkelblock, ein P-Pulmonale sowie ein S 1 Q 3 -Typ) haben eine Häufigkeit <10 %. Der Wert des EKG liegt somit eher im Ausschluss anderer Erkrankungen wie z. B. eines Myokard-infarkts.",
-        "explanation_tr": "Pulmoner embolide en sık görülen EKG bulgusu sinüs taşikardisidir (KAH >100/dk). Vakaların yaklaşık %40'ında görülür. Sağ kalp zorlanması belirtileri (tam sağ dal bloğu, P-pulmoner hastalık ve S 1 Q 3 tipi) <%10 sıklığa sahiptir. EKG'nin değeri aşağıdaki gibi diğer hastalıkların dışlanmasında yatmaktadır: B. miyokard enfarktüsü."
-      },
-      {
-        "key": "e",
-        "text_de": "Falsch. Der »base excess« (BE) ist positiv. Für die metabolische Azidose ist ein negativer BE kennzeichnend. 240 6Kapitel 6 · Intensivmedizin",
-        "text_tr": "Yanlış. “Baz fazlası” (BE) pozitiftir. Negatif BE metabolik asidozun karakteristiğidir. 240 6Bölüm 6 · Yoğun bakım tıbbı",
         "is_correct": false,
         "explanation_de": "Die Pulmonalisangiographie ist der »golden standard« in der Diag- nostik der LE (Sensitivität und Spezifität >90 %). Es lassen sich u. a. Lungen-gefäße mit einem Durchmesser <0,5 mm beurteilen. Thromboembolische Verschlüsse der Lungenstrombahn können noch nach 7 Tagen nachgewie-sen werden. Unter den anderen Untersuchungsmethoden liegt das Spiral-CT (Sensitivität ca. 90 %; Spezifität ca. 80 %) noch deutlich vor der Perfusi-onsszintigraphie und der Echokardiographie.",
         "explanation_tr": "Pulmoner anjiyografi PE tanısında “altın standarttır” (duyarlılık ve özgüllük >%90). Diğer şeylerin yanı sıra şunları yapabilirsiniz: Çapı <0,5 mm olan pulmoner damarları değerlendirin. Pulmoner dolaşımın tromboembolik tıkanıklıkları 7 gün sonra hala tespit edilebilir. Diğer inceleme yöntemleri arasında spiral BT (duyarlılık yaklaşık %90, özgüllük yaklaşık %80) perfüzyon sintigrafisi ve ekokardiyografinin çok ilerisindedir."
       }
     ],
     "is_high_yield": true
-  },
-  {
-    "id": "q_316",
-    "category": "Atemwegsmanagement & Beatmung",
-    "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
-    "image": null,
-    "question_type": "options",
-    "stem_de": "Welche der folgenden Aussagen zur Lungenembolie (LE) sind richtig?",
-    "stem_tr": "Pulmoner emboli (PE) ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
-    "options": [
-      {
-        "key": "a",
-        "text_de": "Die Mortalität der nicht erkannten, nicht behandelten akuten LE ist etwa doppelt so hoch wie die der diagnostizierten und behandelten LE.",
-        "text_tr": "Tespit edilemeyen, tedavi edilmeyen akut PE'nin mortalitesi, teşhis edilip tedavi edilen PE'nin mortalitesinden yaklaşık iki kat daha yüksektir.",
-        "is_correct": false,
-        "explanation_de": "Die Mortalität der unbehandelten Lungenembolie ist 4- bis 6-fach höher als die der behandelten LE. Vergleiche klinischer und pathologisch- anatomischer Daten haben gezeigt, dass die Inzidenz falsch-positiver und falsch-negativer Diagnosen bei etwa 50 % liegt. Die LE ist eine Krankheit, bei der das größte Problem die rechtzeitige, richtige Diagnose ist.",
-        "explanation_tr": "Tedavi edilmeyen pulmoner emboli mortalitesi, tedavi edilen PE'ye göre 4 ila 6 kat daha yüksektir. Klinik ve patolojik-anatomik verilerin karşılaştırılması, yanlış pozitif ve yanlış negatif tanıların görülme sıklığının yaklaşık %50 olduğunu göstermiştir. PE en büyük sorunun zamanında ve doğru tanı olduğu bir hastalıktır."
-      },
-      {
-        "key": "b",
-        "text_de": "Beim zuvor Gesunden sind schon Verlegungen der Lungenstrombahn von etwa 25 % mit einer Zunahme des mittleren pulmonalarteriellen Drucks verbunden. 241 6 · Intensivmedizin6",
-        "text_tr": "Daha önce sağlıklı olan kişilerde pulmoner dolaşımdaki yaklaşık %25'lik tıkanıklıklar, ortalama pulmoner arter basıncındaki artışla ilişkilidir. 241 6 · Yoğun bakım hekimliği6",
-        "is_correct": false,
-        "explanation_de": "Beim Gesunden führen erst Lungenstrombahnverlegungen von >50 % zu einem Anstieg (>30 mmHg) des mittleren pulmonalarteriellen Drucks .",
-        "explanation_tr": "Sağlıklı bireylerde sadece %50'nin üzerindeki pulmoner arter tıkanıklıkları ortalama pulmoner arter basıncında artışa (>30 mmHg) neden olur."
-      }
-    ],
-    "is_high_yield": false
   },
   {
     "id": "q_317",
@@ -16887,7 +16319,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "kommt es häufig zu einer Hyperphosphatämie. 243 6 · Intensivmedizin6",
+        "text_de": "kommt es häufig zu einer Hyperphosphatämie.",
         "text_tr": "Hiperfosfatemi sıklıkla ortaya çıkar. 243 6 · Yoğun bakım hekimliği6",
         "is_correct": false,
         "explanation_de": "Unter den Bedingungen der TPE wird häufig eine Hypophospha- tämie beobachtet, weil im Stadium der positiven Stickstoffbilanz (Anabo-lie) Kalium und Phosphat nach intrazellulär aufgenommen werden. Im Rah-men einer Katabolie mit akutem Nierenversagen (Phosphatakkumulation) kommt es dagegen zu einer Hyperphosphatämie.",
@@ -16923,7 +16355,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "c",
-        "text_de": "In der Reparationsphase des Postaggressionssyndroms sollte eine positive Energie- und Stickstoffbilanz angestrebt werden. 244 6Kapitel 6 · Intensivmedizin",
+        "text_de": "In der Reparationsphase des Postaggressionssyndroms sollte eine positive Energie- und Stickstoffbilanz angestrebt werden.",
         "text_tr": "• Ameliyat sonrası titreme • Ateş atağı sırasında titreme, örn. B. septik infiltrasyon nedeniyle • Çekilme semptomları (her ne kadar ameliyat sonrası hemen pek olası olmasa da) • Psikolojik neden Ameliyat sonrası titremenin nedenini açıklayın. • Termoregülasyonun anesteziklerle ortadan kaldırılmasıyla intraoperatif ısı kaybı • Diğer faktörler örneğin: Ağrı, sempatik sinir sisteminin aktivasyonu, solunum alkalozu veya omurga refleksleri de muhtemelen söz konusudur • Ameliyat sırasında hastada yetersiz ısı bakımı (intraoperatif olarak yakın ateş ölçümü ve aktif ısı yönetimini düşünün) Ameliyat sırasında vücudun ısı kaybettiği çeşitli mekanizmaları tanımlayın. • İletim: ısı iletimi, yani h. Isı transferi ör. B. vücuttan ameliyat masasına. • Konveksiyon: Vücudun çekirdeğinden kan dolaşımı yoluyla dışarıya doğru ısı akışı. Bu etki intraoperatif vazodilatasyon (anestezi altında veya bölgesel anestezi ile arttırılır!) ile güçlendirilir. • Buharlaşma: Vücut sıvılarının buharlaşması ve dolayısıyla ısı kaybıdır. Termoregülasyon açısından bakıldığında ter bezi aktivitesi burada son derece önemlidir. Öte yandan solunum yoluyla ısı salınımı",
         "is_correct": true,
         "explanation_de": "In der Reparationsphase des Postaggressionssyndroms in den ersten Wochen nach Aggression besteht eine anabole Stoffwechsellage mit einer Dominanz der Insulinwirkung und einer Normalisierung der anti-insulinären Faktoren. In dieser Phase ist eine hochkalorische Ernährungs-therapie mit positiver Stickstoffbilanz möglich und sinnvoll.",
@@ -16980,14 +16412,6 @@ const EXAM_QUESTIONS = [
         "is_correct": true,
         "explanation_de": "Der »pink puffer« hat ein rosiges Aussehen; sein p a O 2 ist niedrig normal bei einer mäßigen Hypokapnie. Beim »blue bloater« findet sich ein zyanotisches Hautkolorit aufgrund des erniedrigten p a O 2 , der p a CO 2 ist im Sinne einer respiratorischen Globalinsuffizienz ebenfalls erhöht.",
         "explanation_tr": "\"Pembe kirpi\" pembe bir görünüme sahiptir; PaO2'si orta derecede hipokapni ile birlikte düşük normaldir. “Mavi şişkinlik”te azalan pa O 2 nedeniyle siyanotik bir cilt rengi vardır, ayrıca global solunum yetmezliği anlamında pa CO 2 de artar."
-      },
-      {
-        "key": "e",
-        "text_de": "Während des Postaggressionssyndroms ist die Gerinnungsfähigkeit des Blutes erniedrigt. 245 6 · Intensivmedizin6",
-        "text_tr": "Saldırganlık sonrası sendromu sırasında kanın pıhtılaşma yeteneği azalır. 245 6 · Yoğun bakım hekimliği6",
-        "is_correct": true,
-        "explanation_de": "Der »pink puffer« hat ein rosiges Aussehen; sein p a O 2 ist niedrig normal bei einer mäßigen Hypokapnie. Beim »blue bloater« findet sich ein zyanotisches Hautkolorit aufgrund des erniedrigten p a O 2 , der p a CO 2 ist im Sinne einer respiratorischen Globalinsuffizienz ebenfalls erhöht.",
-        "explanation_tr": "\"Pembe kirpi\" pembe bir görünüme sahiptir; PaO2'si orta derecede hipokapni ile birlikte düşük normaldir. “Mavi şişkinlik”te azalan pa O 2 nedeniyle siyanotik bir cilt rengi vardır, ayrıca global solunum yetmezliği anlamında pa CO 2 de artar."
       }
     ],
     "is_high_yield": true
@@ -17014,7 +16438,7 @@ const EXAM_QUESTIONS = [
         "text_de": "liegt initial eine Hyperventilation vor.",
         "text_tr": "Başlangıçta hiperventilasyon vardır.",
         "is_correct": false,
-        "explanation_de": "Im Rahmen einer CO-Vergiftung liegt initial eine Normoventilation vor, da die peripheren Chemorezeptoren (pCHR) im Glomus caroticum und im Aortenbogen nur auf einen Abfall des p a O 2 , nicht aber auf einen S a O 2 - Abfall reagieren. Der p a O 2 ist aber bei der CO-Vergiftung normal, und die pathologisch erniedrigte O 2 -Sättigung löst keinen Reflex aus. Erst später, wenn die mangelnde O 2 -Versorgung zu einer Laktatazidose aufgrund an- 246 6Kapitel 6 · Intensivmedizin",
+        "explanation_de": "Im Rahmen einer CO-Vergiftung liegt initial eine Normoventilation vor, da die peripheren Chemorezeptoren (pCHR) im Glomus caroticum und im Aortenbogen nur auf einen Abfall des p a O 2 , nicht aber auf einen S a O 2 - Abfall reagieren. Der p a O 2 ist aber bei der CO-Vergiftung normal, und die pathologisch erniedrigte O 2 -Sättigung löst keinen Reflex aus. Erst später, wenn die mangelnde O 2 -Versorgung zu einer Laktatazidose aufgrund an-",
         "explanation_tr": "artan afterload ile"
       },
       {
@@ -17022,16 +16446,16 @@ const EXAM_QUESTIONS = [
         "text_de": "kommt es zur Linksverschiebung der O 2 -Bindungskurve.",
         "text_tr": "O2 bağlanma eğrisi sola kayar.",
         "is_correct": true,
-        "explanation_de": "d. ✅ Richtig.",
-        "explanation_tr": "D. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "d",
         "text_de": "misst die Pulsoximetrie die S a O 2 richtig.",
         "text_tr": "nabız oksimetresi S a O 2'yi doğru ölçer mi?",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Richtig.",
+        "explanation_tr": "Doğru."
       },
       {
         "key": "e",
@@ -17131,7 +16555,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "d",
-        "text_de": "Bei einer Störung des SBH verläuft die kompensatorische Gegenregulation gleichsinnig mit der primären Störung, d. h. eine Verminderung einer Kom-ponente führt zu einer Verminderung der kompensatorischen Kompo-nente.",
+        "text_de": "Bei einer Störung des SBH verläuft die kompensatorische Gegenregulation gleichsinnig mit der primären Störung, d.",
         "text_tr": "SBH bozulursa telafi edici karşı düzenleme birincil bozuklukla aynı yönde çalışır, yani h. bir bileşendeki azalma telafi edici bileşende bir azalmaya yol açar.",
         "is_correct": true,
         "explanation_de": "Die respiratorische Kompensation einer metabolischen Azidose (Bikarbonatabfall) führt zu einem p a CO 2 -Abfall (Hyperventilation); die Kom- pensation einer respiratorischen Azidose (p a CO 2 -Anstieg) besteht in einem Bikarbonatanstieg (renale Bikarbonatretention). Analoges gilt für die Kom-pensation der metabolischen und der respiratorischen Alkalose.",
@@ -17142,7 +16566,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Der Erhalt einer Normovolämie hat Priorität vor der Erhaltung eines norma-len pH-Werts.",
         "text_tr": "Normovoleminin sürdürülmesi, normal pH'ın sürdürülmesinden önceliklidir.",
         "is_correct": true,
-        "explanation_de": "Bei einem Volumenmangel kommt es über die Wirkung von Aldos- teron zu einer Steigerung der Natriumrückresorption und damit zu einer vermehrten Wasserrückresorption zur Herstellung der Euvolämie. Gleich-zeitig wird aber vermehrt Kalium und Wasserstoff sezerniert, was zu einer Veränderung des SBH (metabolische Alkalose) führen kann. Man sollte eine Hypovolämie zunächst, wenn möglich, mit einer entsprechenden Infusions-therapie ausgleichen, bevor man eine Azidose puffert, da die Hypovolämie der Azidose ursächlich vorausgeht und diese unterhält. 248 6Kapitel 6 · Intensivmedizin",
+        "explanation_de": "Bei einem Volumenmangel kommt es über die Wirkung von Aldos- teron zu einer Steigerung der Natriumrückresorption und damit zu einer vermehrten Wasserrückresorption zur Herstellung der Euvolämie. Gleich-zeitig wird aber vermehrt Kalium und Wasserstoff sezerniert, was zu einer Veränderung des SBH (metabolische Alkalose) führen kann. Man sollte eine Hypovolämie zunächst, wenn möglich, mit einer entsprechenden Infusions-therapie ausgleichen, bevor man eine Azidose puffert, da die Hypovolämie der Azidose ursächlich vorausgeht und diese unterhält.",
         "explanation_tr": "Hacim eksikliği durumunda aldosteronun etkisi, sodyumun yeniden emiliminde bir artışa ve dolayısıyla övolemi oluşturacak şekilde su geri emiliminin artmasına yol açar. Aynı zamanda artan potasyum ve hidrojen salgılanır ve bu da SBH'de bir değişikliğe (metabolik alkaloz) yol açabilir. Mümkünse, hipovolemi asidozu tamponlamadan önce uygun infüzyon tedavisi ile düzeltilmelidir, çünkü hipovolemi nedensel olarak asidozdan önce gelir ve onu sürdürür. 248 6Bölüm 6 · Yoğun bakım tıbbı"
       }
     ],
@@ -17243,7 +16667,7 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Dialyse und/oder Hämofiltration 249 6 · Intensivmedizin6",
+        "text_de": "Dialyse und/oder Hämofiltration",
         "text_tr": "Diyaliz ve/veya hemofiltrasyon 249 6 · Yoğun bakım tıbbı6",
         "is_correct": false,
         "explanation_de": "Diese wird eingesetzt, wenn die Nierenfunktion bei schwerer metabolischer Alkalose ausgefallen ist.",
@@ -17290,7 +16714,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Erbrechen",
         "text_tr": "Kusma",
         "is_correct": true,
-        "explanation_de": "Durch den Magensaftverlust gehen Protonen verloren.e. Richtig. Die mineralokortikoide Wirkung führt zu einem renalen Verlust von Protonen und Kalium. 250 6Kapitel 6 · Intensivmedizin",
+        "explanation_de": "Durch den Magensaftverlust gehen Protonen verloren.e. Richtig. Die mineralokortikoide Wirkung führt zu einem renalen Verlust von Protonen und Kalium.",
         "explanation_tr": "Protonlar mide suyunun kaybıyla kaybolur.e. Doğru. Mineralokortikoid etkisi böbreklerden proton ve potasyum kaybına yol açar. 250 6Bölüm 6 · Yoğun bakım tıbbı"
       },
       {
@@ -17298,7 +16722,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Behandlung mit Kortisonpräparaten",
         "text_tr": "Kortizon preparatlarıyla tedavi",
         "is_correct": true,
-        "explanation_de": "Die mineralokortikoide Wirkung führt zu einem renalen Verlust von Protonen und Kalium. 250 6Kapitel 6 · Intensivmedizin",
+        "explanation_de": "Die mineralokortikoide Wirkung führt zu einem renalen Verlust von Protonen und Kalium.",
         "explanation_tr": "Mineralokortikoid etkisi böbreklerden proton ve potasyum kaybına yol açar. 250 6Bölüm 6 · Yoğun bakım tıbbı"
       }
     ],
@@ -17350,7 +16774,7 @@ const EXAM_QUESTIONS = [
         "text_de": "Ein 15-minütiges Arztgespräch ist besser als 15 mg Dormicum.",
         "text_tr": "Doktorla 15 dakikalık bir görüşme, 15 mg Dormicum'dan daha iyidir.",
         "is_correct": true,
-        "explanation_de": "Allerdings, das wissen wir eigentlich schon seit 1963 (siehe weg- weisende Studien in 7 Kap. 7). Wird nicht selten aus Zeitnot nicht beachtet.  Wegweisende klinische Studien in der Anästhesie Kapitel 7 Klini sche Studien – 253Franz Kehl, Hans-Joachim Wilke F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3_ 7 , © Springer-Verlag GmbH Deutschland 2017253 7 Klini sche Studien Franz Kehl, Hans-Joachim Wilke 7.1 Die Einführung des APGAR-Scores (n=1025 Patienten, Vorstellung eines neuen Evaluierungsscores für Neugeborene) Apgar V (1953) A proposal for a new method of evaluation of the newborn infant. Anesth Analg 32: 260–7 In 1953, Virginia Apgar, M.D. published her proposal for a new method of evalu- ation of the newborn infant. The avowed purpose of this paper was to establish a simple and clear classification of newborn infants which can be used to compare the results of obstetric practices, types of maternal pain relief and the results of resuscitation. Having considered several objective signs pertaining to the condi-tion of the infant at birth she selected five that could be evaluated and taught to the delivery room personnel without difficulty. These signs were heart rate, respi-ratory effort, reflex irritability, muscle tone and color. Sixty seconds after the complete birth of the baby a rating of zero, one or two was given to each sign, depending on whether it was absent or present. Virginia Apgar reviewed anesthe-sia records of 1025 infants born alive at Columbia Presbyterian Medical Center during the period of this report. All had been rated by her method. Infants in poor condition scored 0–2, infants in fair condition scored 3–7, while scores 8–10 were achieved by infants in good condition. The most favorable score 1 min after birth was obtained by infants delivered vaginall y with the occiput the presenting part (average 8.4). Newborns delivered by version and breech extraction had the low-est score (average 6.3). Infants delivered by cesarean section were more vigorous (average score 8.0) when spinal was the method of anesthesia versus an average score of 5.0 when general anesthesia was used. Correlating the 60 s score with neonatal mortality, Virginia found that mature infants receiving 0,1 or 2 scores had a neonatal death rate of 14 %; those scoring 3, 4, 5, 6 or 7 had a death rate of 1.1 %; and those in the 8–10 score group had a death rate of 0.13 %. She con- 254 7Kapitel 7 · Klini sche Studien cluded that the prognosis of an infant is excellent if he receives one of the upper three scores, and poor if one of the lowest three scores. (Anesthesiology 2005; 102 (4): 855–7) Fazit Der 1953 von Virginia Apgar eingeführte Apgar-Score erlaubt die einfache Zuord- nung reifer Neugeborener zu Prognosegruppen mit einer Mortalität von 14 % (Apgar 0, 1, 2), 1,1 % (Apgar 3, 4, 5, 6, 7) und 0,13 % (Apgar 8, 9, 10). 7.2 Kann die Spinalanästhesie ohne neurologische Folgeschäden durchgeführt werden? (n=10 089 Spinalanästhesien, Langzeit-Follow-up-Studie) Dripps RD, Vandam LD (1954) Long-term follow-up of patients who received 10,098 spinal anesthetics: Failure to discover major neurological sequelae. JAMA 156: 1486–91 The goal of this study was to determine the incidence and severity of neurologic complications after spinal anesthesia and to examine the factors contributing to these complications. Early and late effects of 10,098 spinal anesthetics were ana-lyzed in 8,460 patients treated at the Hospital of the University of Pennsylvania between 1948 and 1951. The comparison groups were comprised of 1,000 patients undergoing similar procedures under general anesthesia and 75 patients who re-ceived spinal anesthesia after general anesthesia. Follow-up data on 8,987 spinal anesthetics were obtained 6 months after surgery via mailed questionnaire or by physical examination. Patients of both sexes, ranging in age from 10 to 89 yr, were included. Exclusion criteria for spinal anesthesia were reports of a previous unsat-isfactory spinal anesthetic, neurologic disease, backache, frequent headaches, dif-ficulty with the legs, or infections of the back. Lumbar puncture was performed with needles ranging from 16- to 24-gauge. Spinal anesthetic preparations used included tetracaine, procaine, dibucaine, piridocaine, and pyrrolocaine with or without epinephrine and dextrose. Patients were examined postoperatively to dis-cover neurologic disease. Follow-up ques tions determined whether patients would choose a spinal anesthetic again, if they experienced any untoward effects, and their current condition. When possible, additional information was obtained from patients with suspicious symptoms. Only one case of incapacitating neurologic disease was observed in the 6-month follow-up examinations after the spinal an-esthetic. The patient had an asymptomatic meningioma of the spinal cord. No patients developed cauda equina syndrome, transverse myelitis, or meningeal or epidural sepsis. The primary minor neuro logic sequela was headache (9 % in male patients and 15 % in female patients). Transient minor sequelae included back- 255 7.3 · Diffusionshypoxämie durch Raumluft 7 ache, pain and numbness in the extremity, and an occasional weakness in the leg. Neurologic complications are uncommon after spinal anesthesia with careful pa-tient selection, meticulous technique, and use of safe concentrations of spinal anesthetic mixtures. (Anesthesiology 2004; 100 (1): 176–7) Fazit Neurologische Folgeschäden nach Spinalanästhesie sind bei umsichtiger Patienten- auswahl, sorgfältiger Durchführung und sicherer Dosierung extrem selten. 7.3 Diffusionshypoxämie durch Raumluft am Ende einer Sauerstoff-Lachgas-Narkose (n=8 Patienten, prospektive Studie) Fink BR (1955) Diffusion anoxia. Anesthesiology 16: 511–14 In 1955, Dr. Bernard Raymond Fink published his findings that described the mechanism by which hypoxemia occurred when nitrous oxide–oxygen anesthesia was discontinued and room air breathing commenced. Using an ear oximeter and brachial artery blood gases, he measured oxygen saturation in eight healthy pa-tients who had received 75 % nitrous oxide–25 % oxygen for gynecologic surgery. He showed that oxygen saturation decreased from 5 % to 10 % and often reached a value below 90 % when the patient began room air breathing after the nitrous oxide–oxygen was discontinued. The effect was seen over a 10-min period. He concluded that “anoxia arises because the outward diffusion of nitrous oxide low-ers the alveolar partial pressure of oxygen. ” This phenomenon can become a caus-ative factor of cardiac arrest in patients with impaired pulmonary or cardiac reserves. (Anesthesiology 2007; 106 (1): 186–8) Fazit Wird am Ende einer mit einem Lachgas-Sauerstoff-Gemisch durchgeführten Narkose mit Raumluft beatmet, kann der Einstrom von Lachgas aus dem Blut in die Alveolen zu einer arteriellen Hypoxämie führen. Dies kann durch Applikation von 100 % Sauerstoff verhindert werden. 256 7Kapitel 7 · Klini sche Studien 7.4 Mund-zu-Mund-Beatmung als künstliche Atemspende (n=185 Anwender an 25 Probanden) Safar P (1958) Ventilatory efficacy of mouth-to-mouth artificial respiration: airway obstruc- tion during manual and mouth-to-mouth artificial respiration. JAMA 167: 335–41 Background For respiratory resuscitation without devices, the author hypothe- sized that providing upper airway patency requires lifting the base of the tongue off the posterior pharyngeal wall and that artificial ventilation with intermittent positive pressure using exhaled air, i.e., direct mouth-to-mouth ventilation (MMV), is more effective than back or chest pressure with or without arm lift. MMV leaves the operator’s hands free for backward tilt of the head, forward dis-placement of the mandible, or both. Methods The author studied 25 sedated, nonintubated adult human volunteers under neuromuscular blockade with succinylcholine for 1–3 h each. One hundred sixtyseven untrained lay persons performed various direct MMV methods after one demonstration. Eighteen trained ambulance rescuers performed back or chest pressure arm-lift methods. Ventilation volumes were recorded during MMV from a calibrated pneumograph and during the manual methods from a taped face mask on a spirometer. Arterial oxygen saturation was monitored by an ear oximeter, and end-tidal carbon dioxide was measured by an infrared analyzer. Results With the head in the mid position or flexed, airway obstruction occurred in all volunteers, equally in the supine or prone position. With the head tilted backward and the mouth held open, one half to two thirds of the volunteers had an open airway; the remaining volunteers required additional forward displace-ment of the mandible or a pharyngeal tube. Ninety percent of the lay persons performed MMV effectively. Moderate hyperventilation by the operator achieved normoxemia and normocapnia in the volunteer and moderate hypocapnia in the operator. Apnea-induced moderate hypoxemia was reversed with 5–9 MMVs. In the majority of volunteers, the manual methods caused no ventilation (mostly because of neck flexion), and in others, it caused progressive airway obstruction. In some volunteers, there was valve-like nasopharyngeal obstruction. Conclusions In coma without a tracheal tube, direct MMV is effective because of the ability of the rescuer to support the head and jaw for upper airway patency and because of controllable high inflation pressures and volumes, whereas manual methods frequently fail to ventilate, mainly because of upper airway obstruction. The author recommends that backward tilt of the head plus exhaled air inflation 257 7 7.6 · Einführung des MAC-Konzepts methods be taught for general use in adults and children. (Anesthesiology 2001; 95 (3): 789–91) Fazit Im Rahmen dieser Studie wurden erstmals die Reklination des Kopfes und die Mund- zu-Mund-Beatmung zur Reanimation von Erwachsenen und Kindern empfohlen. Dies löste die bis dahin übliche Beatmungsmethode der Thoraxkompression mit Armhebungen ab. 7.5 Anästhesiologische Todesfälle in einer Familie (n=10, Fallserie) Denborough MA, Forster JFA, Lovell RRH, Maplestone PA, Villiers JD (1962) Anesthetic deaths in a family. Br J Anaesth 34: 395–6 A local family is described in which there have been ten deaths attributable to general anesthesia. The pattern of inheritance of the abnormality is compatible with that due to an incompletely penetrant dominant gene or genes. Spinal anes-thesia produced no ill effects when used in the one member of the family who survived a reaction following a general anesthetic. Fazit Hier wurde der erste überlebte Fall einer durch Halothan induzierten malignen Hy- perthermie beschrieben. Dieser Fall und die humangenetische Beratung und darauf-folgende Forschung führte zu der heutigen Kenntnis des zugrunde liegenden geneti-schen Defekts im Ryanodin-Rezeptor. 7.6 Einführung des MAC-Konzepts für inhalative Anästhetika Eger EI II, Saidman LJ, Brandstater B (1965) Minimum alveolar anesthetic concentration: A standard of anesthetic potency. Anesthesiology 26: 756–63 The minimum alveolar concentration of anesthetic (MAC) necessary to prevent movement in response to a painful stimulus was relatively constant in dogs anes-thetized with halothane. MAC varied over a two-fold range with the intensity of the stimulus, but appeared to reach an upper limit beyond which a further increase in intensity did not increase MAC. For the same stimulus MAC was constant from dog to dog. MAC was unaffected by duration of anesthesia, unaltered by hypocar- 258 7Kapitel 7 · Klini sche Studien bia or hypercarbia, by phenylephrine-induced hypertension or by mild hypoxia (PaO 2 30 to 60 mm. of mercury). Hemorrhagic hypotension or marked acute metabolic acidosis reduced MAC by 10 to 20 per cent. Severe hypoxia (PaO 2 less than 30 mm of mercury) reduced MAC by 25 to 50 per cent. MAC appears to be a useful standard by which all inhalation anesthetics may be compared. (Anesthe-siology 2002; 96 (1): 238–9) Fazit Die Minimale Alveoläre Konzentration (MAC) als »Einheit« zur Angabe der Potenz inhalativer Anästhetika hat sich durchgesetzt. 7.7 Quantitativer Nachweis des Metabolismus von Halothan zu Trifluoracetsäure Rehder K, Forbes J, Alter H, Hessler O, Stier A (1967) Halothane biotransformation in man: A quantitative study. Anesthesiology 28: 711–5 The metabolic breakdown of halothane was quantitatively determined in two pa- tients. Trifluoroacetic acid and bromide were found as metabolites in the urine. Both metabolites have a protracted excretion rate. Since the biological half-life of trifluoroacetic acid is unknown, one can calc ulate only the least amount of halo- thane that had been metabolized on the basis of the excreted trifluoroacetic acid: 12 % in both patients. On the basis of the excreted urinary bromide, 20 % and 17 %, respectively, of the halothane taken up by the body was calculated to be metabolized, if one assumes a biological half-life of 12 days for bromide. (Anes-thesiology 2003; 99 (5): 1220–1) Fazit Hier gelang der Nachweis der Metabolisierung von Halothan zu TFA, das als Immuno- gen die schwere Halothan-induzierte Hepatitis bei Wiederholungsnarkosen auslöst. 259 7 7.9 · Einführung des Rechtsherzkatheters 7.8 Hochdosis-Morphingabe für kardiochirurgische Eingriffe bei Patienten mit Aortenklappenerkrankung (n=15 Patienten, prospektive und randomisierte Studie) Lowenstein E, Hallowell P , Levine F, Daggett WM, Austen WG, Laver MB ( 1969) Cardiovascu- lar response to large doses of intravenous morphine in man. N Engl J Med 281: 1389–93 Large doses of intravenous morphine (0.5 to 3.0 mg per kilogram of body weight) were used alone or in combination with inhalation anesthetic agents for anesthesia in over 1100 patients undergoing open-heart surgery. Morphine, 1 mg per kilo-gram, was administered intravenously to seven subjects with aortic-valve disease and eight without major heart or lung disease. The cardiac subjects had higher control pulse rates and lower control stroke indexes than the normal subjects. In the cardiac but not in the normal stroke subjects, significant increases in cardiac index, stroke index, central venous pressure, and pulmonary-artery pressure, and a significant decrease in systemic vascular resistance, were observed after mor-phine was administered, suggesting that large doses of morphine may be used with safety in patients with minimal circulatory reserve. (Anesthesiology 2004; 100 (4): 1013–5) Fazit Die Applikation von 1 mg/kg Morphin führte bei Patienten mit Aortenklappenerkran- kungen im Gegensatz zu gesunden Patienten zu einem erhöhten Cardiac Output und einem erniedrigten systemischen vaskulären Widerstand. Dieser Befund bereitete den Weg für opioidbasierte Narkoseregimes auch bei kardial vorerkrankten Patienten. 7.9 Einführung des Rechtsherzkatheters in die klinische Praxis Swan JHC, Ganz W, Forrester J, Marcus H, Diamond G, Chonette D (1970) Catheterization of the heart in man with use of a flowdirected balloon-tipped catheter. N Engl J Med 283: 447–51 Pressures in the right side of the heart and pulmonary capillary wedge can be ob- tained by cardiac catheterization without the aid of fluoroscopy. A No. 5 French double-lumen catheter with a balloon just proximal to the tip is inserted into the right atrium under pressure monitoring. The balloon is then inflated with 0.8 ml of air. The balloon is carried by blood flow through the right side of the heart into the smaller radicles of the pulmonary artery. In this position when the balloon is inflated wedge pressure is obtained. The average time for passage of the catheter 260 7Kapitel 7 · Klini sche Studien from the right atrium to the pulmonary artery was 35 s in the first 100 passages. The frequency of premature beats was minimal, and no other arrhythmias oc-curred. (Anesthesiology 2005; 103 (4): 890–3) Fazit Auch wenn die Frage nach der Senkung der Mortalität durch die Verwendung des Pulmonalarterienkatheters bis heute nicht endgültig geklärt ist, stellt seine klinische Einführung einen bedeutenden Meilenstein in der Diagnostik hämodynamischer Parameter dar. 7.10 Methoxyfluran und der Zusammenhang mit Nierenversagen (n=12 Patienten) Mazze RI, Trudell JR, Cousins MJ (1971) Methoxyflurane metabolism and renal dysfunction: Clinical correlation in man. Anesthesiology 35: 247–52 Serum inorganic fluoride concentration and urinary inorganic fluoride excretion were found to be markedly elevated in ten patients previously shown to have me-thoxyflurane induced renal dysfunction. Five patients with clinically evident renal dysfunction had a mean peak serum inorganic fluoride level (190±21 μM) significantly higher (P<0.02) than that of those with abnormalities in laboratory tests only (106±17 μM). Similarly, patients with clinically evident renal dysfunc-tion had a mean peak oxalic acid excretion (286±39 mg/24 h) significantly greater (P<0.05) than that of those with laboratory abnormalities only (130±51 mg/24 h). That patients anesthetized with haloth ane had insignificant changes in serum in- organic fluoride concentration and oxalic acid excretion indicates that these sub-stances are products of methoxyflurane metabolism. A proposed metabolic path-way to support this hypothesis is presented, as well as evidence to suggest that inorganic fluoride is the substance respon sible for methoxyflurane renal dysfunc- tion. (Anesthesiology 2006; 105 (4): 843–6) Fazit Nach Bekanntwerden der Hepatotoxizität von Halothan wurden große Hoffnungen auf den Nachfolger Methoxyfluran gesetzt. Die Autoren zeigten, dass Methoxyfluran große Mengen Fluorid freisetzt, das für das beobachtete Nierenversagen verantwort-lich ist. Methoxyfluran konnte sich aufgrund seiner Nephrotoxizität nicht durchset-zen und wurde vom Markt genommen. 261 7 7.12 · Einfluss der Anästhesie und Muskelrelaxierung 7.11 Thiopental wirkt bei einer kardiopulmonalen Reanimation nicht neuroprotektiv (n=7 Hunde, prospektive und randomisierte Studie) Michenfelder JD (1974) The interdependency of cerebral functional and metabolic effects following massive doses of thiopental in the dog. Anestehsiology 41: 231–6 The cerebral metabolic effects of a massive dose of thiopental (177 mg/kg) were investigated in seven dogs. The systemic circulation was supported with an extra-corporeal circuit. At an infusion rate of 2 mg/kg/min, cerebral oxygen consump-tion (CMRO2) decreased progressively until cerebral electrical silence was pro-duced. This occurred after a mean dose of 72 mg/kg, which caused a mean decrease in CMRO2 to 58 % of the control value (measured at 1.5 % halothane inspired). Thereafter, despite continued at 4 mg/kg/min, CMRO2 did not decrease further. The oxygen-glucose index never changed during the infusion period and, at the termination of the infusion, brain assays for ATP , phosphocreatine, lactate, and pyruvate revealed normal concentrations. It is concluded that there was no altera-tion in normal cerebral metabolic pathways, that cerebral metabolic effects of thiopental are secondary to functional effects that thiopental would provide no cerebral protection during hypoxia sufficient to abolish cerebral function, and that thiopental does not uncouple oxidative phosphorylation in vivo. (Anesthesiology 2002; 97 (4): 1005–6) Fazit Thiopental führt zu einer Unterdrückung der funktionalen neuronalen Aktivität, was eine Verminderung der metabolischen neuronalen Aktivität zur Folge hat. Da die funktionale neuronale Aktivität nach Herz-Kreislauf-Stillstand primär minimal ist, kann Thiopental zu keiner weiteren metabolischen Suppression der neuronalen Aktivität führen und damit nicht neuroprotektiv wirken. 7.12 Einfluss der Anästhesie und Muskelrelaxierung auf die Beweglichkeit des Zwerchfells beim Menschen (n=3, offene Cross-over-Studie) Froese AB, Bryan AC (1974) Effects of anesthesia and paralysis on diaphragmatic mechanics in man. Anesthesiology 41: 242–55 Using a radiologic technique, the position and pattern of movement of the dia- phragm have been evaluated in three adult volunteers, both awake and anesthe-tized, during spontaneous ventilation an d with muscle paralysis and mechanical 262 7Kapitel 7 · Klini sche Studien ventilation. Studies were made with the subjects in supine and left lateral decubitus positions with tidal and large-volume breaths. Positive end-expiratory pressure (PEEP) was added in studies of two subjects. During spontaneous ventilation awake or anesthetized, because of regional mechanical advantages, the dependent part of the diaphragm had the greatest displacement despite the higher intraab- dominal pressure in this region. Paralysis, awake or anesthetized, caused a ceph-alad shift of the end-expiratory position of the diaphragm that was disproportion-ately large in dependent regions. It also reversed the pattern of diaphragmatic displacement. The passive diaphragm was displaced preferentially in nondepend- ent zones where abdominal pressure is least. Consequently, PEEP could not restore the diaphragm to its awake functional residual capacity position, and large breaths also could not duplicate the pattern of displacement achieved spontaneously. Fazit Grundlegende Studie, die zeigte, dass das Zwerchfell bei lateraler Position in der ab- hängigen Hälfte gegenüber der Spontanatmung eine deutlich verminderte Beweg-lichkeit aufweist, der auch mit PEEP nicht durchgreifend entgegengewirkt werden kann. 7.13 Nachweis der Analgesie durch subarachnoidale Opioidapplikation Yaksh TL, Rudy TA (1976) Analgesia mediated by a direct spinal action of narcotics. Science 192: 1357–8 Narcotic analgetics administered directly into the spinal subarachnoid space of the rat via a chronically inserted catheter produce a potent analgesia that can be an-tagonized by naloxone. The narcotics, acting only at the spinal level, changed cord function to block not only the spinal reflexes but also the operant response to painful stimuli. (Anesthesiology 2003; 99 (1): 224–5) Fazit Die Autoren konnten zeigten, dass die Verabreichung von Morphin in den Subarach- noidalraum zu einer potenten Analgesie führt, die durch Naloxon komplett reversibel ist und die keinen Einfluss auf Motoneurone ausübt. 263 7 7.14 · Postoperative Schmerztherapie 7.14 Eignet sich die epidurale Applikation von Opioiden zur postoperativen Schmerztherapie? (n=66 Patienten) Bromage PR, Camporesi E, Chestnut D (1980) Epidural narcotics for postoperative analgesia. Anesth Analg 59: 473–80 Epidural narcotic analgesia was assessed in 66 patients after surgery under epi- dural and light general anesthesia. Changes of forced expiratory volume in 1 s (FEV1) were measured after upper abdominal or thoracic surgery in 41 patients, and comparisons were made with results in an additional 17 upper abdominal surgery patients who received general anesthesia and muscle relaxants followed by intravenous morphine for postoperative pain relief. Methadone, 1.0 mg, hydro-morphone, 1.0 mg, or morphine sulfate, 5 mg, was administered epidurally and increments were repeated as necessary un til satisfactory analgesia was reported, with the following results (mean±SD): intravenous morphine: latency 3 to 10 min, duration 3.1±1.6 h; epidural methadone: latency 17.2±4 min, duration 5.6±2.7 h; epidural hydromorphone: latency 22.5±6 min, duration 9.8±5.5 h; epidural mor-phine: latency 36±6 min, duration 16.4±7 h. Duration of action was slightly longer after lower abdominal surgery. Addition of epinephrine 1/200,000 to the epidural narcotic solutions did not prolong duration. Narcotic requirements for satisfac-tory analgesia were approximately the same by the intravenous route as by the epidural route and equivalent to 8.5 to 9 mg of morphine. FEV1 was reduced to 36.8±13.2 % of preoperative control values after general anesthesia and muscle relaxants and to 46±12 % of control after epidural and general anesthesia. Intrave-nous morphine improved FEV1 to 45.3±12 % of control, whereas epidural narcot-ics and local anesthetics produced a greater increase of FEV1 in the following amounts: epidural local anesthetic to 68.7±9.1 % of control and epidural narcotics to 67.1±14.7 % of control. Epidural narcotics did not cause sympathetic depression or bladder dysfunction, and analgesia was segmental. We conclude that epidural narcotics in adequate dosage are an effective means for production of prolonged and segmental postoperative analgesia. (Anesthesiology 2005; 102 (1): 221–3) Fazit Durch die epidurale Applikation von Opioiden ist eine effektive, lang andauernde postoperative Analgesie möglich. 264 7Kapitel 7 · Klini sche Studien 7.15 Die Einführung des »train of four« zum Monitoring einer neuromuskulären Blockade Ali HH, Savarese JJ, Lebowitz PW, Ramsey FM (1981) Twitch, tetanus and train-of-four as in- dices of recovery from nondepolarizing neuromuscular blockade. Anesthesiology 54: 294–7 This study was undertaken to compare the sensitivities of the train-of-four re- sponse (2 Hz for 2 s), the single twitch (0.15 Hz), and the tetanic response (50 Hz for 5 s) as indices of residual nondepolarizing block. Spontaneous or induced re-covery of evoked thumb adduction in response to ulnar nerve stimulation was studied. One hundred and seven adult surgical patients were divided according to the relaxant used, into six groups. We found that when the single twitch recovered to control height, the train-of-four ratio was well below 1.0. This ratio was signifi-cantly lower during spontaneous recovery than following neostigmine antagonism of the block (P<0.01). The titanic response was fully sustained when the train-of-four ratio was above 0.7. When the ratio was less than 0.7, variable degrees of fade of tetanus were evident. Analysis of variance indicated similar train-of-four ratios among the six groups at complete recovery of the single twitch irrespective of the relaxant technique used (P<0.1). It is concluded that a train-of-four ratio of 0.7 or higher reliably indicates the recovery of the single twitch to control height and a sustained response to tetanic stimulation at 50 Hz for 5 s. The clinical significance of this study is as follows: the train-of-four response provides the same indication of clinical recovery from nondepolarizing block as obtained from tetanic stimula-tion at a physiological frequency; and reliance on the recovery of the single twitch to control height as a criterion of spontaneous return to normal clinical neuromus-cular function may be misleading. (Anesthesiology 2003; 98 (5): 1278–80) Fazit Der »train of four« wurde zum Standardverfahren des objektiven Monitorings der Wirkung von Muskelrelaxanzien. 7.16 Nachweis des Wirkorts von Allgemeinanästhetika an spezifischen Rezeptoren Franks NP , Lieb WR (1984) Do general anaesthetics act by competitive binding to specific receptors? Nature 310: 599–601 Most proteins are insensitive to the presence of general anaesthetics at concentra- tions which induce anaesthesia, while some are inhibited by some agents but not others. Here we show that, over a 100,000-fold range of potencies, the activity of a 265 7 7.17 · Postoperative Myokardinfarkte pure soluble protein (firefly luciferase) can be inhibited by 50 % at anaesthetic con- centrations which are essentially identica l to those which anaesthetize animals. This identity holds for inhalational agents (such as halothane, methoxyflurane and chlo-roform), aliphatic and aromatic alcohols, ketones, ethers and alkanes. This finding is all the more striking in view of the fact that the inhibition is shown to be com-petitive in nature, with anaesthetic molecules competing with the substrate (lucif-erin) molecules for binding to the protein. We show that the anaesthetic-binding site can accommodate only one large, but more than one small, anaesthetic molecule. The obvious mechanism suggested by our re sults is that general anaesthetics, despite their chemical and structural diversity, act by competing with endogenous ligands for binding to specific receptors. (Anesthesiology 2004; 101 (1): 235–7) Fazit Anästhetika bewirken in einem zellmembranfreien Extrakt eine Aktivierung der Glüh- würmchen-Luciferase. Die Aktivierung ist umso stärker, je stärker die anästhetische Potenz des Anästhetikums ist. Die Autoren schlossen daraus auf eine direkte Interak-tion von Anästhetika mit Proteinen, was das bis dahin gültige Dogma der ausschließ-lichen Wirkung von Anästhetika an der Lipidmembran der Zelle erschütterte. 7.17 Führt eine perioperative Myokardischämie zu postoperativen Myokardinfarkten? (n=1023 Patienten, prospektive und randomisierte Studie) Slogoff S, Keats AS (1985) Does perioperative myocardial ischemia lead to postoperative myocardial infarction? Anesthesiology 62: 107–14 To determine if a relationship exists between Perioperative myocardial ischemia (ST segment depression greater than or equal to 0.1 mV) and postoperative myo-cardial infarction (PMI), nonparticipating observers recorded all electrocardio-graphic, hemodynamic, and other events between arrival of patients in the operat-ing room and onset of cardiopulmonary bypass during 1,023 elective coronary ar-tery bypass operations (CABG). The roles of preoperative patient characteristics, quality of the operation limited by disease as rated by the surgeon and duration of ischemic cardiac arrest as risk factors for PMI also were quantified. Electrocardio-graphic ischemia occurred in 36.9 % of all patients, with almost half the episodes occurring before induction of anesthesia. PMI was almost three times as frequent in patients with ischemia (6.9 % vs. 2.5 %) and was independent of when ischemia occurred. Ischemia was related significantly to tachycardia but not hypertension nor hypotension and was frequent in the absence of any hemodynamic abnormali-ties. The anesthesiologist whose patients had the highest rate of tachycardia and 266 7Kapitel 7 · Klini sche Studien ischemia had the highest rate of PMI. Although neither single nor multiple preop- erative patient characteristics related to PMI, suboptimal quality of operation and prolonged ischemic cardiac arrest increased the likelihood of PMI independent of the occurrence of myocardial ischemia. The authors conclude that perioperative myocardial ischemia is common in patients undergoing CABG, occurs randomly as well as in response to hemodynamic abnormalities, and is one of three indepen-dent risk factors the authors identified as related to PMI. PMI is unrelated to pre-operative patient characteristics such as ejection fraction and left main coronary artery disease, and its frequency will relate primarily to perioperative management rather than patient selection. (Anesthesiology 2006; 105 (1): 214–6) Fazit Perioperative Myokardischämien korrelieren stark mit der Inzidenz postoperativer Myokardinfarkte. Die Autoren konnten herausarbeiten, dass die Vermeidung einer Tachykardie durch den Anästhesisten bei der Narkoseeinleitung und die Qualität des chirurgischen Eingriffs wichtige Determinanten zur Vermeidung postoperativer Myo-kardinfarkte nach Herzbypassoperation sind. 7.18 Unerwarteter Herzstillstand während Spinalanästhesie : eine Analyse von Gerichtsfällen zur Frage der prädisponierenden Faktoren (n=14, retrospektive Untersuchung) Caplan RA, Ward RJ, Posner K, Cheney FW (1988) Unexpected cardiac arrest during spinal anesthesia: A closed claims analysis of predisposing factors. Anesthesiology 68: 5–11 Fourteen cases of sudden cardiac arrest in healthy patients who received spinal anesthesia were discovered in a preliminary review of 900 closed insurance claims for major anesthetic mishaps. All patients were resuscitated from the intraopera-tive cardiac arrest, but six suffered such severe neurologic injury that they died in hospital. Of the eight survivors, only one patient exhibited sufficient neurologic recovery to allow independence in daily self-care. In view of the unexpected nature of these cardiac arrests – as well as the ultimate severity of injury – the cases were analyzed in detail to determine whether there were recurring patterns of anesthet-ic management that may have contributed to patient morbidity and mortality. Two patterns were identified. The first was the intraoperative use of sufficient sedation to produce a comfortable- appearing, sleep-like state in which there was no spontaneous verbalization. Cyanosis fr equently heralded the onset of cardiac arrest in patients exhibiting this degree of sedation, suggesting that unappreciated respiratory insufficiency may have played an important role. 267 7 7.19 · Einführung des Doppler-Ultraschall-Monitorings The second pattern appeared to be an inadequate appreciation of the interac- tion between sympathetic blockade during high spinal anesthesia and the mecha- nisms of cardiopulmonary resuscitation. Prompt augmentation of central venous filling through the use of a potent alpha-agonist and positional change might have improved organ perfusion, shortened the duration of cardiac arrest, and lessened the degree of neurologic damage. Fazit Die erste Untersuchung des »Closed Claims Study Project« wies auf den Zusammen- hang zwischen ansonsten gesunden Patienten und einem Herzstillstand während Spinalanästhesie hin, der mit Zyanose durch eine begleitende evtl. zu tiefe Sedierung assoziiert war. Bei der Reanimation wurde darauf hingewiesen, dass die Sympathiko-lyse hervorgerufen durch die Spinalanästhesie reversiert werden muss, durch Gabe potenter α-Agonisten, Volumenfüllung und Begünstigung des venösen Rückstroms durch Kopftieflage. 7.19 Einführung des Doppler-Ultraschall-Monitorings in der Neurochirugie und die Therapie der Luftembolie durch Einlage eines rechtsatrialen ZVK Albin MS, Carroll RG, Maroon JC (1978) Clinical considerations concerning detection of venous air embolism. Neurosurgery 3: 380–84 Venous air embolism during neurosurgical procedures (detected by Doppler ul- trasound and aspiration via a right atrial catheter) was noted in 100 of 400 patients in the sitting position, 5 of 60 patients in the lateral position, 7 of 48 patients in the supine position, and 1 of 10 patients in the monitored prone position. We con-firmed venous air embolism in many of these patients by using serial technetium-microaggregated albumin lung scans. Gravitational gradients from the venous portal of entrance to the right side of the heart were as small as 5.0 cm, with aspira-tion of 200 ml of air occurring. Doppler ultrasonic air bubble detection and aspira-tion through a previously inserted right atrial catheter are critical factors in the diagnosis and treatment of this condition. Fazit Bei sitzenden Positionen in der Neurochirurgie kommt es in ca. 25 % der Fälle zu einer venösen Luftembolie. Zur Detektion wird erfolgreich ein Doppler-Ultraschall-Gerät transthorakal verwendet. Die Therapie besteht in der Aspiration von Luft aus dem rechten Vorhof durch einen rechtsatr ial eingebrachten zentralen Venenkatheter. Die Detektion der Luftembolie wird durch ein kontinuierliches TEE erleichtert. 268 7Kapitel 7 · Klini sche Studien 7.20 Verminderung des Schadens durch Herzinfarkt durch Verbesserung des Verhältnisses von Sauerstoffangebot zu Sauerstoffverbrauch Maroko PR, Kjekshus JK, Sobel BE, Watanabe T, Covell JW, Ross J Jr., Braunwald E (1971) Fac- tors influencing infarct size following experimental coronary artery occlusion. Circulation 43: 67–82 The purpose of this study was to determine whether hemodynamic and pharma- cologic factors can influence the extent and severity of myocardial necrosis pro-duced by coronary occlusion. In 48 dogs, 10 to 14 epicardial leads were recorded on the anterior surface of the left ventricle in the distribution and vicinity of the site of occlusion of a branch of the left anterior descending coronary artery. The average S-T segment elevation for each animal was determined at 5-min intervals after occlusion. This elevation was used as an index of the presence and severity of myocardial ischemic injury. Isoproterenol, ouabain, glucagon, bretylium, and tachycardia given prior to a repeated occlusion each increased the severity and extent of ischemic injury, while propranolol decreased it. Elevation of arterial pressure with methoxamine reduced the occlusion-induced S-T segment eleva-tion, and lowering of the mean arterial pressure by hemorrhage had the opposite effect. In 19 additional experiments, propranolol, isoproterenol, and alterations in arterial pressure produced similar alterations in S-T segment elevation when these interventions were applied as long as 3 hr after ligation. Myocardial creatine phos-phokinase (CPK) activity determined 24 hr after coronary artery ligation correlat-ed well with S-T segment elevation at the same sites recorded 15 min after ligation. Moreover, isoproterenol increased and propranolol decreased the area of depres-sion of myocardial CPK activity. We conclude that the hemodynamic status and neurohumoral background at the time of coronary occlusion and for at least 3 hr thereafter can alter the extent and severity of myocardial ischemic injury and myocardial necrosis. Fazit Die noch heute gültige Beziehung von Sauerstoffangebot und -verbrauch zur Ver- besserung eines Herzinfarkts wurde hier beschrieben. 269 7 7.21 · Nachweis der kardioprotektiven Wirkung 7.21 Nachweis der kardioprotektiven Wirkung von Isofluran durch anästhetische Präkonditionierung Kersten JR, Schmeling TJ, Pagel PS, Gross GJ, Warltier DC (1997) Isoflurane mimics ischemic preconditioning via activation of K ATP channels: Reduction of myocardial infarct size with an acute memory phase. Anesthesiology 87: 361–70 Background The hypotheses that isoflurane directly preconditions myocardium against infarction via activation of adenosine triphosphate–regulated potassium channels and that the protection afforded by isoflurane is associated with a short- term memory phase similar to that of ischemic preconditioning were tested. Methods Barbiturate-anesthetized dogs (n = 71) underwent measurement of sys- temic hemodynamics. Myocardial infarct size was assessed by triphenyltetrazoli-um chloride staining. All dogs were subjected to a single prolonged (60-min) left anterior descending (LAD) coronary artery occlusion, followed by 3 h of reperfu-sion. Ischemic preconditioning was produced by four 5-min LAD coronary artery occlusions interspersed with 5-min periods of reperfusion before the prolonged LAD coronary artery occlusion and reperfusion. The actions of isoflurane to de-crease infarct size were examined in dogs receiving one minimum alveolar con-centration of isoflurane that was discontinued 5 min before prolonged LAD coro-nary artery occlusion. The interaction between isoflurane and ischemic precondi-tioning on infarct size was evaluated in dogs receiving isoflurane before and during preconditioning LAD coronary artery occlusions and reperfusions. To test wheth-er the cardioprotection produced by isoflurane can mimic the short-term memo-ry of ischemic preconditioning, isoflurane was discontinued 30 min before prolonged LAD coronary artery occlusion and reperfusion. The mechanism of isoflurane-induced cardioprotection was evaluated in two final groups of dogs pretreated with glyburide in the presence or absence of isoflurane. Results Myocardial infarct size was 25.3±2.9 % (mean ± SEM) of the area at risk during control conditions. Isoflurane and ischemic preconditioning produced significant ( P<0.05) and equivalent reductions in infarct size (ischemic precondi- tioning alone, 9.6±2.0 %; isoflurane alone, 11.8±2.7 %; isoflurane and ischemic preconditioning, 5.1±1.9 %). Isoflurane-induced reduction of infarct size also per-sisted 30 min after discontinuation of the anesthetic (13.9±1.5 %), independent of hemodynamic effects during LAD coronary artery occlusion. Glyburide alone had no effect on infarct size (28.3±3.9 %), but it abolished the protective effects of isoflurane (27.1±4.6 %). 270 7Kapitel 7 · Klini sche Studien Conclusions Isoflurane directly preconditions myocardium against infarction via activation of adenosine triphosphate–regulated potassium channels in the absence of hemodynamic effects and exhibits short-term memory of preconditioning in vivo. Fazit In dieser Studie konnte erstmals gezeigt werden, dass Isofluran kardioprotektive Eigenschaften hat, die unabhängig von hämodynamischen Veränderungen sind. Das Phänomen heißt Präkonditionierung und beschreibt die Tatsache, dass komple-xe intrazelluläre Veränderungen in Kardiomyozyten induziert werden, die vor einem Zelluntergang schützen, wenn es zu einem Ischämie/Reperfusionsschaden kommt. Inzwischen weiß man, dass alle volatilen Anästhetika diese Eigenschaft haben und zur Organprotektion nicht nur des Herzens führen. 7.22 Wirkmechanismus der Lokalanästhetika: Das positive geladene Kation ist die Wirkform, die die Entstehung eines Aktionspotenzials blockiert Ritchie JM, Greengard P (1961) On the active structure of local anesthetics. J Pharmacol Exp Ther 133: 241–5 The action of local anesthetics, containing a tertiary nitrogen, on mammalian nonmyelinated fibers of the rabbit’s vagus nerve has been analyzed to determine whether the uncharged or the positively charged form of these compounds is re-sponsible for their ability to block impulse conduction. The compounds studied were dibucaine, tetracaine, chlorpromazine, imipramine, and procaine. Impulse conduction was restored, in fibers in which it had been blocked by pretreatment with a local anesthetic, by increasing the pH of the perfusing solution from approx-imately 7.0 to 9.5; block was rapidly reestablished when the fibers were again perfused with the solution of pH approximately 7.0. From the way in which the size of the action potential varied with pH in nerve fibers pretreated with a local anesthetic, it has been concluded that the active form of the local anesthetic is the cation. Fazit Durch Variation des pH-Werts konnte gezeigt werden, dass die eigentliche Wirkform des Lokalanästhetikums das Kation ist. 271 7 7.24 · Succinylcholin-induzierte Hyperkaliämie 7.23 Bestimmung der Testdosis zur Vermeidung einer intravenösen oder subarachnoidalen Gabe des Lokalanästhetikums vor Periduralananästhesie Moore DC, Batra MS (1981) The components of an effective test dose prior to epidural block. Anesthesiology 55: 693–6 In 215 surgical patients, the components and monitoring of a single test dose be- fore an epidural block were established. Test doses (3 ml) of bupivacaine, chloro-procaine, lidocaine, or mepivacaine in concentrations sufficient to cause spinal block, with or without 0.0015 mg epinephrine, were given separately via intrave-nous and epidural injection. No evidence of spinal block was observed with epi-dural injection of any anesthetic. With intravenous injection, no cardiovascular responses were observed in the absence of epinephrine. In the presence of epi-nephrine, heart rate rapidly increased from 79±14 to 111±15 beats/min. Within 2 min of its injection, the local anesthetic test dose containing epinephrine was sufficient to provide definitive clinical evidence that a needle’s bevel rested intra-vascularly or in the cerebrospinal fluid for all four anesthetics. Fazit Die Ermittlung der richtigen Testdosis für den Ausschluss einer intrathekalen oder intravenösen Lage des Periduralkatheters wurde hier ermittelt. Es zeigte sich, dass 3 ml eines Lokalanästhetikums keine systemische toxische Wirkung entfaltet, wenn sie akzidentell intravenös verabreicht werden, und andererseits innerhalb kurzer Zeit zu einer erkennbaren Spinalanästhesie führen, wenn sie akzidentell intrathekal ver-abreicht werden. Wenn zusätzlich 1,5 μg Adrenalin hinzugefügt werden, kommt es bei intravenöser Anwendung zu einem erkennbaren Anstieg der Herzfrequenz bei normofrequenten Patienten. 7.24 Succinylcholin-induzierte Hyperkaliämie entsteht durch Inaktivität und Denervation Gronert GA, Theye RA (1975) Pathophysiology of hyperkalemia induced by succinylcholine. Anesthesiology 43: 89–99 The mechanism of succinylcholine-ind uced hyperkalemia was studied in three lesions affecting canine gastrocnemius muscle. Dogs were treated for 1 month before study: 10 with normal activity, 5 with unilateral sciatic nerve section, active on 3 legs, 5 with unilateral cast immobilization of a hind limb and pelvis, active on 3 legs, and 7 inactive with T6 section of the spinal cord. Succinylcholine responses 272 7Kapitel 7 · Klini sche Studien were determined during thiopental–halothane (mean expired halothane 1.0 ± 0.2 %) endotracheal anesthesia with arterial carbon dioxide tension of 38–42 mmHg, arterial oxygen tension of 100–120 mmHg, and muscle and body tem-peratures maintained at 37° ± 0.2°C. The investigators isolated and collected the venous drainage of gastrocnemius muscle and measured its total blood flow. Muscle potassium release and oxygen consumption were calculated as blood flow × (arterial content − venous content). Succinylcholine-induced gastrocnemius potassium release was greatest after both sciatic and cord section; oxygen con-sumption was increased in parallel. Disuse atrophy of one leg slightly increased both values but was insufficient to produce systemic hyperkalemia. Reuptake of potassium followed succinylcholine-induced release. Given before succinylcho-line, modest doses of gallamine slightly modified the release of potassium, and total paralysis by gallamine blocked it. Fazit Nachweis, dass Succinylcholin an denervierten Muskeln eine Hyperkaliämie durch Depolarisation extrajunktionaler Acetylcholinrezeptoren bewirken kann. Die Hyper-kaliämie kann vollständig durch komplette Muskelrelaxation mit nicht depolarisie-renden Muskelrelaxanzien verhindert werden. 7.25 Exzitotoxizität bei Ischämie/Reperfusionsschaden des ZNS durch Glutamat Benveniste H, Drejer J, Schousboe A, Diemer NH (1984) Elevation of the extracellular con- centrations of glutamate and aspartate in rat hippocampus during transient cerebral ische- mia monitored by intracerebral microdialysis. J Neurochem 43: 1369–74 Rats were implanted with 0.3-mm-diameter dialysis tubing through the hippo- campus and subsequently perfused with Ringer’s solution at a flow rate of 2 ml/min. Samples of the perfusate representing the extracellular fluid were collected over 5-min periods and subsequently analyzed for contents of the amino acids glutamate, aspartate, glutamine, taurine, alanine, and serine. Samples were col-lected before, during, and after a 10-min period of transient complete cerebral ischemia. The extracellular contents of glutamate and aspartate were increased, respectively, eight- and threefold during the ischemic period; the taurine concen-tration also was increased 2.6-fold. During the same period the extracellular con-tent of glutamine was significantly decreased (to 68 % of the control value), where-as the concentrations of alanine and serine did not change significantly during the ischemic period. The concentrations of γ-aminobutyric acid (GABA) were too low to be measured reliably. It is suggested that the large increase in the content of 273 7 7.27 · Hypersensitivität nach Verletzungen extracellular glutamate and aspartate in the hippocampus induced by the ischemia may be one of the causal factors in the damage to certain neurons observed after ischemia. Fazit Vorstellung des Konzepts der Exzitotoxizität des Gehirns bei Ischämie/Reperfusions- schaden durch Glutamat und Aspartat, die als exzitatorische Neurotransmitter fungieren. 7.26 Die Beschreibung der Entdeckung und Entwicklung der »modernen« volatilen Anästhetika Enfluran, Isofluran, Sevofluran und Desfluran in den 1970er-Jahren Terrell RC, Speers L, Szur AJ, Treadwell J, Ucciardi TR (1971) General anesthetics: 1. Halogena- ted methyl ethyl ethers as anesthetic agents. J Med Chem 14: 517–9 Thirty-six halogenated methyl-ethyl-ethers have been synthesized for evaluation as volatile anesthetics. Eleven of the ethers were too unstable to test, and, of the remaining 25, 13 had promising anesthetic properties in mice and are suitable for study in larger animals. Those ethers having one H with at least 2 halogens other than F or 2 or more H with at least one Br or Cl were the best anesthetics. Fazit In dieser Veröffentlichung wurden die erst in den 1990er-Jahren klinisch eingeführ- ten volatilen Anästhetika Desfluran und Sevofluran charakterisiert. Unklar bleibt, welche weiteren Substanzen als volatile Anästhetika bisher nicht klinisch eingeführt wurden. 7.27 Hypersensitivität nach Verletzungen entsteht durch Plastizität des Gehirns Woolf CJ (1983) Evidence for a Central Component of Post-injury Pain Hypersensitivity. Nature 306: 686–8 Noxious skin stimuli which are sufficiently intense to produce tissue injury, char- acteristically generate prolonged poststimulus sensory disturbances that include continuing pain, an increased sensitivity to noxious stimuli and pain following innocuous stimuli. This could result from either a reduction in the thresholds of 274 7Kapitel 7 · Klini sche Studien skin nociceptors (sensitization) or an increase in the excitability of the central nerv- ous system so that normal inputs now evoke exaggerated responses. Because sensi-tization of peripheral receptors occurs fo llowing injury, a peripheral mechanism is widely held to be responsible for postinjury hypersensitivity. To investigate this I have now developed an animal model where changes occur in the threshold and responsiveness of the flexor reflex following peripheral injury that are analogous to the sensory changes found in man. Electrophysiological analysis of the injury-in-duced increase in excitability of the flexion reflex shows that it in part arises from changes in the activity of the spinal cord. The long-term consequences of noxious stimuli result, therefore, from central as well as from peripheral changes. Fazit Nachweis, dass durch plastische Umbauvorgänge im adulten Gehirn nach einer Verletzung Hypersensitivitätsareale ausgebildet werden. Aus neuerer Zeit weiß man, dass auch kortikale Umbauvorgänge davon betroffen sind. 7.28 Nachweis eines sympathisch unterhaltenen Schmerzes durch Blockade mit Phentolamin i.v., einem α-adrenergen Rezeptorblocker Raja SN, Treede RD, Davis KD, Campbell JN (1991) Systemic α-adrenergic blockade with phen- tolamine: A diagnostic test für sympathetically maintained pain. Anesthesiology 74: 691–8 The diagnosis of sympathetically mainta ined pain (SMP) is typically established by assessment of pain relief during local anesthetic blockade of the sympathetic ganglia that innervate the painful body part. To determine if systemic α-adrenergic blockade with phentolamine can be used to diagnose SMP , we compared the effects on pain of local anesthetic sympathetic ganglion blocks (LASB) and phentolamine blocks (PhB) in 20 patients with chronic pain and hyperalgesia that were sus-pected to be sympathetically maintained. The blocks were done in random order on separate days. Patients rated the intensity of ongoing and stimulus-evoked pain every 5 min before, during, and after the LASB and PhB. Patients and the investi-gator assessing pain levels were blinded to the time of intravenous administration of phentolamine (total dose 25–35 mg). The pain relief achieved by LASB and PhB correlated closely (r=0.84), and there was no significant difference in the maxi-mum pain relief achieved with the two blocks (t=0.19, p>0.8). Nine patients expe-rienced a greater than 50 % relief of pain and hyperalgesia from both LASB and PhB and were considered to have a clinically significant component of SMP . We conclude that α-adrenergic blockade with intravenous phentolamine is a sensitive alternative test to identify patients with SMP . 275 7 7.30 · Thermoregulation unter Narkose Fazit Der Nachweis, dass Schmerzen auch durch sympathische periphere Nervenfasern bzw. durch adrenerge Neurotransmission hervorgerufen werden können, wurde hier geführt: Bei 9 von 20 untersuchten Patienten konnten Schmerzen durch den α-adrenergen Rezeptorblocker Phentolamin um 50 % reduziert werden. 7.29 Das Prämedikationsgespräch beruhigt den Patien- ten mehr als die medikamentöse Prämedikation (n=218, prospektiv, doppel-blind, randomisiert, 4 Gruppen) Egbert LD, Battit GE, Turndorf H, Beecher HK (1963) The value of the preoperative visit by an anesthetist. A study of doctor-patien t rapport. JAMA 185: 415–22 The psychologic effect of the preoperative visit by an anesthetist has been com- pared with the effect of pentobarbital for preanesthetic medication. Patients re- ceiving pentobarbital 1 hour before an operation became drowsy but it could not be shown that they became calm. Patients who had receiving a visit by an anesthe-tist before operation (informing them about the events which were to occur on the day of operation and about the anesthetic to be administered) were not drowsy but were more likely to be calm on the day of operation. The importance of the preoperative visit probably explains, in part, the diffi- culties previous investigators have had in showing sedative effects from the barbi-turates and narcotics before operation. The tremendous emotion significance to a patient of illness or an operation may explain why physicians are able to exert such influence upon their patients. Fazit In dieser Publikation wird der Wert des ärztlichen Patientengesprächs zur Prämedika- tion aufgezeigt. Dabei ist der Effekt, den das Gespräch auf den Patienten hat, höher als der pharmakologische Nutzen einer Barbituratprämedikation. 7.30 Thermoregulation unter Narkose (n=12, prospektiv, randomisiert, 2 Gruppen) Sessler DI, Olofsson CI, Rubinstein EH, Beebe JJ (1988) The thermoregulatory threshold in humans during halothane anesthesia. Anesthesiology 68: 836–42 Although suppression of thermoregulatory mechanisms by anesthetics is gener- ally assumed, the extent to which thermoregulation is active during general anes- 276 7Kapitel 7 · Klini sche Studien thesia is not known. The only thermoregulatory responses available to anesthe- tized, hypothermic patients are vasoconstriction and nonshivering thermogenesis. To test anesthetic effects on thermoregulation, the authors measured skin-surface temperature gradients as an index of cutaneous vasoconstriction in unpremedi-cated patients anesthetized with 1 % ha lothane and paralyzed with vecuronium during elective, donor nephrectomie. Patients were randomly assigned to undergo maximal warming (warm room, humified respiratory gases, and warm intrave-nous fluids; n=5) or standard temperature management (no special warming mea-sures; n=5). Skin surface temperature gradients of 4 °C or more were prospec-tively defined as significant vasoconstriction. Normothermic patients (average minimum esophageal temperature = 36,4±0,3 °C[SD]) did not demonstrate significant vasoconstriction. However each hypothermic patient displayed significant vasoconstriction at esophageal temperatures ranging from 34.0 to 34.8 °C (average temperature = 34,4±0,2 °C). These data indicate that active thermoregulation occurs during halothane anesthesia, but that it does not occur until core temperature is approximately 2.5 °C lower than normal. In two addi-tional hypothermic patients, increased skin-temperature gradients correlated with decreased perfusion as measured by a laser Doppler technique. Measuring skin-surface temperature gradients is a simple, noninvasive, and quantitative method of determining the thermoregulatory threshold during anesthesia. Fazit Mit dieser Publikation wurde der Beweis er bracht, dass die Temperaturregulation unter Anästhesie noch funktioniert, jedoch erst bei einer um 2,5 °C nach unten verschobenen Kerntemperatur. Hiermit erklärt sich die Hypothermie als eine Soll-wertverschiebung hin zu niedrigeren Temperaturen. 7.31 Beurteilung der Vasopressortherapie zur Behandlung der mütterlichen Hypotonie bei Spinalanästhesie (n=14, gravide Mutterschafe, Tierstudie) James FM III, Griess FC, Kemp RA (1970) An evalua tion of vasopressor therapy for maternal hypotension. Anesthesiology 33: 25–34 During hypotension resulting from conduction anesthesia in gravid ewes, uterine blood flow (UBF) decreased roughly in proportion to the decrease in maternal blood pressure. Ephedrine or mephentermine significantly increased UBF over that accomplished by metaraminol. 277 7 7.31 · Beurteilung der Vasopressortherapie Presumably, the preferential effects of these agents were the result of increased cardiac output owing to inotropic and chronotropic actions. However, UBF never exceeded 90% of prespinal levels with any vasoactive agent, and, for a given ma-ternal system, the UBF response was variable, generally increasing but frequently remaining constant or decreasing. For these reasons, all other methods of combat-ing hypotension should be used initially. If vasopressors are still required, agents of choice are those whose principal mode of action lies in cardiac stimulation rather than peripheral vasoconstriction. Fazit Diese Studie war unter anderem der Anlass , warum über Jahrzehnte Ephedrin als das Mittel der ersten Wahl bei Hypotonie unter Spinalanästhesie bei Sectio caesarea angesehen wurde, aufgrund der in der Studie als vorteilhaft interpretierten Wirkung als indirektes Sympathikomimetikum. Inzwischen werden jedoch direkte Vaso-konstriktoren wie Phenylephrin bevorzugt. Phenylephrin wirkt als reiner α-Agonist ohne β-mimetische Wirkung. Das Pendel könnte nun in Richtung Noradrenalin weiterschwingen als einer Substanz mit direkter α- und β-mimetischer Wirkung und heißen Kandidaten für die Hypotoniebehandlung der ersten Wahl. Serviceteil Literatur – 280 Stichwortverzeichnis – 281 F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3, © Springer-Verlag GmbH Deutschland 2017 Litera tur Barash PG et al (2005) Clinical anesthesia, 5th ed. Lippincott Raven, Philadelphia Berne RM (ed) (2008) Physiology, 6th ed. Mosby, St. Louis/MO Burchardi H, Larsen R, Marx G, Muhl E, Schölmerich J (2011) Die Intensiv- medizin, 11. Aufl. Springer, Heidelberg Brunton LL et al (2011) Goodman and Gil- man’s »The pharmacological basis of therapeutics«, 12th ed. McGraw-Hill, New York Hall JE (2010) Guyton and Hall Textbook of medical physiology, 12th ed. Saunders Hardman JG, Limbird LE, Goodman Gilman A (2001) Goodman & Gilman’s the pharmacological basis of therapeutics, 10th ed. McGraw-Hill, New York Heck M, Fresenius M (2010) Repetitorium Anästhesiologie, 6. Aufl. Springer, Heidelberg Larsen R (2010) Anästhesie, 9. Aufl. Urban & Fischer in Elsevier, MünchenList WF et al (2003) Komplikationen in der Anästhesie, 4. Aufl. Springer, Heidelberg Miller RD (ed) (2009) Anesthesia, 6th ed. Churchhill Livingstone, New York Petroianu G et al (1996) Anästhesie in Frage und Antwort, Basic Sciences, 2. Aufl. Springer, Heidelberg Petroianu G et a. (2000) Anästhesie in Frage und Antwort, Clinical Sciences, 3. Aufl. Springer, Heidelberg Rossaint R, Werner C, Zwißler B (2008) Die Anästhesiologie, 2. Aufl. Springer, Heidelberg Schmidt R et al (2011) Physiologie des Menschen, 31. Aufl. Springer, Heidel-berg Stoelting RK (2005) Pharmacology and physiology in anesthetic practice, 4th ed. Lippincott Raven, Philadelphia/PA 281 A Stichwortverzeichnis A A-alpha-Fasern (Aα-Fasern) 33 AB0-Inkompatibilität 239 A-beta-Fasern (Aβ-Fasern ) 33 ACE-Hemmer 76, 126 Acethycholinesterase- hemmer 116 Acetylcholin 36, 93, 116, 181 – Parkinson 182Acetylcoenzym A 36Acetylsalicylsäure 206, 222 ACh-Rezeptoren 37A-delta-Fasern (Aδ-Fasern) 185 Adenohypophyse 182Adenosin 138 – Nebenwirkungen 139Adipositas permagna 146, 157 Adrenalin 133, 190 – bei allergischen Reaktio- nen 225 Adrenalinumkehr 134Afterload 124, 125, 192A-gamma-Fasern (Aγ-Fasern) 33 Agitation 129air trapping 194Akklimatisation 31Akromegalie 148Aktionspotenzial (AP) 35 Aldosteron 74, 76Aldosteronmangel 74Alfentanil 120Alkalose 5, 13, 14, 15, 238 – hypokaliämische 74 – metabolische 128, 238 – respiratorische 247Alkohol, Einfluss auf MAC 100 allergische Reaktionen 225, 228 – Einteilung n. Gell u. Coombs 225 Allodynie 229Alpha-1-Agonisten (α1-Agonisten, periphere 122 Alpha-1-Rezeptoren- Blocker (α1-Rezeptoren-Blocker) 138 Alpha-1-Rezeptoren (α1-Rezeptoren) 134 – periphere 122Alpha-2-Agonisten (α2-Agonisten), zerebrale 122 Alpha-2-Antagonisten (α2-Antagonisten), zere-brale 122 Alpha-2-Rezeptor- Agonisten (α2-Rezeptor-Agonist) 123 Alphaagonisten (α-Agonisten) 92, 133, 209 – periphere 92Alphafehler (α-Fehler) 28Alpharezeptorenblocker (α-Rezeptoren-Blocker) 135 Alpharezeptoren (α-Rezeptoren) 129 aluminiumhaltige Antazida 15Aluminium 15Alveolenradius 23Amidlokalanästhetika 164Aminoglykosidantibiotika 128 Aminolävulinsäure 223, 224 Amiodaron 140, 143Amitriptylin 129Amrinon 241Analeptika 91Analgetika, nicht steroidale 222 Anämie 235 – hämolytische 124 – renale 232anaphylaktische Reaktio- nen 78, 226 anaphylaktoide Reaktionen 228 Anästhesie – ambulante 148, 153 – bei alten Menschen 217 – bei Neugeborenen 203 – bei Schwangeren 208, 213 – dissoziative 98 – rechtliche Aspekte 154Anästhesieaufklärung 153Anästhesieeinleitung 149Anästhetika – Plazentagängigkeit 215 – Teratogenität 105 – uterusrelaxierende Wirkung 209 – volatile 150, 175, 222 – Wechselwirkungen m. Chemotherapeutika 159 Anfluten beim Säugling 206 282 Stichwortverzeichnis Angina pectoris 124, 125 Angiotensin-converting- enzyme-Inhibitor 126 Angiotensin I 76, 126Angiotensin II 76, 93, 126Antagonisten – κ-Antagonisten 118 – μ-Antagonisten 118Antagonisten, partielle 118Antiarrhythmika 95, 139Antidepressiva, trizyklische 129, 130 Anti-Digoxin-Fab-Anti- körperfragmente 141 antidiuretisches Hormon 69 Antiemetika 182, 186, 223Antiepileptika 95Anti-Faktor-Xa-Aktivität 70 Antihämorrhagika 67Antihypertonika 122Antikoagulanzien, orale 67Antikonvulsiva 175Antimetabolite 160Antithrombin III 63, 66Aorteninsuffizienz 45, 56Aortenklappeninsuffizienz (AKI) 196 Aortenklappenstenose (AKS) 195 Aortenstenose 56aortokavales Kompres- sionssyndrom 213 APGAR-Score, Studie 253Apixaban 70, 71Apnoe 117Apnoetaucher 25Aprotinin 68Arachidonsäure 94ARDS 79, 80, 81, 82, 94 – Beatmungskonzept 80 – Zone D 80 – Zone H 80 – Zone R 80Area inguinalis 187Arrhythmie 190 – ventrikuläre 130Arteria – carotis interna 40, 179 – vertebralis 179Aspirationsgefahr 146, 186, 205, 209 Asthma bronchiale 135Asystolie 115Aszites 155Atelektasen 85, 248Atemdepression 117, 119, 163 Atemdepressionsphase, postoperative 91 Atemfrequenz 91, 105Atemgrenzwert 87Atemhubvolumen 50Atemkalk 103, 104Atemmechanik 89Atemminutenvolumen 105, 221 – spontanes 91Atemmuskulatur 89Atemstillstand 166Atemwegsreizung 104Atemwegsspitzendruck, Limitierung 79 Atemwegswiderstand 83, 104, 146, 245 Atemzentrum 91Atmosphärendruck 21Atracurium 114atriales natriuretisches Peptid (ANP) 74, 93 Atropin 142, 182, 189, 222 – in der Kinderanästhesie 205 Atropinfieber 143Aufklärungsgespräch 153 – Dokumentation 154Aufwachphase, verkürzte 95Auge – Kammerwasser 179 – Ziliarkörper 133Augenheilkunde 155Augeninnendruck 156Augeninnendruck- erhöhung 131 Augenverletzung, perforierende 156 Auskultation 145 – bei Lungenödem 238Autoimmunglomerulon- ephritis 124 autonome Hyperreflexie (AHR) 183 AV-Block 46, 130, 137, 139, 140, 142 AV-Shunt 155AV-Überleitungszeit 142Azidose 5, 7, 128 – metabolische 11, 12, 14, 74, 87, 239 – respiratorische 11Azotämie 5 B Babinski-Reflex 184baby lung 80Baclofen 176Bainbridge-Reflex 167Ballismus 184Barbiturate 96, 131, 156, 195, 222 – Kontraindikation 96Barorezeptoren 40Barorezeptorenreflex 38, 41 Barotrauma 26, 79base excess 239Bauchhautdeckenreflex 184 Beatmung, mit reinem Sauerstoff 248",
+        "explanation_de": "Allerdings, das wissen wir eigentlich schon seit 1963 (siehe weg- weisende Studien in 7 Kap. 7). Wird nicht selten aus Zeitnot nicht beachtet.  Wegweisende klinische Studien in der Anästhesie Kapitel 7 Klini sche Studien – 253Franz Kehl, Hans-Joachim Wilke F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3_ 7 , © Springer-Verlag GmbH Deutschland 2017253 7 Klini sche Studien Franz Kehl, Hans-Joachim Wilke 7.1 Die Einführung des APGAR-Scores (n=1025 Patienten, Vorstellung eines neuen Evaluierungsscores für Neugeborene) Apgar V (1953) A proposal for a new method of evaluation of the newborn infant. Anesth Analg 32: 260–7 In 1953, Virginia Apgar, M.D. published her proposal for a new method of evalu- ation of the newborn infant. The avowed purpose of this paper was to establish a simple and clear classification of newborn infants which can be used to compare the results of obstetric practices, types of maternal pain relief and the results of resuscitation. Having considered several objective signs pertaining to the condi-tion of the infant at birth she selected five that could be evaluated and taught to the delivery room personnel without difficulty. These signs were heart rate, respi-ratory effort, reflex irritability, muscle tone and color. Sixty seconds after the complete birth of the baby a rating of zero, one or two was given to each sign, depending on whether it was absent or present. Virginia Apgar reviewed anesthe-sia records of 1025 infants born alive at Columbia Presbyterian Medical Center during the period of this report. All had been rated by her method. Infants in poor condition scored 0–2, infants in fair condition scored 3–7, while scores 8–10 were achieved by infants in good condition. The most favorable score 1 min after birth was obtained by infants delivered vaginall y with the occiput the presenting part (average 8.4). Newborns delivered by version and breech extraction had the low-est score (average 6.3). Infants delivered by cesarean section were more vigorous (average score 8.0) when spinal was the method of anesthesia versus an average score of 5.0 when general anesthesia was used. Correlating the 60 s score with neonatal mortality, Virginia found that mature infants receiving 0,1 or 2 scores had a neonatal death rate of 14 %; those scoring 3, 4, 5, 6 or 7 had a death rate of 1.1 %; and those in the 8–10 score group had a death rate of 0.13 %. She con- . (Anesthesiology 2005; 102 (4): 855–7) Fazit Der 1953 von Virginia Apgar eingeführte Apgar-Score erlaubt die einfache Zuord- nung reifer Neugeborener zu Prognosegruppen mit einer Mortalität von 14 % (Apgar 0, 1, 2), 1,1 % (Apgar 3, 4, 5, 6, 7) und 0,13 % (Apgar 8, 9, 10). 7.2 Kann die Spinalanästhesie ohne neurologische Folgeschäden durchgeführt werden? (n=10 089 Spinalanästhesien, Langzeit-Follow-up-Studie) Dripps RD, Vandam LD (1954) Long-term follow-up of patients who received 10,098 spinal anesthetics: Failure to discover major neurological sequelae. JAMA 156: 1486–91 The goal of this study was to determine the incidence and severity of neurologic complications after spinal anesthesia and to examine the factors contributing to these complications. Early and late effects of 10,098 spinal anesthetics were ana-lyzed in 8,460 patients treated at the Hospital of the University of Pennsylvania between 1948 and 1951. The comparison groups were comprised of 1,000 patients undergoing similar procedures under general anesthesia and 75 patients who re-ceived spinal anesthesia after general anesthesia. Follow-up data on 8,987 spinal anesthetics were obtained 6 months after surgery via mailed questionnaire or by physical examination. Patients of both sexes, ranging in age from 10 to 89 yr, were included. Exclusion criteria for spinal anesthesia were reports of a previous unsat-isfactory spinal anesthetic, neurologic disease, backache, frequent headaches, dif-ficulty with the legs, or infections of the back. Lumbar puncture was performed with needles ranging from 16- to 24-gauge. Spinal anesthetic preparations used included tetracaine, procaine, dibucaine, piridocaine, and pyrrolocaine with or without epinephrine and dextrose. Patients were examined postoperatively to dis-cover neurologic disease. Follow-up ques tions determined whether patients would choose a spinal anesthetic again, if they experienced any untoward effects, and their current condition. When possible, additional information was obtained from patients with suspicious symptoms. Only one case of incapacitating neurologic disease was observed in the 6-month follow-up examinations after the spinal an-esthetic. The patient had an asymptomatic meningioma of the spinal cord. No patients developed cauda equina syndrome, transverse myelitis, or meningeal or epidural sepsis. The primary minor neuro logic sequela was headache (9 % in male patients and 15 % in female patients). Transient minor sequelae included back-",
         "explanation_tr": "Allerdings, das wissen wir eigentlich schon seit 1963 (siehe weg- weisende Studien in 7 Kap. 7). Wird nicht selten aus Zeitnot nicht beachtet.  Wegweisende klinische Studien in der Anästhesie Kapitel 7 Klini sche Studien – 253Franz Kehl, Hans-Joachim Wilke F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3_ 7 , © Springer-Verlag GmbH Deutschland 2017253 7 Klini sche Studien Franz Kehl, Hans-Joachim Wilke 7.1 Die Einführung des APGAR-Scores (n=1025 Patienten, Vorstellung eines neuen Evaluierungsscores für Neugeborene) Apgar V (1953) A proposal for a new method of evaluation of the newborn infant. Anesth Analg 32: 260–7 In 1953, Virginia Apgar, M.D. published her proposal for a new method of evalu- ation of the newborn infant. The avowed purpose of this paper was to establish a simple and clear classification of newborn infants which can be used to compare the results of obstetric practices, types of maternal pain relief and the results of resuscitation. Having considered several objective signs pertaining to the condi-tion of the infant at birth she selected five that could be evaluated and taught to the delivery room personnel without difficulty. These signs were heart rate, respi-ratory effort, reflex irritability, muscle tone and color. Sixty seconds after the complete birth of the baby a rating of zero, one or two was given to each sign, depending on whether it was absent or present. Virginia Apgar reviewed anesthe-sia records of 1025 infants born alive at Columbia Presbyterian Medical Center during the period of this report. All had been rated by her method. Infants in poor condition scored 0–2, infants in fair condition scored 3–7, while scores 8–10 were achieved by infants in good condition. The most favorable score 1 min after birth was obtained by infants delivered vaginall y with the occiput the presenting part (average 8.4). Newborns delivered by version and breech extraction had the low-est score (average 6.3). Infants delivered by cesarean section were more vigorous (average score 8.0) when spinal was the method of anesthesia versus an average score of 5.0 when general anesthesia was used. Correlating the 60 s score with neonatal mortality, Virginia found that mature infants receiving 0,1 or 2 scores had a neonatal death rate of 14 %; those scoring 3, 4, 5, 6 or 7 had a death rate of 1.1 %; and those in the 8–10 score group had a death rate of 0.13 %. She con- 254 7Kapitel 7 · Klini sche Studien cluded that the prognosis of an infant is excellent if he receives one of the upper three scores, and poor if one of the lowest three scores. (Anesthesiology 2005; 102 (4): 855–7) Fazit Der 1953 von Virginia Apgar eingeführte Apgar-Score erlaubt die einfache Zuord- nung reifer Neugeborener zu Prognosegruppen mit einer Mortalität von 14 % (Apgar 0, 1, 2), 1,1 % (Apgar 3, 4, 5, 6, 7) und 0,13 % (Apgar 8, 9, 10). 7.2 Kann die Spinalanästhesie ohne neurologische Folgeschäden durchgeführt werden? (n=10 089 Spinalanästhesien, Langzeit-Follow-up-Studie) Dripps RD, Vandam LD (1954) Long-term follow-up of patients who received 10,098 spinal anesthetics: Failure to discover major neurological sequelae. JAMA 156: 1486–91 The goal of this study was to determine the incidence and severity of neurologic complications after spinal anesthesia and to examine the factors contributing to these complications. Early and late effects of 10,098 spinal anesthetics were ana-lyzed in 8,460 patients treated at the Hospital of the University of Pennsylvania between 1948 and 1951. The comparison groups were comprised of 1,000 patients undergoing similar procedures under general anesthesia and 75 patients who re-ceived spinal anesthesia after general anesthesia. Follow-up data on 8,987 spinal anesthetics were obtained 6 months after surgery via mailed questionnaire or by physical examination. Patients of both sexes, ranging in age from 10 to 89 yr, were included. Exclusion criteria for spinal anesthesia were reports of a previous unsat-isfactory spinal anesthetic, neurologic disease, backache, frequent headaches, dif-ficulty with the legs, or infections of the back. Lumbar puncture was performed with needles ranging from 16- to 24-gauge. Spinal anesthetic preparations used included tetracaine, procaine, dibucaine, piridocaine, and pyrrolocaine with or without epinephrine and dextrose. Patients were examined postoperatively to dis-cover neurologic disease. Follow-up ques tions determined whether patients would choose a spinal anesthetic again, if they experienced any untoward effects, and their current condition. When possible, additional information was obtained from patients with suspicious symptoms. Only one case of incapacitating neurologic disease was observed in the 6-month follow-up examinations after the spinal an-esthetic. The patient had an asymptomatic meningioma of the spinal cord. No patients developed cauda equina syndrome, transverse myelitis, or meningeal or epidural sepsis. The primary minor neuro logic sequela was headache (9 % in male patients and 15 % in female patients). Transient minor sequelae included back- 255 7.3 · Diffusionshypoxämie durch Raumluft 7 ache, pain and numbness in the extremity, and an occasional weakness in the leg. Neurologic complications are uncommon after spinal anesthesia with careful pa-tient selection, meticulous technique, and use of safe concentrations of spinal anesthetic mixtures. (Anesthesiology 2004; 100 (1): 176–7) Fazit Neurologische Folgeschäden nach Spinalanästhesie sind bei umsichtiger Patienten- auswahl, sorgfältiger Durchführung und sicherer Dosierung extrem selten. 7.3 Diffusionshypoxämie durch Raumluft am Ende einer Sauerstoff-Lachgas-Narkose (n=8 Patienten, prospektive Studie) Fink BR (1955) Diffusion anoxia. Anesthesiology 16: 511–14 In 1955, Dr. Bernard Raymond Fink published his findings that described the mechanism by which hypoxemia occurred when nitrous oxide–oxygen anesthesia was discontinued and room air breathing commenced. Using an ear oximeter and brachial artery blood gases, he measured oxygen saturation in eight healthy pa-tients who had received 75 % nitrous oxide–25 % oxygen for gynecologic surgery. He showed that oxygen saturation decreased from 5 % to 10 % and often reached a value below 90 % when the patient began room air breathing after the nitrous oxide–oxygen was discontinued. The effect was seen over a 10-min period. He concluded that “anoxia arises because the outward diffusion of nitrous oxide low-ers the alveolar partial pressure of oxygen. ” This phenomenon can become a caus-ative factor of cardiac arrest in patients with impaired pulmonary or cardiac reserves. (Anesthesiology 2007; 106 (1): 186–8) Fazit Wird am Ende einer mit einem Lachgas-Sauerstoff-Gemisch durchgeführten Narkose mit Raumluft beatmet, kann der Einstrom von Lachgas aus dem Blut in die Alveolen zu einer arteriellen Hypoxämie führen. Dies kann durch Applikation von 100 % Sauerstoff verhindert werden. 256 7Kapitel 7 · Klini sche Studien 7.4 Mund-zu-Mund-Beatmung als künstliche Atemspende (n=185 Anwender an 25 Probanden) Safar P (1958) Ventilatory efficacy of mouth-to-mouth artificial respiration: airway obstruc- tion during manual and mouth-to-mouth artificial respiration. JAMA 167: 335–41 Background For respiratory resuscitation without devices, the author hypothe- sized that providing upper airway patency requires lifting the base of the tongue off the posterior pharyngeal wall and that artificial ventilation with intermittent positive pressure using exhaled air, i.e., direct mouth-to-mouth ventilation (MMV), is more effective than back or chest pressure with or without arm lift. MMV leaves the operator’s hands free for backward tilt of the head, forward dis-placement of the mandible, or both. Methods The author studied 25 sedated, nonintubated adult human volunteers under neuromuscular blockade with succinylcholine for 1–3 h each. One hundred sixtyseven untrained lay persons performed various direct MMV methods after one demonstration. Eighteen trained ambulance rescuers performed back or chest pressure arm-lift methods. Ventilation volumes were recorded during MMV from a calibrated pneumograph and during the manual methods from a taped face mask on a spirometer. Arterial oxygen saturation was monitored by an ear oximeter, and end-tidal carbon dioxide was measured by an infrared analyzer. Results With the head in the mid position or flexed, airway obstruction occurred in all volunteers, equally in the supine or prone position. With the head tilted backward and the mouth held open, one half to two thirds of the volunteers had an open airway; the remaining volunteers required additional forward displace-ment of the mandible or a pharyngeal tube. Ninety percent of the lay persons performed MMV effectively. Moderate hyperventilation by the operator achieved normoxemia and normocapnia in the volunteer and moderate hypocapnia in the operator. Apnea-induced moderate hypoxemia was reversed with 5–9 MMVs. In the majority of volunteers, the manual methods caused no ventilation (mostly because of neck flexion), and in others, it caused progressive airway obstruction. In some volunteers, there was valve-like nasopharyngeal obstruction. Conclusions In coma without a tracheal tube, direct MMV is effective because of the ability of the rescuer to support the head and jaw for upper airway patency and because of controllable high inflation pressures and volumes, whereas manual methods frequently fail to ventilate, mainly because of upper airway obstruction. The author recommends that backward tilt of the head plus exhaled air inflation 257 7 7.6 · Einführung des MAC-Konzepts methods be taught for general use in adults and children. (Anesthesiology 2001; 95 (3): 789–91) Fazit Im Rahmen dieser Studie wurden erstmals die Reklination des Kopfes und die Mund- zu-Mund-Beatmung zur Reanimation von Erwachsenen und Kindern empfohlen. Dies löste die bis dahin übliche Beatmungsmethode der Thoraxkompression mit Armhebungen ab. 7.5 Anästhesiologische Todesfälle in einer Familie (n=10, Fallserie) Denborough MA, Forster JFA, Lovell RRH, Maplestone PA, Villiers JD (1962) Anesthetic deaths in a family. Br J Anaesth 34: 395–6 A local family is described in which there have been ten deaths attributable to general anesthesia. The pattern of inheritance of the abnormality is compatible with that due to an incompletely penetrant dominant gene or genes. Spinal anes-thesia produced no ill effects when used in the one member of the family who survived a reaction following a general anesthetic. Fazit Hier wurde der erste überlebte Fall einer durch Halothan induzierten malignen Hy- perthermie beschrieben. Dieser Fall und die humangenetische Beratung und darauf-folgende Forschung führte zu der heutigen Kenntnis des zugrunde liegenden geneti-schen Defekts im Ryanodin-Rezeptor. 7.6 Einführung des MAC-Konzepts für inhalative Anästhetika Eger EI II, Saidman LJ, Brandstater B (1965) Minimum alveolar anesthetic concentration: A standard of anesthetic potency. Anesthesiology 26: 756–63 The minimum alveolar concentration of anesthetic (MAC) necessary to prevent movement in response to a painful stimulus was relatively constant in dogs anes-thetized with halothane. MAC varied over a two-fold range with the intensity of the stimulus, but appeared to reach an upper limit beyond which a further increase in intensity did not increase MAC. For the same stimulus MAC was constant from dog to dog. MAC was unaffected by duration of anesthesia, unaltered by hypocar- 258 7Kapitel 7 · Klini sche Studien bia or hypercarbia, by phenylephrine-induced hypertension or by mild hypoxia (PaO 2 30 to 60 mm. of mercury). Hemorrhagic hypotension or marked acute metabolic acidosis reduced MAC by 10 to 20 per cent. Severe hypoxia (PaO 2 less than 30 mm of mercury) reduced MAC by 25 to 50 per cent. MAC appears to be a useful standard by which all inhalation anesthetics may be compared. (Anesthe-siology 2002; 96 (1): 238–9) Fazit Die Minimale Alveoläre Konzentration (MAC) als »Einheit« zur Angabe der Potenz inhalativer Anästhetika hat sich durchgesetzt. 7.7 Quantitativer Nachweis des Metabolismus von Halothan zu Trifluoracetsäure Rehder K, Forbes J, Alter H, Hessler O, Stier A (1967) Halothane biotransformation in man: A quantitative study. Anesthesiology 28: 711–5 The metabolic breakdown of halothane was quantitatively determined in two pa- tients. Trifluoroacetic acid and bromide were found as metabolites in the urine. Both metabolites have a protracted excretion rate. Since the biological half-life of trifluoroacetic acid is unknown, one can calc ulate only the least amount of halo- thane that had been metabolized on the basis of the excreted trifluoroacetic acid: 12 % in both patients. On the basis of the excreted urinary bromide, 20 % and 17 %, respectively, of the halothane taken up by the body was calculated to be metabolized, if one assumes a biological half-life of 12 days for bromide. (Anes-thesiology 2003; 99 (5): 1220–1) Fazit Hier gelang der Nachweis der Metabolisierung von Halothan zu TFA, das als Immuno- gen die schwere Halothan-induzierte Hepatitis bei Wiederholungsnarkosen auslöst. 259 7 7.9 · Einführung des Rechtsherzkatheters 7.8 Hochdosis-Morphingabe für kardiochirurgische Eingriffe bei Patienten mit Aortenklappenerkrankung (n=15 Patienten, prospektive und randomisierte Studie) Lowenstein E, Hallowell P , Levine F, Daggett WM, Austen WG, Laver MB ( 1969) Cardiovascu- lar response to large doses of intravenous morphine in man. N Engl J Med 281: 1389–93 Large doses of intravenous morphine (0.5 to 3.0 mg per kilogram of body weight) were used alone or in combination with inhalation anesthetic agents for anesthesia in over 1100 patients undergoing open-heart surgery. Morphine, 1 mg per kilo-gram, was administered intravenously to seven subjects with aortic-valve disease and eight without major heart or lung disease. The cardiac subjects had higher control pulse rates and lower control stroke indexes than the normal subjects. In the cardiac but not in the normal stroke subjects, significant increases in cardiac index, stroke index, central venous pressure, and pulmonary-artery pressure, and a significant decrease in systemic vascular resistance, were observed after mor-phine was administered, suggesting that large doses of morphine may be used with safety in patients with minimal circulatory reserve. (Anesthesiology 2004; 100 (4): 1013–5) Fazit Die Applikation von 1 mg/kg Morphin führte bei Patienten mit Aortenklappenerkran- kungen im Gegensatz zu gesunden Patienten zu einem erhöhten Cardiac Output und einem erniedrigten systemischen vaskulären Widerstand. Dieser Befund bereitete den Weg für opioidbasierte Narkoseregimes auch bei kardial vorerkrankten Patienten. 7.9 Einführung des Rechtsherzkatheters in die klinische Praxis Swan JHC, Ganz W, Forrester J, Marcus H, Diamond G, Chonette D (1970) Catheterization of the heart in man with use of a flowdirected balloon-tipped catheter. N Engl J Med 283: 447–51 Pressures in the right side of the heart and pulmonary capillary wedge can be ob- tained by cardiac catheterization without the aid of fluoroscopy. A No. 5 French double-lumen catheter with a balloon just proximal to the tip is inserted into the right atrium under pressure monitoring. The balloon is then inflated with 0.8 ml of air. The balloon is carried by blood flow through the right side of the heart into the smaller radicles of the pulmonary artery. In this position when the balloon is inflated wedge pressure is obtained. The average time for passage of the catheter 260 7Kapitel 7 · Klini sche Studien from the right atrium to the pulmonary artery was 35 s in the first 100 passages. The frequency of premature beats was minimal, and no other arrhythmias oc-curred. (Anesthesiology 2005; 103 (4): 890–3) Fazit Auch wenn die Frage nach der Senkung der Mortalität durch die Verwendung des Pulmonalarterienkatheters bis heute nicht endgültig geklärt ist, stellt seine klinische Einführung einen bedeutenden Meilenstein in der Diagnostik hämodynamischer Parameter dar. 7.10 Methoxyfluran und der Zusammenhang mit Nierenversagen (n=12 Patienten) Mazze RI, Trudell JR, Cousins MJ (1971) Methoxyflurane metabolism and renal dysfunction: Clinical correlation in man. Anesthesiology 35: 247–52 Serum inorganic fluoride concentration and urinary inorganic fluoride excretion were found to be markedly elevated in ten patients previously shown to have me-thoxyflurane induced renal dysfunction. Five patients with clinically evident renal dysfunction had a mean peak serum inorganic fluoride level (190±21 μM) significantly higher (P<0.02) than that of those with abnormalities in laboratory tests only (106±17 μM). Similarly, patients with clinically evident renal dysfunc-tion had a mean peak oxalic acid excretion (286±39 mg/24 h) significantly greater (P<0.05) than that of those with laboratory abnormalities only (130±51 mg/24 h). That patients anesthetized with haloth ane had insignificant changes in serum in- organic fluoride concentration and oxalic acid excretion indicates that these sub-stances are products of methoxyflurane metabolism. A proposed metabolic path-way to support this hypothesis is presented, as well as evidence to suggest that inorganic fluoride is the substance respon sible for methoxyflurane renal dysfunc- tion. (Anesthesiology 2006; 105 (4): 843–6) Fazit Nach Bekanntwerden der Hepatotoxizität von Halothan wurden große Hoffnungen auf den Nachfolger Methoxyfluran gesetzt. Die Autoren zeigten, dass Methoxyfluran große Mengen Fluorid freisetzt, das für das beobachtete Nierenversagen verantwort-lich ist. Methoxyfluran konnte sich aufgrund seiner Nephrotoxizität nicht durchset-zen und wurde vom Markt genommen. 261 7 7.12 · Einfluss der Anästhesie und Muskelrelaxierung 7.11 Thiopental wirkt bei einer kardiopulmonalen Reanimation nicht neuroprotektiv (n=7 Hunde, prospektive und randomisierte Studie) Michenfelder JD (1974) The interdependency of cerebral functional and metabolic effects following massive doses of thiopental in the dog. Anestehsiology 41: 231–6 The cerebral metabolic effects of a massive dose of thiopental (177 mg/kg) were investigated in seven dogs. The systemic circulation was supported with an extra-corporeal circuit. At an infusion rate of 2 mg/kg/min, cerebral oxygen consump-tion (CMRO2) decreased progressively until cerebral electrical silence was pro-duced. This occurred after a mean dose of 72 mg/kg, which caused a mean decrease in CMRO2 to 58 % of the control value (measured at 1.5 % halothane inspired). Thereafter, despite continued at 4 mg/kg/min, CMRO2 did not decrease further. The oxygen-glucose index never changed during the infusion period and, at the termination of the infusion, brain assays for ATP , phosphocreatine, lactate, and pyruvate revealed normal concentrations. It is concluded that there was no altera-tion in normal cerebral metabolic pathways, that cerebral metabolic effects of thiopental are secondary to functional effects that thiopental would provide no cerebral protection during hypoxia sufficient to abolish cerebral function, and that thiopental does not uncouple oxidative phosphorylation in vivo. (Anesthesiology 2002; 97 (4): 1005–6) Fazit Thiopental führt zu einer Unterdrückung der funktionalen neuronalen Aktivität, was eine Verminderung der metabolischen neuronalen Aktivität zur Folge hat. Da die funktionale neuronale Aktivität nach Herz-Kreislauf-Stillstand primär minimal ist, kann Thiopental zu keiner weiteren metabolischen Suppression der neuronalen Aktivität führen und damit nicht neuroprotektiv wirken. 7.12 Einfluss der Anästhesie und Muskelrelaxierung auf die Beweglichkeit des Zwerchfells beim Menschen (n=3, offene Cross-over-Studie) Froese AB, Bryan AC (1974) Effects of anesthesia and paralysis on diaphragmatic mechanics in man. Anesthesiology 41: 242–55 Using a radiologic technique, the position and pattern of movement of the dia- phragm have been evaluated in three adult volunteers, both awake and anesthe-tized, during spontaneous ventilation an d with muscle paralysis and mechanical 262 7Kapitel 7 · Klini sche Studien ventilation. Studies were made with the subjects in supine and left lateral decubitus positions with tidal and large-volume breaths. Positive end-expiratory pressure (PEEP) was added in studies of two subjects. During spontaneous ventilation awake or anesthetized, because of regional mechanical advantages, the dependent part of the diaphragm had the greatest displacement despite the higher intraab- dominal pressure in this region. Paralysis, awake or anesthetized, caused a ceph-alad shift of the end-expiratory position of the diaphragm that was disproportion-ately large in dependent regions. It also reversed the pattern of diaphragmatic displacement. The passive diaphragm was displaced preferentially in nondepend- ent zones where abdominal pressure is least. Consequently, PEEP could not restore the diaphragm to its awake functional residual capacity position, and large breaths also could not duplicate the pattern of displacement achieved spontaneously. Fazit Grundlegende Studie, die zeigte, dass das Zwerchfell bei lateraler Position in der ab- hängigen Hälfte gegenüber der Spontanatmung eine deutlich verminderte Beweg-lichkeit aufweist, der auch mit PEEP nicht durchgreifend entgegengewirkt werden kann. 7.13 Nachweis der Analgesie durch subarachnoidale Opioidapplikation Yaksh TL, Rudy TA (1976) Analgesia mediated by a direct spinal action of narcotics. Science 192: 1357–8 Narcotic analgetics administered directly into the spinal subarachnoid space of the rat via a chronically inserted catheter produce a potent analgesia that can be an-tagonized by naloxone. The narcotics, acting only at the spinal level, changed cord function to block not only the spinal reflexes but also the operant response to painful stimuli. (Anesthesiology 2003; 99 (1): 224–5) Fazit Die Autoren konnten zeigten, dass die Verabreichung von Morphin in den Subarach- noidalraum zu einer potenten Analgesie führt, die durch Naloxon komplett reversibel ist und die keinen Einfluss auf Motoneurone ausübt. 263 7 7.14 · Postoperative Schmerztherapie 7.14 Eignet sich die epidurale Applikation von Opioiden zur postoperativen Schmerztherapie? (n=66 Patienten) Bromage PR, Camporesi E, Chestnut D (1980) Epidural narcotics for postoperative analgesia. Anesth Analg 59: 473–80 Epidural narcotic analgesia was assessed in 66 patients after surgery under epi- dural and light general anesthesia. Changes of forced expiratory volume in 1 s (FEV1) were measured after upper abdominal or thoracic surgery in 41 patients, and comparisons were made with results in an additional 17 upper abdominal surgery patients who received general anesthesia and muscle relaxants followed by intravenous morphine for postoperative pain relief. Methadone, 1.0 mg, hydro-morphone, 1.0 mg, or morphine sulfate, 5 mg, was administered epidurally and increments were repeated as necessary un til satisfactory analgesia was reported, with the following results (mean±SD): intravenous morphine: latency 3 to 10 min, duration 3.1±1.6 h; epidural methadone: latency 17.2±4 min, duration 5.6±2.7 h; epidural hydromorphone: latency 22.5±6 min, duration 9.8±5.5 h; epidural mor-phine: latency 36±6 min, duration 16.4±7 h. Duration of action was slightly longer after lower abdominal surgery. Addition of epinephrine 1/200,000 to the epidural narcotic solutions did not prolong duration. Narcotic requirements for satisfac-tory analgesia were approximately the same by the intravenous route as by the epidural route and equivalent to 8.5 to 9 mg of morphine. FEV1 was reduced to 36.8±13.2 % of preoperative control values after general anesthesia and muscle relaxants and to 46±12 % of control after epidural and general anesthesia. Intrave-nous morphine improved FEV1 to 45.3±12 % of control, whereas epidural narcot-ics and local anesthetics produced a greater increase of FEV1 in the following amounts: epidural local anesthetic to 68.7±9.1 % of control and epidural narcotics to 67.1±14.7 % of control. Epidural narcotics did not cause sympathetic depression or bladder dysfunction, and analgesia was segmental. We conclude that epidural narcotics in adequate dosage are an effective means for production of prolonged and segmental postoperative analgesia. (Anesthesiology 2005; 102 (1): 221–3) Fazit Durch die epidurale Applikation von Opioiden ist eine effektive, lang andauernde postoperative Analgesie möglich. 264 7Kapitel 7 · Klini sche Studien 7.15 Die Einführung des »train of four« zum Monitoring einer neuromuskulären Blockade Ali HH, Savarese JJ, Lebowitz PW, Ramsey FM (1981) Twitch, tetanus and train-of-four as in- dices of recovery from nondepolarizing neuromuscular blockade. Anesthesiology 54: 294–7 This study was undertaken to compare the sensitivities of the train-of-four re- sponse (2 Hz for 2 s), the single twitch (0.15 Hz), and the tetanic response (50 Hz for 5 s) as indices of residual nondepolarizing block. Spontaneous or induced re-covery of evoked thumb adduction in response to ulnar nerve stimulation was studied. One hundred and seven adult surgical patients were divided according to the relaxant used, into six groups. We found that when the single twitch recovered to control height, the train-of-four ratio was well below 1.0. This ratio was signifi-cantly lower during spontaneous recovery than following neostigmine antagonism of the block (P<0.01). The titanic response was fully sustained when the train-of-four ratio was above 0.7. When the ratio was less than 0.7, variable degrees of fade of tetanus were evident. Analysis of variance indicated similar train-of-four ratios among the six groups at complete recovery of the single twitch irrespective of the relaxant technique used (P<0.1). It is concluded that a train-of-four ratio of 0.7 or higher reliably indicates the recovery of the single twitch to control height and a sustained response to tetanic stimulation at 50 Hz for 5 s. The clinical significance of this study is as follows: the train-of-four response provides the same indication of clinical recovery from nondepolarizing block as obtained from tetanic stimula-tion at a physiological frequency; and reliance on the recovery of the single twitch to control height as a criterion of spontaneous return to normal clinical neuromus-cular function may be misleading. (Anesthesiology 2003; 98 (5): 1278–80) Fazit Der »train of four« wurde zum Standardverfahren des objektiven Monitorings der Wirkung von Muskelrelaxanzien. 7.16 Nachweis des Wirkorts von Allgemeinanästhetika an spezifischen Rezeptoren Franks NP , Lieb WR (1984) Do general anaesthetics act by competitive binding to specific receptors? Nature 310: 599–601 Most proteins are insensitive to the presence of general anaesthetics at concentra- tions which induce anaesthesia, while some are inhibited by some agents but not others. Here we show that, over a 100,000-fold range of potencies, the activity of a 265 7 7.17 · Postoperative Myokardinfarkte pure soluble protein (firefly luciferase) can be inhibited by 50 % at anaesthetic con- centrations which are essentially identica l to those which anaesthetize animals. This identity holds for inhalational agents (such as halothane, methoxyflurane and chlo-roform), aliphatic and aromatic alcohols, ketones, ethers and alkanes. This finding is all the more striking in view of the fact that the inhibition is shown to be com-petitive in nature, with anaesthetic molecules competing with the substrate (lucif-erin) molecules for binding to the protein. We show that the anaesthetic-binding site can accommodate only one large, but more than one small, anaesthetic molecule. The obvious mechanism suggested by our re sults is that general anaesthetics, despite their chemical and structural diversity, act by competing with endogenous ligands for binding to specific receptors. (Anesthesiology 2004; 101 (1): 235–7) Fazit Anästhetika bewirken in einem zellmembranfreien Extrakt eine Aktivierung der Glüh- würmchen-Luciferase. Die Aktivierung ist umso stärker, je stärker die anästhetische Potenz des Anästhetikums ist. Die Autoren schlossen daraus auf eine direkte Interak-tion von Anästhetika mit Proteinen, was das bis dahin gültige Dogma der ausschließ-lichen Wirkung von Anästhetika an der Lipidmembran der Zelle erschütterte. 7.17 Führt eine perioperative Myokardischämie zu postoperativen Myokardinfarkten? (n=1023 Patienten, prospektive und randomisierte Studie) Slogoff S, Keats AS (1985) Does perioperative myocardial ischemia lead to postoperative myocardial infarction? Anesthesiology 62: 107–14 To determine if a relationship exists between Perioperative myocardial ischemia (ST segment depression greater than or equal to 0.1 mV) and postoperative myo-cardial infarction (PMI), nonparticipating observers recorded all electrocardio-graphic, hemodynamic, and other events between arrival of patients in the operat-ing room and onset of cardiopulmonary bypass during 1,023 elective coronary ar-tery bypass operations (CABG). The roles of preoperative patient characteristics, quality of the operation limited by disease as rated by the surgeon and duration of ischemic cardiac arrest as risk factors for PMI also were quantified. Electrocardio-graphic ischemia occurred in 36.9 % of all patients, with almost half the episodes occurring before induction of anesthesia. PMI was almost three times as frequent in patients with ischemia (6.9 % vs. 2.5 %) and was independent of when ischemia occurred. Ischemia was related significantly to tachycardia but not hypertension nor hypotension and was frequent in the absence of any hemodynamic abnormali-ties. The anesthesiologist whose patients had the highest rate of tachycardia and 266 7Kapitel 7 · Klini sche Studien ischemia had the highest rate of PMI. Although neither single nor multiple preop- erative patient characteristics related to PMI, suboptimal quality of operation and prolonged ischemic cardiac arrest increased the likelihood of PMI independent of the occurrence of myocardial ischemia. The authors conclude that perioperative myocardial ischemia is common in patients undergoing CABG, occurs randomly as well as in response to hemodynamic abnormalities, and is one of three indepen-dent risk factors the authors identified as related to PMI. PMI is unrelated to pre-operative patient characteristics such as ejection fraction and left main coronary artery disease, and its frequency will relate primarily to perioperative management rather than patient selection. (Anesthesiology 2006; 105 (1): 214–6) Fazit Perioperative Myokardischämien korrelieren stark mit der Inzidenz postoperativer Myokardinfarkte. Die Autoren konnten herausarbeiten, dass die Vermeidung einer Tachykardie durch den Anästhesisten bei der Narkoseeinleitung und die Qualität des chirurgischen Eingriffs wichtige Determinanten zur Vermeidung postoperativer Myo-kardinfarkte nach Herzbypassoperation sind. 7.18 Unerwarteter Herzstillstand während Spinalanästhesie : eine Analyse von Gerichtsfällen zur Frage der prädisponierenden Faktoren (n=14, retrospektive Untersuchung) Caplan RA, Ward RJ, Posner K, Cheney FW (1988) Unexpected cardiac arrest during spinal anesthesia: A closed claims analysis of predisposing factors. Anesthesiology 68: 5–11 Fourteen cases of sudden cardiac arrest in healthy patients who received spinal anesthesia were discovered in a preliminary review of 900 closed insurance claims for major anesthetic mishaps. All patients were resuscitated from the intraopera-tive cardiac arrest, but six suffered such severe neurologic injury that they died in hospital. Of the eight survivors, only one patient exhibited sufficient neurologic recovery to allow independence in daily self-care. In view of the unexpected nature of these cardiac arrests – as well as the ultimate severity of injury – the cases were analyzed in detail to determine whether there were recurring patterns of anesthet-ic management that may have contributed to patient morbidity and mortality. Two patterns were identified. The first was the intraoperative use of sufficient sedation to produce a comfortable- appearing, sleep-like state in which there was no spontaneous verbalization. Cyanosis fr equently heralded the onset of cardiac arrest in patients exhibiting this degree of sedation, suggesting that unappreciated respiratory insufficiency may have played an important role. 267 7 7.19 · Einführung des Doppler-Ultraschall-Monitorings The second pattern appeared to be an inadequate appreciation of the interac- tion between sympathetic blockade during high spinal anesthesia and the mecha- nisms of cardiopulmonary resuscitation. Prompt augmentation of central venous filling through the use of a potent alpha-agonist and positional change might have improved organ perfusion, shortened the duration of cardiac arrest, and lessened the degree of neurologic damage. Fazit Die erste Untersuchung des »Closed Claims Study Project« wies auf den Zusammen- hang zwischen ansonsten gesunden Patienten und einem Herzstillstand während Spinalanästhesie hin, der mit Zyanose durch eine begleitende evtl. zu tiefe Sedierung assoziiert war. Bei der Reanimation wurde darauf hingewiesen, dass die Sympathiko-lyse hervorgerufen durch die Spinalanästhesie reversiert werden muss, durch Gabe potenter α-Agonisten, Volumenfüllung und Begünstigung des venösen Rückstroms durch Kopftieflage. 7.19 Einführung des Doppler-Ultraschall-Monitorings in der Neurochirugie und die Therapie der Luftembolie durch Einlage eines rechtsatrialen ZVK Albin MS, Carroll RG, Maroon JC (1978) Clinical considerations concerning detection of venous air embolism. Neurosurgery 3: 380–84 Venous air embolism during neurosurgical procedures (detected by Doppler ul- trasound and aspiration via a right atrial catheter) was noted in 100 of 400 patients in the sitting position, 5 of 60 patients in the lateral position, 7 of 48 patients in the supine position, and 1 of 10 patients in the monitored prone position. We con-firmed venous air embolism in many of these patients by using serial technetium-microaggregated albumin lung scans. Gravitational gradients from the venous portal of entrance to the right side of the heart were as small as 5.0 cm, with aspira-tion of 200 ml of air occurring. Doppler ultrasonic air bubble detection and aspira-tion through a previously inserted right atrial catheter are critical factors in the diagnosis and treatment of this condition. Fazit Bei sitzenden Positionen in der Neurochirurgie kommt es in ca. 25 % der Fälle zu einer venösen Luftembolie. Zur Detektion wird erfolgreich ein Doppler-Ultraschall-Gerät transthorakal verwendet. Die Therapie besteht in der Aspiration von Luft aus dem rechten Vorhof durch einen rechtsatr ial eingebrachten zentralen Venenkatheter. Die Detektion der Luftembolie wird durch ein kontinuierliches TEE erleichtert. 268 7Kapitel 7 · Klini sche Studien 7.20 Verminderung des Schadens durch Herzinfarkt durch Verbesserung des Verhältnisses von Sauerstoffangebot zu Sauerstoffverbrauch Maroko PR, Kjekshus JK, Sobel BE, Watanabe T, Covell JW, Ross J Jr., Braunwald E (1971) Fac- tors influencing infarct size following experimental coronary artery occlusion. Circulation 43: 67–82 The purpose of this study was to determine whether hemodynamic and pharma- cologic factors can influence the extent and severity of myocardial necrosis pro-duced by coronary occlusion. In 48 dogs, 10 to 14 epicardial leads were recorded on the anterior surface of the left ventricle in the distribution and vicinity of the site of occlusion of a branch of the left anterior descending coronary artery. The average S-T segment elevation for each animal was determined at 5-min intervals after occlusion. This elevation was used as an index of the presence and severity of myocardial ischemic injury. Isoproterenol, ouabain, glucagon, bretylium, and tachycardia given prior to a repeated occlusion each increased the severity and extent of ischemic injury, while propranolol decreased it. Elevation of arterial pressure with methoxamine reduced the occlusion-induced S-T segment eleva-tion, and lowering of the mean arterial pressure by hemorrhage had the opposite effect. In 19 additional experiments, propranolol, isoproterenol, and alterations in arterial pressure produced similar alterations in S-T segment elevation when these interventions were applied as long as 3 hr after ligation. Myocardial creatine phos-phokinase (CPK) activity determined 24 hr after coronary artery ligation correlat-ed well with S-T segment elevation at the same sites recorded 15 min after ligation. Moreover, isoproterenol increased and propranolol decreased the area of depres-sion of myocardial CPK activity. We conclude that the hemodynamic status and neurohumoral background at the time of coronary occlusion and for at least 3 hr thereafter can alter the extent and severity of myocardial ischemic injury and myocardial necrosis. Fazit Die noch heute gültige Beziehung von Sauerstoffangebot und -verbrauch zur Ver- besserung eines Herzinfarkts wurde hier beschrieben. 269 7 7.21 · Nachweis der kardioprotektiven Wirkung 7.21 Nachweis der kardioprotektiven Wirkung von Isofluran durch anästhetische Präkonditionierung Kersten JR, Schmeling TJ, Pagel PS, Gross GJ, Warltier DC (1997) Isoflurane mimics ischemic preconditioning via activation of K ATP channels: Reduction of myocardial infarct size with an acute memory phase. Anesthesiology 87: 361–70 Background The hypotheses that isoflurane directly preconditions myocardium against infarction via activation of adenosine triphosphate–regulated potassium channels and that the protection afforded by isoflurane is associated with a short- term memory phase similar to that of ischemic preconditioning were tested. Methods Barbiturate-anesthetized dogs (n = 71) underwent measurement of sys- temic hemodynamics. Myocardial infarct size was assessed by triphenyltetrazoli-um chloride staining. All dogs were subjected to a single prolonged (60-min) left anterior descending (LAD) coronary artery occlusion, followed by 3 h of reperfu-sion. Ischemic preconditioning was produced by four 5-min LAD coronary artery occlusions interspersed with 5-min periods of reperfusion before the prolonged LAD coronary artery occlusion and reperfusion. The actions of isoflurane to de-crease infarct size were examined in dogs receiving one minimum alveolar con-centration of isoflurane that was discontinued 5 min before prolonged LAD coro-nary artery occlusion. The interaction between isoflurane and ischemic precondi-tioning on infarct size was evaluated in dogs receiving isoflurane before and during preconditioning LAD coronary artery occlusions and reperfusions. To test wheth-er the cardioprotection produced by isoflurane can mimic the short-term memo-ry of ischemic preconditioning, isoflurane was discontinued 30 min before prolonged LAD coronary artery occlusion and reperfusion. The mechanism of isoflurane-induced cardioprotection was evaluated in two final groups of dogs pretreated with glyburide in the presence or absence of isoflurane. Results Myocardial infarct size was 25.3±2.9 % (mean ± SEM) of the area at risk during control conditions. Isoflurane and ischemic preconditioning produced significant ( P<0.05) and equivalent reductions in infarct size (ischemic precondi- tioning alone, 9.6±2.0 %; isoflurane alone, 11.8±2.7 %; isoflurane and ischemic preconditioning, 5.1±1.9 %). Isoflurane-induced reduction of infarct size also per-sisted 30 min after discontinuation of the anesthetic (13.9±1.5 %), independent of hemodynamic effects during LAD coronary artery occlusion. Glyburide alone had no effect on infarct size (28.3±3.9 %), but it abolished the protective effects of isoflurane (27.1±4.6 %). 270 7Kapitel 7 · Klini sche Studien Conclusions Isoflurane directly preconditions myocardium against infarction via activation of adenosine triphosphate–regulated potassium channels in the absence of hemodynamic effects and exhibits short-term memory of preconditioning in vivo. Fazit In dieser Studie konnte erstmals gezeigt werden, dass Isofluran kardioprotektive Eigenschaften hat, die unabhängig von hämodynamischen Veränderungen sind. Das Phänomen heißt Präkonditionierung und beschreibt die Tatsache, dass komple-xe intrazelluläre Veränderungen in Kardiomyozyten induziert werden, die vor einem Zelluntergang schützen, wenn es zu einem Ischämie/Reperfusionsschaden kommt. Inzwischen weiß man, dass alle volatilen Anästhetika diese Eigenschaft haben und zur Organprotektion nicht nur des Herzens führen. 7.22 Wirkmechanismus der Lokalanästhetika: Das positive geladene Kation ist die Wirkform, die die Entstehung eines Aktionspotenzials blockiert Ritchie JM, Greengard P (1961) On the active structure of local anesthetics. J Pharmacol Exp Ther 133: 241–5 The action of local anesthetics, containing a tertiary nitrogen, on mammalian nonmyelinated fibers of the rabbit’s vagus nerve has been analyzed to determine whether the uncharged or the positively charged form of these compounds is re-sponsible for their ability to block impulse conduction. The compounds studied were dibucaine, tetracaine, chlorpromazine, imipramine, and procaine. Impulse conduction was restored, in fibers in which it had been blocked by pretreatment with a local anesthetic, by increasing the pH of the perfusing solution from approx-imately 7.0 to 9.5; block was rapidly reestablished when the fibers were again perfused with the solution of pH approximately 7.0. From the way in which the size of the action potential varied with pH in nerve fibers pretreated with a local anesthetic, it has been concluded that the active form of the local anesthetic is the cation. Fazit Durch Variation des pH-Werts konnte gezeigt werden, dass die eigentliche Wirkform des Lokalanästhetikums das Kation ist. 271 7 7.24 · Succinylcholin-induzierte Hyperkaliämie 7.23 Bestimmung der Testdosis zur Vermeidung einer intravenösen oder subarachnoidalen Gabe des Lokalanästhetikums vor Periduralananästhesie Moore DC, Batra MS (1981) The components of an effective test dose prior to epidural block. Anesthesiology 55: 693–6 In 215 surgical patients, the components and monitoring of a single test dose be- fore an epidural block were established. Test doses (3 ml) of bupivacaine, chloro-procaine, lidocaine, or mepivacaine in concentrations sufficient to cause spinal block, with or without 0.0015 mg epinephrine, were given separately via intrave-nous and epidural injection. No evidence of spinal block was observed with epi-dural injection of any anesthetic. With intravenous injection, no cardiovascular responses were observed in the absence of epinephrine. In the presence of epi-nephrine, heart rate rapidly increased from 79±14 to 111±15 beats/min. Within 2 min of its injection, the local anesthetic test dose containing epinephrine was sufficient to provide definitive clinical evidence that a needle’s bevel rested intra-vascularly or in the cerebrospinal fluid for all four anesthetics. Fazit Die Ermittlung der richtigen Testdosis für den Ausschluss einer intrathekalen oder intravenösen Lage des Periduralkatheters wurde hier ermittelt. Es zeigte sich, dass 3 ml eines Lokalanästhetikums keine systemische toxische Wirkung entfaltet, wenn sie akzidentell intravenös verabreicht werden, und andererseits innerhalb kurzer Zeit zu einer erkennbaren Spinalanästhesie führen, wenn sie akzidentell intrathekal ver-abreicht werden. Wenn zusätzlich 1,5 μg Adrenalin hinzugefügt werden, kommt es bei intravenöser Anwendung zu einem erkennbaren Anstieg der Herzfrequenz bei normofrequenten Patienten. 7.24 Succinylcholin-induzierte Hyperkaliämie entsteht durch Inaktivität und Denervation Gronert GA, Theye RA (1975) Pathophysiology of hyperkalemia induced by succinylcholine. Anesthesiology 43: 89–99 The mechanism of succinylcholine-ind uced hyperkalemia was studied in three lesions affecting canine gastrocnemius muscle. Dogs were treated for 1 month before study: 10 with normal activity, 5 with unilateral sciatic nerve section, active on 3 legs, 5 with unilateral cast immobilization of a hind limb and pelvis, active on 3 legs, and 7 inactive with T6 section of the spinal cord. Succinylcholine responses 272 7Kapitel 7 · Klini sche Studien were determined during thiopental–halothane (mean expired halothane 1.0 ± 0.2 %) endotracheal anesthesia with arterial carbon dioxide tension of 38–42 mmHg, arterial oxygen tension of 100–120 mmHg, and muscle and body tem-peratures maintained at 37° ± 0.2°C. The investigators isolated and collected the venous drainage of gastrocnemius muscle and measured its total blood flow. Muscle potassium release and oxygen consumption were calculated as blood flow × (arterial content − venous content). Succinylcholine-induced gastrocnemius potassium release was greatest after both sciatic and cord section; oxygen con-sumption was increased in parallel. Disuse atrophy of one leg slightly increased both values but was insufficient to produce systemic hyperkalemia. Reuptake of potassium followed succinylcholine-induced release. Given before succinylcho-line, modest doses of gallamine slightly modified the release of potassium, and total paralysis by gallamine blocked it. Fazit Nachweis, dass Succinylcholin an denervierten Muskeln eine Hyperkaliämie durch Depolarisation extrajunktionaler Acetylcholinrezeptoren bewirken kann. Die Hyper-kaliämie kann vollständig durch komplette Muskelrelaxation mit nicht depolarisie-renden Muskelrelaxanzien verhindert werden. 7.25 Exzitotoxizität bei Ischämie/Reperfusionsschaden des ZNS durch Glutamat Benveniste H, Drejer J, Schousboe A, Diemer NH (1984) Elevation of the extracellular con- centrations of glutamate and aspartate in rat hippocampus during transient cerebral ische- mia monitored by intracerebral microdialysis. J Neurochem 43: 1369–74 Rats were implanted with 0.3-mm-diameter dialysis tubing through the hippo- campus and subsequently perfused with Ringer’s solution at a flow rate of 2 ml/min. Samples of the perfusate representing the extracellular fluid were collected over 5-min periods and subsequently analyzed for contents of the amino acids glutamate, aspartate, glutamine, taurine, alanine, and serine. Samples were col-lected before, during, and after a 10-min period of transient complete cerebral ischemia. The extracellular contents of glutamate and aspartate were increased, respectively, eight- and threefold during the ischemic period; the taurine concen-tration also was increased 2.6-fold. During the same period the extracellular con-tent of glutamine was significantly decreased (to 68 % of the control value), where-as the concentrations of alanine and serine did not change significantly during the ischemic period. The concentrations of γ-aminobutyric acid (GABA) were too low to be measured reliably. It is suggested that the large increase in the content of 273 7 7.27 · Hypersensitivität nach Verletzungen extracellular glutamate and aspartate in the hippocampus induced by the ischemia may be one of the causal factors in the damage to certain neurons observed after ischemia. Fazit Vorstellung des Konzepts der Exzitotoxizität des Gehirns bei Ischämie/Reperfusions- schaden durch Glutamat und Aspartat, die als exzitatorische Neurotransmitter fungieren. 7.26 Die Beschreibung der Entdeckung und Entwicklung der »modernen« volatilen Anästhetika Enfluran, Isofluran, Sevofluran und Desfluran in den 1970er-Jahren Terrell RC, Speers L, Szur AJ, Treadwell J, Ucciardi TR (1971) General anesthetics: 1. Halogena- ted methyl ethyl ethers as anesthetic agents. J Med Chem 14: 517–9 Thirty-six halogenated methyl-ethyl-ethers have been synthesized for evaluation as volatile anesthetics. Eleven of the ethers were too unstable to test, and, of the remaining 25, 13 had promising anesthetic properties in mice and are suitable for study in larger animals. Those ethers having one H with at least 2 halogens other than F or 2 or more H with at least one Br or Cl were the best anesthetics. Fazit In dieser Veröffentlichung wurden die erst in den 1990er-Jahren klinisch eingeführ- ten volatilen Anästhetika Desfluran und Sevofluran charakterisiert. Unklar bleibt, welche weiteren Substanzen als volatile Anästhetika bisher nicht klinisch eingeführt wurden. 7.27 Hypersensitivität nach Verletzungen entsteht durch Plastizität des Gehirns Woolf CJ (1983) Evidence for a Central Component of Post-injury Pain Hypersensitivity. Nature 306: 686–8 Noxious skin stimuli which are sufficiently intense to produce tissue injury, char- acteristically generate prolonged poststimulus sensory disturbances that include continuing pain, an increased sensitivity to noxious stimuli and pain following innocuous stimuli. This could result from either a reduction in the thresholds of 274 7Kapitel 7 · Klini sche Studien skin nociceptors (sensitization) or an increase in the excitability of the central nerv- ous system so that normal inputs now evoke exaggerated responses. Because sensi-tization of peripheral receptors occurs fo llowing injury, a peripheral mechanism is widely held to be responsible for postinjury hypersensitivity. To investigate this I have now developed an animal model where changes occur in the threshold and responsiveness of the flexor reflex following peripheral injury that are analogous to the sensory changes found in man. Electrophysiological analysis of the injury-in-duced increase in excitability of the flexion reflex shows that it in part arises from changes in the activity of the spinal cord. The long-term consequences of noxious stimuli result, therefore, from central as well as from peripheral changes. Fazit Nachweis, dass durch plastische Umbauvorgänge im adulten Gehirn nach einer Verletzung Hypersensitivitätsareale ausgebildet werden. Aus neuerer Zeit weiß man, dass auch kortikale Umbauvorgänge davon betroffen sind. 7.28 Nachweis eines sympathisch unterhaltenen Schmerzes durch Blockade mit Phentolamin i.v., einem α-adrenergen Rezeptorblocker Raja SN, Treede RD, Davis KD, Campbell JN (1991) Systemic α-adrenergic blockade with phen- tolamine: A diagnostic test für sympathetically maintained pain. Anesthesiology 74: 691–8 The diagnosis of sympathetically mainta ined pain (SMP) is typically established by assessment of pain relief during local anesthetic blockade of the sympathetic ganglia that innervate the painful body part. To determine if systemic α-adrenergic blockade with phentolamine can be used to diagnose SMP , we compared the effects on pain of local anesthetic sympathetic ganglion blocks (LASB) and phentolamine blocks (PhB) in 20 patients with chronic pain and hyperalgesia that were sus-pected to be sympathetically maintained. The blocks were done in random order on separate days. Patients rated the intensity of ongoing and stimulus-evoked pain every 5 min before, during, and after the LASB and PhB. Patients and the investi-gator assessing pain levels were blinded to the time of intravenous administration of phentolamine (total dose 25–35 mg). The pain relief achieved by LASB and PhB correlated closely (r=0.84), and there was no significant difference in the maxi-mum pain relief achieved with the two blocks (t=0.19, p>0.8). Nine patients expe-rienced a greater than 50 % relief of pain and hyperalgesia from both LASB and PhB and were considered to have a clinically significant component of SMP . We conclude that α-adrenergic blockade with intravenous phentolamine is a sensitive alternative test to identify patients with SMP . 275 7 7.30 · Thermoregulation unter Narkose Fazit Der Nachweis, dass Schmerzen auch durch sympathische periphere Nervenfasern bzw. durch adrenerge Neurotransmission hervorgerufen werden können, wurde hier geführt: Bei 9 von 20 untersuchten Patienten konnten Schmerzen durch den α-adrenergen Rezeptorblocker Phentolamin um 50 % reduziert werden. 7.29 Das Prämedikationsgespräch beruhigt den Patien- ten mehr als die medikamentöse Prämedikation (n=218, prospektiv, doppel-blind, randomisiert, 4 Gruppen) Egbert LD, Battit GE, Turndorf H, Beecher HK (1963) The value of the preoperative visit by an anesthetist. A study of doctor-patien t rapport. JAMA 185: 415–22 The psychologic effect of the preoperative visit by an anesthetist has been com- pared with the effect of pentobarbital for preanesthetic medication. Patients re- ceiving pentobarbital 1 hour before an operation became drowsy but it could not be shown that they became calm. Patients who had receiving a visit by an anesthe-tist before operation (informing them about the events which were to occur on the day of operation and about the anesthetic to be administered) were not drowsy but were more likely to be calm on the day of operation. The importance of the preoperative visit probably explains, in part, the diffi- culties previous investigators have had in showing sedative effects from the barbi-turates and narcotics before operation. The tremendous emotion significance to a patient of illness or an operation may explain why physicians are able to exert such influence upon their patients. Fazit In dieser Publikation wird der Wert des ärztlichen Patientengesprächs zur Prämedika- tion aufgezeigt. Dabei ist der Effekt, den das Gespräch auf den Patienten hat, höher als der pharmakologische Nutzen einer Barbituratprämedikation. 7.30 Thermoregulation unter Narkose (n=12, prospektiv, randomisiert, 2 Gruppen) Sessler DI, Olofsson CI, Rubinstein EH, Beebe JJ (1988) The thermoregulatory threshold in humans during halothane anesthesia. Anesthesiology 68: 836–42 Although suppression of thermoregulatory mechanisms by anesthetics is gener- ally assumed, the extent to which thermoregulation is active during general anes- 276 7Kapitel 7 · Klini sche Studien thesia is not known. The only thermoregulatory responses available to anesthe- tized, hypothermic patients are vasoconstriction and nonshivering thermogenesis. To test anesthetic effects on thermoregulation, the authors measured skin-surface temperature gradients as an index of cutaneous vasoconstriction in unpremedi-cated patients anesthetized with 1 % ha lothane and paralyzed with vecuronium during elective, donor nephrectomie. Patients were randomly assigned to undergo maximal warming (warm room, humified respiratory gases, and warm intrave-nous fluids; n=5) or standard temperature management (no special warming mea-sures; n=5). Skin surface temperature gradients of 4 °C or more were prospec-tively defined as significant vasoconstriction. Normothermic patients (average minimum esophageal temperature = 36,4±0,3 °C[SD]) did not demonstrate significant vasoconstriction. However each hypothermic patient displayed significant vasoconstriction at esophageal temperatures ranging from 34.0 to 34.8 °C (average temperature = 34,4±0,2 °C). These data indicate that active thermoregulation occurs during halothane anesthesia, but that it does not occur until core temperature is approximately 2.5 °C lower than normal. In two addi-tional hypothermic patients, increased skin-temperature gradients correlated with decreased perfusion as measured by a laser Doppler technique. Measuring skin-surface temperature gradients is a simple, noninvasive, and quantitative method of determining the thermoregulatory threshold during anesthesia. Fazit Mit dieser Publikation wurde der Beweis er bracht, dass die Temperaturregulation unter Anästhesie noch funktioniert, jedoch erst bei einer um 2,5 °C nach unten verschobenen Kerntemperatur. Hiermit erklärt sich die Hypothermie als eine Soll-wertverschiebung hin zu niedrigeren Temperaturen. 7.31 Beurteilung der Vasopressortherapie zur Behandlung der mütterlichen Hypotonie bei Spinalanästhesie (n=14, gravide Mutterschafe, Tierstudie) James FM III, Griess FC, Kemp RA (1970) An evalua tion of vasopressor therapy for maternal hypotension. Anesthesiology 33: 25–34 During hypotension resulting from conduction anesthesia in gravid ewes, uterine blood flow (UBF) decreased roughly in proportion to the decrease in maternal blood pressure. Ephedrine or mephentermine significantly increased UBF over that accomplished by metaraminol. 277 7 7.31 · Beurteilung der Vasopressortherapie Presumably, the preferential effects of these agents were the result of increased cardiac output owing to inotropic and chronotropic actions. However, UBF never exceeded 90% of prespinal levels with any vasoactive agent, and, for a given ma-ternal system, the UBF response was variable, generally increasing but frequently remaining constant or decreasing. For these reasons, all other methods of combat-ing hypotension should be used initially. If vasopressors are still required, agents of choice are those whose principal mode of action lies in cardiac stimulation rather than peripheral vasoconstriction. Fazit Diese Studie war unter anderem der Anlass , warum über Jahrzehnte Ephedrin als das Mittel der ersten Wahl bei Hypotonie unter Spinalanästhesie bei Sectio caesarea angesehen wurde, aufgrund der in der Studie als vorteilhaft interpretierten Wirkung als indirektes Sympathikomimetikum. Inzwischen werden jedoch direkte Vaso-konstriktoren wie Phenylephrin bevorzugt. Phenylephrin wirkt als reiner α-Agonist ohne β-mimetische Wirkung. Das Pendel könnte nun in Richtung Noradrenalin weiterschwingen als einer Substanz mit direkter α- und β-mimetischer Wirkung und heißen Kandidaten für die Hypotoniebehandlung der ersten Wahl. Serviceteil Literatur – 280 Stichwortverzeichnis – 281 F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3, © Springer-Verlag GmbH Deutschland 2017 Litera tur Barash PG et al (2005) Clinical anesthesia, 5th ed. Lippincott Raven, Philadelphia Berne RM (ed) (2008) Physiology, 6th ed. Mosby, St. Louis/MO Burchardi H, Larsen R, Marx G, Muhl E, Schölmerich J (2011) Die Intensiv- medizin, 11. Aufl. Springer, Heidelberg Brunton LL et al (2011) Goodman and Gil- man’s »The pharmacological basis of therapeutics«, 12th ed. McGraw-Hill, New York Hall JE (2010) Guyton and Hall Textbook of medical physiology, 12th ed. Saunders Hardman JG, Limbird LE, Goodman Gilman A (2001) Goodman & Gilman’s the pharmacological basis of therapeutics, 10th ed. McGraw-Hill, New York Heck M, Fresenius M (2010) Repetitorium Anästhesiologie, 6. Aufl. Springer, Heidelberg Larsen R (2010) Anästhesie, 9. Aufl. Urban & Fischer in Elsevier, MünchenList WF et al (2003) Komplikationen in der Anästhesie, 4. Aufl. Springer, Heidelberg Miller RD (ed) (2009) Anesthesia, 6th ed. Churchhill Livingstone, New York Petroianu G et al (1996) Anästhesie in Frage und Antwort, Basic Sciences, 2. Aufl. Springer, Heidelberg Petroianu G et a. (2000) Anästhesie in Frage und Antwort, Clinical Sciences, 3. Aufl. Springer, Heidelberg Rossaint R, Werner C, Zwißler B (2008) Die Anästhesiologie, 2. Aufl. Springer, Heidelberg Schmidt R et al (2011) Physiologie des Menschen, 31. Aufl. Springer, Heidel-berg Stoelting RK (2005) Pharmacology and physiology in anesthetic practice, 4th ed. Lippincott Raven, Philadelphia/PA 281 A Stichwortverzeichnis A A-alpha-Fasern (Aα-Fasern) 33 AB0-Inkompatibilität 239 A-beta-Fasern (Aβ-Fasern ) 33 ACE-Hemmer 76, 126 Acethycholinesterase- hemmer 116 Acetylcholin 36, 93, 116, 181 – Parkinson 182Acetylcoenzym A 36Acetylsalicylsäure 206, 222 ACh-Rezeptoren 37A-delta-Fasern (Aδ-Fasern) 185 Adenohypophyse 182Adenosin 138 – Nebenwirkungen 139Adipositas permagna 146, 157 Adrenalin 133, 190 – bei allergischen Reaktio- nen 225 Adrenalinumkehr 134Afterload 124, 125, 192A-gamma-Fasern (Aγ-Fasern) 33 Agitation 129air trapping 194Akklimatisation 31Akromegalie 148Aktionspotenzial (AP) 35 Aldosteron 74, 76Aldosteronmangel 74Alfentanil 120Alkalose 5, 13, 14, 15, 238 – hypokaliämische 74 – metabolische 128, 238 – respiratorische 247Alkohol, Einfluss auf MAC 100 allergische Reaktionen 225, 228 – Einteilung n. Gell u. Coombs 225 Allodynie 229Alpha-1-Agonisten (α1-Agonisten, periphere 122 Alpha-1-Rezeptoren- Blocker (α1-Rezeptoren-Blocker) 138 Alpha-1-Rezeptoren (α1-Rezeptoren) 134 – periphere 122Alpha-2-Agonisten (α2-Agonisten), zerebrale 122 Alpha-2-Antagonisten (α2-Antagonisten), zere-brale 122 Alpha-2-Rezeptor- Agonisten (α2-Rezeptor-Agonist) 123 Alphaagonisten (α-Agonisten) 92, 133, 209 – periphere 92Alphafehler (α-Fehler) 28Alpharezeptorenblocker (α-Rezeptoren-Blocker) 135 Alpharezeptoren (α-Rezeptoren) 129 aluminiumhaltige Antazida 15Aluminium 15Alveolenradius 23Amidlokalanästhetika 164Aminoglykosidantibiotika 128 Aminolävulinsäure 223, 224 Amiodaron 140, 143Amitriptylin 129Amrinon 241Analeptika 91Analgetika, nicht steroidale 222 Anämie 235 – hämolytische 124 – renale 232anaphylaktische Reaktio- nen 78, 226 anaphylaktoide Reaktionen 228 Anästhesie – ambulante 148, 153 – bei alten Menschen 217 – bei Neugeborenen 203 – bei Schwangeren 208, 213 – dissoziative 98 – rechtliche Aspekte 154Anästhesieaufklärung 153Anästhesieeinleitung 149Anästhetika – Plazentagängigkeit 215 – Teratogenität 105 – uterusrelaxierende Wirkung 209 – volatile 150, 175, 222 – Wechselwirkungen m. Chemotherapeutika 159 Anfluten beim Säugling 206 282 Stichwortverzeichnis Angina pectoris 124, 125 Angiotensin-converting- enzyme-Inhibitor 126 Angiotensin I 76, 126Angiotensin II 76, 93, 126Antagonisten – κ-Antagonisten 118 – μ-Antagonisten 118Antagonisten, partielle 118Antiarrhythmika 95, 139Antidepressiva, trizyklische 129, 130 Anti-Digoxin-Fab-Anti- körperfragmente 141 antidiuretisches Hormon 69 Antiemetika 182, 186, 223Antiepileptika 95Anti-Faktor-Xa-Aktivität 70 Antihämorrhagika 67Antihypertonika 122Antikoagulanzien, orale 67Antikonvulsiva 175Antimetabolite 160Antithrombin III 63, 66Aorteninsuffizienz 45, 56Aortenklappeninsuffizienz (AKI) 196 Aortenklappenstenose (AKS) 195 Aortenstenose 56aortokavales Kompres- sionssyndrom 213 APGAR-Score, Studie 253Apixaban 70, 71Apnoe 117Apnoetaucher 25Aprotinin 68Arachidonsäure 94ARDS 79, 80, 81, 82, 94 – Beatmungskonzept 80 – Zone D 80 – Zone H 80 – Zone R 80Area inguinalis 187Arrhythmie 190 – ventrikuläre 130Arteria – carotis interna 40, 179 – vertebralis 179Aspirationsgefahr 146, 186, 205, 209 Asthma bronchiale 135Asystolie 115Aszites 155Atelektasen 85, 248Atemdepression 117, 119, 163 Atemdepressionsphase, postoperative 91 Atemfrequenz 91, 105Atemgrenzwert 87Atemhubvolumen 50Atemkalk 103, 104Atemmechanik 89Atemminutenvolumen 105, 221 – spontanes 91Atemmuskulatur 89Atemstillstand 166Atemwegsreizung 104Atemwegsspitzendruck, Limitierung 79 Atemwegswiderstand 83, 104, 146, 245 Atemzentrum 91Atmosphärendruck 21Atracurium 114atriales natriuretisches Peptid (ANP) 74, 93 Atropin 142, 182, 189, 222 – in der Kinderanästhesie 205 Atropinfieber 143Aufklärungsgespräch 153 – Dokumentation 154Aufwachphase, verkürzte 95Auge – Kammerwasser 179 – Ziliarkörper 133Augenheilkunde 155Augeninnendruck 156Augeninnendruck- erhöhung 131 Augenverletzung, perforierende 156 Auskultation 145 – bei Lungenödem 238Autoimmunglomerulon- ephritis 124 autonome Hyperreflexie (AHR) 183 AV-Block 46, 130, 137, 139, 140, 142 AV-Shunt 155AV-Überleitungszeit 142Azidose 5, 7, 128 – metabolische 11, 12, 14, 74, 87, 239 – respiratorische 11Azotämie 5 B Babinski-Reflex 184baby lung 80Baclofen 176Bainbridge-Reflex 167Ballismus 184Barbiturate 96, 131, 156, 195, 222 – Kontraindikation 96Barorezeptoren 40Barorezeptorenreflex 38, 41 Barotrauma 26, 79base excess 239Bauchhautdeckenreflex 184 Beatmung, mit reinem Sauerstoff 248"
       }
     ],
