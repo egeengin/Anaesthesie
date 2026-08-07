@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Determine question type ---
   function isOpenQuestion(q) {
-    return q.question_type === 'open' || !q.options_de || q.options_de.length === 0;
+    return q.question_type === 'open' || !q.options || q.options.length === 0;
   }
 
   // --- Render Question Card ---
@@ -233,13 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const currentQ = filteredQuestions[state.currentIndex];
-    const qState = state.answers[currentQ.id] || { selected: [], submitted: false, revealed: false };
+    const qState = state.answers[currentQ.id] || { userChoices: {}, submitted: false, revealed: false, isCorrect: false };
+    if (!qState.userChoices) qState.userChoices = {};
+
     const isFlagged = !!state.flagged[currentQ.id];
     const isOpen = isOpenQuestion(currentQ);
 
     // Header badges
     elBadgeCategory.textContent = currentQ.category;
-    elBadgeSource.textContent = currentQ.source_book.split(' - ')[0];
+    elBadgeSource.textContent = currentQ.source_book ? currentQ.source_book.split(' - ')[0] : 'Facharzt';
     
     if (isFlagged) {
       elBadgeReview.style.display = 'inline-block';
@@ -254,19 +256,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const globalIdx = EXAM_QUESTIONS.findIndex(q => q.id === currentQ.id) + 1;
     elQuestionNumber.textContent = `Frage ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
 
-    // Question text with translation
-    elQuestionText.innerHTML = renderDualLanguageText(currentQ.question_de, currentQ.question_tr);
+    // Question text stem with translation
+    const stemDe = currentQ.stem_de || currentQ.question_de || '';
+    const stemTr = currentQ.stem_tr || currentQ.question_tr || '';
+    elQuestionText.innerHTML = renderDualLanguageText(stemDe, stemTr);
 
     // Question image
     if (currentQ.image) {
       elQuestionImageContainer.style.display = 'block';
       elQuestionImage.src = currentQ.image;
-      elQuestionImage.alt = `Abbildung zu: ${currentQ.question_de.substring(0, 60)}...`;
+      elQuestionImage.alt = `Abbildung zu: ${stemDe.substring(0, 60)}...`;
     } else {
       elQuestionImageContainer.style.display = 'none';
     }
 
-    // ──────────── OPEN Q&A FLASHCARD MODE ────────────
+    // ──────────── OPEN Q&A FLASHCARD MODE (Clinical Cases) ────────────
     if (isOpen) {
       elOptionsContainer.innerHTML = '';
       elOptionsContainer.style.display = 'none';
@@ -274,15 +278,13 @@ document.addEventListener('DOMContentLoaded', () => {
       elExplanationCard.classList.remove('visible');
 
       if (qState.submitted) {
-        // Already answered - show the answer and self-assessment result
         elRevealContainer.style.display = 'none';
         elAnswerCard.classList.add('visible');
         elAnswerText.innerHTML = renderDualLanguageText(
-          currentQ.answer_de || currentQ.explanation_de,
-          currentQ.answer_tr || currentQ.explanation_tr
+          currentQ.answer_de || currentQ.explanation_de || '',
+          currentQ.answer_tr || currentQ.explanation_tr || ''
         );
         
-        // Show assessment result
         elSelfAssessContainer.style.display = 'flex';
         if (qState.isCorrect) {
           elBtnKnewIt.classList.add('selected');
@@ -292,90 +294,124 @@ document.addEventListener('DOMContentLoaded', () => {
           elBtnDidntKnow.classList.add('selected');
         }
       } else if (qState.revealed) {
-        // Answer revealed but not yet self-assessed
         elRevealContainer.style.display = 'none';
         elAnswerCard.classList.add('visible');
         elAnswerText.innerHTML = renderDualLanguageText(
-          currentQ.answer_de || currentQ.explanation_de,
-          currentQ.answer_tr || currentQ.explanation_tr
+          currentQ.answer_de || currentQ.explanation_de || '',
+          currentQ.answer_tr || currentQ.explanation_tr || ''
         );
         elSelfAssessContainer.style.display = 'flex';
         elBtnKnewIt.classList.remove('selected');
         elBtnDidntKnow.classList.remove('selected');
       } else {
-        // Not yet revealed - show the reveal button
         elRevealContainer.style.display = 'flex';
         elAnswerCard.classList.remove('visible');
         elSelfAssessContainer.style.display = 'none';
       }
 
-    // ──────────── MULTI-CHOICE MODE (legacy) ────────────
+    // ──────────── INTERACTIVE MULTI-STATEMENT OPTIONS MODE ────────────
     } else {
-      elOptionsContainer.style.display = '';
-      elBtnCheck.style.display = '';
+      elOptionsContainer.style.display = 'block';
       elRevealContainer.style.display = 'none';
       elAnswerCard.classList.remove('visible');
       elSelfAssessContainer.style.display = 'none';
 
       elOptionsContainer.innerHTML = '';
-      currentQ.options_de.forEach((optDe, idx) => {
-        const optTr = currentQ.options_tr[idx] || {};
-        const isSelected = qState.selected.includes(idx);
+
+      currentQ.options.forEach(opt => {
+        const userChoice = qState.userChoices[opt.key]; // true (Richtig), false (Falsch), or undefined
         
         const optEl = document.createElement('div');
-        optEl.className = 'option-item';
-        if (isSelected) optEl.classList.add('selected');
-
+        optEl.className = 'option-card-item';
+        
         if (qState.submitted) {
-          optEl.classList.add('show-eval');
-          if (optDe.correct) {
-            optEl.classList.add('correct-answer');
-          } else if (isSelected && !optDe.correct) {
-            optEl.classList.add('incorrect-answer');
-          }
+          const isUserCorrect = (userChoice === opt.is_correct);
+          optEl.classList.add(isUserCorrect ? 'eval-correct' : 'eval-incorrect');
         }
 
+        const isTrueSelected = (userChoice === true);
+        const isFalseSelected = (userChoice === false);
+
         optEl.innerHTML = `
-          <div class="option-radio">${qState.submitted && optDe.correct ? '✓' : (qState.submitted && isSelected && !optDe.correct ? '✗' : '')}</div>
-          <div class="option-text-group">
-            <div class="option-de">${renderDualLanguageText(optDe.text, optTr.text)}</div>
-            ${qState.submitted && optDe.explanation ? `
-              <div class="option-expl-box">
-                ${renderDualLanguageText(optDe.explanation, optTr.explanation)}
-              </div>
-            ` : ''}
+          <div class="option-row">
+            <div class="option-key">${opt.key}.</div>
+            <div class="option-content">
+              ${renderDualLanguageText(opt.text_de, opt.text_tr)}
+            </div>
+            <div class="option-toggles">
+              <button type="button" class="btn-toggle-tf btn-true ${isTrueSelected ? 'active' : ''}" ${qState.submitted ? 'disabled' : ''} data-key="${opt.key}">
+                ✅ Richtig
+              </button>
+              <button type="button" class="btn-toggle-tf btn-false ${isFalseSelected ? 'active' : ''}" ${qState.submitted ? 'disabled' : ''} data-key="${opt.key}">
+                ❌ Falsch
+              </button>
+            </div>
           </div>
+          ${qState.submitted ? `
+            <div class="option-result-box">
+              <div class="truth-tag ${opt.is_correct ? 'truth-true' : 'truth-false'}">
+                Aussage ${opt.key.toUpperCase()} ist: <strong>${opt.is_correct ? '✅ RICHTIG' : '❌ FALSCH'}</strong>
+              </div>
+              <div class="explanation-text">
+                ${renderDualLanguageText(opt.explanation_de, opt.explanation_tr)}
+              </div>
+            </div>
+          ` : ''}
         `;
 
-        optEl.addEventListener('click', () => {
-          if (qState.submitted) return;
+        if (!qState.submitted) {
+          const btnTrue = optEl.querySelector('.btn-true');
+          const btnFalse = optEl.querySelector('.btn-false');
           
-          if (currentQ.options_de.filter(o => o.correct).length > 1) {
-            if (isSelected) {
-              qState.selected = qState.selected.filter(i => i !== idx);
-            } else {
-              qState.selected.push(idx);
-            }
-          } else {
-            qState.selected = [idx];
-          }
-
-          state.answers[currentQ.id] = qState;
-          saveState();
-          renderCurrentQuestion();
-        });
+          btnTrue.addEventListener('click', (e) => {
+            e.stopPropagation();
+            qState.userChoices[opt.key] = true;
+            state.answers[currentQ.id] = qState;
+            saveState();
+            renderCurrentQuestion();
+          });
+          
+          btnFalse.addEventListener('click', (e) => {
+            e.stopPropagation();
+            qState.userChoices[opt.key] = false;
+            state.answers[currentQ.id] = qState;
+            saveState();
+            renderCurrentQuestion();
+          });
+        }
 
         elOptionsContainer.appendChild(optEl);
       });
 
+      // Submit / Reset Button for Options Mode
+      elBtnCheck.style.display = 'inline-flex';
       if (qState.submitted) {
-        elBtnCheck.textContent = 'Erneut beantworten';
+        elBtnCheck.innerHTML = `<span>🔄</span> Erneut versuchen`;
         elBtnCheck.className = 'btn btn-secondary';
-        elExplanationCard.classList.add('visible');
-        elExplanationText.innerHTML = renderDualLanguageText(currentQ.explanation_de, currentQ.explanation_tr);
       } else {
-        elBtnCheck.textContent = 'Antwort Überprüfen';
+        elBtnCheck.innerHTML = `<span>✅</span> Antworten Auswerten`;
         elBtnCheck.className = 'btn btn-primary';
+      }
+
+      // Show overall score card if submitted
+      if (qState.submitted) {
+        let correctCount = 0;
+        currentQ.options.forEach(opt => {
+          if (qState.userChoices[opt.key] === opt.is_correct) {
+            correctCount++;
+          }
+        });
+        const totalOpts = currentQ.options.length;
+        const pct = Math.round((correctCount / totalOpts) * 100);
+
+        elExplanationCard.classList.add('visible');
+        elExplanationText.innerHTML = `
+          <div class="score-summary-banner ${pct >= 80 ? 'pass' : 'fail'}">
+            <h4>Ergebnis: ${correctCount} von ${totalOpts} Aussagen richtig bewertet (${pct}%)</h4>
+            <p>${pct >= 80 ? '🎉 Sehr gut gewusst!' : '💡 Wiederholung empfohlen.'}</p>
+          </div>
+        `;
+      } else {
         elExplanationCard.classList.remove('visible');
       }
     }
@@ -389,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!filteredQuestions.length) return;
 
     const currentQ = filteredQuestions[state.currentIndex];
-    let qState = state.answers[currentQ.id] || { selected: [], submitted: false, revealed: false };
+    let qState = state.answers[currentQ.id] || { userChoices: {}, submitted: false, revealed: false };
 
     qState.revealed = true;
     state.answers[currentQ.id] = qState;
@@ -403,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!filteredQuestions.length) return;
 
     const currentQ = filteredQuestions[state.currentIndex];
-    let qState = state.answers[currentQ.id] || { selected: [], submitted: false, revealed: false };
+    let qState = state.answers[currentQ.id] || { userChoices: {}, submitted: false, revealed: false };
 
     qState.submitted = true;
     qState.isCorrect = knewIt;
@@ -412,38 +448,45 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCurrentQuestion();
   }
 
-  // --- Check & Submit Answer (Multi-choice) ---
+  // --- Check & Submit Answer (Interactive Options Mode) ---
   function checkAnswer() {
     filteredQuestions = getFilteredQuestions();
     if (!filteredQuestions.length) return;
 
     const currentQ = filteredQuestions[state.currentIndex];
-    let qState = state.answers[currentQ.id] || { selected: [], submitted: false };
+    let qState = state.answers[currentQ.id] || { userChoices: {}, submitted: false };
 
     if (qState.submitted) {
+      // Reset for re-trying
       qState.submitted = false;
-      qState.selected = [];
-      qState.revealed = false;
+      qState.userChoices = {};
       state.answers[currentQ.id] = qState;
       saveState();
       renderCurrentQuestion();
       return;
     }
 
-    if (!qState.selected.length) {
-      alert('Bitte wählen Sie mindestens eine Antwortmöglichkeit aus.');
+    // Check if user has answered all options
+    const unAnsweredKeys = currentQ.options.filter(opt => qState.userChoices[opt.key] === undefined);
+    if (unAnsweredKeys.length > 0) {
+      const keysStr = unAnsweredKeys.map(o => o.key.toUpperCase()).join(', ');
+      alert(`Bitte bewerten Sie alle Aussagen (Richtig oder Falsch) bevor Sie auswerten.\nNoch offen: ${keysStr}`);
       return;
     }
 
-    const correctIndices = currentQ.options_de
-      .map((opt, i) => opt.correct ? i : null)
-      .filter(i => i !== null);
+    // Calculate score
+    let correctCount = 0;
+    currentQ.options.forEach(opt => {
+      if (qState.userChoices[opt.key] === opt.is_correct) {
+        correctCount++;
+      }
+    });
 
-    const isFullyCorrect = correctIndices.length === qState.selected.length &&
-      qState.selected.every(idx => correctIndices.includes(idx));
+    const totalOpts = currentQ.options.length;
+    const isPassed = (correctCount / totalOpts) >= 0.8;
 
     qState.submitted = true;
-    qState.isCorrect = isFullyCorrect;
+    qState.isCorrect = isPassed;
     state.answers[currentQ.id] = qState;
 
     saveState();
