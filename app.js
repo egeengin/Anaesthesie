@@ -1181,6 +1181,43 @@ document.addEventListener('DOMContentLoaded', () => {
   elBtnKnewIt.addEventListener('click', () => selfAssess(true));
   elBtnDidntKnow.addEventListener('click', () => selfAssess(false));
 
+  // --- Personal Medical Notes Auto-Save & Cloud Sync Engine ---
+  const elUserNoteText = document.getElementById('user-note-text');
+  const elBtnSaveNote = document.getElementById('btn-save-note');
+  const elNoteSaveToast = document.getElementById('note-save-toast');
+
+  if (elBtnSaveNote) {
+    elBtnSaveNote.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      const noteVal = elUserNoteText ? elUserNoteText.value.trim() : '';
+
+      if (!state.userNotes) state.userNotes = {};
+      state.userNotes[currentQ.id] = noteVal;
+
+      saveState(); // Saves locally & pushes to cloud debounced!
+
+      if (elNoteSaveToast) {
+        elNoteSaveToast.style.display = 'inline-block';
+        setTimeout(() => {
+          if (elNoteSaveToast) elNoteSaveToast.style.display = 'none';
+        }, 2500);
+      }
+    });
+  }
+
+  if (elUserNoteText) {
+    elUserNoteText.addEventListener('input', () => {
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!state.userNotes) state.userNotes = {};
+      state.userNotes[currentQ.id] = elUserNoteText.value;
+      saveState(); // Auto-saves to local & cloud on every keystroke!
+    });
+  }
+
   elThemeToggle.addEventListener('click', () => {
     state.theme = state.theme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', state.theme);
