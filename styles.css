@@ -399,6 +399,19 @@ body {
   border-color: rgba(16, 185, 129, 0.3);
 }
 
+.badge-hy {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fcd34d;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .badge-hy {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
 .question-number {
   font-family: var(--font-heading);
   font-weight: 700;

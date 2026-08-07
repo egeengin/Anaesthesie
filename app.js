@@ -321,6 +321,41 @@ document.addEventListener('DOMContentLoaded', () => {
     elTypeFilter.value = state.typeFilter || 'all';
   }
 
+  // --- Filtering Question Bank ---
+  function getFilteredQuestions() {
+    return EXAM_QUESTIONS.filter(q => {
+      if (state.typeFilter !== 'all') {
+        if (state.typeFilter === 'image') {
+          if (!q.image) return false;
+        } else if (q.question_type !== state.typeFilter) {
+          return false;
+        }
+      }
+
+      if (state.categoryFilter !== 'all' && q.category !== state.categoryFilter) {
+        return false;
+      }
+      
+      const qAns = state.answers[q.id];
+      const isFlagged = !!state.flagged[q.id];
+
+      if (state.filterMode === 'high_yield') {
+        return !!q.is_high_yield;
+      }
+      if (state.filterMode === 'unanswered') {
+        return !qAns || !qAns.submitted;
+      }
+      if (state.filterMode === 'incorrect') {
+        return qAns && qAns.submitted && !qAns.isCorrect;
+      }
+      if (state.filterMode === 'review') {
+        return isFlagged;
+      }
+      
+      return true;
+    });
+  }
+
   function initCategoryDropdown() {
     const categories = Array.from(new Set(EXAM_QUESTIONS.map(q => q.category)));
     elCategoryFilter.innerHTML = `<option value="all">Alle Kategorien (${EXAM_QUESTIONS.length})</option>`;
@@ -373,6 +408,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const isOpen = isOpenQuestion(currentQ);
 
     // Header badges
+    const elBadgeHy = document.getElementById('badge-hy');
+    if (elBadgeHy) {
+      elBadgeHy.style.display = currentQ.is_high_yield ? 'inline-block' : 'none';
+    }
+
     if (elBadgeType) {
       if (currentQ.image) {
         elBadgeType.textContent = '🖼️ Befunddiagnostik';
