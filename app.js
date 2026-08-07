@@ -477,6 +477,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ──────────── OPEN Q&A FLASHCARD MODE (Clinical Cases) ────────────
     if (isOpen) {
+      const elExaminerFormulaCard = document.getElementById('examiner-formula-card');
+      if (elExaminerFormulaCard) elExaminerFormulaCard.style.display = 'block';
+
       elOptionsContainer.innerHTML = '';
       elOptionsContainer.style.display = 'none';
       elBtnCheck.style.display = 'none';
@@ -516,6 +519,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ──────────── INTERACTIVE MULTI-STATEMENT OPTIONS MODE ────────────
     } else {
+      const elExaminerFormulaCard = document.getElementById('examiner-formula-card');
+      if (elExaminerFormulaCard) elExaminerFormulaCard.style.display = 'none';
+
       elOptionsContainer.style.display = 'block';
       elRevealContainer.style.display = 'none';
       elAnswerCard.classList.remove('visible');

@@ -11,8 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Application Favicon -->
+  <!-- Application Favicon & PWA Manifest -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0d9488">
   
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="styles.css">
@@ -183,6 +187,7 @@
         <select id="mode-select">
           <option value="sequential">Modus: Sequentiell</option>
           <option value="random">Modus: Zufall</option>
+          <option value="blitz">⚡ 5-Min Blitz-Wiederholung</option>
           <option value="simulation">⏱️ 45-Min Prüfungssimulation</option>
         </select>
       </div>
@@ -221,6 +226,19 @@
         <button id="btn-reveal" class="btn btn-reveal">
           <span>👁️</span> Antwort anzeigen <kbd class="kbd-hint">Space</kbd>
         </button>
+      </div>
+
+      <!-- NRW Examiner Verbal Formula Callout Card -->
+      <div id="examiner-formula-card" class="examiner-formula-card" style="display: none;">
+        <div class="formula-header">
+          <span>👨‍⚕️</span> Mündliche ÄKNO-Prüfungsformel (Antwortstruktur):
+        </div>
+        <div class="formula-body">
+          <div class="formula-step"><strong>1. Problem benennen:</strong> "Klinisches Krankheitsbild & Verdachtsdiagnose definieren"</div>
+          <div class="formula-step"><strong>2. Vitalparameter & Monitoring:</strong> "SpO2, NIBD, EKG & Beatmungsdrucke prüfen"</div>
+          <div class="formula-step"><strong>3. Sofortmaßnahmen:</strong> "Oxygenierung sichern, Notfallmedikamente bereithalten"</div>
+          <div class="formula-step"><strong>4. Kausale Therapie:</strong> "Spezifisches Protokoll einleiten (MH, LAST, DAS)"</div>
+        </div>
       </div>
 
       <!-- Answer Card (for open Q&A flashcard mode) -->
