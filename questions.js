@@ -2794,52 +2794,52 @@ const EXAM_QUESTIONS = [
   },
   {
     "id": "q_53",
-    "category": "Klinische Chemie & Elektrolyte",
+    "category": "Neuroanästhesie & ICP",
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Beatmung mit positivem endexspiratorischem Druck (PEEP) kann zur:",
-    "stem_tr": "Pozitif ekspirasyon sonu basıncı (PEEP) ventilasyonu şunları yapabilir:",
+    "stem_de": "Der zerebrale Perfusionsdruck (CPP):",
+    "stem_tr": "Serebral perfüzyon basıncı (CPP):",
     "options": [
       {
         "key": "a",
-        "text_de": "Erniedrigung der rechtsatrialen Vorlast führen.",
-        "text_tr": "Sağ atriyal ön yükü azaltın.",
+        "text_de": "berechnet sich aus der Differenz zwischen mittlerem arteriellen Druck (MAP) und intrakraniellem Druck (ICP).",
+        "text_tr": "ortalama arteriyel basınç (MAP) ile kafa içi basınç (ICP) arasındaki farktan hesaplanır.",
         "is_correct": true,
-        "explanation_de": "Bei Beatmung mit PEEP steigt der intr athorakale Mitteldruck an, es kommt zu einer Behinderung des Bluteinstroms in den rechten Vorhof und somit zu einer rechtsatrialen Vorlasterniedrigung.",
-        "explanation_tr": "PEEP ile ventilasyon sırasında intratorasik ortalama basınç artar, kanın sağ atriyuma akışı engellenir ve dolayısıyla sağ atriyum ön yükü azalır."
+        "explanation_de": "Der CPP berechnet sich als CPP = MAP - ICP (oder CVP, falls CVP > ICP).",
+        "explanation_tr": "CPP, CPP = MAP - ICP (veya CVP > ICP ise CVP) olarak hesaplanır."
       },
       {
         "key": "b",
-        "text_de": "Verminderung des venösen Abflusses aus Leber und Niere führen.",
-        "text_tr": "Karaciğer ve böbreklerden venöz drenajda azalma.",
+        "text_de": "sollte beim schädel-hirn-traumatisierten Patienten bei mindestens 60–70 mmHg gehalten werden.",
+        "text_tr": "kafa travmalı hastalarda en az 60-70 mmHg seviyesinde tutulmalıdır.",
         "is_correct": true,
-        "explanation_de": "Durch den erhöhten intrathorakalen Mitteldruck ist der venöse Blutfluss aus der Leber und der Niere vermindert (Leber- und Nieren-stauung!); dies kann zu Funktionsstörungen dieser Organe beitragen.",
-        "explanation_tr": "Artan intratorasik ortalama basınç nedeniyle karaciğer ve böbreklerden venöz kan akışı azalır (karaciğer ve böbrek tıkanıklığı!); bu, bu organların işlev bozukluğuna katkıda bulunabilir."
+        "explanation_de": "Gemäß den Neuro-Trauma-Leitlinien wird ein Ziel-CPP von 60–70 mmHg empfohlen, um zerebrale Ischämien zu vermeiden.",
+        "explanation_tr": "Nöro-travma kılavuzlarına göre, serebral iskemiyi önlemek için 60-70 mmHg hedef CPP önerilir."
       },
       {
         "key": "c",
-        "text_de": "Erhöhung des intrakraniellen Drucks beitragen.",
-        "text_tr": "kafa içi basıncının artmasına katkıda bulunur.",
+        "text_de": "sinkt bei einem Anstieg des intrakraniellen Drucks (ICP).",
+        "text_tr": "kafa içi basıncı (ICP) arttığında düşer.",
         "is_correct": true,
-        "explanation_de": "Der Abfluss aus den großen zerebralen Venen ist besonders bei hohen PEEP-Werten (>10 cm Wassersäule) behindert und kann zu einer Erhöhung des intrakraniellen Drucks beitragen. 51 2 · Physiologie2",
-        "explanation_tr": "Büyük serebral damarlardan çıkış özellikle yüksek PEEP değerlerinde (>10 cm su sütunu) engellenir ve kafa içi basıncının artmasına katkıda bulunabilir. 51 2 · Fizyoloji2"
+        "explanation_de": "Da CPP = MAP - ICP gilt, führt ein isolierter ICP-Anstieg bei konstantem MAP direkt zu einer Erniedrigung des CPP.",
+        "explanation_tr": "CPP = MAP - ICP olduğundan, sabit MAP'de izole bir ICP artışı doğrudan CPP'de bir azalmaya yol açar."
       },
       {
         "key": "d",
-        "text_de": "Überdehnung von Lungenarealen führen.",
-        "text_tr": "Akciğer alanlarının aşırı genişlemesi.",
+        "text_de": "kann durch Oberkörperhochflachlagerung (30°) günstig beeinflusst werden.",
+        "text_tr": "baş ve gövdenin 30° yükseltilmesiyle olumlu etkilenebilir.",
         "is_correct": true,
-        "explanation_de": "e. ✅ Richtig.",
-        "explanation_tr": "e. ✅Doğru."
+        "explanation_de": "Eine 30°-Oberkörperhochlagerung verbessert den venösen zerebralen Abfluss und senkt den ICP, ohne den MAP signifikant zu beeinträchtigen.",
+        "explanation_tr": "30° baş/gövde yükseltilmesi, venöz serebral drenajı iyileştirir ve MAP'ı önemli ölçüde etkilemeden ICP'yi düşürür."
       },
       {
         "key": "e",
-        "text_de": "Erniedrigung des Herzzeitvolumens (HZV) beitragen.",
-        "text_tr": "Kalp debisinin (CO) azalmasına katkıda bulunur.",
-        "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "text_de": "wird bei Hyperventilation (PaCO2 < 30 mmHg) gesteigert.",
+        "text_tr": "hiperventilasyon sırasında (PaCO2 < 30 mmHg) artar.",
+        "is_correct": false,
+        "explanation_de": "Hyperventilation führt zur hypocapnischen zerebralen Vasokonstriktion, vermindert die zerebrale Perfusion und kann zerebrale Ischämien auslösen.",
+        "explanation_tr": "Hiperventilasyon hipokapnik serebral vazokonstriksiyona yol açar, serebral perfüzyonu azaltır ve serebral iskemiyi tetikleyebilir."
       }
     ],
     "is_high_yield": true
