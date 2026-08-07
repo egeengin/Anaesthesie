@@ -7,6 +7,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.py
+!view_login_logs.py
 env/
 venv/
 .venv/

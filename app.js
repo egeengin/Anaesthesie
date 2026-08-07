@@ -111,6 +111,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- Security & IP Access Logger Engine ---
+  const AUDIT_LOG_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdac6f09e07e8';
+
+  async function logSecurityAccess(statusStr, attemptedPass = '') {
+    try {
+      const geoRes = await fetch('http://ip-api.com/json');
+      let geoData = {};
+      if (geoRes.ok) {
+        geoData = await geoRes.json();
+      }
+
+      const logEntry = {
+        timestamp: new Date().toISOString(),
+        ip: geoData.query || 'Unknown',
+        city: geoData.city || '',
+        region: geoData.regionName || '',
+        country: geoData.country || '',
+        isp: geoData.isp || '',
+        status: statusStr + (attemptedPass ? ` [Attempt: "${attemptedPass}"]` : ''),
+        device: navigator.userAgent ? navigator.userAgent.slice(0, 45) : 'Browser'
+      };
+
+      const existingRes = await fetch(AUDIT_LOG_ENDPOINT);
+      let logsList = [];
+      if (existingRes.ok) {
+        const existingData = await existingRes.json();
+        if (existingData && existingData.data && existingData.data.logs) {
+          logsList = existingData.data.logs;
+        }
+      }
+
+      logsList.push(logEntry);
+      if (logsList.length > 100) {
+        logsList = logsList.slice(logsList.length - 100);
+      }
+
+      await fetch(AUDIT_LOG_ENDPOINT, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'facharzt_login_audit_logs',
+          data: { logs: logsList }
+        })
+      });
+    } catch (e) {
+      console.log('Security log error:', e);
+    }
+  }
+
   function handleAuthSubmit() {
     if (!elAuthPassword) return;
     const enteredPass = elAuthPassword.value.trim();
@@ -118,12 +167,14 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(AUTH_KEY, 'true');
       if (elAuthError) elAuthError.style.display = 'none';
       if (elAuthModal) elAuthModal.style.display = 'none';
+      logSecurityAccess('SUCCESS');
     } else {
       if (elAuthError) elAuthError.style.display = 'block';
       if (elAuthCardBox) {
         elAuthCardBox.classList.add('shake');
         setTimeout(() => elAuthCardBox.classList.remove('shake'), 450);
       }
+      logSecurityAccess('FAILED_ATTEMPT', enteredPass);
     }
   }
 
