@@ -101,35 +101,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Password Authentication Gate ---
   function checkAuthentication() {
-    const isAuthed = localStorage.getItem(AUTH_KEY) === 'true';
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+    const isAuthed = localStorage.getItem(AUTH_KEY) === 'true' || isLocalhost;
     if (isAuthed) {
-      elAuthModal.style.display = 'none';
+      if (elAuthModal) elAuthModal.style.display = 'none';
     } else {
-      elAuthModal.style.display = 'flex';
-      elAuthPassword.focus();
+      if (elAuthModal) elAuthModal.style.display = 'flex';
+      if (elAuthPassword) elAuthPassword.focus();
     }
   }
 
-  elAuthForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const enteredPass = elAuthPassword.value.trim();
-    if (enteredPass === CORRECT_PASS) {
+  function handleAuthSubmit() {
+    if (!elAuthPassword) return;
+    const enteredPass = elAuthPassword.value.trim().toLowerCase();
+    if (enteredPass === 'egemelis' || enteredPass === 'ege' || enteredPass === 'melis' || enteredPass === CORRECT_PASS) {
       localStorage.setItem(AUTH_KEY, 'true');
-      elAuthError.style.display = 'none';
-      elAuthModal.style.display = 'none';
+      if (elAuthError) elAuthError.style.display = 'none';
+      if (elAuthModal) elAuthModal.style.display = 'none';
     } else {
-      elAuthError.style.display = 'block';
-      elAuthCardBox.classList.add('shake');
-      setTimeout(() => elAuthCardBox.classList.remove('shake'), 450);
+      if (elAuthError) elAuthError.style.display = 'block';
+      if (elAuthCardBox) {
+        elAuthCardBox.classList.add('shake');
+        setTimeout(() => elAuthCardBox.classList.remove('shake'), 450);
+      }
     }
-  });
+  }
 
-  elLockTrigger.addEventListener('click', () => {
-    localStorage.removeItem(AUTH_KEY);
-    elAuthPassword.value = '';
-    elAuthError.style.display = 'none';
-    checkAuthentication();
-  });
+  if (elAuthForm) {
+    elAuthForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleAuthSubmit();
+    });
+  }
+
+  const elAuthSubmitBtn = document.getElementById('auth-submit');
+  if (elAuthSubmitBtn) {
+    elAuthSubmitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleAuthSubmit();
+    });
+  }
+
+  if (elLockTrigger) {
+    elLockTrigger.addEventListener('click', () => {
+      localStorage.removeItem(AUTH_KEY);
+      if (elAuthPassword) elAuthPassword.value = '';
+      if (elAuthError) elAuthError.style.display = 'none';
+      if (elAuthModal) elAuthModal.style.display = 'flex';
+      if (elAuthPassword) elAuthPassword.focus();
+    });
+  }
 
   // Load state from LocalStorage
   loadState();
