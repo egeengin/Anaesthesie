@@ -48,6 +48,10 @@
       </a>
       
       <div class="nav-actions">
+        <div id="cloud-sync-status" class="cloud-sync-badge" title="Automatischer Wolken-Sync aktiv">
+          <span class="cloud-icon">☁️</span> <span class="cloud-text">Synchronisiert</span>
+        </div>
+
         <button id="sub-toggle" class="btn-toggle-sub" title="Untertitelmodus für Türkisch umschalten">
           <span>🇹🇷</span> Untertitel
         </button>
@@ -280,9 +284,19 @@
       <div class="modal-body">
         <div class="settings-section">
           
+          <div class="settings-box highlight-box">
+            <h3>☁️ Automatische Wolken-Synchronisation (Cloud Auto-Sync)</h3>
+            <p>Ihr Lernfortschritt wird <strong>automatisch in Echtzeit in der Cloud gespeichert</strong>. Öffnen Sie die App auf Ihrem Smartphone, Tablet oder Laptop – Ihre Antworten und Statistiken sind sofort auf allen Geräten synchronisiert!</p>
+            <div class="settings-actions">
+              <button id="btn-cloud-sync-now" class="btn btn-primary">
+                <span>🔄</span> Jetzt mit Wolke synchronisieren
+              </button>
+            </div>
+          </div>
+
           <div class="settings-box">
-            <h3>📲 Lernfortschritt Sichern & Übertragen</h3>
-            <p>Exportieren Sie Ihren Fortschritt als Datei, um ihn auf Ihr Smartphone, Tablet oder ein anderes Gerät zu übertragen.</p>
+            <h3>📲 Lernfortschritt Manuell Sichern & Übertragen</h3>
+            <p>Exportieren Sie Ihren Fortschritt zusätzlich als Backup-Datei.</p>
             <div class="settings-actions">
               <button id="btn-export-progress" class="btn btn-secondary">
                 <span>📥</span> Fortschritt Exportieren (Backup JSON)

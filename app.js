@@ -770,18 +770,109 @@ document.addEventListener('DOMContentLoaded', () => {
     modalEl.classList.remove('active');
   }
 
-  // --- LocalStorage & Device Synchronization Engine ---
-  function saveState() {
+  // --- Automatic Cloud Auto-Sync Engine (RESTful API Cloud KV Store) ---
+  const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdab2880b07e2';
+  const elCloudSyncStatus = document.getElementById('cloud-sync-status');
+  const elBtnCloudSyncNow = document.getElementById('btn-cloud-sync-now');
+  let cloudSyncTimer = null;
+
+  function updateCloudSyncBadge(status) {
+    if (!elCloudSyncStatus) return;
+    if (status === 'syncing') {
+      elCloudSyncStatus.className = 'cloud-sync-badge syncing';
+      elCloudSyncStatus.innerHTML = '<span class="cloud-icon">🔄</span> <span class="cloud-text">Speichert...</span>';
+    } else if (status === 'synced') {
+      elCloudSyncStatus.className = 'cloud-sync-badge';
+      elCloudSyncStatus.innerHTML = '<span class="cloud-icon">☁️</span> <span class="cloud-text">Synchronisiert</span>';
+    } else if (status === 'offline') {
+      elCloudSyncStatus.className = 'cloud-sync-badge offline';
+      elCloudSyncStatus.innerHTML = '<span class="cloud-icon">📱</span> <span class="cloud-text">Lokaler Modus</span>';
+    }
+  }
+
+  // Pull latest cloud state asynchronously on app boot
+  async function syncFromCloud() {
+    try {
+      updateCloudSyncBadge('syncing');
+      const response = await fetch(CLOUD_SYNC_ENDPOINT);
+      if (response.ok) {
+        const json = await response.json();
+        if (json && json.data && json.data.state) {
+          const cloudState = json.data.state;
+          const cloudAnswered = Object.keys(cloudState.answers || {}).length;
+          const localAnswered = Object.keys(state.answers || {}).length;
+
+          // Merge if cloud state has more data or equal questions answered
+          if (cloudAnswered >= localAnswered) {
+            state = { ...state, ...cloudState };
+            saveStateLocalOnly();
+            updateAnalytics();
+            renderCurrentQuestion();
+          } else {
+            pushToCloud();
+          }
+        }
+        updateCloudSyncBadge('synced');
+      } else {
+        updateCloudSyncBadge('offline');
+      }
+    } catch (e) {
+      console.log('Cloud sync fallback to local:', e);
+      updateCloudSyncBadge('offline');
+    }
+  }
+
+  // Push local state to cloud with 600ms debounce
+  function pushToCloudDebounced() {
+    updateCloudSyncBadge('syncing');
+    if (cloudSyncTimer) clearTimeout(cloudSyncTimer);
+    cloudSyncTimer = setTimeout(() => {
+      pushToCloud();
+    }, 600);
+  }
+
+  async function pushToCloud() {
+    try {
+      const payload = {
+        name: 'facharzt_sync_egemelis',
+        data: {
+          version: '2.0',
+          updatedAt: new Date().toISOString(),
+          state: state
+        }
+      };
+
+      const res = await fetch(CLOUD_SYNC_ENDPOINT, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        updateCloudSyncBadge('synced');
+      } else {
+        updateCloudSyncBadge('offline');
+      }
+    } catch (e) {
+      console.log('Cloud push error:', e);
+      updateCloudSyncBadge('offline');
+    }
+  }
+
+  function saveStateLocalOnly() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) {
-      console.error('LocalStorage write error:', e);
-    }
+    } catch (e) {}
+  }
+
+  // --- LocalStorage & Device Synchronization Engine ---
+  function saveState() {
+    saveStateLocalOnly();
+    pushToCloudDebounced();
   }
 
   function loadState() {
     try {
-      // Try loading v2 state first, then fall back to v1
       let saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) {
         saved = localStorage.getItem('facharzt_anaesthesie_state_v1');
@@ -800,6 +891,16 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       elSubToggle.classList.remove('active');
     }
+
+    // Trigger cloud auto-sync asynchronously
+    syncFromCloud();
+  }
+
+  if (elBtnCloudSyncNow) {
+    elBtnCloudSyncNow.addEventListener('click', async () => {
+      await syncFromCloud();
+      alert('☁️ Wolken-Synchronisation ausgeführt!');
+    });
   }
 
   // --- Export Progress (JSON Backup) ---
