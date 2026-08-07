@@ -56,5 +56,28 @@ def main():
 
     print("=" * 115)
 
+    # Save to local text log file: access_security_audit.log
+    try:
+        with open("access_security_audit.log", "w", encoding="utf-8") as f:
+            f.write("===================================================================================================\n")
+            f.write("FACHARZTPRÜFUNG ANÄSTHESIOLOGIE - LOCAL ACCESS & LOGIN AUDIT LOG FILE\n")
+            f.write("===================================================================================================\n")
+            f.write(f"{'TIMESTAMP (UTC)':<20} | {'IP ADDRESS':<16} | {'LOCATION':<22} | {'ISP / NETWORK':<20} | {'STATUS':<12} | {'DEVICE / BROWSER'}\n")
+            f.write("-" * 115 + "\n")
+            for entry in reversed(logs):
+                ts = entry.get('timestamp', 'N/A')[:19].replace('T', ' ')
+                ip = entry.get('ip', 'Unknown')
+                city = entry.get('city', '')
+                country = entry.get('country', '')
+                loc = f"{city}, {country}" if city and country else (city or country or 'Unknown')
+                isp = entry.get('isp', 'Unknown')[:18]
+                status = entry.get('status', 'ACCESS')
+                device = entry.get('device', 'Browser')[:25]
+                f.write(f"{ts:<20} | {ip:<16} | {loc:<22} | {isp:<20} | {status:<12} | {device}\n")
+            f.write("===================================================================================================\n")
+        print("\n📄 Updated local log file: access_security_audit.log")
+    except Exception as err:
+        pass
+
 if __name__ == "__main__":
     main()
