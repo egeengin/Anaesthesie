@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     answers: {},       // { questionId: { selected: [indices], submitted: true/false, isCorrect: true/false, revealed: true/false } }
     flagged: {},       // { questionId: true/false }
     theme: 'light',
-    subtitleMode: false,
-    filterMode: 'all', // 'all', 'unanswered', 'incorrect', 'review'
+    subtitleMode: true, // Subtitles ON by default so Turkish translation stays on top/under
+    filterMode: 'all',  // 'all', 'unanswered', 'incorrect', 'review'
+    typeFilter: 'all',    // 'all', 'options', 'open', 'image'
     categoryFilter: 'all',
     randomOrder: false
   };
@@ -46,10 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const elStatReview = document.getElementById('stat-review');
   const elProgressBar = document.getElementById('progress-bar-fill');
   
+  const elTypeFilter = document.getElementById('type-filter');
   const elCategoryFilter = document.getElementById('category-filter');
   const elFilterChips = document.querySelectorAll('.filter-chip');
   const elModeSelect = document.getElementById('mode-select');
   
+  const elBadgeType = document.getElementById('badge-type');
   const elBadgeCategory = document.getElementById('badge-category');
   const elBadgeSource = document.getElementById('badge-source');
   const elBadgeReview = document.getElementById('badge-review');
@@ -86,6 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnImportTrigger = document.getElementById('btn-import-trigger');
   const elImportFileInput = document.getElementById('import-file-input');
   const elBtnResetProgress = document.getElementById('btn-reset-progress');
+
+  // Sync subtitle toggle button state
+  if (elSubToggle) {
+    if (state.subtitleMode) {
+      elSubToggle.classList.add('active');
+    } else {
+      elSubToggle.classList.remove('active');
+    }
+  }
 
   // --- Password Authentication Gate ---
   function checkAuthentication() {
@@ -132,27 +144,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Dual-Language Hover Overlay Helper ---
   function renderDualLanguageText(textDE, textTR) {
-    if (!textTR) {
-      return formatAnswerText(textDE);
+    if (!textDE) return '';
+    const formattedDE = formatAnswerText(textDE);
+    if (!textTR || textTR === textDE) {
+      return `<div class="de-text-block">${formattedDE}</div>`;
     }
     
-    // Show translation if Turkish text differs from German in any way
-    const hasAnnotation = textTR !== textDE;
-    
-    if (!hasAnnotation) {
-      return formatAnswerText(textDE);
-    }
+    const formattedTR = formatAnswerText(textTR);
     
     if (state.subtitleMode) {
-      return `<div>${formatAnswerText(textDE)}</div><span class="subtitle-block">🇹🇷 ${formatAnswerText(textTR)}</span>`;
+      return `<div class="de-text-block">${formattedDE}</div><div class="tr-subtitle-block">🇹🇷 ${formattedTR}</div>`;
     } else {
-      return `<span class="tr-hover" data-tr="${escapeHtml(textTR)}">${formatAnswerText(textDE)}</span>`;
+      return `<div class="de-text-block tr-hover" data-tr="${escapeHtml(textTR)}">${formattedDE}</div>`;
     }
   }
 
   function formatAnswerText(text) {
     if (!text) return '';
-    // Convert newlines to <br> for multi-line answers
     return text
       .replace(/\n/g, '<br>')
       .replace(/•/g, '<br>•')
@@ -167,6 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Filtering Question Bank ---
   function getFilteredQuestions() {
     return EXAM_QUESTIONS.filter(q => {
+      if (state.typeFilter !== 'all') {
+        if (state.typeFilter === 'image') {
+          if (!q.image) return false;
+        } else if (q.question_type !== state.typeFilter) {
+          return false;
+        }
+      }
+
       if (state.categoryFilter !== 'all' && q.category !== state.categoryFilter) {
         return false;
       }
@@ -186,6 +202,16 @@ document.addEventListener('DOMContentLoaded', () => {
       
       return true;
     });
+  }
+
+  if (elTypeFilter) {
+    elTypeFilter.addEventListener('change', (e) => {
+      state.typeFilter = e.target.value;
+      state.currentIndex = 0;
+      saveState();
+      renderCurrentQuestion();
+    });
+    elTypeFilter.value = state.typeFilter || 'all';
   }
 
   function initCategoryDropdown() {
@@ -240,6 +266,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const isOpen = isOpenQuestion(currentQ);
 
     // Header badges
+    if (elBadgeType) {
+      if (currentQ.image) {
+        elBadgeType.textContent = '🖼️ Befunddiagnostik';
+      } else if (currentQ.question_type === 'options') {
+        elBadgeType.textContent = '✅ Aussagenbewertung';
+      } else {
+        elBadgeType.textContent = '📋 Fallbasierte Prüfung';
+      }
+    }
     elBadgeCategory.textContent = currentQ.category;
     elBadgeSource.textContent = currentQ.source_book ? currentQ.source_book.split(' - ')[0] : 'Facharzt';
     

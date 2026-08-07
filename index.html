@@ -122,6 +122,13 @@
       </div>
 
       <div class="mode-selector">
+        <select id="type-filter">
+          <option value="all">Alle Formate (580)</option>
+          <option value="options">✅ Aussagenbewertung (327)</option>
+          <option value="open">📋 Fallbasierte Prüfung (253)</option>
+          <option value="image">🖼️ Befund- & Bilddiagnostik (15)</option>
+        </select>
+
         <select id="category-filter">
           <option value="all">Alle Kategorien</option>
         </select>
@@ -137,6 +144,7 @@
     <section class="quiz-card">
       <div class="quiz-header">
         <div class="quiz-meta">
+          <span id="badge-type" class="badge badge-type">Prüfungsformat</span>
           <span id="badge-category" class="badge badge-category">Kategorie</span>
           <span id="badge-source" class="badge badge-source">Quelle</span>
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
