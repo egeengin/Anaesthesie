@@ -825,9 +825,6 @@ body {
   border-color: #e11d48;
   background-color: rgba(225, 29, 72, 0.04);
 }
-  border-color: #ef4444;
-  background-color: #fef2f2;
-}
 
 [data-theme="dark"] .option-card-item.eval-correct {
   background-color: rgba(16, 185, 129, 0.15);
