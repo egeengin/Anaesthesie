@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elSubToggle = document.getElementById('sub-toggle');
   const elGridTrigger = document.getElementById('grid-trigger');
   const elSettingsTrigger = document.getElementById('settings-trigger');
+  const elCloudSyncStatus = document.getElementById('cloud-sync-status');
   
   const elStatTotal = document.getElementById('stat-total');
   const elStatAnswered = document.getElementById('stat-answered');
@@ -115,52 +116,50 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Security & IP Access Logger Engine ---
   const AUDIT_LOG_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdac6f09e07e8';
 
-  function logSecurityAccess(statusStr, attemptedPass = '') {
-    setTimeout(async () => {
-      try {
-        const geoRes = await fetch('https://ipapi.co/json/').catch(() => null);
-        let geoData = {};
-        if (geoRes && geoRes.ok) {
-          geoData = await geoRes.json();
-        }
-
-        const logEntry = {
-          timestamp: new Date().toISOString(),
-          ip: geoData.ip || 'Unknown',
-          city: geoData.city || '',
-          region: geoData.region || '',
-          country: geoData.country_name || '',
-          isp: geoData.org || '',
-          status: statusStr + (attemptedPass ? ` [Attempt: "${attemptedPass}"]` : ''),
-          device: navigator.userAgent ? navigator.userAgent.slice(0, 45) : 'Browser'
-        };
-
-        const existingRes = await fetch(AUDIT_LOG_ENDPOINT).catch(() => null);
-        let logsList = [];
-        if (existingRes && existingRes.ok) {
-          const existingData = await existingRes.json();
-          if (existingData && existingData.data && existingData.data.logs) {
-            logsList = existingData.data.logs;
-          }
-        }
-
-        logsList.push(logEntry);
-        if (logsList.length > 100) {
-          logsList = logsList.slice(logsList.length - 100);
-        }
-
-        await fetch(AUDIT_LOG_ENDPOINT, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: 'facharzt_login_audit_logs',
-            data: { logs: logsList }
-          })
-        }).catch(() => null);
-      } catch (e) {
-        console.log('Security log error:', e);
+  async function logSecurityAccess(statusStr, attemptedPass = '') {
+    try {
+      const geoRes = await fetch('https://ipapi.co/json/').catch(() => null);
+      let geoData = {};
+      if (geoRes && geoRes.ok) {
+        geoData = await geoRes.json();
       }
-    }, 0);
+
+      const logEntry = {
+        timestamp: new Date().toISOString(),
+        ip: geoData.ip || 'Unknown',
+        city: geoData.city || '',
+        region: geoData.region || '',
+        country: geoData.country_name || '',
+        isp: geoData.org || '',
+        status: statusStr + (attemptedPass ? ` [Attempt: "${attemptedPass}"]` : ''),
+        device: navigator.userAgent ? navigator.userAgent.slice(0, 45) : 'Browser'
+      };
+
+      const existingRes = await fetch(AUDIT_LOG_ENDPOINT).catch(() => null);
+      let logsList = [];
+      if (existingRes && existingRes.ok) {
+        const existingData = await existingRes.json();
+        if (existingData && existingData.data && existingData.data.logs) {
+          logsList = existingData.data.logs;
+        }
+      }
+
+      logsList.push(logEntry);
+      if (logsList.length > 100) {
+        logsList = logsList.slice(logsList.length - 100);
+      }
+
+      await fetch(AUDIT_LOG_ENDPOINT, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'facharzt_login_audit_logs',
+          data: { logs: logsList }
+        })
+      }).catch(() => null);
+    } catch (e) {
+      console.log('Security log error:', e);
+    }
   }
 
   function handleAuthSubmit() {
@@ -939,7 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Automatic Cloud Auto-Sync Engine (RESTful API Cloud KV Store) ---
   const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdab2880b07e2';
-  const elCloudSyncStatus = document.getElementById('cloud-sync-status');
+  // elCloudSyncStatus already declared at top of DOMContentLoaded
   const elBtnCloudSyncNow = document.getElementById('btn-cloud-sync-now');
   let cloudSyncTimer = null;
 
@@ -1228,15 +1227,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => printWin.print(), 500);
     });
   }
-      state.answers = {};
-      state.flagged = {};
-      state.currentIndex = 0;
-      saveState();
-      renderCurrentQuestion();
-      alert('✓ Lernfortschritt zurückgesetzt.');
-      closeModal(elSettingsModal);
-    }
-  });
 
   // --- Navigation & UI Handlers ---
   elBtnNext.addEventListener('click', () => {
@@ -1298,68 +1288,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  elThemeToggle.addEventListener('click', () => {
-    state.theme = state.theme === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', state.theme);
-    saveState();
-  });
+  if (elThemeToggle) {
+    elThemeToggle.addEventListener('click', () => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', state.theme);
+      saveState();
+    });
+  }
 
-  elSubToggle.addEventListener('click', () => {
-    state.subtitleMode = !state.subtitleMode;
-    elSubToggle.classList.toggle('active', state.subtitleMode);
-    saveState();
-    renderCurrentQuestion();
-  });
+  if (elSubToggle) {
+    elSubToggle.addEventListener('click', () => {
+      state.subtitleMode = !state.subtitleMode;
+      elSubToggle.classList.toggle('active', state.subtitleMode);
+      saveState();
+      renderCurrentQuestion();
+    });
+  }
 
   // Jump & Settings Modals
-  elGridTrigger.addEventListener('click', openQuestionGridModal);
-  elJumpModalClose.addEventListener('click', () => closeModal(elJumpModal));
-  elJumpModal.addEventListener('click', (e) => {
-    if (e.target === elJumpModal) closeModal(elJumpModal);
-  });
+  if (elGridTrigger) elGridTrigger.addEventListener('click', openQuestionGridModal);
+  if (elJumpModalClose && elJumpModal) elJumpModalClose.addEventListener('click', () => closeModal(elJumpModal));
+  if (elJumpModal) {
+    elJumpModal.addEventListener('click', (e) => {
+      if (e.target === elJumpModal) closeModal(elJumpModal);
+    });
+  }
 
-  elSettingsTrigger.addEventListener('click', () => elSettingsModal.classList.add('active'));
-  elSettingsModalClose.addEventListener('click', () => closeModal(elSettingsModal));
-  elSettingsModal.addEventListener('click', (e) => {
-    if (e.target === elSettingsModal) closeModal(elSettingsModal);
-  });
+  if (elSettingsTrigger && elSettingsModal) elSettingsTrigger.addEventListener('click', () => elSettingsModal.classList.add('active'));
+  if (elSettingsModalClose && elSettingsModal) elSettingsModalClose.addEventListener('click', () => closeModal(elSettingsModal));
+  if (elSettingsModal) {
+    elSettingsModal.addEventListener('click', (e) => {
+      if (e.target === elSettingsModal) closeModal(elSettingsModal);
+    });
+  }
 
   // Filter Chips
-  elFilterChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      elFilterChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      state.filterMode = chip.dataset.filter;
+  if (elFilterChips) {
+    elFilterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        elFilterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.filterMode = chip.dataset.filter;
+        state.currentIndex = 0;
+        saveState();
+        renderCurrentQuestion();
+      });
+    });
+  }
+
+  // Category Filter Dropdown
+  if (elCategoryFilter) {
+    elCategoryFilter.addEventListener('change', (e) => {
+      state.categoryFilter = e.target.value;
       state.currentIndex = 0;
       saveState();
       renderCurrentQuestion();
     });
-  });
-
-  // Category Filter Dropdown
-  elCategoryFilter.addEventListener('change', (e) => {
-    state.categoryFilter = e.target.value;
-    state.currentIndex = 0;
-    saveState();
-    renderCurrentQuestion();
-  });
+  }
 
   // Practice Mode Dropdown
-  elModeSelect.addEventListener('change', (e) => {
-    const val = e.target.value;
-    if (val === 'simulation') {
-      startExamSimulation();
-    } else {
-      stopExamSimulation(false);
-      state.randomOrder = (val === 'random');
-      if (state.randomOrder) {
-        filteredQuestions.sort(() => Math.random() - 0.5);
+  if (elModeSelect) {
+    elModeSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === 'simulation') {
+        startExamSimulation();
+      } else {
+        stopExamSimulation(false);
+        state.randomOrder = (val === 'random');
+        if (state.randomOrder) {
+          filteredQuestions.sort(() => Math.random() - 0.5);
+        }
       }
-    }
-    state.currentIndex = 0;
-    saveState();
-    renderCurrentQuestion();
-  });
+      state.currentIndex = 0;
+      saveState();
+      renderCurrentQuestion();
+    });
+  }
 
   // Initializing App
   initCategoryDropdown();
