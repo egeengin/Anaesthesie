@@ -1782,10 +1782,61 @@ footer {
   border: 1px solid var(--card-border);
 }
 
-/* Standalone iOS PWA Display Fixes */
-@media all and (display-mode: standalone) {
-  .navbar {
-    padding-top: max(1.2rem, env(safe-area-inset-top));
+.question-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.btn-audio {
+  flex-shrink: 0;
+  color: #0d9488;
+  background: rgba(13, 148, 136, 0.08);
+  border: 1px solid rgba(13, 148, 136, 0.2);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-audio:hover {
+  background: rgba(13, 148, 136, 0.2);
+  transform: scale(1.05);
+}
+
+.btn-audio.speaking {
+  background: #0d9488;
+  color: white;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* @media print styles for PDF export */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+
+  .navbar, .toolbar, .dashboard, .action-bar, .self-assess-container, .modal-backdrop {
+    display: none !important;
+  }
+
+  .quiz-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
   }
 }
 @media (min-width: 1024px) {

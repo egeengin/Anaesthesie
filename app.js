@@ -359,6 +359,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.filterMode === 'high_yield') {
         return !!q.is_high_yield;
       }
+      if (state.filterMode === 'weakness') {
+        const qAns = state.answers[q.id];
+        return !qAns || !qAns.submitted || !qAns.isCorrect;
+      }
       if (state.filterMode === 'unanswered') {
         return !qAns || !qAns.submitted;
       }
@@ -1034,6 +1038,116 @@ document.addEventListener('DOMContentLoaded', () => {
   elBtnResetProgress.addEventListener('click', () => {
     const confirmed = confirm("⚠️ Sind Sie sicher, dass Sie Ihren gesamten Lernfortschritt zurücksetzen möchten?\n\nAlle gespeicherten Antworten und Erfolgsstatistiken werden unwiderruflich gelöscht!");
     if (confirmed) {
+      localStorage.removeItem(STORAGE_KEY);
+      state.answers = {};
+      state.flagged = {};
+      state.userNotes = {};
+      state.currentIndex = 0;
+      saveState();
+      updateAnalytics();
+      renderCurrentQuestion();
+      alert('🗑️ Lernfortschritt komplett zurückgesetzt.');
+      closeModal(elSettingsModal);
+    }
+  });
+
+  // --- Emergency Pocket Cards Modal ---
+  const elPocketTrigger = document.getElementById('pocket-trigger');
+  const elPocketCardsModal = document.getElementById('pocket-cards-modal');
+  const elPocketModalClose = document.getElementById('pocket-modal-close');
+
+  if (elPocketTrigger && elPocketCardsModal) {
+    elPocketTrigger.addEventListener('click', () => elPocketCardsModal.classList.add('active'));
+  }
+  if (elPocketModalClose && elPocketCardsModal) {
+    elPocketModalClose.addEventListener('click', () => closeModal(elPocketCardsModal));
+  }
+
+  // --- Audio Speech Reader ---
+  const elBtnAudioSpeak = document.getElementById('btn-audio-speak');
+  if (elBtnAudioSpeak) {
+    elBtnAudioSpeak.addEventListener('click', () => {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+          elBtnAudioSpeak.classList.remove('speaking');
+          return;
+        }
+
+        filteredQuestions = getFilteredQuestions();
+        if (!filteredQuestions.length) return;
+        const currentQ = filteredQuestions[state.currentIndex];
+        const textToRead = currentQ.stem_de || currentQ.question_de || '';
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.95;
+
+        utterance.onstart = () => elBtnAudioSpeak.classList.add('speaking');
+        utterance.onend = () => elBtnAudioSpeak.classList.remove('speaking');
+        utterance.onerror = () => elBtnAudioSpeak.classList.remove('speaking');
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.');
+      }
+    });
+  }
+
+  // --- Printable PDF Study Summary ---
+  const elBtnPrintSummary = document.getElementById('btn-print-summary');
+  if (elBtnPrintSummary) {
+    elBtnPrintSummary.addEventListener('click', () => {
+      const flaggedIds = Object.keys(state.flagged).filter(id => state.flagged[id]);
+      const flaggedQuestions = EXAM_QUESTIONS.filter(q => flaggedIds.includes(q.id));
+
+      if (!flaggedQuestions.length) {
+        alert('📄 Sie haben derzeit keine Fragen mit ★ Wiederholen markiert.');
+        return;
+      }
+
+      let printHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Facharzt Anästhesie - Spickzettel & Zusammenfassung</title>
+          <style>
+            body { font-family: sans-serif; padding: 20px; line-height: 1.5; color: #1e293b; }
+            h1 { color: #0d9488; border-bottom: 2px solid #0d9488; padding-bottom: 8px; }
+            .q-box { border: 1px solid #cbd5e1; padding: 12px; margin-bottom: 16px; border-radius: 6px; page-break-inside: avoid; }
+            .q-title { font-weight: bold; color: #0f172a; margin-bottom: 6px; }
+            .q-ans { background: #f1f5f9; padding: 8px; border-radius: 4px; font-size: 0.9em; margin-top: 6px; }
+            .q-note { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 6px 10px; font-size: 0.88em; margin-top: 6px; }
+          </style>
+        </head>
+        <body>
+          <h1>⚕️ Facharztprüfung Anästhesiologie - Spickzettel (${flaggedQuestions.length} Fragen)</h1>
+          <p>Erstellt für Dr. Melis Engin am ${new Date().toLocaleDateString('de-DE')}</p>
+      `;
+
+      flaggedQuestions.forEach((q, idx) => {
+        const stem = q.stem_de || q.question_de || '';
+        const ans = q.answer_de || q.explanation_de || '';
+        const note = state.userNotes ? state.userNotes[q.id] : '';
+
+        printHtml += `
+          <div class="q-box">
+            <div class="q-title">${idx + 1}. [${q.category}] ${stem}</div>
+            <div class="q-ans"><strong>Antwort:</strong> ${ans}</div>
+            ${note ? `<div class="q-note"><strong>Eigene Notiz:</strong> ${note}</div>` : ''}
+          </div>
+        `;
+      });
+
+      printHtml += `</body></html>`;
+
+      const printWin = window.open('', '_blank');
+      printWin.document.write(printHtml);
+      printWin.document.close();
+      printWin.focus();
+      setTimeout(() => printWin.print(), 500);
+    });
+  }
       state.answers = {};
       state.flagged = {};
       state.currentIndex = 0;

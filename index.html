@@ -59,6 +59,10 @@
           <span class="cloud-icon">☁️</span> <span class="cloud-text">Synchronisiert</span>
         </div>
 
+        <button id="pocket-trigger" class="btn-toggle-sub" style="border-color: #0d9488; color: #0d9488;" title="Notfall- & Medikamenten-Taschenkarte">
+          <span>📇</span> Notfallkarte
+        </button>
+
         <button id="sub-toggle" class="btn-toggle-sub" title="Untertitelmodus für Türkisch umschalten">
           <span>🇹🇷</span> Untertitel
         </button>
@@ -167,6 +171,7 @@
       <div class="filter-group">
         <button class="filter-chip active" data-filter="all">Alle Fragen</button>
         <button class="filter-chip" data-filter="high_yield">⭐ ÄKNO NRW Top-Fragen</button>
+        <button class="filter-chip" data-filter="weakness">🎯 Schwachstellen-Fokus</button>
         <button class="filter-chip" data-filter="unanswered">Offen (Unbeantwortet)</button>
         <button class="filter-chip" data-filter="incorrect">Falsch beantwortet</button>
         <button class="filter-chip" data-filter="review">★ Wiederholen (Flagged)</button>
@@ -207,8 +212,13 @@
       </div>
 
       <!-- Question Text Container -->
-      <div id="question-text" class="question-body">
-        Fragetext wird geladen...
+      <div class="question-header-row">
+        <div id="question-text" class="question-body">
+          Fragetext wird geladen...
+        </div>
+        <button id="btn-audio-speak" class="btn-icon btn-audio" title="Frage laut vorlesen (Audio-Reader)">
+          <span>🔊</span>
+        </button>
       </div>
 
       <!-- Question Image Container -->
@@ -348,8 +358,8 @@
           </div>
 
           <div class="settings-box">
-            <h3>📲 Lernfortschritt Manuell Sichern & Übertragen</h3>
-            <p>Exportieren Sie Ihren Fortschritt zusätzlich als Backup-Datei.</p>
+            <h3>📲 Lernfortschritt Manuell Sichern & Drucken</h3>
+            <p>Exportieren Sie Ihren Fortschritt als Backup-Datei oder drucken Sie Ihre Markierungen als Spickzettel aus.</p>
             <div class="settings-actions">
               <button id="btn-export-progress" class="btn btn-secondary">
                 <span>📥</span> Fortschritt Exportieren (Backup JSON)
@@ -357,6 +367,10 @@
               
               <button id="btn-import-trigger" class="btn btn-secondary">
                 <span>📤</span> Fortschritt Importieren
+              </button>
+              
+              <button id="btn-print-summary" class="btn btn-secondary">
+                <span>📄</span> Spickzettel Drucken (PDF)
               </button>
               <input type="file" id="import-file-input" accept=".json" style="display: none;" />
             </div>
@@ -368,6 +382,57 @@
             <button id="btn-reset-progress" class="btn btn-danger-outline">
               <span>🗑️</span> Lernfortschritt Zurücksetzen...
             </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emergency Drug & Protocol Pocket Cards Modal -->
+  <div id="pocket-cards-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2>📇 Anästhesie Notfall- & Medikamenten-Taschenkarte</h2>
+        <button id="pocket-modal-close" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="pocket-grid" style="display: grid; gap: 1rem;">
+          
+          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #ef4444; margin-bottom: 0.5rem;">⚠️ Maligne Hyperthermie (MH)</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.88rem; line-height: 1.6;">
+              <tr><td style="width: 30%;"><strong>Ersttherapie:</strong></td><td><strong>Dantrolen 2.5 mg/kg i.v.</strong> rasch repetieren bis max. 10 mg/kg</td></tr>
+              <tr><td><strong>Beatmung:</strong></td><td>FiO2 1.0, <strong>Hyperventilation (2-3x MV)</strong>, Atemkalk & Schlauchsystem wechseln</td></tr>
+              <tr><td><strong>Kühlung:</strong></td><td>Aktives Kühlen (Eis, kalte Infusionen 4°C) bis Kerntemperatur < 38.5°C</td></tr>
+            </table>
+          </div>
+
+          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #0d9488;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #0d9488; margin-bottom: 0.5rem;">💉 Lokalanästhetika-Toxizität (LAST)</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.88rem; line-height: 1.6;">
+              <tr><td style="width: 30%;"><strong>Erstbolus:</strong></td><td><strong>Intralipid 20% 1.5 ml/kg i.v.</strong> über 1 Min (ca. 100 ml bei 70 kg)</td></tr>
+              <tr><td><strong>Infusion:</strong></td><td>0.25 ml/kg/min kontinuierlich (ca. 1000 ml/h)</td></tr>
+              <tr><td><strong>Atemweg:</strong></td><td>100% O2, Frühzeitige Intubation bei Krampfanfall (Propofol / Midazolam)</td></tr>
+            </table>
+          </div>
+
+          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">🚨 Anaphylaxie (Grad I - IV)</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.88rem; line-height: 1.6;">
+              <tr><td style="width: 30%;"><strong>Grad II/III:</strong></td><td><strong>Adrenalin 0.1 - 0.5 mg i.v.</strong> (0.01 mg/kg) / i.m. 0.5 mg</td></tr>
+              <tr><td><strong>Volumen:</strong></td><td>Kristalloide Bolus 20 ml/kg rasch druckinfundieren</td></tr>
+              <tr><td><strong>Adjuvanzien:</strong></td><td>H1-Blocker (Clemastin 2 mg) + H2-Blocker (Ranitidin 50 mg) + Hydrocortison 250-500 mg</td></tr>
+            </table>
+          </div>
+
+          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem;">💊 Sugammadex (Rocuronium Reversierung)</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.88rem; line-height: 1.6;">
+              <tr><td style="width: 30%;"><strong>Flache Blockade (TOFC ≥ 2):</strong></td><td><strong>2.0 mg/kg i.v.</strong> (Erholung in ca. 2 Min)</td></tr>
+              <tr><td><strong>Tiefe Blockade (PTC 1-2):</strong></td><td><strong>4.0 mg/kg i.v.</strong></td></tr>
+              <tr><td><strong>Notfall-Reversierung (RSI 1.2 mg/kg):</strong></td><td><strong>16.0 mg/kg i.v.</strong> (sofortige Reversierung nach 3 Min)</td></tr>
+            </table>
           </div>
 
         </div>
