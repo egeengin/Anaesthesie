@@ -87,6 +87,12 @@
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-main);
@@ -96,6 +102,9 @@ body {
   display: flex;
   flex-direction: column;
   transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 .container {
@@ -768,6 +777,7 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-main);
+  min-width: 0;
 }
 
 .option-toggles {
@@ -1967,22 +1977,180 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .quiz-card { padding: 1.25rem; }
-  .dashboard { grid-template-columns: 1fr 1fr; }
-  .action-bar { flex-direction: column; align-items: stretch; }
-  .btn-group { width: 100%; justify-content: space-between; }
-  .btn { flex: 1; justify-content: center; }
-  
-  .self-assess-buttons { flex-direction: column; }
-  .btn-knew-it, .btn-didnt-know { width: 100%; }
-  .btn-reveal { width: 100%; justify-content: center; }
-  .question-image { max-height: 300px; }
+  .container {
+    padding: 0 0.85rem;
+  }
+
+  .quiz-card {
+    padding: 1.15rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Header mobile adjustments */
+  .brand-subtitle {
+    display: none;
+  }
+
+  .cloud-text {
+    display: none;
+  }
+
+  .cloud-sync-badge {
+    padding: 0.3rem 0.5rem;
+  }
+
+  /* Action Bar Mobile Fixed Position & Safe Area */
+  .action-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding-bottom: max(0.85rem, env(safe-area-inset-bottom));
+  }
+
+  .btn-group {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.65rem 0.75rem;
+  }
+
+  /* Hide keyboard shortcut hints on mobile touch devices */
+  .kbd-hint, .kbd-search-hint {
+    display: none !important;
+  }
+
+  .self-assess-buttons {
+    flex-direction: column;
+  }
+
+  .btn-knew-it, .btn-didnt-know {
+    width: 100%;
+  }
+
+  .btn-reveal {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .question-image {
+    max-height: 280px;
+  }
+
+  /* Prevent iOS automatic input focus page zoom */
+  input, select, textarea, .search-input, .mode-selector select, .auth-input {
+    font-size: 16px !important;
+  }
+
+  .mode-selector {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .mode-selector select {
+    width: 100%;
+    padding: 0.55rem 0.85rem;
+  }
+
+  /* Instant touch response & remove iOS 300ms tap delay / highlight */
+  button, .btn, .btn-toggle-tf, .pill-btn, .filter-chip, .stat-card, .option-card-item {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Filter Group Chips horizontal scroll */
+  .filter-group {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-bottom: 0.4rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filter-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Pill navigation buttons hide labels for clean icon bar */
+  .pill-btn-text {
+    display: none;
+  }
+
+  .pill-btn {
+    padding: 0.4rem 0.6rem;
+    min-width: 36px;
+    justify-content: center;
+  }
+
+  .nav-action-pill {
+    gap: 0.15rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .brand-text h1 {
+    font-size: 1.05rem;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.15rem;
+  }
+
+  /* Option items vertical stacking on mobile */
+  .option-row {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .opt-letter-badge {
+    flex-shrink: 0;
+  }
+
+  .option-content {
+    flex: 1 1 calc(100% - 48px);
+    min-width: 0;
+  }
+
+  .option-toggles {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed var(--card-border);
+  }
+
+  .btn-toggle-tf {
+    flex: 1;
+    justify-content: center;
+    padding: 0.55rem 0.5rem;
+    font-size: 0.88rem;
+  }
 }
 
 @media (max-width: 440px) {
   /* iPhone 15 Pro Max & Dynamic Island Padding */
   .navbar {
     padding-top: max(0.75rem, env(safe-area-inset-top));
+    padding-bottom: 0.6rem;
   }
 
   .dashboard {
@@ -2013,9 +2181,5 @@ footer {
   /* One-Handed Touch Target Feedbacks */
   .btn:active, .btn-toggle-tf:active {
     transform: scale(0.97);
-  }
-
-  .kbd-search-hint {
-    display: none;
   }
 }
