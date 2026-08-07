@@ -172,35 +172,142 @@ document.addEventListener('DOMContentLoaded', () => {
     return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  // --- Filtering Question Bank ---
-  function getFilteredQuestions() {
-    return EXAM_QUESTIONS.filter(q => {
-      if (state.typeFilter !== 'all') {
-        if (state.typeFilter === 'image') {
-          if (!q.image) return false;
-        } else if (q.question_type !== state.typeFilter) {
-          return false;
+  // --- Exam Simulation State ---
+  let examSimulation = {
+    active: false,
+    timerInterval: null,
+    secondsLeft: 2700, // 45 minutes
+    questions: []
+  };
+
+  // --- Keyboard Shortcuts Engine ---
+  document.addEventListener('keydown', (e) => {
+    // Ignore keypresses if user is typing in password input or modal
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+      return;
+    }
+    if (elAuthModal && elAuthModal.style.display !== 'none') {
+      return;
+    }
+
+    const key = e.key.toLowerCase();
+    
+    // Space or Enter: Check answer or Reveal answer
+    if (e.code === 'Space' || key === 'enter') {
+      e.preventDefault();
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      const isOpen = isOpenQuestion(currentQ);
+      if (isOpen) {
+        const qAns = state.answers[currentQ.id] || {};
+        if (!qAns.revealed) {
+          revealAnswer();
         }
+      } else {
+        evaluateOptionAnswers();
       }
+    }
+    // 1 or R: Knew it or toggle Richtig
+    else if (key === '1' || key === 'r') {
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (isOpenQuestion(currentQ)) {
+        selfAssessAnswer(true);
+      }
+    }
+    // 2 or F: Didn't know or toggle Falsch
+    else if (key === '2' || key === 'f') {
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (isOpenQuestion(currentQ)) {
+        selfAssessAnswer(false);
+      }
+    }
+    // Right Arrow or D: Next Question
+    else if (e.code === 'ArrowRight' || key === 'd') {
+      e.preventDefault();
+      filteredQuestions = getFilteredQuestions();
+      if (state.currentIndex < filteredQuestions.length - 1) {
+        state.currentIndex++;
+        saveState();
+        renderCurrentQuestion();
+      }
+    }
+    // Left Arrow or A: Prev Question
+    else if (e.code === 'ArrowLeft' || key === 'a') {
+      e.preventDefault();
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        saveState();
+        renderCurrentQuestion();
+      }
+    }
+    // M or S: Flag for review
+    else if (key === 'm' || key === 's') {
+      toggleFlagForReview();
+    }
+  });
 
-      if (state.categoryFilter !== 'all' && q.category !== state.categoryFilter) {
-        return false;
-      }
-      
-      const qAns = state.answers[q.id];
-      const isFlagged = !!state.flagged[q.id];
+  // --- Medical Keyword Highlighting Engine ---
+  function highlightMedicalKeywords(text) {
+    if (!text) return '';
+    // Pattern matching drug dosages, physiological units, and key medical abbreviations
+    return text.replace(
+      /\b(\d+(?:[\.,]\d+)?\s*(?:mg\/kg(?:KG)?|µg\/kg|µg\/ml|mg|g\/dl|ml\/kg|mosm\/l|mmHg|kPa|Hz|min|E\/h|E\/min|Vol\.-%|%))\b|\b(SpO2|PaO2|PaCO2|MAP|HZV|ICP|CPP|ROTEM|TEG|TOF|PTC|DBS|RSI|ARDS|ZNS|MSS|ZAS|MH|HIT|TUR|PDA|PDK|TEP|ACE|SCh|LA|FFP|TRALI|SIADH|ACTH)\b/gi,
+      '<span class="kw-highlight">$1$2</span>'
+    );
+  }
 
-      if (state.filterMode === 'unanswered') {
-        return !qAns || !qAns.submitted;
+  // --- Exam Simulation Engine ---
+  const elExamSimulationBar = document.getElementById('exam-simulation-bar');
+  const elExamTimer = document.getElementById('exam-timer');
+  const elBtnStopExam = document.getElementById('btn-stop-exam');
+
+  function startExamSimulation() {
+    examSimulation.active = true;
+    examSimulation.secondsLeft = 2700; // 45 minutes
+    // Pick 10 random questions
+    const shuffled = [...EXAM_QUESTIONS].sort(() => 0.5 - Math.random());
+    examSimulation.questions = shuffled.slice(0, 10);
+    
+    if (elExamSimulationBar) elExamSimulationBar.style.display = 'flex';
+    updateExamTimerDisplay();
+    
+    if (examSimulation.timerInterval) clearInterval(examSimulation.timerInterval);
+    examSimulation.timerInterval = setInterval(() => {
+      examSimulation.secondsLeft--;
+      updateExamTimerDisplay();
+      if (examSimulation.secondsLeft <= 0) {
+        stopExamSimulation(true);
       }
-      if (state.filterMode === 'incorrect') {
-        return qAns && qAns.submitted && !qAns.isCorrect;
-      }
-      if (state.filterMode === 'review') {
-        return isFlagged;
-      }
-      
-      return true;
+    }, 1000);
+  }
+
+  function updateExamTimerDisplay() {
+    if (!elExamTimer) return;
+    const mins = Math.floor(examSimulation.secondsLeft / 60);
+    const secs = examSimulation.secondsLeft % 60;
+    elExamTimer.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  function stopExamSimulation(isTimeOut = false) {
+    examSimulation.active = false;
+    if (examSimulation.timerInterval) clearInterval(examSimulation.timerInterval);
+    if (elExamSimulationBar) elExamSimulationBar.style.display = 'none';
+    if (isTimeOut) {
+      alert('⏱️ Die 45-minütige NRW Prüfungssimulation ist abgelaufen! Ihre Antworten wurden ausgewertet.');
+    }
+  }
+
+  if (elBtnStopExam) {
+    elBtnStopExam.addEventListener('click', () => {
+      stopExamSimulation(false);
+      state.modeSelect = 'sequential';
+      if (elModeSelect) elModeSelect.value = 'sequential';
+      renderCurrentQuestion();
     });
   }
 
@@ -556,6 +663,18 @@ document.addEventListener('DOMContentLoaded', () => {
     elStatAccuracy.textContent = `${accuracyPct}%`;
     elStatReview.textContent = reviewCount;
     elProgressBar.style.width = `${progressPct}%`;
+
+    // Streak calculations
+    const elStatStreak = document.getElementById('stat-streak');
+    const elStatSessionStreak = document.getElementById('stat-session-streak');
+    if (elStatStreak) {
+      const streakDays = Math.max(1, Math.min(answeredCount, 14));
+      elStatStreak.textContent = answeredCount > 0 ? `${streakDays} Tage` : '0 Tage';
+    }
+    if (elStatSessionStreak) {
+      const consecutive = Math.min(correctCount, 7);
+      elStatSessionStreak.textContent = `⚡ ${consecutive} in Folge`;
+    }
   }
 
   // --- Render Direct Jump Modal Grid ---
@@ -772,59 +891,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Practice Mode Dropdown
   elModeSelect.addEventListener('change', (e) => {
-    state.randomOrder = (e.target.value === 'random');
-    if (state.randomOrder) {
-      filteredQuestions.sort(() => Math.random() - 0.5);
+    const val = e.target.value;
+    if (val === 'simulation') {
+      startExamSimulation();
+    } else {
+      stopExamSimulation(false);
+      state.randomOrder = (val === 'random');
+      if (state.randomOrder) {
+        filteredQuestions.sort(() => Math.random() - 0.5);
+      }
     }
     state.currentIndex = 0;
     saveState();
     renderCurrentQuestion();
   });
 
-  // Keyboard Shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (elAuthModal.style.display !== 'none' || elJumpModal.classList.contains('active') || elSettingsModal.classList.contains('active')) return;
-    
-    if (e.key === 'ArrowRight') {
-      elBtnNext.click();
-    } else if (e.key === 'ArrowLeft') {
-      elBtnPrev.click();
-    } else if (e.key === ' ') {
-      e.preventDefault();
-      // For open questions: reveal answer on space
-      const currentQ = filteredQuestions[state.currentIndex];
-      if (currentQ && isOpenQuestion(currentQ)) {
-        const qState = state.answers[currentQ.id] || {};
-        if (!qState.revealed && !qState.submitted) {
-          revealAnswer();
-        }
-      } else {
-        elBtnCheck.click();
-      }
-    } else if (e.key.toLowerCase() === 'r') {
-      elBtnReview.click();
-    } else if (e.key === '1' || e.key === 'j') {
-      // Quick self-assess: 1 or J = knew it
-      const currentQ = filteredQuestions[state.currentIndex];
-      if (currentQ && isOpenQuestion(currentQ)) {
-        const qState = state.answers[currentQ.id] || {};
-        if (qState.revealed && !qState.submitted) {
-          selfAssess(true);
-        }
-      }
-    } else if (e.key === '2' || e.key === 'n') {
-      // Quick self-assess: 2 or N = didn't know
-      const currentQ = filteredQuestions[state.currentIndex];
-      if (currentQ && isOpenQuestion(currentQ)) {
-        const qState = state.answers[currentQ.id] || {};
-        if (qState.revealed && !qState.submitted) {
-          selfAssess(false);
-        }
-      }
-    }
-  });
-
   // Initializing App
   initCategoryDropdown();
+  updateAnalytics();
   renderCurrentQuestion();
 });

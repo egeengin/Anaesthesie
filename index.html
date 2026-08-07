@@ -110,6 +110,27 @@
           <div class="stat-value" id="stat-review">0</div>
         </div>
       </div>
+
+      <div class="stat-card streak-card">
+        <div class="stat-icon streak">🔥</div>
+        <div class="stat-info">
+          <h3>Lern-Streak</h3>
+          <div class="stat-value" id="stat-streak">0 Tage</div>
+          <div class="stat-subtext" id="stat-session-streak">⚡ 0 in Folge</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exam Simulation Active Banner -->
+    <section id="exam-simulation-bar" class="exam-simulation-bar" style="display: none;">
+      <div class="exam-timer-box">
+        <span class="timer-icon">⏱️</span>
+        <span id="exam-timer" class="exam-timer">45:00</span>
+        <span class="timer-label">NRW Prüfungssimulation (10 Fragen)</span>
+      </div>
+      <button id="btn-stop-exam" class="btn btn-danger-outline btn-sm">
+        Simulation Beenden
+      </button>
     </section>
 
     <!-- Toolbar: Filter Chips & Category Selector -->
@@ -136,6 +157,7 @@
         <select id="mode-select">
           <option value="sequential">Modus: Sequentiell</option>
           <option value="random">Modus: Zufall</option>
+          <option value="simulation">⏱️ 45-Min Prüfungssimulation</option>
         </select>
       </div>
     </section>
@@ -170,7 +192,7 @@
       <!-- Reveal Answer Button (for open Q&A flashcard mode) -->
       <div id="reveal-container" class="reveal-container" style="display: none;">
         <button id="btn-reveal" class="btn btn-reveal">
-          <span>👁️</span> Antwort anzeigen
+          <span>👁️</span> Antwort anzeigen <kbd class="kbd-hint">Space</kbd>
         </button>
       </div>
 
@@ -199,10 +221,10 @@
         <div class="self-assess-label">Wie gut wussten Sie die Antwort?</div>
         <div class="self-assess-buttons">
           <button id="btn-knew-it" class="btn btn-knew-it">
-            <span>✅</span> Wusste ich
+            <span>✅</span> Wusste ich <kbd class="kbd-hint">1 / R</kbd>
           </button>
           <button id="btn-didnt-know" class="btn btn-didnt-know">
-            <span>❌</span> Wusste ich nicht
+            <span>❌</span> Wusste ich nicht <kbd class="kbd-hint">2 / F</kbd>
           </button>
         </div>
       </div>
@@ -210,20 +232,20 @@
       <!-- Action Control Bar -->
       <div class="action-bar">
         <button id="btn-review" class="btn btn-warning">
-          <span>☆</span> Wiederholen
+          <span>☆</span> Wiederholen <kbd class="kbd-hint">M</kbd>
         </button>
 
         <div class="btn-group">
           <button id="btn-prev" class="btn btn-secondary">
-            <span>←</span> Zurück
+            <span>←</span> Zurück <kbd class="kbd-hint">←</kbd>
           </button>
 
           <button id="btn-check" class="btn btn-primary">
-            Antwort Überprüfen
+            Antwort Überprüfen <kbd class="kbd-hint">Space</kbd>
           </button>
 
           <button id="btn-next" class="btn btn-secondary">
-            Nächste <span>→</span>
+            Nächste <span>→</span> <kbd class="kbd-hint">→</kbd>
           </button>
         </div>
       </div>
