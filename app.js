@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         optEl.innerHTML = `
           <div class="option-row">
-            <div class="option-key">${opt.key}.</div>
+            <div class="opt-letter-badge">${opt.key.toUpperCase()}</div>
             <div class="option-content">
               ${renderDualLanguageText(opt.text_de, opt.text_tr)}
             </div>
@@ -739,6 +739,12 @@ document.addEventListener('DOMContentLoaded', () => {
       elStatSessionStreak.textContent = `⚡ ${consecutive} in Folge`;
     }
 
+    const elStatHy = document.getElementById('stat-hy');
+    if (elStatHy) {
+      const hyCount = EXAM_QUESTIONS.filter(q => q.is_high_yield).length;
+      elStatHy.textContent = hyCount;
+    }
+
     // Daily Goal calculation
     const todayStr = new Date().toISOString().slice(0, 10);
     if (state.dailyDate !== todayStr) {
@@ -755,6 +761,14 @@ document.addEventListener('DOMContentLoaded', () => {
       elDailyGoalBarFill.style.width = `${goalPct}%`;
     }
   }
+
+  // ⌘K Search Shortcut listener
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (elSearchInput) elSearchInput.focus();
+    }
+  });
 
   // --- Render Direct Jump Modal Grid (Categorized by Topics) ---
   function openQuestionGridModal() {
