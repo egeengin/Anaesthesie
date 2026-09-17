@@ -19815,5 +19815,549 @@ const EXAM_QUESTIONS = [
     "answer_de": "●Einholen des Einverständnisses des Betro ﬀenen. ●Klären, wer zu den Beteiligten gehören soll. ●Gemeinsame Festlegung des Gesprächsziels mit dem Betro ﬀenen (z. B. Information, Therapiezieländerung, Ansprechen von Konflikten etc.). ●Rahmen festlegen. ●Terminierung von Zeit und Ort mit den Angehörigen. ●Planung des Gesprächsablaufs.Allen Gesprächspartnern soll vor oder spätestens zu Beginn das Ziel des Gesprächs kommuniziert werden. Stellen Sie sicher, dass alle Beteiligten die gleichen Erwartungen haben. Zu Beginn sollte nach dem aktuellen Kenntnisstand gefragt werden, um ggf. allen die erforderlichen Informationen zukommen zu lassen.Patientenführung und Kommunikation mit Betro ﬀenen und Angehörigen VI 402 VIIAnhang 32 Weiterführende Literatur [1]Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften e. V. Im Internet: www.awmf.org; Stand: 15.01.2025 [2]AWMF online. Deutsche Gesellschaft für Unfallchirurgie, Deutsche Gesellschaft für Orthopädie und Unfallchirurgie: Polytrauma/Schwerverletzten-Behandlung S 3-Leitlinie (Juni 2023). https://register.awmf.org/assets/guidelines/ 187–023l_S 3_Polytrauma-Schwerverletzten-Behandlung_2023 –06.pdf; Stand: 15.01.2025 [3]AWMF online. S 1-Leitlinie Intraoperative klinische Anwendung von hämodynamschem Monitoring bei nicht-kardiochirurgischen PatientInnen. https://register.awmf.org/de/ leitlinien/detail/001-049; Stand: 20.09.2023 [4]AWMF online. S 2k-Leitlinie Behandlung thermischer Verletzungen im Kindesalter (Verbrennung, Verbrühung) (August 2024). https://register.awmf.org/de/leitlinien/detail/ 006-128; Stand: 15.01.2025 [5]AWMF online. S 3-Leitlinie Behandlung akuter perioperativer und posttraumatischer Schmerzen. https://register. awmf.org/assets/guidelines/001-025l_S3_Behandlung-akuter-perioperativer-posttraumatischer-Schmerzen_2022-11. pdf; Stand 01.09.2021 [6]AWMF online. S 3-Leitlinie Vermeidung perioperativer Hypothermie. https://register.awmf.org/de/leitlinien/detail/ 001-018; Stand 15.05.2019 [7]AWMF online. S 3-Leitlinie Sepsis –Prävention, Diagnose, Therapie und Nachsorge (August 2018). Verfügbar unter: https://register.awmf.org/assets/guidelines/079 – 001l_S 3_Sepsis-Praevention-Diagnose-Therapie-Nachsorge_2020 –03_01-abgelaufen.pdf; Stand: 15.01.2025 [8]Barash PG, Cullen BF, Stoelting RK, Cahalan MK, Stock MC, Ortega R. Handbook of Clinical Anesthesia. 9. Aufl. Philadelphia: Wolters Kluwer; 2023 [9]Bein B, Gräsner JT, Meybohm P, Scholz J. Zusatzweiterbildung Notfallmedizin –1000 kommentierte Prüfungsfragen. 5., aktualisierte Aufl. Stuttgart: Thieme; 2024 [10] Bellani G, Laﬀey JG, Pham T et al. Epidemiology, Patterns of Care, and Mortality for Patients With Acute Respiratory Distress Syndrome in Intensive Care Units in 50 Countries. JAMA. 2016 Feb 23; 315(8): 788-800 [11] Benumof JL. Anesthesia in uncommon diseases. 4th ed. Philadelphia: Saunders; 1998 [12] Bernateck M, Karst M, Sabatowski R, Siebrecht D. Schmerzmedizin –1000 Fragen: Für Klinik, Praxis und die Zusatzweiterbildung Spezielle Schmerztherapie. 3., aktualisierte Aufl. Stuttgart: Thieme; 2025 [13] Bernstein AD, Daubert JC, Fletcher RD et al. The revised NASPE/BPEG generic code for antibradycardia, adaptive-rate, and multisite pacing. North American Society of Pacing and Electrophysiology/British Pacing and Electrophysiology Group. Pacing Clin Electrophysiol. 2002 Feb; 25(2): 260-4 [14] Bosse G, Friebel J, Ernst M et al. MINS (Myocardial Injury after Non-Cardiac Surgery). Anästh Intensivmed 2022; 63: 188–198 [15] Buhre W, De Robertis E, Gonzalez-Pizarro P. The Glasgow declaration on sustainability in Anaesthesiology and Intensive Care. European Journal of Anaesthesiology 40(7): p 461-464, July 2023 [16] Bürkle H, Schallner N. Patientenaufklärung in der Anästhesiologie. Anästh Intensivmed 2020; 61: 320-328[17] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie COPD (August 2021). https://www.leitlinien.de/themen/copd; Stand: 15.01.2025 [18] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie (NVL) Asthma, Version 5 (August 2024). https://www.leitlinien.de/themen/ asthma; Stand: 15.01.2025 [19] Deutscher Rat für Wiederbelebung/German Resuscitation Council (GRC). Reanimationsleitlinien 2021. https://www. grc-org.de/wissenschaft/leitlinien; Stand: 15.01.2025 [20] DGK (Deutsche Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung). Leitlinien der Deutschen Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung. https://leitlinien.dgk.org/leitlinien/; Stand: 15.01.2025 [21] Diener HC, Maier C. Schmerzmedizin: Interdisziplinäre Diagnose- und Behandlungsstrategien. 5. Aufl. München: Elsevier; 2016 [22] Duke JD, Keech B. Anesthesia Secrets. 6. Aufl. Philadelphia: Elsevier; 2020 [23] Engelhard K. Nichtinvasives Neuromonitoring in der Anästhesie. Anästh Intensivmed 2021; 62: 410 –416 [24] Frimmel M, Knacke PG. Klinische Notfälle gri ﬀbereit: Internistische Akutsituationen auf einen Blick. 6., unveränderte Aufl. Stuttgart: Thieme; 2025 [25] Giftinformationszentrum-Nord. Liste der Antidota (April 2020). https://www.giz-nord.de/cms/images/inhalte/Antidotaliste_Giz.pdf; Stand: 15.01.2025 [26] Gonzalez-Pizarro P, Brazzi L, Koch, S et al. European Society of Anaesthesiology and Intensive Care consensus document on sustainability: 4 scopes to achieve a more sustainable practice. European Journal of Anaesthesiology 41(4): p 260277, April 2024 [27] Gropper MA, Eriksson LI, Fleisher LA, Cohen NH, Leslie K, Johnson-Akeju O, Hrsg. Miller ’s Anesthesia. 10. Aufl. Philadelphia: Elsevier; 2025 [28] Hachenberg T, Welte T, Fischer S, Hrsg. Anästhesie und Intensivtherapie in der Thoraxchirurgie. Stuttgart: Thieme; 2010 [29] Hines RL, Jones SB, Hrsg. Stoelting ’s Anesthesia and CoExisting Disease. 8. Aufl. Philadelphia: Elsevier; 2021 [30] Hoste EA, Maitland K, Brudney CS et al. Four phases of intravenous fluid therapy: a conceptual model. Br J Anaesth 2014; 113:740 –747 [31] Jahn UR, Van Aken HK, Hrsg. Zusatzweiterbildung Intensivmedizin. 4., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2019 [32] Kaplan JA, Hrsg. Kaplan ’s Cardiac Anesthesia: Perioperative and Critical Care Management. 8. Aufl. Philadelphia: Elsevier; 2023 [33] Kindernotfall Bonn. Knopfzelle verschluckt. https://www. kindernotfall-bonn.de/kindernotfall/knopfzelle-knopfbatterie-kind/; Stand 01.09.2024 [34] Knickmann A, Oberkinkhaus J, Piepho T, Hrsg. Handbuch für Organisatorischen Leiter und Leitenden NotarztPlanung, Führung, Taktik. 4. Aufl. Edewecht: S + K-Verlag; 2020 [35] Kretschmer V, Gombotz H, Rump G. Transfusionsmedizin – Klinische Hämotherapie. 1. Aufl. Stuttgart: Thieme; 2008 [36] Kretz FJ, Beushausen T, Ure BM, Roth B, Hrsg. Kinder Notfall-Intensiv: Lebensrettendes Know-how. 4. Aufl. München: Elsevier; 2019Weiterführende Literatur VII 404 [37] Larsen R. Anästhesie. 12. Aufl. München: Elsevier; 2022 [38] List WF, Osswald PM, Hornke IH. Komplikationen und Gefahren in der Anästhesie. 4. Aufl. Berlin: Springer; 2003 [39] Marino PL. The ICU Book (International Edition):4th ed. Philadelphia: Lippincott Williams & Wilkins; 2013 [40] Marx G, Muhl E, Zacharowski K, Zeuzem S, Hrsg. Die Intensivmedizin. 13., komplett überarbeitete und aktualisierte Aufl. Berlin: Springer; 2024 [41] Meier G, Büttner J, Kessler P, Wiesmann T, Hrsg. Atlas der peripheren Regionalanästhesie: Anatomie –Sonografie - Anästhesie –Schmerztherapie. 4., überarb. Aufl. Stuttgart: Thieme; 2024 [42] Meißner W, Erlenwein J. Akutschmerz Taschenbuch. 3. Aufl, Berlin: MWV; 2023 [43] Michels P, Bräuer A, Bauer M et al. Neurophysiologisches Monitoring bei operativen Eingri ﬀen [Neurophysiological monitoring during surgical procedures]. Anaesthesist. 2017 Sep; 66(9): 645-659 [44] Mindestanforderungen an den anästhesiologischen Arbeitsplatz. Anästh Intensivmed 2013; 54: 1 –4 [45] Mutschler E, Geisslinger G, Kroemer HK, Ruth P, SchäferKorting M. Mutschler Arzneimittelwirkungen kompakt. 1. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2005 [46] Oczenski W. Atmen –Atemhilfen: Atemphysiologie und Beatmungstechnik. 11., überarb. Aufl. Stuttgart: Thieme; 2023 [47] Piepho T, Kriege M, Byhahn C et al. S 1-Leitlinie Atemwegsmanagement (August 2023). In: Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin, Hrsg. https://register. awmf.org/assets/guidelines/001 –028l_S 1_Atemwegsmanagement_2023 –09.pdf; Stand: 15.01.2025 [48] PinM, GräﬀI, Bernhard M, Hüfner A, Weber K. Zusatzweiterbildung Klinische Akut- und Notfallmedizin –1000 Fragen. 1. Aufl. Stuttgart: Thieme; 2022 [49] Prien T, Bürkle H, Czaplik M, et al. Funktionsprüfung des Narkosegerätes zur Gewährleistung der Patientensicherheit –Empfehlung der Kommission für Normung und technische Sicherheit der DGAI. Anästh Intensivmed 2019; 60: 75 –83 [50] Ring J, Beyer K, Biedermann T et al. S 2k-Leitlinie Akuttherapie und Management der Anaphylaxie –Update 2021. Allergo J Int 2021; 30: 1 –25. Verfügbar unter: https://register. awmf.org/assets/guidelines/061 –025l_S 2k_AkuttherapieManagement-Anaphylaxie_2021 –10.pdf; Stand: 15.01.2025 [51] Roewer N, Thiel H. Taschenatlas der Anästhesie. 6., aktualisierte und erweiterte Aufl. Stuttgart: Thieme; 2017. [52] Ropper AH, Samuels MA, Hrsg. Adam ’s and Victor ’s Principles of Neurology. 11. Aufl. New York: McGraw-Hill; 2019 [53] Rossaint R, Werner C, Zwißler B, Hrsg. Die Anästhesiologie. 4. Aufl. Berlin: Springer; 2019 [54] Rossaint R, Werner C, Zwißler B, et al. (Hrsg.) Die Anästhesiologie. 4. Aufl. Berlin, Heidelberg: Springer; 2017 [55] Roth D, Pace NL, Lee A et al. Airway physical examination tests for detection of di ﬃcult airway management in apparently normal adult patients. Cochrane Database Syst Rev. 2018 May 15;5(5): CD008 874 [56] Sabatowski R, Maier BO, Ostgathe C, Rolke R. Palliativmedizin–1000 Fragen. 3., aktualisierte Aufl. Stuttgart: Thieme; 2023[57] Sandiumenge A, Diaz E, Bodí M et al. A patient-based approach based on the ten rules of \"The Tarragona Strategy\". Intensive Care Med. 2003 Jun; 29(6): 876-883 [58] Schuster M, Richter H, Pecher S et al. Positionspapier mit konkreten Handlungsempfehlungen der DGAI und des BDA: Ökologische Nachhaltigkeit in der Anästhesiologie und Intensivmedizin –Aktualisierung 2024. Anästh Intensivmed 2024; 65: 541 –557 [59] Singbartl G, Walter-Wenke G. Transfusionspraxis. 2. Aufl. Berlin Heidelberg: Springer; 2014 [60] Spies C, Francis R, Kastrup M, Kerner T, Melzer-Gartzke C, Zielke H, Kox WJ, Hrsg. SOPs in Anästhesie, Intensivmedizin, Notfallmedizin und Schmerztherapie. 2., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2024 [61] Standl T, Annecke T, Cascorbi I et al. Nomenklatur, Definition und Di ﬀerenzierung der Schockformen. Dtsch Arztebl Int 2018; 115: 757 –68; DOI: 10.3 238/arztebl.2 018 0757. https://www.aerzteblatt.de/archiv/202 261/NomenklaturDefinition-und-Di ﬀerenzierung-der-Schockformen; Stand: 15.01.2025 [62] Steiner K. Anästhesie gri ﬀbereit: Dosierung –Algorithmen – Laborwerte. 5., unveränderte Aufl. Stuttgart: Thieme; 2018 [63] Stille W, Brodt HR, Groll A, Just-Nübling G. Antibiotika-Therapie: Klinik und Praxis der antiinfektiösen Therapie. 11. Aufl. Stuttgart, New York: Schattauer; 2005 [64] Striebel HW. Anästhesie, Intensivmedizin, Notfallmedizin: Für Studium und Ausbildung. 10., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2020 [65] Struck MF, Hilbert-Carius P, Hossfeld B et al. Gefäßzugänge bei der Erstversorgung von erwachsenen Notfallpatienten im Schockraum. Anästh Intensivmed 2022; 63: 362 –371 [66] Thiel H, Roewer N, Hrsg. Anästhesiologische Pharmakotherapie: Von den Grundlagen der Pharmakologie zur Medikamentenpraxis. 4., unveränderte Aufl. Stuttgart: Thieme; 2021 [67] Van Aken HK, Wulf H, Biermann E, Brodner G, Bürkle H, Hrsg. Lokalanästhesie, Regionalanästhesie, Regionale Schmerztherapie. 3., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2010 [68] Weigand MA, Hecker A, Mayer K, Michalski D, Hrsg. Intensivmedizin compact: Für den klinischen Alltag und die Zusatzweiterbildung Intensivmedizin. 1. Aufl. Stuttgart: Thieme; 2021 [69] Wilhelm W, Sakka SG, Hrsg. Praxis der Intensivmedizin. 3., komplett aktualisierte und erweiterte Aufl. Berlin: Springer; 2023 [70] Wilhelm W. Praxis der Anästhesiologie. Berlin: Springer; 2018 [71] Winterhalter M, Puschmann T, Hrsg. Standards in der Anästhesie: Praktische Handlungsempfehlungen für die Klinik. 1. Aufl. Stuttgart: Thieme; 2021 [72] Zacharowski K, Marx G, Hrsg. Checkliste Anästhesie. 1. Aufl. Stuttgart: Thieme; 2021 [73] Zenz M, Jurna I. Lehrbuch der Schmerztherapie. 2. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2001Weiterführende Literatur 32 405",
     "answer_tr": "●Einholen des Einverständnisses des Betro ﬀenen. ●Klären, wer zu den Beteiligten gehören soll. ●Gemeinsame Festlegung des Gesprächsziels mit dem Betro ﬀenen (z. B. Information, Therapiezieländerung, Ansprechen von Konflikten etc.). ●Rahmen festlegen. ●Terminierung von Zeit und Ort mit den Angehörigen. ●Planung des Gesprächsablaufs.Allen Gesprächspartnern soll vor oder spätestens zu Beginn das Ziel des Gesprächs kommuniziert werden. Stellen Sie sicher, dass alle Beteiligten die gleichen Erwartungen haben. Zu Beginn sollte nach dem aktuellen Kenntnisstand gefragt werden, um ggf. allen die erforderlichen Informationen zukommen zu lassen.Patientenführung und Kommunikation mit Betro ﬀenen und Angehörigen VI 402 VIIAnhang 32 Weiterführende Literatur [1]Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften e. V. Im Internet: www.awmf.org; Stand: 15.01.2025 [2]AWMF online. Deutsche Gesellschaft für Unfallchirurgie, Deutsche Gesellschaft für Orthopädie und Unfallchirurgie: Polytrauma/Schwerverletzten-Behandlung S 3-Leitlinie (Juni 2023). https://register.awmf.org/assets/guidelines/ 187–023l_S 3_Polytrauma-Schwerverletzten-Behandlung_2023 –06.pdf; Stand: 15.01.2025 [3]AWMF online. S 1-Leitlinie Intraoperative klinische Anwendung von hämodynamschem Monitoring bei nicht-kardiochirurgischen PatientInnen. https://register.awmf.org/de/ leitlinien/detail/001-049; Stand: 20.09.2023 [4]AWMF online. S 2k-Leitlinie Behandlung thermischer Verletzungen im Kindesalter (Verbrennung, Verbrühung) (August 2024). https://register.awmf.org/de/leitlinien/detail/ 006-128; Stand: 15.01.2025 [5]AWMF online. S 3-Leitlinie Behandlung akuter perioperativer und posttraumatischer Schmerzen. https://register. awmf.org/assets/guidelines/001-025l_S3_Behandlung-akuter-perioperativer-posttraumatischer-Schmerzen_2022-11. pdf; Stand 01.09.2021 [6]AWMF online. S 3-Leitlinie Vermeidung perioperativer Hypothermie. https://register.awmf.org/de/leitlinien/detail/ 001-018; Stand 15.05.2019 [7]AWMF online. S 3-Leitlinie Sepsis –Prävention, Diagnose, Therapie und Nachsorge (August 2018). Verfügbar unter: https://register.awmf.org/assets/guidelines/079 – 001l_S 3_Sepsis-Praevention-Diagnose-Therapie-Nachsorge_2020 –03_01-abgelaufen.pdf; Stand: 15.01.2025 [8]Barash PG, Cullen BF, Stoelting RK, Cahalan MK, Stock MC, Ortega R. Handbook of Clinical Anesthesia. 9. Aufl. Philadelphia: Wolters Kluwer; 2023 [9]Bein B, Gräsner JT, Meybohm P, Scholz J. Zusatzweiterbildung Notfallmedizin –1000 kommentierte Prüfungsfragen. 5., aktualisierte Aufl. Stuttgart: Thieme; 2024 [10] Bellani G, Laﬀey JG, Pham T et al. Epidemiology, Patterns of Care, and Mortality for Patients With Acute Respiratory Distress Syndrome in Intensive Care Units in 50 Countries. JAMA. 2016 Feb 23; 315(8): 788-800 [11] Benumof JL. Anesthesia in uncommon diseases. 4th ed. Philadelphia: Saunders; 1998 [12] Bernateck M, Karst M, Sabatowski R, Siebrecht D. Schmerzmedizin –1000 Fragen: Für Klinik, Praxis und die Zusatzweiterbildung Spezielle Schmerztherapie. 3., aktualisierte Aufl. Stuttgart: Thieme; 2025 [13] Bernstein AD, Daubert JC, Fletcher RD et al. The revised NASPE/BPEG generic code for antibradycardia, adaptive-rate, and multisite pacing. North American Society of Pacing and Electrophysiology/British Pacing and Electrophysiology Group. Pacing Clin Electrophysiol. 2002 Feb; 25(2): 260-4 [14] Bosse G, Friebel J, Ernst M et al. MINS (Myocardial Injury after Non-Cardiac Surgery). Anästh Intensivmed 2022; 63: 188–198 [15] Buhre W, De Robertis E, Gonzalez-Pizarro P. The Glasgow declaration on sustainability in Anaesthesiology and Intensive Care. European Journal of Anaesthesiology 40(7): p 461-464, July 2023 [16] Bürkle H, Schallner N. Patientenaufklärung in der Anästhesiologie. Anästh Intensivmed 2020; 61: 320-328[17] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie COPD (August 2021). https://www.leitlinien.de/themen/copd; Stand: 15.01.2025 [18] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie (NVL) Asthma, Version 5 (August 2024). https://www.leitlinien.de/themen/ asthma; Stand: 15.01.2025 [19] Deutscher Rat für Wiederbelebung/German Resuscitation Council (GRC). Reanimationsleitlinien 2021. https://www. grc-org.de/wissenschaft/leitlinien; Stand: 15.01.2025 [20] DGK (Deutsche Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung). Leitlinien der Deutschen Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung. https://leitlinien.dgk.org/leitlinien/; Stand: 15.01.2025 [21] Diener HC, Maier C. Schmerzmedizin: Interdisziplinäre Diagnose- und Behandlungsstrategien. 5. Aufl. München: Elsevier; 2016 [22] Duke JD, Keech B. Anesthesia Secrets. 6. Aufl. Philadelphia: Elsevier; 2020 [23] Engelhard K. Nichtinvasives Neuromonitoring in der Anästhesie. Anästh Intensivmed 2021; 62: 410 –416 [24] Frimmel M, Knacke PG. Klinische Notfälle gri ﬀbereit: Internistische Akutsituationen auf einen Blick. 6., unveränderte Aufl. Stuttgart: Thieme; 2025 [25] Giftinformationszentrum-Nord. Liste der Antidota (April 2020). https://www.giz-nord.de/cms/images/inhalte/Antidotaliste_Giz.pdf; Stand: 15.01.2025 [26] Gonzalez-Pizarro P, Brazzi L, Koch, S et al. European Society of Anaesthesiology and Intensive Care consensus document on sustainability: 4 scopes to achieve a more sustainable practice. European Journal of Anaesthesiology 41(4): p 260277, April 2024 [27] Gropper MA, Eriksson LI, Fleisher LA, Cohen NH, Leslie K, Johnson-Akeju O, Hrsg. Miller ’s Anesthesia. 10. Aufl. Philadelphia: Elsevier; 2025 [28] Hachenberg T, Welte T, Fischer S, Hrsg. Anästhesie und Intensivtherapie in der Thoraxchirurgie. Stuttgart: Thieme; 2010 [29] Hines RL, Jones SB, Hrsg. Stoelting ’s Anesthesia and CoExisting Disease. 8. Aufl. Philadelphia: Elsevier; 2021 [30] Hoste EA, Maitland K, Brudney CS et al. Four phases of intravenous fluid therapy: a conceptual model. Br J Anaesth 2014; 113:740 –747 [31] Jahn UR, Van Aken HK, Hrsg. Zusatzweiterbildung Intensivmedizin. 4., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2019 [32] Kaplan JA, Hrsg. Kaplan ’s Cardiac Anesthesia: Perioperative and Critical Care Management. 8. Aufl. Philadelphia: Elsevier; 2023 [33] Kindernotfall Bonn. Knopfzelle verschluckt. https://www. kindernotfall-bonn.de/kindernotfall/knopfzelle-knopfbatterie-kind/; Stand 01.09.2024 [34] Knickmann A, Oberkinkhaus J, Piepho T, Hrsg. Handbuch für Organisatorischen Leiter und Leitenden NotarztPlanung, Führung, Taktik. 4. Aufl. Edewecht: S + K-Verlag; 2020 [35] Kretschmer V, Gombotz H, Rump G. Transfusionsmedizin – Klinische Hämotherapie. 1. Aufl. Stuttgart: Thieme; 2008 [36] Kretz FJ, Beushausen T, Ure BM, Roth B, Hrsg. Kinder Notfall-Intensiv: Lebensrettendes Know-how. 4. Aufl. München: Elsevier; 2019Weiterführende Literatur VII 404 [37] Larsen R. Anästhesie. 12. Aufl. München: Elsevier; 2022 [38] List WF, Osswald PM, Hornke IH. Komplikationen und Gefahren in der Anästhesie. 4. Aufl. Berlin: Springer; 2003 [39] Marino PL. The ICU Book (International Edition):4th ed. Philadelphia: Lippincott Williams & Wilkins; 2013 [40] Marx G, Muhl E, Zacharowski K, Zeuzem S, Hrsg. Die Intensivmedizin. 13., komplett überarbeitete und aktualisierte Aufl. Berlin: Springer; 2024 [41] Meier G, Büttner J, Kessler P, Wiesmann T, Hrsg. Atlas der peripheren Regionalanästhesie: Anatomie –Sonografie - Anästhesie –Schmerztherapie. 4., überarb. Aufl. Stuttgart: Thieme; 2024 [42] Meißner W, Erlenwein J. Akutschmerz Taschenbuch. 3. Aufl, Berlin: MWV; 2023 [43] Michels P, Bräuer A, Bauer M et al. Neurophysiologisches Monitoring bei operativen Eingri ﬀen [Neurophysiological monitoring during surgical procedures]. Anaesthesist. 2017 Sep; 66(9): 645-659 [44] Mindestanforderungen an den anästhesiologischen Arbeitsplatz. Anästh Intensivmed 2013; 54: 1 –4 [45] Mutschler E, Geisslinger G, Kroemer HK, Ruth P, SchäferKorting M. Mutschler Arzneimittelwirkungen kompakt. 1. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2005 [46] Oczenski W. Atmen –Atemhilfen: Atemphysiologie und Beatmungstechnik. 11., überarb. Aufl. Stuttgart: Thieme; 2023 [47] Piepho T, Kriege M, Byhahn C et al. S 1-Leitlinie Atemwegsmanagement (August 2023). In: Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin, Hrsg. https://register. awmf.org/assets/guidelines/001 –028l_S 1_Atemwegsmanagement_2023 –09.pdf; Stand: 15.01.2025 [48] PinM, GräﬀI, Bernhard M, Hüfner A, Weber K. Zusatzweiterbildung Klinische Akut- und Notfallmedizin –1000 Fragen. 1. Aufl. Stuttgart: Thieme; 2022 [49] Prien T, Bürkle H, Czaplik M, et al. Funktionsprüfung des Narkosegerätes zur Gewährleistung der Patientensicherheit –Empfehlung der Kommission für Normung und technische Sicherheit der DGAI. Anästh Intensivmed 2019; 60: 75 –83 [50] Ring J, Beyer K, Biedermann T et al. S 2k-Leitlinie Akuttherapie und Management der Anaphylaxie –Update 2021. Allergo J Int 2021; 30: 1 –25. Verfügbar unter: https://register. awmf.org/assets/guidelines/061 –025l_S 2k_AkuttherapieManagement-Anaphylaxie_2021 –10.pdf; Stand: 15.01.2025 [51] Roewer N, Thiel H. Taschenatlas der Anästhesie. 6., aktualisierte und erweiterte Aufl. Stuttgart: Thieme; 2017. [52] Ropper AH, Samuels MA, Hrsg. Adam ’s and Victor ’s Principles of Neurology. 11. Aufl. New York: McGraw-Hill; 2019 [53] Rossaint R, Werner C, Zwißler B, Hrsg. Die Anästhesiologie. 4. Aufl. Berlin: Springer; 2019 [54] Rossaint R, Werner C, Zwißler B, et al. (Hrsg.) Die Anästhesiologie. 4. Aufl. Berlin, Heidelberg: Springer; 2017 [55] Roth D, Pace NL, Lee A et al. Airway physical examination tests for detection of di ﬃcult airway management in apparently normal adult patients. Cochrane Database Syst Rev. 2018 May 15;5(5): CD008 874 [56] Sabatowski R, Maier BO, Ostgathe C, Rolke R. Palliativmedizin–1000 Fragen. 3., aktualisierte Aufl. Stuttgart: Thieme; 2023[57] Sandiumenge A, Diaz E, Bodí M et al. A patient-based approach based on the ten rules of \"The Tarragona Strategy\". Intensive Care Med. 2003 Jun; 29(6): 876-883 [58] Schuster M, Richter H, Pecher S et al. Positionspapier mit konkreten Handlungsempfehlungen der DGAI und des BDA: Ökologische Nachhaltigkeit in der Anästhesiologie und Intensivmedizin –Aktualisierung 2024. Anästh Intensivmed 2024; 65: 541 –557 [59] Singbartl G, Walter-Wenke G. Transfusionspraxis. 2. Aufl. Berlin Heidelberg: Springer; 2014 [60] Spies C, Francis R, Kastrup M, Kerner T, Melzer-Gartzke C, Zielke H, Kox WJ, Hrsg. SOPs in Anästhesie, Intensivmedizin, Notfallmedizin und Schmerztherapie. 2., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2024 [61] Standl T, Annecke T, Cascorbi I et al. Nomenklatur, Definition und Di ﬀerenzierung der Schockformen. Dtsch Arztebl Int 2018; 115: 757 –68; DOI: 10.3 238/arztebl.2 018 0757. https://www.aerzteblatt.de/archiv/202 261/NomenklaturDefinition-und-Di ﬀerenzierung-der-Schockformen; Stand: 15.01.2025 [62] Steiner K. Anästhesie gri ﬀbereit: Dosierung –Algorithmen – Laborwerte. 5., unveränderte Aufl. Stuttgart: Thieme; 2018 [63] Stille W, Brodt HR, Groll A, Just-Nübling G. Antibiotika-Therapie: Klinik und Praxis der antiinfektiösen Therapie. 11. Aufl. Stuttgart, New York: Schattauer; 2005 [64] Striebel HW. Anästhesie, Intensivmedizin, Notfallmedizin: Für Studium und Ausbildung. 10., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2020 [65] Struck MF, Hilbert-Carius P, Hossfeld B et al. Gefäßzugänge bei der Erstversorgung von erwachsenen Notfallpatienten im Schockraum. Anästh Intensivmed 2022; 63: 362 –371 [66] Thiel H, Roewer N, Hrsg. Anästhesiologische Pharmakotherapie: Von den Grundlagen der Pharmakologie zur Medikamentenpraxis. 4., unveränderte Aufl. Stuttgart: Thieme; 2021 [67] Van Aken HK, Wulf H, Biermann E, Brodner G, Bürkle H, Hrsg. Lokalanästhesie, Regionalanästhesie, Regionale Schmerztherapie. 3., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2010 [68] Weigand MA, Hecker A, Mayer K, Michalski D, Hrsg. Intensivmedizin compact: Für den klinischen Alltag und die Zusatzweiterbildung Intensivmedizin. 1. Aufl. Stuttgart: Thieme; 2021 [69] Wilhelm W, Sakka SG, Hrsg. Praxis der Intensivmedizin. 3., komplett aktualisierte und erweiterte Aufl. Berlin: Springer; 2023 [70] Wilhelm W. Praxis der Anästhesiologie. Berlin: Springer; 2018 [71] Winterhalter M, Puschmann T, Hrsg. Standards in der Anästhesie: Praktische Handlungsempfehlungen für die Klinik. 1. Aufl. Stuttgart: Thieme; 2021 [72] Zacharowski K, Marx G, Hrsg. Checkliste Anästhesie. 1. Aufl. Stuttgart: Thieme; 2021 [73] Zenz M, Jurna I. Lehrbuch der Schmerztherapie. 2. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2001Weiterführende Literatur 32 405",
     "is_high_yield": true
+  },
+  {
+    "id": "q_peds_01",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 3-jähriges Kind wird nachts mit inspiratorischem Stridor, bellendem Husten und Heiserkeit in die Notaufnahme gebracht. Wie differenzieren Sie klinisch zwischen Pseudokrupp (Laryngitis subglottica) und einer akuten Epiglottitis, und wie lautet Ihre Soforttherapie?",
+    "question_tr": "3 yaşında bir çocuk gece inspiratuar stridor, havlar tarzda öksürük ve ses kısıklığı ile acil servise getiriliyor. Pseudokrup (laryngitis subglottica) ile akut epiglottit arasındaki klinik ayrımı nasıl yaparsınız ve acil tedaviniz nedir?",
+    "answer_de": "• Klinische Differenzierung:\n– Pseudokrupp (viral, Parainfluenza): Bellender Husten, Heiserkeit, inspiratorischer Stridor, meist subfebrile Temperatur, Kind liegt meist flach, kein Speichelfluss.\n– Epiglottitis (bakteriell, Haemophilus influenzae Typ b): Hohes Fieber, toxischer Aspekt, Dysphagie mit massivem Speichelfluss (hypersalivation), sitzende Haltung mit nach vorne gebeugtem Oberkörper (Tripod-Position), kloßige Sprache, KEIN bellender Husten!\n• Soforttherapie Pseudokrupp:\n– Kind beruhigen (auf dem Arm der Eltern belassen, keine forcierte Racheninspektion!).\n– Feucht-kalte Luftzufuhr.\n– Dexamethason 0,15–0,6 mg/kg p.o. / rektal (alternativ Prednisolon 100 mg Rectocap).\n– Bei Ruhestridor: Inhalation von Adrenalin 1 mg (1 ml 1:1.000 unverdünnt oder mit 2 ml NaCl) über Verneblermaske.\n• Warnung Epiglottitis: Absolutes Manipulationsverbot im Rachen ohne Intubationsbereitschaft im OP!",
+    "answer_tr": "• Klinik ayırıcı tanı:\n– Pseudokrup (viral, parainfluenza): Havlar tarzda öksürük, ses kısıklığı, inspiratuar stridor, genellikle subfebril ateş, çocuk genellikle düz yatar, tükürük akması (siyalore) yoktur.\n– Epiglottit (bakteriyel, Haemophilus influenzae tip b): Yüksek ateş, toksik görünüm, masif tükürük akması ile disfaji, öne eğik oturur pozisyon (tripod pozisyonu), boğuk/patates çiğner gibi konuşma, havlar tarzda öksürük YOKTUR!\n• Pseudokrup acil tedavisi:\n– Çocuğu sakinleştirin (ebeveynin kucağında tutun, zorlamalı boğaz muayenesinden kaçının!).\n– Nemli soğuk hava solutulması.\n– Deksametazon 0,15–0,6 mg/kg p.o./rektal.\n– İstirahat stridorunda: Adrenalin 1 mg (1 ml 1:1.000 seyreltilmemiş veya 2 ml NaCl ile) nebülizatör ile inhalasyon.\n• Uyarı: Ameliyathane koşullarında entübasyon hazırlığı olmadan orofarenks manipülasyonu kesinlikle yasaktır!",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_peds_02",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche präoperativen Nüchternheitsregeln gelten nach aktuellen europäischen (ESAIC) und deutschen (DGAI) Leitlinien für elektive Eingriffe bei pädiatrischen Patienten?",
+    "stem_tr": "Pediyatrik hastalarda elektif cerrahi girişimler için güncel Avrupa (ESAIC) ve Alman (DGAI) kılavuzlarına göre hangi preoperatif açlık kuralları geçerlidir?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Klare Flüssigkeiten (Wasser, ungesüßter Tee, klare Säfte ohne Fruchtfleisch) dürfen bis zu 1 Stunde vor Narkoseeinleitung getrunken werden.",
+        "text_tr": "Berrak sıvılar (su, şekersiz çay, posasız berrak meyve suları) anestezi indüksiyonundan 1 saat öncesine kadar içilebilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Die 1-Stunden-Regel für klare Flüssigkeiten reduziert perioperativen Durst, Dehydratation und Hypoglykämie, ohne das Aspirationsrisiko zu erhöhen.",
+        "explanation_tr": "Doğru. Berrak sıvılar için 1 saat kuralı, aspirasyon riskini artırmadan ameliyat öncesi susuzluğu, dehidrasyonu ve hipoglisemiyi azaltır."
+      },
+      {
+        "key": "b",
+        "text_de": "Muttermilch darf bis 2 Stunden vor Narkoseeinleitung gefüttert werden.",
+        "text_tr": "Anne sütü anestezi indüksiyonundan 2 saat öncesine kadar verilebilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Muttermilch entleert sich rasch aus dem Magen und hat ein Nüchternheitsintervall von 2 Stunden.",
+        "explanation_tr": "Doğru. Anne sütü mideden hızla boşalır ve açlık aralığı 2 saattir."
+      },
+      {
+        "key": "c",
+        "text_de": "Säuglingsflaschennahrung (Formulanahrung) erfordert eine Nüchternzeit von 4 Stunden.",
+        "text_tr": "Bebek maması (formül süt) 4 saatlik bir açlık süresi gerektirir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Industriell hergestellte Säuglingsmilchnahrung/Formulanahrung darf bis 4 Stunden vor OP gegeben werden.",
+        "explanation_tr": "Doğru. Formül mamalar ameliyattan 4 saat öncesine kadar verilebilir."
+      },
+      {
+        "key": "d",
+        "text_de": "Leichte feste Nahrung und Kuhmilch erfordern eine Mindestkarenzzeit von 6 Stunden.",
+        "text_tr": "Hafif katı gıdalar ve inek sütü en az 6 saatlik açlık süresi gerektirir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Feste Mahlzeiten und Vollmilch verweilen länger im Magen und bedürfen 6 Stunden Nüchternheit (1-2-4-6 Regel).",
+        "explanation_tr": "Doğru. Katı yiyecekler ve tam yağlı süt midede daha uzun süre kalır ve 6 saatlik açlık gerektirir (1-2-4-6 kuralı)."
+      },
+      {
+        "key": "e",
+        "text_de": "Kaugummikauen verlängert zwingend die Nüchternzeit um mindestens 4 Stunden.",
+        "text_tr": "Sakız çiğnemek açlık süresini zorunlu olarak en az 4 saat uzatır.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Kaugummikauen ohne Verschlucken führt nicht zur Verschiebung elektiver Eingriffe; der Kaugummi muss lediglich vor Narkose ausgespuckt werden.",
+        "explanation_tr": "Yanlış. Yutulmadığı sürece sakız çiğnemek elektif operasyonların ertelenmesini gerektirmez; sakızın indüksiyondan önce çıkarılması yeterlidir."
+      }
+    ],
+    "is_high_yield": true
+  },
+  {
+    "id": "q_peds_03",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Während der Narkoseausleitung nach einer Adenotomie entwickelt ein 4-jähriges Kind unmittelbar nach Extubation eine paradoxe Thoraxbewegung, inspiratorischen Stridor und einen raschen SpO2-Abfall auf 74%. Wie lautet Ihre Diagnose und das strukturierte Vorgehen?",
+    "question_tr": "Adenotomi sonrası anestezi sonlandırılırken, 4 yaşındaki bir çocukta ekstrübasyonun hemen ardından paradoksal göğüs hareketi, inspiratuar stridor ve SpO2'de %74'e hızlı bir düşüş gelişiyor. Tanınız ve yapılandırılmış tedavi basamaklarınız nelerdir?",
+    "answer_de": "• Diagnose: Akuter Laryngospasmus (Reflexartiger Stimmbandverschluss, meist durch Blut/Sekret oder oberflächliche Narkoseebene getriggert).\n• Strukturiertes Notfallmanagement:\n1. 100% Sauerstoff mit dicht sitzender Gesichtsmaske verabreichen.\n2. Stimulus sofort eliminieren (Beendigung des Absaugens, Mundhöhle vorsichtig inspizieren).\n3. Atemweg freimachen: Esmarch-Handgriff, vorsichtiger Überdruck (CPAP mit Maske, 10–15 cmH2O) gegen die geschlossenen Stimmbänder.\n4. Larson-Manöver: Kräftiger bilateraler Druck im 'Laryngospasm notch' hinter dem aufsteigenden Unterkieferast gegen die Schädelbasis.\n5. Medikamentöse Therapie:\n   – Propofol 0,5–1,0 mg/kg i.v. zur Narkosevertiefung.\n   – Bei Persistenz / Bradykardie: Succinylcholin 0,5–1,0 mg/kg i.v. (oder 3–4 mg/kg i.m.) + Atropin 0,02 mg/kg i.v. (mind. 0,1 mg gegen Sux-induzierte Bradykardie!).\n6. Nach Entlastung: Ausschluss eines postobstruktiven Lungenödems (NPPE)!",
+    "answer_tr": "• Tanı: Akut Laringospazm (Vokal kordların refleksif kapanması, genellikle kan/sekresyon veya yüzeyel anestezi nedeniyle tetiklenir).\n• Yapılandırılmış acil yönetim:\n1. Yüze tam oturan maske ile %100 Oksijen uygulayın.\n2. Uyaranı derhal sonlandırın (aspirasyonu durdurun, ağız boşluğunu nazikçe kontrol edin).\n3. Hava yolunu açın: Esmarch manevrası, kapalı vokal kordlara karşı nazik pozitif basınç (maske ile 10–15 cmH2O CPAP).\n4. Larson manevrası: Çene kemiğinin arkasındaki laringospazm çentiğine bilateral güçlü baskı uygulayın.\n5. Medikal tedavi:\n   – Anesteziyi derinleştirmek için Propofol 0,5–1,0 mg/kg i.v.\n   – Yanıtsızlık / bradikardi durumunda: Süksinilkolin 0,5–1,0 mg/kg i.v. (veya 3–4 mg/kg i.m.) + Atropin 0,02 mg/kg i.v. (en az 0,1 mg bradikardi profilaksisi için).\n6. Spazm çözüldükten sonra: Negatif basınçlı post-obstrüktif akciğer ödemini (NPPE) ekarte edin!",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_peds_04",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Wie berechnen Sie bei einem 6-jährigen Kind die korrekte Tubusgröße (gecufft vs. ungecufft) sowie die Zahnabstands-Einführtiefe für die orotracheale Intubation?",
+    "question_tr": "6 yaşındaki bir çocukta orotrakeal entübasyon için doğru tüp boyutunu (kaflı ve kafsız) ve diş mesafesi yerleştirme derinliğini nasıl hesaplarsınız?",
+    "answer_de": "• Tubus-Innendurchmesser (ID in mm):\n– Gecuffter Tubus (heute Standard): Formel nach Khine / Duracher: (Alter in Jahren / 4) + 3,5 mm.\n  Für 6 Jahre: (6 / 4) + 3,5 = 1,5 + 3,5 = 5,0 mm ID.\n– Ungecuffter Tubus (historische Cole-Formel): (Alter in Jahren / 4) + 4,0 mm.\n  Für 6 Jahre: (6 / 4) + 4,0 = 5,5 mm ID.\n– Faustregel: Immer Tuben eine halbe Größe kleiner (4,5) und größer (5,5) bereithalten!\n• Einführtiefe (an der Zahnreihe in cm):\n– Formel: (Alter in Jahren / 2) + 12 cm.\n  Für 6 Jahre: (6 / 2) + 12 = 3 + 12 = 15 cm.\n– Alternative Faustregel: Tubus-ID × 3 (5,0 × 3 = 15 cm).\n• Cuffdruck-Monitoring: Bei gecufften Kindertuben Cuffdruck strikt < 20 cmH2O halten, um Schleimhautnekrosen im subglottischen Ringknorpelbereich zu verhindern.",
+    "answer_tr": "• Endotrakeal tüp iç çapı (ID, mm):\n– Kaflı tüp (günümüz altın standardı): Khine/Duracher formülü: (Yaş / 4) + 3,5 mm.\n  6 yaş için: (6 / 4) + 3,5 = 1,5 + 3,5 = 5,0 mm ID.\n– Kafsız tüp (klasik Cole formülü): (Yaş / 4) + 4,0 mm.\n  6 yaş için: (6 / 4) + 4,0 = 5,5 mm ID.\n– Pratik kural: Daima yarım boy küçük (4.5) ve yarım boy büyük (5.5) tüpleri hazır bulundurun!\n• Diş seviyesinde derinlik (cm):\n– Formül: (Yaş / 2) + 12 cm.\n  6 yaş için: (6 / 2) + 12 = 3 + 12 = 15 cm.\n– Alternatif pratik formül: Tüp ID × 3 (5,0 × 3 = 15 cm).\n• Kaf basıncı izlemi: Pediyatrik kaflı tüplerde krikoid halka altındaki mukoza iskemisini önlemek için kaf basıncı mutlaka < 20 cmH2O tutulmalıdır.",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_peds_05",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche Aussagen zur Kaudalanästhesie bei pädiatrischen Patienten treffen zu?",
+    "stem_tr": "Pediyatrik hastalarda kaudal anestezi ile ilgili aşağıdaki ifadelerden hangileri doğrudur?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Die Punktion erfolgt durch das Ligamentum sacrococcygeum in den Hiatus sacralis.",
+        "text_tr": "Ponksiyon, sakrokoksigeal ligaman içinden hiatus sakralise yapılır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Die Orientierung erfolgt an den Cornua sacralia, zwischen denen das Lig. sacrococcygeum den Zugang zum Sakralkanal bildet.",
+        "explanation_tr": "Doğru. Cornua sacralia kılavuz noktadır ve arasındaki sakrokoksigeal ligaman sakral kanala girişi sağlar."
+      },
+      {
+        "key": "b",
+        "text_de": "Als Standard-Lokalanästhetikum wird Ropivacain 0,2% in einem Volumen von 0,5–1,0 ml/kg KG eingesetzt.",
+        "text_tr": "Standart lokal anestezik olarak 0,5–1,0 ml/kg hacminde %0,2 Ropivakain kullanılır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. 0,5 ml/kg reicht bis Sakral/Unterbauch (Phimose), 1,0 ml/kg bis Th10 (Leistenhernie).",
+        "explanation_tr": "Doğru. 0,5 ml/kg sakral/alt bölgeye (fimozis), 1,0 ml/kg Th10 seviyesine (kasık fıtığı) kadar analjezi sağlar."
+      },
+      {
+        "key": "c",
+        "text_de": "Der Durasack endet beim Neugeborenen und Säugling tiefer (auf Höhe S2–S3) als beim Erwachsenen (S1–S2).",
+        "text_tr": "Dural kese yenidoğan ve süt çocuklarında erişkine (S1–S2) kıyasla daha derinde (S2–S3 seviyesinde) sonlanır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Dadurch besteht beim Säugling ein erhöhtes Risiko einer akzidentellen Duraperforation bei zu weit vorgeschobener Nadel.",
+        "explanation_tr": "Doğru. Bu nedenle iğne fazla ilerletildiğinde süt çocuklarında kazara dural ponksiyon riski daha yüksektir."
+      },
+      {
+        "key": "d",
+        "text_de": "Clonidin (1–2 µg/kg) kann als Adjuvans zugesetzt werden, um die Analgesiedauer signifikant zu verlängern.",
+        "text_tr": "Analjezi süresini belirgin şekilde uzatmak için adjuvan olarak klonidin (1–2 µg/kg) eklenebilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Clonidin verlängert die kaudale Blockadedauer von 4–6 Stunden auf bis zu 10–12 Stunden.",
+        "explanation_tr": "Doğru. Klonidin kaudal blok süresini 4–6 saatten 10–12 saate kadar uzatır."
+      },
+      {
+        "key": "e",
+        "text_de": "Bei V.a. infizierte Pilonidalsinus-Fistel im Punktionsgebiet darf die Kaudalanästhesie dennoch problemlos durchgeführt werden.",
+        "text_tr": "Ponksiyon bölgesinde enfekte pilonidal sinüs şüphesi durumunda kaudal anestezi yine de güvenle uygulanabilir.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Infektionen im Punktionsbereich stellen eine absolute Kontraindikation dar (Gefahr der Meningitis/Epiduralabszess).",
+        "explanation_tr": "Yanlış. Ponksiyon bölgesindeki enfeksiyonlar kesin kontrendikasyondur (menenjit/epidural apse riski)."
+      }
+    ],
+    "is_high_yield": true
+  },
+  {
+    "id": "q_peds_06",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 2-jähriges Kind (12 kg) entwickelt nach einer schwierigen Intubation im Aufwachraum einen Postextubationskrupp mit inspiratorischem Stridor und Einziehungen. Wie therapieren Sie diesen Zwischenfall evidenzbasiert?",
+    "question_tr": "2 yaşında bir çocuk (12 kg), zor bir entübasyon sonrasında derlenme odasında inspiratuar stridor ve retraksiyonlarla seyreden post-ekstübasyon krupu geliştiriyor. Bu komplikasyonu kanıta dayalı olarak nasıl tedavi edersiniz?",
+    "answer_de": "• Pathophysiologie: Subglottisches Glottisödem infolge Schleimhauttraumatisierung bei zirkulärem Ringknorpel.\n• Therapie-Stufenplan:\n1. Sauerstoffgabe und Oberkörperhochlagerung auf dem Schoß der Bezugsperson.\n2. Inhalation von L-Adrenalin (Epinephrin):\n   – Dosierung: 1 mg Adrenalin (1 ml 1:1.000 unverdünnt oder mit 2 ml NaCl 0,9%) vernebeln.\n   – Wirkmechanismus: Lokale Vasokonstriktion über Alpha-1-Rezeptoren → rasches Abschwellen der subglottischen Schleimhaut innerhalb von 10–20 Minuten.\n3. Glukokortikoide:\n   – Dexamethason 0,15–0,3 mg/kg i.v. (Erstanstiegszeit 1–2 Stunden, sichert Langzeiteffekt).\n4. Überwachungspflicht:\n   – Mindestens 2–4 Stunden Monitorüberwachung wegen Rebound-Phänomen nach Nachlassen der Adrenalinwirkung!\n5. Bei Therapieversagen / drohender Erschöpfung: Re-Intubation mit einem um eine halbe bis ganze Nummer kleineren gecufften Tubus (z.B. ID 3,5 statt 4,5 mm).",
+    "answer_tr": "• Patofizyoloji: Krikoid halka düzeyinde mukoza travmasına bağlı subglottik ödem.\n• Kademeli tedavi planı:\n1. Oksijen desteği ve ebeveyn kucağında baş yukarı pozisyon.\n2. L-Adrenalin (Epinefrin) inhalasyonu:\n   – Doz: 1 mg Adrenalin (1 ml 1:1.000 seyreltilmemiş veya 2 ml %0,9 NaCl ile) nebülizasyon.\n   – Etki mekanizması: Alfa-1 reseptörleri aracılığıyla lokal vazokonstriksiyon → 10–20 dakika içinde subglottik mukozanın hızla gerilemesi.\n3. Glukokortikoidler:\n   – Deksametazon 0,15–0,3 mg/kg i.v. (etki başlangıcı 1–2 saat, uzun süreli etki sağlar).\n4. İzlem zorunluluğu:\n   – Adrenalin etkisi geçtikten sonra rebound fenomeni riski nedeniyle en az 2–4 saat monitorize izlem!\n5. Tedaviye yanıtsızlık / solunum tükenmesi: Yarım veya bir numara daha küçük kaflı bir tüple (örn. 4.5 yerine 3.5 mm ID) acil re-entübasyon.",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_ob_01",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Sie werden zur Notsectio (Grad 1 nach Lucas / Dringlichkeitsstufe 1) bei fetaler Bradykardie (60/min) gerufen. Wie lauten die maximale Entscheidungs-Entbindungs-Zeit (EEZ), die anästhesiologische Vorbereitung und das genaue Narkose-RSI-Regime?",
+    "question_tr": "Fetal bradikardi (60/dk) nedeniyle acil sezaryene (Lucas Evre 1 / Kategori 1 acil) çağrıldınız. Maksimum karar-doğum süresi (EEZ), anestezi hazırlığı ve kesin RSI genel anestezi protokolü nedir?",
+    "answer_de": "• Entscheidungs-Entbindungs-Zeit (EEZ):\n– Maximal 20 Minuten nach deutscher DGGG/DGAI-Leitlinie (Ziel: Entbindung innerhalb kürzester Zeit bei akuter Lebensgefahr für Mutter oder Kind).\n• Anästhesiologisches Vorgehen:\n1. Lagerung: Strikt linksseitenkippung des OP-Tisches um 15° (oder Keil unter rechte Hüfte) zur Beseitigung des Vena-cava-Kompressionssyndroms.\n2. Präoxygenierung: 100% Sauerstoff über dichte Maske für 3–5 Minuten mit hohem Flow (≥ 10–12 l/min) oder 8 tiefe Atemzüge (Vitalkapazität) bei Zeitnot.\n3. Rapid Sequence Induction (RSI):\n   – Thiopental 4–5 mg/kg i.v. (oder Propofol 2,0–2,5 mg/kg i.v.)\n   – Succinylcholin 1,0–1,5 mg/kg i.v. (oder Rocuronium 1,0–1,2 mg/kg i.v. mit sofortiger Bereitstellung von Sugammadex 16 mg/kg)\n   – Intubation ohne Zwischenbeatmung nach 45–60 Sekunden, Lagekontrolle zwingend mittels Kapnographie (etCO2)!\n4. Nach Nabelabklemmung: Beginn der Uterotonika-Gabe (Oxytocin 3–5 IE i.v. langsam) und Vertiefung der Narkose mit Opioiden (Sufentanil) und Volatilia / TIVA.",
+    "answer_tr": "• Karar-Doğum Süresi (EEZ):\n– Alman DGGG/DGAI kılavuzuna göre en fazla 20 dakika (anne veya bebek için akut hayati tehlike durumunda).\n• Anestezik yaklaşım:\n1. Pozisyon: Vena kava inferior bası sendromunu önlemek için ameliyat masasının mutlaka 15° sola yatırılması (veya sağ kalça altına rulo konulması).\n2. Preoksijenasyon: Yüksek akımla (≥ 10–12 l/dk) 3–5 dakika boyunca tam oturan maskeyle %100 O2 veya zaman darlığında 8 derin vital kapasite nefesi.\n3. Hızlı Seri İndüksiyon (RSI):\n   – Tiyopental 4–5 mg/kg i.v. (veya Propofol 2,0–2,5 mg/kg i.v.)\n   – Süksinilkolin 1,0–1,5 mg/kg i.v. (veya 1,0–1,2 mg/kg Rokuronyum ile birlikte 16 mg/kg Sugammadeks hazır bulundurulması)\n   – Pozitif basınçlı ara ventilasyon yapmadan 45–60 saniyede entübasyon, entübasyonun kapnografi (etCO2) ile doğrulanması zorunludur!\n4. Kordon klemplendikten sonra: Uterotonik başlanması (Oksitosin 3–5 IU i.v. yavaş) ve anestezinin opioid (Süfentanil) ve volatil ajanlarla derinleştirilmesi.",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_ob_02",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Eine 32-jährige Schwangere (36. SSW) mit schwerer Präeklampsie (RR 185/110 mmHg, Proteinurie) erleidet im Kreißsaal einen generalisierten tonisch-klonischen Krampfanfall. Wie lautet Ihre Akuttherapie und das Magnesiumsulfat-Dosierungsschema?",
+    "question_tr": "Ağır preeklampsisi (KB 185/110 mmHg, proteinüri) olan 32 yaşında gebe (36. GH) doğumhanede jeneralize tonik-klonik nöbet geçiriyor. Acil tedaviniz ve magnezyum sülfat dozlama şemanız nedir?",
+    "answer_de": "• Diagnose: Eklampsie.\n• Akuttherapie:\n1. Atemweg sichern, 100% O2 via Maske, Aspiration verhindern (Linksseitenlagerung, Absaugen).\n2. Krampfanfall kupieren und Eklampsie-Prophylaxe:\n   – Medikament der 1. Wahl: Magnesiumsulfat (MgSO4)!\n   – Bolusdosis: 4–6 g MgSO4 i.v. als Kurzinfusion über 15–20 Minuten.\n   – Erhaltungsdosis: 1–2 g/h i.v. als kontinuierliche Dauerinfusion über Perfusor für mindestens 24 Stunden postpartal.\n   – Bei Durchbruchskrämpfen: Erneuter Bolus von 2 g MgSO4 über 5 Minuten.\n3. Blutdrucksenkung (Ziel-Blutdruck systolisch 140–150 mmHg, diastolisch 90–100 mmHg):\n   – Urapidil 10–25 mg i.v. als langsamer Bolus, gefolgt von Perfusor (5–20 mg/h).\n   – Alternativ: Dihydralazin 5 mg i.v. oder Labetalol.\n4. Magnesium-Toxizitätsüberwachung:\n   – Klinische Kontrollen: Patellarsehnenreflex (PSR), Atemfrequenz (mind. > 12/min), Diurese (> 25–30 ml/h).\n   – Antidot bei Überdosierung (Areflexie, Atemdepression): Calciumgluconat 10% (1 g = 10 ml i.v. über 2–3 Minuten)!",
+    "answer_tr": "• Tanı: Eklampsi.\n• Acil tedavi:\n1. Hava yolunu koruyun, maskeyle %100 O2, aspirasyonu önleyin (sol yan yatış, aspirasyon).\n2. Nöbetin durdurulması ve nüksün önlenmesi:\n   – İlk tercih ilaç: Magnezyum sülfat (MgSO4)!\n   – Yükleme dozu: 4–6 g MgSO4 i.v. 15–20 dakikada kısa infüzyon.\n   – İdame dozu: Doğumdan sonra en az 24 saat boyunca 1–2 g/saat sürekli i.v. infüzyon.\n   – Nöbet tekrarlarsa: 5 dakikada 2 g ek MgSO4 bolus.\n3. Tansiyon kontrolü (Hedef KB: sistolik 140–150 mmHg, diyastolik 90–100 mmHg):\n   – Urapidil 10–25 mg yavaş i.v. bolus, ardından infüzyon (5–20 mg/saat).\n   – Alternatif: Dihidralazin veya Labetalol.\n4. Magnezyum toksisite takibi:\n   – Klinik kontroller: Patella refleksleri (PSR), solunum sayısı (> 12/dk), idrar çıkışı (> 25–30 ml/saat).\n   – Toksisite antidotu (arefleksi, solunum depresyonu): %10 Kalsiyum glukonat (1 g = 10 ml i.v. 2–3 dakikada)!",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_ob_03",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Bei einer Periduralanästhesie (PDA) zur Geburtshilfe kommt es zur akzidentellen Durapunktion mit der Tuohy-Nadel (18G). Welche Symptome deuten auf einen postpunktionellen Kopfschmerz (PDPH) hin und wie therapieren Sie diesen einschließlich des Epiduralen Blutpatches?",
+    "question_tr": "Doğumda epidural analjezi (PDA) uygulanırken 18G Tuohy iğnesi ile kazara dura deliniyor. Hangi semptomlar post-dural ponksiyon baş ağrısını (PDPH) gösterir ve Epidural Kan Yaması dahil nasıl tedavi edersiniz?",
+    "answer_de": "• Klinische Symptome des PDPH:\n– Frontookzipitaler Kopfschmerz mit zwingender lageabhängiger Komponente: Verschlechterung im Stehen/Sitzen, deutliche Besserung im flachen Liegen.\n– Begleitsymptome: Nackensteifigkeit, Übelkeit, Tinnitus, Photophobie, Diplopie (Traktionslähmung des N. abducens VI!).\n• Konservative Stufentherapie:\n– Flache Bettruhe (sofern schmerzlindernd), ausreichende Hydratation.\n– Nicht-Opioid-Analgetika (Paracetamol 1 g, Ibuprofen 600 mg).\n– Koffein (oral oder i.v. 200–300 mg zur zerebralen Vasokonstriktion).\n• Kausale Intervention – Epiduraler Blutpatch (EBP):\n– Indikation: Bei schweren, immobilisierenden Kopfschmerzen nach 24–48 Stunden konservativer Therapie.\n– Durchführung: Streng aseptische Punktion des Periduralraums auf gleicher oder einer Etage tieferer Höhe.\n– Injektion: 15–20 ml autologes Venenblut der Patientin (frisch steril punktiert) langsam über 2–3 Minuten epidural injizieren.\n– Stopp-Kriterium: Druckgefühl im Rücken oder Kopfschmerz.\n– Erfolgsrate: > 85–90% primäre Beschwerdebefreiung.",
+    "answer_tr": "• PDPH klinik semptomları:\n– Postüral karakterde fronto-oksipital baş ağrısı: Ayakta dururken/otururken şiddetlenir, düz yatınca belirgin rahatlar.\n– Eşlik eden semptomlar: Boyun sertliği, bulantı, kulak çınlaması, fotofobi, diplopi (N. abducens gerilme felcine bağlı!).\n• Konservatif tedavi:\n– Yatak istirahati, yeterli hidrasyon.\n– Non-opioid analjezikler (Parasetamol, İbuprofen).\n– Kafein (oral veya i.v. 200–300 mg serebral vazokonstriksiyon için).\n• Girişimsel tedavi – Epidural Kan Yaması (EBP):\n– Endikasyon: 24–48 saatlik konservatif tedaviye rağmen devam eden şiddetli baş ağrısı.\n– Uygulama: Aynı veya bir alt mesafeden steril koşullarda epidural aralığa girilir.\n– Enjeksiyon: Hastadan steril şartlarda alınan 15–20 ml otolog venöz kan 2–3 dakika içinde epidural alana yavaşça verilir.\n– Durdurma kriteri: Belde baskı hissi veya baş ağrısı.\n– Başarı oranı: İlk uygulamada > %85–90 tam rahatlama.",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_ob_04",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche anatomischen und physiologischen Veränderungen der Schwangerschaft beeinflussen die Durchführung einer Allgemeinanästhesie maßgeblich?",
+    "stem_tr": "Gebelikteki hangi anatomik ve fizyolojik değişiklikler genel anestezi uygulamasını önemli ölçüde etkiler?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Die funktionelle Residualkapazität (FRC) sinkt um ca. 20–30%, während der Sauerstoffverbrauch um 30–50% steigt, was zu extrem schneller Hypoxämie bei Apnoe führt.",
+        "text_tr": "Fonksiyonel rezidüel kapasite (FRC) yaklaşık %20–30 azalırken, oksijen tüketimi %30–50 artar ve bu durum apnede son derece hızlı hipoksemiye yol açar.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Schwangere desaturieren bei Apnoe innerhalb kürzester Zeit (< 1–2 Minuten), daher ist eine penible Präoxygenierung überlebenswichtig.",
+        "explanation_tr": "Doğru. Gebeler apnede çok kısa sürede desatüre olur, bu nedenle titiz bir preoksijenasyon hayati önem taşır."
+      },
+      {
+        "key": "b",
+        "text_de": "Ab der 20. Schwangerschaftswoche gilt jede Schwangere aufgrund von vermindertem Magen-pH und erhöhtem intragastralem Druck als aspirationsgefährdet ('voll').",
+        "text_tr": "20. gebelik haftasından itibaren her gebe, azalmış mide pH'ı ve artmış intragastrik basınç nedeniyle aspirasyon riski altında ('tok') kabul edilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Progesteron verringert den Tonus des unteren Ösophagussphinkters, und der Uterus verdrängt den Magen kranial. RSI ist obligat.",
+        "explanation_tr": "Doğru. Progesteron alt özofagus sfinkter tonusunu azaltır ve uterus mideyi yukarı iter. RSI zorunludur."
+      },
+      {
+        "key": "c",
+        "text_de": "Die minimale alveoläre Konzentration (MAC) volatiler Anästhetika ist in der Schwangerschaft um 25–40% erniedrigt.",
+        "text_tr": "Gebelikte volatil anesteziklerin minimum alveolar konsantrasyonu (MAC) %25–40 oranında azalır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Progesteron und endogene Endorphine steigern die Schmerzschwelle und reduzieren den Anästhetikabedarf.",
+        "explanation_tr": "Doğru. Progesteron ve endojen endorfinler ağrı eşiğini yükseltir ve anestezik gereksinimini azaltır."
+      },
+      {
+        "key": "d",
+        "text_de": "Schwangere haben ein erhöhtes Risiko für ein Vena-cava-Kompressionssyndrom in Rückenlage, das zu schwerer Hypotonie und uteroplazentarer Minderperfusion führt.",
+        "text_tr": "Gebelerde sırtüstü pozisyonda şiddetli hipotansiyona ve uteroplasental perfüzyon bozukluğuna yol açan vena kava kompresyon sendromu riski yüksektir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Die Kompression der V. cava inferior durch den graviden Uterus mindert den venösen Rückstrom zum Herzen drastisch. Linksseitenlagerung ist Pflicht.",
+        "explanation_tr": "Doğru. Uterusun vena kava inferioru sıkıştırması kalbe venöz dönüşü ciddi şekilde azaltır. Sola yatırma şarttır."
+      },
+      {
+        "key": "e",
+        "text_de": "Der physiologische Fibrinogenspiegel sinkt in der Spätschwangerschaft auf Werte unter 1,5 g/l ab.",
+        "text_tr": "Geç gebelikte fizyolojik fibrinojen düzeyi 1,5 g/l'nin altına düşer.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Die Schwangerschaft ist ein prokoagulatorischer Zustand; Fibrinogen steigt physiologisch auf 4,0–6,0 g/l. Ein Wert < 2,0 g/l ist bereits kritisch erniedrigt!",
+        "explanation_tr": "Yanlış. Gebelik hiperkoagülabl bir durumdur; fibrinojen fizyolojik olarak 4,0–6,0 g/l'ye yükselir. < 2,0 g/l kritik bir düşüştür!"
+      }
+    ],
+    "is_high_yield": true
+  },
+  {
+    "id": "q_em_01",
+    "category": "Notfallmedizin & Reanimation",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 28-jähriger Motorradfahrer wird nach Hochrasanztrauma in den Schockraum eingeliefert (GCS 7, Pupillen isokor, HF 130/min, RR 75/45 mmHg, SpO2 88%). Schildern Sie die strukturierte Schockraumversorgung nach dem ABCDE-Schema und den Indikationen zur Notfallnarkose.",
+    "question_tr": "28 yaşında bir motosiklet sürücüsü yüksek enerjili kaza sonrası şok odasına getiriliyor (GCS 7, izokorik pupiller, KH 130/dk, KB 75/45 mmHg, SpO2 %88). ABCDE şemasına göre yapılandırılmış şok odası yönetimini ve acil anestezi endikasyonlarını açıklayınız.",
+    "answer_de": "• Indikationen zur Notfallintubation:\n– Koma (GCS ≤ 8), schwere respiratorische Insuffizienz (SpO2 < 90% trotz O2), hämodynamischer Schock, schwere Thoraxtraumata.\n• Vorgehen nach ABCDE-Schema:\n• A (Airway with C-spine restriction):\n– In-line-Stabilisierung der HWS, Inspektion Mundhöhle (Blut/Zähne absaugen).\n– Notfall-RSI: Etomidat 0,2–0,3 mg/kg oder Ketamin 1–2 mg/kg (kreislaufschonend!) + Rocuronium 1,2 mg/kg oder Succinylcholin 1,5 mg/kg. Fentanyl stark reduzieren.\n• B (Breathing):\n– Beidseits auskultieren: Ausschluss Spannungspneumothorax (sofortige Minithorakotomie / Nadeldekompression im 2. ICR vor Beatmung!). Lungenprotektive Beatmung.\n• C (Circulation with hemorrhage control):\n– 2 großlumige Zugänge (G14/16), Beckenschlinge sofort schließen.\n– Permissive Hypotension (Ziel-MAP 50–60 mmHg, ABER bei SHT Ziel-MAP ≥ 80 mmHg!).\n– Sofort Tranexamsäure 1 g i.v. als Kurzinfusion über 10 min.\n– eFAST-Sonographie (Perikard, Pleura, Morison-, Koller-Pouch, Douglas).\n– Aktivierung des Massivtransfusionsprotokolls (EK:FFP:TK im Verhältnis 1:1:1 bzw. 4:4:1).\n• D (Disability): Pupillenstatus, GCS, Blutzucker.\n• E (Exposure / Environment): Vollständiges Entkleiden, Bodycheck, Hypothermieprävention (aktives Wärmen!).",
+    "answer_tr": "• Acil entübasyon endikasyonları:\n– Koma (GCS ≤ 8), ağır solunum yetmezliği (O2'ye rağmen SpO2 < %90), hemorajik şok, ağır toraks travması.\n• ABCDE yaklaşımı:\n• A (Hava yolu ve servikal omurga):\n– Boyunluk açıkken manuel in-line stabilizasyon, orofarenks aspirasyonu.\n– Acil RSI: Dolaşımı korumak için Etomidat 0,2–0,3 mg/kg veya Ketamin 1–2 mg/kg + Rokuronyum 1,2 mg/kg veya Süksinilkolin 1,5 mg/kg.\n• B (Solunum):\n– Bilateral oskültasyon: Tansiyon pnömotoraks ekarte edilir (varsa derhal torakostomi!). Akciğer koruyucu ventilasyon.\n• C (Dolaşım ve kanama kontrolü):\n– İki geniş damar yolu (14/16G), pelvik korse hemen kapatılır.\n– Permisif hipotansiyon (hedef MAP 50–60 mmHg; ANCAK kafa travmasında hedef MAP ≥ 80 mmHg!).\n– Derhal Traneksamik asit 1 g i.v. 10 dakikada infüzyon.\n– eFAST ultrasonografi (perikard, plevra, batın içi serbest sıvı).\n– Masif transfüzyon protokolünün aktivasyonu (1:1:1 veya 4:4:1).\n• D (Nörolojik durum): Pupiller, GCS, kan şekeri.\n• E (Maruziyet ve çevre): Tam soyma, hipotermi önleme (aktif ısıtma!).",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_em_02",
+    "category": "Notfallmedizin & Reanimation",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche Maßnahmen entsprechen den aktuellen ERC/AHA-Leitlinien 2021/2025 zur kardiopulmonalen Reanimation (ALS)?",
+    "stem_tr": "Kardiyopulmoner resüsitasyonda (ALS) güncel 2021/2025 ERC/AHA kılavuzlarına göre hangi uygulamalar doğrudur?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Bei Kammerflimmern (VF) oder pulsloser ventrikulärer Tachykardie (pVT) wird Adrenalin 1 mg i.v. erst nach dem 3. erfolglosen Schock verabreicht.",
+        "text_tr": "Ventriküler fibrilasyon (VF) veya nabızsız ventriküler taşikardide (pVT) 1 mg i.v. adrenalin ancak 3. başarısız şoktan sonra verilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Bei schockbaren Rhythmen: Schock 1 → Schock 2 → Schock 3 → Adrenalin 1 mg und Amiodaron 300 mg i.v.",
+        "explanation_tr": "Doğru. Şoklanabilir ritimlerde: Şok 1 → Şok 2 → Şok 3 → Adrenalin 1 mg ve Amiodaron 300 mg i.v."
+      },
+      {
+        "key": "b",
+        "text_de": "Bei Asystolie und PEA (nicht-schockbare Rhythmen) soll Adrenalin 1 mg i.v. so früh wie möglich verabreicht werden.",
+        "text_tr": "Asistoli ve PEA'da (şoklanamaz ritimler) 1 mg i.v. adrenalin mümkün olan en kısa sürede verilmelidir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Frühe Adrenalingabe bei PEA/Asystolie korreliert mit höherer ROSC-Rate und Überleben.",
+        "explanation_tr": "Doğru. Nabızsız elektriksel aktivite ve asistolide erken adrenalin uygulanması daha yüksek ROSC ve sağkalım ile ilişkilidir."
+      },
+      {
+        "key": "c",
+        "text_de": "Amiodaron wird bei refraktärem VF/pVT nach dem 3. Schock mit 300 mg i.v. und nach dem 5. Schock mit weiteren 150 mg i.v. dosiert.",
+        "text_tr": "Dirençli VF/pVT'de Amiodaron 3. şoktan sonra 300 mg i.v., 5. şoktan sonra ek 150 mg i.v. olarak uygulanır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Als Alternative zu Amiodaron ist Lidocain (100 mg initial, gefolgt von 50 mg) leitliniengerecht zugelassen.",
+        "explanation_tr": "Doğru. Amiodaron alternatifi olarak Lidokain (100 mg yükleme, ardından 50 mg) kılavuzlarca önerilmektedir."
+      },
+      {
+        "key": "d",
+        "text_de": "Eine kontinuierliche etCO2-Messung < 10 mmHg nach 20 Minuten qualitativ hochwertiger CPR weist auf eine infauste Prognose hin.",
+        "text_tr": "20 dakikalık yüksek kaliteli CPR sonrasında < 10 mmHg sürekli etCO2 ölçümü kötü prognozu gösterir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Niedrige etCO2-Werte reflektieren ein minimales Herzzeitvolumen und fehlende pulmonale Perfusion.",
+        "explanation_tr": "Doğru. Düşük etCO2 değerleri minimal kardiyak debiyi ve yetersiz pulmoner perfüzyonu yansıtır."
+      },
+      {
+        "key": "e",
+        "text_de": "Atropin gehört bei Asystolie weiterhin zur Standard-Empfehlung und muss sofort verabreicht werden.",
+        "text_tr": "Atropin asistolide halen standart öneridir ve derhal uygulanmalıdır.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Atropin wurde bereits vor Jahren aus dem Reanimationsalgorithmus für Asystolie und PEA gestrichen.",
+        "explanation_tr": "Yanlış. Atropin asistoli ve PEA resüsitasyon algoritmasından yıllar önce çıkarılmıştır."
+      }
+    ],
+    "is_high_yield": true
+  },
+  {
+    "id": "q_neuro_01",
+    "category": "Neuroanästhesie & ICP",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Erläutern Sie die Monro-Kellie-Doktrin, die Definition des zerebralen Perfusionsdrucks (CPP) und die anästhesiologischen Maßnahmen zur akuten Hirndrucksenkung bei intrakranieller Hypertension.",
+    "question_tr": "Monro-Kellie doktrinini, serebral perfüzyon basıncının (CPP) tanımını ve intrakraniyal hipertansiyonda akut kafa içi basıncını düşürmeye yönelik anestezi uygulamalarını açıklayınız.",
+    "answer_de": "• Monro-Kellie-Doktrin:\n– Die starre Schädelkapsel hat ein konstantes Volumen bestehend aus: Gehirnparenchym (~80%), Blut (~10%) und Liquor (~10%).\n– Eine Volumenzunahme einer Komponente (z. B. Blutung, Tumor, Ödem) kann initial durch Verdrängung von Liquor und venösem Blut kompensiert werden. Ist diese Pufferkapazität erschöpft, führt jede geringe weitere Volumenzunahme zu einem exponentiellen ICP-Anstieg!\n• Zerebraler Perfusionsdruck (CPP):\n– Formel: CPP = MAP – ICP (bzw. ZVD, falls höher als ICP).\n– Zielwert: CPP ≥ 60–70 mmHg (kritische Schwelle: CPP < 50 mmHg führt zu zerebraler Ischämie).\n• Maßnahmen zur akuten ICP-Senkung:\n1. Oberkörperhochlagerung um 30° mit gerader Kopfhaltung (venöser Abfluss über V. jugularis intern frei, keine HWS-Abknickung!).\n2. Narkosevertiefung mit Propofol / Thiopental und Opioiden (senkt den zerebralen Sauerstoffverbrauch CMRO2 und das zerebrale Blutvolumen CBV).\n3. Osmotherapie: Mannitol 20% (0,5–1,0 g/kg i.v. über 15 min, Serum-Osmolarität < 320 mosmol/l) oder hypertone Kochsalzlösung (NaCl 3% / 7,45% 2 ml/kg).\n4. Milde Hyperventilation (Ziel-paCO2 32–35 mmHg) als kurzzeitige Überbrückung zur zerebralen Vasokonstriktion (Cave: paCO2 < 30 mmHg führt zu Ischämie!).\n5. Ausreichender Perfusionsdruck: Noradrenalin-Perfusor zur Aufrechterhaltung des Ziel-MAP!",
+    "answer_tr": "• Monro-Kellie Doktrini:\n– Sert kafatası rijit bir kutudur ve sabit bir hacme sahiptir: Beyin parankimi (%80), Kan (%10) ve BOS (%10).\n– Herhangi bir bileşenin artışı (kanama, tümör, ödem), başlangıçta BOS ve venöz kanın boşaltılmasıyla kompanse edilir. Bu kompanzasyon tükendiğinde, hacimdeki en ufak bir artış KİBAS'ta (ICP) eksponansiyel bir yükselmeye yol açar!\n• Serebral Perfüzyon Basıncı (CPP):\n– Formül: CPP = MAP – ICP.\n– Hedef değer: CPP ≥ 60–70 mmHg (CPP < 50 mmHg serebral iskemiye yol açar).\n• Akut ICP düşürme önlemleri:\n1. Başın ve gövdenin 30° yükseltilmesi, boynun nötral hatta tutulması (juguler venöz drenajı artırır).\n2. Propofol / Tiyopental ile anestezinin derinleştirilmesi (CMRO2 ve serebral kan hacmini düşürür).\n3. Osmoterapi: %20 Mannitol (0,5–1,0 g/kg i.v. 15 dakikada) veya hipertonik salin (%3 NaCl 2 ml/kg).\n4. Hafif kontrollü hiperventilasyon (hedef paCO2 32–35 mmHg, vazokonstriksiyon ile ICP'yi düşürür; < 30 mmHg iskemi riskinden dolayı kaçınılmalıdır!).\n5. Yeterli perfüzyon basıncı: Hedef MAP'ı korumak için Noradrenalin infüzyonu!",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_neuro_02",
+    "category": "Neuroanästhesie & ICP",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche anästhesiologischen Prinzipien gelten für Eingriffe mit erhöhtem intrakraniellen Druck (ICP)?",
+    "stem_tr": "Artmış intrakraniyal basınç (KİBAS) olan girişimlerde hangi anestezik prensipler geçerlidir?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Eine totale intravenöse Anästhesie (TIVA) mit Propofol und Remifentanil ist vorteilhaft, da Propofol sowohl den zerebralen Blutfluss (CBF) als auch den zerebralen Sauerstoffverbrauch (CMRO2) koppelt und senkt.",
+        "text_tr": "Propofol ve Remifentanil ile TIVA avantajlıdır, çünkü propofol hem serebral kan akımını (CBF) hem de serebral oksijen tüketimini (CMRO2) eşzamanlı olarak düşürür.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Propofol bewirkt eine zerebrale Vasokonstriktion und senkt den ICP bei erhaltener Autoregulation.",
+        "explanation_tr": "Doğru. Propofol serebral vazokonstriksiyona neden olur ve otoregülasyonu korurken ICP'yi düşürür."
+      },
+      {
+        "key": "b",
+        "text_de": "Volatile Inhalationsanästhetika wie Sevofluran oder Desfluran führen oberhalb von 1 MAC zu einer dosisabhängigen zerebralen Vasodilatation und ICP-Steigerung.",
+        "text_tr": "Sevofluran veya Desfluran gibi volatil anestezikler 1 MAC üzerinde doza bağımlı serebral vazodilatasyona ve ICP artışına neden olur.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Bei Hirndruckpatienten sollten Volatilia vermieden oder streng auf < 0,7–1,0 MAC limitiert werden.",
+        "explanation_tr": "Doğru. Kafa içi basıncı yüksek hastalarda volatil ajanlardan kaçınılmalı veya kesinlikle < 0,7–1,0 MAC altında tutulmalıdır."
+      },
+      {
+        "key": "c",
+        "text_de": "Lachgas (N2O) ist bei neurochirurgischen Eingriffen wegen der Erhöhung von CBF und ICP sowie der Gefahr des Spannungspneumozephalus kontraindiziert.",
+        "text_tr": "Azot protoksit (N2O), beyin cerrahisi girişimlerinde CBF ve ICP'yi artırması ve tansiyon pnömosefali riski nedeniyle kontrendikedir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. N2O diffundiert in lufthaltige Hohlräume und kann bei Eröffnung der Dura ein fatales Spannungspneumozephalus auslösen.",
+        "explanation_tr": "Doğru. N2O kapalı hava boşluklarına difüze olur ve dura açıldığında tansiyon pnömosefaliye yol açabilir."
+      },
+      {
+        "key": "d",
+        "text_de": "Hypotone Infusionslösungen (z.B. Sterofundin G-5, Ringer-Laktat oder freie Glukoselösungen) dürfen bei Hirnödem uneingeschränkt infundiert werden.",
+        "text_tr": "Beyin ödeminde hipotonik infüzyon solüsyonları (örn. %5 dekstroz, Ringer Laktat) kısıtlama olmaksızın verilebilir.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Hypotone Lösungen verringern die Serum-Osmolarität und verschlimmern das zerebrale Ödem dramatisch! Nur isotone oder hypertone Lösungen (NaCl 0,9%) verwenden.",
+        "explanation_tr": "Yanlış. Hipotonik sıvılar serum ozmolaritesini düşürerek beyin ödemini dramatik olarak artırır! Sadece izotonik/hipertonik sıvılar kullanılmalıdır."
+      },
+      {
+        "key": "e",
+        "text_de": "Die Cushing-Triade (arterielle Hypertonie, Bradykardie, unregelmäßige/bradypnoische Atmung) ist ein Spätzeichen der Einklemmung.",
+        "text_tr": "Cushing triadı (arteriyel hipertansiyon, bradikardi, düzensiz solunum) herniasyonun geç bir belirtisidir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Die Cushing-Triade weist auf eine lebensbedrohliche Hirnstammkompression hin und verlangt sofortige Dekompression.",
+        "explanation_tr": "Doğru. Cushing triadı beyin sapı basısını gösterir ve acil dekompresyon gerektirir."
+      }
+    ],
+    "is_high_yield": true
+  },
+  {
+    "id": "q_icu_01",
+    "category": "Intensivmedizin & Sepsis",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Erläutern Sie die Sepsis-3 Definition, die Kriterien des septischen Schocks sowie die zentralen Bestandteile des 1-Hour-Bundles der Surviving Sepsis Campaign.",
+    "question_tr": "Sepsis-3 tanımını, septik şok kriterlerini ve Surviving Sepsis Campaign 1 saatlik tedavi paketinin (1-Hour Bundle) temel bileşenlerini açıklayınız.",
+    "answer_de": "• Sepsis-3 Definition:\n– Eine lebensbedrohliche Organdysfunktion, verursacht durch eine dysregulierte Wirtsantwort auf eine Infektion.\n– Klinischer Nachweis: Akuter Anstieg des SOFA-Scores (Sequential Organ Failure Assessment) um ≥ 2 Punkte.\n• Definition Septischer Schock:\n– Sepsis mit persistierender Hypotonie, die trotz adäquater Volumengabe Vasopressoren erfordert, um einen MAP ≥ 65 mmHg zu halten,\n– UND ein Serum-Laktat > 2,0 mmol/l trotz Volumensubstitution.\n• 1-Hour-Bundle (Maßnahmen innerhalb der 1. Stunde!):\n1. Serum-Laktat sofort messen (bei Laktat > 2 mmol/l Verlaufskontrolle nach 2–4h).\n2. Blutkulturen abnehmen (mindestens 2 Paare aerob/anaerob VOR Beginn der Antibiotikagabe!).\n3. Breitspektrum-Antibiotika unverzüglich i.v. applizieren (jede Stunde Verzögerung erhöht die Mortalität um 7,6%).\n4. Rasche Volumentherapie: 30 ml/kg balancierte kristalloide Infusionslösung bei Hypotonie oder Laktat ≥ 4 mmol/l.\n5. Vasopressoren einsetzen: Noradrenalin als Mittel der 1. Wahl, wenn während oder nach Volumengabe der MAP < 65 mmHg bleibt.",
+    "answer_tr": "• Sepsis-3 Tanımı:\n– Enfeksiyona karşı düzensizleşmiş konakçı yanıtının neden olduğu hayatı tehdit eden organ disfonksiyonu.\n– Klinik tanı: SOFA skorunda (Sequential Organ Failure Assessment) akut olarak ≥ 2 puan artış.\n• Septik Şok Tanımı:\n– Yeterli sıvı resüsitasyonuna rağmen MAP ≥ 65 mmHg tutmak için vazopressör gerektiren persistan hipotansiyon,\n– VE sıvı tedavisine rağmen serum laktat düzeyinin > 2,0 mmol/l olması.\n• 1 Saatlik Tedavi Paketi (1-Hour Bundle - İlk 1 saat içinde!):\n1. Laktat düzeyini derhal ölçün (> 2 mmol/l ise 2–4 saatte bir tekrar).\n2. Kan kültürlerini alın (antibiyotik başlamadan ÖNCE en az 2 set aerob/anaerob!).\n3. Geniş spektrumlu antibiyotikleri gecikmeden i.v. başlayın.\n4. Hızlı sıvı resüsitasyonu: Hipotansiyon veya laktat ≥ 4 mmol/l durumunda 30 ml/kg dengeli kristalloid infüzyonu.\n5. Vazopressör başlayın: Sıvı yüklemesine rağmen MAP < 65 mmHg ise ilk tercih Noradrenalin'dir.",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_icu_02",
+    "category": "Intensivmedizin & Sepsis",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Wie ist das akute Lungenversagen (ARDS) nach den Berlin-Kriterien definiert und wie lauten die Kernprinzipien der lungenprotektiven Beatmung sowie adjuvanter Therapien bei schwerem ARDS?",
+    "question_tr": "Akut solunum sıkıntısı sendromu (ARDS) Berlin kriterlerine göre nasıl tanımlanır ve akciğer koruyucu mekanik ventilasyonun ve ağır ARDS'de adjuvan tedavilerin temel ilkeleri nelerdir?",
+    "answer_de": "• Berlin-Definition des ARDS (4 Kriterien):\n1. Zeitfenster: Akuter Beginn innerhalb von 1 Woche nach bekanntem Auslöser oder neuen/verschlechterten respiratorischen Symptomen.\n2. Bildgebung: Beidseitige Infiltrate im Röntgen-Thorax / CT, die nicht vollständig durch Ergüsse, Atelektasen oder Rundherde erklärt sind.\n3. Ödemursprung: Nicht vollständig durch kardiogene Ursachen (Linksherzversagen / Hypervolämie) erklärbar (Echokardiographie empfohlen).\n4. Oxygenierungsstörung (Horovitz-Quotient PaO2 / FiO2 bei PEEP ≥ 5 cmH2O):\n   – Milde: 200 < PaO2/FiO2 ≤ 300 mmHg\n   – Moderate: 100 < PaO2/FiO2 ≤ 200 mmHg\n   – Schwere: PaO2/FiO2 ≤ 100 mmHg\n• Lungenprotektive Beatmung (Goldstandard):\n– Tidalvolumen (VT): 4–6 ml/kg des berechneten Idealgewichts (PBW), niemals Ist-Gewicht!\n– Plateaudruck (P_plat) strikt ≤ 30 cmH2O.\n– Driving Pressure (ΔP = P_plat – PEEP) strikt ≤ 14 cmH2O.\n– Adäquater PEEP nach ARDSNet-Tabelle (High-PEEP bei moderatem/schwerem ARDS).\n– Permissive Hyperkapnie (pH ≥ 7,20 wird toleriert).\n• Adjuvante Therapien bei schwerem ARDS (PaO2/FiO2 < 150 mmHg):\n1. Bauchlagerung (Prone Positioning): Mindestens 16 Stunden pro Tag (senkt signifikant die Mortalität!).\n2. Neuromuskuläre Blockade (frühe Relaxation mit z.B. Cisatracurium für 24–48h zur Vermeidung von Patient-Ventilator-Asynchronien).\n3. Ultima Ratio: Veno-venöse ECMO (vv-ECMO bei PaO2/FiO2 < 80 mmHg).",
+    "answer_tr": "• ARDS Berlin Kriterleri (4 Kriter):\n1. Başlangıç: Bilinen klinik tetikleyiciden sonra 1 hafta içinde akut başlangıç.\n2. Görüntüleme: Grafi veya BT'de bilateral infiltratlar (efüzyon veya atelektazi ile açıklanamayan).\n3. Ödemin kaynağı: Kardiyojenik veya aşırı sıvı yüklenmesi ile tamamen açıklanamayan solunum yetmezliği.\n4. Oksijenizasyon bozukluğu (PEEP ≥ 5 cmH2O altında PaO2/FiO2):\n   – Hafif: 200 < PaO2/FiO2 ≤ 300 mmHg\n   – Orta: 100 < PaO2/FiO2 ≤ 200 mmHg\n   – Ağır: PaO2/FiO2 ≤ 100 mmHg\n• Akciğer koruyucu ventilasyon ilkeleri:\n– Tidal hacim (VT): İdeal vücut ağırlığına (PBW) göre 4–6 ml/kg.\n– Plato basıncı (P_plat): Kesinlikle ≤ 30 cmH2O.\n– Driving pressure (ΔP = P_plat – PEEP): ≤ 14 cmH2O.\n– Yüksek PEEP stratejisi.\n– Permisif hiperkapni (pH ≥ 7,20 tolere edilir).\n• Ağır ARDS'de adjuvan tedaviler (PaO2/FiO2 < 150 mmHg):\n1. Pron pozisyonu (Yüzüstü yatırma): Günde en az 16 saat kesintisiz (mortaliteyi belirgin azaltır!).\n2. Nöromüsküler blokaj (hasta-ventilatör asenkronisini önlemek için ilk 24–48 saat).\n3. Son çare: Veno-venöz ECMO (vv-ECMO).",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_icu_03",
+    "category": "Intensivmedizin & Sepsis",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche Kriterien sprechen für eine erfolgreiche Entwöhnung (Weaning) vom Beatmungsgerät und die Durchführbarkeit eines Spontanatmungsversuchs (SBT)?",
+    "stem_tr": "Mekanik ventilatörden ayrılmada (Weaning) ve spontan solunum denemesinin (SBT) başarısında hangi kriterler olumlu kabul edilir?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Der Rapid Shallow Breathing Index (RSBI = Atemfrequenz / Tidalvolumen in Liter) liegt unter 105 /min/l.",
+        "text_tr": "Hızlı yüzeyel solunum indeksi (RSBI = Solunum sayısı / Litre cinsinden tidal hacim) 105 /dk/l altındadır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Ein RSBI < 105 ist einer der stärksten Prädiktoren für eine erfolgreiche Extubation.",
+        "explanation_tr": "Doğru. RSBI < 105 başarılı bir ekstübasyon için en güçlü göstergelerden biridir."
+      },
+      {
+        "key": "b",
+        "text_de": "Der Patient weist einen suffizienten Hustenstoß und kontrollierbare tracheale Sekretmengen auf.",
+        "text_tr": "Hastanın yeterli öksürük refleksi ve yönetilebilir trakeal sekresyon miktarı vardır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Fehlender Hustenstoß und exzessives Sekret führen häufig zum Extubationsversagen.",
+        "explanation_tr": "Doğru. Yetersiz öksürük refleksi ve aşırı sekresyon ekstübasyon başarısızlığının en sık nedenlerindendir."
+      },
+      {
+        "key": "c",
+        "text_de": "Der Horovitz-Quotient (PaO2 / FiO2) liegt stabil bei ≥ 150–200 mmHg unter einem PEEP ≤ 5–8 cmH2O und FiO2 ≤ 0,4.",
+        "text_tr": "Horovitz oranı (PaO2 / FiO2), PEEP ≤ 5–8 cmH2O ve FiO2 ≤ 0,4 altında stabil olarak ≥ 150–200 mmHg'dir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Ausreichende Oxygenierungsreserve unter geringer ventilatorischer Unterstützung ist Grundvoraussetzung.",
+        "explanation_tr": "Doğru. Düşük ventilatör desteği altında yeterli oksijenizasyon rezervi temel önkoşuldur."
+      },
+      {
+        "key": "d",
+        "text_de": "Ein Spontanatmungsversuch (SBT) von 30 Minuten Dauer über T-Stück oder mit geringer Druckunterstützung (ASB 5–7 cmH2O) wird ohne Erschöpfungszeichen toleriert.",
+        "text_tr": "T-parçası veya düşük basınç desteği (ASB 5–7 cmH2O) ile 30 dakikalık spontan solunum denemesi (SBT) yorulma belirtisi olmadan tolere edilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Ein bestandener 30-minütiger SBT belegt die Fähigkeit zur selbstständigen Atemarbeit.",
+        "explanation_tr": "Doğru. 30 dakikalık başarılı bir SBT, hastanın solunum işini tek başına sürdürebildiğini kanıtlar."
+      },
+      {
+        "key": "e",
+        "text_de": "Zur Extubation ist ein positiver Cuff-Leak-Test zwingend erforderlich, um ein postextubatorisches Stridorrisiko auszuschließen.",
+        "text_tr": "Ekstübasyon için post-ekstübasyon stridor riskini dışlamak amacıyla pozitif bir kaf kaçak testi (cuff-leak test) mutlaka zorunludur.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Der Cuff-Leak-Test ist nur bei Hochrisikopatienten (Langzeitbeatmung, schwierige Intubation, Larynxödem) indiziert, nicht routinemäßig bei jedem Patienten.",
+        "explanation_tr": "Yanlış. Kaf kaçak testi her hastada rutin değil, sadece yüksek riskli hastalarda (uzun süreli entübasyon, zor hava yolu) endikedir."
+      }
+    ],
+    "is_high_yield": true
+  },
+  {
+    "id": "q_ob_05",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Während einer komplikationslosen Spontangeburt klagt eine 29-jährige Zweitgebärende plötzlich über akute Dyspnoe und Zyanose, gefolgt von Bewusstlosigkeit, schwerer Hypotonie und diffuser Blutung aus Punktionsstellen. Wie lautet die Verdachtsdiagnose und das therapeutische Notfallmanagement?",
+    "question_tr": "Sorunsuz devam eden bir normal doğum sırasında 29 yaşındaki gebe aniden akut nefes darlığı ve siyanoz, ardından bilinç kaybı, ağır hipotansiyon ve damar yolu giriş yerlerinden yaygın kanama geliştiriyor. Ön tanınız ve acil tedavi yönetiminiz nedir?",
+    "answer_de": "• Verdachtsdiagnose: Fruchtwasserembolie (AFE – Amniotic Fluid Embolism).\n• Pathophysiologische Triade: Akute Hypoxämie, akutes Rechtsherzversagen / kardiogener Schock und Verbrauchskoagulopathie (DIC mit Hyperfibrinolyse).\n• Notfalltherapie:\n1. Sofortige Intubation mit 100% O2, lungenprotektive Beatmung.\n2. Kreislaufstabilisierung: Noradrenalin (Vasokonstriktion) + Dobutamin / Adrenalin (Inotropie zur Unterstützung des akuten rechten Ventrikels).\n3. Gerinnungstherapie: Frühe Gabe von Tranexamsäure 1–2 g i.v. und Fibrinogen (2–4 g), Thrombozytenkonzentrate, ROTEM-gesteuerte Hämostase.\n4. A-OK-Protokoll (evidenzbasierter experimenteller Ansatz):\n   – Atropin 0,8–1,0 mg i.v. (gegen vagale Hyperaktivität und pulmonale Vasokonstriktion)\n   – Ondansetron 8 mg i.v. (Serotonin-Rezeptorantagonismus)\n   – Ketorolac 30 mg i.v. (Thromboxan-Hemmung)\n5. Bei Herzstillstand: Sofortige Notsektio / Perimortem-Kaiserschnitt (PMCD) innerhalb von 4–5 Minuten zur Entlastung der Mutter!",
+    "answer_tr": "• Ön tanı: Amniyon Sıvısı Embolisi (AFE).\n• Patofizyolojik triad: Akut hipoksemi, akut sağ kalp yetmezliği / kardiyojenik şok ve tüketim koagülopatisi (hiperfibrinolizisli DIC).\n• Acil tedavi:\n1. %100 O2 ile derhal entübasyon ve mekanik ventilasyon.\n2. Dolaşım desteği: Noradrenalin (vazokonstriksiyon) + Dobutamin / Adrenalin (akut sağ ventrikülü desteklemek için inotropi).\n3. Koagülasyon tedavisi: Erken dönemde Traneksamik asit 1–2 g i.v. ve Fibrinojen (2–4 g), trombosit süspansiyonu, ROTEM eşliğinde hemostaz.\n4. A-OK protokolü (kanıta dayalı yaklaşım):\n   – Atropin 0,8–1,0 mg i.v. (vagal hiperaktivite ve pulmoner vazokonstriksiyona karşı)\n   – Ondansetron 8 mg i.v. (serotonin blokajı)\n   – Ketorolak 30 mg i.v. (tromboksan inhibisyonu)\n5. Kardiyak arrestte: Anneyi kurtarmak ve kava basısını kaldırmak için ilk 4–5 dakika içinde acil perimortem sezaryen (PMCD)!",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_peds_07",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 18 Monate altes Kleinkind aspiriert beim Spielen eine Erdnuss. Nach initialem Hustenanfall besteht nun ein exspiratorisches Giemen rechts. Welche anästhesiologischen Besonderheiten gelten für die starre Bronchoskopie?",
+    "question_tr": "18 aylık bir çocuk oyun oynarken yer fıstığı aspire ediyor. Başlangıçtaki öksürük nöbetinden sonra sağ tarafta ekspiratuar hırıltı (wheezing) gelişiyor. Rijit bronkoskopi için hangi anestezi prensipleri geçerlidir?",
+    "answer_de": "• Risiken: Vollständiger Atemwegsverschluss, laryngealer Reflexspasmus, Aspiration von Mageninhalt (akutes Notfallgeschehen, oft nicht nüchtern!).\n• Anästhesie-Management:\n1. Narkoseform: TIVA mit Propofol und Remifentanil (Spontanatmung vs. kontrollierte Beatmung über den Seitenansatz des starren Bronchoskops).\n2. Muskelrelaxation: Sorgfältig abwägen! Häufig wird unter erhaltener Spontanatmung eingeleitet, um ein Weiterrutschen des Fremdkörpers durch Überdruckbeatmung zu vermeiden. Sobald der Fremdkörper gefasst ist, kann relaxiert werden.\n3. Monitoring: Kontinuierliche Pulsoxymetrie (akuter Sättigungsabfall bei Verlegung der Trachea droht!).\n4. Vorbereitung: Bereithalten von Adrenalin, Atropin (vagale Reflexbradykardie bei Manipulation der Carina!) und Ausrüstung für die Notfall-Koniotomie.\n5. Postoperativ: Dexamethason 0,15–0,3 mg/kg i.v. zur Prophylaxe des postinterventionellen Glottisödems.",
+    "answer_tr": "• Riskler: Tam hava yolu obstrüksiyonu, laringospazm, mide içeriği aspirasyonu (acil durum, hasta tok!).\n• Anestezi yönetimi:\n1. Anestezi tipi: Propofol ve Remifentanil ile TIVA (rijit bronkoskopun yan bağlantısından ventilasyon).\n2. Kas gevşetici kullanımı: Dikkatle değerlendirilmelidir! Yabancı cismin pozitif basınçla daha distale itilmesini önlemek için genellikle spontan solunum korunarak indüksiyon yapılır. Yabancı cisim kavrandığında tam gevşeme sağlanabilir.\n3. İzlem: Sürekli puls oksimetri (trakeanın tam tıkanması anında desatürasyon riski!).\n4. Hazırlık: Adrenalin, Atropin (karina uyarısına bağlı vagal bradikardi!) ve acil cerrahi hava yolu seti hazır bulundurulmalıdır.\n5. Postoperatif: Müdahale sonrası glottik ödemi önlemek için Deksametazon 0,15–0,3 mg/kg i.v.",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_neuro_03",
+    "category": "Neuroanästhesie & ICP",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 55-jähriger Patient erleidet eine aneurysmatische Subarachnoidalblutung (SAB, Hunt & Hess Grad III). Welche anästhesiologischen Zielparameter gelten vor, während und nach dem Aneurysma-Clipping zur Vermeidung von Nachblutungen und zerebralen Vasospasmen?",
+    "question_tr": "55 yaşında bir hasta anevrizmal subaraknoid kanama (SAK, Hunt & Hess Evre III) geçiriyor. Yeniden kanamayı ve serebral vazospazmı önlemek için anevrizma kliplemesi öncesinde, sırasında ve sonrasında hangi anestezik hedef parametreler geçerlidir?",
+    "answer_de": "• Präoperativ (Vor Aneurysma-Ausschaltung):\n– Striktes Vermeiden von Blutdruckspitzen (Gefahr der tödlichen Re-Ruptur!).\n– Ziel-Blutdruck: Systolisch 120–140 mmHg (z.B. mittels Urapidil oder Nimodipin).\n– Analgosedierung zur Stressabschirmung, Vermeidung von Husten / Pressen bei der Intubation (tiefe Narkose + vollständige Muskelrelaxation).\n• Intraoperativ (Während Clipping):\n– TIVA mit Propofol/Remifentanil (EEG-Burst-Suppression bei temporärem Clipping zur Neuroprotektion).\n– Bei temporärem Clipping (Gefäßabklemmung): Blutdruck mild anheben (MAP 80–90 mmHg), um Kollateralperfusion zu sichern.\n– Gezielte Hypothermie wird heute routinemäßig nicht mehr empfohlen (strikte Normothermie 36,0–37,0°C anstreben!).\n• Postoperativ (Vasospasmus-Prävention):\n– Nimodipin 60 mg p.o. alle 4 Stunden für 21 Tage (senkt nachweislich sekundäre zerebrale Ischämien!).\n– Euvolemie (früher 'Triple-H-Therapie' – Hypervolämie ist heute obsolet wegen Lungenödemgefahr; heute: Normovolämie + induzierte Hypertension bei manifestem Vasospasmus)!",
+    "answer_tr": "• Preoperatif (Anevrizma kapatılmadan önce):\n– Kan basıncı sıçramalarından kesinlikle kaçının (ölümcül yeniden kanama riski!).\n– Hedef KB: Sistolik 120–140 mmHg (Urapidil veya Nimodipin ile).\n– Entübasyonda öksürme ve ıkınmayı önlemek için derin anestezi ve tam kas gevşemesi.\n• İntraoperatif (Klipleme sırasında):\n– Propofol/Remifentanil ile TIVA (geçici klipleme sırasında nöroproteksiyon için burst süpresyonu).\n– Geçici kliplemede kollateral perfüzyonu korumak için kan basıncı ılımlı yükseltilir (MAP 80–90 mmHg).\n– Hipotermi artık rutin önerilmemektedir (kesin normotermi 36,0–37,0°C hedeflenir).\n• Postoperatif (Vazospazm profilaksisi):\n– 21 gün boyunca 4 saatte bir 60 mg oral Nimodipin (sekonder iskemiyi kanıtlanmış şekilde azaltır).\n– Övolemi (eski 'Triple-H' tedavisindeki hipervolemi akciğer ödemi riski nedeniyle terk edilmiştir; güncel yaklaşım: Normovolemi + vazospazm gelişirse indüklenmiş hipertansiyon)!",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_em_03",
+    "category": "Notfallmedizin & Reanimation",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 45-jähriger Bauarbeiter stürzt aus 6 m Höhe auf Beton und erleidet ein schweres Schädel-Hirn-Trauma (SHT). Welche Schwellenwerte für Blutdruck, Sauerstoffsättigung und Kohlendioxidpartialdruck müssen präklinisch und im Schockraum strikt eingehalten werden?",
+    "question_tr": "45 yaşında bir inşaat işçisi 6 metre yükseklikten betona düşerek ağır kafa travması (SHT) geçiriyor. Prehospital dönemde ve şok odasında kan basıncı, oksijen satürasyonu ve karbondioksit parsiyel basıncı için hangi eşik değerlere kesinlikle uyulmalıdır?",
+    "answer_de": "• Leitlinien-Zielparameter bei schwerem Schädel-Hirn-Trauma (Brain Trauma Foundation / S3-Polytrauma):\n1. Arterieller Blutdruck / Zerebraler Perfusionsdruck:\n   – Systolischer Blutdruck: Strikt ≥ 100 mmHg (50–69 Jahre) bzw. ≥ 110 mmHg (15–49 Jahre).\n   – Ein einziges hypotones Ereignis (RR_sys < 90 mmHg) verdoppelt die Mortalität beim schweren SHT!\n   – Ziel-MAP: ≥ 80–90 mmHg, um bei unbekanntem oder erhöhtem ICP einen CPP ≥ 60–70 mmHg zu sichern.\n2. Oxygenierung:\n   – SpO2: Strikt ≥ 95% (PaO2 ≥ 80 mmHg). Hypoxämien (SpO2 < 90%) sind unbedingt zu vermeiden.\n3. Ventilation / Kohlendioxid:\n   – Normokapnie: paCO2 35–40 mmHg (etCO2 35 mmHg).\n   – Keine prophylaktische Hyperventilation (paCO2 < 35 mmHg bewirkt zerebrale Vasokonstriktion und verschlimmert das ischämische Areal!).\n   – Milde Hyperventilation (paCO2 32–35 mmHg) ist nur als Ultima-Ratio-Notfallmaßnahme bei akuter Pupillendifferenz / Einklemmungszeichen erlaubt.\n4. Blutzucker & Temperatur:\n   – Normoglykämie (100–150 mg/dl, Hypoglykämie und schwere Hyperglykämie verschlechtern das Outcome).\n   – Strikte Normothermie (Fieber > 37,5°C aggressiv senken!).",
+    "answer_tr": "• Ağır kafa travmasında (SHT) kılavuz hedef parametreleri (Brain Trauma Foundation / S3 Kılavuzu):\n1. Arteriyel Kan Basıncı / Serebral Perfüzyon Basıncı:\n   – Sistolik kan basıncı: Kesinlikle ≥ 100–110 mmHg tutulmalıdır.\n   – Tek bir hipotansif epizod (Sistolik KB < 90 mmHg), ağır kafa travmasında mortaliteyi iki katına çıkarır!\n   – Hedef MAP: ≥ 80–90 mmHg (CPP ≥ 60–70 mmHg sağlamak için).\n2. Oksijenizasyon:\n   – SpO2: Kesinlikle ≥ %95 (PaO2 ≥ 80 mmHg). Hipoksemi (SpO2 < %90) mutlaka engellenmelidir.\n3. Ventilasyon / Karbondioksit:\n   – Normokapni: paCO2 35–40 mmHg (etCO2 yaklaşık 35 mmHg).\n   – Profilaktik hiperventilasyondan kaçınılmalıdır (paCO2 < 35 mmHg serebral vazokonstriksiyon yaparak iskemiyi artırır!).\n   – Ilımlı hiperventilasyon (paCO2 32–35 mmHg) sadece akut anizokori veya herniasyon bulgularında geçici köprü tedavisidir.\n4. Kan şekeri ve vücut sıcaklığı:\n   – Normoglisemi (100–150 mg/dl) ve kesin normotermi (ateş agresif olarak düşürülmelidir!).",
+    "is_high_yield": true
+  },
+  {
+    "id": "q_ob_06",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "Facharztprüfung Anästhesiologie (ÄKNO Curriculum)",
+    "image": null,
+    "question_type": "options",
+    "stem_de": "Welche Maßnahmen gehören zum leitliniengerechten Stufenschema bei akuter postpartaler Blutung (PPH) infolge Uterusatonie?",
+    "stem_tr": "Uterus atonisine bağlı akut postpartum kanamada (PPH) kılavuza uygun kademeli yönetimde hangi basamaklar yer alır?",
+    "options": [
+      {
+        "key": "a",
+        "text_de": "Oxytocin (3–5 IE als langsamer i.v. Kurzinfusionsbolus, gefolgt von 10–20 IE in 500 ml Trägerlösung) ist das Uterotonikum der ersten Wahl.",
+        "text_tr": "Oksitosin (3–5 IU yavaş i.v. kısa infüzyon, ardından 500 ml içinde 10–20 IU sürekli infüzyon) birinci basamak uterotoniktir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Cave: Zu schneller Bolus kann schwere Hypotonie, Tachykardie und Myokardischämien auslösen.",
+        "explanation_tr": "Doğru. Dikkat: Çok hızlı bolus verilmesi ağır hipotansiyon, taşikardi ve miyokard iskemisine yol açabilir."
+      },
+      {
+        "key": "b",
+        "text_de": "Bei unzureichender Wirkung von Oxytocin ist Sulproston (Nalador®, 500 µg in 500 ml Trägerlösung) als 2. Stufe indiziert.",
+        "text_tr": "Oksitosine yetersiz yanıtta ikinci basamak olarak Sulproston (Nalador®, 500 ml içinde 500 µg) endikedir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Sulproston bewirkt starke Uteruskontraktionen. Kontraindikationen: Asthma bronchiale und schwere KHK.",
+        "explanation_tr": "Doğru. Sulproston güçlü uterus kasılması sağlar. Kontrendikasyonlar: Bronşiyal astım ve ağır koroner arter hastalığı."
+      },
+      {
+        "key": "c",
+        "text_de": "Tranexamsäure (1 g i.v. über 10 Minuten) soll so früh wie möglich (innerhalb von 3 Stunden nach Entbindung) verabreicht werden.",
+        "text_tr": "Traneksamik asit (10 dakikada 1 g i.v.) doğumdan sonraki ilk 3 saat içinde mümkün olan en kısa sürede uygulanmalıdır.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Die WOMAN-Studie belegte eine signifikante Mortalitätsreduktion durch frühe TXA-Gabe bei PPH.",
+        "explanation_tr": "Doğru. WOMAN çalışması PPH'de erken TXA uygulanmasının kanamaya bağlı maternal mortaliteyi belirgin azalttığını kanıtlamıştır."
+      },
+      {
+        "key": "d",
+        "text_de": "Bei persistierender Atonie kann eine intrauterine Ballontamponade (Bakri-Ballon mit 300–500 ml Kochsalzlösung) eingelegt werden.",
+        "text_tr": "Dirençli atonide intrauterin balon tamponadı (300–500 ml salin ile şişirilen Bakri balonu) uygulanabilir.",
+        "is_correct": true,
+        "explanation_de": "Richtig. Die Ballontamponade komprimiert das Gefäßbett mechanisch und verhindert in vielen Fällen eine Hysterektomie.",
+        "explanation_tr": "Doğru. Balon tamponadı uterus yatağını mekanik olarak sıkıştırır ve birçok vakada histerektomi ihtiyacını önler."
+      },
+      {
+        "key": "e",
+        "text_de": "Sulproston darf als unverdünnter schneller i.v. Bolus injiziert werden, um einen sofortigen Wirkungseintritt zu erzwingen.",
+        "text_tr": "Sulproston anında etki sağlamak için seyreltilmemiş hızlı i.v. bolus şeklinde enjekte edilebilir.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Sulproston darf NIEMALS als schneller unverdünnter Bolus gegeben werden (Gefahr fataler Koronarspasmen und Kreislaufkollaps!). Nur titriert als Infusion.",
+        "explanation_tr": "Yanlış. Sulproston KESİNLİKLE hızlı seyreltilmemiş bolus verilmemelidir (ölümcül koroner spazm ve kardiyak arrest riski!). Sadece infüzyonla titre edilir."
+      }
+    ],
+    "is_high_yield": true
   }
 ];

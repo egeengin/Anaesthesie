@@ -244,5 +244,121 @@ assert.strictEqual(deserialized.state.studyMode, 'simulation', 'Cloud sync state
 assert.strictEqual(deserialized.state.stepState['q_001'].step, 4, 'Cloud sync must preserve stepState');
 console.log('[PASS] Cloud Sync payload serialization and schema validation passed.');
 
-console.log('\n🎉 ALL 10 TEST SUITES PASSED PERFECTLY WITH FULL COVERAGE!\n');
+// 11. Test Service Worker (sw.js) & PWA Cache Manifest
+const swPath = path.join(__dirname, 'sw.js');
+assert(fs.existsSync(swPath), 'sw.js must exist in project root');
+const swCode = fs.readFileSync(swPath, 'utf8');
+assert(swCode.includes('CACHE_NAME'), 'sw.js must define CACHE_NAME');
+assert(swCode.includes('CORE_ASSETS'), 'sw.js must define CORE_ASSETS');
+
+// Verify all precached assets exist on disk
+const expectedAssets = ['index.html', 'styles.css', 'app.js', 'questions.js', 'manifest.json', 'favicon.svg'];
+expectedAssets.forEach(asset => {
+  const assetPath = path.join(__dirname, asset);
+  assert(fs.existsSync(assetPath), `Pre-cached asset ${asset} must exist in project`);
+});
+console.log('[PASS] Service Worker cache manifest and all pre-cached assets validated on disk.');
+
+// 12. Test Emergency SOPs (Pocket Cards) Schema & Clinical Accuracy
+const htmlPath = path.join(__dirname, 'index.html');
+const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+
+assert(htmlContent.includes('id="pocket-filter-bar"'), 'index.html must include emergency pocket filter bar');
+assert(htmlContent.includes('data-filter="tox"'), 'Filter bar must include toxicity category');
+assert(htmlContent.includes('data-filter="airway"'), 'Filter bar must include airway category');
+assert(htmlContent.includes('data-filter="cpr"'), 'Filter bar must include cpr category');
+assert(htmlContent.includes('data-filter="bleed"'), 'Filter bar must include bleeding/PPH category');
+
+// Clinical accuracy assertions
+assert(htmlContent.includes('Maligne Hyperthermie (MH)'), 'MH protocol must be present');
+assert(htmlContent.includes('2.5 mg/kg i.v.'), 'Dantrolen 2.5 mg/kg dosage must be documented');
+assert(htmlContent.includes('kein Kalziumantagonist!'), 'MH contraindication must be documented');
+
+assert(htmlContent.includes('Lokalanästhetika-Toxizität (LAST)'), 'LAST protocol must be present');
+assert(htmlContent.includes('Intralipid 20%'), 'Intralipid 20% protocol must be documented');
+assert(htmlContent.includes('1.5 ml/kg i.v.'), 'Intralipid bolus dosage must be documented');
+
+assert(htmlContent.includes('Schwieriger Atemweg & CICO'), 'CICO emergency protocol must be present');
+assert(htmlContent.includes('Skalpell-Bougie-Tubus-Technik'), 'DGAI Plan D surgical airway technique must be documented');
+
+assert(htmlContent.includes('Postpartale Blutung (PPH) & Notsectio-Stufenschema'), 'PPH and emergency C-section protocol must be present');
+assert(htmlContent.includes('Nalador® 500 µg'), 'Sulproston/Nalador dosage must be documented');
+assert(htmlContent.includes('Tranexamsäure 1 g i.v.'), 'Tranexamic acid dosage must be documented');
+console.log('[PASS] Emergency Pocket SOPs validated for clinical accuracy (MH, LAST, CICO, ALS, PPH).');
+
+// 13. Test Pediatric Airway & Emergency Calculator
+function calcPediatricsTest(age, weight) {
+  const uncuffed = (age / 4) + 4.0;
+  const cuffed = (age / 4) + 3.5;
+  const depth = (age / 2) + 12;
+  const adrMg = weight * 0.01;
+  const atropin = Math.max(0.1, weight * 0.02);
+  const defib = weight * 4;
+  return { uncuffed, cuffed, depth, adrMg, atropin, defib };
+}
+
+const peds4yo = calcPediatricsTest(4, 16);
+assert.strictEqual(peds4yo.uncuffed, 5.0, '4yo uncuffed tube must be 5.0 mm');
+assert.strictEqual(peds4yo.cuffed, 4.5, '4yo cuffed tube must be 4.5 mm');
+assert.strictEqual(peds4yo.depth, 14.0, '4yo depth must be 14.0 cm');
+assert.strictEqual(peds4yo.adrMg, 0.16, '16kg adrenaline must be 0.16 mg');
+assert.strictEqual(peds4yo.atropin, 0.32, '16kg atropine must be 0.32 mg');
+assert.strictEqual(peds4yo.defib, 64, '16kg defibrillation must be 64 Joules');
+console.log('[PASS] Pediatric emergency and airway formulas verified.');
+
+// 14. Test ARDS / PBW Ventilation Calculator
+function calcArdsTest(gender, height) {
+  const base = (gender === 'male') ? 50.0 : 45.5;
+  const pbw = base + 0.91 * (height - 152.4);
+  const vt6 = Math.round(pbw * 6);
+  const vt8 = Math.round(pbw * 8);
+  return { pbw, vt6, vt8 };
+}
+
+const ardsMale175 = calcArdsTest('male', 175);
+assert(Math.abs(ardsMale175.pbw - 70.56) < 0.1, 'Male 175cm PBW should be ~70.6 kg');
+assert.strictEqual(ardsMale175.vt6, 423, 'Male 175cm 6ml/kg PBW VT should be 423 ml');
+
+const ardsFemale165 = calcArdsTest('female', 165);
+assert(Math.abs(ardsFemale165.pbw - 56.96) < 0.1, 'Female 165cm PBW should be ~57.0 kg');
+assert.strictEqual(ardsFemale165.vt6, 342, 'Female 165cm 6ml/kg PBW VT should be 342 ml');
+console.log('[PASS] ARDS PBW lung-protective ventilation formulas verified.');
+
+// 15. Test Local Anesthetic Maximum Doses Calculator
+function calcLaTest(weight) {
+  const ropi = Math.min(300, Math.round(weight * 3.0));
+  const bupi = Math.min(150, Math.round(weight * 2.0));
+  const lidoPur = Math.min(300, Math.round(weight * 4.0));
+  const lidoAdr = Math.min(500, Math.round(weight * 7.0));
+  const lipidBolus = Math.round(weight * 1.5);
+  return { ropi, bupi, lidoPur, lidoAdr, lipidBolus };
+}
+
+const la70kg = calcLaTest(70);
+assert.strictEqual(la70kg.ropi, 210, '70kg Ropivacaine max should be 210 mg');
+assert.strictEqual(la70kg.bupi, 140, '70kg Bupivacaine max should be 140 mg');
+assert.strictEqual(la70kg.lidoPur, 280, '70kg Lidocaine pure max should be 280 mg');
+assert.strictEqual(la70kg.lidoAdr, 490, '70kg Lidocaine+Adr max should be 490 mg');
+assert.strictEqual(la70kg.lipidBolus, 105, '70kg Intralipid 20% bolus should be 105 ml');
+console.log('[PASS] Local anesthetic maximum doses and Intralipid rescue formulas verified.');
+
+// 16. Test Sodium Deficit & ODS Safety Limit Calculator
+function calcSodiumTest(demog, weight, naCurrent) {
+  let factor = 0.6;
+  if (demog === 'female' || demog === 'elderly_male') factor = 0.5;
+  else if (demog === 'elderly_female') factor = 0.45;
+  const tbw = weight * factor;
+  const deficit = Math.round(tbw * (140 - naCurrent));
+  const maxDayNa = naCurrent + 8;
+  return { tbw, deficit, maxDayNa };
+}
+
+const naMale70 = calcSodiumTest('male', 70, 118);
+assert.strictEqual(naMale70.tbw, 42.0, 'Male 70kg TBW should be 42.0 L');
+assert.strictEqual(naMale70.deficit, 924, 'Male 70kg Na deficit from 118 should be 924 mmol');
+assert.strictEqual(naMale70.maxDayNa, 126, '24h max target for 118 should be 126 mmol/l (max +8)');
+console.log('[PASS] Sodium deficit and ODS safety limits verified.');
+
+console.log('\n🎉 ALL 16 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 

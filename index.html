@@ -63,6 +63,9 @@
           <button id="pocket-trigger" class="pill-btn" title="Notfall- & Medikamenten-Taschenkarte">
             <span>📇</span> <span class="pill-btn-text">Notfallkarte</span>
           </button>
+          <button id="calc-trigger" class="pill-btn" title="Klinik- & Facharztrechner (Kinder, ARDS, LA, Na)">
+            <span>🧮</span> <span class="pill-btn-text">Rechner</span>
+          </button>
           <button id="sub-toggle" class="pill-btn active" title="Untertitelmodus für Türkisch umschalten">
             <span>🇹🇷</span> <span class="pill-btn-text">Untertitel</span>
           </button>
@@ -88,7 +91,7 @@
       <div class="dash-compact-left">
         <div class="dash-stat-item">
           <span class="dash-label">Lernfortschritt:</span>
-          <span id="stat-progress-text" class="dash-val">0 / 580 (0%)</span>
+          <span id="stat-progress-text" class="dash-val">0 / 600 (0%)</span>
         </div>
         <div class="dash-progress-bar-wrap">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
@@ -585,10 +588,20 @@
         <button id="pocket-modal-close" class="btn-icon">✕</button>
       </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+        <!-- Quick Category Filter Bar for Emergency Cards -->
+        <div class="pocket-filter-bar" id="pocket-filter-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; position: sticky; top: 0; background: var(--bg-secondary); padding: 0.5rem 0; z-index: 10; border-bottom: 1px solid var(--border-color);">
+          <button class="pocket-filter-btn active" data-filter="all">Alle (13)</button>
+          <button class="pocket-filter-btn" data-filter="tox">⚠️ MH & LAST</button>
+          <button class="pocket-filter-btn" data-filter="airway">🫁 Atemweg & CICO</button>
+          <button class="pocket-filter-btn" data-filter="cpr">❤️‍🔥 Notfall & CPR</button>
+          <button class="pocket-filter-btn" data-filter="bleed">🩸 Blutung & PPH</button>
+          <button class="pocket-filter-btn" data-filter="drugs">💊 Dosierungen</button>
+        </div>
+
         <div class="pocket-grid" style="display: grid; gap: 1rem;">
           
           <!-- 1. Maligne Hyperthermie -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+          <div class="pocket-card-item" data-category="tox" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
             <div class="pocket-card-title" style="font-weight: 700; color: #ef4444; margin-bottom: 0.5rem;">⚠️ Maligne Hyperthermie (MH)</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Trigger stoppen:</strong></td><td>Volatile Anästhetika + Succinylcholin sofort absetzen, frisches Schlauchsystem, Atemkalk wechseln</td></tr>
@@ -596,7 +609,6 @@
               <tr><td><strong>Beatmung:</strong></td><td>FiO₂ 1.0, <strong>Hyperventilation (2–3× AMV)</strong>, AF ↑, Frischgasflow ≥ 10 l/min</td></tr>
               <tr><td><strong>Kühlung:</strong></td><td>Kalte Infusionen (4°C), Eispacks (Axilla, Leiste, Nacken), Blasenspülung → Ziel: KKT < 38.5°C</td></tr>
               <tr><td><strong>Azidose:</strong></td><td>NaHCO₃ 1–2 mmol/kg bei pH < 7.2, BGA alle 10 Min</td></tr>
-              <tr><td><strong>Hyperkaliämie:</strong></td><td>Glucose-Insulin (0.5 g/kg Glucose + 0.15 IE/kg Insulin), CaCl₂ 10–20 mg/kg, Hyperventilation</td></tr>
               <tr><td><strong>Arrhythmien:</strong></td><td>Amiodaron 5 mg/kg i.v., <strong>kein Kalziumantagonist!</strong></td></tr>
               <tr><td><strong>Labor:</strong></td><td>CK (Peak nach 12–24h), Myoglobin, K⁺, BGA, Laktat, Gerinnung</td></tr>
               <tr><td><strong>MH-Hotline:</strong></td><td>+49 (0) 7571 100-2828 (Schwenningen, 24/7)</td></tr>
@@ -604,7 +616,7 @@
           </div>
 
           <!-- 2. Lokalanästhetika-Intoxikation (LAST) -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #0d9488;">
+          <div class="pocket-card-item" data-category="tox" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #0d9488;">
             <div class="pocket-card-title" style="font-weight: 700; color: #0d9488; margin-bottom: 0.5rem;">💉 Lokalanästhetika-Toxizität (LAST)</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Frühzeichen:</strong></td><td>Metallgeschmack, periorales Kribbeln, Tinnitus, Schwindel, Unruhe → dann Krampfanfall → Koma → Herzstillstand</td></tr>
@@ -619,7 +631,7 @@
           </div>
 
           <!-- 3. Anaphylaxie -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+          <div class="pocket-card-item" data-category="cpr" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
             <div class="pocket-card-title" style="font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">🚨 Anaphylaxie (Grad I–IV nach Ring & Messmer)</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Grad I:</strong></td><td>Hautreaktion (Flush, Urtikaria, Juckreiz) → H1-Blocker (Clemastin 2 mg i.v.)</td></tr>
@@ -635,8 +647,8 @@
           </div>
 
           <!-- 4. Schwieriger Atemweg / CICO -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #dc2626;">
-            <div class="pocket-card-title" style="font-weight: 700; color: #dc2626; margin-bottom: 0.5rem;">🫁 Schwieriger Atemweg (DAS/DGAI Algorithmus)</div>
+          <div class="pocket-card-item" data-category="airway" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #dc2626;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #dc2626; margin-bottom: 0.5rem;">🫁 Schwieriger Atemweg & CICO (DAS/DGAI Algorithmus)</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Plan A:</strong></td><td>Maskenbeatmung optimieren (BURP, 2-Hand, Guedel/Wendl) → Intubation max. 3 Versuche + 1 Erfahrener</td></tr>
               <tr><td><strong>Plan B:</strong></td><td><strong>Supraglottischer Atemweg</strong> (Larynxmaske, i-gel) max. 3 Versuche, 2. Generation bevorzugen</td></tr>
@@ -648,7 +660,7 @@
           </div>
 
           <!-- 5. Laryngospasmus -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+          <div class="pocket-card-item" data-category="airway" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
             <div class="pocket-card-title" style="font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem;">🔇 Laryngospasmus</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Sofort:</strong></td><td>100% O₂, Stimulus entfernen (Absaugen stoppen!), Esmarch-Handgriff, CPAP mit Maske</td></tr>
@@ -660,7 +672,7 @@
           </div>
 
           <!-- 6. Bronchospasmus -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
+          <div class="pocket-card-item" data-category="airway" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
             <div class="pocket-card-title" style="font-weight: 700; color: #06b6d4; margin-bottom: 0.5rem;">🌬️ Bronchospasmus (intraoperativ)</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Klinik:</strong></td><td>Exsp. Giemen, Spitzendruck ↑, Plateau ↓, etCO₂-Kurve abgeflacht (Haifischflosse), SpO₂ ↓</td></tr>
@@ -673,7 +685,7 @@
           </div>
 
           <!-- 7. Hohe / Totale Spinalanästhesie -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #e11d48;">
+          <div class="pocket-card-item" data-category="cpr" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #e11d48;">
             <div class="pocket-card-title" style="font-weight: 700; color: #e11d48; margin-bottom: 0.5rem;">🔺 Hohe / Totale Spinalanästhesie</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Zeichen:</strong></td><td>Sensibilitätsverlust > Th4, Armschwäche, Heiserkeit (N. recurrens), Miosis (Horner-Syndrom), Dyspnoe → Apnoe</td></tr>
@@ -685,7 +697,7 @@
           </div>
 
           <!-- 8. Sugammadex-Dosierung -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+          <div class="pocket-card-item" data-category="drugs" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
             <div class="pocket-card-title" style="font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem;">💊 Muskelrelaxanzien & Reversierung</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Sugammadex:</strong></td><td></td></tr>
@@ -700,7 +712,7 @@
           </div>
 
           <!-- 9. Kreislaufstillstand / ALS -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #b91c1c;">
+          <div class="pocket-card-item" data-category="cpr" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #b91c1c;">
             <div class="pocket-card-title" style="font-weight: 700; color: #b91c1c; margin-bottom: 0.5rem;">❤️‍🔥 Kreislaufstillstand (ALS/ERC 2021)</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>VF / pVT:</strong></td><td>Defibrillation 150–360 J biphasisch → 2 Min CPR → Rhythmuskontrolle</td></tr>
@@ -714,7 +726,7 @@
           </div>
 
           <!-- 10. Perioperative Blutung & Transfusion -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ea580c;">
+          <div class="pocket-card-item" data-category="bleed" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ea580c;">
             <div class="pocket-card-title" style="font-weight: 700; color: #ea580c; margin-bottom: 0.5rem;">🩸 Massivtransfusion & Gerinnungsmanagement</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Definition:</strong></td><td>≥ 10 EK/24h, oder ≥ 4 EK/1h, oder Blutverlust > 1.5 ml/kg/min</td></tr>
@@ -728,7 +740,7 @@
           </div>
 
           <!-- 11. Spannungspneumothorax -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #7c3aed;">
+          <div class="pocket-card-item" data-category="airway" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #7c3aed;">
             <div class="pocket-card-title" style="font-weight: 700; color: #7c3aed; margin-bottom: 0.5rem;">💨 Spannungspneumothorax</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr><td style="width: 28%;"><strong>Klinik:</strong></td><td>Einseitig fehlendes AG, Trachealdeviation kontralateral, Hautemphysem, obere Einflussstauung, SpO₂ ↓, Spitzendruck ↑↑</td></tr>
@@ -740,7 +752,7 @@
           </div>
 
           <!-- 12. Wichtige Narkose-Dosierungen -->
-          <div class="pocket-card-item" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #059669;">
+          <div class="pocket-card-item" data-category="drugs" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #059669;">
             <div class="pocket-card-title" style="font-weight: 700; color: #059669; margin-bottom: 0.5rem;">💊 Wichtige Narkosemedikamente – Schnellreferenz</div>
             <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
               <tr style="background: rgba(5,150,105,0.08);"><td style="width: 28%;"><strong>Propofol:</strong></td><td>Einleitung: 1.5–2.5 mg/kg, TIVA: 4–12 mg/kg/h, <strong>KI: Kinder Langzeit-Sedierung (PRIS!)</strong></td></tr>
@@ -756,7 +768,128 @@
             </table>
           </div>
 
+          <!-- 13. Postpartale Blutung (PPH) & Notsectio -->
+          <div class="pocket-card-item" data-category="bleed" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #db2777;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #db2777; margin-bottom: 0.5rem;">🤰 Postpartale Blutung (PPH) & Notsectio-Stufenschema</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
+              <tr><td style="width: 28%;"><strong>Definition & 4 T's:</strong></td><td>Blutverlust > 1000 ml (Sectio) / > 500 ml (Spontan) oder HKL-Instabilität. <strong>Tonus</strong> (Atonie 70%), <strong>Trauma</strong>, <strong>Tissue</strong> (Plazenta), <strong>Thrombin</strong> (Koagulopathie).</td></tr>
+              <tr><td><strong>1. Stufe – Oxytocin:</strong></td><td><strong>3–5 IE i.v. langsam</strong> als Kurzinfusion (Cave: Hypotonie/Tachykardie!), gefolgt von 10–20 IE in 500 ml Trägerlösung kontinuierlich.</td></tr>
+              <tr><td><strong>2. Stufe – Sulproston:</strong></td><td><strong>Nalador® 500 µg</strong> in 500 ml NaCl, initial 100 µg/h, titrierbar bis max. 500 µg in 10h. <strong>Cave:</strong> Koronarspasmus, Asthma!</td></tr>
+              <tr><td><strong>3. Stufe – Ergometrin:</strong></td><td><strong>Methergin® 0.2 mg i.v./i.m.</strong> (nur bei Therapieversagen; <strong>KI:</strong> schwere Hypertonie, Präeklampsie).</td></tr>
+              <tr><td><strong>Hämostase & TXA:</strong></td><td><strong>Tranexamsäure 1 g i.v.</strong> sofort (< 3h nach Entbindung!), <strong>Fibrinogen 2–4 g i.v.</strong> (Ziel > 2.0–2.5 g/l), CaCl₂ 10 ml bei Massivtransfusion.</td></tr>
+              <tr><td><strong>Interventionell:</strong></td><td>Bakri-Ballontamponade, B-Lynch-Kompressionsnaht, A.-uterina-Embolisation, Ultima Ratio: Hysterektomie.</td></tr>
+              <tr><td><strong>Notsectio (E-E-Zeit):</strong></td><td>Entscheidungs-Entbindungs-Zeit <strong>≤ 20 Minuten</strong>. RSI mit Linksseitenkippung (Aortokavale Kompression!), Thiopental 4–5 mg/kg + Succinylcholin 1.5 mg/kg (oder Rocuronium 1.2 mg/kg + Sugammadex bereit).</td></tr>
+            </table>
+          </div>
+
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clinical Anesthesia Calculator Modal -->
+  <div id="calc-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 860px;">
+      <div class="modal-header">
+        <h2>🧮 Klinik- & Facharzt-Rechner</h2>
+        <button id="calc-modal-close" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+        <!-- Calculator Tab Switcher -->
+        <div class="calc-tab-bar" id="calc-tab-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+          <button class="calc-tab-btn active" data-tab="peds">👶 Kinder-Notfall & Tubus</button>
+          <button class="calc-tab-btn" data-tab="ards">🫁 ARDS & Beatmung (PBW)</button>
+          <button class="calc-tab-btn" data-tab="la">💉 Lokalanästhetika (LAST)</button>
+          <button class="calc-tab-btn" data-tab="na">🧪 Natrium-Korrektur (ODS)</button>
+        </div>
+
+        <!-- 1. Pediatric Emergency & Airway Calculator -->
+        <div id="calc-panel-peds" class="calc-panel active">
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Alter des Kindes (Jahre):</label>
+                <input type="number" id="peds-age-input" min="0" max="16" step="0.5" value="4" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Körpergewicht (kg):</label>
+                <input type="number" id="peds-weight-input" min="1" max="80" step="0.5" value="16" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+                <small style="color: var(--text-muted); font-size: 0.75rem;">Formel: (Alter + 4) × 2</small>
+              </div>
+            </div>
+          </div>
+
+          <div id="peds-calc-results" class="calc-result-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 2. ARDS & Lungenprotektive Beatmung Calculator -->
+        <div id="calc-panel-ards" class="calc-panel" style="display: none;">
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Biologisches Geschlecht:</label>
+                <select id="ards-gender-input" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+                  <option value="male">Männlich (♂)</option>
+                  <option value="female">Weiblich (♀)</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Körpergröße (cm):</label>
+                <input type="number" id="ards-height-input" min="120" max="220" value="175" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+              </div>
+            </div>
+          </div>
+
+          <div id="ards-calc-results" class="calc-result-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 3. Local Anesthetic Maximum Doses Calculator -->
+        <div id="calc-panel-la" class="calc-panel" style="display: none;">
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <div style="max-width: 320px;">
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Patientengewicht (kg):</label>
+              <input type="number" id="la-weight-input" min="10" max="180" value="70" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+            </div>
+          </div>
+
+          <div id="la-calc-results" class="calc-result-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 4. Sodium Correction Calculator -->
+        <div id="calc-panel-na" class="calc-panel" style="display: none;">
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Geschlecht & Alter:</label>
+                <select id="na-demog-input" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+                  <option value="male">Mann, erwachsen (60% TBW)</option>
+                  <option value="female">Frau, erwachsen (50% TBW)</option>
+                  <option value="elderly_male">Mann, älter (50% TBW)</option>
+                  <option value="elderly_female">Frau, älter (45% TBW)</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Gewicht (kg):</label>
+                <input type="number" id="na-weight-input" min="30" max="160" value="70" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">Aktuelles Na⁺ (mmol/l):</label>
+                <input type="number" id="na-current-input" min="95" max="160" value="118" class="form-control" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary);">
+              </div>
+            </div>
+          </div>
+
+          <div id="na-calc-results" class="calc-result-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -771,5 +904,20 @@
   <!-- Question Data & Application Scripts -->
   <script src="questions.js"></script>
   <script src="app.js"></script>
+
+  <!-- Service Worker Registration for Offline PWA Mode -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => {
+            console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
+          })
+          .catch((err) => {
+            console.warn('[PWA] Service Worker registration failed:', err);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
