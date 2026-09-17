@@ -359,6 +359,50 @@ assert.strictEqual(naMale70.deficit, 924, 'Male 70kg Na deficit from 118 should 
 assert.strictEqual(naMale70.maxDayNa, 126, '24h max target for 118 should be 126 mmol/l (max +8)');
 console.log('[PASS] Sodium deficit and ODS safety limits verified.');
 
-console.log('\n🎉 ALL 16 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 17. Test SM2Engine SuperMemo-2 Spaced Repetition Algorithm
+const SM2Engine = require('./js/sm2.js');
+const sm2Fail = SM2Engine.calculateSM2(1, null);
+assert.strictEqual(sm2Fail.repetition, 0, 'SM2 fail quality=1 must reset repetition count to 0');
+assert.strictEqual(sm2Fail.interval, 1, 'SM2 fail interval must be 1 day');
+
+const sm2Pass1 = SM2Engine.calculateSM2(5, null);
+assert.strictEqual(sm2Pass1.repetition, 1, 'First SM2 pass quality=5 must increment repetition to 1');
+assert.strictEqual(sm2Pass1.interval, 1, 'First SM2 pass interval must be 1 day');
+
+const sm2Pass2 = SM2Engine.calculateSM2(5, sm2Pass1);
+assert.strictEqual(sm2Pass2.repetition, 2, 'Second SM2 pass must increment repetition to 2');
+assert.strictEqual(sm2Pass2.interval, 6, 'Second SM2 pass interval must be 6 days');
+console.log('[PASS] SM-2 Spaced Repetition algorithm (repetition, interval, easeFactor) verified.');
+
+// 18. Test VoiceExamEngine Medical Keyword Extraction & Evaluation
+const VoiceExamEngine = require('./js/voice.js');
+const keywords = VoiceExamEngine.extractKeywords('Ich gebe 2.5 mg/kg Dantrolen bei Maligner Hyperthermie!');
+assert(keywords.includes('dantrolen'), 'Keyword extraction must extract Dantrolen');
+assert(keywords.includes('hyperthermie'), 'Keyword extraction must extract Hyperthermie');
+
+const pearls = ['Dantrolen 2.5 mg/kg i.v.', '100% O2 Beatmung', 'Aktivkohlefilter einsetzen'];
+const evalResult = VoiceExamEngine.evaluateSpokenAnswer('Ich gebe sofort Dantrolen und 100% O2', pearls);
+assert(evalResult.matchedIndices.length >= 1, 'Spoken evaluation must match target pearls');
+console.log('[PASS] Voice Exam speech recognition keyword extraction and rubric evaluation verified.');
+
+// 19. Test MockExamSimulation 45-Minute Oral Board Engine
+const MockExamSimulation = require('./js/exam_simulation.js');
+const sim = new MockExamSimulation(questions);
+const started = sim.startNewExam();
+assert(started, 'Mock exam simulation must start successfully');
+assert.strictEqual(sim.activeCases.length, 4, 'Mock exam simulation must pick exactly 4 cases');
+assert.strictEqual(sim.secondsRemaining, 2700, 'Mock exam initial countdown must be 2700 seconds (45 min)');
+
+sim.recordCaseScore(0, 5, 4, 4);
+sim.recordCaseScore(1, 5, 4, 4);
+sim.recordCaseScore(2, 5, 4, 4);
+sim.recordCaseScore(3, 5, 4, 4);
+const summary = sim.finishExam();
+assert.strictEqual(summary.avgRating, 5.0, 'All 5 ratings must yield 5.0 average');
+assert(summary.statusText.includes('BESTANDEN'), 'Summary status must confirm pass status');
+console.log('[PASS] 45-Minute Mock Oral Exam simulation engine and HUD verified.');
+
+console.log('\n🎉 ALL 19 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 

@@ -2200,8 +2200,171 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- 45-MIN TIMED MOCK ORAL EXAM MODAL CONTROLLER ---
+  const elMockExamModal = document.getElementById('mock-exam-modal');
+  const elMockExamTrigger = document.getElementById('mock-exam-trigger');
+  const elMockExamClose = document.getElementById('mock-exam-close');
+  const elMockTimerDisplay = document.getElementById('mock-timer-display');
+  const elMockCaseTabs = document.getElementById('mock-case-tabs');
+  const elMockExamBodyContent = document.getElementById('mock-exam-body-content');
+  const elMockExamReport = document.getElementById('mock-exam-report');
+
+  let mockExamEngine = null;
+  if (typeof MockExamSimulation !== 'undefined') {
+    mockExamEngine = new MockExamSimulation(EXAM_QUESTIONS);
+  }
+
+  function renderMockExamHUD() {
+    if (!mockExamEngine || !elMockCaseTabs) return;
+    elMockCaseTabs.innerHTML = '';
+    mockExamEngine.activeCases.forEach((c, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'mock-tab-btn' + (idx === mockExamEngine.currentCaseIndex ? ' active' : '');
+      const isScored = !!mockExamEngine.scores[idx];
+      btn.textContent = `Fall ${idx + 1}` + (isScored ? ' ✓' : '');
+      btn.addEventListener('click', () => {
+        mockExamEngine.currentCaseIndex = idx;
+        renderMockExamActiveCase();
+      });
+      elMockCaseTabs.appendChild(btn);
+    });
+  }
+
+  function renderMockExamActiveCase() {
+    renderMockExamHUD();
+    if (!mockExamEngine || !elMockExamBodyContent) return;
+    const activeQ = mockExamEngine.activeCases[mockExamEngine.currentCaseIndex];
+    if (!activeQ) return;
+
+    if (elMockExamReport) elMockExamReport.style.display = 'none';
+    elMockExamBodyContent.style.display = 'block';
+
+    const parsed = parseOralExamCase(activeQ);
+
+    elMockExamBodyContent.innerHTML = `
+      <div class="mock-case-view" style="background: var(--bg-secondary); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-color); text-transform: uppercase;">
+            Fall ${mockExamEngine.currentCaseIndex + 1} von 4 &bull; ${parsed.clinicalContext}
+          </span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">${activeQ.category}</span>
+        </div>
+
+        <h3 style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.5;">${parsed.stem}</h3>
+
+        <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.88rem;">
+          <strong>📊 Vitalparameter & Befunde:</strong> ${parsed.vitals.notes} <br>
+          <small style="color: var(--text-secondary);">SpO2: ${parsed.vitals.spo2} | RR: ${parsed.vitals.bp} | HF: ${parsed.vitals.hr} | etCO2: ${parsed.vitals.etco2} | Temp: ${parsed.vitals.temp}</small>
+        </div>
+
+        <div style="background: rgba(239, 68, 68, 0.08); border-left: 3px solid #ef4444; padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem; font-size: 0.88rem;">
+          <strong>⚠️ Prüfer-Intervention:</strong> ${parsed.examinerIntervention}
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
+          <h4 style="margin-bottom: 0.5rem; font-size: 0.95rem;">🗣️ Prüfungs-Bewertung für Fall ${mockExamEngine.currentCaseIndex + 1}:</h4>
+          <div class="sm2-btn-group">
+            <button class="sm2-btn hard" data-rating="1">🔴 Mangelhaft (Note 5)</button>
+            <button class="sm2-btn good" data-rating="3">🟡 Befriedigend (Note 3)</button>
+            <button class="sm2-btn easy" data-rating="5">🟢 Sehr Gut (Note 1)</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const ratingBtns = elMockExamBodyContent.querySelectorAll('.sm2-btn');
+    ratingBtns.forEach(b => {
+      b.addEventListener('click', (e) => {
+        const rating = parseInt(e.currentTarget.dataset.rating, 10);
+        mockExamEngine.recordCaseScore(mockExamEngine.currentCaseIndex, rating, 4, 4);
+
+        if (mockExamEngine.currentCaseIndex < 3) {
+          mockExamEngine.nextCase();
+          renderMockExamActiveCase();
+        } else {
+          showMockExamSummary();
+        }
+      });
+    });
+  }
+
+  function showMockExamSummary() {
+    if (!mockExamEngine || !elMockExamReport) return;
+    const summary = mockExamEngine.finishExam();
+
+    if (elMockExamBodyContent) elMockExamBodyContent.style.display = 'none';
+    elMockExamReport.style.display = 'block';
+
+    let scoresHtml = summary.scores.map((s, idx) => {
+      if (!s) return '';
+      return `<div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+        <span>Fall ${idx + 1}: ${s.title.substring(0, 45)}...</span>
+        <strong>Bewertung: ${s.rating === 5 ? '🟢 Sehr Gut (1.0)' : (s.rating === 3 ? '🟡 Befriedigend (3.0)' : '🔴 Mangelhaft (5.0)')}</strong>
+      </div>`;
+    }).join('');
+
+    elMockExamReport.innerHTML = `
+      <div style="text-align: center; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 8px;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">${summary.statusText}</h2>
+        <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-color); margin-bottom: 1rem;">${summary.grade}</div>
+        <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">Benötigte Prüfungszeit: ${Math.floor(summary.timeSpentSeconds / 60)} Min. ${summary.timeSpentSeconds % 60} Sek.</p>
+
+        <div style="text-align: left; max-width: 600px; margin: 0 auto 1.5rem auto;">
+          ${scoresHtml}
+        </div>
+
+        <button id="btn-mock-restart" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">⏱️ Neue Prüfungssimulation starten</button>
+      </div>
+    `;
+
+    const btnRestart = document.getElementById('btn-mock-restart');
+    if (btnRestart) {
+      btnRestart.addEventListener('click', () => {
+        if (mockExamEngine) {
+          mockExamEngine.startNewExam();
+          renderMockExamActiveCase();
+        }
+      });
+    }
+  }
+
+  if (elMockExamTrigger && elMockExamModal) {
+    elMockExamTrigger.addEventListener('click', () => {
+      elMockExamModal.classList.add('active');
+      if (mockExamEngine) {
+        mockExamEngine.onTickCallback = (secs, formatted) => {
+          if (elMockTimerDisplay) {
+            elMockTimerDisplay.textContent = formatted;
+            if (secs < 300) {
+              elMockTimerDisplay.className = 'hud-timer danger';
+            } else if (secs < 600) {
+              elMockTimerDisplay.className = 'hud-timer warning';
+            } else {
+              elMockTimerDisplay.className = 'hud-timer';
+            }
+          }
+        };
+
+        mockExamEngine.onFinishCallback = () => {
+          showMockExamSummary();
+        };
+
+        mockExamEngine.startNewExam();
+        renderMockExamActiveCase();
+      }
+    });
+  }
+
+  if (elMockExamClose && elMockExamModal) {
+    elMockExamClose.addEventListener('click', () => {
+      closeModal(elMockExamModal);
+      if (mockExamEngine) mockExamEngine.stopTimer();
+    });
+  }
+
   // Initializing App
   initCategoryDropdown();
   updateAnalytics();
   renderCurrentQuestion();
 });
+
