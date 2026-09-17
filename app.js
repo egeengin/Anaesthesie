@@ -3,18 +3,18 @@
  * Supports: Open Q&A Flashcards (self-assessment) + Multi-Choice Questions
  */
 
+// --- Storage Keys & Cloud Sync Constants ---
+const STORAGE_KEY = 'facharzt_anaesthesie_state_v2';
+const AUTH_KEY = 'facharzt_auth_v1';
+const CORRECT_PASS = 'egemelis';
+const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdab2880b07e2';
+
 document.addEventListener('DOMContentLoaded', () => {
   // Check dataset availability
   if (typeof EXAM_QUESTIONS === 'undefined' || !EXAM_QUESTIONS.length) {
     console.error('EXAM_QUESTIONS data not loaded!');
     return;
   }
-
-  // --- Storage Keys & Cloud Sync ---
-  const STORAGE_KEY = 'facharzt_anaesthesie_state_v2';
-  const AUTH_KEY = 'facharzt_auth_v1';
-  const CORRECT_PASS = 'egemelis';
-  const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdab2880b07e2';
 
   // --- Initial Application State ---
   let state = {
