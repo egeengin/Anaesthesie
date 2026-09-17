@@ -159,8 +159,35 @@
       </div>
     </section>
 
+    <!-- 3-Mode Persistent Study Switcher -->
+    <section class="study-mode-switcher-bar">
+      <div class="study-mode-pills" role="tablist" aria-label="Lernmodus auswählen">
+        <button id="mode-tab-sim" class="study-mode-pill active" data-study-mode="simulation" role="tab" aria-selected="true" title="Interaktiver mündlicher Prüfungsdialog (ÄKNO)">
+          <span class="mode-icon">👨‍⚕️</span>
+          <span class="mode-info">
+            <strong>Prüfer-Simulation</strong>
+            <small>Stufenweiser Falldialog & Mündliche Antwort</small>
+          </span>
+        </button>
+        <button id="mode-tab-guide" class="study-mode-pill" data-study-mode="guideline" role="tab" aria-selected="false" title="Vollständige Algorithmen und Leitlinien kontinuierlich lesen">
+          <span class="mode-icon">📋</span>
+          <span class="mode-info">
+            <strong>Spickzettel & Leitfaden</strong>
+            <small>Kompakte Algorithmen & Daueransicht</small>
+          </span>
+        </button>
+        <button id="mode-tab-cloze" class="study-mode-pill" data-study-mode="flashcard" role="tab" aria-selected="false" title="Blitz-Karteikarten mit verdeckten Dosierungen">
+          <span class="mode-icon">⚡</span>
+          <span class="mode-info">
+            <strong>Blitz-Karteikarten</strong>
+            <small>Cloze-Masken für Dosierungen & Fakten</small>
+          </span>
+        </button>
+      </div>
+    </section>
+
     <!-- Main Quiz Card -->
-    <section class="quiz-card">
+    <section class="quiz-card" id="main-quiz-card">
       <div class="quiz-header">
         <div class="quiz-meta">
           <span id="badge-hy" class="badge badge-hy" style="display: none;">⭐ ÄKNO Top-Frage</span>
@@ -169,17 +196,70 @@
           <span id="badge-source" class="badge badge-source">Quelle</span>
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
         </div>
-        <div id="question-number" class="question-number">Frage 1 von 599</div>
+        <div class="quiz-header-right">
+          <div id="question-number" class="question-number">Frage 1 von 578</div>
+        </div>
       </div>
 
-      <!-- Question Text Container -->
-      <div class="question-header-row">
-        <div id="question-text" class="question-body">
-          Fragetext wird geladen...
+      <!-- Progressive Dialogue Stepper Indicator (Mode A) -->
+      <div id="stepper-indicator-bar" class="stepper-indicator-bar">
+        <div class="stepper-step active" data-step="1" id="step-node-1">
+          <span class="step-badge">1</span>
+          <span class="step-label">Ausgangsbefund</span>
         </div>
-        <button id="btn-audio-speak" class="btn-icon btn-audio" title="Frage laut vorlesen (Audio-Reader)">
+        <div class="stepper-line" id="step-line-1"></div>
+        <div class="stepper-step" data-step="2" id="step-node-2">
+          <span class="step-badge">2</span>
+          <span class="step-label">Vitalparameter</span>
+        </div>
+        <div class="stepper-line" id="step-line-2"></div>
+        <div class="stepper-step" data-step="3" id="step-node-3">
+          <span class="step-badge">3</span>
+          <span class="step-label">Prüfer-Intervention</span>
+        </div>
+        <div class="stepper-line" id="step-line-3"></div>
+        <div class="stepper-step" data-step="4" id="step-node-4">
+          <span class="step-badge">4</span>
+          <span class="step-label">Musterantwort</span>
+        </div>
+      </div>
+
+      <!-- Oral Exam Tools Bar: 60s Timer & Audio Dictation -->
+      <div class="oral-tools-bar" id="oral-tools-bar">
+        <div class="timer-pill-container">
+          <button id="btn-toggle-timer" class="oral-tool-btn" title="60-Sekunden Countdown für mündliche Antwort (T)">
+            <span class="tool-icon">⏱️</span>
+            <span id="timer-display-text" class="timer-display-text">60s Timer</span>
+          </button>
+          <div id="timer-progress-ring" class="timer-mini-bar" style="display: none;">
+            <div id="timer-mini-fill" class="timer-mini-fill"></div>
+          </div>
+        </div>
+
+        <div class="voice-pill-container">
+          <button id="btn-toggle-mic" class="oral-tool-btn" title="Antwort laut einsprechen (Web Speech API / Audio) (V)">
+            <span class="tool-icon">🎙️</span>
+            <span id="mic-status-text">Antwort einsprechen <kbd class="kbd-hint">V</kbd></span>
+          </button>
+        </div>
+
+        <button id="btn-audio-speak" class="btn-icon btn-audio" title="Fall & Fragetext laut vorlesen (Audio-Reader)">
           <span>🔊</span>
         </button>
+      </div>
+
+      <!-- Live Voice Dictation & Speech Recognition Box -->
+      <div id="speech-transcript-box" class="speech-transcript-box" style="display: none;">
+        <div class="transcript-header">
+          <div class="transcript-pulse-badge">
+            <span class="pulse-dot"></span>
+            <strong>Ihre mündliche Antwort (Live-Transkription):</strong>
+          </div>
+          <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
+        </div>
+        <div id="speech-transcript-text" class="transcript-content" placeholder="Sprechen Sie jetzt frei Ihre klinische Antwort ein...">
+          Sprechen Sie jetzt frei Ihre Antwort ein...
+        </div>
       </div>
 
       <!-- Question Image Container -->
@@ -187,48 +267,195 @@
         <img id="question-image" src="" alt="Abbildung zur Frage" class="question-image" />
       </div>
 
-      <!-- Options Container (for multi-choice questions, hidden for open Q&A) -->
-      <div id="options-container" class="options-list">
+      <!-- ==================== STEP 1: INITIAL PRESENTATION & BASELINE ==================== -->
+      <div id="step1-container" class="dialogue-step-card step-active">
+        <div class="step-card-header">
+          <span class="step-tag-pill">Schritt 1: Klinische Präsentation</span>
+          <div class="step-callout-hint">
+            <span>🗣️</span> <em>Erstbeurteilung nach ABCDE-Schema formulieren</em>
+          </div>
+        </div>
+        <div id="question-text" class="question-body">
+          Fragetext wird geladen...
+        </div>
+      </div>
+
+      <!-- Options Container (for multi-choice questions) -->
+      <div id="options-container" class="options-list" style="display: none;">
         <!-- Dynamically rendered via app.js -->
       </div>
 
-      <!-- Reveal Answer Button (for open Q&A flashcard mode) -->
-      <div id="reveal-container" class="reveal-container" style="display: none;">
-        <button id="btn-reveal" class="btn btn-reveal">
-          <span>👁️</span> Antwort anzeigen <kbd class="kbd-hint">Space</kbd>
+      <!-- ==================== STEP 2: VITALS & DIAGNOSTIC PANEL ==================== -->
+      <div id="step2-container" class="dialogue-step-card step-collapsible">
+        <button id="btn-step2-toggle" class="btn-stepper-expand" aria-expanded="false">
+          <div class="expand-btn-left">
+            <span class="step-tag-pill">Schritt 2</span>
+            <strong>📊 Vitalparameter & Befunde anfordern (BGA, EKG, Monitoring)</strong>
+          </div>
+          <span class="expand-chevron">▼</span>
         </button>
+        
+        <div id="panel-vitals" class="stepper-panel-content" style="display: none;">
+          <!-- Realistic ICU & Clinical Monitor Dashboard -->
+          <div class="clinical-monitor-dashboard" id="clinical-monitor-dashboard">
+            <!-- Vitals Row -->
+            <div class="monitor-vitals-row">
+              <div class="vital-tile vital-spo2">
+                <div class="vital-label">SpO₂</div>
+                <div class="vital-val" id="vital-val-spo2">91%</div>
+                <div class="vital-sub">Pleth. Welle gut</div>
+              </div>
+              <div class="vital-tile vital-bp">
+                <div class="vital-label">NIBD / MAP</div>
+                <div class="vital-val" id="vital-val-bp">85/50</div>
+                <div class="vital-sub" id="vital-val-map">(MAP 62 mmHg)</div>
+              </div>
+              <div class="vital-tile vital-hr">
+                <div class="vital-label">HF / Rhythmus</div>
+                <div class="vital-val" id="vital-val-hr">115 /min</div>
+                <div class="vital-sub" id="vital-val-rhythm">Sinustachykardie</div>
+              </div>
+              <div class="vital-tile vital-etco2">
+                <div class="vital-label">etCO₂</div>
+                <div class="vital-val" id="vital-val-etco2">46 mmHg</div>
+                <div class="vital-sub" id="vital-val-vent">Pmax 26 mbar</div>
+              </div>
+              <div class="vital-tile vital-temp">
+                <div class="vital-label">KKT</div>
+                <div class="vital-val" id="vital-val-temp">37,4 °C</div>
+                <div class="vital-sub">Ösophageal</div>
+              </div>
+            </div>
+
+            <!-- BGA & Labs Grid -->
+            <div class="monitor-lab-panel">
+              <div class="panel-section-title">🩸 Blutgasanalyse (BGA) & Laborparameter:</div>
+              <div class="bga-grid" id="bga-grid-container">
+                <div class="bga-item"><span class="bga-k">pH:</span> <strong class="bga-v" id="bga-val-ph">7,24</strong></div>
+                <div class="bga-item"><span class="bga-k">pO₂:</span> <strong class="bga-v" id="bga-val-po2">76 mmHg</strong></div>
+                <div class="bga-item"><span class="bga-k">pCO₂:</span> <strong class="bga-v" id="bga-val-pco2">52 mmHg</strong></div>
+                <div class="bga-item"><span class="bga-k">HCO₃⁻:</span> <strong class="bga-v" id="bga-val-hco3">19 mmol/l</strong></div>
+                <div class="bga-item"><span class="bga-k">BE:</span> <strong class="bga-v" id="bga-val-be">-6,2 mmol/l</strong></div>
+                <div class="bga-item"><span class="bga-k">Laktat:</span> <strong class="bga-v" id="bga-val-lactate">3,6 mmol/l</strong></div>
+                <div class="bga-item"><span class="bga-k">K⁺:</span> <strong class="bga-v" id="bga-val-k">5,4 mmol/l</strong></div>
+                <div class="bga-item"><span class="bga-k">Na⁺:</span> <strong class="bga-v" id="bga-val-na">136 mmol/l</strong></div>
+                <div class="bga-item"><span class="bga-k">Ca²⁺ (ion):</span> <strong class="bga-v" id="bga-val-ca">1,08 mmol/l</strong></div>
+                <div class="bga-item"><span class="bga-k">Hb / Hkt:</span> <strong class="bga-v" id="bga-val-hb">8,9 g/dl (28%)</strong></div>
+              </div>
+              <div class="diagnostic-notes" id="diagnostic-notes-box">
+                <!-- Additional clinical notes extracted or synthesized -->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- NRW Examiner Verbal Formula Callout Card -->
-      <div id="examiner-formula-card" class="examiner-formula-card" style="display: none;">
-        <div class="formula-header">
-          <span>👨‍⚕️</span> Mündliche ÄKNO-Prüfungsformel (Antwortstruktur):
-        </div>
-        <div class="formula-body">
-          <div class="formula-step"><strong>1. Problem benennen:</strong> "Klinisches Krankheitsbild & Verdachtsdiagnose definieren"</div>
-          <div class="formula-step"><strong>2. Vitalparameter & Monitoring:</strong> "SpO2, NIBD, EKG & Beatmungsdrucke prüfen"</div>
-          <div class="formula-step"><strong>3. Sofortmaßnahmen:</strong> "Oxygenierung sichern, Notfallmedikamente bereithalten"</div>
-          <div class="formula-step"><strong>4. Kausale Therapie:</strong> "Spezifisches Protokoll einleiten (MH, LAST, DAS)"</div>
+      <!-- ==================== STEP 3: EXAMINER INTERVENTION / COMPLICATION ==================== -->
+      <div id="step3-container" class="dialogue-step-card step-collapsible">
+        <button id="btn-step3-toggle" class="btn-stepper-expand" aria-expanded="false">
+          <div class="expand-btn-left">
+            <span class="step-tag-pill examiner-pill">Schritt 3</span>
+            <strong>👨‍⚕️ Prüfer-Nachfrage / Klinische Wendung einblenden</strong>
+          </div>
+          <span class="expand-chevron">▼</span>
+        </button>
+
+        <div id="panel-examiner" class="stepper-panel-content" style="display: none;">
+          <div class="examiner-dialogue-box">
+            <div class="examiner-avatar-col">
+              <div class="examiner-avatar">👨‍⚕️</div>
+              <span class="examiner-role">ÄKNO-Prüfer</span>
+            </div>
+            <div class="examiner-speech-col">
+              <div class="examiner-quote-bubble" id="examiner-quote-text">
+                "Der Prüfer hakt nach: Wie begründen Sie Ihr Vorgehen und welche Komplikation droht hier unmittelbar?"
+              </div>
+              <div class="candidate-directive">
+                👉 <strong>Ihre verbale Aufgabe:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die No-Gos!
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Answer Card (for open Q&A flashcard mode) -->
-      <div id="answer-card" class="answer-card">
-        <div class="answer-header">
-          <span>🩺</span> Antwort & Erklärung:
+      <!-- ==================== STEP 4: REVEAL BUTTON & 3 HIGH-IMPACT BLOCKS ==================== -->
+      <div id="step4-container" class="dialogue-step-card">
+        <!-- Reveal Action Button -->
+        <div id="reveal-container" class="reveal-container">
+          <button id="btn-reveal" class="btn btn-reveal-rubric">
+            <span class="reveal-icon">👁️</span> 
+            <span class="reveal-text">Schritt 4: Musterantwort & Schlüsselbegriffe freischalten</span>
+            <kbd class="kbd-hint">Space</kbd>
+          </button>
         </div>
-        <div id="answer-text" class="answer-body">
-          <!-- Dynamically populated when answer is revealed -->
-        </div>
-      </div>
 
-      <!-- Explanation Card (kept for backward compat) -->
-      <div id="explanation-card" class="explanation-card">
-        <div class="explanation-header">
-          <span>🩺</span> Medizinische Erklärung & Auswertung:
+        <!-- Cloze Controls Bar (Mode C) -->
+        <div id="cloze-controls-bar" class="cloze-controls-bar" style="display: none;">
+          <span class="cloze-hint">💡 <em>Tippen Sie auf verdeckte Felder, um einzelne Dosierungen aufzudecken, oder:</em></span>
+          <button id="btn-reveal-all-cloze" class="btn btn-sm btn-secondary">
+            <span>👁️</span> Alle Masken aufdecken <kbd class="kbd-hint">Space</kbd>
+          </button>
         </div>
-        <div id="explanation-text" class="explanation-body">
-          <!-- Dynamically populated upon checking answer -->
+
+        <!-- 3 High-Impact Model Answer Micro-Cards -->
+        <div id="high-impact-rubric" class="high-impact-rubric" style="display: none;">
+          
+          <!-- Block 1: Verbal Framework (Wie sage ich es?) -->
+          <div class="rubric-card verbal-framework-card" id="rubric-block-verbal">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">🗣️</span>
+                <h3>"Wie sage ich es?" (Verbal Framework / Redemittel)</h3>
+              </div>
+              <span class="rubric-tag">ÄKNO-Sprachmuster</span>
+            </div>
+            <div class="rubric-card-body">
+              <div class="verbal-quote" id="rubric-verbal-text">
+                <!-- Dynamically populated German verbal phrasing -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Block 2: Keywords & Dosages (Schlüsselbegriffe & Dosierungen) -->
+          <div class="rubric-card checklist-card" id="rubric-block-checklist">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">🎯</span>
+                <h3>Schlüsselbegriffe & Dosierungen (Examiner Checklist)</h3>
+              </div>
+              <span class="rubric-tag">High-Yield Fakten</span>
+            </div>
+            <div class="rubric-card-body">
+              <div class="checklist-items" id="rubric-checklist-items">
+                <!-- Dynamically populated bullet checklist -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Block 3: Critical Pitfalls (Prüfungsfalle / No-Go) -->
+          <div class="rubric-card pitfall-card" id="rubric-block-pitfall">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">⚠️</span>
+                <h3>Prüfungsfalle / No-Go (Critical Pitfalls)</h3>
+              </div>
+              <span class="rubric-tag-danger">Tödliche Fehler</span>
+            </div>
+            <div class="rubric-card-body">
+              <div class="pitfall-content" id="rubric-pitfall-text">
+                <!-- Dynamically populated critical pitfalls -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Text Accordion for In-Depth Background Reading -->
+          <details class="full-reference-accordion" id="full-reference-details">
+            <summary>📖 Vollständige Lehrbuch-Erklärung & Hintergrund anzeigen</summary>
+            <div class="full-reference-body" id="full-reference-body">
+              <!-- Full textbook answer / explanation -->
+            </div>
+          </details>
+
         </div>
       </div>
 
@@ -246,7 +473,7 @@
         </div>
       </div>
 
-      <!-- Self-Assessment Buttons (for open Q&A flashcard mode) -->
+      <!-- Self-Assessment Buttons (Oral pass/fail) -->
       <div id="self-assess-container" class="self-assess-container" style="display: none;">
         <div class="self-assess-label">Wie gut wussten Sie die Antwort?</div>
         <div class="self-assess-buttons">

@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // --- Storage Keys ---
+  // --- Storage Keys & Cloud Sync ---
   const STORAGE_KEY = 'facharzt_anaesthesie_state_v2';
   const AUTH_KEY = 'facharzt_auth_v1';
   const CORRECT_PASS = 'egemelis';
+  const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdab2880b07e2';
 
   // --- Initial Application State ---
   let state = {
@@ -25,7 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     filterMode: 'all',  // 'all', 'unanswered', 'incorrect', 'review'
     typeFilter: 'all',    // 'all', 'options', 'open', 'image'
     categoryFilter: 'all',
-    randomOrder: false
+    randomOrder: false,
+    studyMode: 'simulation', // 'simulation' (Mode A), 'guideline' (Mode B), 'flashcard' (Mode C)
+    userNotes: {},
+    stepState: {}      // { [qId]: { step: 1..4, vitalsOpen: bool, examinerOpen: bool, revealed: bool, clozesUnmasked: bool } }
   };
 
   // --- DOM Elements ---
@@ -52,25 +56,66 @@ document.addEventListener('DOMContentLoaded', () => {
   const elCategoryFilter = document.getElementById('category-filter');
   const elFilterChips = document.querySelectorAll('.filter-chip');
   const elModeSelect = document.getElementById('mode-select');
+
+  // Study Mode Switcher Tabs
+  const elModeTabSim = document.getElementById('mode-tab-sim');
+  const elModeTabGuide = document.getElementById('mode-tab-guide');
+  const elModeTabCloze = document.getElementById('mode-tab-cloze');
   
   const elBadgeType = document.getElementById('badge-type');
   const elBadgeCategory = document.getElementById('badge-category');
   const elBadgeSource = document.getElementById('badge-source');
   const elBadgeReview = document.getElementById('badge-review');
   const elQuestionNumber = document.getElementById('question-number');
+
+  // Stepper & Oral Tools Elements
+  const elStepperIndicatorBar = document.getElementById('stepper-indicator-bar');
+  const elOralToolsBar = document.getElementById('oral-tools-bar');
+  const elBtnToggleTimer = document.getElementById('btn-toggle-timer');
+  const elTimerDisplayText = document.getElementById('timer-display-text');
+  const elTimerMiniBar = document.getElementById('timer-progress-ring');
+  const elTimerMiniFill = document.getElementById('timer-mini-fill');
+  const elBtnToggleMic = document.getElementById('btn-toggle-mic');
+  const elMicStatusText = document.getElementById('mic-status-text');
+  const elSpeechTranscriptBox = document.getElementById('speech-transcript-box');
+  const elSpeechTranscriptText = document.getElementById('speech-transcript-text');
+  const elBtnClearTranscript = document.getElementById('btn-clear-transcript');
   
+  // Step Containers & Accordions
+  const elStep1Container = document.getElementById('step1-container');
+  const elStep2Container = document.getElementById('step2-container');
+  const elBtnStep2Toggle = document.getElementById('btn-step2-toggle');
+  const elPanelVitals = document.getElementById('panel-vitals');
+
+  const elStep3Container = document.getElementById('step3-container');
+  const elBtnStep3Toggle = document.getElementById('btn-step3-toggle');
+  const elPanelExaminer = document.getElementById('panel-examiner');
+  const elExaminerQuoteText = document.getElementById('examiner-quote-text');
+
+  const elStep4Container = document.getElementById('step4-container');
+  const elRevealContainer = document.getElementById('reveal-container');
+  const elBtnReveal = document.getElementById('btn-reveal');
+  const elClozeControlsBar = document.getElementById('cloze-controls-bar');
+  const elBtnRevealAllCloze = document.getElementById('btn-reveal-all-cloze');
+
+  // 3 High-Impact Model Answer Micro-Cards
+  const elHighImpactRubric = document.getElementById('high-impact-rubric');
+  const elRubricVerbalText = document.getElementById('rubric-verbal-text');
+  const elRubricChecklistItems = document.getElementById('rubric-checklist-items');
+  const elRubricPitfallText = document.getElementById('rubric-pitfall-text');
+  const elFullReferenceDetails = document.getElementById('full-reference-details');
+  const elFullReferenceBody = document.getElementById('full-reference-body');
+
   const elQuestionText = document.getElementById('question-text');
   const elOptionsContainer = document.getElementById('options-container');
   const elExplanationCard = document.getElementById('explanation-card');
   const elExplanationText = document.getElementById('explanation-text');
-
-  // New flashcard elements
-  const elQuestionImageContainer = document.getElementById('question-image-container');
-  const elQuestionImage = document.getElementById('question-image');
-  const elRevealContainer = document.getElementById('reveal-container');
-  const elBtnReveal = document.getElementById('btn-reveal');
   const elAnswerCard = document.getElementById('answer-card');
   const elAnswerText = document.getElementById('answer-text');
+
+  // Flashcard & Assessment elements
+  const elQuestionImageContainer = document.getElementById('question-image-container');
+  const elQuestionImage = document.getElementById('question-image');
   const elSelfAssessContainer = document.getElementById('self-assess-container');
   const elBtnKnewIt = document.getElementById('btn-knew-it');
   const elBtnDidntKnow = document.getElementById('btn-didnt-know');
@@ -205,9 +250,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Determine Question Type ---
+  function isOpenQuestion(q) {
+    return q.question_type === 'open' || !q.options || q.options.length === 0;
+  }
+
+  // --- Filtering Question Bank ---
+  function getFilteredQuestions() {
+    return EXAM_QUESTIONS.filter(q => {
+      // Live Global Medical Search Filter
+      if (state.searchQuery && state.searchQuery.trim()) {
+        const query = state.searchQuery.trim().toLowerCase();
+        let fullText = (q.stem_de || '') + ' ' + (q.stem_tr || '') + ' ' + (q.question_de || '') + ' ' + (q.question_tr || '') + ' ' + (q.answer_de || '') + ' ' + (q.answer_tr || '');
+        if (q.options) {
+          q.options.forEach(opt => {
+            fullText += ' ' + (opt.text_de || '') + ' ' + (opt.text_tr || '') + ' ' + (opt.explanation_de || '') + ' ' + (opt.explanation_tr || '');
+          });
+        }
+        if (state.userNotes && state.userNotes[q.id]) {
+          fullText += ' ' + state.userNotes[q.id];
+        }
+        if (!fullText.toLowerCase().includes(query)) {
+          return false;
+        }
+      }
+
+      if (state.typeFilter !== 'all') {
+        if (state.typeFilter === 'image') {
+          if (!q.image) return false;
+        } else if (state.typeFilter === 'options') {
+          if (q.question_type !== 'options') return false;
+        } else if (state.typeFilter === 'open') {
+          if (q.question_type !== 'open') return false;
+        }
+      }
+
+      if (state.categoryFilter !== 'all' && q.category !== state.categoryFilter) {
+        return false;
+      }
+
+      const qAns = state.answers[q.id];
+      const isFlagged = !!state.flagged[q.id];
+
+      if (state.filterMode === 'high_yield') {
+        return !!q.is_high_yield;
+      }
+      if (state.filterMode === 'weakness') {
+        return !qAns || !qAns.submitted || !qAns.isCorrect;
+      }
+      if (state.filterMode === 'unanswered') {
+        return !qAns || !qAns.submitted;
+      }
+      if (state.filterMode === 'incorrect') {
+        return qAns && qAns.submitted && !qAns.isCorrect;
+      }
+      if (state.filterMode === 'review') {
+        return isFlagged;
+      }
+      
+      return true;
+    });
+  }
+
+  function initCategoryDropdown() {
+    if (!elCategoryFilter) return;
+    const categories = Array.from(new Set(EXAM_QUESTIONS.map(q => q.category)));
+    elCategoryFilter.innerHTML = `<option value="all">Alle Kategorien (${EXAM_QUESTIONS.length})</option>`;
+    categories.forEach(cat => {
+      const count = EXAM_QUESTIONS.filter(q => q.category === cat).length;
+      const opt = document.createElement('option');
+      opt.value = cat;
+      opt.textContent = `${cat} (${count})`;
+      elCategoryFilter.appendChild(opt);
+    });
+    elCategoryFilter.value = state.categoryFilter || 'all';
+  }
+
   // Load state from LocalStorage
   loadState();
   checkAuthentication();
+  initCategoryDropdown();
 
   // Active question pool based on filters
   let filteredQuestions = getFilteredQuestions();
@@ -246,17 +368,461 @@ document.addEventListener('DOMContentLoaded', () => {
     return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  // --- Exam Simulation State ---
-  let examSimulation = {
-    active: false,
-    timerInterval: null,
-    secondsLeft: 2700, // 45 minutes
-    questions: []
+  // --- 60-Second Exam Step Timer Engine ---
+  let stepTimer = {
+    secondsLeft: 60,
+    interval: null,
+    isRunning: false
   };
+
+  function playAudioTone(frequency = 780, type = 'sine', duration = 0.22) {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(frequency, ctx.currentTime);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (err) {
+      // Audio context error or blocked by autoplay; fail silently
+    }
+  }
+
+  function startStepTimer() {
+    stopStepTimer();
+    stepTimer.secondsLeft = 60;
+    stepTimer.isRunning = true;
+    updateStepTimerUI();
+
+    if (elTimerMiniBar) elTimerMiniBar.style.display = 'block';
+
+    stepTimer.interval = setInterval(() => {
+      stepTimer.secondsLeft--;
+      updateStepTimerUI();
+
+      if (stepTimer.secondsLeft === 10) {
+        playAudioTone(660, 'sine', 0.25); // 10-second warning alert
+      }
+      if (stepTimer.secondsLeft <= 0) {
+        stopStepTimer();
+        playAudioTone(440, 'triangle', 0.5); // Time up alert
+      }
+    }, 1000);
+  }
+
+  function stopStepTimer() {
+    stepTimer.isRunning = false;
+    if (stepTimer.interval) {
+      clearInterval(stepTimer.interval);
+      stepTimer.interval = null;
+    }
+    updateStepTimerUI();
+  }
+
+  function toggleStepTimer() {
+    if (stepTimer.isRunning) {
+      stopStepTimer();
+    } else {
+      startStepTimer();
+    }
+  }
+
+  function updateStepTimerUI() {
+    if (!elTimerDisplayText) return;
+    if (stepTimer.isRunning) {
+      elTimerDisplayText.textContent = `${stepTimer.secondsLeft}s`;
+      if (elBtnToggleTimer) elBtnToggleTimer.classList.add('active');
+      if (elTimerMiniFill) {
+        const pct = Math.max(0, Math.min(100, (stepTimer.secondsLeft / 60) * 100));
+        elTimerMiniFill.style.width = `${pct}%`;
+        if (stepTimer.secondsLeft <= 10) {
+          elTimerMiniFill.classList.add('urgent');
+        } else {
+          elTimerMiniFill.classList.remove('urgent');
+        }
+      }
+    } else {
+      elTimerDisplayText.textContent = '60s Timer (T)';
+      if (elBtnToggleTimer) elBtnToggleTimer.classList.remove('active');
+      if (elTimerMiniBar) elTimerMiniBar.style.display = 'none';
+    }
+  }
+
+  if (elBtnToggleTimer) {
+    elBtnToggleTimer.addEventListener('click', toggleStepTimer);
+  }
+
+  // --- Voice Dictation & Web Speech API Engine ---
+  let speechRecognizer = null;
+  let isRecordingVoice = false;
+
+  function initSpeechEngine() {
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechAPI) return null;
+
+    try {
+      const rec = new SpeechAPI();
+      rec.lang = 'de-DE';
+      rec.continuous = true;
+      rec.interimResults = true;
+
+      rec.onresult = (event) => {
+        let transcript = '';
+        for (let i = 0; i < event.results.length; ++i) {
+          transcript += event.results[i][0].transcript;
+        }
+        if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+        if (elSpeechTranscriptText) {
+          elSpeechTranscriptText.textContent = transcript || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
+        }
+      };
+
+      rec.onerror = (e) => {
+        console.warn('Speech API Error:', e.error);
+        if (e.error === 'not-allowed') {
+          alert('🎙️ Mikrofonzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in den Browsereinstellungen.');
+        }
+        stopVoiceRecording();
+      };
+
+      rec.onend = () => {
+        if (isRecordingVoice) {
+          try { rec.start(); } catch (err) {}
+        }
+      };
+
+      return rec;
+    } catch (e) {
+      console.warn('Speech API init error:', e);
+      return null;
+    }
+  }
+
+  function startVoiceRecording() {
+    if (!speechRecognizer) {
+      speechRecognizer = initSpeechEngine();
+    }
+    if (!speechRecognizer) {
+      alert('🎙️ Die Web Speech API wird von diesem Browser leider nicht unterstützt (empfohlen: Chrome, Safari oder Edge).');
+      return;
+    }
+
+    try {
+      isRecordingVoice = true;
+      speechRecognizer.start();
+      if (elBtnToggleMic) elBtnToggleMic.classList.add('recording');
+      if (elMicStatusText) elMicStatusText.innerHTML = '🔴 Aufnahme läuft... <kbd class="kbd-hint">V</kbd>';
+      if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+    } catch (err) {
+      console.warn('Start voice recording error:', err);
+    }
+  }
+
+  function stopVoiceRecording() {
+    isRecordingVoice = false;
+    if (speechRecognizer) {
+      try { speechRecognizer.stop(); } catch (err) {}
+    }
+    if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
+    if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
+  }
+
+  function toggleVoiceRecording() {
+    if (isRecordingVoice) {
+      stopVoiceRecording();
+    } else {
+      startVoiceRecording();
+    }
+  }
+
+  if (elBtnToggleMic) {
+    elBtnToggleMic.addEventListener('click', toggleVoiceRecording);
+  }
+
+  if (elBtnClearTranscript && elSpeechTranscriptText) {
+    elBtnClearTranscript.addEventListener('click', () => {
+      elSpeechTranscriptText.textContent = 'Sprechen Sie jetzt frei Ihre Antwort ein...';
+    });
+  }
+
+  // --- Medical EdTech Dialogue Parser & Clinical Synthesizer ---
+  function parseOralExamCase(q) {
+    const category = q.category || 'Allgemeine Anästhesie';
+    const stem = q.stem_de || q.question_de || '';
+    const answer = q.answer_de || q.explanation_de || (q.options ? q.options.map(o => o.text_de + ': ' + o.explanation_de).join('\n') : '');
+    const answerTr = q.answer_tr || q.explanation_tr || (q.options ? q.options.map(o => o.text_tr + ': ' + o.explanation_tr).join('\n') : '');
+
+    // 1. Context & Leitsymptom
+    let clinicalContext = 'Klinischer ÄKNO-Falldialog';
+    if (category.includes('Atemweg')) clinicalContext = 'Atemwegsmanagement & Narkoseeinleitung';
+    else if (category.includes('Herz') || category.includes('Hämo')) clinicalContext = 'Kardiovaskuläres Notfallmanagement';
+    else if (category.includes('Chemie') || category.includes('Elektrolyt')) clinicalContext = 'Klinische Chemie & Elektrolyt-Homöostase';
+    else if (category.includes('Säure') || category.includes('Blutgase')) clinicalContext = 'Säure-Basen-Haushalt & Blutgase';
+    else if (category.includes('Pharmakologie')) clinicalContext = 'Klinische Pharmakologie & Spezifische Antidote';
+    else if (category.includes('Kinder') || category.includes('Pädiatrie')) clinicalContext = 'Pädiatrische Anästhesie & Notfälle';
+    else if (category.includes('Regional')) clinicalContext = 'Ultraschallgestützte Regionalanästhesie';
+    else if (category.includes('Notfall') || category.includes('Reanimation')) clinicalContext = 'Erweiterte Reanimation (ALS / ERC)';
+    else if (category.includes('Intensiv') || category.includes('Sepsis')) clinicalContext = 'Intensivmedizin & Schocktherapie';
+    else if (category.includes('Transfusion') || category.includes('Hämostase')) clinicalContext = 'Massivtransfusion & Gerinnungsmanagement';
+
+    // 2. Realistic Vitals & BGA Panel tailored to topic
+    const vitals = getRealisticVitalsForCase(category, stem, answer);
+
+    // 3. Examiner Steering / Follow-up challenge
+    let examinerIntervention = '';
+    const followUpMatches = answer.match(/([A-ZÄÖÜ][^.?!]*\?)/g);
+    if (followUpMatches && followUpMatches.length > 0 && followUpMatches[0].length > 15) {
+      examinerIntervention = `Der Prüfer hakt gezielt nach: "${followUpMatches[0].trim()}"`;
+    } else {
+      examinerIntervention = getDynamicExaminerComplication(category, stem);
+    }
+
+    // 4. Three High-Impact Model Answer Micro-Cards
+    const verbalFramework = generateVerbalFramework(category, stem, answer);
+    const checklist = generateChecklist(category, stem, answer, q.options);
+    const pitfalls = generatePitfalls(category, stem, answer);
+
+    return {
+      clinicalContext,
+      stem,
+      vitals,
+      examinerIntervention,
+      verbalFramework,
+      checklist,
+      pitfalls,
+      fullTextDE: answer,
+      fullTextTR: answerTr
+    };
+  }
+
+  function getRealisticVitalsForCase(category, stem, answer) {
+    const text = (stem + ' ' + answer).toLowerCase();
+
+    // Baseline profiles by domain
+    if (category.includes('Atemweg')) {
+      return {
+        spo2: '89%', bp: '142/88', map: '106 mmHg', hr: '110 /min', rhythm: 'Sinustachykardie',
+        etco2: '48 mmHg', vent: 'Pmax 32 mbar', temp: '36,8 °C',
+        ph: '7,31', po2: '62 mmHg', pco2: '51 mmHg', hco3: '24 mmol/l', be: '-1,4 mmol/l', lactate: '1,6 mmol/l',
+        k: '4,2 mmol/l', na: '140 mmol/l', ca: '1,18 mmol/l', hb: '13,2 g/dl',
+        notes: 'Auskultation: Beidseits vesikulär, verlängertes Exspirium, Mallampati IV, thyromentaler Abstand 5,5 cm.'
+      };
+    } else if (category.includes('Herz') || category.includes('Hämo')) {
+      return {
+        spo2: '93%', bp: '78/44', map: '55 mmHg', hr: '126 /min', rhythm: 'Sinustachykardie',
+        etco2: '24 mmHg', vent: 'Pmax 22 mbar', temp: '35,9 °C',
+        ph: '7,21', po2: '78 mmHg', pco2: '34 mmHg', hco3: '14 mmol/l', be: '-10,2 mmol/l', lactate: '4,8 mmol/l',
+        k: '4,8 mmol/l', na: '136 mmol/l', ca: '0,96 mmol/l', hb: '7,9 g/dl',
+        notes: 'FATE-Echokardiographie: Linker Ventrikel hyperdynam, VCI atemkollaptisch (< 1,2 cm), ScvO2 56%.'
+      };
+    } else if (category.includes('Chemie') || category.includes('Elektrolyt') || category.includes('Säure')) {
+      const isAlkalosis = text.includes('alkalose') || text.includes('hypokaliämie');
+      return {
+        spo2: '98%', bp: '118/72', map: '87 mmHg', hr: isAlkalosis ? '88 /min' : '52 /min', rhythm: isAlkalosis ? 'Sinusrhythmus' : 'Sinusbradykardie',
+        etco2: '36 mmHg', vent: 'Pmax 19 mbar', temp: '36,6 °C',
+        ph: isAlkalosis ? '7,49' : '7,19', po2: '88 mmHg', pco2: isAlkalosis ? '44 mmHg' : '32 mmHg',
+        hco3: isAlkalosis ? '32 mmol/l' : '13 mmol/l', be: isAlkalosis ? '+7,8 mmol/l' : '-13,5 mmol/l',
+        lactate: '2,8 mmol/l', k: isAlkalosis ? '2,9 mmol/l' : '6,4 mmol/l', na: '128 mmol/l', ca: '0,94 mmol/l', hb: '11,4 g/dl',
+        notes: isAlkalosis ? 'EKG: Abgeflachte T-Welle, U-Welle sichtbar; Tetanieneigung.' : 'EKG: Hohe zeltförmige T-Wellen, QRS-Verbreiterung (125 ms), AV-Block I°.'
+      };
+    } else if (category.includes('Pharmakologie') || category.includes('Notfall')) {
+      return {
+        spo2: '91%', bp: '65/35', map: '45 mmHg', hr: '140 /min', rhythm: 'Tachyarrhythmie',
+        etco2: '19 mmHg', vent: 'Pmax 30 mbar', temp: '38,8 °C',
+        ph: '7,14', po2: '72 mmHg', pco2: '56 mmHg', hco3: '17 mmol/l', be: '-11,2 mmol/l', lactate: '5,6 mmol/l',
+        k: '5,9 mmol/l', na: '141 mmol/l', ca: '1,02 mmol/l', hb: '12,0 g/dl',
+        notes: 'Monitoring: Rasch progrediente Hyperkapnie, Rigor und Temperaturanstieg (V.a. MH / LAST).'
+      };
+    } else {
+      return {
+        spo2: '96%', bp: '125/75', map: '91 mmHg', hr: '82 /min', rhythm: 'Sinusrhythmus',
+        etco2: '38 mmHg', vent: 'Pmax 21 mbar', temp: '36,7 °C',
+        ph: '7,38', po2: '92 mmHg', pco2: '41 mmHg', hco3: '24 mmol/l', be: '-0,5 mmol/l', lactate: '1,4 mmol/l',
+        k: '4,3 mmol/l', na: '139 mmol/l', ca: '1,20 mmol/l', hb: '12,8 g/dl',
+        notes: 'Vitalparameter und Monitoring im perioperativen Normbereich; Narkosetiefe adäquat.'
+      };
+    }
+  }
+
+  function getDynamicExaminerComplication(category, stem) {
+    if (category.includes('Atemweg')) {
+      return 'Der Prüfer interveniert: "Nach Narkoseeinleitung gelingt die Maskenbeatmung nur mit Mühe (SpO2 fällt auf 82%). Die direkte Laryngoskopie zeigt Cormack-Lehane Grad IV. Wie lautet Ihre strukturierte Eskalation nach dem DGAI-Stufenplan bis Plan D?"';
+    } else if (category.includes('Herz') || category.includes('Hämo')) {
+      return 'Der Prüfer steuert den Fall: "Der arterielle Druck fällt akut auf 70/40 mmHg und die etCO2 stürzt auf 14 mmHg ab. Welche 3 lebensbedrohlichen Differenzialdiagnosen müssen Sie sofort ausschließen und wie therapieren Sie?"';
+    } else if (category.includes('Chemie') || category.includes('Elektrolyt')) {
+      return 'Der Prüfer hakt nach: "Das Serum-Kalium steigt im Labor auf 6,8 mmol/l mit QRS-Verbreiterung im EKG. Nennen Sie exakt die Reihenfolge und Dosierung der medikamentösen Notfallmaßnahmen!"';
+    } else if (category.includes('Pharmakologie')) {
+      return 'Der Prüfer stellt eine Komplikation: "Unmittelbar nach Injektion klagt der Patient über periorales Kribbeln, gefolgt von einem generalisierten Krampfanfall. Welcher Notfall liegt vor und wie dosieren Sie das spezifische Antidot?"';
+    } else {
+      return 'Der Prüfer fragt weiter: "Welche pathophysiologischen Mechanismen begründen Ihre Therapiestrategie und welche gravierenden Fehler dürfen Ihnen hier unter keinen Umständen unterlaufen?"';
+    }
+  }
+
+  function generateVerbalFramework(category, stem, answer) {
+    const cleanStem = stem.replace(/[\n\r]+/g, ' ').replace(/:$/, '').trim();
+    if (category.includes('Atemweg')) {
+      return `„Ich priorisiere hier das ABCDE-Schema und sichere primär den Atemweg. Bezüglich der Fragestellung '${cleanStem}' leite ich das strukturierte Vorgehen nach den aktuellen DGAI/DAS-Leitlinien ein und halte unverzüglich das schwierige Atemwegsbesteck bereit.“`;
+    } else if (category.includes('Herz') || category.includes('Hämo')) {
+      return `„Ich fasse die Situation zusammen: Es liegt eine akute hämodynamische Instabilität vor. Ich sichere sofort Oxygenierung und Gefäßzugänge, titriere Noradrenalin zur Gewährleistung eines adäquaten Perfusionsdrucks (Ziel-MAP ≥ 65 mmHg) und führe eine gezielte Ursachenabklärung durch.“`;
+    } else if (category.includes('Chemie') || category.includes('Elektrolyt') || category.includes('Säure')) {
+      return `„Als führende Verdachtsdiagnose identifiziere ich eine schwerwiegende Störung der Elektrolyt- und Säure-Basen-Homöostase. Mein therapeutisches Konzept gliedert sich streng in: 1. Kardiale Membranstabilisierung, 2. Kausale Ursachenbehebung und 3. Forcierte Normalisierung unter engmaschiger BGA-Kontrolle.“`;
+    } else if (category.includes('Pharmakologie') || category.includes('Notfall')) {
+      return `„Ich reagiere unmittelbar auf diesen anästhesiologischen Zwischenfall: Zufuhr potenzieller Trigger sofort stoppen, 100% Sauerstoff applizieren, das Team alarmieren und das spezifische Notfallprotokoll mit der exakten Antidot-Dosierung abrufen.“`;
+    } else {
+      return `„Bezüglich '${cleanStem}' strukturiere ich meine klinische Antwort in präoperative Risikostratifizierung, intraoperatives Monitoring und zielgerichtete Therapiemaßnahmen nach aktuellen Leitlinien.“`;
+    }
+  }
+
+  function generateChecklist(category, stem, answer, options) {
+    const items = [];
+
+    // If multi-choice options exist, generate high-yield points from options
+    if (options && options.length > 0) {
+      options.slice(0, 4).forEach(opt => {
+        const status = opt.is_correct ? '✅ Richtig:' : '❌ Falsch:';
+        const expl = opt.explanation_de ? opt.explanation_de.split('.')[0] : opt.text_de;
+        items.push(`<strong>${status}</strong> ${opt.text_de} <br><small style="color: var(--text-muted);">${expl}</small>`);
+      });
+    } else {
+      // Split paragraphs or bullet points in open questions
+      const bullets = answer.split(/[•\n–-]/).map(s => s.trim()).filter(s => s.length > 15);
+      if (bullets.length >= 3) {
+        bullets.slice(0, 4).forEach(b => {
+          items.push(highlightDosagesAndUnits(b));
+        });
+      } else {
+        // Synthesize high-yield items from sentences
+        const sentences = answer.split(/[.!?]/).map(s => s.trim()).filter(s => s.length > 15);
+        if (sentences.length > 0) {
+          sentences.slice(0, 4).forEach(s => items.push(highlightDosagesAndUnits(s)));
+        } else {
+          items.push(highlightDosagesAndUnits(answer.substring(0, 180)));
+        }
+      }
+    }
+
+    return items;
+  }
+
+  function generatePitfalls(category, stem, answer) {
+    const text = (stem + ' ' + answer).toLowerCase();
+
+    if (text.includes('maligne hyperthermie') || text.includes('dantrolen')) {
+      return '❌ No-Go: Niemals Kalziumantagonisten (z. B. Diltiazem, Verapamil) bei Verdacht auf Maligne Hyperthermie geben – Gefahr des irreversiblen hyperkaliämischen Herzstillstands!';
+    } else if (text.includes('last') || text.includes('lokalanästhetik')) {
+      return '❌ No-Go: Kein Vasopressin, kein Lidocain, kein Amiodaron bei LAST! Adrenalin nur streng titriert (< 1 µg/kg) dosieren!';
+    } else if (text.includes('atemweg') || text.includes('intubat') || text.includes('cico')) {
+      return '❌ Prüfungsfalle: Mehr als 3 Intubationsversuche ohne Optimierung (Videolaryngoskopie/BURP) überschreiten. Bei CICO sofort die Koniotomie einleiten!';
+    } else if (text.includes('hyponatriäm') || text.includes('natrium')) {
+      return '❌ No-Go: Zu schneller Natriumausgleich bei chronischer Hyponatriämie (> 8–10 mmol/l/24h) birgt die tödliche Gefahr der pontinen Myelinolyse!';
+    } else if (text.includes('hyperkaliäm') || text.includes('kalium')) {
+      return '❌ No-Go: Gabe von Succinylcholin bei bekannter Hyperkaliämie oder Verbrennungen > 24h (Gefahr des Asystolie-Stillstands)!';
+    } else if (text.includes('spannungspneumothorax')) {
+      return '❌ No-Go: PEEP-Erhöhung bei V.a. Spannungspneumothorax verschärft den Kreislaufstillstand – sofort Nadel- bzw. Minithorakotomie durchführen!';
+    } else {
+      return '❌ Prüfungsfalle: Unstrukturiertes Reagieren ohne Priorisierung nach dem ABCDE-Schema sowie das Übersehen vitaler Kontraindikationen!';
+    }
+  }
+
+  function highlightDosagesAndUnits(text) {
+    if (!text) return '';
+    const unitRegex = /(?:(pH\s*\d+([.,]\d+)?)|(\b\d+([.,]\d+)?\s*(?:mg\/kg|µg\/kg|µg|mg|g|ml\/kg|ml|mmol\/l|mmol|%|IE|cmH2O|mmHg|bar|l\/min|h|min|s|°C)))(?!\w)/gi;
+    return text.replace(unitRegex, '<span class="dosage-highlight">$&</span>');
+  }
+
+  function generateClozeMaskedHtml(text) {
+    if (!text) return '';
+    const unitRegex = /(?:(pH\s*\d+([.,]\d+)?)|(\b\d+([.,]\d+)?\s*(?:mg\/kg|µg\/kg|µg|mg|g|ml\/kg|ml|mmol\/l|mmol|%|IE|cmH2O|mmHg|bar|l\/min|h|min|s|°C)))(?!\w)/gi;
+    return text.replace(unitRegex, '<span class="cloze-blur" data-cloze="$&" tabindex="0" title="Klicken zum Aufdecken">$&</span>');
+  }
+
+  // --- Multi-Mode Study Switcher Controller ---
+  function setStudyMode(mode) {
+    state.studyMode = mode;
+    saveState();
+
+    // Update active tab buttons
+    if (elModeTabSim) elModeTabSim.classList.toggle('active', mode === 'simulation');
+    if (elModeTabGuide) elModeTabGuide.classList.toggle('active', mode === 'guideline');
+    if (elModeTabCloze) elModeTabCloze.classList.toggle('active', mode === 'flashcard');
+
+    if (elModeTabSim) elModeTabSim.setAttribute('aria-selected', mode === 'simulation');
+    if (elModeTabGuide) elModeTabGuide.setAttribute('aria-selected', mode === 'guideline');
+    if (elModeTabCloze) elModeTabCloze.setAttribute('aria-selected', mode === 'flashcard');
+
+    renderCurrentQuestion();
+  }
+
+  if (elModeTabSim) elModeTabSim.addEventListener('click', () => setStudyMode('simulation'));
+  if (elModeTabGuide) elModeTabGuide.addEventListener('click', () => setStudyMode('guideline'));
+  if (elModeTabCloze) elModeTabCloze.addEventListener('click', () => setStudyMode('flashcard'));
+
+  // --- Progressive Stepper Accordion Toggles ---
+  function toggleStep2(forceOpen = null) {
+    if (!elPanelVitals || !elBtnStep2Toggle) return;
+    const isCurrentlyOpen = elPanelVitals.style.display !== 'none';
+    const nextState = (forceOpen !== null) ? forceOpen : !isCurrentlyOpen;
+    elPanelVitals.style.display = nextState ? 'block' : 'none';
+    elBtnStep2Toggle.setAttribute('aria-expanded', nextState.toString());
+    updateStepperIndicator();
+  }
+
+  function toggleStep3(forceOpen = null) {
+    if (!elPanelExaminer || !elBtnStep3Toggle) return;
+    const isCurrentlyOpen = elPanelExaminer.style.display !== 'none';
+    const nextState = (forceOpen !== null) ? forceOpen : !isCurrentlyOpen;
+    elPanelExaminer.style.display = nextState ? 'block' : 'none';
+    elBtnStep3Toggle.setAttribute('aria-expanded', nextState.toString());
+    updateStepperIndicator();
+  }
+
+  function revealStep4() {
+    revealAnswer();
+  }
+
+  if (elBtnStep2Toggle) elBtnStep2Toggle.addEventListener('click', () => toggleStep2());
+  if (elBtnStep3Toggle) elBtnStep3Toggle.addEventListener('click', () => toggleStep3());
+  if (elBtnReveal) elBtnReveal.addEventListener('click', () => revealStep4());
+
+  if (elBtnRevealAllCloze) {
+    elBtnRevealAllCloze.addEventListener('click', () => {
+      document.querySelectorAll('.cloze-blur').forEach(el => el.classList.add('unmasked'));
+    });
+  }
+
+  function updateStepperIndicator() {
+    if (!elStepperIndicatorBar) return;
+    const isVitalsOpen = elPanelVitals && elPanelVitals.style.display !== 'none';
+    const isExaminerOpen = elPanelExaminer && elPanelExaminer.style.display !== 'none';
+    const isRubricRevealed = elHighImpactRubric && elHighImpactRubric.style.display !== 'none';
+
+    const node1 = document.getElementById('step-node-1');
+    const node2 = document.getElementById('step-node-2');
+    const node3 = document.getElementById('step-node-3');
+    const node4 = document.getElementById('step-node-4');
+    const line1 = document.getElementById('step-line-1');
+    const line2 = document.getElementById('step-line-2');
+    const line3 = document.getElementById('step-line-3');
+
+    if (node1) node1.className = 'stepper-step active' + (isVitalsOpen ? ' completed' : '');
+    if (line1) line1.className = 'stepper-line' + (isVitalsOpen ? ' active' : '');
+    if (node2) node2.className = 'stepper-step' + (isVitalsOpen ? ' active' : '') + (isExaminerOpen ? ' completed' : '');
+    if (line2) line2.className = 'stepper-line' + (isExaminerOpen ? ' active' : '');
+    if (node3) node3.className = 'stepper-step' + (isExaminerOpen ? ' active' : '') + (isRubricRevealed ? ' completed' : '');
+    if (line3) line3.className = 'stepper-line' + (isRubricRevealed ? ' active' : '');
+    if (node4) node4.className = 'stepper-step' + (isRubricRevealed ? ' active completed' : '');
+  }
 
   // --- Keyboard Shortcuts Engine ---
   document.addEventListener('keydown', (e) => {
-    // Ignore keypresses if user is typing in password input or modal
+    // Ignore keypresses if typing in input fields or modal active
     if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
       return;
     }
@@ -265,211 +831,104 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const key = e.key.toLowerCase();
-    
-    // Space or Enter: Check answer or Reveal answer
+
+    // Space: Advance Stepper / Reveal / Unmask Cloze / Check answers
     if (e.code === 'Space' || key === 'enter') {
       e.preventDefault();
-      filteredQuestions = getFilteredQuestions();
-      if (!filteredQuestions.length) return;
-      const currentQ = filteredQuestions[state.currentIndex];
-      const isOpen = isOpenQuestion(currentQ);
-      if (isOpen) {
-        const qAns = state.answers[currentQ.id] || {};
-        if (!qAns.revealed) {
-          revealAnswer();
+
+      if (state.studyMode === 'flashcard') {
+        // In Flashcard mode: Unmask all clozes on Space
+        const masked = document.querySelectorAll('.cloze-blur:not(.unmasked)');
+        if (masked.length > 0) {
+          masked.forEach(el => el.classList.add('unmasked'));
+        } else {
+          // If all already unmasked, advance to next question
+          navigateToNextQuestion();
         }
-      } else {
-        evaluateOptionAnswers();
+        return;
+      }
+
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      const qAns = state.answers[currentQ.id] || {};
+
+      // In Mode A (Prüfer-Simulation): Step forward sequentially
+      if (state.studyMode === 'simulation') {
+        const isVitalsOpen = elPanelVitals && elPanelVitals.style.display !== 'none';
+        const isExaminerOpen = elPanelExaminer && elPanelExaminer.style.display !== 'none';
+        const isRevealed = qAns.revealed || (elHighImpactRubric && elHighImpactRubric.style.display !== 'none');
+
+        if (!isVitalsOpen) {
+          toggleStep2(true);
+        } else if (!isExaminerOpen) {
+          toggleStep3(true);
+        } else if (!isRevealed) {
+          revealAnswer();
+        } else if (currentQ.options && currentQ.options.length > 0 && !qAns.submitted) {
+          evaluateOptionAnswers();
+        }
+        return;
+      }
+
+      // Default or Guideline Mode
+      if (!qAns.revealed) {
+        revealAnswer();
       }
     }
-    // 1 or R: Knew it or toggle Richtig
+    // 1 or R: Knew it (self assessment pass)
     else if (key === '1' || key === 'r') {
-      filteredQuestions = getFilteredQuestions();
-      if (!filteredQuestions.length) return;
-      const currentQ = filteredQuestions[state.currentIndex];
-      if (isOpenQuestion(currentQ)) {
-        selfAssessAnswer(true);
-      }
+      selfAssess(true);
     }
-    // 2 or F: Didn't know or toggle Falsch
+    // 2 or F: Didn't know (self assessment fail)
     else if (key === '2' || key === 'f') {
-      filteredQuestions = getFilteredQuestions();
-      if (!filteredQuestions.length) return;
-      const currentQ = filteredQuestions[state.currentIndex];
-      if (isOpenQuestion(currentQ)) {
-        selfAssessAnswer(false);
-      }
+      selfAssess(false);
     }
-    // Right Arrow or D: Next Question
+    // V: Voice Recording Toggle
+    else if (key === 'v') {
+      e.preventDefault();
+      toggleVoiceRecording();
+    }
+    // T: 60s Step Timer Toggle
+    else if (key === 't') {
+      e.preventDefault();
+      toggleStepTimer();
+    }
+    // Right Arrow: Next question
     else if (e.code === 'ArrowRight' || key === 'd') {
       e.preventDefault();
-      filteredQuestions = getFilteredQuestions();
-      if (state.currentIndex < filteredQuestions.length - 1) {
-        state.currentIndex++;
-        saveState();
-        renderCurrentQuestion();
-      }
+      navigateToNextQuestion();
     }
-    // Left Arrow or A: Prev Question
+    // Left Arrow: Previous question
     else if (e.code === 'ArrowLeft' || key === 'a') {
       e.preventDefault();
-      if (state.currentIndex > 0) {
-        state.currentIndex--;
-        saveState();
-        renderCurrentQuestion();
-      }
+      navigateToPrevQuestion();
     }
-    // M or S: Flag for review
-    else if (key === 'm' || key === 's') {
+    // M: Flag for review
+    else if (key === 'm') {
       toggleFlagForReview();
     }
   });
 
-  // --- Medical Keyword Highlighting Engine ---
-  function highlightMedicalKeywords(text) {
-    if (!text) return '';
-    // Pattern matching drug dosages, physiological units, and key medical abbreviations
-    return text.replace(
-      /\b(\d+(?:[\.,]\d+)?\s*(?:mg\/kg(?:KG)?|µg\/kg|µg\/ml|mg|g\/dl|ml\/kg|mosm\/l|mmHg|kPa|Hz|min|E\/h|E\/min|Vol\.-%|%))\b|\b(SpO2|PaO2|PaCO2|MAP|HZV|ICP|CPP|ROTEM|TEG|TOF|PTC|DBS|RSI|ARDS|ZNS|MSS|ZAS|MH|HIT|TUR|PDA|PDK|TEP|ACE|SCh|LA|FFP|TRALI|SIADH|ACTH)\b/gi,
-      '<span class="kw-highlight">$1$2</span>'
-    );
-  }
-
-  // --- Exam Simulation Engine ---
-  const elExamSimulationBar = document.getElementById('exam-simulation-bar');
-  const elExamTimer = document.getElementById('exam-timer');
-  const elBtnStopExam = document.getElementById('btn-stop-exam');
-
-  function startExamSimulation() {
-    examSimulation.active = true;
-    examSimulation.secondsLeft = 2700; // 45 minutes
-    // Pick 10 random questions
-    const shuffled = [...EXAM_QUESTIONS].sort(() => 0.5 - Math.random());
-    examSimulation.questions = shuffled.slice(0, 10);
-    
-    if (elExamSimulationBar) elExamSimulationBar.style.display = 'flex';
-    updateExamTimerDisplay();
-    
-    if (examSimulation.timerInterval) clearInterval(examSimulation.timerInterval);
-    examSimulation.timerInterval = setInterval(() => {
-      examSimulation.secondsLeft--;
-      updateExamTimerDisplay();
-      if (examSimulation.secondsLeft <= 0) {
-        stopExamSimulation(true);
-      }
-    }, 1000);
-  }
-
-  function updateExamTimerDisplay() {
-    if (!elExamTimer) return;
-    const mins = Math.floor(examSimulation.secondsLeft / 60);
-    const secs = examSimulation.secondsLeft % 60;
-    elExamTimer.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  }
-
-  function stopExamSimulation(isTimeOut = false) {
-    examSimulation.active = false;
-    if (examSimulation.timerInterval) clearInterval(examSimulation.timerInterval);
-    if (elExamSimulationBar) elExamSimulationBar.style.display = 'none';
-    if (isTimeOut) {
-      alert('⏱️ Die 45-minütige NRW Prüfungssimulation ist abgelaufen! Ihre Antworten wurden ausgewertet.');
+  function navigateToNextQuestion() {
+    filteredQuestions = getFilteredQuestions();
+    if (state.currentIndex < filteredQuestions.length - 1) {
+      state.currentIndex++;
+      saveState();
+      renderCurrentQuestion();
     }
   }
 
-  if (elBtnStopExam) {
-    elBtnStopExam.addEventListener('click', () => {
-      stopExamSimulation(false);
-      state.modeSelect = 'sequential';
-      if (elModeSelect) elModeSelect.value = 'sequential';
-      renderCurrentQuestion();
-    });
-  }
-
-  if (elTypeFilter) {
-    elTypeFilter.addEventListener('change', (e) => {
-      state.typeFilter = e.target.value;
-      state.currentIndex = 0;
+  function navigateToPrevQuestion() {
+    filteredQuestions = getFilteredQuestions();
+    if (state.currentIndex > 0) {
+      state.currentIndex--;
       saveState();
       renderCurrentQuestion();
-    });
-    elTypeFilter.value = state.typeFilter || 'all';
+    }
   }
 
-  // --- Filtering Question Bank ---
-  function getFilteredQuestions() {
-    return EXAM_QUESTIONS.filter(q => {
-      // Live Global Medical Search Filter
-      if (state.searchQuery && state.searchQuery.trim()) {
-        const query = state.searchQuery.trim().toLowerCase();
-        let fullText = (q.stem_de || '') + ' ' + (q.stem_tr || '') + ' ' + (q.question_de || '') + ' ' + (q.question_tr || '') + ' ' + (q.answer_de || '') + ' ' + (q.answer_tr || '');
-        if (q.options) {
-          q.options.forEach(opt => {
-            fullText += ' ' + (opt.text_de || '') + ' ' + (opt.text_tr || '') + ' ' + (opt.explanation_de || '') + ' ' + (opt.explanation_tr || '');
-          });
-        }
-        if (state.userNotes && state.userNotes[q.id]) {
-          fullText += ' ' + state.userNotes[q.id];
-        }
-        if (!fullText.toLowerCase().includes(query)) {
-          return false;
-        }
-      }
-
-      if (state.typeFilter !== 'all') {
-        if (state.typeFilter === 'image') {
-          if (!q.image) return false;
-        } else if (q.question_type !== state.typeFilter) {
-          return false;
-        }
-      }
-
-      if (state.categoryFilter !== 'all' && q.category !== state.categoryFilter) {
-        return false;
-      }
-      
-      const qAns = state.answers[q.id];
-      const isFlagged = !!state.flagged[q.id];
-
-      if (state.filterMode === 'high_yield') {
-        return !!q.is_high_yield;
-      }
-      if (state.filterMode === 'weakness') {
-        const qAns = state.answers[q.id];
-        return !qAns || !qAns.submitted || !qAns.isCorrect;
-      }
-      if (state.filterMode === 'unanswered') {
-        return !qAns || !qAns.submitted;
-      }
-      if (state.filterMode === 'incorrect') {
-        return qAns && qAns.submitted && !qAns.isCorrect;
-      }
-      if (state.filterMode === 'review') {
-        return isFlagged;
-      }
-      
-      return true;
-    });
-  }
-
-  function initCategoryDropdown() {
-    const categories = Array.from(new Set(EXAM_QUESTIONS.map(q => q.category)));
-    elCategoryFilter.innerHTML = `<option value="all">Alle Kategorien (${EXAM_QUESTIONS.length})</option>`;
-    categories.forEach(cat => {
-      const count = EXAM_QUESTIONS.filter(q => q.category === cat).length;
-      const opt = document.createElement('option');
-      opt.value = cat;
-      opt.textContent = `${cat} (${count})`;
-      elCategoryFilter.appendChild(opt);
-    });
-    elCategoryFilter.value = state.categoryFilter;
-  }
-
-  // --- Determine question type ---
-  function isOpenQuestion(q) {
-    return q.question_type === 'open' || !q.options || q.options.length === 0;
-  }
-
-  // --- Render Question Card ---
+  // --- Main Question Viewer Renderer ---
   function renderCurrentQuestion() {
     filteredQuestions = getFilteredQuestions();
 
@@ -478,13 +937,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3>Keine Fragen in dieser Filterauswahl gefunden.</h3>
         <p style="margin-top: 0.5rem;">Bitte wählen Sie einen anderen Filter oder eine andere Kategorie.</p>
       </div>`;
-      elOptionsContainer.innerHTML = '';
-      elExplanationCard.classList.remove('visible');
-      elAnswerCard.classList.remove('visible');
-      elRevealContainer.style.display = 'none';
-      elSelfAssessContainer.style.display = 'none';
-      elQuestionImageContainer.style.display = 'none';
-      elQuestionNumber.textContent = `0 von 0`;
+      if (elOptionsContainer) elOptionsContainer.innerHTML = '';
+      if (elRevealContainer) elRevealContainer.style.display = 'none';
+      if (elHighImpactRubric) elHighImpactRubric.style.display = 'none';
+      if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'none';
+      if (elQuestionImageContainer) elQuestionImageContainer.style.display = 'none';
+      if (elQuestionNumber) elQuestionNumber.textContent = `0 von 0`;
       return;
     }
 
@@ -501,6 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isFlagged = !!state.flagged[currentQ.id];
     const isOpen = isOpenQuestion(currentQ);
+    const mode = state.studyMode || 'simulation';
 
     // Header badges
     const elBadgeHy = document.getElementById('badge-hy');
@@ -514,29 +973,40 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (currentQ.question_type === 'options') {
         elBadgeType.textContent = '✅ Aussagenbewertung';
       } else {
-        elBadgeType.textContent = '📋 Fallbasierte Prüfung';
+        elBadgeType.textContent = '📋 Mündlicher Falldialog';
       }
     }
-    elBadgeCategory.textContent = currentQ.category;
-    elBadgeSource.textContent = currentQ.source_book ? currentQ.source_book.split(' - ')[0] : 'Facharzt';
-    
+    if (elBadgeCategory) elBadgeCategory.textContent = currentQ.category;
+    if (elBadgeSource) elBadgeSource.textContent = currentQ.source_book ? currentQ.source_book.split(' - ')[0] : 'Facharzt';
+
     if (isFlagged) {
-      elBadgeReview.style.display = 'inline-block';
-      elBtnReview.classList.add('flagged');
-      elBtnReview.innerHTML = `<span>★</span> Markiert`;
+      if (elBadgeReview) elBadgeReview.style.display = 'inline-block';
+      if (elBtnReview) {
+        elBtnReview.classList.add('flagged');
+        elBtnReview.innerHTML = `<span>★</span> Markiert`;
+      }
     } else {
-      elBadgeReview.style.display = 'none';
-      elBtnReview.classList.remove('flagged');
-      elBtnReview.innerHTML = `<span>☆</span> Wiederholen`;
+      if (elBadgeReview) elBadgeReview.style.display = 'none';
+      if (elBtnReview) {
+        elBtnReview.classList.remove('flagged');
+        elBtnReview.innerHTML = `<span>☆</span> Wiederholen`;
+      }
     }
 
     const globalIdx = EXAM_QUESTIONS.findIndex(q => q.id === currentQ.id) + 1;
-    elQuestionNumber.textContent = `Frage ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
+    if (elQuestionNumber) {
+      elQuestionNumber.textContent = `Fall ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
+    }
 
-    // Question text stem with translation
+    // Parse question through Medical EdTech Dialogue Engine
+    const parsedCase = parseOralExamCase(currentQ);
+
+    // Step 1: Presentation & Baseline Stem
     const stemDe = currentQ.stem_de || currentQ.question_de || '';
     const stemTr = currentQ.stem_tr || currentQ.question_tr || '';
-    elQuestionText.innerHTML = renderDualLanguageText(stemDe, stemTr);
+    if (elQuestionText) {
+      elQuestionText.innerHTML = renderDualLanguageText(stemDe, stemTr);
+    }
 
     // Personal Medical Note
     const elUserNoteText = document.getElementById('user-note-text');
@@ -546,165 +1016,229 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Question image
     if (currentQ.image) {
-      elQuestionImageContainer.style.display = 'block';
-      elQuestionImage.src = currentQ.image;
-      elQuestionImage.alt = `Abbildung zu: ${stemDe.substring(0, 60)}...`;
+      if (elQuestionImageContainer) elQuestionImageContainer.style.display = 'block';
+      if (elQuestionImage) {
+        elQuestionImage.src = currentQ.image;
+        elQuestionImage.alt = `Abbildung zu: ${stemDe.substring(0, 60)}...`;
+      }
     } else {
-      elQuestionImageContainer.style.display = 'none';
+      if (elQuestionImageContainer) elQuestionImageContainer.style.display = 'none';
     }
 
-    // ──────────── OPEN Q&A FLASHCARD MODE (Clinical Cases) ────────────
-    if (isOpen) {
-      const elExaminerFormulaCard = document.getElementById('examiner-formula-card');
-      if (elExaminerFormulaCard) elExaminerFormulaCard.style.display = 'block';
+    // Step 2: Populate Clinical ICU Monitor & BGA Dashboard
+    const v = parsedCase.vitals;
+    const setElemText = (id, txt) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = txt;
+    };
+    setElemText('vital-val-spo2', v.spo2);
+    setElemText('vital-val-bp', v.bp);
+    setElemText('vital-val-map', `(MAP ${v.map})`);
+    setElemText('vital-val-hr', v.hr);
+    setElemText('vital-val-rhythm', v.rhythm);
+    setElemText('vital-val-etco2', v.etco2);
+    setElemText('vital-val-vent', v.vent);
+    setElemText('vital-val-temp', v.temp);
 
-      elOptionsContainer.innerHTML = '';
-      elOptionsContainer.style.display = 'none';
-      elBtnCheck.style.display = 'none';
-      elExplanationCard.classList.remove('visible');
+    setElemText('bga-val-ph', v.ph);
+    setElemText('bga-val-po2', v.po2);
+    setElemText('bga-val-pco2', v.pco2);
+    setElemText('bga-val-hco3', v.hco3);
+    setElemText('bga-val-be', v.be);
+    setElemText('bga-val-lactate', v.lactate);
+    setElemText('bga-val-k', v.k);
+    setElemText('bga-val-na', v.na);
+    setElemText('bga-val-ca', v.ca);
+    setElemText('bga-val-hb', v.hb);
 
-      if (qState.submitted) {
-        elRevealContainer.style.display = 'none';
-        elAnswerCard.classList.add('visible');
-        elAnswerText.innerHTML = renderDualLanguageText(
-          currentQ.answer_de || currentQ.explanation_de || '',
-          currentQ.answer_tr || currentQ.explanation_tr || ''
-        );
-        
-        elSelfAssessContainer.style.display = 'flex';
-        if (qState.isCorrect) {
-          elBtnKnewIt.classList.add('selected');
-          elBtnDidntKnow.classList.remove('selected');
-        } else {
-          elBtnKnewIt.classList.remove('selected');
-          elBtnDidntKnow.classList.add('selected');
-        }
-      } else if (qState.revealed) {
-        elRevealContainer.style.display = 'none';
-        elAnswerCard.classList.add('visible');
-        elAnswerText.innerHTML = renderDualLanguageText(
-          currentQ.answer_de || currentQ.explanation_de || '',
-          currentQ.answer_tr || currentQ.explanation_tr || ''
-        );
-        elSelfAssessContainer.style.display = 'flex';
-        elBtnKnewIt.classList.remove('selected');
-        elBtnDidntKnow.classList.remove('selected');
-      } else {
-        elRevealContainer.style.display = 'flex';
-        elAnswerCard.classList.remove('visible');
-        elSelfAssessContainer.style.display = 'none';
-      }
+    const elDiagNotes = document.getElementById('diagnostic-notes-box');
+    if (elDiagNotes) elDiagNotes.textContent = v.notes;
 
-    // ──────────── INTERACTIVE MULTI-STATEMENT OPTIONS MODE ────────────
-    } else {
-      const elExaminerFormulaCard = document.getElementById('examiner-formula-card');
-      if (elExaminerFormulaCard) elExaminerFormulaCard.style.display = 'none';
+    // Step 3: Populate Examiner Steering Intervention
+    if (elExaminerQuoteText) {
+      elExaminerQuoteText.textContent = parsedCase.examinerIntervention;
+    }
 
-      elOptionsContainer.style.display = 'block';
-      elRevealContainer.style.display = 'none';
-      elAnswerCard.classList.remove('visible');
-      elSelfAssessContainer.style.display = 'none';
+    // Step 4: Populate 3 High-Impact Model Answer Micro-Cards
+    if (elRubricVerbalText) {
+      elRubricVerbalText.innerHTML = parsedCase.verbalFramework;
+    }
 
-      elOptionsContainer.innerHTML = '';
-
-      currentQ.options.forEach(opt => {
-        const userChoice = qState.userChoices[opt.key]; // true (Richtig), false (Falsch), or undefined
-        
-        const optEl = document.createElement('div');
-        optEl.className = 'option-card-item';
-        
-        if (qState.submitted) {
-          const isUserCorrect = (userChoice === opt.is_correct);
-          optEl.classList.add(isUserCorrect ? 'eval-correct' : 'eval-incorrect');
-        }
-
-        const isTrueSelected = (userChoice === true);
-        const isFalseSelected = (userChoice === false);
-
-        optEl.innerHTML = `
-          <div class="option-row">
-            <div class="opt-letter-badge">${opt.key.toUpperCase()}</div>
-            <div class="option-content">
-              ${renderDualLanguageText(opt.text_de, opt.text_tr)}
-            </div>
-            <div class="option-toggles">
-              <button type="button" class="btn-toggle-tf btn-true ${isTrueSelected ? 'active' : ''}" ${qState.submitted ? 'disabled' : ''} data-key="${opt.key}">
-                ✅ Richtig
-              </button>
-              <button type="button" class="btn-toggle-tf btn-false ${isFalseSelected ? 'active' : ''}" ${qState.submitted ? 'disabled' : ''} data-key="${opt.key}">
-                ❌ Falsch
-              </button>
-            </div>
-          </div>
-          ${qState.submitted ? `
-            <div class="option-result-box">
-              <div class="truth-tag ${opt.is_correct ? 'truth-true' : 'truth-false'}">
-                Aussage ${opt.key.toUpperCase()} ist: <strong>${opt.is_correct ? '✅ RICHTIG' : '❌ FALSCH'}</strong>
-              </div>
-              <div class="explanation-text">
-                ${renderDualLanguageText(opt.explanation_de, opt.explanation_tr)}
-              </div>
-            </div>
-          ` : ''}
-        `;
-
-        if (!qState.submitted) {
-          const btnTrue = optEl.querySelector('.btn-true');
-          const btnFalse = optEl.querySelector('.btn-false');
-          
-          btnTrue.addEventListener('click', (e) => {
-            e.stopPropagation();
-            qState.userChoices[opt.key] = true;
-            state.answers[currentQ.id] = qState;
-            saveState();
-            renderCurrentQuestion();
-          });
-          
-          btnFalse.addEventListener('click', (e) => {
-            e.stopPropagation();
-            qState.userChoices[opt.key] = false;
-            state.answers[currentQ.id] = qState;
-            saveState();
-            renderCurrentQuestion();
-          });
-        }
-
-        elOptionsContainer.appendChild(optEl);
+    if (elRubricChecklistItems) {
+      elRubricChecklistItems.innerHTML = '';
+      parsedCase.checklist.forEach(itemText => {
+        const row = document.createElement('div');
+        row.className = 'checklist-item-row';
+        const formatted = (mode === 'flashcard') ? generateClozeMaskedHtml(itemText) : itemText;
+        row.innerHTML = `<span class="checklist-check">✓</span> <div>${formatted}</div>`;
+        elRubricChecklistItems.appendChild(row);
       });
+    }
 
-      // Submit / Reset Button for Options Mode
-      elBtnCheck.style.display = 'inline-flex';
-      if (qState.submitted) {
-        elBtnCheck.innerHTML = `<span>🔄</span> Erneut versuchen`;
-        elBtnCheck.className = 'btn btn-secondary';
-      } else {
-        elBtnCheck.innerHTML = `<span>✅</span> Antworten Auswerten`;
-        elBtnCheck.className = 'btn btn-primary';
+    if (elRubricPitfallText) {
+      elRubricPitfallText.innerHTML = `<div class="pitfall-item"><span>⚠️</span> <div>${parsedCase.pitfalls}</div></div>`;
+    }
+
+    if (elFullReferenceBody) {
+      elFullReferenceBody.innerHTML = renderDualLanguageText(parsedCase.fullTextDE, parsedCase.fullTextTR);
+    }
+
+    // Handle Cloze interaction in Flashcard mode (Mode C)
+    if (mode === 'flashcard') {
+      document.querySelectorAll('.cloze-blur').forEach(clozeEl => {
+        clozeEl.addEventListener('click', (e) => {
+          e.stopPropagation();
+          clozeEl.classList.add('unmasked');
+        });
+      });
+      if (elClozeControlsBar) elClozeControlsBar.style.display = 'flex';
+    } else {
+      if (elClozeControlsBar) elClozeControlsBar.style.display = 'none';
+    }
+
+    // Render Options Container if question has options
+    if (currentQ.options && currentQ.options.length > 0) {
+      if (elOptionsContainer) {
+        elOptionsContainer.style.display = 'block';
+        elOptionsContainer.innerHTML = '';
+
+        currentQ.options.forEach(opt => {
+          const userChoice = qState.userChoices[opt.key];
+          const optEl = document.createElement('div');
+          optEl.className = 'option-card-item';
+
+          if (qState.submitted) {
+            const isUserCorrect = (userChoice === opt.is_correct);
+            optEl.classList.add(isUserCorrect ? 'eval-correct' : 'eval-incorrect');
+          }
+
+          const isTrueSelected = (userChoice === true);
+          const isFalseSelected = (userChoice === false);
+
+          optEl.innerHTML = `
+            <div class="option-row">
+              <div class="opt-letter-badge">${opt.key.toUpperCase()}</div>
+              <div class="option-content">
+                ${renderDualLanguageText(opt.text_de, opt.text_tr)}
+              </div>
+              <div class="option-toggles">
+                <button type="button" class="btn-toggle-tf btn-true ${isTrueSelected ? 'active' : ''}" ${qState.submitted ? 'disabled' : ''} data-key="${opt.key}">
+                  ✅ Richtig
+                </button>
+                <button type="button" class="btn-toggle-tf btn-false ${isFalseSelected ? 'active' : ''}" ${qState.submitted ? 'disabled' : ''} data-key="${opt.key}">
+                  ❌ Falsch
+                </button>
+              </div>
+            </div>
+            ${qState.submitted ? `
+              <div class="option-result-box">
+                <div class="truth-tag ${opt.is_correct ? 'truth-true' : 'truth-false'}">
+                  Aussage ${opt.key.toUpperCase()} ist: <strong>${opt.is_correct ? '✅ RICHTIG' : '❌ FALSCH'}</strong>
+                </div>
+                <div class="explanation-text">
+                  ${renderDualLanguageText(opt.explanation_de, opt.explanation_tr)}
+                </div>
+              </div>
+            ` : ''}
+          `;
+
+          if (!qState.submitted) {
+            const btnTrue = optEl.querySelector('.btn-true');
+            const btnFalse = optEl.querySelector('.btn-false');
+
+            btnTrue.addEventListener('click', (e) => {
+              e.stopPropagation();
+              qState.userChoices[opt.key] = true;
+              state.answers[currentQ.id] = qState;
+              saveState();
+              renderCurrentQuestion();
+            });
+
+            btnFalse.addEventListener('click', (e) => {
+              e.stopPropagation();
+              qState.userChoices[opt.key] = false;
+              state.answers[currentQ.id] = qState;
+              saveState();
+              renderCurrentQuestion();
+            });
+          }
+
+          elOptionsContainer.appendChild(optEl);
+        });
       }
 
-      // Show overall score card if submitted
-      if (qState.submitted) {
-        let correctCount = 0;
-        currentQ.options.forEach(opt => {
-          if (qState.userChoices[opt.key] === opt.is_correct) {
-            correctCount++;
-          }
-        });
-        const totalOpts = currentQ.options.length;
-        const pct = Math.round((correctCount / totalOpts) * 100);
+      if (elBtnCheck) {
+        elBtnCheck.style.display = 'inline-flex';
+        if (qState.submitted) {
+          elBtnCheck.innerHTML = `<span>🔄</span> Erneut versuchen`;
+          elBtnCheck.className = 'btn btn-secondary';
+        } else {
+          elBtnCheck.innerHTML = `<span>✅</span> Antworten Auswerten`;
+          elBtnCheck.className = 'btn btn-primary';
+        }
+      }
+    } else {
+      if (elOptionsContainer) {
+        elOptionsContainer.innerHTML = '';
+        elOptionsContainer.style.display = 'none';
+      }
+      if (elBtnCheck) elBtnCheck.style.display = 'none';
+    }
 
-        elExplanationCard.classList.add('visible');
-        elExplanationText.innerHTML = `
-          <div class="score-summary-banner ${pct >= 80 ? 'pass' : 'fail'}">
-            <h4>Ergebnis: ${correctCount} von ${totalOpts} Aussagen richtig bewertet (${pct}%)</h4>
-            <p>${pct >= 80 ? '🎉 Sehr gut gewusst!' : '💡 Wiederholung empfohlen.'}</p>
-          </div>
-        `;
+    // ──────────────────────── MODE SPECIFIC DISPLAY STATES ────────────────────────
+    if (mode === 'guideline') {
+      // Mode B: "Spickzettel / Leitfaden" (Continuous Reading - everything open)
+      if (elStepperIndicatorBar) elStepperIndicatorBar.style.display = 'none';
+      if (elOralToolsBar) elOralToolsBar.style.display = 'none';
+      toggleStep2(true);
+      toggleStep3(true);
+      if (elRevealContainer) elRevealContainer.style.display = 'none';
+      if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
+      if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
+
+    } else if (mode === 'flashcard') {
+      // Mode C: "Blitz-Karteikarten" (Flashcard cloze)
+      if (elStepperIndicatorBar) elStepperIndicatorBar.style.display = 'none';
+      if (elOralToolsBar) elOralToolsBar.style.display = 'none';
+      toggleStep2(false);
+      toggleStep3(false);
+      if (elRevealContainer) elRevealContainer.style.display = 'none';
+      if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
+      if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
+
+    } else {
+      // Mode A: "Prüfer-Simulation" (Stepped disclosure)
+      if (elStepperIndicatorBar) elStepperIndicatorBar.style.display = 'flex';
+      if (elOralToolsBar) elOralToolsBar.style.display = 'flex';
+
+      if (qState.revealed || qState.submitted) {
+        if (elRevealContainer) elRevealContainer.style.display = 'none';
+        if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
+        if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
+        toggleStep2(true);
+        toggleStep3(true);
       } else {
-        elExplanationCard.classList.remove('visible');
+        if (elRevealContainer) elRevealContainer.style.display = 'flex';
+        if (elHighImpactRubric) elHighImpactRubric.style.display = 'none';
+        if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'none';
       }
     }
 
+    // Self-assessment status buttons
+    if (qState.submitted) {
+      if (qState.isCorrect) {
+        if (elBtnKnewIt) elBtnKnewIt.classList.add('selected');
+        if (elBtnDidntKnow) elBtnDidntKnow.classList.remove('selected');
+      } else {
+        if (elBtnKnewIt) elBtnKnewIt.classList.remove('selected');
+        if (elBtnDidntKnow) elBtnDidntKnow.classList.add('selected');
+      }
+    } else {
+      if (elBtnKnewIt) elBtnKnewIt.classList.remove('selected');
+      if (elBtnDidntKnow) elBtnDidntKnow.classList.remove('selected');
+    }
+
+    updateStepperIndicator();
     updateAnalytics();
   }
 
@@ -937,8 +1471,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Automatic Cloud Auto-Sync Engine (RESTful API Cloud KV Store) ---
-  const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdab2880b07e2';
-  // elCloudSyncStatus already declared at top of DOMContentLoaded
   const elBtnCloudSyncNow = document.getElementById('btn-cloud-sync-now');
   let cloudSyncTimer = null;
 
@@ -1056,6 +1588,12 @@ document.addEventListener('DOMContentLoaded', () => {
       elSubToggle.classList.add('active');
     } else {
       elSubToggle.classList.remove('active');
+    }
+
+    if (state.studyMode) {
+      if (elModeTabSim) elModeTabSim.classList.toggle('active', state.studyMode === 'simulation');
+      if (elModeTabGuide) elModeTabGuide.classList.toggle('active', state.studyMode === 'guideline');
+      if (elModeTabCloze) elModeTabCloze.classList.toggle('active', state.studyMode === 'flashcard');
     }
 
     // Trigger cloud auto-sync asynchronously

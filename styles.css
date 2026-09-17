@@ -2183,3 +2183,930 @@ footer {
     transform: scale(0.97);
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE ORAL EXAM SIMULATOR & MEDICAL EDTECH SUITE STYLES
+   ========================================================================== */
+
+/* --- 1. Persistent 3-Mode Study Switcher --- */
+.study-mode-switcher-bar {
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.study-mode-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.study-mode-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-normal);
+  color: var(--text-muted);
+}
+
+.study-mode-pill:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.study-mode-pill .mode-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.study-mode-pill:hover .mode-icon {
+  transform: scale(1.1);
+}
+
+.study-mode-pill .mode-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.study-mode-pill .mode-info strong {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.study-mode-pill .mode-info small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.study-mode-pill.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+}
+
+.study-mode-pill.active .mode-info strong {
+  color: var(--primary);
+}
+
+[data-theme="dark"] .study-mode-pill.active {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: var(--primary);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
+}
+
+/* --- 2. Progressive Dialogue Stepper Indicator --- */
+.stepper-indicator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.25rem 0 1.5rem 0;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.stepper-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.stepper-step .step-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.stepper-step.active {
+  color: var(--primary);
+}
+
+.stepper-step.active .step-badge {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
+  transform: scale(1.1);
+}
+
+.stepper-step.completed {
+  color: var(--success);
+}
+
+.stepper-step.completed .step-badge {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.stepper-line {
+  flex: 1;
+  height: 2px;
+  background: var(--card-border);
+  margin: 0 0.75rem;
+  transition: background var(--transition-normal);
+}
+
+.stepper-line.active {
+  background: var(--primary);
+}
+
+/* --- 3. Oral Exam Tools Bar (60s Timer & Voice Prompt) --- */
+.oral-tools-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.65rem 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.timer-pill-container, .voice-pill-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.oral-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--card-border);
+  background: var(--bg-tertiary);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.oral-tool-btn:hover {
+  background: var(--card-bg);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.oral-tool-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+.oral-tool-btn.recording {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
+  color: white !important;
+  animation: pulseRecording 1.5s infinite;
+}
+
+@keyframes pulseRecording {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.timer-mini-bar {
+  width: 70px;
+  height: 6px;
+  background: var(--card-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.timer-mini-fill {
+  height: 100%;
+  width: 100%;
+  background: #10b981;
+  transition: width 1s linear, background-color 0.3s ease;
+}
+
+.timer-mini-fill.urgent {
+  background: #ef4444;
+  animation: blinkUrgent 0.8s infinite;
+}
+
+@keyframes blinkUrgent {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* --- 4. Live Speech Transcription Box --- */
+.speech-transcript-box {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.3s ease;
+}
+
+[data-theme="dark"] .speech-transcript-box {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.transcript-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.transcript-pulse-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #b45309;
+}
+
+[data-theme="dark"] .transcript-pulse-badge {
+  color: #fcd34d;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulseDot 1s infinite alternate;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+.transcript-content {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  font-style: italic;
+  max-height: 120px;
+  overflow-y: auto;
+  word-break: break-word;
+}
+
+.btn-xs {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid currentColor;
+  cursor: pointer;
+}
+
+/* --- 5. Stepped Dialogue Accordion Cards --- */
+.dialogue-step-card {
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.dialogue-step-card.step-active {
+  border-color: var(--primary);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.08);
+}
+
+.step-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.step-tag-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.step-tag-pill.examiner-pill {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+  border-color: #f59e0b;
+}
+
+[data-theme="dark"] .step-tag-pill.examiner-pill {
+  color: #fbbf24;
+}
+
+.step-callout-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Expandable Buttons */
+.btn-stepper-expand {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--bg-tertiary);
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+  text-align: left;
+  transition: background var(--transition-fast);
+}
+
+.btn-stepper-expand:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.expand-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.expand-chevron {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: transform var(--transition-normal);
+}
+
+.btn-stepper-expand[aria-expanded="true"] .expand-chevron {
+  transform: rotate(180deg);
+}
+
+.stepper-panel-content {
+  padding: 1.25rem;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+  animation: fadeIn 0.3s ease;
+}
+
+/* --- 6. Clinical ICU Monitor Dashboard --- */
+.clinical-monitor-dashboard {
+  background: #090e17;
+  color: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+  font-family: 'Inter', monospace;
+}
+
+.monitor-vitals-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.vital-tile {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.vital-tile .vital-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.vital-tile .vital-val {
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.vital-tile .vital-sub {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* Vital specific clinical fluorescent colors */
+.vital-spo2 {
+  border-left-color: #10b981;
+  color: #34d399;
+}
+.vital-spo2 .vital-val { text-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+
+.vital-bp {
+  border-left-color: #38bdf8;
+  color: #38bdf8;
+}
+.vital-bp .vital-val { text-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+
+.vital-hr {
+  border-left-color: #f87171;
+  color: #f87171;
+}
+.vital-hr .vital-val { text-shadow: 0 0 8px rgba(248, 113, 113, 0.4); }
+
+.vital-etco2 {
+  border-left-color: #fbbf24;
+  color: #fbbf24;
+}
+.vital-etco2 .vital-val { text-shadow: 0 0 8px rgba(251, 191, 36, 0.4); }
+
+.vital-temp {
+  border-left-color: #a78bfa;
+  color: #c4b5fd;
+}
+.vital-temp .vital-val { text-shadow: 0 0 8px rgba(167, 139, 250, 0.4); }
+
+/* BGA & Lab Panel */
+.monitor-lab-panel {
+  border-top: 1px solid #1e293b;
+  padding-top: 1rem;
+}
+
+.panel-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.bga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.bga-item {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 0.45rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bga-k {
+  color: #94a3b8;
+}
+
+.bga-v {
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.diagnostic-notes {
+  background: rgba(2, 132, 199, 0.1);
+  border-left: 3px solid #38bdf8;
+  padding: 0.65rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: #e0f2fe;
+  line-height: 1.5;
+}
+
+/* --- 7. Examiner Intervention / Steering Dialogue Box --- */
+.examiner-dialogue-box {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .examiner-dialogue-box {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.examiner-avatar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.examiner-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+}
+
+.examiner-role {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b45309;
+}
+
+[data-theme="dark"] .examiner-role {
+  color: #fbbf24;
+}
+
+.examiner-speech-col {
+  flex: 1;
+}
+
+.examiner-quote-bubble {
+  position: relative;
+  background: white;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .examiner-quote-bubble {
+  background: #1e293b;
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #f8fafc;
+}
+
+.candidate-directive {
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .candidate-directive {
+  color: #fcd34d;
+}
+
+/* --- 8. Reveal Button & 3 High-Impact Micro-Cards --- */
+.btn-reveal-rubric {
+  width: 100%;
+  padding: 1.1rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: white;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.btn-reveal-rubric:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+}
+
+.high-impact-rubric {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  animation: slideReveal 0.4s ease forwards;
+}
+
+.rubric-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.rubric-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.rubric-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.rubric-badge-title h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.rubric-icon {
+  font-size: 1.25rem;
+}
+
+.rubric-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+}
+
+.rubric-tag-danger {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+[data-theme="dark"] .rubric-tag-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+.rubric-card-body {
+  padding: 1.15rem 1.25rem;
+}
+
+/* Block 1: Verbal Framework (Wie sage ich es?) */
+.verbal-framework-card {
+  border-left: 4px solid #0284c7;
+  background: linear-gradient(to right, rgba(2, 132, 199, 0.04), transparent);
+}
+
+[data-theme="dark"] .verbal-framework-card {
+  background: linear-gradient(to right, rgba(56, 189, 248, 0.08), transparent);
+}
+
+.verbal-quote {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-main);
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid #0284c7;
+}
+
+/* Block 2: Examiner Checklist & Dosages */
+.checklist-card {
+  border-left: 4px solid #10b981;
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.04), transparent);
+}
+
+[data-theme="dark"] .checklist-card {
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.08), transparent);
+}
+
+.checklist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checklist-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.checklist-check {
+  color: #10b981;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.dosage-highlight {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  margin: 0 0.2rem;
+}
+
+[data-theme="dark"] .dosage-highlight {
+  background: rgba(52, 211, 153, 0.2);
+  color: #a7f3d0;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+/* Block 3: Critical Pitfalls (Prüfungsfalle / No-Go) */
+.pitfall-card {
+  border: 2px solid #ef4444;
+  background: #fef2f2;
+}
+
+[data-theme="dark"] .pitfall-card {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: #ef4444;
+}
+
+.pitfall-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #991b1b;
+}
+
+[data-theme="dark"] .pitfall-content {
+  color: #fca5a5;
+}
+
+.pitfall-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pitfall-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Full Reference Accordion */
+.full-reference-accordion {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--card-border);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.full-reference-accordion summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.full-reference-accordion summary:hover {
+  color: var(--primary);
+}
+
+.full-reference-body {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--card-border);
+  line-height: 1.7;
+  color: var(--text-main);
+  white-space: pre-wrap;
+}
+
+/* --- 9. Cloze Masking for Flashcards (Mode C) --- */
+.cloze-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+}
+
+.cloze-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.cloze-blur {
+  display: inline-block;
+  background: var(--bg-tertiary);
+  color: transparent !important;
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+  margin: 0 0.15rem;
+  border: 1px dashed var(--primary);
+  cursor: pointer;
+  user-select: none;
+  filter: blur(5px);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.cloze-blur:hover {
+  filter: blur(2px);
+  background: var(--primary-light);
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+}
+
+.cloze-blur.unmasked {
+  filter: none !important;
+  color: var(--text-main) !important;
+  background: #dcfce7 !important;
+  border-color: #86efac !important;
+  border-style: solid;
+  cursor: default;
+}
+
+[data-theme="dark"] .cloze-blur.unmasked {
+  background: rgba(16, 185, 129, 0.25) !important;
+  color: #6ee7b7 !important;
+  border-color: #34d399 !important;
+}
+
+/* --- Responsive Overrides for Mobile --- */
+@media (max-width: 768px) {
+  .study-mode-pills {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .stepper-indicator-bar {
+    padding: 0.65rem 0.75rem;
+    overflow-x: auto;
+  }
+
+  .stepper-step .step-label {
+    display: none;
+  }
+
+  .monitor-vitals-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .examiner-dialogue-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .verbal-quote {
+    padding-left: 0.75rem;
+    font-size: 0.95rem;
+  }
+}
