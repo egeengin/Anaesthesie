@@ -3017,6 +3017,50 @@ footer {
   padding: 1.15rem 1.25rem;
 }
 
+.rubric-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-audio-action-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: rgba(13, 148, 136, 0.1);
+  color: #0d9488;
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .btn-audio-action-sm {
+  background: rgba(45, 212, 191, 0.12);
+  color: #2dd4bf;
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.btn-audio-action-sm:hover {
+  background: rgba(13, 148, 136, 0.2);
+  transform: scale(1.02);
+}
+
+.btn-audio-action-sm.speaking {
+  background: #0d9488;
+  color: white;
+  border-color: #0d9488;
+  animation: pulse 1.2s infinite;
+}
+
+.examiner-audio-bar {
+  margin-top: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
 /* Block 1: Verbal Framework (Wie sage ich es?) */
 .verbal-framework-card {
   border-left: 4px solid #0284c7;

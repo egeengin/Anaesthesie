@@ -966,13 +966,52 @@ document.addEventListener('DOMContentLoaded', () => {
         revealAnswer();
       }
     }
-    // 1 or R: Knew it (self assessment pass)
-    else if (key === '1' || key === 'r') {
+    // Step navigation & self-assessment numbers
+    else if (key === '1') {
+      if (elHighImpactRubric && elHighImpactRubric.style.display !== 'none') {
+        selfAssess(true);
+      } else {
+        const elQCard = document.getElementById('question-card');
+        if (elQCard) elQCard.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    else if (key === '2') {
+      if (elHighImpactRubric && elHighImpactRubric.style.display !== 'none') {
+        selfAssess(false);
+      } else {
+        toggleStep2();
+      }
+    }
+    else if (key === '3') {
+      toggleStep3();
+    }
+    else if (key === '4') {
+      revealAnswer();
+    }
+    // K, G, R: Knew it (self assessment pass)
+    else if (key === 'k' || key === 'g' || key === 'r') {
       selfAssess(true);
     }
-    // 2 or F: Didn't know (self assessment fail)
-    else if (key === '2' || key === 'f') {
+    // F: Didn't know (self assessment fail)
+    else if (key === 'f') {
       selfAssess(false);
+    }
+    // U: Toggle Turkish translation collapsible
+    else if (key === 'u') {
+      e.preventDefault();
+      const trBtn = document.querySelector('.btn-toggle-tr-sub');
+      if (trBtn) trBtn.click();
+    }
+    // P: Audio pronunciation
+    else if (key === 'p') {
+      e.preventDefault();
+      const verbalBtn = document.getElementById('btn-audio-speak-verbal');
+      const audioBtn = document.getElementById('btn-audio-speak');
+      if (elHighImpactRubric && elHighImpactRubric.style.display !== 'none' && verbalBtn) {
+        verbalBtn.click();
+      } else if (audioBtn) {
+        audioBtn.click();
+      }
     }
     // V: Voice Recording Toggle
     else if (key === 'v') {
@@ -1684,18 +1723,72 @@ document.addEventListener('DOMContentLoaded', () => {
         const json = await response.json();
         if (json && json.data && json.data.state) {
           const cloudState = json.data.state;
-          const cloudAnswered = Object.keys(cloudState.answers || {}).length;
-          const localAnswered = Object.keys(state.answers || {}).length;
 
-          // Merge if cloud state has more data or equal questions answered
-          if (cloudAnswered >= localAnswered) {
-            state = { ...state, ...cloudState };
-            saveStateLocalOnly();
-            updateAnalytics();
-            renderCurrentQuestion();
-          } else {
-            pushToCloud();
-          }
+          // Field-by-field union merge: prevent overwriting newer bookmarks, notes, or answers
+          const cloudAnswers = cloudState.answers || {};
+          const localAnswers = state.answers || {};
+          const allQIds = new Set([...Object.keys(cloudAnswers), ...Object.keys(localAnswers)]);
+          const robustAnswers = {};
+          allQIds.forEach(id => {
+            const cAns = cloudAnswers[id];
+            const lAns = localAnswers[id];
+            if (cAns && lAns) {
+              robustAnswers[id] = (lAns.submitted || lAns.revealed) ? lAns : cAns;
+            } else {
+              robustAnswers[id] = lAns || cAns;
+            }
+          });
+
+          // Flags union: if flagged on either device, keep flagged
+          const robustFlagged = { ...(cloudState.flagged || {}) };
+          Object.keys(state.flagged || {}).forEach(id => {
+            if (state.flagged[id]) robustFlagged[id] = true;
+          });
+
+          // Notes union: preserve whichever note is present or longer
+          const robustNotes = { ...(cloudState.notes || {}) };
+          Object.keys(state.notes || {}).forEach(id => {
+            const lNote = state.notes[id];
+            const cNote = robustNotes[id];
+            if (!cNote || (lNote && lNote.length >= cNote.length)) {
+              robustNotes[id] = lNote;
+            }
+          });
+
+          // SM-2 Spaced Repetition cards: preserve latest review timestamp
+          const cloudSm2 = cloudState.sm2Cards || {};
+          const localSm2 = state.sm2Cards || {};
+          const allSm2Ids = new Set([...Object.keys(cloudSm2), ...Object.keys(localSm2)]);
+          const robustSm2 = {};
+          allSm2Ids.forEach(id => {
+            const cCard = cloudSm2[id];
+            const lCard = localSm2[id];
+            if (cCard && lCard) {
+              const cTime = new Date(cCard.lastReviewed || 0).getTime();
+              const lTime = new Date(lCard.lastReviewed || 0).getTime();
+              robustSm2[id] = (lTime >= cTime) ? lCard : cCard;
+            } else {
+              robustSm2[id] = lCard || cCard;
+            }
+          });
+
+          // Daily reviews union
+          const robustDaily = { ...(cloudState.dailyReviews || {}) };
+          Object.keys(state.dailyReviews || {}).forEach(dateStr => {
+            robustDaily[dateStr] = Math.max(robustDaily[dateStr] || 0, state.dailyReviews[dateStr] || 0);
+          });
+
+          state.answers = robustAnswers;
+          state.flagged = robustFlagged;
+          state.notes = robustNotes;
+          state.sm2Cards = robustSm2;
+          state.dailyReviews = robustDaily;
+          state.streak = Math.max(cloudState.streak || 0, state.streak || 0);
+
+          saveStateLocalOnly();
+          updateAnalytics();
+          renderCurrentQuestion();
+          pushToCloudDebounced();
         }
         updateCloudSyncBadge('synced');
       } else {
@@ -2245,7 +2338,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if ('speechSynthesis' in window) {
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
-          elBtnAudioSpeak.classList.remove('speaking');
+          document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
           return;
         }
 
@@ -2265,6 +2358,66 @@ document.addEventListener('DOMContentLoaded', () => {
         window.speechSynthesis.speak(utterance);
       } else {
         alert('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.');
+      }
+    });
+  }
+
+  // --- Audio Pronunciation: Examiner Question ---
+  const elBtnAudioSpeakExaminer = document.getElementById('btn-audio-speak-examiner');
+  if (elBtnAudioSpeakExaminer) {
+    elBtnAudioSpeakExaminer.addEventListener('click', () => {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking && elBtnAudioSpeakExaminer.classList.contains('speaking')) {
+          window.speechSynthesis.cancel();
+          elBtnAudioSpeakExaminer.classList.remove('speaking');
+          return;
+        }
+        window.speechSynthesis.cancel();
+        document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+
+        const elQuote = document.getElementById('examiner-quote-text');
+        const textToRead = elQuote ? elQuote.textContent.trim() : '';
+        if (!textToRead) return;
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.92;
+
+        utterance.onstart = () => elBtnAudioSpeakExaminer.classList.add('speaking');
+        utterance.onend = () => elBtnAudioSpeakExaminer.classList.remove('speaking');
+        utterance.onerror = () => elBtnAudioSpeakExaminer.classList.remove('speaking');
+
+        window.speechSynthesis.speak(utterance);
+      }
+    });
+  }
+
+  // --- Audio Pronunciation: Verbal Redemittel / Wie sage ich es? ---
+  const elBtnAudioSpeakVerbal = document.getElementById('btn-audio-speak-verbal');
+  if (elBtnAudioSpeakVerbal) {
+    elBtnAudioSpeakVerbal.addEventListener('click', () => {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking && elBtnAudioSpeakVerbal.classList.contains('speaking')) {
+          window.speechSynthesis.cancel();
+          elBtnAudioSpeakVerbal.classList.remove('speaking');
+          return;
+        }
+        window.speechSynthesis.cancel();
+        document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+
+        const elVerbal = document.getElementById('rubric-verbal-text');
+        const textToRead = elVerbal ? elVerbal.textContent.trim() : '';
+        if (!textToRead) return;
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.92;
+
+        utterance.onstart = () => elBtnAudioSpeakVerbal.classList.add('speaking');
+        utterance.onend = () => elBtnAudioSpeakVerbal.classList.remove('speaking');
+        utterance.onerror = () => elBtnAudioSpeakVerbal.classList.remove('speaking');
+
+        window.speechSynthesis.speak(utterance);
       }
     });
   }

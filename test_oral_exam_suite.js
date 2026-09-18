@@ -447,7 +447,17 @@ assert(appCode.includes("state.filterMode === 'sm2_due'"), 'app.js must handle s
 
 console.log('[PASS] ÄKNO Düsseldorf Protocol Questions & Commission Guide Suite verified.');
 
-console.log('\n🎉 ALL 22 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 23. Test Audio Pronunciation & Multi-Device Cloud Sync Hardening Suite
+assert(htmlContent.includes('btn-audio-speak-examiner'), 'index.html must include #btn-audio-speak-examiner');
+assert(htmlContent.includes('btn-audio-speak-verbal'), 'index.html must include #btn-audio-speak-verbal');
+assert(appCode.includes('btn-audio-speak-examiner'), 'app.js must bind #btn-audio-speak-examiner');
+assert(appCode.includes('btn-audio-speak-verbal'), 'app.js must bind #btn-audio-speak-verbal');
+assert(cssCode.includes('.btn-audio-action-sm'), 'styles.css must style .btn-audio-action-sm');
+assert(appCode.includes('robustAnswers'), 'app.js must implement robust union merge for answers in syncFromCloud');
+assert(appCode.includes('robustSm2'), 'app.js must implement timestamp-based union merge for SM-2 cards');
+console.log('[PASS] Audio Pronunciation & Multi-Device Cloud Sync Hardening Suite verified.');
+
+console.log('\n🎉 ALL 23 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 
