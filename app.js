@@ -2376,35 +2376,45 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!lightboxModal) {
       lightboxModal = document.createElement('div');
       lightboxModal.id = 'image-lightbox-modal';
-      lightboxModal.className = 'modal-overlay';
+      lightboxModal.className = 'modal-backdrop';
+      lightboxModal.style.display = 'none';
       lightboxModal.innerHTML = `
-        <div class="modal-card" style="max-width: 95vw; max-height: 95vh; background: rgba(0,0,0,0.92); border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-          <button class="modal-close" id="lightbox-close" style="position: absolute; top: 15px; right: 20px; color: #fff; font-size: 2rem; z-index: 10;">&times;</button>
-          <img id="lightbox-img" src="" alt="Befund-Vergrößerung" style="max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);" />
-          <div id="lightbox-caption" style="color: #e2e8f0; margin-top: 10px; font-size: 0.9rem; text-align: center; font-weight: 500;"></div>
+        <div class="modal-card" style="max-width: 95vw; max-height: 95vh; background: rgba(0,0,0,0.95); border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 1.5rem;">
+          <button class="modal-close" id="lightbox-close" style="position: absolute; top: 12px; right: 16px; color: #fff; font-size: 1.8rem; cursor: pointer; background: transparent; border: none; z-index: 10;">&times;</button>
+          <img id="lightbox-img" src="" alt="Befund-Vergrößerung" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.6);" />
+          <div id="lightbox-caption" style="color: #e2e8f0; margin-top: 12px; font-size: 0.95rem; text-align: center; font-weight: 500;"></div>
         </div>
       `;
       document.body.appendChild(lightboxModal);
 
+      const closeLightbox = () => {
+        lightboxModal.classList.remove('active');
+        setTimeout(() => {
+          lightboxModal.style.display = 'none';
+        }, 250);
+      };
+
       const closeBtn = document.getElementById('lightbox-close');
       if (closeBtn) {
-        closeBtn.addEventListener('click', () => lightboxModal.classList.remove('active'));
+        closeBtn.addEventListener('click', closeLightbox);
       }
       lightboxModal.addEventListener('click', (e) => {
-        if (e.target === lightboxModal) lightboxModal.classList.remove('active');
+        if (e.target === lightboxModal) closeLightbox();
       });
     }
 
     document.addEventListener('click', (e) => {
       if (e.target && e.target.classList.contains('question-image')) {
         const imgSrc = e.target.src;
+        if (!imgSrc) return;
         const imgAlt = e.target.alt || 'Klinischer Befund';
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
 
         if (lightboxImg) lightboxImg.src = imgSrc;
         if (lightboxCaption) lightboxCaption.textContent = imgAlt;
-        lightboxModal.classList.add('active');
+        lightboxModal.style.display = 'flex';
+        setTimeout(() => lightboxModal.classList.add('active'), 10);
       }
     });
   }
