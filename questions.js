@@ -1,4 +1,3 @@
-// Facharztprüfung Anästhesiologie - Question Bank
 const EXAM_QUESTIONS = [
   {
     "id": "q_1",
@@ -202,8 +201,8 @@ const EXAM_QUESTIONS = [
         "text_de": "können die Folge einer bakteriellen Besiedlung des Darms sein.",
         "text_tr": "bağırsakta bakteri kolonizasyonunun bir sonucu olabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: können die Folge einer bakteriellen Besiedlung des Darms sein.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: bağırsakta bakteri kolonizasyonunun bir sonucu olabilir."
       }
     ],
     "is_high_yield": false
@@ -514,8 +513,8 @@ const EXAM_QUESTIONS = [
         "text_de": "hypovolämischem Schock.",
         "text_tr": "hipovolemik şok.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: hypovolämischem Schock.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: hipovolemik şok."
       }
     ],
     "is_high_yield": true
@@ -930,8 +929,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Ein Sphygmomanometer misst den intrapleuralen Druck.",
         "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Ein Sphygmomanometer misst den intrapleuralen Druck.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir."
       }
     ],
     "is_high_yield": true
@@ -1138,8 +1137,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Je kleiner der Alveolenradius wird, desto stärker wirkt der Surfactant.",
         "text_tr": "Alveol yarıçapı ne kadar küçük olursa yüzey aktif madde o kadar güçlü olur.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Je kleiner der Alveolenradius wird, desto stärker wirkt der Surfactant.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Alveol yarıçapı ne kadar küçük olursa yüzey aktif madde o kadar güçlü olur."
       }
     ],
     "is_high_yield": true
@@ -1814,8 +1813,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Ausschüttung von ACh geschieht kontinuierlich.",
         "text_tr": "miyoklonusa yol açar",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Die Ausschüttung von ACh geschieht kontinuierlich.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: miyoklonusa yol açar"
       }
     ],
     "is_high_yield": false
@@ -2178,8 +2177,8 @@ const EXAM_QUESTIONS = [
         "text_de": "erhalten den höchsten gewichtsbezogenen Blutfluss im Körper.",
         "text_tr": "Vücuttaki kiloya bağlı en yüksek kan akışını alır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: erhalten den höchsten gewichtsbezogenen Blutfluss im Körper.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Vücuttaki kiloya bağlı en yüksek kan akışını alır."
       }
     ],
     "is_high_yield": true
@@ -2906,8 +2905,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die nicht abhängige Lunge besser durchblutet.",
         "text_tr": "bağımlı olmayan akciğerler daha iyi kanla beslenir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: ist die nicht abhängige Lunge besser durchblutet.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: bağımlı olmayan akciğerler daha iyi kanla beslenir."
       }
     ],
     "is_high_yield": true
@@ -3166,8 +3165,8 @@ const EXAM_QUESTIONS = [
         "text_de": "bei erhöhtem intrathorakalem Druck",
         "text_tr": "artan intratorasik basınç ile",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: bei erhöhtem intrathorakalem Druck",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: artan intratorasik basınç ile"
       }
     ],
     "is_high_yield": false
@@ -3374,8 +3373,8 @@ const EXAM_QUESTIONS = [
         "text_de": "wird intraoperativ am besten dur ch Abdeckung des Körpers mit Tüchern verhindert.",
         "text_tr": "Ameliyat sırasında vücudun bezlerle kapatılması en iyi şekilde önlenir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: wird intraoperativ am besten dur ch Abdeckung des Körpers mit Tüchern verhindert.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Ameliyat sırasında vücudun bezlerle kapatılması en iyi şekilde önlenir."
       }
     ],
     "is_high_yield": false
@@ -3490,8 +3489,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Protamin:",
-    "stem_tr": "Protamin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Protamin:",
+    "stem_tr": "Protamin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -3542,8 +3541,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Heparin:",
-    "stem_tr": "Heparin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Heparin:",
+    "stem_tr": "Heparin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -3594,8 +3593,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Tranexamsäure:",
-    "stem_tr": "Traneksamik asit:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Tranexamsäure:",
+    "stem_tr": "Tranexamsäure ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -3634,8 +3633,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist bei Patienten mit Thrombophilie relativ kontraindiziert.",
         "text_tr": "Trombofili hastalarında nispeten kontrendikedir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: ist bei Patienten mit Thrombophilie relativ kontraindiziert.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Trombofili hastalarında nispeten kontrendikedir."
       }
     ],
     "is_high_yield": false
@@ -3842,8 +3841,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Hämatokriterniedrigung",
         "text_tr": "Hematokrit azalması",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Hämatokriterniedrigung",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Hematokrit azalması"
       }
     ],
     "is_high_yield": false
@@ -3958,8 +3957,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Aprotinin:",
-    "stem_tr": "Aprotinin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Aprotinin:",
+    "stem_tr": "Aprotinin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -4270,8 +4269,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Insulin:",
-    "stem_tr": "İnsülin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Insulin:",
+    "stem_tr": "Insulin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -4414,8 +4413,8 @@ const EXAM_QUESTIONS = [
         "text_de": "»katecholaminrefraktäre« arterielle Hypotonie",
         "text_tr": "“Katekolaminlere dirençli” arteriyel hipotansiyon",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: »katecholaminrefraktäre« arterielle Hypotonie",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: “Katekolaminlere dirençli” arteriyel hipotansiyon"
       }
     ],
     "is_high_yield": false
@@ -4634,8 +4633,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Histamin:",
-    "stem_tr": "Histamin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Histamin:",
+    "stem_tr": "Histamin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -4726,8 +4725,8 @@ const EXAM_QUESTIONS = [
         "text_de": "liegt die Hauptgefahr in der fehlenden Atemgasklimatisierung.",
         "text_tr": "Asıl tehlike, solunum gazı klimasının bulunmamasından kaynaklanmaktadır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: liegt die Hauptgefahr in der fehlenden Atemgasklimatisierung.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Asıl tehlike, solunum gazı klimasının bulunmamasından kaynaklanmaktadır."
       }
     ],
     "is_high_yield": false
@@ -4830,8 +4829,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Letalität eines ARDS wird hauptsächlich vom Lebensalter bestimmt.",
         "text_tr": "ARDS'nin ölümcüllüğü esas olarak yaşa göre belirlenir. e. Yanlış. Pozisyonlama önlemleri olmadan ventilasyon terapisinin kinetik terapili ventilasyon terapisi (dorsoventral alternatif pozisyonlama veya sürekli eksenel rotasyon) ile karşılaştırılması oksijenlenmeyi iyileştirebildi, ancak ventilasyon süresinde veya mortalitede bir azalmayla sonuçlanmadı (Guerin ve ark. Hipoksemik akut solunum yetmezliğinde sistematik yüzüstü pozisyonun etkileri: randomize kontrollü bir çalışma. JAMA 2004; 292 (19): 2379-87).",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Die Letalität eines ARDS wird hauptsächlich vom Lebensalter bestimmt.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: ARDS'nin ölümcüllüğü esas olarak yaşa göre belirlenir. e. Yanlış. Pozisyonlama önlemleri olmadan ventilasyon terapisinin kinetik terapili ventilasyon terapisi (dorsoventral alternatif pozisyonlama veya sürekli eksenel rotasyon) ile karşılaştırılması oksijenlenmeyi iyileştirebildi, ancak ventilasyon süresinde veya mortalitede bir azalmayla sonuçlanmadı (Guerin ve ark. Hipoksemik akut solunum yetmezliğinde sistematik yüzüstü pozisyonun etkileri: randomize kontrollü bir çalışma. JAMA 2004; 292 (19): 2379-87)."
       }
     ],
     "is_high_yield": true
@@ -5038,8 +5037,8 @@ const EXAM_QUESTIONS = [
         "text_de": "die unten liegende Lunge immer mit PEEP beatmet werden.",
         "text_tr": "alttaki akciğerler her zaman PEEP ile havalandırılmalıdır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: die unten liegende Lunge immer mit PEEP beatmet werden.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: alttaki akciğerler her zaman PEEP ile havalandırılmalıdır."
       }
     ],
     "is_high_yield": true
@@ -5466,8 +5465,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Doxapram:",
-    "stem_tr": "Doksapram:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Doxapram:",
+    "stem_tr": "Doxapram ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -5726,8 +5725,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Flumazenil:",
-    "stem_tr": "Flumazenil:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Flumazenil:",
+    "stem_tr": "Flumazenil ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -5766,8 +5765,8 @@ const EXAM_QUESTIONS = [
         "text_de": "antagonisiert Phenytoin",
         "text_tr": "fenitoini antagonize eder",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: antagonisiert Phenytoin",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: fenitoini antagonize eder"
       }
     ],
     "is_high_yield": false
@@ -5778,8 +5777,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Thiopental:",
-    "stem_tr": "Tiyopental:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Thiopental:",
+    "stem_tr": "Thiopental ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -5882,8 +5881,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Etomidat:",
-    "stem_tr": "Etomidat:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Etomidat:",
+    "stem_tr": "Etomidat ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -5922,8 +5921,8 @@ const EXAM_QUESTIONS = [
         "text_de": "wird durch Plasmaesterasen metabolisiert",
         "text_tr": "Bir serbest dalıcıda, deniz seviyesinde ölçülen toplam akciğer hacmi (V 0 ), 20 m deniz derinliğinde (V 1 ) yarıya iner,",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: wird durch Plasmaesterasen metabolisiert",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Bir serbest dalıcıda, deniz seviyesinde ölçülen toplam akciğer hacmi (V 0 ), 20 m deniz derinliğinde (V 1 ) yarıya iner,"
       }
     ],
     "is_high_yield": false
@@ -5934,8 +5933,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Propofol:",
-    "stem_tr": "Propofol:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Propofol:",
+    "stem_tr": "Propofol ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -5986,8 +5985,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Ketamin:",
-    "stem_tr": "Ketamin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Ketamin:",
+    "stem_tr": "Ketamin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6038,8 +6037,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Ketamin:",
-    "stem_tr": "Ketamin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Ketamin:",
+    "stem_tr": "Ketamin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6090,8 +6089,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Midazolam:",
-    "stem_tr": "Midazolam:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Midazolam:",
+    "stem_tr": "Midazolam ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6194,8 +6193,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Halothan:",
-    "stem_tr": "Halotan:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Halothan:",
+    "stem_tr": "Halothan ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6234,8 +6233,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann eine »Halothanhepatitis« auslösen aufgrund einer direkt toxischen Wirkung der Metabolite.",
         "text_tr": "metabolitlerin doğrudan toksik etkisi nedeniyle “halotan hepatiti” tetikleyebilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann eine »Halothanhepatitis« auslösen aufgrund einer direkt toxischen Wirkung der Metabolite.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: metabolitlerin doğrudan toksik etkisi nedeniyle “halotan hepatiti” tetikleyebilir."
       }
     ],
     "is_high_yield": false
@@ -6298,8 +6297,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Isofluran:",
-    "stem_tr": "İzofluran:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Isofluran:",
+    "stem_tr": "Isofluran ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6350,8 +6349,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Desfluran:",
-    "stem_tr": "Desfluran:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Desfluran:",
+    "stem_tr": "Desfluran ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6402,8 +6401,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Sevofluran:",
-    "stem_tr": "Sevofluran:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Sevofluran:",
+    "stem_tr": "Sevofluran ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6454,8 +6453,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Halothan:",
-    "stem_tr": "Halotan:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Halothan:",
+    "stem_tr": "Halothan ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6494,8 +6493,8 @@ const EXAM_QUESTIONS = [
         "text_de": "erhöht den arteriellen pCO₂ beim spontanatmenden Patienten dosisabhängig.",
         "text_tr": "Spontan solunum yapan hastalarda arteriyel pCO₂'yi doza bağlı bir şekilde artırır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: erhöht den arteriellen pCO₂ beim spontanatmenden Patienten dosisabhängig.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Spontan solunum yapan hastalarda arteriyel pCO₂'yi doza bağlı bir şekilde artırır."
       }
     ],
     "is_high_yield": false
@@ -6594,8 +6593,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Xenon:",
-    "stem_tr": "Ksenon:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Xenon:",
+    "stem_tr": "Xenon ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -6686,8 +6685,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Die taktile Beurteilung der Erholung einer neuromuskulären Blockade ist mittels DBS besser möglich als mittels TOF.",
         "text_tr": "Nöromüsküler blokajdan iyileşmenin dokunsal değerlendirmesi, TOF'a göre DBS kullanılarak daha mümkündür.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Die taktile Beurteilung der Erholung einer neuromuskulären Blockade ist mittels DBS besser möglich als mittels TOF.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Nöromüsküler blokajdan iyileşmenin dokunsal değerlendirmesi, TOF'a göre DBS kullanılarak daha mümkündür."
       }
     ],
     "is_high_yield": false
@@ -6946,8 +6945,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Cholinesterase-Inhibitoren blockieren die Hydrolyse von Acetylcholin.",
         "text_tr": "Kolinesteraz inhibitörleri asetilkolinin hidrolizini bloke eder.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Cholinesterase-Inhibitoren blockieren die Hydrolyse von Acetylcholin.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Kolinesteraz inhibitörleri asetilkolinin hidrolizini bloke eder."
       }
     ],
     "is_high_yield": true
@@ -7102,8 +7101,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Hypokaliämie",
         "text_tr": "Hipokalemi",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Hypokaliämie",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Hipokalemi"
       }
     ],
     "is_high_yield": false
@@ -7374,8 +7373,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Morphin (MO):",
-    "stem_tr": "Morfin (MO):",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Morphin (MO):",
+    "stem_tr": "Morphin (MO) ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7478,8 +7477,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Naloxon:",
-    "stem_tr": "Nalokson:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Naloxon:",
+    "stem_tr": "Naloxon ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7530,8 +7529,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Fentanyl:",
-    "stem_tr": "Fentanil:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Fentanyl:",
+    "stem_tr": "Fentanyl ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7622,8 +7621,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Meperidin",
         "text_tr": "Meperidin",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Meperidin",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Meperidin"
       }
     ],
     "is_high_yield": false
@@ -7634,8 +7633,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Opioide",
-    "stem_tr": "Opioidler",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Opioide:",
+    "stem_tr": "Opioide ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7686,8 +7685,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Alfentanil:",
-    "stem_tr": "Alfentanil:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Alfentanil:",
+    "stem_tr": "Alfentanil ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7738,8 +7737,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Methadon:",
-    "stem_tr": "Metadon:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Methadon:",
+    "stem_tr": "Methadon ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7790,8 +7789,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Kokain:",
-    "stem_tr": "Kokain:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Kokain:",
+    "stem_tr": "Kokain ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7842,8 +7841,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Clonidin:",
-    "stem_tr": "• Bağlantıların ve hatların kısa görsel kontrolü. • Ayrı acil canlandırma çantası mevcut mu? • Havalandırma modu “manuel/kendiliğinden” ve O₂ akışı > 2 l/dak. • APL valfını > 30 mbar olarak ayarlayın. • Y parçasını kapatın ve el resüsitasyon çantasını elinize alın. • Manüel sıkıştırma sırasında torbanın havası inmemelidir. • Y parçası açıldığında bir gaz akışı fark edilebilir olmalıdır. • Preoksijenasyon için hastaya O₂ akışı > 2 l/dk olacak şekilde yüz maskesi yerleştirilir. • İnspiratuar oksijen konsantrasyonu ölçümünün makul derecede yüksek değerler gösterip göstermediğini ve kapnometrinin çalışıp çalışmadığını kontrol edin. Bu \"kısa kontrol\" her anestezi indüksiyonundan önce yapılmalıdır ve anestezi makinesinin, çalışmaya başlamadan önce yapılması gereken kullanım talimatlarına uygun olarak yapılan ayrıntılı kontrolünün veya \"kendi kendine kontrolünün\" yerine geçmez. Anestezi devresinin en önemli elemanlarını bir parça kağıda çizin.› Şekil. 1.10. Başarılı entübasyondan sonra hasta ameliyathanede sol tarafına yatırılır. Daha önce, sol radyal artere bir arteriyel basınç ölçümü yapıyordunuz ve ultrason kullanarak sağdaki V. jugularis interna'ya bir CVC yerleştiriyordunuz.",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Clonidin:",
+    "stem_tr": "Clonidin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7882,8 +7881,8 @@ const EXAM_QUESTIONS = [
         "text_de": "führt zu einer Bradykardie.",
         "text_tr": "Bradikardiye yol açar.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: führt zu einer Bradykardie.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Bradikardiye yol açar."
       }
     ],
     "is_high_yield": false
@@ -7894,8 +7893,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Clonidin:",
-    "stem_tr": "• Bağlantıların ve hatların kısa görsel kontrolü. • Ayrı acil canlandırma çantası mevcut mu? • Havalandırma modu “manuel/kendiliğinden” ve O₂ akışı > 2 l/dak. • APL valfını > 30 mbar olarak ayarlayın. • Y parçasını kapatın ve el resüsitasyon çantasını elinize alın. • Manüel sıkıştırma sırasında torbanın havası inmemelidir. • Y parçası açıldığında bir gaz akışı fark edilebilir olmalıdır. • Preoksijenasyon için hastaya O₂ akışı > 2 l/dk olacak şekilde yüz maskesi yerleştirilir. • İnspiratuar oksijen konsantrasyonu ölçümünün makul derecede yüksek değerler gösterip göstermediğini ve kapnometrinin çalışıp çalışmadığını kontrol edin. Bu \"kısa kontrol\" her anestezi indüksiyonundan önce yapılmalıdır ve anestezi makinesinin, çalışmaya başlamadan önce yapılması gereken kullanım talimatlarına uygun olarak yapılan ayrıntılı kontrolünün veya \"kendi kendine kontrolünün\" yerine geçmez. Anestezi devresinin en önemli elemanlarını bir parça kağıda çizin.› Şekil. 1.10. Başarılı entübasyondan sonra hasta ameliyathanede sol tarafına yatırılır. Daha önce, sol radyal artere bir arteriyel basınç ölçümü yapıyordunuz ve ultrason kullanarak sağdaki V. jugularis interna'ya bir CVC yerleştiriyordunuz.",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Clonidin:",
+    "stem_tr": "Clonidin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -7946,8 +7945,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Hydralazin:",
-    "stem_tr": "Hidralazin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Hydralazin:",
+    "stem_tr": "Hydralazin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -8038,8 +8037,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist für eine kontrollierte arterielle Hypotension geeignet.",
         "text_tr": "Kontrollü arteriyel hipotansiyon için uygundur.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: ist für eine kontrollierte arterielle Hypotension geeignet.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Kontrollü arteriyel hipotansiyon için uygundur."
       }
     ],
     "is_high_yield": false
@@ -8102,8 +8101,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Captopril:",
-    "stem_tr": "Kaptopril:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Captopril:",
+    "stem_tr": "Captopril ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -8154,8 +8153,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Mannit:",
-    "stem_tr": "Mannitol:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Mannit:",
+    "stem_tr": "Mannit ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -8246,8 +8245,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu einer Hyperglykämie führen.",
         "text_tr": "hiperglisemiye yol açabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann zu einer Hyperglykämie führen.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: hiperglisemiye yol açabilir."
       }
     ],
     "is_high_yield": false
@@ -8258,8 +8257,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Furosemid:",
-    "stem_tr": "Furosemid:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Furosemid:",
+    "stem_tr": "Furosemid ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -8454,8 +8453,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Einige MAO-Hemmer sind hepatotoxisch.",
         "text_tr": "Bazı MAO inhibitörleri hepatotoksiktir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Einige MAO-Hemmer sind hepatotoxisch.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Bazı MAO inhibitörleri hepatotoksiktir."
       }
     ],
     "is_high_yield": false
@@ -8610,8 +8609,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Lithium sollte vor Elektiveingriffen abgesetzt werden.",
         "text_tr": "Elektif işlemlerden önce lityum kesilmelidir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Lithium sollte vor Elektiveingriffen abgesetzt werden.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Elektif işlemlerden önce lityum kesilmelidir."
       }
     ],
     "is_high_yield": false
@@ -8674,8 +8673,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Adrenalin:",
-    "stem_tr": "Adrenalin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Adrenalin:",
+    "stem_tr": "Adrenalin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -8766,8 +8765,8 @@ const EXAM_QUESTIONS = [
         "text_de": "10 μg/min i.v. führen zu einer gleich großen Hyperglykämieneigung wie Adrenalin.",
         "text_tr": "10 µg/dak i.v. hiperglisemiye adrenalinle eşit bir eğilime yol açar.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: 10 μg/min i.v. führen zu einer gleich großen Hyperglykämieneigung wie Adrenalin.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: 10 µg/dak i.v. hiperglisemiye adrenalinle eşit bir eğilime yol açar."
       }
     ],
     "is_high_yield": false
@@ -8882,8 +8881,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Propranolol:",
-    "stem_tr": "Propranolol:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Propranolol:",
+    "stem_tr": "Propranolol ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -8922,8 +8921,8 @@ const EXAM_QUESTIONS = [
         "text_de": "hat einen ausgeprägten First-pass-Effekt.",
         "text_tr": "belirgin bir ilk geçiş etkisine sahiptir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: hat einen ausgeprägten First-pass-Effekt.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: belirgin bir ilk geçiş etkisine sahiptir."
       }
     ],
     "is_high_yield": false
@@ -8986,8 +8985,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Labetalol:",
-    "stem_tr": "Labetalol:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Labetalol:",
+    "stem_tr": "Labetalol ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -9038,8 +9037,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Adenosin:",
-    "stem_tr": "Adenozin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Adenosin:",
+    "stem_tr": "Adenosin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -9078,8 +9077,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu einem Bronchospasmus führen.",
         "text_tr": "bronkospazma yol açabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann zu einem Bronchospasmus führen.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: bronkospazma yol açabilir."
       }
     ],
     "is_high_yield": false
@@ -9142,8 +9141,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Amiodaron:",
-    "stem_tr": "Amiodaron:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Amiodaron:",
+    "stem_tr": "Amiodaron ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -9194,8 +9193,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Digoxin:",
-    "stem_tr": "Digoksin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Digoxin:",
+    "stem_tr": "Digoxin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -9286,8 +9285,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann sich in einem AV-Block III. Grades äußern.",
         "text_tr": "AV blok III ile sonuçlanabilir. derece ifade eder.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann sich in einem AV-Block III. Grades äußern.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: AV blok III ile sonuçlanabilir. derece ifade eder."
       }
     ],
     "is_high_yield": false
@@ -9298,8 +9297,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Verapamil:",
-    "stem_tr": "Verapamil:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Verapamil:",
+    "stem_tr": "Verapamil ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -9350,8 +9349,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Atropin:",
-    "stem_tr": "Atropin:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Atropin:",
+    "stem_tr": "Atropin ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -9650,8 +9649,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Sie ist häufig bei einem Pierre-Robin-Syndrom.",
         "text_tr": "Pierre Robin sendromunda sık görülür.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Sie ist häufig bei einem Pierre-Robin-Syndrom.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Pierre Robin sendromunda sık görülür."
       }
     ],
     "is_high_yield": true
@@ -9806,8 +9805,8 @@ const EXAM_QUESTIONS = [
         "text_de": "wird durch Inhalationsanästhetika abgeschwächt.",
         "text_tr": "inhalasyon anestezikleri ile zayıflatılır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: wird durch Inhalationsanästhetika abgeschwächt.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: inhalasyon anestezikleri ile zayıflatılır."
       }
     ],
     "is_high_yield": false
@@ -10066,8 +10065,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Kopfschmerzen",
         "text_tr": "Baş ağrısı",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Kopfschmerzen",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Baş ağrısı"
       }
     ],
     "is_high_yield": false
@@ -10326,8 +10325,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Fentanyl wird nach Idealgewicht dosiert.",
         "text_tr": "Fentanil ideal kiloya göre dozlanır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Fentanyl wird nach Idealgewicht dosiert.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Fentanil ideal kiloya göre dozlanır."
       }
     ],
     "is_high_yield": false
@@ -10650,8 +10649,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Bupivacain:",
-    "stem_tr": "Bupivakain:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Bupivacain:",
+    "stem_tr": "Bupivacain ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -10702,8 +10701,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Prilocain:",
-    "stem_tr": "Prilokain:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Prilocain:",
+    "stem_tr": "Prilocain ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -10794,8 +10793,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Herzstillstand",
         "text_tr": "kalp durması",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Herzstillstand",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: kalp durması"
       }
     ],
     "is_high_yield": false
@@ -11090,8 +11089,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Allergische Reaktionen auf Lokalanästhetika sind bei amidartigen häufiger als bei esterartigen Lokalanästhetika.",
         "text_tr": "Lokal anesteziklere karşı alerjik reaksiyonlar amid tipi lokal anesteziklerde ester tipi lokal anesteziklere göre daha yaygındır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Allergische Reaktionen auf Lokalanästhetika sind bei amidartigen häufiger als bei esterartigen Lokalanästhetika.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Lokal anesteziklere karşı alerjik reaksiyonlar amid tipi lokal anesteziklerde ester tipi lokal anesteziklere göre daha yaygındır."
       }
     ],
     "is_high_yield": false
@@ -12166,8 +12165,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu einer Hirnblutung führen.",
         "text_tr": "beyin kanamasına yol açabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann zu einer Hirnblutung führen.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: beyin kanamasına yol açabilir."
       }
     ],
     "is_high_yield": false
@@ -12322,8 +12321,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann die Gabe von Aminoglykosidantibiotika die myasthenische Schwäche verstärken.",
         "text_tr": "Aminoglikozit antibiyotiklerin uygulanması miyastenik zayıflığı artırabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann die Gabe von Aminoglykosidantibiotika die myasthenische Schwäche verstärken.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Aminoglikozit antibiyotiklerin uygulanması miyastenik zayıflığı artırabilir."
       }
     ],
     "is_high_yield": false
@@ -12478,8 +12477,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Der postspinale Kopfschmerz spricht bevorzugt auf die Gabe von Acetyl-salicylsäure an.",
         "text_tr": "Postspinal baş ağrısı, tercihen asetilsalisilik asit uygulamasına yanıt verir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Der postspinale Kopfschmerz spricht bevorzugt auf die Gabe von Acetyl-salicylsäure an.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Postspinal baş ağrısı, tercihen asetilsalisilik asit uygulamasına yanıt verir."
       }
     ],
     "is_high_yield": true
@@ -12686,8 +12685,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Beim Myokardinfarkt erreicht die Glutamat-Oxalacetat-Transaminase (GOT) am 1. Tag und die Laktatdehydrogenase (LDH) am 2. Tag ihr Maximum.",
         "text_tr": "Miyokard enfarktüsünde glutamat oksaloasetat transaminaz (GOT) 1. günde, laktat dehidrojenaz (LDH) ise 2. günde maksimuma ulaşır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Beim Myokardinfarkt erreicht die Glutamat-Oxalacetat-Transaminase (GOT) am 1. Tag und die Laktatdehydrogenase (LDH) am 2. Tag ihr Maximum.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Miyokard enfarktüsünde glutamat oksaloasetat transaminaz (GOT) 1. günde, laktat dehidrojenaz (LDH) ise 2. günde maksimuma ulaşır."
       }
     ],
     "is_high_yield": false
@@ -12842,8 +12841,8 @@ const EXAM_QUESTIONS = [
         "text_de": "bei erhöhter ventrikulärer Wandspannung",
         "text_tr": "artan ventriküler duvar gerilimi ile",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: bei erhöhter ventrikulärer Wandspannung",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: artan ventriküler duvar gerilimi ile"
       }
     ],
     "is_high_yield": true
@@ -12946,8 +12945,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Ein hypertrophierter Ventrikel ist für eine Ischämie besonders anfällig.",
         "text_tr": "Hipertrofik bir ventrikül iskemiye özellikle duyarlıdır. e. Doğru. Sert bir ventrikülün belirli bir atım hacmini dışarı atmak için elastik olandan daha fazla iş yapması gerekir; Bu ekstra çalışmanın yanı sıra daha fazla oksijene de ihtiyaç duyulur.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Ein hypertrophierter Ventrikel ist für eine Ischämie besonders anfällig.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Hipertrofik bir ventrikül iskemiye özellikle duyarlıdır. e. Doğru. Sert bir ventrikülün belirli bir atım hacmini dışarı atmak için elastik olandan daha fazla iş yapması gerekir; Bu ekstra çalışmanın yanı sıra daha fazla oksijene de ihtiyaç duyulur."
       }
     ],
     "is_high_yield": true
@@ -13102,8 +13101,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Eine Bradykardie ist zu vermeiden.",
         "text_tr": "Bradikardiden kaçınılmalıdır.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Eine Bradykardie ist zu vermeiden.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Bradikardiden kaçınılmalıdır."
       }
     ],
     "is_high_yield": true
@@ -13310,8 +13309,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist bei Beachtung der Kontraindika tionen ohne gravierende Komplikationen für den Patienten.",
         "text_tr": "Kontrendikasyonlar dikkate alınırsa hasta açısından ciddi bir komplikasyon görülmez.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: ist bei Beachtung der Kontraindika tionen ohne gravierende Komplikationen für den Patienten.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Kontrendikasyonlar dikkate alınırsa hasta açısından ciddi bir komplikasyon görülmez."
       }
     ],
     "is_high_yield": true
@@ -13582,8 +13581,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Beim Säugling:",
-    "stem_tr": "Bebeklerde:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Beim Säugling:",
+    "stem_tr": "Beim Säugling ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -13622,8 +13621,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die glomeruläre Filtrationsrate (GFR) sowie der renale Blutfluss – bezo-gen auf die Körperoberfläche – vergleichbar mit der des Erwachsenen.",
         "text_tr": "Glomerüler filtrasyon hızı (GFR) ve böbrek kan akışı (vücut yüzeyine bağlı olarak) yetişkinlerinkiyle karşılaştırılabilir düzeydedir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: ist die glomeruläre Filtrationsrate (GFR) sowie der renale Blutfluss – bezo-gen auf die Körperoberfläche – vergleichbar mit der des Erwachsenen.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Glomerüler filtrasyon hızı (GFR) ve böbrek kan akışı (vücut yüzeyine bağlı olarak) yetişkinlerinkiyle karşılaştırılabilir düzeydedir."
       }
     ],
     "is_high_yield": false
@@ -13634,8 +13633,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Beim Säugling:",
-    "stem_tr": "Bebeklerde:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Beim Säugling:",
+    "stem_tr": "Beim Säugling ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -13790,8 +13789,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Beim Säugling:",
-    "stem_tr": "Bebeklerde:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Beim Säugling:",
+    "stem_tr": "Beim Säugling ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -13934,8 +13933,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Blut fließt von der Plazenta über die beiden Umbilikalvenen durch den Ductus venosus in die V. cava inferior.",
         "text_tr": "Kan, plasentadan iki göbek damarı yoluyla duktus venosus yoluyla alt vena kavaya akar.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Blut fließt von der Plazenta über die beiden Umbilikalvenen durch den Ductus venosus in die V. cava inferior.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Kan, plasentadan iki göbek damarı yoluyla duktus venosus yoluyla alt vena kavaya akar."
       }
     ],
     "is_high_yield": false
@@ -14058,8 +14057,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Die Blockade des N. pudendus ist ein zuverlässiges Verfahren zur Schmerz-ausschaltung unter der Geburt.",
         "text_tr": "Pudendal sinirin blokajı doğum sırasında ağrının giderilmesi için güvenilir bir prosedürdür.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Die Blockade des N. pudendus ist ein zuverlässiges Verfahren zur Schmerz-ausschaltung unter der Geburt.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Pudendal sinirin blokajı doğum sırasında ağrının giderilmesi için güvenilir bir prosedürdür."
       }
     ],
     "is_high_yield": false
@@ -14694,8 +14693,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Dantrolen:",
-    "stem_tr": "Dantrolen:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Dantrolen:",
+    "stem_tr": "Dantrolen ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -14838,8 +14837,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Lachgas",
         "text_tr": "nitröz oksit",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Lachgas",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: nitröz oksit"
       }
     ],
     "is_high_yield": true
@@ -14850,8 +14849,8 @@ const EXAM_QUESTIONS = [
     "source_book": "Anästhesie: 1670 Fakten für die Facharztprüfung (Kehl & Wilke)",
     "image": null,
     "question_type": "options",
-    "stem_de": "Dantrolen:",
-    "stem_tr": "Dantrolen:",
+    "stem_de": "Beurteilen Sie die folgenden Aussagen bezüglich Dantrolen:",
+    "stem_tr": "Dantrolen ile ilgili aşağıdaki ifadeleri değerlendiriniz:",
     "options": [
       {
         "key": "a",
@@ -15098,8 +15097,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Im Schub kann eine intensivmedizinische Betreuung erforderlich sein.",
         "text_tr": "Atak sırasında yoğun tıbbi bakım gerekli olabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Im Schub kann eine intensivmedizinische Betreuung erforderlich sein.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Atak sırasında yoğun tıbbi bakım gerekli olabilir."
       }
     ],
     "is_high_yield": false
@@ -15202,8 +15201,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Anaphylaktische und anaphylaktoide Reaktionen bedürfen einer unter-schiedlichen Therapie.",
         "text_tr": "Anafilaktik ve anafilaktoid reaksiyonlar farklı tedavi gerektirir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Anaphylaktische und anaphylaktoide Reaktionen bedürfen einer unter-schiedlichen Therapie.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Anafilaktik ve anafilaktoid reaksiyonlar farklı tedavi gerektirir."
       }
     ],
     "is_high_yield": true
@@ -15306,8 +15305,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Tachykardie",
         "text_tr": "Taşikardi",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: Tachykardie",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Taşikardi"
       }
     ],
     "is_high_yield": true
@@ -15670,8 +15669,8 @@ const EXAM_QUESTIONS = [
         "text_de": "proteingebundenes Jod erhöht",
         "text_tr": "proteine ​​bağlı iyot artışı",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: proteingebundenes Jod erhöht",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: proteine ​​bağlı iyot artışı"
       }
     ],
     "is_high_yield": true
@@ -15826,8 +15825,8 @@ const EXAM_QUESTIONS = [
         "text_de": "kann zu einer Erhöhung der Totraumventilation beitragen.",
         "text_tr": "ölü alan havalandırmasının arttırılmasına katkıda bulunabilir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: kann zu einer Erhöhung der Totraumventilation beitragen.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: ölü alan havalandırmasının arttırılmasına katkıda bulunabilir."
       }
     ],
     "is_high_yield": true
@@ -16114,8 +16113,8 @@ const EXAM_QUESTIONS = [
         "text_de": "negativer »base excess« (BE)",
         "text_tr": "Negatif baz fazlası (BE)",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: negativer »base excess« (BE)",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Negatif baz fazlası (BE)"
       }
     ],
     "is_high_yield": false
@@ -16462,8 +16461,8 @@ const EXAM_QUESTIONS = [
         "text_de": "ist die hyperbare O₂ -Therapie die Therapie der 1. Wahl.",
         "text_tr": "Hiperbarik O₂ tedavisi ilk tercih edilen tedavidir.",
         "is_correct": true,
-        "explanation_de": "",
-        "explanation_tr": ""
+        "explanation_de": "Die Aussage ist fachlich zutreffend: ist die hyperbare O₂ -Therapie die Therapie der 1. Wahl.",
+        "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Hiperbarik O₂ tedavisi ilk tercih edilen tedavidir."
       }
     ],
     "is_high_yield": false
@@ -20361,3 +20360,7 @@ const EXAM_QUESTIONS = [
     "is_high_yield": true
   }
 ];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = EXAM_QUESTIONS;
+}
