@@ -876,7 +876,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (!isRevealed) {
           revealAnswer();
         } else if (currentQ.options && currentQ.options.length > 0 && !qAns.submitted) {
-          evaluateOptionAnswers();
+          checkAnswer();
+        } else {
+          navigateToNextQuestion();
         }
         return;
       }
@@ -1267,7 +1269,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Self Assessment (Open Q&A) ---
-  function selfAssess(knewIt) {
+  function selfAssess(knewIt, qualityOverride) {
     filteredQuestions = getFilteredQuestions();
     if (!filteredQuestions.length) return;
 
@@ -1277,6 +1279,14 @@ document.addEventListener('DOMContentLoaded', () => {
     qState.submitted = true;
     qState.isCorrect = knewIt;
     state.answers[currentQ.id] = qState;
+
+    // Automatic SuperMemo-2 Spaced Repetition calculation
+    if (typeof SM2Engine !== 'undefined') {
+      state.sm2Data = state.sm2Data || {};
+      const quality = qualityOverride !== undefined ? qualityOverride : (knewIt ? 4 : 1);
+      state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
+    }
+
     saveState();
     renderCurrentQuestion();
   }
@@ -1321,6 +1331,13 @@ document.addEventListener('DOMContentLoaded', () => {
     qState.submitted = true;
     qState.isCorrect = isPassed;
     state.answers[currentQ.id] = qState;
+
+    // Automatic SuperMemo-2 Spaced Repetition calculation for MCQ options
+    if (typeof SM2Engine !== 'undefined') {
+      state.sm2Data = state.sm2Data || {};
+      const quality = isPassed ? 4 : 1;
+      state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
+    }
 
     saveState();
     renderCurrentQuestion();
