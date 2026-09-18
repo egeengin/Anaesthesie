@@ -34,6 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let filteredQuestions = [];
 
+  // --- Runtime Timers & Speech State (Declared early to prevent TDZ ReferenceErrors) ---
+  let examSimulationTimeLeft = 45 * 60;
+  let examSimulationTimerId = null;
+  let stepTimer = {
+    secondsLeft: 60,
+    interval: null,
+    isRunning: false
+  };
+  let speechRecognizer = null;
+  let isRecordingVoice = false;
+  let finalSpokenTranscript = '';
+
   // --- DOM Elements ---
   const elAuthModal = document.getElementById('auth-modal');
   const elAuthForm = document.getElementById('auth-form');
@@ -428,9 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 45-Minute Total Exam Simulation Timer ---
-  let examSimulationTimeLeft = 45 * 60; // 2700 Seconds
-  let examSimulationTimerId = null;
-
   function startExamSimulationTimer() {
     stopExamSimulationTimer();
     updateExamSimulationTimerUI();
@@ -469,12 +478,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 60-Second Exam Step Timer Engine ---
-  let stepTimer = {
-    secondsLeft: 60,
-    interval: null,
-    isRunning: false
-  };
-
   function playAudioTone(frequency = 780, type = 'sine', duration = 0.22) {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -572,10 +575,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Voice Dictation, Speech Recognition & Clinical Evaluation Engine ---
-  let speechRecognizer = null;
-  let isRecordingVoice = false;
-  let finalSpokenTranscript = '';
-
   function initSpeechEngine() {
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechAPI) return null;
