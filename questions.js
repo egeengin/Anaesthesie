@@ -1,3 +1,4 @@
+// FACHARZTPRÜFUNG ANÄSTHESIOLOGIE - COMPREHENSIVE QUESTION DATASET
 const EXAM_QUESTIONS = [
   {
     "id": "q_1",
@@ -229,8 +230,8 @@ const EXAM_QUESTIONS = [
         "text_de": "Auch metabolische Azidosen mit einem pH-Wert von 7,20–7,34 sollten grundsätzlich durch Gabe von Puffersubstanzen therapiert werden.",
         "text_tr": "PH değeri 7,20-7,34 olan metabolik asidoz da genellikle tampon maddelerin uygulanmasıyla tedavi edilmelidir.",
         "is_correct": false,
-        "explanation_de": "Mäßige Azidosen werden i. allg. gut toleriert, weil sie zu verschiedenen positiven Wirkungen beitragen. Eine Azidose erhöht über eine Freisetzung aus der Albuminbindung das freie ionisierte Kalzium, was zu einem Anstieg der Inotropie des Herzens und des Blutdrucks, durch eine Tonisierung des Gefäßsystems, führen kann. Gleichsinnig wirkt die unter",
-        "explanation_tr": ""
+        "explanation_de": "Mäßige Azidosen werden im Allgemeinen gut toleriert. Eine Azidose erhöht über eine Freisetzung aus der Albuminbindung das freie ionisierte Kalzium, was zu einem Anstieg der Inotropie des Herzens und des Blutdrucks führt. Eine generelle Pufferung bei pH 7,20–7,34 ist nicht indiziert und birgt Risiken (Hypernatriämie, paradoxe intrazelluläre Azidose).",
+        "explanation_tr": "Hafif-orta düzeyde asidozlar genellikle iyi tolere edilir. Asidoz, albümine bağlanmayı azaltarak serbest iyonize kalsiyumu artırır ve bu da miyokard inotropisini ve vasküler tonusu destekler. pH 7,20–7,34 aralığındaki asidozlarda rutin bikarbonat tamponlaması endike değildir ve komplikasyon riskleri taşır (hipernatremi, intrasellüler paradoks asidoz vb.)."
       },
       {
         "key": "c",
@@ -251,10 +252,10 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Eine metabolische Azidose ist mit einem Abfall des ionisierten Kalziums im Plasma verbunden.",
-        "text_tr": "Metabolik asidoz, plazma iyonize kalsiyumun azalmasıyla ilişkilidir. B. Doğru. Duyarlılık ve özgüllüğün düşük olmasına rağmen, sürekli olarak yükselen serum laktat düzeyleri, septik hastalarda artan mortalitenin göstergesidir.",
-        "is_correct": true,
-        "explanation_de": "Richtig.",
-        "explanation_tr": "Doğru."
+        "text_tr": "Metabolik asidoz, plazma iyonize kalsiyumunun azalmasıyla ilişkilidir.",
+        "is_correct": false,
+        "explanation_de": "Falsch. Eine Azidose führt zur Freisetzung von Kalzium aus der Albuminbindung und damit zu einem ANSTIEG des freien ionisierten Kalziums (im Gegensatz zur Alkalose).",
+        "explanation_tr": "Yanlış. Asidoz, kalsiyumun albümine bağlanmasını azaltarak serbest iyonize kalsiyumun ARTMASINA yol açar (alkalozun aksine)."
       }
     ],
     "is_high_yield": true
@@ -593,8 +594,8 @@ const EXAM_QUESTIONS = [
         "text_de": "verursacht eine Linksverschiebung der O₂ -Bindungskurve.",
         "text_tr": "O₂ bağlanma eğrisinin sola kaymasına neden olur.",
         "is_correct": true,
-        "explanation_de": "Die O₂ -Bindungskurve ist nach links verschoben, d. h. Sauerstoff wird erschwert an das Gewebe abgegeben.",
-        "explanation_tr": "HIT I'de heparin uygulanmasından sonra trombositlerde hafif bir azalma olur. Bağışıklık sisteminin aktivasyonu yoktur. HIT I ile tromboz oluşmaz. HIT I tedavisine gerek yoktur ve heparine devam edilebilir."
+        "explanation_de": "Die O₂-Bindungskurve ist nach links verschoben, d. h. Sauerstoff wird erschwert an das Gewebe abgegeben.",
+        "explanation_tr": "O₂ bağlanma eğrisi sola kaymıştır; yani oksijenin dokulara salınması zorlaşır."
       },
       {
         "key": "c",
@@ -614,8 +615,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird durch Gabe von Methylen-Blau behandelt. c. Richtig. Bei jedem Zelluntergang wird Kalium aus den zerstörten Zellen freigesetzt (Crush-Syndrom ).",
-        "text_tr": "metilen mavisi verilerek tedavi edilir. C. Doğru. Her hücre öldüğünde, yok edilen hücrelerden potasyum salınır (ezilme sendromu).",
+        "text_de": "wird durch Gabe von Methylen-Blau behandelt.",
+        "text_tr": "Metilen mavisi verilerek tedavi edilir.",
         "is_correct": true,
         "explanation_de": "Es wird die Gabe von 1–2 mg/kgKG i.v. empfohlen. Methylenblau vermittelt den Transfer von Elektronen des NADPH auf Met-Hb.",
         "explanation_tr": "1-2 mg/kg vücut ağırlığı i.v. tavsiye edilen. Metilen mavisi, elektronların NADPH'den Met-Hb'ye transferine aracılık eder."
@@ -1238,8 +1239,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Bei i.v.-Gabe von Methylenblau kann die S a O₂ kurzfristig auf <85 % abfallen.",
-        "text_tr": "Metilen mavisi intravenöz olarak uygulandığında, S aO2 kısa süreliğine <%85'e düşebilir. e. Doğru. Alveol yarıçapı küçültüldüğünde yüzey gerilimi artar. Alveol ne kadar küçülürse sürfaktan da o kadar konsantre hale gelir. Yüzey aktif madde, alveol yarıçapı küçüldükçe yüzey gerilimini azaltır, böylece alveolü stabilize eder. 25 1 1.2 · Fizik",
+        "text_de": "Bei i.v.-Gabe von Methylenblau kann die SaO₂ kurzfristig auf <85 % abfallen.",
+        "text_tr": "Metilen mavisi intravenöz olarak uygulandığında, SaO₂ kısa süreliğine <%85 düzeyine düşebilir.",
         "is_correct": true,
         "explanation_de": "Verschiedene parenteral applizierbare Farbstoffe können die Sättigungsmessung stören, obwohl keine wirkliche Änderung der O₂ -Sättigung stattgefunden hat. Bekanntestes Beispiel ist das Methylen-Blau, das wie auch Indozyaningrün und weniger Indigocarmin zu einem falschen Abfall der mittels Pulsoximetrie gemessenen S a O₂ führt.",
         "explanation_tr": "Parenteral olarak uygulanabilen çeşitli boyalar, O₂ doygunluğunda gerçek bir değişiklik meydana gelmese bile doygunluk ölçümüne müdahale edebilir. En iyi bilinen örnek, indosiyanin yeşili ve daha az indigo karmin gibi, nabız oksimetresi ile ölçülen SaO2 değerinde yanlış bir düşüşe yol açan metilen mavisidir."
@@ -2226,8 +2227,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "die venöse Compliance c. Richtig. Ein stärkerer Stimulus als der pO₂ -Abfall ist der pCO₂ -Anstieg.",
-        "text_tr": "Venöz uyum c. Doğru. pO₂ azalmasından daha güçlü bir uyarı pCO₂ artışıdır.",
+        "text_de": "die venöse Compliance.",
+        "text_tr": "Venöz kompliyans.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -3423,7 +3424,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "erhöhte Kapillarpermeabilität für Protein.",
-        "text_tr": "Proteine ​​karşı kılcal geçirgenliğin artması. B. Yanlış. Hafif hipotermi bile muhtemelen faktör aktivasyonunu engelleyerek kanın pıhtılaşma yeteneğini kötüleştirir. Bu pıhtılaşma kusuru taze dondurulmuş plazma (FFP) uygulanarak tersine çevrilemez. Sıcaklıktaki her °C düşüşte ameliyat sırasında kan kaybı yaklaşık %10 artar!",
+        "text_tr": "Proteinlere karşı kapiller geçirgenliğin artması.",
         "is_correct": true,
         "explanation_de": "Eine Erhöhung des hydrostatischen Drucks führt zur Erhöhung des effektiven Filtrationsdrucks.",
         "explanation_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1"
@@ -3943,7 +3944,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "können durch die gleichzeitige Gabe von Acetylsalicylsäure in ihrer Wirkung verstärkt werden.",
-        "text_tr": "Etki, asetilsalisilik asitin eşzamanlı uygulanmasıyla arttırılabilir. C. Doğru. Duke'a göre trombosit sayısı, yalnızca değerler önemli ölçüde azaldığında (<50.000 trombosit/μl) kanama süresini etkiliyor.",
+        "text_tr": "Asetilsalisilik asitin eşzamanlı uygulanmasıyla etkileri güçlendirilebilir.",
         "is_correct": true,
         "explanation_de": "Wenn zusätzlich Thrombozytenaggregationshemmer wie ASS im Rahmen einer Kumarintherapie gegeben werden, ist die Gefahr einer Spontanblutung erhöht.",
         "explanation_tr": "Kumarin tedavisinin bir parçası olarak ASA gibi trombosit agregasyon inhibitörleri de verilirse spontan kanama riski artar."
@@ -4515,7 +4516,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Angiotensin II stimuliert die Aldosteronfreisetzung aus der Nebenniere und führt zu einer Vasokonstriktion.",
-        "text_tr": "Anjiyotensin II, adrenal bezden aldosteron salınımını uyarır ve vazokonstriksiyona yol açar. D. Doğru. Primer NNR yetmezliğinde artan ACTH serum seviyeleri bulunur, ancak sekonder NNR yetmezliğinde bulunmaz. Bu, M. Addison'daki durumu karakterize ediyor.",
+        "text_tr": "Anjiyotensin II, böbrek üstü bezinden aldosteron salınımını uyarır ve vazokonstriksiyona yol açar.",
         "is_correct": true,
         "explanation_de": "Angiotensin II hat zwei Hauptwirkungen: es führt zu einer generalisierten Vasokonstriktion und damit zu einer Blutdruckerhöhung, und es stimuliert die Freisetzung von Aldosteron, welches über eine erhöhte Natriumrückresorption volumenexpandierend und blutdrucksteigernd wirkt. Aldosteron selbst inhibiert die Freisetzung von Renin aus dem juxta-glomerulären Apparat.",
         "explanation_tr": "Anjiyotensin II'nin iki ana etkisi vardır: genelleştirilmiş bir vazokonstriksiyona ve dolayısıyla kan basıncında bir artışa yol açar ve hacim genişletici etkisi olan ve artan sodyum yeniden emilimi yoluyla kan basıncını artıran aldosteron salınımını uyarır. Aldosteronun kendisi juksta-glomerüler aparattan renin salınmasını engeller."
@@ -4774,8 +4775,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Mortalität von ARDS-Patienten wird durch die kinetische Lagerungs-therapie gesenkt.",
-        "text_tr": "ARDS hastalarının mortalitesi kinetik konumlandırma tedavisi ile azaltılmaktadır. D. Yanlış. Sürekli negatif intraplevral basınç nedeniyle pozitif basınçlı ventilasyona kıyasla HFV'de beyinden venöz çıkış artar.",
+        "text_de": "Die Mortalität von ARDS-Patienten wird durch die kinetische Lagerungstherapie gesenkt.",
+        "text_tr": "ARDS hastalarında mortalite kinetik pozisyonlandırma tedavisi ile azaltılır.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -4827,7 +4828,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die Letalität eines ARDS wird hauptsächlich vom Lebensalter bestimmt.",
-        "text_tr": "ARDS'nin ölümcüllüğü esas olarak yaşa göre belirlenir. e. Yanlış. Pozisyonlama önlemleri olmadan ventilasyon terapisinin kinetik terapili ventilasyon terapisi (dorsoventral alternatif pozisyonlama veya sürekli eksenel rotasyon) ile karşılaştırılması oksijenlenmeyi iyileştirebildi, ancak ventilasyon süresinde veya mortalitede bir azalmayla sonuçlanmadı (Guerin ve ark. Hipoksemik akut solunum yetmezliğinde sistematik yüzüstü pozisyonun etkileri: randomize kontrollü bir çalışma. JAMA 2004; 292 (19): 2379-87).",
+        "text_tr": "ARDS mortalitesi esas olarak yaşa bağlı olarak belirlenir.",
         "is_correct": true,
         "explanation_de": "Die Aussage ist fachlich zutreffend: Die Letalität eines ARDS wird hauptsächlich vom Lebensalter bestimmt.",
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: ARDS'nin ölümcüllüğü esas olarak yaşa göre belirlenir. e. Yanlış. Pozisyonlama önlemleri olmadan ventilasyon terapisinin kinetik terapili ventilasyon terapisi (dorsoventral alternatif pozisyonlama veya sürekli eksenel rotasyon) ile karşılaştırılması oksijenlenmeyi iyileştirebildi, ancak ventilasyon süresinde veya mortalitede bir azalmayla sonuçlanmadı (Guerin ve ark. Hipoksemik akut solunum yetmezliğinde sistematik yüzüstü pozisyonun etkileri: randomize kontrollü bir çalışma. JAMA 2004; 292 (19): 2379-87)."
@@ -4878,8 +4879,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "ein vorausgegangenes, prädisponierendes Ereignis d. Richtig. Die Patienten mit ARDS haben eine Erhöhung des extravaskulären Lungenwassers von normal ca. 5 ml/kgKG auf >15 ml/kgKG.",
-        "text_tr": "Önceki bir predispozan olay d. Doğru. ARDS hastalarında ekstravasküler akciğer suyunda normal yaklaşık 5 ml/kgVA'dan >15 ml/kgVA'ya kadar bir artış vardır.",
+        "text_de": "ein vorausgegangenes, prädisponierendes Ereignis.",
+        "text_tr": "Önceden var olan, predispozan bir tetikleyici olay.",
         "is_correct": true,
         "explanation_de": "Dem ARDS geht häufig ein induzierendes Ereignis voraus: z. B. SIRS/Sepsis, Schock, Polytrauma, Pankreatitis, Massivtransfusion oder Into-",
         "explanation_tr": "ARDS'den önce genellikle tetikleyici bir olay gelir: ör. B. SIRS/sepsis, şok, çoklu travma, pankreatit, masif transfüzyon veya intoleransı 82 2Bölüm 2 · Fizyoloji"
@@ -5086,8 +5087,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Anlegen eines CPAP von 5–10 cm Wassersäule an der nichtventilierten Lunge.",
-        "text_tr": "Havalandırılmayan akciğere 5-10 cm'lik su sütunundan oluşan bir CPAP uygulayın. D. Yanlış. Alveolar hipoksi, hipoksik pulmoner vazokonstriksiyonu (HPV) tetikleyebilir ve potansiyel olarak kanı havalandırılmayan akciğere yönlendirebilir ve bu da 1,0'lık bir FiO₂ ile önlenebilir. Özellikle yeniden konumlandırmadan önce 1,0'lık bir FiO₂, tüpün yerinden çıkması durumunda hasta için güvenlik rezervleri oluşturur. Nabız oksimetresi ve tekrarlanan kan gazı analizleri ile izleme altında FiO₂, anestezi sırasında 1,0'dan düşürülebilir.",
+        "text_de": "Anlegen eines CPAP von 5–10 cm H₂O an der nichtventilierten Lunge.",
+        "text_tr": "Ventile edilmeyen akciğere 5–10 cm H₂O düzeyinde CPAP uygulanması.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -5190,8 +5191,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Atemgrenzwert <65 % des Sollwertes c.",
-        "text_tr": "Solunum sınırı < hedef değerin %65'i c. Doğru. Yüksek tidal hacimler, yüksek inspiratuar O₂ konsantrasyonlarıyla ortaya çıkan rezorpsiyon atelektazisini etkisiz hale getirir ve atelektazi eğilimini azaltır. Ancak bunun için iyi bir akciğer kompliyansı gerekir. Akciğer kompliyansı sınırlıysa, ventilasyon basınçlarını düşük tutmak ve böylece akut sağ kalp zorlanmasını ve kanın ventile olmayan akciğere yeniden dağılımını önlemek için daha küçük tidal hacimler ve daha yüksek solunum hızları seçilmelidir.",
+        "text_de": "Atemgrenzwert <65 % des Sollwertes.",
+        "text_tr": "Solunum rezervi / solunum sınırı < hedef değerin %65'i.",
         "is_correct": true,
         "explanation_de": "Der normale PaO₂ bei Raumluft liegt zwischen 65 und 100 mmHg. Der angegebene Wert von 55 mmHg ist pathologisch, ist aber für sich allein nicht prädiktiv für postoperative pulmonale Komplikationen. 87",
         "explanation_tr": "D. ❌ Yanlış. Oda havasındaki normal PaO₂ değeri 65 ila 100 mmHg arasındadır. Bildirilen 55 mmHg değeri patolojiktir ancak tek başına postoperatif pulmoner komplikasyonları öngörmez. 87 2 2.3 · Akciğer fizyolojisi"
@@ -6335,7 +6336,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "erhöht die Produktion von Liquor.",
-        "text_tr": "beyin omurilik sıvısının üretimini arttırır. C. Yanlış. Kalp debisi ne kadar düşük olursa, IHA'nın başlangıcı o kadar hızlı olur. Bir IHA'nın belirli sayıda çözünmüş molekülü değil, kısmi basınç farklılıklarının telafisi belirleyici rol oynar. CO arttırılırsa, görünürde daha büyük bir dağılım hacmi olur ve kısmi basınç farkları eşitlenmeden önce daha fazla molekülün çözülmesi gerekir.",
+        "text_tr": "Beyin omurilik sıvısının (BOS) üretimini artırır.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -6438,8 +6439,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "hat eine MAC von 1,4 Vol.-% beim 40-jährigen Patienten. d. Richtig. Isofluran ist ein Strukturisomer von Enfluran, hat aber deutlich verschiedene physikochemische Eigenschaften.",
-        "text_tr": "40 yaşındaki bir hastada hacimce %1,4 MAC değerine sahiptir. D. Doğru. İzofluran, enfluranın yapısal bir izomeridir ancak önemli ölçüde farklı fizikokimyasal özelliklere sahiptir.",
+        "text_de": "hat eine MAC von 1,4 Vol.-% beim 40-jährigen Patienten.",
+        "text_tr": "40 yaşındaki bir hastada %1,4 Vol. MAC değerine sahiptir.",
         "is_correct": false,
         "explanation_de": "Sevofluran hat eine MAC von 2,05 Vol.-% in Sauerstoff. Ein 80-Jähriger hat dagegen eine MAC von 1,4 Vol.-%. Die MAC mit 70 % Lachgas beträgt dagegen nur 0,6 Vol.-%.",
         "explanation_tr": "Sevofluran oksijende hacimce %2,05'lik bir MAC değerine sahiptir. Öte yandan 80 yaşındaki bir kişinin MAC'i hacimce %1,4'tür. %70 nitro oksit içeren MAC ise hacimce yalnızca %0,6'dır."
@@ -7723,7 +7724,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "wird schneller eliminiert als Fentanyl.",
-        "text_tr": "fentanilden daha hızlı elimine edilir. D. Yanlış. Naltrekson, nalokson gibi, opioid kaynaklı Oddi spazmının sfinkterini antagonize edebilir. Glukagon i.v. aynı zamanda başarıyla kullanılmaktadır ve opioidlerin istenen analjezisini bozmama avantajına sahiptir.",
+        "text_tr": "Fentanilden daha hızlı elimine edilir.",
         "is_correct": true,
         "explanation_de": "Alfentanil hat eine deutlich geringere Eliminationshalbwertzeit und ein geringeres Verteilungsvolumen als Fentanyl.",
         "explanation_tr": "Minimal invaziv cerrahinin bir parçası olarak kapnoperiton oluşturulması:"
@@ -7983,7 +7984,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "ist mit dem Auftreten eines Lupus erythematodes assoziiert.",
-        "text_tr": "lupus eritematozus oluşumu ile ilişkilidir. e. Doğru. Yan etkiler bradikardi, eşlik eden sedasyon ve ağız kuruluğunu içerir. Kronik ilacın aniden kesilmesi, anesteziden çekilme sırasındaki uyarıcı fenomenlerle karıştırılabilecek bir yoksunluk sendromuna yol açar. 124 3Bölüm 3 · Farmakoloji",
+        "text_tr": "Lupus eritematozus gelişimi ile ilişkilidir.",
         "is_correct": true,
         "explanation_de": "Die Langzeitanwendung von Hydralazin ist mit einem medikamenteninduzierten Lupus erythematodes behaftet, der sich nach Absetzen von Hydralazin wieder zurückbildet. Außerdem kann es zu einer Auto-immunglomerulonephritis, einer Vaskulitis und einer hämolytischen Anämie kommen.",
         "explanation_tr": "Hidralazin'in uzun süreli kullanımı ilaca bağlı lupus eritematozus ile ilişkilidir ve hidralazin kesildikten sonra düzelir. Otoimmün glomerülonefrit, vaskülit ve hemolitik anemi de ortaya çıkabilir."
@@ -8554,8 +8555,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Die Wirkung indirekter Sympathomimetika kann bedrohlich verstärkt sein. c. Falsch. Tranylcypromin ist ein irreversibler Hemmstoff der genannten Isoenzyme.",
-        "text_tr": "Dolaylı sempatomimetiklerin etkileri tehlikeli derecede artabilir. C. Yanlış. Tranilsipromin, bahsedilen izoenzimlerin geri dönüşümsüz bir inhibitörüdür.",
+        "text_de": "Die Wirkung indirekter Sympathomimetika kann bedrohlich verstärkt sein.",
+        "text_tr": "İndirekt sempatomimetiklerin etkisi tehlikeli biçimde güçlenebilir.",
         "is_correct": true,
         "explanation_de": "TAD hemmen neuronal die Wiederaufnahme von Neurotransmittern in die Synapse. TAD hemmen ebenso peripher die Wiederaufnahme endogen freigesetzter Katecholamine, sodass mit einer Wirkungsver-stärkung indirekt wirkender Substanzen gerechnet werden muss. Es ist daher besser, direkt wirkende Sympathomimetika wie z. B. Noradrenalin einzusetzen.",
         "explanation_tr": "TAD'ler nörotransmitterlerin sinapsa geri alımını engeller. TAD'ler ayrıca endojen olarak salınan katekolaminlerin geri alımını periferik olarak inhibe eder, dolayısıyla dolaylı olarak etki eden maddelerin etkisinin artması beklenmelidir. Bu nedenle aşağıdaki gibi doğrudan etkili sempatomimetiklerin kullanılması daha iyidir: B. norepinefrin kullanın."
@@ -8710,8 +8711,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "führt zu einem ausgeprägten Anstieg des arteriellen Mitteldrucks (MAP). d. Richtig. Sowohl die Wirkung depolarisierender als auch nicht depolarisierender Muskelrelaxanzien kann verstärkt sein.",
-        "text_tr": "Ortalama arter basıncında (MAP) belirgin bir artışa yol açar. D. Doğru. Depolarizan ve depolarizan olmayan kas gevşeticilerin etkileri artabilir.",
+        "text_de": "führt zu einem ausgeprägten Anstieg des arteriellen Mitteldrucks (MAP).",
+        "text_tr": "Ortalama arter basıncında (OAB/MAP) belirgin bir artışa yol açar.",
         "is_correct": false,
         "explanation_de": "Der MAP ändert sich nur geringfügig, weil sich systolischer Blutdruckanstieg und diastolischer Blutdruckabfall gegenseitig aufheben. In Gegenwart von β -Rezeptoren-Blockern kommt es zur sog. Adrenalinumkehr (Adrenalin verhält sich wie Noradrenalin), d. h. niedrige Dosierungen führen zu einem massiven Blutdruckanstieg.",
         "explanation_tr": "MAP çok az değişir çünkü sistolik kan basıncındaki artış ve diyastolik kan basıncındaki azalma birbirini iptal eder. β-reseptör blokerlerinin varlığında, adrenalinin tersine çevrilmesi adı verilen olay meydana gelir (adrenalin, norepinefrin gibi davranır), yani h. Düşük dozlar kan basıncında büyük bir artışa neden olur."
@@ -8866,8 +8867,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Urapidil d. Falsch. NA wirkt zwar an β 1 -Rezeptoren, zeigt aber keine positiv chronotrope Wirkung, da eine barorezeptorvermittelte Reflexbradykardie vorherrscht.",
-        "text_tr": "Urapidil d. Yanlış. NA, β 1 reseptörleri üzerinde etki göstermesine rağmen, baroreseptör aracılı refleks bradikardinin baskın olması nedeniyle pozitif bir kronotropik etkiye sahip değildir.",
+        "text_de": "Urapidil.",
+        "text_tr": "Urapidil.",
         "is_correct": true,
         "explanation_de": "Urapidil ist ein selektiver α 1 -Rezeptoren-Blocker, der vermutlich aufgrund seiner zentralen α 2 -agonistischen Wirkung keine Reflextachykardie hervorruft. Prompter Wirkbeginn, eine HWZ von 3 h und eine überwiegend renale Elimination der Metabolite kennzeichnen die Phama-kokinetik.",
         "explanation_tr": "Urapidil, muhtemelen merkezi α2-agonistik etkisi nedeniyle refleks taşikardiye neden olmayan seçici bir α1-reseptör blokeridir. Etkinin hemen başlaması, 3 saatlik HWZ ve metabolitlerin ağırlıklı olarak renal eliminasyonu, fama-kokinetiği karakterize eder."
@@ -9022,8 +9023,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "hat eine intrinsische Aktivität an β 1 -Rezeptoren. d. Falsch. Durch die β -Blockade kommt es zu einem Abfall des HZV durch eine Verminderung des Schlagvolumens und der Herzfrequenz.",
-        "text_tr": "β 1 reseptörlerinde içsel aktiviteye sahiptir. D. Yanlış. β blokajı, atım hacminde ve kalp hızında azalmaya bağlı olarak kalp debisinde azalmaya yol açar.",
+        "text_de": "hat eine intrinsische Aktivität an β₁-Rezeptoren.",
+        "text_tr": "β₁ reseptörlerinde intrensek aktiviteye sahiptir.",
         "is_correct": true,
         "explanation_de": "Labetalol hat darüber hinaus eine intrinsische Aktivität an β 1 - Rezeptoren. Diese agonistische Aktivität sollte theoretisch dazu beitragen, das Risiko unerwünschter Nebenwirkungen der β 1 -Blockierung zu verringern (Bradykardie, Herzinsuffizienz). Das Risiko für einen Bronchospasmus ist vergleichbar mit den β 1 -selektiven β -Blockern. 3.10 Antiarrhythmika",
         "explanation_tr": "Labetalol ayrıca β 1 ​​reseptörlerinde içsel aktiviteye sahiptir. Bu agonist aktivite teorik olarak p1 blokajın istenmeyen yan etkileri (bradikardi, kalp yetmezliği) riskinin azaltılmasına yardımcı olmalıdır. Bronkospazm riski β1-selektif β-blokerlerinkiyle karşılaştırılabilir düzeydedir. 3.10 Antiaritmik ilaçlar"
@@ -9126,8 +9127,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Verapamil b. Falsch. Ventrikuläre Tachykardien und Vorhofflattern und -flimmern sprechen auf die Gabe von Adenosin nicht an. Es ist kontraindiziert bei Patienten mit einem AV-Block höheren Grades.",
-        "text_tr": "Verapamil b. Yanlış. Ventriküler taşikardi ve atriyal flutter ve fibrilasyon, adenozin uygulamasına yanıt vermez. Yüksek derecede AV bloğu olan hastalarda kontrendikedir.",
+        "text_de": "Verapamil.",
+        "text_tr": "Verapamil.",
         "is_correct": true,
         "explanation_de": "Propranolol hat als Klasse-II-Antiarrhythmikum keinen Einfluss auf die Dauer des Aktionspotenzials oder des QRS-Komplexes.",
         "explanation_tr": "C. ❌ Yanlış. Sınıf II antiaritmik ilaç olarak propranololün aksiyon potansiyeli veya QRS kompleksinin süresi üzerinde hiçbir etkisi yoktur. 140 3Bölüm 3 · Farmakoloji"
@@ -9230,8 +9231,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "kann durch die Gabe von spezifischen Antikörpern eliminiert werden. d. Richtig. Amiodaron, der Klasse III zugehörig, verlängert deutlich die Aktionspotenzialdauer und die Dauer des QRS-Komplexes.",
-        "text_tr": "spesifik antikorların uygulanmasıyla ortadan kaldırılabilir. D. Doğru. Sınıf III'e ait olan amiodaron, aksiyon potansiyelinin süresini ve QRS kompleksinin süresini önemli ölçüde artırır.",
+        "text_de": "kann durch die Gabe von spezifischen Antikörpern eliminiert werden.",
+        "text_tr": "Spesifik antikorların uygulanmasıyla elimine edilebilir.",
         "is_correct": true,
         "explanation_de": "Bei einer lebensbedrohlichen Digitalistoxizität können spezifische Anti-Digoxin-Fab-Antikörperfragmen te im Sinne einer Immuno therapie eingesetzt werden.",
         "explanation_tr": "Hayatı tehdit eden digitalis toksisitesi durumunda, spesifik anti-digoksin Fab antikor fragmanları immünoterapi olarak kullanılabilir."
@@ -9387,7 +9388,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "wird im Plasma durch unspezifische Esterasen hydrolysiert.",
-        "text_tr": "spesifik olmayan esterazlar tarafından plazmada hidrolize edilir. D. Doğru. Toksik yan etkiler olarak çift görme, sarı görme, bulanık görme veya skotomların ortaya çıkması gibi görme sistemi bozuklukları ortaya çıkabilir.",
+        "text_tr": "Plazmada non-spesifik esterazlar tarafından hidrolize edilir.",
         "is_correct": false,
         "explanation_de": "Atropin wird nicht im Plasma hydrolysiert, sondern in der Leber. Etwa 50 % werden unverändert renal eliminiert. Atropin hat eine Wirkdauer von ca. 60 min und eine Plasmahalbwertszeit von 4 h.",
         "explanation_tr": "Atropin plazmada değil karaciğerde hidrolize edilir. Yaklaşık %50'si değişmeden böbrekler yoluyla elimine edilir. Atropinin etki süresi yaklaşık 60 dakika, plazma yarı ömrü ise 4 saattir."
@@ -9751,7 +9752,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Ein Aufwachraum muss vorgehalten werden.",
-        "text_tr": "Bir iyileşme odası sağlanmalıdır. e. Doğru. Pierre-Robin, Treacher-Collins, Francheschetti, Klippel-Feil, Pfaundler-Hurler ve akromegali gibi sendromlar, zor entübasyon insidansının artmasıyla ilişkilidir. 149 4 · Anestezi4",
+        "text_tr": "Bir derlenme odası (PACU) hazır bulundurulmalıdır.",
         "is_correct": true,
         "explanation_de": "Es müssen Liege- und Überwachungsplätze vorgehalten werden, an denen ggf. auch reanimiert werden kann.",
         "explanation_tr": "Gerektiğinde resüsitasyonun yapılabileceği yatma ve izleme yerleri bulunmalıdır."
@@ -10115,7 +10116,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Vor ambulanten Eingriffen ist bei Patienten ab 40 Jahren grundsätzlich die Bestimmung des Hämoglobingehalts und des Blutzuckerspiegels notwendig.",
-        "text_tr": "Ayakta tedavi işlemlerinden önce genellikle 40 yaş ve üzeri hastalarda hemoglobin içeriğinin ve kan şekeri düzeyinin belirlenmesi gerekir. C. Yanlış. Renin sistemi bozulmaz. Genellikle normal değerler ölçülür.",
+        "text_tr": "Günübirlik cerrahi işlemlerden önce 40 yaş ve üzeri hastalarda rutin hemoglobin ve kan şekeri tayini gereklidir.",
         "is_correct": true,
         "explanation_de": "Dem Patienten muss vor der Anästhesie genügend Zeit verbleiben, um die Risiken des Betäubungsverfahrens abzuwägen. Bei ambulan-ten Anästhesien kann die Anästhesieaufklärung am Operationstag zulässig sein, wenn",
         "explanation_tr": "artan afterload ile"
@@ -10426,8 +10427,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "führt zu einer Reduktion der Nachlast des linken Ventrikels. c. Falsch. Succinylcholin sollte mit 1 mg/kg Istgewicht dosiert werden.",
-        "text_tr": "Sol ventrikülün art yükünün azalmasına yol açar. C. Yanlış. Süksinilkolin 1 mg/kg gerçek ağırlıkta dozlanmalıdır.",
+        "text_de": "führt zu einer Reduktion der Nachlast des linken Ventrikels.",
+        "text_tr": "Sol ventrikül ard yükünde (afterload) azalmaya yol açar.",
         "is_correct": true,
         "explanation_de": "IPPV und auch PEEP reduzieren die linksventrikuläre Nachlast durch eine Erhöhung des intrathorak alen Drucks. Somit wird der zu überwindende Druckgradient des linken Ventrikels geringer, die Nachlast nimmt ab.",
         "explanation_tr": "IPPV ve PEEP intratorasik basıncı artırarak sol ventriküler afterload'ı azaltır. Bu, sol ventrikülde aşılması gereken basınç gradyanının küçülmesi ve art yükün azalması anlamına gelir."
@@ -12467,7 +12468,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Der postspinale Kopfschmerz hält gewöhnlich nicht länger als 24 h an.",
-        "text_tr": "MH'ye yatkınlığı bilinen hastalarda tetiksiz anestezi uygulanmalıdır, ancak isteğe bağlı olarak dantrolen ile profilaksi de yapılabilir. Kanıtlanmış etkinliği profilaksi lehine konuşuyor. MH profilaksisi yapılacaksa anestezi başlamadan 30 dakika önce tek doz IV doz olarak 2,5 mg/kg vücut ağırlığı verilebilir. Üretici maksimum dozu 10 mg/kgKG/gün olarak belirtmektedir. Belirgin bir MH krizini tedavi etmek için, bireysel vakalarda bu dozun önemli ölçüde aşılması gerekir (40 mg/kg vücut ağırlığı/güne kadar). Önerilen terapötik doz, klinik semptomlar ortadan kalkana kadar 2 mg/kg vücut ağırlığı/10 dakika IV'ün tekrarlayan IV uygulamasıdır. C. Doğru. MH'de hem amid hem de ester lokal anesteziklerin güvenli olduğu düşünülmektedir.",
+        "text_tr": "Postspinal baş ağrısı genellikle 24 saatten uzun sürmez.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -12943,7 +12944,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Ein hypertrophierter Ventrikel ist für eine Ischämie besonders anfällig.",
-        "text_tr": "Hipertrofik bir ventrikül iskemiye özellikle duyarlıdır. e. Doğru. Sert bir ventrikülün belirli bir atım hacmini dışarı atmak için elastik olandan daha fazla iş yapması gerekir; Bu ekstra çalışmanın yanı sıra daha fazla oksijene de ihtiyaç duyulur.",
+        "text_tr": "Hipertrofik bir ventrikül iskemiye karşı özellikle hassastır.",
         "is_correct": true,
         "explanation_de": "Die Aussage ist fachlich zutreffend: Ein hypertrophierter Ventrikel ist für eine Ischämie besonders anfällig.",
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Hipertrofik bir ventrikül iskemiye özellikle duyarlıdır. e. Doğru. Sert bir ventrikülün belirli bir atım hacmini dışarı atmak için elastik olandan daha fazla iş yapması gerekir; Bu ekstra çalışmanın yanı sıra daha fazla oksijene de ihtiyaç duyulur."
@@ -13151,7 +13152,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die linksventrikuläre Ventrikelcompliance ist erhöht.",
-        "text_tr": "Sol ventriküler ventriküler kompliyans artar. C. Yanlış. Suprarenin'in fraksiyonel uygulanması da taşikardiye yol açar ve bu nedenle OAB'yi arttırmak için norepinefrin veya fenilefrin lehine kullanılmamalıdır. Ön yük yüksek normal değerlere (ör. h) ayarlanmalıdır. Sol ventrikülün azaltılmış kompliyansı ile optimal dolumu için yeterli hacim tedavisi, arteriyel hipotansiyonun tedavisi için de aynı derecede önemlidir.",
+        "text_tr": "Sol ventrikül kompliyansı artmıştır.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -13358,8 +13359,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "schwere Blutung",
-        "text_tr": "şiddetli kanama b. Doğru. Ventriküler duvar hareket anormallikleri TEE incelemesinde miyokard iskemisinin hassas ve spesifik belirtileridir. Bunlar eğitimli muayeneci tarafından güvenilir bir şekilde tespit edilir ve iskemi ile ilişkili EKG değişikliklerinden (ST depresyonu, T negatifliği) ve pulmoner arter kateteri kullanılarak yapılan izlemedeki değişikliklerden (PCWP'de artış) önce gelir.",
+        "text_de": "schwere Blutung.",
+        "text_tr": "Ağır kanama.",
         "is_correct": true,
         "explanation_de": "Im Rahmen einer Mediastinoskopie kommt es nicht selten zu einer Verletzung der verdrängten Lunge mit Ausbildung eines Pneumothorax.",
         "explanation_tr": "Mediastinoskopi sırasında yer değiştirmiş akciğerin yaralanması ve pnömotoraks gelişmesi alışılmadık bir durum değildir."
@@ -13463,7 +13464,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "wird die Oxygenierung durch die Anwendung eines PEEP verbessert.",
-        "text_tr": "PEEP kullanılarak oksijenasyon iyileştirilir. e. Doğru. Mediastinoskopi sırasında yer değiştirmiş damarların yaralanmasından kaynaklanan şiddetli kanama sıklıkla görülür ve uygun hazırlıkların yapılması gerekir. 201 5 5.3 · Kardiyotorasik cerrahi",
+        "text_tr": "PEEP uygulaması ile oksijenasyon iyileştirilir.",
         "is_correct": false,
         "explanation_de": "Ein PEEP führt zu einer Erhöhung der rechtsventrikulären Nachlast und reduziert die ohnehin eingeschränkte Lungenperfusion noch weiter. Sinnvoll ist die Applikation reinen Sauerstoffs, welche zwar den anatomisch bedingten Shunt nicht zu reduzieren vermag, aber den physikalisch gelös-ten O₂ -Anteil des Blutes erhöht und darüber die Oxygenierung verbessert.",
         "explanation_tr": "PEEP sağ ventriküler afterload'da artışa neden olur ve zaten sınırlı olan akciğer perfüzyonunu daha da azaltır. Anatomik olarak oluşan şantları azaltamayan ancak kanın fiziksel olarak çözünmüş O₂ içeriğini artıran ve böylece oksijenlenmeyi artıran saf oksijenin uygulanması mantıklıdır. 202 5Bölüm 5 · Bölgesel anestezi"
@@ -19811,8 +19812,8 @@ const EXAM_QUESTIONS = [
     "question_type": "open",
     "question_de": "Wie bereiten Sie ein Familiengespräch vor?",
     "question_tr": "Bir aile toplantısına nasıl hazırlanırsınız?",
-    "answer_de": "●Einholen des Einverständnisses des Betro ﬀenen. ●Klären, wer zu den Beteiligten gehören soll. ●Gemeinsame Festlegung des Gesprächsziels mit dem Betro ﬀenen (z. B. Information, Therapiezieländerung, Ansprechen von Konflikten etc.). ●Rahmen festlegen. ●Terminierung von Zeit und Ort mit den Angehörigen. ●Planung des Gesprächsablaufs.Allen Gesprächspartnern soll vor oder spätestens zu Beginn das Ziel des Gesprächs kommuniziert werden. Stellen Sie sicher, dass alle Beteiligten die gleichen Erwartungen haben. Zu Beginn sollte nach dem aktuellen Kenntnisstand gefragt werden, um ggf. allen die erforderlichen Informationen zukommen zu lassen.Patientenführung und Kommunikation mit Betro ﬀenen und Angehörigen VI 402 VIIAnhang 32 Weiterführende Literatur [1]Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften e. V. Im Internet: www.awmf.org; Stand: 15.01.2025 [2]AWMF online. Deutsche Gesellschaft für Unfallchirurgie, Deutsche Gesellschaft für Orthopädie und Unfallchirurgie: Polytrauma/Schwerverletzten-Behandlung S 3-Leitlinie (Juni 2023). https://register.awmf.org/assets/guidelines/ 187–023l_S 3_Polytrauma-Schwerverletzten-Behandlung_2023 –06.pdf; Stand: 15.01.2025 [3]AWMF online. S 1-Leitlinie Intraoperative klinische Anwendung von hämodynamschem Monitoring bei nicht-kardiochirurgischen PatientInnen. https://register.awmf.org/de/ leitlinien/detail/001-049; Stand: 20.09.2023 [4]AWMF online. S 2k-Leitlinie Behandlung thermischer Verletzungen im Kindesalter (Verbrennung, Verbrühung) (August 2024). https://register.awmf.org/de/leitlinien/detail/ 006-128; Stand: 15.01.2025 [5]AWMF online. S 3-Leitlinie Behandlung akuter perioperativer und posttraumatischer Schmerzen. https://register. awmf.org/assets/guidelines/001-025l_S3_Behandlung-akuter-perioperativer-posttraumatischer-Schmerzen_2022-11. pdf; Stand 01.09.2021 [6]AWMF online. S 3-Leitlinie Vermeidung perioperativer Hypothermie. https://register.awmf.org/de/leitlinien/detail/ 001-018; Stand 15.05.2019 [7]AWMF online. S 3-Leitlinie Sepsis –Prävention, Diagnose, Therapie und Nachsorge (August 2018). Verfügbar unter: https://register.awmf.org/assets/guidelines/079 – 001l_S 3_Sepsis-Praevention-Diagnose-Therapie-Nachsorge_2020 –03_01-abgelaufen.pdf; Stand: 15.01.2025 [8]Barash PG, Cullen BF, Stoelting RK, Cahalan MK, Stock MC, Ortega R. Handbook of Clinical Anesthesia. 9. Aufl. Philadelphia: Wolters Kluwer; 2023 [9]Bein B, Gräsner JT, Meybohm P, Scholz J. Zusatzweiterbildung Notfallmedizin –1000 kommentierte Prüfungsfragen. 5., aktualisierte Aufl. Stuttgart: Thieme; 2024 [10] Bellani G, Laﬀey JG, Pham T et al. Epidemiology, Patterns of Care, and Mortality for Patients With Acute Respiratory Distress Syndrome in Intensive Care Units in 50 Countries. JAMA. 2016 Feb 23; 315(8): 788-800 [11] Benumof JL. Anesthesia in uncommon diseases. 4th ed. Philadelphia: Saunders; 1998 [12] Bernateck M, Karst M, Sabatowski R, Siebrecht D. Schmerzmedizin –1000 Fragen: Für Klinik, Praxis und die Zusatzweiterbildung Spezielle Schmerztherapie. 3., aktualisierte Aufl. Stuttgart: Thieme; 2025 [13] Bernstein AD, Daubert JC, Fletcher RD et al. The revised NASPE/BPEG generic code for antibradycardia, adaptive-rate, and multisite pacing. North American Society of Pacing and Electrophysiology/British Pacing and Electrophysiology Group. Pacing Clin Electrophysiol. 2002 Feb; 25(2): 260-4 [14] Bosse G, Friebel J, Ernst M et al. MINS (Myocardial Injury after Non-Cardiac Surgery). Anästh Intensivmed 2022; 63: 188–198 [15] Buhre W, De Robertis E, Gonzalez-Pizarro P. The Glasgow declaration on sustainability in Anaesthesiology and Intensive Care. European Journal of Anaesthesiology 40(7): p 461-464, July 2023 [16] Bürkle H, Schallner N. Patientenaufklärung in der Anästhesiologie. Anästh Intensivmed 2020; 61: 320-328[17] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie COPD (August 2021). https://www.leitlinien.de/themen/copd; Stand: 15.01.2025 [18] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie (NVL) Asthma, Version 5 (August 2024). https://www.leitlinien.de/themen/ asthma; Stand: 15.01.2025 [19] Deutscher Rat für Wiederbelebung/German Resuscitation Council (GRC). Reanimationsleitlinien 2021. https://www. grc-org.de/wissenschaft/leitlinien; Stand: 15.01.2025 [20] DGK (Deutsche Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung). Leitlinien der Deutschen Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung. https://leitlinien.dgk.org/leitlinien/; Stand: 15.01.2025 [21] Diener HC, Maier C. Schmerzmedizin: Interdisziplinäre Diagnose- und Behandlungsstrategien. 5. Aufl. München: Elsevier; 2016 [22] Duke JD, Keech B. Anesthesia Secrets. 6. Aufl. Philadelphia: Elsevier; 2020 [23] Engelhard K. Nichtinvasives Neuromonitoring in der Anästhesie. Anästh Intensivmed 2021; 62: 410 –416 [24] Frimmel M, Knacke PG. Klinische Notfälle gri ﬀbereit: Internistische Akutsituationen auf einen Blick. 6., unveränderte Aufl. Stuttgart: Thieme; 2025 [25] Giftinformationszentrum-Nord. Liste der Antidota (April 2020). https://www.giz-nord.de/cms/images/inhalte/Antidotaliste_Giz.pdf; Stand: 15.01.2025 [26] Gonzalez-Pizarro P, Brazzi L, Koch, S et al. European Society of Anaesthesiology and Intensive Care consensus document on sustainability: 4 scopes to achieve a more sustainable practice. European Journal of Anaesthesiology 41(4): p 260277, April 2024 [27] Gropper MA, Eriksson LI, Fleisher LA, Cohen NH, Leslie K, Johnson-Akeju O, Hrsg. Miller ’s Anesthesia. 10. Aufl. Philadelphia: Elsevier; 2025 [28] Hachenberg T, Welte T, Fischer S, Hrsg. Anästhesie und Intensivtherapie in der Thoraxchirurgie. Stuttgart: Thieme; 2010 [29] Hines RL, Jones SB, Hrsg. Stoelting ’s Anesthesia and CoExisting Disease. 8. Aufl. Philadelphia: Elsevier; 2021 [30] Hoste EA, Maitland K, Brudney CS et al. Four phases of intravenous fluid therapy: a conceptual model. Br J Anaesth 2014; 113:740 –747 [31] Jahn UR, Van Aken HK, Hrsg. Zusatzweiterbildung Intensivmedizin. 4., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2019 [32] Kaplan JA, Hrsg. Kaplan ’s Cardiac Anesthesia: Perioperative and Critical Care Management. 8. Aufl. Philadelphia: Elsevier; 2023 [33] Kindernotfall Bonn. Knopfzelle verschluckt. https://www. kindernotfall-bonn.de/kindernotfall/knopfzelle-knopfbatterie-kind/; Stand 01.09.2024 [34] Knickmann A, Oberkinkhaus J, Piepho T, Hrsg. Handbuch für Organisatorischen Leiter und Leitenden NotarztPlanung, Führung, Taktik. 4. Aufl. Edewecht: S + K-Verlag; 2020 [35] Kretschmer V, Gombotz H, Rump G. Transfusionsmedizin – Klinische Hämotherapie. 1. Aufl. Stuttgart: Thieme; 2008 [36] Kretz FJ, Beushausen T, Ure BM, Roth B, Hrsg. Kinder Notfall-Intensiv: Lebensrettendes Know-how. 4. Aufl. München: Elsevier; 2019Weiterführende Literatur VII 404 [37] Larsen R. Anästhesie. 12. Aufl. München: Elsevier; 2022 [38] List WF, Osswald PM, Hornke IH. Komplikationen und Gefahren in der Anästhesie. 4. Aufl. Berlin: Springer; 2003 [39] Marino PL. The ICU Book (International Edition):4th ed. Philadelphia: Lippincott Williams & Wilkins; 2013 [40] Marx G, Muhl E, Zacharowski K, Zeuzem S, Hrsg. Die Intensivmedizin. 13., komplett überarbeitete und aktualisierte Aufl. Berlin: Springer; 2024 [41] Meier G, Büttner J, Kessler P, Wiesmann T, Hrsg. Atlas der peripheren Regionalanästhesie: Anatomie –Sonografie - Anästhesie –Schmerztherapie. 4., überarb. Aufl. Stuttgart: Thieme; 2024 [42] Meißner W, Erlenwein J. Akutschmerz Taschenbuch. 3. Aufl, Berlin: MWV; 2023 [43] Michels P, Bräuer A, Bauer M et al. Neurophysiologisches Monitoring bei operativen Eingri ﬀen [Neurophysiological monitoring during surgical procedures]. Anaesthesist. 2017 Sep; 66(9): 645-659 [44] Mindestanforderungen an den anästhesiologischen Arbeitsplatz. Anästh Intensivmed 2013; 54: 1 –4 [45] Mutschler E, Geisslinger G, Kroemer HK, Ruth P, SchäferKorting M. Mutschler Arzneimittelwirkungen kompakt. 1. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2005 [46] Oczenski W. Atmen –Atemhilfen: Atemphysiologie und Beatmungstechnik. 11., überarb. Aufl. Stuttgart: Thieme; 2023 [47] Piepho T, Kriege M, Byhahn C et al. S 1-Leitlinie Atemwegsmanagement (August 2023). In: Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin, Hrsg. https://register. awmf.org/assets/guidelines/001 –028l_S 1_Atemwegsmanagement_2023 –09.pdf; Stand: 15.01.2025 [48] PinM, GräﬀI, Bernhard M, Hüfner A, Weber K. Zusatzweiterbildung Klinische Akut- und Notfallmedizin –1000 Fragen. 1. Aufl. Stuttgart: Thieme; 2022 [49] Prien T, Bürkle H, Czaplik M, et al. Funktionsprüfung des Narkosegerätes zur Gewährleistung der Patientensicherheit –Empfehlung der Kommission für Normung und technische Sicherheit der DGAI. Anästh Intensivmed 2019; 60: 75 –83 [50] Ring J, Beyer K, Biedermann T et al. S 2k-Leitlinie Akuttherapie und Management der Anaphylaxie –Update 2021. Allergo J Int 2021; 30: 1 –25. Verfügbar unter: https://register. awmf.org/assets/guidelines/061 –025l_S 2k_AkuttherapieManagement-Anaphylaxie_2021 –10.pdf; Stand: 15.01.2025 [51] Roewer N, Thiel H. Taschenatlas der Anästhesie. 6., aktualisierte und erweiterte Aufl. Stuttgart: Thieme; 2017. [52] Ropper AH, Samuels MA, Hrsg. Adam ’s and Victor ’s Principles of Neurology. 11. Aufl. New York: McGraw-Hill; 2019 [53] Rossaint R, Werner C, Zwißler B, Hrsg. Die Anästhesiologie. 4. Aufl. Berlin: Springer; 2019 [54] Rossaint R, Werner C, Zwißler B, et al. (Hrsg.) Die Anästhesiologie. 4. Aufl. Berlin, Heidelberg: Springer; 2017 [55] Roth D, Pace NL, Lee A et al. Airway physical examination tests for detection of di ﬃcult airway management in apparently normal adult patients. Cochrane Database Syst Rev. 2018 May 15;5(5): CD008 874 [56] Sabatowski R, Maier BO, Ostgathe C, Rolke R. Palliativmedizin–1000 Fragen. 3., aktualisierte Aufl. Stuttgart: Thieme; 2023[57] Sandiumenge A, Diaz E, Bodí M et al. A patient-based approach based on the ten rules of \"The Tarragona Strategy\". Intensive Care Med. 2003 Jun; 29(6): 876-883 [58] Schuster M, Richter H, Pecher S et al. Positionspapier mit konkreten Handlungsempfehlungen der DGAI und des BDA: Ökologische Nachhaltigkeit in der Anästhesiologie und Intensivmedizin –Aktualisierung 2024. Anästh Intensivmed 2024; 65: 541 –557 [59] Singbartl G, Walter-Wenke G. Transfusionspraxis. 2. Aufl. Berlin Heidelberg: Springer; 2014 [60] Spies C, Francis R, Kastrup M, Kerner T, Melzer-Gartzke C, Zielke H, Kox WJ, Hrsg. SOPs in Anästhesie, Intensivmedizin, Notfallmedizin und Schmerztherapie. 2., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2024 [61] Standl T, Annecke T, Cascorbi I et al. Nomenklatur, Definition und Di ﬀerenzierung der Schockformen. Dtsch Arztebl Int 2018; 115: 757 –68; DOI: 10.3 238/arztebl.2 018 0757. https://www.aerzteblatt.de/archiv/202 261/NomenklaturDefinition-und-Di ﬀerenzierung-der-Schockformen; Stand: 15.01.2025 [62] Steiner K. Anästhesie gri ﬀbereit: Dosierung –Algorithmen – Laborwerte. 5., unveränderte Aufl. Stuttgart: Thieme; 2018 [63] Stille W, Brodt HR, Groll A, Just-Nübling G. Antibiotika-Therapie: Klinik und Praxis der antiinfektiösen Therapie. 11. Aufl. Stuttgart, New York: Schattauer; 2005 [64] Striebel HW. Anästhesie, Intensivmedizin, Notfallmedizin: Für Studium und Ausbildung. 10., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2020 [65] Struck MF, Hilbert-Carius P, Hossfeld B et al. Gefäßzugänge bei der Erstversorgung von erwachsenen Notfallpatienten im Schockraum. Anästh Intensivmed 2022; 63: 362 –371 [66] Thiel H, Roewer N, Hrsg. Anästhesiologische Pharmakotherapie: Von den Grundlagen der Pharmakologie zur Medikamentenpraxis. 4., unveränderte Aufl. Stuttgart: Thieme; 2021 [67] Van Aken HK, Wulf H, Biermann E, Brodner G, Bürkle H, Hrsg. Lokalanästhesie, Regionalanästhesie, Regionale Schmerztherapie. 3., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2010 [68] Weigand MA, Hecker A, Mayer K, Michalski D, Hrsg. Intensivmedizin compact: Für den klinischen Alltag und die Zusatzweiterbildung Intensivmedizin. 1. Aufl. Stuttgart: Thieme; 2021 [69] Wilhelm W, Sakka SG, Hrsg. Praxis der Intensivmedizin. 3., komplett aktualisierte und erweiterte Aufl. Berlin: Springer; 2023 [70] Wilhelm W. Praxis der Anästhesiologie. Berlin: Springer; 2018 [71] Winterhalter M, Puschmann T, Hrsg. Standards in der Anästhesie: Praktische Handlungsempfehlungen für die Klinik. 1. Aufl. Stuttgart: Thieme; 2021 [72] Zacharowski K, Marx G, Hrsg. Checkliste Anästhesie. 1. Aufl. Stuttgart: Thieme; 2021 [73] Zenz M, Jurna I. Lehrbuch der Schmerztherapie. 2. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2001Weiterführende Literatur 32 405",
-    "answer_tr": "●Einholen des Einverständnisses des Betro ﬀenen. ●Klären, wer zu den Beteiligten gehören soll. ●Gemeinsame Festlegung des Gesprächsziels mit dem Betro ﬀenen (z. B. Information, Therapiezieländerung, Ansprechen von Konflikten etc.). ●Rahmen festlegen. ●Terminierung von Zeit und Ort mit den Angehörigen. ●Planung des Gesprächsablaufs.Allen Gesprächspartnern soll vor oder spätestens zu Beginn das Ziel des Gesprächs kommuniziert werden. Stellen Sie sicher, dass alle Beteiligten die gleichen Erwartungen haben. Zu Beginn sollte nach dem aktuellen Kenntnisstand gefragt werden, um ggf. allen die erforderlichen Informationen zukommen zu lassen.Patientenführung und Kommunikation mit Betro ﬀenen und Angehörigen VI 402 VIIAnhang 32 Weiterführende Literatur [1]Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften e. V. Im Internet: www.awmf.org; Stand: 15.01.2025 [2]AWMF online. Deutsche Gesellschaft für Unfallchirurgie, Deutsche Gesellschaft für Orthopädie und Unfallchirurgie: Polytrauma/Schwerverletzten-Behandlung S 3-Leitlinie (Juni 2023). https://register.awmf.org/assets/guidelines/ 187–023l_S 3_Polytrauma-Schwerverletzten-Behandlung_2023 –06.pdf; Stand: 15.01.2025 [3]AWMF online. S 1-Leitlinie Intraoperative klinische Anwendung von hämodynamschem Monitoring bei nicht-kardiochirurgischen PatientInnen. https://register.awmf.org/de/ leitlinien/detail/001-049; Stand: 20.09.2023 [4]AWMF online. S 2k-Leitlinie Behandlung thermischer Verletzungen im Kindesalter (Verbrennung, Verbrühung) (August 2024). https://register.awmf.org/de/leitlinien/detail/ 006-128; Stand: 15.01.2025 [5]AWMF online. S 3-Leitlinie Behandlung akuter perioperativer und posttraumatischer Schmerzen. https://register. awmf.org/assets/guidelines/001-025l_S3_Behandlung-akuter-perioperativer-posttraumatischer-Schmerzen_2022-11. pdf; Stand 01.09.2021 [6]AWMF online. S 3-Leitlinie Vermeidung perioperativer Hypothermie. https://register.awmf.org/de/leitlinien/detail/ 001-018; Stand 15.05.2019 [7]AWMF online. S 3-Leitlinie Sepsis –Prävention, Diagnose, Therapie und Nachsorge (August 2018). Verfügbar unter: https://register.awmf.org/assets/guidelines/079 – 001l_S 3_Sepsis-Praevention-Diagnose-Therapie-Nachsorge_2020 –03_01-abgelaufen.pdf; Stand: 15.01.2025 [8]Barash PG, Cullen BF, Stoelting RK, Cahalan MK, Stock MC, Ortega R. Handbook of Clinical Anesthesia. 9. Aufl. Philadelphia: Wolters Kluwer; 2023 [9]Bein B, Gräsner JT, Meybohm P, Scholz J. Zusatzweiterbildung Notfallmedizin –1000 kommentierte Prüfungsfragen. 5., aktualisierte Aufl. Stuttgart: Thieme; 2024 [10] Bellani G, Laﬀey JG, Pham T et al. Epidemiology, Patterns of Care, and Mortality for Patients With Acute Respiratory Distress Syndrome in Intensive Care Units in 50 Countries. JAMA. 2016 Feb 23; 315(8): 788-800 [11] Benumof JL. Anesthesia in uncommon diseases. 4th ed. Philadelphia: Saunders; 1998 [12] Bernateck M, Karst M, Sabatowski R, Siebrecht D. Schmerzmedizin –1000 Fragen: Für Klinik, Praxis und die Zusatzweiterbildung Spezielle Schmerztherapie. 3., aktualisierte Aufl. Stuttgart: Thieme; 2025 [13] Bernstein AD, Daubert JC, Fletcher RD et al. The revised NASPE/BPEG generic code for antibradycardia, adaptive-rate, and multisite pacing. North American Society of Pacing and Electrophysiology/British Pacing and Electrophysiology Group. Pacing Clin Electrophysiol. 2002 Feb; 25(2): 260-4 [14] Bosse G, Friebel J, Ernst M et al. MINS (Myocardial Injury after Non-Cardiac Surgery). Anästh Intensivmed 2022; 63: 188–198 [15] Buhre W, De Robertis E, Gonzalez-Pizarro P. The Glasgow declaration on sustainability in Anaesthesiology and Intensive Care. European Journal of Anaesthesiology 40(7): p 461-464, July 2023 [16] Bürkle H, Schallner N. Patientenaufklärung in der Anästhesiologie. Anästh Intensivmed 2020; 61: 320-328[17] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie COPD (August 2021). https://www.leitlinien.de/themen/copd; Stand: 15.01.2025 [18] Bundesärztekammer, Kassenärztliche Bundesvereinigung, AWMF, Hrsg. Nationale VersorgungsLeitlinie (NVL) Asthma, Version 5 (August 2024). https://www.leitlinien.de/themen/ asthma; Stand: 15.01.2025 [19] Deutscher Rat für Wiederbelebung/German Resuscitation Council (GRC). Reanimationsleitlinien 2021. https://www. grc-org.de/wissenschaft/leitlinien; Stand: 15.01.2025 [20] DGK (Deutsche Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung). Leitlinien der Deutschen Gesellschaft für Kardiologie –Herz- und Kreislau ﬀorschung. https://leitlinien.dgk.org/leitlinien/; Stand: 15.01.2025 [21] Diener HC, Maier C. Schmerzmedizin: Interdisziplinäre Diagnose- und Behandlungsstrategien. 5. Aufl. München: Elsevier; 2016 [22] Duke JD, Keech B. Anesthesia Secrets. 6. Aufl. Philadelphia: Elsevier; 2020 [23] Engelhard K. Nichtinvasives Neuromonitoring in der Anästhesie. Anästh Intensivmed 2021; 62: 410 –416 [24] Frimmel M, Knacke PG. Klinische Notfälle gri ﬀbereit: Internistische Akutsituationen auf einen Blick. 6., unveränderte Aufl. Stuttgart: Thieme; 2025 [25] Giftinformationszentrum-Nord. Liste der Antidota (April 2020). https://www.giz-nord.de/cms/images/inhalte/Antidotaliste_Giz.pdf; Stand: 15.01.2025 [26] Gonzalez-Pizarro P, Brazzi L, Koch, S et al. European Society of Anaesthesiology and Intensive Care consensus document on sustainability: 4 scopes to achieve a more sustainable practice. European Journal of Anaesthesiology 41(4): p 260277, April 2024 [27] Gropper MA, Eriksson LI, Fleisher LA, Cohen NH, Leslie K, Johnson-Akeju O, Hrsg. Miller ’s Anesthesia. 10. Aufl. Philadelphia: Elsevier; 2025 [28] Hachenberg T, Welte T, Fischer S, Hrsg. Anästhesie und Intensivtherapie in der Thoraxchirurgie. Stuttgart: Thieme; 2010 [29] Hines RL, Jones SB, Hrsg. Stoelting ’s Anesthesia and CoExisting Disease. 8. Aufl. Philadelphia: Elsevier; 2021 [30] Hoste EA, Maitland K, Brudney CS et al. Four phases of intravenous fluid therapy: a conceptual model. Br J Anaesth 2014; 113:740 –747 [31] Jahn UR, Van Aken HK, Hrsg. Zusatzweiterbildung Intensivmedizin. 4., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2019 [32] Kaplan JA, Hrsg. Kaplan ’s Cardiac Anesthesia: Perioperative and Critical Care Management. 8. Aufl. Philadelphia: Elsevier; 2023 [33] Kindernotfall Bonn. Knopfzelle verschluckt. https://www. kindernotfall-bonn.de/kindernotfall/knopfzelle-knopfbatterie-kind/; Stand 01.09.2024 [34] Knickmann A, Oberkinkhaus J, Piepho T, Hrsg. Handbuch für Organisatorischen Leiter und Leitenden NotarztPlanung, Führung, Taktik. 4. Aufl. Edewecht: S + K-Verlag; 2020 [35] Kretschmer V, Gombotz H, Rump G. Transfusionsmedizin – Klinische Hämotherapie. 1. Aufl. Stuttgart: Thieme; 2008 [36] Kretz FJ, Beushausen T, Ure BM, Roth B, Hrsg. Kinder Notfall-Intensiv: Lebensrettendes Know-how. 4. Aufl. München: Elsevier; 2019Weiterführende Literatur VII 404 [37] Larsen R. Anästhesie. 12. Aufl. München: Elsevier; 2022 [38] List WF, Osswald PM, Hornke IH. Komplikationen und Gefahren in der Anästhesie. 4. Aufl. Berlin: Springer; 2003 [39] Marino PL. The ICU Book (International Edition):4th ed. Philadelphia: Lippincott Williams & Wilkins; 2013 [40] Marx G, Muhl E, Zacharowski K, Zeuzem S, Hrsg. Die Intensivmedizin. 13., komplett überarbeitete und aktualisierte Aufl. Berlin: Springer; 2024 [41] Meier G, Büttner J, Kessler P, Wiesmann T, Hrsg. Atlas der peripheren Regionalanästhesie: Anatomie –Sonografie - Anästhesie –Schmerztherapie. 4., überarb. Aufl. Stuttgart: Thieme; 2024 [42] Meißner W, Erlenwein J. Akutschmerz Taschenbuch. 3. Aufl, Berlin: MWV; 2023 [43] Michels P, Bräuer A, Bauer M et al. Neurophysiologisches Monitoring bei operativen Eingri ﬀen [Neurophysiological monitoring during surgical procedures]. Anaesthesist. 2017 Sep; 66(9): 645-659 [44] Mindestanforderungen an den anästhesiologischen Arbeitsplatz. Anästh Intensivmed 2013; 54: 1 –4 [45] Mutschler E, Geisslinger G, Kroemer HK, Ruth P, SchäferKorting M. Mutschler Arzneimittelwirkungen kompakt. 1. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2005 [46] Oczenski W. Atmen –Atemhilfen: Atemphysiologie und Beatmungstechnik. 11., überarb. Aufl. Stuttgart: Thieme; 2023 [47] Piepho T, Kriege M, Byhahn C et al. S 1-Leitlinie Atemwegsmanagement (August 2023). In: Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin, Hrsg. https://register. awmf.org/assets/guidelines/001 –028l_S 1_Atemwegsmanagement_2023 –09.pdf; Stand: 15.01.2025 [48] PinM, GräﬀI, Bernhard M, Hüfner A, Weber K. Zusatzweiterbildung Klinische Akut- und Notfallmedizin –1000 Fragen. 1. Aufl. Stuttgart: Thieme; 2022 [49] Prien T, Bürkle H, Czaplik M, et al. Funktionsprüfung des Narkosegerätes zur Gewährleistung der Patientensicherheit –Empfehlung der Kommission für Normung und technische Sicherheit der DGAI. Anästh Intensivmed 2019; 60: 75 –83 [50] Ring J, Beyer K, Biedermann T et al. S 2k-Leitlinie Akuttherapie und Management der Anaphylaxie –Update 2021. Allergo J Int 2021; 30: 1 –25. Verfügbar unter: https://register. awmf.org/assets/guidelines/061 –025l_S 2k_AkuttherapieManagement-Anaphylaxie_2021 –10.pdf; Stand: 15.01.2025 [51] Roewer N, Thiel H. Taschenatlas der Anästhesie. 6., aktualisierte und erweiterte Aufl. Stuttgart: Thieme; 2017. [52] Ropper AH, Samuels MA, Hrsg. Adam ’s and Victor ’s Principles of Neurology. 11. Aufl. New York: McGraw-Hill; 2019 [53] Rossaint R, Werner C, Zwißler B, Hrsg. Die Anästhesiologie. 4. Aufl. Berlin: Springer; 2019 [54] Rossaint R, Werner C, Zwißler B, et al. (Hrsg.) Die Anästhesiologie. 4. Aufl. Berlin, Heidelberg: Springer; 2017 [55] Roth D, Pace NL, Lee A et al. Airway physical examination tests for detection of di ﬃcult airway management in apparently normal adult patients. Cochrane Database Syst Rev. 2018 May 15;5(5): CD008 874 [56] Sabatowski R, Maier BO, Ostgathe C, Rolke R. Palliativmedizin–1000 Fragen. 3., aktualisierte Aufl. Stuttgart: Thieme; 2023[57] Sandiumenge A, Diaz E, Bodí M et al. A patient-based approach based on the ten rules of \"The Tarragona Strategy\". Intensive Care Med. 2003 Jun; 29(6): 876-883 [58] Schuster M, Richter H, Pecher S et al. Positionspapier mit konkreten Handlungsempfehlungen der DGAI und des BDA: Ökologische Nachhaltigkeit in der Anästhesiologie und Intensivmedizin –Aktualisierung 2024. Anästh Intensivmed 2024; 65: 541 –557 [59] Singbartl G, Walter-Wenke G. Transfusionspraxis. 2. Aufl. Berlin Heidelberg: Springer; 2014 [60] Spies C, Francis R, Kastrup M, Kerner T, Melzer-Gartzke C, Zielke H, Kox WJ, Hrsg. SOPs in Anästhesie, Intensivmedizin, Notfallmedizin und Schmerztherapie. 2., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2024 [61] Standl T, Annecke T, Cascorbi I et al. Nomenklatur, Definition und Di ﬀerenzierung der Schockformen. Dtsch Arztebl Int 2018; 115: 757 –68; DOI: 10.3 238/arztebl.2 018 0757. https://www.aerzteblatt.de/archiv/202 261/NomenklaturDefinition-und-Di ﬀerenzierung-der-Schockformen; Stand: 15.01.2025 [62] Steiner K. Anästhesie gri ﬀbereit: Dosierung –Algorithmen – Laborwerte. 5., unveränderte Aufl. Stuttgart: Thieme; 2018 [63] Stille W, Brodt HR, Groll A, Just-Nübling G. Antibiotika-Therapie: Klinik und Praxis der antiinfektiösen Therapie. 11. Aufl. Stuttgart, New York: Schattauer; 2005 [64] Striebel HW. Anästhesie, Intensivmedizin, Notfallmedizin: Für Studium und Ausbildung. 10., vollständig überarbeitete Aufl. Stuttgart: Thieme; 2020 [65] Struck MF, Hilbert-Carius P, Hossfeld B et al. Gefäßzugänge bei der Erstversorgung von erwachsenen Notfallpatienten im Schockraum. Anästh Intensivmed 2022; 63: 362 –371 [66] Thiel H, Roewer N, Hrsg. Anästhesiologische Pharmakotherapie: Von den Grundlagen der Pharmakologie zur Medikamentenpraxis. 4., unveränderte Aufl. Stuttgart: Thieme; 2021 [67] Van Aken HK, Wulf H, Biermann E, Brodner G, Bürkle H, Hrsg. Lokalanästhesie, Regionalanästhesie, Regionale Schmerztherapie. 3., vollständig überarb. und erw. Aufl. Stuttgart: Thieme; 2010 [68] Weigand MA, Hecker A, Mayer K, Michalski D, Hrsg. Intensivmedizin compact: Für den klinischen Alltag und die Zusatzweiterbildung Intensivmedizin. 1. Aufl. Stuttgart: Thieme; 2021 [69] Wilhelm W, Sakka SG, Hrsg. Praxis der Intensivmedizin. 3., komplett aktualisierte und erweiterte Aufl. Berlin: Springer; 2023 [70] Wilhelm W. Praxis der Anästhesiologie. Berlin: Springer; 2018 [71] Winterhalter M, Puschmann T, Hrsg. Standards in der Anästhesie: Praktische Handlungsempfehlungen für die Klinik. 1. Aufl. Stuttgart: Thieme; 2021 [72] Zacharowski K, Marx G, Hrsg. Checkliste Anästhesie. 1. Aufl. Stuttgart: Thieme; 2021 [73] Zenz M, Jurna I. Lehrbuch der Schmerztherapie. 2. Aufl. Stuttgart: Wissenschaftliche Verlagsgesellschaft; 2001Weiterführende Literatur 32 405",
+    "answer_de": "● Einholen des Einverständnisses des Betroffenen.\n● Klären, wer zu den Beteiligten gehören soll.\n● Gemeinsame Festlegung des Gesprächsziels mit dem Betroffenen (z. B. Information, Therapiezieländerung, Ansprechen von Konflikten etc.).\n● Rahmen festlegen (ungestörte Umgebung, ausreichend Zeit, kein Pager/Telefon).\n● Terminierung von Zeit und Ort mit den Angehörigen.\n● Planung des Gesprächsablaufs: Allen Gesprächspartnern soll vor oder spätestens zu Beginn das Ziel des Gesprächs kommuniziert werden. Stellen Sie sicher, dass alle Beteiligten die gleichen Erwartungen haben. Zu Beginn sollte nach dem aktuellen Kenntnisstand gefragt werden, um ggf. allen die erforderlichen Informationen zukommen zu lassen.",
+    "answer_tr": "● Hastanın (etkilenen kişinin) onayının alınması.\n● Görüşmeye kimlerin katılacağının netleştirilmesi (aile üyeleri, yasal vasi, primer hemşire vb.).\n● Görüşme hedefinin hasta ile birlikte belirlenmesi (örneğin bilgilendirme, tedavi hedefi değişikliği/palye etme, çatışmaların ele alınması vb.).\n● Uygun ortam ve çerçeve şartlarının belirlenmesi (rahatsız edilmeyecek sessiz bir oda, yeterli zaman, çağrı cihazı/telefonların sessize alınması).\n● Hasta yakınları ile zaman ve yer randevusunun planlanması.\n● Görüşme akışının yapılandırılması: Tüm katılımcılara görüşme öncesinde veya en geç başlangıcında görüşmenin ana hedefi iletilmelidir. Tüm tarafların aynı beklentilere sahip olduğundan emin olunmalıdır. Başlangıçta mevcut bilgi düzeyi sorgulanmalı ve gerekirse herkese eksiksiz bilgi aktarılmalıdır.",
     "is_high_yield": true
   },
   {
@@ -20473,6 +20474,6 @@ const EXAM_QUESTIONS = [
   }
 ];
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = EXAM_QUESTIONS;
 }
