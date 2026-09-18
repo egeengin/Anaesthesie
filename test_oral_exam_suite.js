@@ -402,7 +402,17 @@ assert.strictEqual(summary.avgRating, 5.0, 'All 5 ratings must yield 5.0 average
 assert(summary.statusText.includes('BESTANDEN'), 'Summary status must confirm pass status');
 console.log('[PASS] 45-Minute Mock Oral Exam simulation engine and HUD verified.');
 
-console.log('\n🎉 ALL 19 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 20. Test Neuraxial Anesthesia & Anticoagulation SOP (Card 14) & Lightbox Modal Markup
+assert(htmlContent.includes('Rückenmarksnahe Regionalanästhesie (SPA/EDA) &amp; Antikoagulation') || htmlContent.includes('Rückenmarksnahe Regionalanästhesie (SPA/EDA) & Antikoagulation'), 'Card 14 title must be present in index.html');
+assert(htmlContent.includes('12 Stunden Pause'), 'Low-dose LMWH 12h pause must be documented');
+assert(htmlContent.includes('24 Stunden Pause'), 'High-dose LMWH 24h pause must be documented');
+assert(htmlContent.includes('48 Stunden Pause'), 'DOAC 48h pause must be documented');
+assert(htmlContent.includes('Clopidogrel'), 'Clopidogrel must be documented');
+assert(htmlContent.includes('5 Tage Pause'), '5-day pause must be documented');
+console.log('[PASS] Neuraxial Anesthesia & Anticoagulation (SPA/EDA) DGAI S1-Leitlinie verified.');
+
+console.log('\n🎉 ALL 20 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

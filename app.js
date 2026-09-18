@@ -2362,9 +2362,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Diagnostic Image Lightbox & Zoom Engine ---
+  function initImageLightbox() {
+    let lightboxModal = document.getElementById('image-lightbox-modal');
+    if (!lightboxModal) {
+      lightboxModal = document.createElement('div');
+      lightboxModal.id = 'image-lightbox-modal';
+      lightboxModal.className = 'modal-overlay';
+      lightboxModal.innerHTML = `
+        <div class="modal-card" style="max-width: 95vw; max-height: 95vh; background: rgba(0,0,0,0.92); border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+          <button class="modal-close" id="lightbox-close" style="position: absolute; top: 15px; right: 20px; color: #fff; font-size: 2rem; z-index: 10;">&times;</button>
+          <img id="lightbox-img" src="" alt="Befund-Vergrößerung" style="max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);" />
+          <div id="lightbox-caption" style="color: #e2e8f0; margin-top: 10px; font-size: 0.9rem; text-align: center; font-weight: 500;"></div>
+        </div>
+      `;
+      document.body.appendChild(lightboxModal);
+
+      const closeBtn = document.getElementById('lightbox-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => lightboxModal.classList.remove('active'));
+      }
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) lightboxModal.classList.remove('active');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.classList.contains('question-image')) {
+        const imgSrc = e.target.src;
+        const imgAlt = e.target.alt || 'Klinischer Befund';
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        if (lightboxImg) lightboxImg.src = imgSrc;
+        if (lightboxCaption) lightboxCaption.textContent = imgAlt;
+        lightboxModal.classList.add('active');
+      }
+    });
+  }
+
   // Initializing App
   initCategoryDropdown();
+  initImageLightbox();
   updateAnalytics();
   renderCurrentQuestion();
 });
+
 
