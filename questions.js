@@ -829,7 +829,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cevap c'ye bakınız. Zayıflamadaki bir azalma kan basıncı amplitüdünde bir artışa yol açar. durulamanın ardından tamamlanır. Daha sonra maksimum 2 dönem içinde azalması gereken salınımlar meydana gelir. Sistem daha uzun süre salınırsa doğal frekans, ölçüm sinyali frekansına çok yakındır. Rezonans frekansı daha sonra saniyedeki salınım sayısından belirlenebilir ve sönümleme, ardışık salınımların salınım genliğindeki azalmadan belirlenebilir. 20 1Bölüm 1 · Genel bir"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_17",
@@ -1349,7 +1349,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Dinlenme koşullarında kişinin O₂ tüketimi 250 ml/dakika civarındadır. Basit bir hesaplama, HBOT altında bu tüketimi yalnızca fiziksel olarak çözünmüş oksijenin karşılayabildiğini ve dolayısıyla teorik olarak hiçbir hemoglobinin mevcut olmasına gerek olmadığını gösterir. 2,5 bar ortam basıncında (15 m su derinliğinde), saf oksijen solunduğunda O₂ kısmi basıncı 1900 mmHg'ye karşılık gelir. İdeal koşullar altında, alveoler gaz denklemine göre kanda 1813 mmHg'lik bir pO₂ (eksi su buharı ve karbondioksit kısmi basıncı) ortaya çıkar. Bir ml kan başına fiziksel olarak çözünmüş oksijen miktarı, ml kan başına 0,024/760×pO₂ =0,057 ml oksijen formülüyle verilir. 5 l/dak'lık bir kalp atış hızında bu, 285 ml/dak'lık bir O₂ kaynağına karşılık gelir ve dolayısıyla dinlenme koşulları altında oksijen ihtiyacını karşılamaya yeterlidir. 28 1Bölüm 1 · Genel 1.3 İstatistikler"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_27",
@@ -1557,7 +1557,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bir vücut pletismografı hem doğrudan hem de dolaylı olarak ölçülebilir miktarları kaydedebilir. Bunlar hava yollarının direncini ve kalan hacmi içerir. Aynı anestezi derinliğini korumak için arttırıldı. Deniz seviyesinde ortam basıncı 760 mmHg, 3000 m yükseklikte ise 526 mmHg'dir. İzofluran için MAC 50 hacimce %1,15'tir, yani 8,74 mmHg kısmi basınçtır. 3.000 m yükseklikte (ortam basıncı 526 mmHg) 8,74 mmHg kısmi basınca ulaşmak için izofluranın hacim oranının %1,66 olması gerekir. Bu, MAC'de yaklaşık %45'lik bir değişime karşılık gelir. 33 2 · Fizyoloji2"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_31",
@@ -1661,7 +1661,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Anestezikler titreme eşiğini daha düşük sıcaklıklara, terleme eşiğini ise daha yüksek sıcaklıklara doğru kaydırır. Bu, termonötr bölgenin artık yaklaşık 4 °C aralığında hareket ettiği anlamına gelir. %0,9 izofluranın altında titreme eşiği 35 °C'ye düşürülür."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_33",
@@ -3325,7 +3325,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Dilin ön üçte birlik kısmından gelen duyular, trigeminal sinirin (lingual sinir) üçüncü dalı yoluyla iletilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_65",
@@ -3533,7 +3533,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Protamin, kompleman aktivasyonu ve tromboksan salınımı yoluyla akut pulmoner hipertansiyona neden olabilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_69",
@@ -3637,7 +3637,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Trombofili hastalarında nispeten kontrendikedir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_71",
@@ -3793,7 +3793,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Heparin esasen etkisini faktör X'in inaktivasyonu ve trombinin inaktivasyonu (yüksek doz etkisi) yoluyla geliştirir. Trombin ise sadece fibrinojenin fibrine dönüşümünü teşvik etmekle kalmaz, aynı zamanda faktör XIII'ün (fibrin stabilize edici faktör) aktivasyonunu da teşvik eder. Heparin böylece faktör XIII'ü bozarak fibrin polimer şeritlerinin stabilizasyonunu engeller."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_74",
@@ -3845,7 +3845,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Hematokrit azalması"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_75",
@@ -3897,7 +3897,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Protrombinin trombine dönüşümü düşük doz heparin tarafından inhibe edilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_76",
@@ -4105,7 +4105,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Heparinoidlerle (Danaparoin) tedavi, anti-faktör Xa aktivitesi kullanılarak değerlendirilmelidir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_80",
@@ -4157,7 +4157,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bahsedilen maddeler güvenilir bir şekilde etkilidir; bu nedenle rutin izleme gerekli değildir. 71 2 2.1 · Pıhtılaşma"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_81",
@@ -4261,7 +4261,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Yaşlılık, kanama komplikasyonlarının (örn. beyin kanaması) ortaya çıkması açısından bağımsız bir risk faktörüdür. Bu nedenle bu hasta grubunda dabigatran kullanımı kanama riskini (daha da) artıracaktır. 73 2 2,2 · Hormon sistemi 2,2 Hormon sistemi"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_83",
@@ -4729,7 +4729,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Asıl tehlike, solunum gazı klimasının bulunmamasından kaynaklanmaktadır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_92",
@@ -5405,7 +5405,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cevap b'ye bakınız."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_105",
@@ -5509,7 +5509,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "O₂ tüketimindeki artış, dakika ventilasyon hacmindeki artışla orantılıdır. Doxapram, Alman klinik pratiğinde pek yaygın olmayan bir ilaçtır. İngiltere'de kullanıldığı için EAA sınavıyla oldukça alakalıdır. Postoperatif solunum depresyonu aşamasında ve obstrüktif hava yolu hastalıkları olan hastalarda dakika ventilasyonunu artırabilir. 92 3Bölüm 3 · Farmakoloji"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_107",
@@ -5873,7 +5873,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Barbitüratların negatif inotropik etkisi, barbitüratların belirgin kalp yetmezliği olan hastalarda kullanımını yasaklamaktadır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_114",
@@ -6185,7 +6185,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "MAC, hamilelik sırasında ve doğum sonrası yaklaşık 72 saate kadar önemli ölçüde azalır (%30)."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_120",
@@ -6445,7 +6445,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Sevofluran oksijende hacimce %2,05'lik bir MAC değerine sahiptir. Öte yandan 80 yaşındaki bir kişinin MAC'i hacimce %1,4'tür. %70 nitro oksit içeren MAC ise hacimce yalnızca %0,6'dır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_125",
@@ -6497,7 +6497,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Spontan solunum yapan hastalarda arteriyel pCO₂'yi doza bağlı bir şekilde artırır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_126",
@@ -7261,7 +7261,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Aksine glokom tedavisinde parasempatomimetikler kullanılmaktadır. Göz damlaları örn. B. Pilokarpin, karbakol veya neostigmin. Siliyer kasın parasempatik olarak tetiklenen kasılması Schlemm kanalını genişleterek sulu mizahın drenajını kolaylaştırır. histamin salınımına neden olmaz ve kardiyovasküler yan etkileri yoktur."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_141",
@@ -8665,7 +8665,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Gözün siliyer gövdesi β reseptörlerini, yani h'yi eksprese eder. NA'nın burada rahatlatıcı bir etkisi var."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_168",
@@ -8821,7 +8821,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Dobutamin seçici bir β 1 agonistidir. Ne dolaylı olarak NA (dopamin gibi) salgılar ne de dopamin reseptörleri üzerinde etki gösterir. Farmakolojik özellikleri karmaşıktır ve stereoizomerlerinin β reseptörleri üzerinde farklı etkileri vardır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_171",
@@ -8977,7 +8977,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "AVK veya Raynaud hastalığı olan hastalar β-blokerler verildiğinde vazospazma yatkındır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_174",
@@ -9081,7 +9081,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: bronkospazma yol açabilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_176",
@@ -9185,7 +9185,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Amiodaron böbrek yetmezliğinde birikmez. Ana metabolit, ana maddeden daha uzun bir yarı ömre sahip olan desmetilamiodarondur ve kendi başına aktiftir. Bu iki maddenin kesin eliminasyon yolu tam olarak bilinmemektedir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_178",
@@ -9497,7 +9497,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Birkaç dakika boyunca ekspiratuar CO₂'nin saptanması kesin bir işarettir. Hata kaynaklarından biri, entübasyondan kısa bir süre önce ağız yoluyla alınan CO₂ üreten antiasitler ve CO₂ içeren içeceklerdir. Öte yandan, CO₂ tespitinin eksikliği pulmoner emboli veya \"kardiyak düşük debi sendromu\" nedeniyle de olabilir ve bu nedenle yanlış negatif olabilir. 146 4Bölüm 4 · Anestezi"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_184",
@@ -9549,7 +9549,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Tüm karın içi manipülasyonlar bağırsak içeriğinin kusmasına ve aspirasyona yol açabilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_185",
@@ -9601,7 +9601,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cormack ve Lehane'nin sınıflamasına göre V. derece mevcut değildir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_186",
@@ -9705,7 +9705,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Eksternal superior laringeal sinir krikotiroid kasını beslerken, rekürren laringeal sinir diğer tüm laringeal kasları (vokal kord addüktörleri ve abdüktörleri) besler."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_188",
@@ -9809,7 +9809,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: inhalasyon anestezikleri ile zayıflatılır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_190",
@@ -10277,7 +10277,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu hastaların opioidlere duyarlılığı genellikle aşırı derecede artar. Opioidler dikkatli bir şekilde titre edilerek verilmelidir. Bu hastaların %40'ında 2 saatten uzun süren cerrahi işlem sırasında pulmoner ve kardiyak komplikasyonlar ortaya çıkmaktadır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_200",
@@ -10329,7 +10329,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Fentanil ideal kiloya göre dozlanır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_201",
@@ -10381,7 +10381,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Çocukların yaklaşık %25'inde tedavi gerektiren zatürre de vardır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_202",
@@ -10485,7 +10485,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cevap d'ye bakınız."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_204",
@@ -10937,7 +10937,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Prekonvülsif uyarı işaretlerinin ortaya çıkması şunları gerektirir: 1. Lokal anestezik uygulamasının daha fazla durdurulması; 2. Hipokapniye bağlı serebral vazokonstriksiyon LA'nın taşınmasını azalttığı için hiperventilasyon; 3. 2,5-5 mg diazepamın (antikonvülsan) IV uygulaması."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_213",
@@ -11093,7 +11093,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Lokal anesteziklere karşı alerjik reaksiyonlar amid tipi lokal anesteziklerde ester tipi lokal anesteziklere göre daha yaygındır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_216",
@@ -11145,7 +11145,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Ulnar sinirin kökleri C8-Th1'e sahiptir ve tüm metatarsofalangeal eklemleri esnetir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_217",
@@ -11285,7 +11285,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Asidik bir ortamda (örneğin iltihaplanmada), LA'nın büyük bir kısmı protonlanır ve basitçe pozitif olarak yüklenir (kuaterner amonyum yapısı). Sonuç olarak LA, hücrenin iç kısmına (etki alanı) ulaşamaz ve belirgin bir etkinlik kaybı olur."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_220",
@@ -11805,7 +11805,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "“Beyin ölümü” tanısı konan bir hastanın artık beyin kan akışı yoktur. Bu daha önce arteriyel serebral anjiyografi kullanılarak kanıtlandı, ancak daha yakın zamanda daha az invazif PET perfüzyon ölçümü kullanılarak kanıtlandı. 180 5Bölüm 5 · Bölgesel anestezi"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_230",
@@ -12325,7 +12325,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Aminoglikozit antibiyotiklerin uygulanması miyastenik zayıflığı artırabilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_240",
@@ -13001,7 +13001,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Kronik obstrüktif ventilasyon bozuklukları akciğerlerin aşırı şişmesine, yani toplam kapasitenin artmasına (“namlu toraks”) neden olur. Sonuçlar önemli anemilerin tolere edilebileceğini göstermektedir. Önkoşul, plazma ikameleri ve kristalloidler kullanılarak övoleminin sürdürülmesidir. Kalp atış hızı yaklaşık 5 kat artırılabilir. Bu nedenle hemoglobinin 1/5'e (Hb = 3,5 mg/dl) düşmesi telafi edilebilir. Bu, Yehova'nın Şahitlerindeki bazı kanamalı anemi raporlarıyla doğrulanmıştır. Ancak hemoglobin konsantrasyonundaki düşüş için güvenli bir sınır (kritik hematokrit) sorusunun yanıtlanması daha zordur ve çok sayıda tartışmanın konusudur."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_253",
@@ -13053,7 +13053,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cevap a'ya bakınız."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_254",
@@ -13365,7 +13365,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Mediastinoskopi sırasında yer değiştirmiş akciğerin yaralanması ve pnömotoraks gelişmesi alışılmadık bir durum değildir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_260",
@@ -13417,7 +13417,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Oskültasyon kontrolü altında yerleştirilen tüplerin yalnızca yaklaşık %30'u doğru şekilde yerleştirilmiştir, bu da bronkoskopik pozisyon kontrolüne olan ihtiyacın altını çizmektedir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_261",
@@ -13625,7 +13625,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Glomerüler filtrasyon hızı (GFR) ve böbrek kan akışı (vücut yüzeyine bağlı olarak) yetişkinlerinkiyle karşılaştırılabilir düzeydedir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_265",
@@ -13729,7 +13729,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Doksorubisin son derece kardiyotoksiktir. 160 4Bölüm 4 · Anestezi"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_267",
@@ -13833,7 +13833,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Zorla entübasyon girişimleri ve/veya aşırı büyük ventilasyon tüpleri, hızla ciddi ödem oluşumuna ve ardından nefes darlığına yol açabilir. 207 5 5.5 · Kadın Doğum"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_269",
@@ -13885,7 +13885,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "PRS'nin bir parçası değil. 5.5 Doğum"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_270",
@@ -13937,7 +13937,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Kan, plasentadan iki göbek damarı yoluyla duktus venosus yoluyla alt vena kavaya akar."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_271",
@@ -14061,7 +14061,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Pudendal sinirin blokajı doğum sırasında ağrının giderilmesi için güvenilir bir prosedürdür."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_274",
@@ -14477,7 +14477,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cevap a'ya bakınız."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_282",
@@ -14997,7 +14997,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Hemen hemen tüm steroidal olmayan periferik analjezikler “güvenli” olarak kabul edilir. Diklofenak \"güvensiz\" olarak kabul edilir. \"Güvenli maddeler\" ezberlenirken, örneğin Anglo-Amerikan ve Alman literatüründeki tavsiyelerin dikkate alınması gerekir. T. önemli ölçüde farklılık gösterir. Uluslararası alanda tartışmasız olan tek şey, tüm barbitüratlardan kaçınılmasıdır. Alman literatüründe yayınlanan, genellikle (esasen) yalnızca glukuronidlenmiş ve (neredeyse) hidroksillenmemiş veya oksitlenmemiş maddelerin tercih edilmesine yönelik tavsiye de tartışmasız değildir. Uygulamada porfiri hastalarında madde kullanırken geriye sadece güncel önerilere (örn. Kırmızı Liste) bakmak kalıyor. Yoğun bakım tıbbında furosemid ve sülfonamidler gibi birçok “standart ilaç” “güvensiz” olarak değerlendirilmektedir!"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_292",
@@ -15101,7 +15101,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Atak sırasında yoğun tıbbi bakım gerekli olabilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_294",
@@ -15465,7 +15465,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Cevap a'ya bakınız."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_301",
@@ -15517,7 +15517,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Steroidlerin ve steroidal olmayan antiinflamatuar ilaçların (NSAID'ler) uygulanması i. genellikle sınırlı kullanıma sahiptir. En iyi ihtimalle ekstremitede sıklıkla mevcut olan ödem hafifletilir. En etkili tedavi, etkilenen ekstremitenin eşzamanlı sempatoliz kullanılarak (örneğin sürekli brakiyal pleksus kateter anestezisi yoluyla) hedefe yönelik fizyoterapi yoluyla erken mobilizasyonu ve güçlendirilmesidir. F. Kehl, H.-J. Wilke, anestezi. Sorular ve cevaplar, DOI 10.1007/978-3-662-53664-3_ 6, © Springer-Verlag GmbH Almanya 2017231 6 Yoğun bakım tıbbı Franz Kehl, Hans-Joachim Wilke"
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_302",
@@ -16273,7 +16273,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "HIT II'de heparin artık kullanılamayabilir: Bu aynı zamanda düşük molekül ağırlıklı heparin için de geçerlidir. Bir heparinoid veya çapraz reaksiyon durumunda hirudin kullanılmalıdır."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_318",
@@ -16621,7 +16621,7 @@ const EXAM_QUESTIONS = [
         "explanation_tr": "Özellikle önceden hasar görmüş alveolokapiller membran, >%60'lık O₂ konsantrasyonlarının uygulanmasına karşı inflamatuar bir reaksiyonla reaksiyona girebilir."
       }
     ],
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_325",
@@ -16788,7 +16788,7 @@ const EXAM_QUESTIONS = [
     "question_de": "Wie lautet Ihre erste Verdachtsdiagnose, was sind mögliche Differenzialdiagnosen?",
     "question_tr": "İlk şüphelendiğiniz tanı nedir ve olası ayırıcı tanılar nelerdir?",
     "answer_de": "Die klinische Symptomatik und die psychiatrische Anamnese mit entsprechender medikamentöser Therapie lassen an ein (zentrales) anticholinerges Syndrom (ZAS) denken. Mögliche Differenzialdiagnosen wären u. a. eine ischämische, hämorrhagische oder entzündliche zerebrale Läsion, eine metabolische Entgleisung (z. B. Hypoglykämie), ein (nonkonvulsiver) Status epilepticus, ein Überhang von Sedativa/Analgetika oder auch ein beginnendes septisches Krankheitsbild. Wie können Sie die Verdachtsdiagnose bestätigen? Klinisch können periphere (Tachykardie, Mydriasis, Akkommodationsstörungen, verminderte Schweiß - sekretion, trockene gerötete Haut, Mundtrockenheit, Harnverhalt) und zentrale (Desorientiertheit, Bewusst - seinsstörung, Halluzinationen, Schwindel, Krämpfe) Anzeichen eines ZAS unterschieden werden. Zur Di - agnose eines ZAS sollten mindestens ein zentrales Symptom und zwei periphere Symptome vorliegen. Therapeutikum und gleichzeitig diagnostisch hilfreiches Pharmakon bei V. a. ZAS ist Physostigmin (z. B. Anticholium®). Bessern sich die Symptome nach Physostigmin-Applikation, so ist von einem ZAS aus - zugehen. Hat es keinen Effekt, so wird die Diagnose unwahrscheinlich. Erläutern Sie den Wirkmechanismus von Physostigmin beim ZAS. Physostigmin ist ein Inhibitor der Acetylcholinesterase. Als tertiäre Aminstruktur kann es die Blut-Hirn- Schranke passieren. Es bewirkt einen geringeren Abbau des Acetylcholins und damit eine höhere Konzen -",
-    "answer_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+    "answer_tr": "Klinik semptomlar ve uygun ilaç tedavisi içeren psikiyatrik öykü, (santral) antikolinerjik sendromu (ZAS) düşündürmektedir. Olası ayırıcı tanılar: iskemik/kanamalı serebral lezyon, metabolik dengesizlik (örn. hipoglisemi), status epileptikus, sedatif/opioid kalıntısı veya sepsis. Tanı: En az 1 santral (dezoryantasyon, bilinç bozukluğu, halüsinasyon, nöbet) ve 2 periferik semptom (taşikardi, midriyazis, terleme azalması, kuru kızarık cilt, ağız kuruluğu, idrar retansiyonu). Tedavi ve tanı: Fizostigmin (Anticholium®) 1-2 mg i.v. yavaş verilir; semptomlar gerilerse tanı doğrulanır. Etki mekanizması: Asetilkolinesteraz inhibitörüdür, tersiyer amin yapısıyla kan-beyin bariyerini geçer ve asetilkolin konsantrasyonunu artırır.",
     "is_high_yield": true
   },
   {
@@ -16801,7 +16801,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "ZAS'ın hangi tetikleyicilerini biliyorsunuz?",
     "answer_de": "• Pharmaka (Auswahl): – Antipsychotika – Antidepressiva – Hypnotika/Sedativa – Opioidanalgetika – Parasympatholytika (z. B. Atropin, Scopolamin)1 5 1.2 Anatomie und Physiologie – Antihistaminika – Lokalanästhetika • Toxine (Auswahl): – Tollkirsche (Atropa belladonna) – Bilsenkraut (Hyoscyamus) – Engelstrompete (Brugmansia) Schildern Sie den Aufbau des menschlichen Nervensystems. • Zentrales Nervensystem (ZNS):",
     "answer_tr": "• Farmasötikler (seçim): – Antipsikotikler – Antidepresanlar – Hipnotikler/sedatifler – Opioid analjezikler – Parasempatolitikler (örn. atropin, skopolamin)1 5 1.2 Anatomi ve fizyoloji – Antihistaminikler – Lokal anestezikler • Toksinler (seçim): – Ölümcül itüzümü (Atropa belladonna) – Banotu (Hyoscyamus) – Meleğin trompeti (Brugmansia) İnsan sinir sisteminin yapısını açıklar. • Merkezi sinir sistemi (CNS):",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_330",
@@ -16813,7 +16813,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Güvenli entübasyon işaretleri nelerdir?",
     "answer_de": "• Nachweis von CO₂ in der Exspirationsluft (Kapnografie) • Intubation unter Sicht Immer wieder wird auch die Kontrolle der Tubuslage mittels bildgebender Verfahren (Röntgen, CT, Sono - grafie) diskutiert, die klinisch eine untergeordnete Rolle spielen. Lunge Beschreiben Sie den anatomischen Aufbau der Lunge mit ihren Landmarken. • Rechter Lungenflügel: – teilt sich in 3 Lappen (Ober-, Mittel-, Unterlappen) – besitzt 10 Segmente • Linker Lungenflügel: – teilt sich in 2 Lappen (Ober-, Unterlappen) – besitzt 9 Segmente (7. Segment nicht angelegt) • Die Lungenspitze überragt das Schlüsselbein um ca. 1–2 cm. • Lungenränder bei Atemruhestellung: – ventral: in Höhe der 6. Rippe – lateral: in Höhe der 8. Rippe",
     "answer_tr": "• Dışarı verilen havadaki CO₂'nin tespiti (kapnografi) • Görsel kontrol altında entübasyon Klinik olarak küçük bir rol oynayan görüntüleme yöntemleri (X-ışınları, CT, sonografi) kullanılarak tüpün pozisyonunun kontrolü de tekrar tekrar tartışılmaktadır. Akciğerler Akciğerlerin anatomik yapısını önemli noktalarıyla birlikte tanımlayın. • Sağ akciğer: – 3 loba ayrılır (üst, orta, alt lob) – 10 segmente sahiptir • Sol akciğer: – 2 loba ayrılır (üst, alt lob) – 9 segmente sahiptir (7. segment yapışık değildir) • Akciğerin apeksi klavikulanın ötesine yaklaşık olarak çıkıntı yapar. 1–2 cm. • Solunum dinlenme halindeyken akciğer kenarları: – ventral: 6. kaburga seviyesinde – lateral: 8. kaburga seviyesinde",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_331",
@@ -16849,7 +16849,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Solunum katsayısı nedir?",
     "answer_de": "• Verhältnis von abgeatmetem (= produziertem) CO₂ und aufgenommenem O₂• RQ = V CO₂/VO2• Der RQ ist abhängig von den verstoffwechselten Nährstoffen: – Proteine: 0,83 – Kohlenhydrate: 1 – Fette: 0,71 Beschreiben Sie Aufbau und Funktion des Pleuraspalts. • Definition: Spalt zwischen viszeralem und parietalem Blatt des „Brustfells“ (Pleura). • Mit ca. 5–10 ml seröser Flüssigkeit gefüllt. • Funktion: Lunge besitzt Rückstellkraft, Thorax neigt zur Ausdehnung. Der im Pleuraspalt herrschende Unterdruck verhindert das Kollabieren der Lunge. • Der herrschende Unterdruck ist atemabhängig: Einatmung: –8 mbar, Ausatmung: –5 mbar. MERKE Das Eindringen von Luft (Pneumothorax) oder Ansammlungen von Blut (Hämatothorax) oder Lymphe (Chylothorax) in den Pleuraspalt führen zum Kollaps von Lungenabschnitten mit potenziellen Oxygenierungsstörungen. Was bedeutet der Begriff „Lungencompliance“? • Definition: Lungendehnbarkeit • Beschreibt die korrespondierende Beziehung von pulmonalen Volumen- und Druckveränderungen",
     "answer_tr": "• Ekshale edilen (= üretilen) CO₂ ve emilen O₂ oranı• RQ = V CO₂/VO2• RQ, metabolize edilen besinlere bağlıdır: – Proteinler: 0,83 – Karbonhidratlar: 1 – Yağlar: 0,71 Plevral boşluğun yapısını ve işlevini tanımlayın. • Tanım: “Plevra”nın (plevra) visseral ve paryetal tabakası arasındaki boşluk. • Yaklaşık 5-10 ml seröz sıvı ile doldurulmuştur. • Fonksiyon: Akciğerlerin geri getirme kuvveti vardır, göğüs kafesi genişleme eğilimindedir. Plevral boşluktaki negatif basınç akciğerin çökmesini önler. • Hakim negatif basınç nefes almaya bağlıdır: nefes alma: –8 mbar, nefes verme: –5 mbar. NOT Plevral boşluğa hava girişi (pnömotoraks) veya kan birikmesi (hemotoraks) veya lenf (şilotoraks), akciğer bölümlerinin çökmesine ve potansiyel oksijenasyon bozukluklarına yol açar. “Akciğer uyumu” terimi ne anlama geliyor? • Tanım: Akciğer genişleyebilirliği • Akciğer hacmi ile basınç değişiklikleri arasındaki ilgili ilişkiyi açıklar",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_334",
@@ -16921,7 +16921,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Kanın oksijen içeriği nasıl hesaplanabilir?",
     "answer_de": "Sauerstoff ist im Blut überwiegend an Hämoglobin gebunden. Der Sauerstoffgehalt (engl. „content“, CO₂) ergibt sich also v. a. aus dem Produkt von Hämoglobinkonzentration (cHb), Sauerstoffbindungskapazität des Hämoglobins (Hüfner-Zahl, in vivo 1,34 ml pro 1 g Hämoglobin) und Sauerstoffsättigung (SO 2). Addiert wird dazu noch der im Blut physikalisch gelöste Sauerstoff. Berechnet als Produkt aus dem Bunsen-Löslichkeits - koeffizienten (0,0031 ml pro 1 dl Blut und pro 1 mmHg Gasdruck) und dem Sauerstoffpartialdruck (pO₂) ist dieser Anteil i. d. R. vergleichsweise gering ( › Formel 1.2 ). Bei gleichzeitiger Blutentnahme über arterielle und venöse Katheter lässt sich mithilfe dieser Formel der Sauerstoffgehalt am jeweiligen Entnahmeort berechnen. Auf diese Weise kann die Sauerstoffausschöpfung in den Geweben objektiviert werden. Die zentralvenös gemessene Sauerstoffsättigung genügt i. d. R. den Praxis - anforderungen ( › Formeln 1.3 ). Freie intraabdominale Flüssigkeit als Blutungshinweis kann mittels eFAST-Sonografie ausgeschlossen werden. Vor weiter - gehender Diagnostik haben Sie eine kalkulierte Antibiotikatherapie begonnen und eine invasive Blutdruckmessung sowie einen zentralen Venenkatheter angelegt. In der Abdomen-CT zeigt sich eine Insuffizienz der Ileotransversostomie. Der Infektfokus wird von Ihrem chirurgischen Partner in einer Revisionsoperation unverzüglich saniert. Intraoperativ wurden 5.000 ml Vollelektrolytlösung infundiert, ein angeschlossener Noradrenalin-Perfusor ist inzwischen auf 0,5 µg/kg/min eingestellt.",
     "answer_tr": "Kandaki oksijen ağırlıklı olarak hemoglobine bağlıdır. Oksijen içeriği (İngilizce “içerik”, CO₂) bu nedenle v. a. hemoglobin konsantrasyonu (cHb), hemoglobinin oksijen bağlama kapasitesi (Hüfner sayısı, in vivo 1 g hemoglobin başına 1,34 ml) ve oksijen satürasyonunun (SO 2) çarpımından elde edilir. Buna kanda fiziksel olarak çözünen oksijen de eklenir. Bunsen çözünürlük katsayısı (1 dl kan başına 0,0031 ml ve 1 mmHg gaz basıncı başına) ile oksijen kısmi basıncının (pO₂) çarpımı olarak hesaplanan bu oran i'dir. D. R. nispeten düşük (› Formül 1.2). Kan, arteriyel ve venöz kateterler yoluyla eş zamanlı olarak alınırsa bu formül, ilgili toplama bölgesindeki oksijen içeriğini hesaplamak için kullanılabilir. Bu sayede dokulardaki oksijen tükenmesi nesnelleştirilebilmektedir. Merkezi olarak ölçülen oksijen doygunluğu yeterlidir. D. R. pratik gereklilikler (› Formüller 1.3). Kanama belirtisi olarak serbest karın içi sıvı, eFAST sonografi kullanılarak ekarte edilebilir. Daha ileri teşhislerden önce, hesaplanmış bir antibiyotik tedavisine başladınız ve invazif kan basıncı ölçümü yaptırdınız ve santral venöz kateter takıldı. Abdominal BT ileotransversostominin yetersizliğini gösteriyor. Enfeksiyonun odağı, revizyon operasyonuyla cerrahi partneriniz tarafından derhal temizlenecektir. Ameliyat sırasında 5000 ml tam elektrolit solüsyonu infüze edildi; bağlı bir norepinefrin perfüzörü artık 0,5 µg/kg/dak'ya ayarlanmıştır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_340",
@@ -16945,7 +16945,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Böbrek yetmezliği açısından hangi özel özelliklerin dikkate alınması gerekir?",
     "answer_de": "• Anamnese mit Trinkmenge, Restausscheidung, Dialysefrequenz sowie aktuelle Medikation • Laboruntersuchungen: Retentionsparameter (Kreatinin, Harnstoff), Elektrolyte, Hämoglobin • Körperliche Untersuchung: Dyspnoe, Zeichen der Herzinsuffizienz, periphere Ödeme Skizzieren Sie den anatomischen Aufbau sowie die physiologischen Aufgaben der Niere. • Paarige Organe, retroperitoneal gelegen • Nierenparenchym unterteilt in Nierenrinde und Nierenmark • Blutversorgung: Aa. renales (aus Aorta abdominalis), Vv. renales (in V. cava inferior) • Aufrechterhaltung der Homöostase bzgl. Elektrolyt- und Wasserhaushalt • Exkretionsfunktion für hydrophile Ausscheidungsprodukte • Endokrinologische Funktion hinsichtlich der Erythropoese • Blutdruckregulation MERKE Die Niere erhält etwa 20 % des Herzzeitvolumens (HZV), und die kritische Grenze bei der Perfusion liegt bei erhaltenen Autoregulationsmechanismen bei einem mittleren arteriellen Blutdruck von 55 mmHg. Diese Tatsachen unterstreichen die Bedeutung der Niere als „Schockorgan“. Skizzieren Sie kurz die Exkretionsfunktion der Niere. Erläutern Sie den Begriff „glomeruläre Filtrationsrate“.",
     "answer_tr": "a PaO₂ atık",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_342",
@@ -16957,7 +16957,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi faktörler özellikle anesteziyle ilgilidir?",
     "answer_de": "Besonderes Augenmerk ist hier auf die perioperative Dialysebehandlung zu legen, die – um kardiovaskuläre Stabilität und einen ausgeglichenen Wasser- und Elektrolythaushalt zu gewährleisten – am Morgen oder spätestens am Vortag der OP durchgeführt werden sollte. Vor Einleitung sollte dem Kalium- und dem pH- Wert sowie dem Ausgangs-Hb besondere Beachtung geschenkt werden. Unter Beachtung der Gerinnungs - situation sind Regionalanästhesien grundsätzlich gut geeignet (Dialyseshuntanlage). Für die Allgemeinanästhesie bieten sich Substanzen an, die nierenunabhängig eliminiert werden. Wo und auf welche Weise wirken Schleifendiuretika? Im Tubulussystem werden ca. 70 % des zuvor filtrierten Natriums rückresorbiert. Schleifendiuretika (z. B. Furosemid) entfalten ihre Hauptwirkung durch reversible Inhibition des Na-K-2Cl-Ko-Transporters im auf - steigenden Teil der Henle-Schleife. Da es sich um sehr potente Diuretika handelt, setzt der diuretische Effekt rasch ein, hält jedoch lediglich für 4–5 Stunden an. Unerwünschte Wirkungen umfassen neben Dehydratation und Ototoxizität v. a. Elektrolytimbalancen. LITERATUR Fauci A, Braunwald E, Kasper D, Hauser S. Harrison’s Principles of Internal Medicine. 18th edn. Columbus: McGraw-Hill 2011. KDIGO 2012 Clinical practice guideline for the evaluation and management of chronic kidney disease. Kidney Inter Suppl 2013; 3(1): 1–150.",
     "answer_tr": "Burada, kardiyovasküler stabiliteyi ve dengeli su ve elektrolit dengesini sağlamak için sabah veya en geç ameliyattan bir gün önce yapılması gereken perioperatif diyaliz tedavisine özellikle dikkat edilmelidir. İndüksiyondan önce, başlangıç ​​Hb'nin yanı sıra potasyum ve pH düzeylerine de özel dikkat gösterilmelidir. Pıhtılaşma durumu dikkate alınırsa genellikle bölgesel anestezi (diyaliz şant sistemi) uygundur. Böbreklerden bağımsız olarak atılan maddeler genel anesteziye uygundur. Döngü diüretikleri nerede ve nasıl çalışır? Daha önce filtrelenen sodyumun yaklaşık %70'i tübüler sistemde yeniden emilir. Döngü diüretikleri (örneğin furosemid), ana etkilerini Henle döngüsünün yükselen kısmındaki Na-K-2Cl ortak taşıyıcısının geri dönüşümlü inhibisyonu yoluyla geliştirir. Bunlar çok güçlü diüretikler olduğundan idrar söktürücü etkisi hızla ortaya çıkar ancak yalnızca 4-5 saat sürer. Olumsuz etkiler dehidrasyon ve ototoksisiteyi içerir. A. Elektrolit dengesizlikleri. KAYNAKLAR Fauci A, Braunwald E, Kasper D, Hauser S. Harrison's Princes of Internal Medicine. 18. baskı. Columbus: McGraw-Hill 2011. KDIGO 2012 Kronik böbrek hastalığının değerlendirilmesi ve yönetimi için klinik uygulama kılavuzu. Böbrek Inter Suppl 2013; 3(1): 1–150.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_343",
@@ -16969,7 +16969,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Karaciğer sirozu ne demek?",
     "answer_de": "Unabhängig von der Ätiologie (Virushepatitiden, Noxen, Stoffwechselerkrankungen) stellt die Leberzir - rhose den Endpunkt vieler chronischer Lebererkrankungen dar und ist durch eine Destruktion und einen nachfolgenden narbig-fibrotischen Umbau des Leberparenchyms gekennzeichnet. Während Frühsymptome meist fehlen, imponiert die klinisch manifeste Leberzirrhose mit Symptomen, die durch den Ausfall der Syn - these- und Entgiftungsfunktion bedingt sind. Hierzu zählen neben Hautmanifestationen wie Ikterus, Pruritus sowie Symptomen der portalen Hyper - tension v. a. hämorrhagische Diathesen, Aszites und schlussendlich die hepatische Enzephalopathie. Die Klinik ist sehr variabel und reicht vom nahezu asymptomatischen Patienten – wie in unserem Beispiel – bis zur schweren Dekompensation mit Leberausfallkoma. Wie im vorliegenden Fall ist neben der chronischen Virushepatitis der chronische Alkoholabusus in Mittel - europa eine der häufigsten Ursachen der Leberzirrhose. Erläutern Sie den Child-Turcotte-Pugh-Score. Ausgehend von insgesamt fünf Kriterien werden 1–3 Punkte vergeben, wobei sich je nach Punktzahl eine Einteilung in die Stadien A bis C ergibt ( › Tab. 1.12 ). Alle Kriterien der Klasse A werden mit dem Faktor 1, alle Kriterien der Klasse B mit dem Faktor 2 und alle Kriterien der Klasse C mit dem Faktor 3 multipliziert, wobei sich aus der Summe ein Gesamtscore mit den Werten zwischen 5 (günstige Prognose) und 15 (schlechteste Prognose) ergibt.",
     "answer_tr": "Etiyolojiden bağımsız olarak (viral hepatit, noxae, metabolik hastalıklar), karaciğer sirozu birçok kronik karaciğer hastalığının son noktasını temsil eder ve karaciğer parankiminin yıkımı ve ardından sikatrisyel-fibrotik yeniden şekillenmesi ile karakterize edilir. Erken belirtiler genellikle görülmemekle birlikte, klinik olarak ortaya çıkan karaciğer sirozu, sentez ve detoksifikasyon fonksiyonlarının başarısızlığından kaynaklanan belirtilerle ortaya çıkar. Sarılık, kaşıntı ve portal hipertansiyon semptomları gibi cilt belirtilerine ek olarak bunlar şunları içerir: a. hemorajik diyatezler, asit ve son olarak hepatik ensefalopati. Klinik tablo çok değişkendir ve örneğimizde olduğu gibi neredeyse asemptomatik hastadan, karaciğer yetmezliği komasına neden olan ciddi dekompansasyona kadar değişmektedir. Mevcut vakada olduğu gibi, Orta Avrupa'da kronik viral hepatitin yanı sıra kronik alkol kullanımı da karaciğer sirozunun en yaygın nedenlerinden biridir. Child-Turcotte-Pugh skorunu açıklayın. Toplam beş kritere göre, puan sayısına bağlı olarak A'dan C'ye kadar olan aşamalara göre sınıflandırılarak 1-3 puan verilir (› Tablo 1.12). A sınıfındaki tüm kriterler 1 faktörüyle, B sınıfındaki tüm kriterler 2 faktörüyle ve C sınıfındaki tüm kriterler 3 faktörüyle çarpılır ve toplam, 5 (olumlu prognoz) ile 15 (en kötü prognoz) arasında değerlere sahip bir genel puanla sonuçlanır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_344",
@@ -16981,7 +16981,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anestezi uygulanırken hangi özel özelliklerin dikkate alınması gerekir?",
     "answer_de": "Analog zur Anästhesie bei Nierenerkrankungen sind auch bei Patienten mit akuten oder chronischen Erkrankungen der Leber Besonderheiten in Bezug auf die Auswahl der Narkotika und der Narkoseführung zu beachten.1 24 1 Grundlagen Da die Leber wesentlich an der Metabolisierung und Elimination der häufigsten Anästhetika beteiligt ist, sollte prinzipiell Medikamenten der Vorzug gegeben werden, die organunabhängig eliminiert werden. In diesem Zusammenhang wären Remifentanil, Atracurium sowie dessen Enantiomer Cisatracurium sowie die modernen Inhalationsanästhetika Desfluran und Sevofluran zu nennen. Des Weiteren reagieren Patienten mit chronischen Lebererkrankungen besonders empfindlich auf zahl - reiche Anästhetika und Opioide. Dies gilt insbesondere für Patienten mit hepatischer Enzephalopathie wie z. B. im Rahmen einer Leberzirrhose. Hier können bereits Medikamente in üblicher Dosierung zu verstärkter Wirkung und längerer Wirkdauer führen. Beispielhaft sind in diesem Zusammenhang Mivacurium sowie Succinylcholin zu nennen, die beide von der in der Leber synthetisierten Plasmacholinesterase metabolisiert werden. Eine verminderte Synthese z. B. bei schwerer Leberinsuffizienz führt u. U. zu einer deutlich verlängerten Wirkdauer dieser Medikamente. Auf eine Prämedikation sollte bei schwerer Leberinsuffizienz verzichtet werden.",
     "answer_tr": "Böbrek hastalıklarında anesteziye benzer şekilde, akut veya kronik karaciğer hastalığı olan hastalarda anestezi seçimi ve anestezi uygulamasına ilişkin özel özellikler de dikkate alınmalıdır.1 24 1 Temel Bilgiler Karaciğer, en yaygın anesteziklerin metabolizmasında ve eliminasyonunda önemli ölçüde yer aldığından, prensipte organdan bağımsız olarak elimine edilen ilaçlar tercih edilmelidir. Bu bağlamda remifentanil, atrakuryum ve onun enantiyomeri cisatrakuryumun yanı sıra modern inhalasyon anesteziklerinden desfluran ve sevoflurandan da bahsetmek gerekir. Ayrıca kronik karaciğer hastalığı olan hastalar çok sayıda anestezik ve opioide karşı özellikle duyarlıdır. Bu özellikle hepatik ensefalopatisi olan hastalar için geçerlidir: B. karaciğer sirozu bağlamında. Burada olağan dozajdaki ilaç, etkinin artmasına ve etki süresinin daha uzun olmasına neden olabilir. Bu bağlamdaki örnekler, her ikisi de karaciğerde sentezlenen plazma kolinesteraz tarafından metabolize edilen mivakuryum ve süksinilkolindir. İndirgenmiş bir sentez ör. B. şiddetli karaciğer yetmezliğinde bu, bu ilaçların etki süresinin önemli ölçüde daha uzun olmasına yol açabilir. Ciddi karaciğer yetmezliği vakalarında premedikasyondan kaçınılmalıdır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_345",
@@ -16993,7 +16993,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hipotiroidizmden kastınız nedir ve anestezi uygularken nelere dikkat etmelisiniz?",
     "answer_de": "Eine Hypothyreose ist zunächst durch unspezifische Symptome wie Bradykardie, Antriebsschwäche, gestörte Thermoregulation sowie Elektrolytimbalancen gekennzeichnet, was eine Diagnosestellung häufig erschwert. Durch eine verminderte Wirkung von Katecholaminen sowie eine verminderte Atemantwort auf Hypoxie und Hyperkapnie ist insbesondere bei der Narkoseeinleitung Vorsicht geboten. Patienten, die unter einer hypothyreoten Stoffwechsellage leiden, sind häufig kreislaufinstabil und zeigen durch einen verzögerten Ab - bau von Medikamenten häufig ein verzögertes Aufwachverhalten. Obwohl eine moderate Hypothyreose nicht zu einer erhöhten Komplikationsrate führt, sollte in Analogie zur hyperthyreoten Stoffwechsellage eine elektive OP erst nach Beginn einer hormonalen Substitutions - therapie mit Levothyroxin (T 4) durchgeführt werden. Erklären Sie den Begriff Diabetes mellitus. Welche Typen sind Ihnen bekannt? Der Diabetes mellitus gilt als die weltweit häufigste Stoffwechselerkrankung. Nach den Kriterien der WHO liegt ein Diabetes mellitus bei folgender Konstellation vor: • Nüchternblutzucker > 126 mg/dl (> 7 mmol/l) oder • Blutzucker > 200 mg/dl (> 11 mmol/l) 2 Stunden nach einem oralen 75-g-Glukosetoleranztest Grundsätzlich unterscheidet man folgende Formen des Diabetes mellitus: • Typ 1: absoluter Insulinmangel durch Destruktion (meist autoimmun) der β-Zellen im Pankreas",
     "answer_tr": "Hipotiroidizm başlangıçta bradikardi, motivasyon eksikliği, bozulmuş termoregülasyon ve elektrolit dengesizlikleri gibi spesifik olmayan semptomlarla karakterize edilir ve bu da sıklıkla tanıyı zorlaştırır. Katekolaminlerin etkisinin azalması ve hipoksi ile hiperkapniye karşı solunum tepkisinin azalması nedeniyle, anestezi indüklenirken özellikle dikkatli olunması gerekir. Hipotiroidi metabolik durumundan mustarip olan hastalar genellikle dolaşım sistemi dengesizdir ve sıklıkla ilacın gecikmiş metabolizasyonundan dolayı gecikmiş bir uyanma davranışı gösterirler. Orta dereceli hipotiroidizm komplikasyon oranında artışa yol açmasa da, hipertiroidi metabolik durumuna benzer şekilde, elektif cerrahi ancak levotiroksin (T 4) ile hormon replasman tedavisine başlandıktan sonra yapılmalıdır. Diabetes Mellitus terimini açıklayınız. Hangi türlere aşinasınız? Diabetes Mellitus dünya çapında en sık görülen metabolik hastalık olarak kabul edilmektedir. WHO kriterlerine göre, diyabet şu şekilde mevcuttur: • Açlık kan şekeri > 126 mg/dl (> 7 mmol/l) veya • 75 g oral glukoz tolerans testinden 2 saat sonra kan şekeri > 200 mg/dl (> 11 mmol/l) Temel olarak, aşağıdaki diyabet türleri arasında bir ayrım yapılır: • Tip 1: kandaki β hücrelerinin yıkımına bağlı (genellikle otoimmün) mutlak insülin eksikliği. pankreas",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_346",
@@ -17017,7 +17017,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bu hasta için hangi indüksiyon hipnotiğini seçersiniz?",
     "answer_de": "Begründen Sie Ihre Auswahl. • Gebräuchliche Hypnotika: – Barbiturate (Thiopental, Methohexital) – Propofol – Etomidat – Benzodiazepine (Midazolam) – Ketamin • Begründete Auswahl bei dieser Patientin: zur Einleitung Propofol. Die bestehende Porphyrie stellt eine absolute Kontraindikation für die Verwendung von Barbituraten dar. Zahlreiche weitere Medikamente können Schübe hervorrufen, sodass die gesamte perioperative Medikation auf porphyrinogene Medika - mente untersucht werden sollte. Auch Etomidat gilt als „unsicheres“ Medikament. Propofol sollte nach aktuellen Empfehlungen nicht zur Narkoseaufrechterhaltung verwendet werden. Volatile Anästhetika gelten mit Ausnahme des ohnehin nicht mehr verwendeten Enfluran als wahrscheinlich sicher.1 29 1.3 Pharmakologie Charakterisieren Sie das Hypnotikum Propofol.",
     "answer_tr": "Seçiminizi gerekçelendirin. • Yaygın hipnotikler: – Barbitüratlar (tiyopental, metoheksital) – Propofol – Etomidat – Benzodiazepinler (midazolam) – Ketamin • Bu hastada makul seçim: indüksiyon için propofol. Mevcut porfiri, barbitüratların kullanımına mutlak bir kontrendikasyon teşkil etmektedir. Çok sayıda başka ilaç ataklara neden olabilir, bu nedenle perioperatif ilaçların tamamı porfirinojenik ilaçlar açısından incelenmelidir. Etomidat ayrıca “güvensiz” bir ilaç olarak kabul edilir. Güncel önerilere göre propofol anesteziyi sürdürmek için kullanılmamalıdır. Artık kullanılmayan enfluran dışında uçucu anesteziklerin muhtemelen güvenli olduğu düşünülmektedir.1 29 1.3 Farmakoloji Hipnotik propofolün özelliklerini belirleyin.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_348",
@@ -17029,7 +17029,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Propofol infüzyon sendromu (PRIS) ne anlama gelir?",
     "answer_de": "Das Propofol-Infusionssyndrom (PRIS) wurde initial bei Kindern beschrieben, mittlerweile gibt es aber mehr Berichte von Erwachsenen. Klinisch imponiert das Syndrom durch: • Schock • Schwere metabolische Azidose • Herzrhythmusstörungen (teilweise Brugada-Syndrom) • Rhabdomyolyse • Nierenversagen • Hypertriglyzeridämie Die zugrunde liegende Pathophysiologie ist noch unvollständig verstanden, es werden aber mitochondriale Störungen mit initialer Blockade der Atmungskette und im weiteren Verlauf auch eine Transportstörung für Fettsäuren postuliert. Begünstigende Faktoren sind schwere Grunderkrankungen, Polytrauma, Schädel- Hirn-Trauma, Mitochondropathien in Verbindung mit einer längeren und/oder hohen Propofoldosierung (> 4 mg/kg/h und > 48 Stunden; cave: undokumentierte zusätzliche Bolusgaben). Es sind aber auch Fälle nach kürzerer und geringerer Dosierung beschrieben worden. Welche Empfehlungen gibt es zur Vermeidung eines PRIS? • Kinder: Dosisreduktion und zeitliche Begrenzung. Nach initial hoher nötiger Einleitungsdosis deutliche",
     "answer_tr": "Propofol infüzyon sendromu (PRIS) başlangıçta çocuklarda tanımlandı, ancak artık yetişkinlerde de daha fazla rapor var. Klinik olarak sendrom aşağıdakilerle karakterize edilir: • Şok • Şiddetli metabolik asidoz • Kardiyak aritmiler (kısmen Brugada sendromu) • Rabdomiyoliz • Böbrek yetmezliği • Hipertrigliseridemi Altta yatan patofizyoloji hala tam olarak anlaşılamamıştır, ancak başlangıçta solunum zincirinin tıkanmasıyla birlikte mitokondriyal bozukluklar ve daha sonra yağ asitleri için bir taşıma bozukluğu olduğu öne sürülmektedir. Avantaj sağlayan faktörler, altta yatan ciddi hastalıklar, politravma, kranyoserebral travma, daha uzun ve/veya yüksek propofold dozajıyla bağlantılı mitokondriyal patolojilerdir (> 4 mg/kg/saat ve > 48 saat; mağara: belgelenmemiş ek bolus dozları). Ancak daha kısa ve daha düşük dozlardan sonra da vakalar tarif edilmiştir. PRIS'ten kaçınmak için ne gibi öneriler var? • Çocuklar: dozun azaltılması ve zaman sınırlaması. Başlangıçta gerekli olan yüksek başlangıç ​​dozundan sonra,",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_349",
@@ -17053,7 +17053,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Nöromüsküler blokajı tersine çevirmek için hangi maddeler mevcut?",
     "answer_de": "Zur Reversierung der (Rest-)Wirkung von nichtdepolarisierenden Muskelrelaxanzien werden Acetylcholi n- esterase-Inhibitoren (z. B. Neostigmin, Pyridostigmin) eingesetzt ( › Tab. 1.15 ). Dadurch wird der Abbau von Acetylcholin (ACh) gehemmt, was zu einem Anstieg der ACh-Konzentration im synaptischen Spalt und somit zu einer kompetitiven Verdrängung des nichtdepolarisierenden Muskelrelaxans vom Rezeptor führt. Die Anwendung von Cholinesterase-Inhibitoren geht mit dosisabhängig z. T. nicht unerheblichen Nebenwirkungen einher, die auf eine erhöhte ACh-Konzentration an den nikotinergen und v. a. auch an den muscarinergen ACh-Rezeptoren zurück - zuführen ist. Dadurch kommt es u. a. zu Bradykardie, Speichelfluss, Bronchokonstriktion, Kontraktion der Harn - blase, Miosis und zu mitunter ausgeprägten abdominalen Spasmen. Um diese Nebenwirkungen zu verhindern bzw. abzuschwächen, sollte die Gabe von Cholinesterase-Inhibitoren mit z. B. Atropinsulfat oder Glykopyrronium kom - biniert werden. Werden hohe Dosen dieser Substanzen injiziert, können diese eine eigenständige neuromuskuläre Blockade hervorrufen. Deshalb sollte beim Einsatz von Cholinesterase-Inhibitoren bereits eine teilweise Erholung von der neuromuskulären Blockade (TOF-Count mindestens 1–2, besser 4) eingetreten sein. Seit 2008 ist Sugammadex, ein Cyclodextrin, erhältlich, das steroidale Muskelrelaxanzien (speziell Rocuronium und in einem geringeren Maß auch Vecuronium) enkapsuliert. Durch die Komplexbindung in das ringförmige Zuckermolekül wird eine Recurarisierung zumindest für Rocuronium vollständig aus - geschlossen. Falls nach Injektion von Rocuronium eine klinische Notwendigkeit zur sofortigen Aufhebung",
     "answer_tr": "Asetilkolin esteraz inhibitörleri (örn. neostigmin, piridostigmin), depolarizan olmayan kas gevşeticilerin (artık) etkisini tersine çevirmek için kullanılır (› Tablo 1.15). Bu, asetilkolinin (ACh) parçalanmasını engeller, bu da sinaptik yarıktaki ACh konsantrasyonunda bir artışa ve dolayısıyla depolarizan olmayan kas gevşetici maddenin reseptörden rekabetçi bir şekilde yer değiştirmesine yol açar. Kolinesteraz inhibitörlerinin kullanımı doza bağlıdır; T. nikotinik ve özellikle artan ACh konsantrasyonundan kaynaklanan önemsiz yan etkiler değildir. A. muskarinik ACh reseptörlerine de atfedilebilir. Bunun sonucunda bradikardi, salivasyon, bronkokonstriksiyon, idrar kesesinin kasılması, miyozis ve bazen şiddetli karın spazmları ortaya çıkar. Bu yan etkileri önlemek veya hafifletmek için kolinesteraz inhibitörlerinin örn. B. atropin sülfat veya glikopironyum birleştirilebilir. Bu maddelerin yüksek dozda enjekte edilmesi durumunda bağımsız bir nöromüsküler blokaj meydana gelebilir. Bu nedenle, kolinesteraz inhibitörleri kullanıldığında, nöromüsküler blokajdan kısmi bir iyileşme (TOF sayısı en az 1-2, daha iyisi 4) zaten gerçekleşmiş olmalıdır. 2008'den bu yana, steroidal kas gevşeticileri (özellikle rokuronyum ve daha az ölçüde vekuronyum) kapsülleyen bir siklodekstrin olan Sugammadex mevcuttur. Halka şeklindeki şeker molekülündeki kompleks bağlanma, en azından roküronyum için tekrarlanmayı tamamen dışlar. Roküronyum enjeksiyonundan sonra klinik olarak durumun derhal tersine çevrilmesine ihtiyaç varsa",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_351",
@@ -17065,7 +17065,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Guedel'e göre anestezinin klasik aşamalarını adlandırın. Önemi nedir?",
     "answer_de": "• Stadium I (Amnesie und Analgesie): zunehmende Bewusstseinstrübung unter dem Einfluss des volatilen Anästhetikums • Stadium II (Exzitationsstadium): erloschenes Bewusstsein, unwillkürliche Bewegungen, erhöhter Muskeltonus, Pupillen erweitert • Stadium III (chirurgische Toleranz): Ende des Exzitationsstadiums bis Erlöschen der Atmung • Stadium IV (Vergiftung): Apnoe, Zusammenbruch der Herz-Kreislauf-Funktion, Pupillen maximal weit und nicht lichtreagibel Die klassischen Guedel-Stadien beziehen sich nur auf einen nicht prämedizierten, spontan atmenden Patienten unter Äthernarkose und besitzen somit historische Bedeutung. Sie sind nicht zur Steuerung einer Narkose mit den gebräuchlichen modernen volatilen Anästhetika im Rahmen einer balancierten Anästhesie geeignet. In abgeschwächter Form wird jedoch auch bei modernen Inhalationsanästhetika ein unerwünschtes Exzitationsstadium während der Ein- (insb. Maskeneinleitung) und Ausleitung durchlaufen. Unnötige Manipulationen am Patienten (z. B. Absaugen, Extubation) müssen während dieser Zeit unterlassen werden, da sonst das Risiko für Komplikationen wie z. B. Laryngospasmus erhöht ist. Welche Faktoren beeinflussen den MAC-Wert eines volatilen Anästhetikums?",
     "answer_tr": "• Aşama I (amnezi ve analjezi): volatil anestezik etkisi altında artan bilinç bulanıklığı • Aşama II (uyarma aşaması): bilincin kaybolması, istemsiz hareketler, kas tonusunun artması, gözbebeklerinin genişlemesi • Aşama III (cerrahi tolerans): solunum durana kadar uyarma aşamasının sonu • Aşama IV (zehirlenme): apne, kardiyovasküler fonksiyonun çökmesi, gözbebekleri maksimum derecede genişlemiş ve ışığa tepki vermemektedir Klasik Guedel aşamaları yalnızca premedikasyon uygulanmayan, eter anestezisi altında spontan nefes alan hastadır ve bu nedenle tarihsel öneme sahiptir. Dengeli anestezinin bir parçası olarak yaygın modern uçucu anesteziklerle anestezinin kontrol edilmesi için uygun değildirler. Bununla birlikte, daha zayıf bir formda, modern inhalasyon anestezikleri de indüksiyon (özellikle maske indüksiyonu) ve çıkarılması sırasında istenmeyen bir uyarılma aşamasından geçer. Bu süre zarfında hasta üzerinde gereksiz manipülasyonlardan (örn. aspirasyon, ekstübasyon) kaçınılmalıdır, aksi takdirde aşağıdaki gibi komplikasyon riski vardır: B. Laringospazm artar. Uçucu bir anesteziğin MAC değerini hangi faktörler etkiler?",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_352",
@@ -17077,7 +17077,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Uçucu bir anestetiğin emilimini hangi faktörler belirler?",
     "answer_de": "Folgende physikalische und physiologische Determinanten beeinflussen die Aufnahme eines volatilen An - ästhetikums: • Frischgasfluss: Je niedriger der Frischgasfluss, desto höher muss die Konzentration am Verdampfer ein - gestellt werden. • Inspiratorische und alveoläre Konzentration: Die Geschwindigkeit der Gleichgewichtseinstellung zwischen Alveolen, Blut und Gehirn hängt vom Partialdruck ab. Je höher die Konzentration im In - spirationsgas, desto schneller kann der für die Anästhesie erforderliche Partialdruck im ZNS erreicht werden. • Konzentrationseffekt: Eine rasche Diffusion volatiler Anästhetika mit hohem Blut-Gas-Verteilungs - koeffizienten in das Blut erzeugt einen „Sog“ in den Alveolen, sodass schneller neues Inspirationsgas einströmen kann. Die Konzentration zwischen inspiratorischem und alveolärem Partialdruck gleicht sich dadurch schneller an. • Zweitgaseffekt: Kombiniert man ein volatiles Anästhetikum mit einem zweiten Gas (z. B. Lachgas in höherer Konzentration), kommt es durch die rasche Diffusion des hoch konzentrierten Lachgases ins Blut (hohe Partialdruckdifferenz) trotz prinzipiell schlechter Blutlöslichkeit von Lachgas zu einem Volumen - verlust in den Alveolen mit starker Erhöhung der Konzentration des volatilen Anästhetikums in dem",
     "answer_tr": "Aşağıdaki fiziksel ve fizyolojik belirleyiciler uçucu bir anestetiğin emilimini etkiler: • Taze gaz akışı: Taze gaz akışı ne kadar düşük olursa, evaporatördeki konsantrasyon da o kadar yüksek ayarlanmalıdır. • İnspiratuar ve alveoler konsantrasyon: Alveoller, kan ve beyin arasındaki dengenin hızı kısmi basınca bağlıdır. İnspirasyon gazındaki konsantrasyon ne kadar yüksek olursa, CNS'de anestezi için gereken kısmi basınca o kadar hızlı ulaşılabilir. • Konsantrasyon etkisi: Yüksek kan gazı dağılım katsayısına sahip uçucu anestetiklerin kana hızlı bir şekilde yayılması alveollerde bir \"emme\" oluşturur, böylece yeni inspiratuar gaz daha hızlı akabilir. Sonuç olarak inspiratuar ve alveoler kısmi basınç arasındaki konsantrasyon daha hızlı eşitlenir. • İkinci gaz etkisi: Uçucu bir anestetiği ikinci bir gazla (örneğin daha yüksek konsantrasyonda nitro oksit) birleştirirseniz, yüksek konsantrasyonlu nitro oksidin kana hızlı difüzyonu (yüksek kısmi basınç farkı), nitro oksidin genel olarak zayıf kan çözünürlüğüne rağmen, alveollerdeki uçucu anestetiğin konsantrasyonunda güçlü bir artışla birlikte alveollerde hacim kaybına neden olur.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_353",
@@ -17089,7 +17089,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Halotan hepatiti ne anlama geliyor?",
     "answer_de": "Beim Abbau volatiler Anästhetika zu Trifluoressigsäure können Zwischenprodukte mit Hapteneigenschaften entstehen. Es kommt zur kovalenten Bindung an Bestandteile der Hepatozytenzellmembran. Das Immunsystem erkennt diese Proteinverbindungen als antigene Determinante. Folge ist eine massive Leberzellzerstörung. Theo - retisch ist eine „Halothan-Hepatitis“ daher bei Verwendung aller volatilen Anästhetika möglich, die zu Trifluor - essigsäure abgebaut werden oder wenn andere Zwischenprodukte mit Hapteneigenschaften entstehen. Sevofluran gilt in diesem Zusammenhang als sicher, da keine Trifluoressigsäure oder ähnliche Substanzen entstehen. Welche Rolle spielt Fluorid? Beim Abbau halogenierter Kohlenwasserstoffe entsteht in Abhängigkeit vom hepatischen Metabolisierungs - grad Fluorid. Dieses ist potenziell nephrotoxisch. Bei Desfluran und Isofluran ist aufgrund der geringen Metabolisierung im Rahmen normaler Narkosedauern keine Nephrotoxizität zu erwarten. Bei Sevofluran werden zwar höhere Fluoridkonzentrationen gemessen, stichhaltige Belege für eine klinisch relevante Beein -Abb. 1.8 Kontextsensitive Auswaschzeiten für volatile Anästhetika. Desfluran wird selbst nach sehr langer Anwendungsdauer unverändert rasch eliminiert, während bei den anderen Substanzen mit zunehmender Narkosedauer auch die Eliminationszeit zunimmt (mod. nach Bailey 1997). [M582] 1 42 1 Grundlagen",
     "answer_tr": "Hücrelerin dinlenme membran potansiyeli öncelikle K+ difüzyon potansiyelidir. Potasyum iyonları için hücre içi ve hücre dışı arasında yaklaşık 40'lık bir iyon gradyanı vardır. Nernst denklemine göre (cevap d'ye bakınız), bu –97 mV'lik bir zar potansiyeli ile sonuçlanır. Gerçekte ölçülen dinlenme membran potansiyeli bu aralıkta yer alır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_354",
@@ -17101,7 +17101,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Sodalime ile reaksiyona girerek hangi toksik ürünler oluşabilir?",
     "answer_de": "Alle derzeit in Deutschland erhältlichen Atemkalke führen nach derzeitigem Kenntnisstand nicht zur Bildung relevanter toxischer Substanzen, sofern sie nicht völlig ausgetrocknet sind. Enthalten die Atemkalke Kalziumchlorid, ist die Entstehung toxischer Substanzen wie Kohlenmonoxid oder Compound A nicht zu erwarten, auch wenn der Kalk ausgetrocknet sein sollte. Für die anderen Sub - stanzen, die starke Basen (KOH, NaOH) enthalten, ist ein Austrocknen durch Vorsichtsmaßnahmen sicher zu vermeiden. • Kohlenmonoxid: Durch Reaktion von Enfluran, Isofluran und Desfluran mit ausgetrocknetem Atemkalk (z. B. lange hoher Frischgasfluss, Gashahn offen gelassen …), der starke Basen (KOH, NaOH) enthält, können potenziell toxische Kohlenmonoxidkonzentrationen entstehen. Klinische Zeichen beim Kontakt von volatilen Anästhetika mit ausgetrocknetem Atemkalk sind ein verzögerter Anstieg der endexspira - torischen Narkosegaskonzentrationen und eine starke Verfärbung und Erwärmung des Atemkalks. Auf einen regelmäßigen Wechsel ist zu achten. Die Gefahr einer CO-Bildung besteht nicht bei Atemkalk mit normalem Feuchtigkeitsgehalt und kalium- und natriumfreien Adsorbern auf Basis von Kalziumhydroxid und Kalziumchloridzusatz. • Compound A: wirkt in hohen Konzentrationen nephrotoxisch. Entsteht beim Abbau von Sevofluran ins - besondere an trockenem Atemkalk und bei Verwendung von Bariumkalk-Adsorbern. Begünstigend für",
     "answer_tr": "Mevcut bilgilere göre, şu anda Almanya'da mevcut olan tüm sodalime, tamamen kurumadığı sürece ilgili toksik maddelerin oluşumuna yol açmamaktadır. Sodalime kalsiyum klorür içeriyorsa, kireç kurumuş olsa bile karbon monoksit veya Bileşik A gibi toksik maddelerin oluşması beklenmez. Güçlü bazlar içeren diğer maddelerde (KOH, NaOH) önlem alınarak kuruması önlenmelidir. • Karbon monoksit: Enfluran, izofluran ve desfluran'ın güçlü bazlar (KOH, NaOH) içeren kurutulmuş sodalime (örneğin uzun yüksek taze gaz akışı, gaz musluğu açık bırakılmış...) ile reaksiyonu potansiyel olarak toksik karbon monoksit konsantrasyonları üretebilir. Uçucu anestezikler kurumuş sodalime ile temas ettiğinde ortaya çıkan klinik belirtiler, ekspirasyon sonu anestezik gaz konsantrasyonlarında gecikmiş bir artış ve sodalime'de şiddetli renk değişikliği ve ısınmadır. Düzenli olarak değiştirdiğinizden emin olun. Normal nem içeriğine sahip sodalime ve kalsiyum hidroksit ve ilave kalsiyum klorür bazlı potasyum ve sodyum içermeyen adsorberler ile CO oluşumu riski yoktur. • Bileşik A: yüksek konsantrasyonlarda nefrotoksik etkiye sahiptir. Sevofluran, özellikle kuru soda kireci üzerinde ve baryum kireç adsorberleri kullanıldığında parçalandığında oluşur. için uygun",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_355",
@@ -17149,7 +17149,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi ilaçlara anestezide analjezik adjuvan denir?",
     "answer_de": "Butylscopolamin, Clonidin, Antikonvulsiva, Antidepressiva, Kortikosteroide. Aufgrund welcher Wirkweise ist Butylscopolamin ein Adjuvans? Butylscopolamin gehört zu den Spasmolytika mit atropinartiger Wirkung. Es setzt den Tonus der glatten Muskulatur herab und beseitigt Spasmen im Bereich der abdominalen Hohlorgane. Auf diese Weise wirken Spasmolytika indirekt analgetisch, weshalb sie zur symptomatischen Therapie von Koliken ein - gesetzt werden, die vom Magen-Darm-Trakt, von der Gallenblase, den ableitenden Harnwegen etc. aus - gehen. Im Unterschied zu Atropin ist ihre Wirkung auf kardiale Muscarinrezeptoren geringer, sodass die Herz - frequenz nicht so stark ansteigt. Butylscopolamin ist ein quartäres Amin und somit nicht liquorgängig, wes - halb es auch keine zentralen Nebenwirkungen hervorruft. Es ist schlecht intestinal resorbierbar und sollte deshalb parenteral zugeführt werden. Dosierung von Butylscopolamin als analgetisches Adjuvans Butylscopolamin 10–20 mg i. v. oder s. c. Beschreiben Sie die Wirkungen von Clonidin. Clonidin, ein Imidazolinderivat, gehört zur Gruppe der α 2-Adrenozeptor-Agonisten und wird zur Prämedikation, zur Einsparung von Analgetika und zur Therapie von postoperativem Shivering und Delir",
     "answer_tr": "Butilskopolamin, klonidin, antikonvülsanlar, antidepresanlar, kortikosteroidler. Butilskopolamin nasıl çalışır? Butilskopolamin, atropin benzeri etkiye sahip antispazmodiklerden biridir. Düz kasların tonunu azaltır ve karın boşluğundaki organlardaki spazmları ortadan kaldırır. Bu şekilde antispazmodikler dolaylı bir analjezik etkiye sahiptir, bu nedenle gastrointestinal sistem, safra kesesi, idrar yolu vb. kaynaklı koliklerin semptomatik tedavisinde kullanılırlar. Atropinin aksine, kardiyak muskarinik reseptörler üzerindeki etkisi daha küçüktür, dolayısıyla kalp atış hızı o kadar artmaz. Butilskopolamin kuaterner bir amindir ve bu nedenle likörden geçmez, bu nedenle herhangi bir merkezi yan etkiye neden olmaz. Bağırsakta çok az emilir ve bu nedenle parenteral olarak uygulanmalıdır. Analjezik adjuvan olarak butilskopolaminin dozajı Butilskopolamin 10–20 mg i. v. veya s.c. Klonidinin etkilerini açıklayınız. Bir imidazolin türevi olan klonidin, α2-adrenoseptör agonistleri grubuna aittir ve premedikasyonda, analjeziklerin korunmasında ve postoperatif titreme ve deliryumun tedavisinde kullanılır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_359",
@@ -17161,7 +17161,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Antidepresanlar adjuvan olarak nasıl kullanılır?",
     "answer_de": "Diese Substanzen (z. B. Amitriptylin, Doxepin) wirken schon in niedriger Dosierung und v. a. bei chronischen Schmerzen koanalgetisch. Eine Wirkung, die den Analgetikabedarf reduziert, tritt allerdings erst nach einer ausreichend langen Vorbehandlung ein. Dosierung von Antidepressiva als analgetisches Adjuvans • Amitriptylin 10–25 mg p. o. (sedierende Nebenwirkung) • Doxepin 5–10 mg p. o. abends, bis auf 75 mg steigern Wie werden Antikonvulsiva als Adjuvans angewandt? Diese Substanzgruppe wird bei neuropathischen Schmerzen mit einschießendem Charakter, wie sie bei Nervenkompressionen oder bei Denervierung auftreten, eingesetzt. Auch hierfür ist eine ausreichend lange Behandlung erforderlich. Die Substanzen werden langsam über mehrere Tage steigernd eindosiert. Dosierung von Antikonvulsiva als analgetisches Adjuvans • Pregabalin 2 ×/Tag 25–50 mg p. o. (Tageshöchstdosis 600 mg) • Gabapentin 1–3 ×/Tag 300 mg p. o. Wie werden Kortikosteroide als Adjuvans angewandt? Diese Substanzen sollen nach verschiedenen OPs den Analgetikabedarf um 30–60 % mindern. So wird bei kindlichen Tonsillektomien die Gabe von Dexamethason empfohlen. Der Stellenwert dieser Maßnahme im",
     "answer_tr": "Bu maddeler (örneğin amitriptilin, doksepin) düşük dozlarda bile ve özellikle etkilidir. A. Kronik ağrı için ortak analjezik. Ancak analjezik ihtiyacını azaltan etki ancak yeterince uzun bir ön tedaviden sonra ortaya çıkar. Analjezik adjuvan olarak antidepresanların dozajı • Amitriptilin 10–25 mg p. O. (sakinleştirici yan etki) • Doksepin 5–10 mg s. O. akşamları 75 mg'a kadar artırın Antikonvülzanlar adjuvan olarak nasıl kullanılır? Bu madde grubu, sinir sıkışması veya denervasyon gibi durumlarda ortaya çıkan, atış karakterli nöropatik ağrı için kullanılır. Bu aynı zamanda yeterince uzun bir tedavi gerektirir. Maddeler birkaç gün içinde artan miktarlarda yavaş yavaş dozlanır. Analjezik adjuvan olarak antikonvülzanların dozajı • Pregabalin 2 ×/gün 25–50 mg p. O. (Maksimum günlük doz 600 mg) • Gabapentin 1-3 kez/gün 300 mg p. O. Kortikosteroidler adjuvan olarak nasıl kullanılır? Bu maddelerin çeşitli operasyonlar sonrasında analjezik ihtiyacını %30-60 oranında azalttığı söylenmektedir. Pediatrik bademcik ameliyatlarında deksametazon uygulanması önerilir. Bu tedbirin önemi",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_360",
@@ -17173,7 +17173,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi eylemleri gerçekleştiriyorsunuz?",
     "answer_de": "• Gabe eines Flüssigkeitsbolus mit einem balancierten Kristalloid (30 ml/kg KG) • Blutkulturen abnehmen und Antibiotikatherapie beginnen, Laktatmessung • Start eines Noradrenalin-Perfusors (20 µg/ml), Ziel-MAP: 65 mmHg • Anlage eines arteriellen Katheters Nennen Sie die wichtigsten kardiovaskulären Medikamente. • Akrinor® • Atropin • Katecholamine: Adrenalin, Dopamin, Dobutamin, Noradrenalin • Phosphodiesterase-III-Hemmer: Enoximon, Milrinon • Levosimendan • Vasopressin • Glyceroltrinitrat Wie erklärt sich die Wirkweise von Akrinor®? Das Kombinationspräparat Akrinor® ist ein Gemisch aus Theodrenalin und Cafedrin (Verhältnis 1: 20). Es wirkt primär über eine Stimulation der β 1- und β 2-Rezeptoren. Eine Beeinflussung der α-Rezeptoren liegt nur in der ersten Phase nach Applikation und danach nicht mehr vor. Der Blutdruckanstieg ist auf eine positive",
     "answer_tr": "Tüm hastaların yaklaşık %1,5'inde prekonvülsif uyarı işaretleri ortaya çıkar; Yaklaşık %0,15 oranında kramplar gelişir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_361",
@@ -17185,7 +17185,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "α-reseptör uyarımı ne işe yarar?",
     "answer_de": "• α1-Rezeptor: postsynaptisch ubiquitär → Vasokonstriktion • α2-Rezeptor: v. a. präsynaptisch, ubiquitär → hemmt die Noradrenalinfreisetzung und bewirkt eine Vasodilatation an den Gefäßen, zentrale Analgesie und Sedierung Was bewirkt die β-Rezeptor-Stimulation? • β1-Rezeptoren: – Positive Inotropie: Steigerung der Kontraktilität – Positive Chronotropie: Herzfrequenzsteigerung – Positive Dromotropie: Steigerung der Erregungsleitung – Positive Bathmotropie: Senkung der Reizschwelle am Herz ≙ Erregbarkeit steigt – Positive Lusitropie: Verbesserung der Herzmuskelrelaxation • β2-Rezeptoren: – Vasodilatation – Bronchodilatation – Uterusrelaxation Was bewirkt die Stimulation der Dopaminrezeptoren? • D 1-Rezeptor: Die postsynaptische Erregung führt v. a. zur Vasodilatation im renalen, mesenterialen und",
     "answer_tr": "• α1 reseptörü: postsinaptik her yerde bulunur → vazokonstriksiyon • α2 reseptörü: v. a. presinaptik, her yerde bulunan → norepinefrin salınımını inhibe eder ve damarlarda vazodilatasyona, merkezi analjeziye ve sedasyona neden olur β-reseptör stimülasyonu ne işe yarar? • β1 reseptörleri: – Pozitif inotropi: kontraktilitede artış – Pozitif kronotropi: kalp atış hızında artış – Pozitif dromotropi: iletimde artış – Pozitif banyomotropi: kalp uyarı eşiğinde azalma ≙ Uyarılabilirlik artar – Pozitif lusitropi: kalp kası gevşemesinde iyileşme • β2 reseptörleri: – Vazodilatasyon – Bronkodilatasyon – Rahim gevşemesi Dopamin reseptörlerinin uyarılması neye neden olur? • D 1 reseptörü: Öncelikle postsinaptik uyarıma yol açar. A. böbrek, mezenterik ve böbreklerde vazodilatasyon için",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_362",
@@ -17209,7 +17209,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anestezi başlamadan önce anestezi makinenizde kısa bir güvenlik kontrolünü nasıl gerçekleştirirsiniz?",
     "answer_de": "• Kurze Sichtkontrolle der Anschlüsse und Leitungen. • Separater Notfallbeatmungsbeutel vorhanden? • Beatmungsmodus „manuell/spontan“ und O₂-Fluss > 2 l/min. • APL-Ventil > 30 mbar einstellen. • Y-Stück verschließen und Handbeatmungsbeutel in die Hand nehmen. • Bei manueller Kompression darf sich der Beutel nicht entleeren. • Bei Öffnung des Y-Stücks muss ein Gaststrom spürbar sein. • Die Gesichtsmaske wird dem Patienten zur Präoxygenierung mit O₂-Fluss > 2 l/min aufgesetzt. • Prüfen, ob die Messung der inspiratorischen Sauerstoffkonzentration plausibel hohe Werte anzeigt und die Kapnometrie funktioniert. Dieser „Kurzcheck“ soll vor jeder Anästhesieeinleitung durchgeführt werden und ersetzt nicht die vor Arbeitsbeginn durchzuführende ausführliche Kontrolle bzw. „Selbstkontrolle“ des Narkosegeräts gemäß Ge - brauchsanweisung. Zeichnen Sie die wichtigsten Elemente eines Narkosekreisteils auf ein Blatt Papier.› Abb. 1.10. Nach erfolgreicher Intubation wird der Patient im OP-Saal auf die linke Seite gelagert. Zuvor haben Sie eine arterielle Druck - messung in der linken A. radialis installiert und ultraschallgestützt einen ZVK in die rechte V. jugularis interna platziert.",
     "answer_tr": "• Bağlantıların ve hatların kısa görsel kontrolü. • Ayrı acil canlandırma çantası mevcut mu? • Havalandırma modu “manuel/kendiliğinden” ve O₂ akışı > 2 l/dak. • APL valfını > 30 mbar olarak ayarlayın. • Y parçasını kapatın ve el resüsitasyon çantasını elinize alın. • Manüel sıkıştırma sırasında torbanın havası inmemelidir. • Y parçası açıldığında bir gaz akışı fark edilebilir olmalıdır. • Preoksijenasyon için hastaya O₂ akışı > 2 l/dk olacak şekilde yüz maskesi yerleştirilir. • İnspiratuar oksijen konsantrasyonu ölçümünün makul derecede yüksek değerler gösterip göstermediğini ve kapnometrinin çalışıp çalışmadığını kontrol edin. Bu \"kısa kontrol\" her anestezi indüksiyonundan önce yapılmalıdır ve anestezi makinesinin, çalışmaya başlamadan önce yapılması gereken kullanım talimatlarına uygun olarak yapılan ayrıntılı kontrolünün veya \"kendi kendine kontrolünün\" yerine geçmez. Anestezi devresinin en önemli elemanlarını bir parça kağıda çizin.› Şekil. 1.10. Başarılı entübasyondan sonra hasta ameliyathanede sol tarafına yatırılır. Daha önce, sol radyal artere bir arteriyel basınç ölçümü yapıyordunuz ve ultrason kullanarak sağdaki V. jugularis interna'ya bir CVC yerleştiriyordunuz.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_364",
@@ -17221,7 +17221,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Sıkıştırılmış bir gaz silindirindeki mevcut oksijen kaynağını nasıl hesaplarsınız?",
     "answer_de": "Sauerstoffvorrat (Liter) = Flaschendruck (bar) × Füllvolumen der Gasflasche (Liter) Was versteht man unter Spezifität und Sensitivität? • Spezifität: gibt die Wahrscheinlichkeit eines diagnostischen Testverfahrens an, dass tatsächlich Gesunde im Test auch als gesund erkannt werden Spezifität = richtig als gesund erkannte Personen/alle Gesunden • Sensitivität: gibt die Wahrscheinlichkeit eines Tests an, dass Erkrankte tatsächlich als solche erkannt werden Sensitivität= richtig positive (richtig positive + falsch negative) Patienten LITERATUR DGAInfo. Funktionsprüfung des Narkosegerätes zur Gewährleistung der Patientensicherheit. Anesth Intensivmed 2016; 57: 559–565. Miller RD. Miller’s Anesthesia. 8th edn. Philadelphia: Elsevier Saunders 2015.1 57 1.5 Transfusionsmedizin 1.5 Transfusionsmedizin Heiko Lier, Andreas Hohn",
     "answer_tr": "Oksijen kaynağı (litre) = tüp basıncı (bar) × gaz tüpünün dolum hacmi (litre) Özgüllük ve hassasiyet ile ne kastedilmektedir? • Özgüllük: gerçekten sağlıklı kişilerin testte sağlıklı olarak tanındığı tanısal test prosedürünün olasılığını belirtir Özgüllük = doğru bir şekilde sağlıklı olarak tanınan kişiler/tüm sağlıklı insanlar • Duyarlılık: bir testin hasta kişilerin gerçekten bu şekilde tanındığı olasılığını belirtir Duyarlılık = gerçek pozitif (gerçek pozitif + yanlış negatif) hastalar LİTERATÜR DGAInfo. Hasta güvenliğini sağlamak için anestezi makinesinin fonksiyonel testi. Anestezi Yoğunlaştırılmış 2016; 57: 559–565. Miller RD. Miller Anestezisi. 8. baskı. Philadelphia: Elsevier Saunders 2015.1 57 1.5 Transfüzyon Tıbbı 1.5 Transfüzyon Tıbbı Heiko Lier, Andreas Hohn",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_365",
@@ -17233,7 +17233,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Kan ürünlerinin transfüzyonunun yasal dayanağı nelerdir?",
     "answer_de": "• Transfusionsgesetz (1998, novelliert 2005) • Richtlinien zur Gewinnung von Blut und Blutbestandteilen und zur Anwendung von Blutprodukten, Hämotherapie (Gesamtnovelle 2017) • Querschnitts-Leitlinien zur Therapie mit Blutkomponenten und Plasmaderivaten (4. A. 2009, aktualisiert 2014) Ein Abweichen im Einzelfall ist zu begründen und zu dokumentieren. Das krankenhausinterne Qualitäts - management (QM) Handbuch Hämotherapie kann spezielle Regelungen für das jeweilige Haus treffen. Wie sind die Aufklärung und die Einwilligung durchzuführen? MERKE Bei elektiven Eingriffen mit einer hausinternen Transfusionswahrscheinlichkeit von mindestens 10 % ist der Patient vorher über die Transfusion aufzuklären. Dies ist primär Aufgabe des Operateurs. Da der Anästhesist intraoperativ für die An - ordnung und Durchführung der Bluttransfusion zuständig ist, erscheint es zweckmäßig, darauf auch im Rahmen der anästhesiologischen Aufklärung einzugehen. • Aufklärung: – Art, Umfang, Durchführung, zu erwartende Folgen und Risiken der Maßnahme sowie ihre Notwendig - keit, Dringlichkeit, Eignung und Erfolgsaussichten – Mündlich oder schriftlich durch einen Arzt",
     "answer_tr": "• Transfüzyon Yasası (1998, 2005'te değiştirildi) • Kan ve kan bileşenlerinin toplanması ve kan ürünlerinin kullanımı, hemoterapiye ilişkin kılavuzlar (tüm değişiklik 2017) • Kan bileşenleri ve plazma türevleriyle tedaviye yönelik kesitsel kılavuzlar (4th A. 2009, 2014'te güncellendi) Bireysel vakalardaki tüm sapmalar gerekçelendirilmeli ve belgelenmelidir. Hastanenin hemoterapiye yönelik iç kalite yönetimi (QM) kılavuzunda her hastane için özel düzenlemeler yapılabilir. Bilgilendirme ve onam nasıl gerçekleştirilmeli? NOT Kurum içi transfüzyon olasılığı en az %10 olan elektif prosedürlerde hastanın transfüzyon konusunda önceden bilgilendirilmesi gerekir. Bu öncelikle cerrahın görevidir. Anestezi uzmanı intraoperatif kan transfüzyonunun düzenlenmesi ve gerçekleştirilmesinden sorumlu olduğundan, bunu da anestezi bilgilerinin bir parçası olarak ele almak uygun görünmektedir. • Bilgi: – Önlemin türü, kapsamı, uygulanması, beklenen sonuçları ve riskleri ile gerekliliği, aciliyeti, uygunluğu ve başarı olasılığı – Bir doktor tarafından sözlü veya yazılı olarak",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_366",
@@ -17245,7 +17245,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Transfüzyon ne zaman endikedir?",
     "answer_de": "Was ist das Problem des Patienten? • Anämie: Abfall des tHb (Gesamthämoglobin = Gesamtgehalt an zirkulierendem Hämoglobin) – WHO-Definition der Anämie: ♂ < 130 g/l (< 13 g/dl) bzw. ♀ < 120 g/l (< 12 g/dl) und schwangere ♀ < 110 g/l (< 11 g/dl)1 58 1 Grundlagen – Transfusionspflichtige Anämie: 60–90 g/l (6–9 g/dl) (restriktiver Transfusionstrigger) – Hb-Wert allein ist (zumindest > 7 g/dl) keine Transfusionsindikation • Hypoxie: Abfall des PaO₂ (arterieller Sauerstoffpartialdruck = der im arteriellen Blut vorhandene Teil - druck des gelösten Sauerstoffs) • Hypoxygenierung: Abfall der S aO2 (arterielle Sauerstoffsättigung = der prozentuale Anteil des Oxyhämo - globins am Gesamt-Hb) • Hypoxämie: Abfall des c aO2 (arterieller Sauerstoffgehalt = Gehalt an Sauerstoff im arteriellen Blut) • Kompensationsfähigkeit: Niedrige Hb-Werte und damit ein niedriger Sauerstoffgehalt im Blut werden durch eine Steigerung der Ausschöpfung und des Herzzeitvolumens kompensiert. Gefährdet sich der Patient durch diese energieaufwendigen Kompensationsmechanismen oder kann er sie nicht aufbieten, z. B. bei schwerer",
     "answer_tr": "Hastanın sorunu nedir? • Anemi: tHb'de azalma (toplam hemoglobin = dolaşımdaki toplam hemoglobin içeriği) – WHO anemi tanımı: ♂ < 130 g/l (< 13 g/dl) veya ♀ < 120 g/l (< 12 g/dl) ve hamile kadınlar ♀ < 110 g/l (< 11 g/dl)1 58 1 Temel Bilgiler - Transfüzyon gerektiren anemi: 60-90 g/l (6-9 g/dl) (kısıtlayıcı transfüzyon tetikleyicisi) - Tek başına Hb değeri (en az > 7 g/dl) transfüzyon için bir gösterge değildir • Hipoksi: PaO₂'de düşüş (arteriyel oksijen kısmi basıncı = arteriyel kanda mevcut çözünmüş oksijenin kısmi basıncı) • Hipoksijenasyon: SaO2'de düşüş (arteriyel oksijen satürasyonu = toplam Hb içindeki oksihemoglobin yüzdesi) • Hipoksemi: caO2'de düşüş (arteriyel oksijen içeriği = arteriyel kandaki oksijen içeriği) • Telafi yeteneği: düşük Hb değerleri ve dolayısıyla kandaki düşük oksijen içeriği, yorgunluk ve kalp debisindeki artışla telafi edilir. Hasta bu enerji tüketen telafi mekanizmaları nedeniyle risk altında mı yoksa bunları kullanamıyor mu? B. ağır vakalarda",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_367",
@@ -17257,7 +17257,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anemik hipoksi nasıl tespit edilir?",
     "answer_de": "• Transfusionspflichtige Anämie (restriktiver Transfusionstrigger) und • physiologischer Transfusionstrigger ( › Tab. 1.17 ) Was ist intraoperativ bei zusätzlichem Bedarf an Erythrozytenkonzentraten zu beachten? • Der anfordernde Arzt ist für die Identität der Blutprobe verantwortlich und muss die Anforderung unter - schreiben. • Verwechslungen kommen häufiger vor als Fehlbestimmungen. • Jedes Probengefäß ist vor Entnahme eindeutig zu kennzeichnen. • Auch die die Blutprobe abnehmende Person muss unterschreiben. Tab. 1.17 Physiologische Transfusionstrigger laut Querschnitts-Leitlinien der Bundesärztekammer zur Therapie mit Blutkomponenten und Plasmaderivaten Kardiopulmonale Symptome: • Tachykardie • Hypotension • Blutdruckabfall unklarer Genese • Dyspnoe",
     "answer_tr": "• Transfüzyon gerektiren anemi (kısıtlayıcı transfüzyon tetikleyicisi) ve • fizyolojik transfüzyon tetikleyicisi (› Tablo 1.17) Ek eritrosit konsantreleri gerekirse intraoperatif olarak nelere dikkat edilmelidir? • Kan örneğinin kimliğinden talep eden doktor sorumludur ve talebi imzalamalıdır. • Karışıklıklar, yanlış tanımlamalardan daha sık meydana gelir. • Her numune kabı toplamadan önce açıkça işaretlenmelidir. • Kan örneğini alan kişinin de imza atması gerekmektedir. Tablo 1.17 Alman Tabipler Birliği'nin kan bileşenleri ve plazma türevleriyle tedaviye ilişkin kesitsel kılavuzlarına göre fizyolojik transfüzyon tetikleyicileri Kardiyopulmoner semptomlar: • Taşikardi • Hipotansiyon • Kan basıncında nedeni belirsiz düşüş • Nefes darlığı",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_368",
@@ -17269,7 +17269,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Transfüzyona başlamadan önce hangi hazırlık kontrolleri gereklidir?",
     "answer_de": "Vor Beginn der Transfusion hat der transfundierende Arzt am Patienten persönlich zu überprüfen, ob • das Präparat für den betreffenden Empfänger bestimmt ist, • die Blutgruppe des Präparats (Präparate-Etikett) dem Blutgruppenbefund des Empfängers entspricht bzw. mit diesem kompatibel ist, • die Präparatenummer oder Chargenbezeichnung mit den Angaben im Begleitschein übereinstimmt und • der Beutel defekt, verfärbt o. Ä. ist. Was ist der AB0-Test? Unmittelbar vor der Transfusion von Erythrozytenkonzentraten, Granulozytenkonzentraten und bei Plasma - austauschtherapie ist vom transfundierenden Arzt oder unter seiner direkten Aufsicht der AB0-Identitäts - test (Bedside-Test) direkt am Empfänger vorzunehmen (z. B. auf Testkarten, › Abb. 1.11 ). Das Testmaterial wird entsorgt. Der Test dient der Bestätigung der zuvor bestimmten AB0-Blutgruppenmerkmale des Empfängers. Das Ergebnis ist schriftlich (im Narkoseprotokoll) zu dokumentieren und zu unterschreiben. • Bei Unstimmigkeiten: Rückfrage im Blutlabor • Jeweils gültig für eine Transfusion oder eine Serie von Transfusionen (mehrere Komponenten im Saal nacheinander oder im Notfall gleichzeitig und zwischenzeitlich nicht vom Patienten entfernt)",
     "answer_tr": "Transfüzyona başlamadan önce, transfüzyonu yapan doktor hastayla birlikte aşağıdaki hususları kontrol etmelidir: • preparatın söz konusu alıcıya yönelik olup olmadığı, • preparatın kan grubunun (hazırlık etiketi) alıcının kan grubu sonuçlarına uygun veya uyumlu olup olmadığı, • preparat numarası veya parti adının ilişikteki nottaki bilgilerle eşleşip eşleşmediği ve • torbanın kusurlu, rengi bozulmuş veya benzer olup olmadığı. öyle. AB0 testi nedir? Eritrosit konsantrelerinin, granülosit konsantrelerinin transfüzyonundan hemen önce ve plazma değişim tedavisi durumunda, ABO kimlik testi (başucu testi) transfüzyonu yapan doktor tarafından veya onun doğrudan denetimi altında doğrudan alıcı üzerinde yapılmalıdır (örn. test kartlarında, › Şekil 1.11). Test malzemesi imha edilir. Test, alıcının önceden belirlenmiş ABO kan grubu özelliklerini doğrulamak için kullanılır. Sonuç yazılı olarak (anestezi protokolünde) belgelenmeli ve imzalanmalıdır. • Tutarsızlık durumunda: kan laboratuvarına başvurun • Bir transfüzyon veya bir dizi transfüzyon için geçerlidir (birden fazla bileşenin odada birbiri ardına veya acil bir durumda aynı anda bulunması ve bu arada hastadan çıkarılmaması)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_369",
@@ -17281,7 +17281,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Transfüzyon nasıl yapılır?",
     "answer_de": "• Erythrozytenkonzentrate (EKs) werden AB0-gleich transfundiert. In Ausnahmefällen können auch AB0-ungleiche, sog. „majorkompatible“ Präparate transfundiert werden ( › Tab. 1.18 ). Die Ausnahmen sind zu dokumentieren. Bei RhD-negativen Mädchen und RhD-negativen gebärfähigen Frauen, wenn irgend möglich, RhD-positive EKs vermeiden. Abb. 1.11 Testkarte zur Bestimmung der AB0-Identität des Empfängers unmittelbar vor der Transfusion [M582]1 60 1 Grundlagen • Therapeutisches Plasma (Quarantäneplasma = FFP bzw. pathogenreduziert durch Methylenblau/Licht, Amotosalen/UVA oder Solvens/Detergens) wird AB0-gleich transfundiert. In Ausnahmefällen kann auch AB0-ungleiches (kompatibles) Plasma transfundiert werden ( › Tab. 1.19 ). Eine serologische Verträg - lichkeitsprobe entfällt. • Die Transfusion von Thrombozytenkonzentraten (TKs) erfolgt unverzüglich nach Auslieferung. TKs sind AB0-kompatibel, bevorzugt AB0-gleich zu übertragen. Wie verhält es sich mit „0 Rh-neg.“? • „0 Rh-neg.“ ist (für Patienten mit anderer Blutgruppe) ein Notfallpräparat.",
     "answer_tr": "• Eritrosit konsantreleri (RBC'ler) AB0 ile aynı şekilde transfüze edilir. İstisnai durumlarda, ABO-eşit olmayan, “majör uyumlu” olarak adlandırılan preparatlar da transfüze edilebilir (› Tablo 1.18). İstisnalar belgelenmelidir. RhD-negatif kızlarda ve çocuk doğurma potansiyeli olan RhD-negatif kadınlarda, mümkünse RhD-pozitif RBC'lerden kaçının. Şekil 1.11 Transfüzyondan hemen önce alıcının ABO kimliğini belirlemek için test kartı [M582]1 60 1 Temel Bilgiler • Terapötik plazma (karantina plazması = FFP veya metilen mavisi/ışık, amotosalen/UVA veya solvent/deterjanla azaltılmış patojen) aynı ABO seviyesinde transfüze edilir. İstisnai durumlarda ABO-eşit olmayan (uyumlu) plazma da transfüze edilebilir (› Tablo 1.19). Serolojik tolerans testine gerek yoktur. • Trombosit konsantrelerinin (TK'ler) transfüzyonu doğumdan hemen sonra gerçekleştirilir. TK'ler AB0 uyumludur, tercihen AB0 ile aynı şekilde iletilir. Peki ya \"0 Rh-neg.\"? • “0 Rh-negatif.” acil bir hazırlıktır (farklı kan grubuna sahip hastalar için).",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_370",
@@ -17317,7 +17317,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Özellikle hangi bilgileri istiyorsunuz?",
     "answer_de": "• Vorerkrankungen • Stattgehabte OPs • Anästhesiekomplikationen • Dauermedikation • Blutungsanamnese • Medikamentenunverträglichkeiten und Allergien. Auf Ihre Nachfrage gibt die Patientin an, seit einigen Jahren Levothyroxin zu nehmen. Der Hausarzt kontrolliere ihre Schilddrüsenwerte regelmäßig, sie nehme das Medikament von Anfang an in der gleichen Dosierung. Ansonsten habe sie seit dem Jugendalter im Frühjahr ein wenig Heuschnupfen und nehme dann Nasenspray und Augentropfen. Sie habe außerdem eine Laktoseintoleranz, Sojamilch vertrage sie allerdings auch nicht gut. Eine OP habe sie noch nie gehabt. Viele Patienten bezeichnen Unverträglichkeiten oder auch typische Nebenwirkungen im Rahmen von Medikamenteneinnahmen als Allergie; ein typisches Beispiel ist das Auftreten von Übelkeit oder Durchfall nach Antibiose. Deshalb sollte die Allergieanamnese möglichst differenziert erhoben werden. Im vorliegenden Fallbeispiel ist es fraglich, ob eine Sojaallergie vorliegt oder ob es sich nur um eine Nahrungsmittelunverträglichkeit handelt. Lange wurde davon ausgegangen, dass die Gabe von Propofol bei einer Allergie gegen Soja oder auch gegen Hühnereiweiß kontraindiziert ist. Das in Propofol enthaltene Sojaöl",
     "answer_tr": "• Önceki hastalıklar • Önceki operasyonlar • Anestezi komplikasyonları • Uzun süreli ilaç tedavisi • Kanama geçmişi • İlaç intoleransları ve alerjiler. Sorulduğunda hasta birkaç yıldır levotiroksin kullandığını belirtiyor. Aile doktoru tiroid düzeylerini düzenli olarak kontrol ediyor ve ilaçları baştan itibaren aynı dozda alıyor. Aksi takdirde, ilkbaharda ergenlik çağından beri biraz saman nezlesi geçiriyor ve ardından burun spreyi ve göz damlası alıyor. Aynı zamanda laktoz intoleransı var ama soya sütünü de pek tolere edemiyor. Hiç operasyon geçirmedi. Birçok hasta, ilaç alırken intoleransları veya tipik yan etkileri alerji olarak tanımlamaktadır; Tipik bir örnek, antibiyotiklerden sonra bulantı veya ishalin ortaya çıkmasıdır. Bu nedenle alerji öyküsü mümkün olduğunca farklılaştırılmalıdır. Mevcut vaka çalışmasında soya alerjisi mi yoksa sadece gıda intoleransı mı olduğu tartışmalıdır. Uzun bir süre, soya veya tavuk proteinine alerjiniz varsa propofol uygulamasının kontrendike olduğu varsayıldı. Propofolün içerdiği soya fasulyesi yağı",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_373",
@@ -17329,7 +17329,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bu hastada ameliyat öncesi hangi tetkikler endikedir?",
     "answer_de": "• Klinische Untersuchung mit Auskultation von Herz und Lunge. Die Messung der Sauerstoffsättigung ist ein unkompliziertes und schnelles Verfahren zur Einschätzung des pulmonalen Risikos. Zusätzlich zur Sauerstoffsättigung bei Raumluft erhebt man gleichzeitig auch die Herzfrequenz und erhält Hinweise auf eine mögliche Arrhythmie. • In den Empfehlungen der Deutschen Gesellschaft für Anästhesiologie und Intensivmedizin (DGAI) aus dem Jahr 2017 zur perioperativen kardiovaskulären Evaluation von Patienten vor nicht herzchirurgischen Eingriffen werden klare Empfehlungen zur Notwendigkeit verschiedener präoperativer Diagnostik in Abhängigkeit der kardialen Vorerkrankungen und der Schwere des anstehenden Eingriffs gegeben. Ver - gleichbare Leitlinien gibt es auch international, so z. B. die 2014 veröffentlichten Leitlinien der ESC / ESA oder der ACC / AHA. • Die Durchführung eines 12-Kanal-EKG vor einem mittelschweren oder schweren Eingriff ist sinnvoll bei Patienten mit bekannter koronarer Herzerkrankung (KHK), signifikanter Arrhythmie, peripherer arterieller Verschlusskrankheit (pAVK), zerebrovaskulärer Erkrankung oder anderen strukturellen Herz - erkrankungen. Bei asymptomatischen Patienten, die keine bekannte KHK haben, kann die Durchführung eines 12-Kanal-EKG in Erwägung gezogen werden, sofern sie sich nicht nur einer OP mit niedrigem 2",
     "answer_tr": "• Kalp ve akciğerlerin oskültasyonu ile klinik muayene. Oksijen satürasyonunun ölçülmesi, pulmoner riskin değerlendirilmesinde karmaşık olmayan ve hızlı bir yöntemdir. Oda havasındaki oksijen doygunluğunun yanı sıra aynı zamanda kalp atış hızı da kaydedilerek olası bir aritminin belirtileri elde edilir. • Alman Anesteziyoloji ve Yoğun Bakım Tıbbı Derneği'nin (DGAI) 2017 tarihli, kalp dışı cerrahi işlemler öncesinde hastaların perioperatif kardiyovasküler değerlendirmesine ilişkin tavsiyelerinde, önceki kalp hastalıklarına ve yaklaşan prosedürün ciddiyetine bağlı olarak çeşitli preoperatif teşhislerin gerekliliği konusunda net önerilerde bulunulmuştur. Karşılaştırılabilir yönergeler uluslararası alanda da mevcuttur; B. ESC/ESA veya ACC/AHA tarafından 2014 yılında yayınlanan kılavuzlar. • Orta veya şiddetli bir işlemden önce 12 derivasyonlu EKG yapılması, bilinen koroner arter hastalığı (KAH), önemli aritmi, periferik arter hastalığı (PAD), serebrovasküler hastalık veya diğer yapısal kalp hastalığı olan hastalarda faydalıdır. Bilinen KAH'sı olmayan asemptomatik hastalarda, sadece düşük 2 ameliyatı geçirmiyorlarsa 12 derivasyonlu EKG düşünülebilir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_374",
@@ -17413,7 +17413,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "İşlemden önce koroner durumun yeniden değerlendirilmesi için invaziv teşhis endike midir?",
     "answer_de": "Nein, bei dem zum jetzigen Zeitpunkt beschwerdefreien Patienten muss keine Koronarangiografie zur reinen Kontrolle des aktuellen Koronarstatus 11 Monate nach perkutaner Koronarintervention (PCI) erfolgen. Bei unklarer Beschwerdesymptomatik oder Unsicherheiten hinsichtlich der durchgeführten Intervention sollte im Zweifel immer ein kardiologisches Konsil veranlasst werden. Nach den aktuellen kardiologischen Empfehlungen auf der Basis der Empfehlungen der European Society of Cardiology (ESC) wird eine systematische Kontrollkoronarangiografie nach PCI nicht empfohlen. Bei Patienten nach einer Hochrisiko-PCI (z. B. bei Hauptstammstenose) kann eine Kontrollangiografie nach 3–12 Monaten unabhängig vom Symptomstatus erwogen werden. Wie gehen Sie bei diesem Patienten vor? In jedem Fall sollten Sie sich von dem Patienten die genauen Befunde bzw. den Entlassungsbrief nach der Koronarintervention vorlegen lassen. Anhand der bisherigen Anamnese erscheint es jedoch eher unwahr - scheinlich, dass es sich bei der Koronarintervention vor 8 Monaten um eine Hochrisiko-PCI gehandelt hat. Es ist also davon auszugehen, dass tatsächlich keine Kontrollkoronarangiografie indiziert ist. Nach den aktuellen Empfehlungen wäre auch der zeitliche Abstand bei Z. n. Implantation von DES mit 8 Monaten ausreichend, sodass die OP wie geplant durchgeführt werden kann. KASUISTIK",
     "answer_tr": "Hayır, şu anda semptomsuz olan hastanın perkütan koroner girişimden (PCI) 11 ay sonra mevcut koroner durumunu kontrol etmek için koroner anjiyografiye girmesine gerek yoktur. Semptomlar net değilse veya yapılan müdahale konusunda belirsizlik varsa, mutlaka bir kardiyolog konsültasyonu ayarlanmalıdır. Avrupa Kardiyoloji Derneği'nin (ESC) önerilerini temel alan güncel kardiyolojik önerilere göre, PKG sonrası sistematik kontrol koroner anjiyografi önerilmemektedir. Yüksek riskli PKG sonrası hastalarda (örn. ana gövde stenozu için), semptom durumuna bakılmaksızın 3-12 ay sonra takip anjiyografisi düşünülebilir. Bu hastaya nasıl yaklaşıyorsunuz? Her durumda, hastaya koroner müdahale sonrasında kesin bulguları veya taburculuk mektubunu size göstermesi gerekir. Ancak önceki öyküye bakıldığında, 8 ay önceki koroner girişimin yüksek riskli bir PKG olması pek olası görünmüyor. Bu nedenle aslında kontrol koroner anjiyografinin endike olmadığı varsayılabilir. Güncel önerilere göre DES implantasyonundan sonraki 8 aylık süre de operasyonun planlandığı gibi yürütülebilmesi için yeterli olacaktır. KASUİSTİK",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_381",
@@ -17437,7 +17437,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Tavsiyeleriniz nelerdir?",
     "answer_de": "Die Zahl der Erwachsenen mit angeborenen Herzerkrankungen (EMAH) nimmt stetig zu, da sich über die letzten Jahrzehnte die Versorgungsmöglichkeiten und die OP-Techniken immer weiter verbessert haben. So können immer mehr Patienten überhaupt das Erwachsenenalter erreichen und – abhängig von der zugrunde liegenden Pathologie – ein relativ unbeeinträchtigtes Leben führen. Insbesondere in der Geburtshilfe stellen die Patientinnen mit im Kindesalter operativ versorgten Herzerkrankungen eine sehr spezielle und stetig wachsende Patientengruppe dar. Diese Patientinnen sollten immer in einem Zentrum an eine Kardiologie mit ausgewiesener EMAH-Sprech - stunde angebunden werden, in dem neben der Expertise auch die entsprechende Infrastruktur vorhanden ist. Dort sollte interdisziplinär seitens der Geburtshilfe, der Neonatologie, der Anästhesiologie und der Kardiologie die Geburt geplant werden. Insbesondere müssen die durch die zugrunde liegende Pathologie vorhandenen Kreislaufbeeinträchtigungen evaluiert und im Rahmen der fortschreitenden Schwangerschaft engmaschig kon - trolliert werden. Ebenfalls abhängig von der zugrunde liegenden Pathologie sollte eine frühzeitige detaillierte 2 72 2 Präoperativ Geburtsplanung erfolgen, in der z. B. festgelegt wird, ob primär eine Spontanentbindung möglich ist oder eine elektive Sectio geplant wird. Sollte eine Sectio nötig sein, muss weiterhin festgelegt werden, ob aus an -",
     "answer_tr": "Son birkaç on yılda bakım seçenekleri ve cerrahi teknikler gelişmeye devam ettikçe, doğuştan kalp hastalığı (EMAH) olan yetişkinlerin sayısı sürekli artmaktadır. Bu, giderek daha fazla hastanın yetişkinliğe ulaşabildiği ve altta yatan patolojiye bağlı olarak nispeten sorunsuz bir yaşam sürdürebildiği anlamına geliyor. Özellikle kadın doğum alanında çocukluk çağında cerrahi müdahale ile tedavi edilen kalp hastalıkları çok özel ve sürekli büyüyen bir hasta grubunu temsil etmektedir. Bu hastalar her zaman belirli EMAH konsültasyon saatleri olan ve uzmanlığın yanı sıra uygun altyapının da mevcut olduğu bir kardiyoloji merkezine bağlı olmalıdır. Orada doğumun, kadın doğum, neonatoloji, anesteziyoloji ve kardiyoloji bölümlerinin disiplinler arası bir şekilde planlanması gerekiyor. Özellikle altta yatan patolojinin neden olduğu dolaşım bozuklukları gebelik ilerledikçe değerlendirilmeli ve yakından izlenmelidir. Ayrıca altta yatan patolojiye bağlı olarak erken, ayrıntılı 2 72 2 Preoperatif doğum planlaması yapılmalıdır; B. Öncelikle spontan doğumun mümkün olup olmadığı veya elektif sezaryen planlanıp planlanmadığı belirlenir. Bir bölümün gerekli olması durumunda, şu andan itibaren de belirlenmelidir:",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_383",
@@ -17449,7 +17449,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Endokardit profilaksisine yönelik güncel öneriler nelerdir?",
     "answer_de": "Die Leitlinien zur infektiösen Endokarditis der European Society of Cardiology aus dem Jahr 2015 sehen als präventive Maßnahmen weiterhin vor, bei Patienten mit kardial prädisponierenden Faktoren eine Antibio - tikaprophylaxe durchzuführen. Die prophylaktische Antibiotikagabe wird jedoch auf Höchstrisikopatienten mit zahnärztlichen Höchstrisikoeingriffen beschränkt. Regelmäßige zahnärztliche Kontrollen und eine gewissenhafte Mundhygiene haben für die Prävention einer infektiösen Endokarditis einen höheren Stellen - wert als die Antibiotikaprophylaxe. Ebenso ist die Beachtung von Sterilität im Umgang mit i. v. Kathetern bzw. bei allen invasiven Eingriffen ausschlaggebend für die Vermeidung von mit der Krankenversorgung assoziierten infektiösen Endokarditiden. Antibiotika der Wahl sind Amoxicillin oder Ampicillin, bei Allergie gegen beide alternativ Clindamycin. Eine Antibiotikaprophylaxe ist nur bei Patienten mit dem höchsten Risiko für eine infektiöse Endokarditis zu empfehlen. Im Einzelnen sind dies Patienten mit: • Klappenprothesen oder Z. n. Klappenrekonstruktionen mit prothetischem Material, • Z. n. Endokarditis, • angeborenen Vitien: bei allen zyanotischen Vitien sowie bis zu 6 Monate nach operativer oder interven - tioneller Vitienkorrektur bei Verwendung von prothetischem Material oder lebenslang bei residuellem Shunt oder Klappeninsuffizienz.",
     "answer_tr": "Avrupa Kardiyoloji Derneği'nin 2015 tarihli enfektif endokardit kılavuzları, önleyici tedbir olarak kardiyak predispozan faktörleri olan hastalarda antibiyotik profilaksisi sağlamaya devam etmektedir. Ancak profilaktik antibiyotik uygulaması, yüksek riskli diş prosedürleri olan yüksek riskli hastalarla sınırlıdır. Düzenli diş muayeneleri ve dikkatli ağız hijyeni, enfektif endokarditin önlenmesinde antibiyotik profilaksisinden daha önemlidir. i ile uğraşırken kısırlığa dikkat etmek de önemlidir. v. Kateterler veya tüm invaziv prosedürler, sağlık hizmetleriyle ilişkili enfektif endokarditten kaçınmak için çok önemlidir. Tercih edilen antibiyotikler amoksisilin veya ampisilin veya her ikisine de alerjiniz varsa klindamisindir. Antibiyotik profilaksisi yalnızca enfektif endokardit riski en yüksek olan hastalar için önerilir. Spesifik olarak bu hastalar: • kapak protezleri veya protez materyali ile kapak rekonstrüksiyonları sonrası, • endokardit sonrası, • konjenital lezyonlar: tüm siyanotik lezyonları olan ve protez materyali kullanıldığında cerrahi veya girişimsel lezyon düzeltmesinden sonra 6 aya kadar veya rezidüel şant veya kapak yetmezliği olan ömür boyu.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_384",
@@ -17509,7 +17509,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Karaciğer hastalıklarının ciddiyetini değerlendirmek için hangi puanları biliyorsunuz?",
     "answer_de": "Leberzirrhosen werden nach dem Child-Pugh-Score in die Stadien A – C unterteilt, anhand derer sich auch die Prognose hinsichtlich der 5- oder 10-Jahres-Überlebensraten und der perioperativen Mortalität abschätzen lässt. Zur Erstellung des Scores werden das Serum-Bilirubin, das Serum-Albumin, der Quick-Wert, die sono - grafisch nachweisbare Aszitesmenge und das Vorhandensein einer hepatischen Enzephalopathie benötigt. Alle fünf Parameter werden in drei Schweregrade unterteilt, für die jeweils 1–3 Punkte vergeben werden, sodass sich eine Punktzahl von 5–15 ergeben kann ( › Tab. 2.5). Besonders bei schweren Lebererkrankungen wird heutzutage bevorzugt der MELD-Score (Model for Endstage Liver Disease) verwendet; v. a. zur Evaluation vor Lebertransplantationen ist er von Bedeutung. Zur Berechnung des MELD-Scores werden Bilirubin, Kreatinin und INR in eine Formel eingesetzt, im Ergebnis ergeben sich Werte zwischen 6 und 40. Je höher der Wert ist, desto größer ist die Wahrscheinlichkeit, binnen der folgenden 3 Monate ohne Transplantation zu versterben. Welche Besonderheiten müssen Sie bei einer manifesten Lebererkrankung, insbesondere auch im Hinblick auf die geplante Operation, berücksichtigen, und welche Diagnostik ist präoperativ indiziert? Bei Patienten mit Lebererkrankungen ist häufig erst in einem fortgeschrittenen Stadium auch laborchemisch die Einschränkung der Lebersyntheseleistung sichtbar. Daher sollte neben den Leberwerten selbst besonderes Augenmerk auf das Albumin und den Quick-Wert bzw. bei Bestimmung der Einzelfaktoren auf die Vitamin-",
     "answer_tr": "Karaciğer sirozu Child-Pugh skoruna göre A - C aşamalarına ayrılır; bu skor aynı zamanda 5 veya 10 yıllık sağkalım oranları ve perioperatif mortalite açısından prognozu tahmin etmek için de kullanılabilir. Skoru oluşturmak için serum bilirubini, serum albümini, Quick değeri, sonografik olarak saptanabilen asit miktarı ve hepatik ensefalopatinin varlığı gereklidir. Beş parametrenin tümü, her birine 1-3 puan verilen ve 5-15 puanla sonuçlanan üç önem düzeyine bölünmüştür (› Tablo 2.5). MELD skoru (Son Aşama Karaciğer Hastalığı Modeli) artık özellikle ciddi karaciğer hastalığı vakalarında tercih edilmektedir; v. a. Karaciğer nakli öncesi değerlendirme açısından önemlidir. MELD skorunu hesaplamak için bilirubin, kreatinin ve INR bir formülde kullanılır ve 6 ile 40 arasında değerler elde edilir. Değer ne kadar yüksek olursa, takip eden 3 ay içinde nakil yapılmaksızın ölme olasılığı da o kadar yüksek olur. Belirgin karaciğer hastalığı durumunda, özellikle planlanan ameliyatla ilgili olarak hangi özellikleri dikkate almanız gerekir ve ameliyat öncesi hangi teşhisler endikedir? Karaciğer hastalığı olan hastalarda, karaciğerin sentez kapasitesindeki sınırlılık çoğu zaman ileri evrede ancak laboratuvarda görülebilir. Bu nedenle karaciğer değerlerinin yanı sıra albümin ve Quick değerine veya bireysel faktörleri belirlerken vitamin düzeylerine de özellikle dikkat edilmelidir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_389",
@@ -17521,7 +17521,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Vaka raporunda sunulan hastayla ameliyat öncesi ve ameliyat sırasında nasıl ilerliyorsunuz?",
     "answer_de": "Am Vorabend des operativen Eingriffs erhält der Patient nur noch 80 % seines Langzeit-Insulins, am OP-Tag erhält er in Abhängigkeit von dem morgens nüchtern gemessenen Blutzuckerwert 50 % der Dosis des Lang - zeit-Insulins. Liegt der Nüchternblutzuckerwert am OP-Tag unter 120 mg / dl, kann erwogen werden, auf eine solche Insulininjektion insgesamt zu verzichten. Ziel der Maßnahmen ist ein normaler präoperativer Blut - zuckerwert. Insgesamt ist die Kontrolle des Blutzuckerwerts bei der Betreuung von Patienten mit Diabetes mellitus insbesondere auch intraoperativ der wichtigste Parameter. Wie gehen Sie vor, wenn es sich um einen nicht insulinpflichtigen Diabetes mellitus handelt? Hier muss man zwei Szenarien unterscheiden: • Wird die Zuckererkrankung eines Patienten mit oralen Antidiabetika behandelt, so pausiert man diese lediglich am OP-Tag. Auch hier ist die Bestimmung des Nüchternblutzuckers indiziert. • Wenn der Diabetes mellitus lediglich diätetisch eingestellt ist, also keine medikamentöse Behandlung erfolgt, dann sind außer einer Bestimmung des Nüchternblutzuckers keine weiteren Maßnahmen er - forderlich. Welche Anordnungen treffen Sie, wenn ein Patient mit einem nicht insulinpflichtigen Diabetes mellitus zur Behandlung Metformin nimmt? In der Fachinformation zu Metformin wird das Absetzen dieses Medikaments 48 h vor einem operativen",
     "answer_tr": "Ameliyattan önceki akşam hasta uzun süreli insülininin yalnızca %80'ini alır; Ameliyat günü sabah ölçülen açlık kan şekeri değerine bağlı olarak uzun süreli insülin dozunun %50'sini alır. Ameliyat günü açlık kan şekeri 120 mg/dl'nin altında ise insülin enjeksiyonundan tamamen vazgeçilmesi düşünülebilir. Tedbirlerin amacı ameliyat öncesi normal kan şekeri seviyesini sağlamaktır. Genel olarak, kan şekeri düzeylerinin izlenmesi, özellikle intraoperatif dönemde diyabetli hastaların bakımında en önemli parametredir. İnsüline bağımlı olmayan diyabetiniz varsa ne yaparsınız? Burada iki senaryoyu birbirinden ayırmanız gerekiyor: • Eğer hastanın diyabeti ağızdan alınan antidiyabetik ilaçlarla tedavi ediliyorsa, bunlara yalnızca operasyon gününde ara verilir. Açlık kan şekerinin belirlenmesi de burada belirtilmektedir. • Diyabet sadece diyetle kontrol ediliyorsa, yani herhangi bir ilaç tedavisi yapılmıyorsa açlık kan şekerinin belirlenmesi dışında başka bir önlem alınmasına gerek yoktur. İnsüline bağımlı olmayan diyabetli bir hasta tedavi için metformin kullanıyorsa ne gibi talimatlar verirsiniz? Metformin ürün bilgisi, bu ilacın ameliyattan 48 saat önce kesilmesini önermektedir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_390",
@@ -17545,7 +17545,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ameliyat öncesi ve ameliyat sırasında ne sipariş ediyorsunuz?",
     "answer_de": "Die Patienten erhalten ihre übliche Kortison-Medikation am OP-Tag. Bei kleineren operativen Eingriffen (z. B. Schilddrüsen-OP) erhalten die Patienten zusätzlich eine präoperative Injektion von 25 mg Hydro - cortison, bei mittelgroßen Eingriffen (z. B. Laparotomie) eine i. v. Infusion von 100 mg Hydrocortison über 24 h und bei großen operativen Eingriffen zusätzlich am 1. postoperativen Tag 50 mg Hydocortison über 24 h sowie am Folgetag noch einmal 25 mg Hydrocortison i. v. oder oral. KASUISTIK Bei einer 34-jährigen Frau ist eine laparoskopische Exstirpation von Uterusmyomen geplant. Sie befindet sich in einem guten Allgemein- und Ernährungszustand. Sie berichtet allerdings über Schlaflosigkeit, nächtliche Schweißausbrüche, zu - nehmende Nervosität, Haarausfall, einen merklichen Verlust von Körpergewicht und bisweilen auftretende Palpitationen; diese Beschwerden hätten sich in den letzten 2–3 Monaten eingestellt. Worauf müssen Sie bei dieser Symptomkonstellation und den Beschwerden besonders achten? Insbesondere in der hier geschilderten Kombination begründen diese Symptome und Beschwerden die Verdachtsdiagnose einer Schilddrüsenüberfunktion (Hyperthyreose). Da die Schilddrüsenhormone ins - besondere eine wichtige Rolle bei der Kontrolle von Herz-Kreislauf-Funktionen sowie bei der Stoffwechsel - steuerung spielen, ist eine überschießende Aktivität dieser Hormone im Rahmen anästhesiologischer Ver - fahren relevant.",
     "answer_tr": "Hastalara ameliyat günü normal kortizon ilaçları verilir. Daha küçük cerrahi prosedürler için (örn. tiroid ameliyatı), hastalara ayrıca ameliyat öncesi 25 mg hidrokortizon enjeksiyonu yapılır ve orta ölçekli prosedürler için (örn. laparotomi) i.v. v. 24 saat boyunca 100 mg hidrokortizon infüzyonu ve büyük cerrahi prosedürler durumunda, ameliyat sonrası ilk günde 24 saat boyunca ilave 50 mg hidrokortizon ve başka bir 25 mg hidrokortizon i.v. ertesi gün. v. veya sözlü. CASUISTICS 34 yaşında bir kadın için rahim miyomlarının laparoskopik olarak çıkarılması planlanıyor. Genel durumu ve beslenme durumu iyi. Ancak uykusuzluk, gece terlemesi, artan sinirlilik, saç dökülmesi, gözle görülür kilo kaybı ve ara sıra çarpıntı olduğunu bildiriyor; Bu belirtiler son 2-3 ayda ortaya çıkmıştı. Bu semptom ve şikayetler kümesinde özellikle neye dikkat etmeniz gerekiyor? Özellikle burada açıklanan kombinasyonda, bu semptom ve şikayetler aşırı aktif tiroid (hipertiroidizm) şüphesini haklı çıkarmaktadır. Tiroid hormonları kardiyovasküler fonksiyonların ve metabolizmanın kontrolünde önemli bir rol oynadığından, bu hormonların aşırı aktivitesi anesteziyolojik prosedürler bağlamında anlamlıdır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_392",
@@ -17557,7 +17557,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bu hastadan tıbbi geçmişine ilişkin hangi ek bilgileri öğrenmek istiyorsunuz?",
     "answer_de": "Neben der Grunderkrankung des Patienten, welche die Nierentransplantation notwendig machte, ist v. a. bedeutsam, ob sich der Patient im Rahmen von möglicherweise durchgeführten Nierenersatzverfahren oder i. d. R. erforderlich gewordenen Transfusionen eine Infektion (z. B. mit Hepatitis C) zugezogen hat. Diese Information dient v. a. dem Schutz der an der Behandlung des Patienten Beteiligten. Darüber hinaus sind bei Patienten mit einer Nierenerkrankung, die eine Transplantation erfordert, Er - krankungen des Herz-Kreislauf-Systems häufig. Bei vielen Patienten liegt auch ein Diabetes mellitus vor. Auch nach der stattgehabten Nierentransplantation ist häufig ein erhöhter Blutdruck durch die Behandlung z. B. mit Ciclosporin und Glukokortikoiden zu beobachten. Welche weiteren Untersuchungen sind im Rahmen der präoperativen Vorbereitung indiziert? Neben einer standardmäßigen Blutuntersuchung sind insbesondere die Bestimmung der Serum-Elektrolyte, des Blutzuckerspiegels, der Nierenretentionswerte sowie der Nierenfunktion (GFR) angezeigt: Dies dient der Kontrolle des aktuellen Funktionszustands des transplantierten Organs. Eine ausführliche Blutuntersuchung dient auch der Kontrolle von Organsystemen, die durch die Einnahme immunsuppressiver Medikamente beeinflusst worden sein könnten. Schließlich ist der Infektionsstatus des Patienten zu untersuchen, insbesondere auf eine Hepatitis-Er - krankung.",
     "answer_tr": "Hastanın böbrek naklini gerekli kılan altta yatan hastalığının yanı sıra, a. Hastanın böbrek replasman prosedürleri geçirip geçirmediği önemlidir. R. gerekli hale gelen kan nakilleri sırasında enfeksiyon kaptı (örn. hepatit C). Bu bilgi v. a. hastanın tedavisinde yer alan kişilerin korunması. Ayrıca böbrek nakli gerektiren böbrek hastalarında kalp-damar sistemi hastalıkları da sık görülüyor. Birçok hastada aynı zamanda şeker hastalığı da vardır. Böbrek naklinden sonra bile kan basıncında artış sıklıkla tedaviden kaynaklanır; B. siklosporin ve glukokortikoidlerle gözlemlendi. Ameliyat öncesi hazırlığın bir parçası olarak hangi ileri tetkikler endikedir? Standart bir kan testine ek olarak, serum elektrolitlerinin, kan şekeri düzeylerinin, böbrek tutma değerlerinin ve böbrek fonksiyonunun (GFR) belirlenmesi özellikle endikedir: Bu, nakledilen organın mevcut işlevsel durumunun kontrol edilmesine hizmet eder. Bağışıklık sistemini baskılayan ilaçların alınmasından etkilenmiş olabilecek organ sistemlerini kontrol etmek için ayrıntılı bir kan testi de kullanılır. Son olarak hastanın özellikle hepatit açısından enfeksiyon durumu incelenmelidir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_393",
@@ -17569,7 +17569,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bu hasta için daha sonraki işlemlerde nelere dikkat edilmelidir?",
     "answer_de": "Grundsätzlich ist das anästhesiologische Vorgehen bei transplantierten Patienten weniger durch den Umstand der stattgehabten Transplantation beeinflusst als vielmehr durch i. d. R. aufgetretene Begleiterkrankungen sowie die in der Folge erforderliche Einnahme z. B. immunsuppressiver Medikamente. Die Einnahme dieser immunsuppressiven Medikamente wird i. d. R. für einen operativen Eingriff nicht pausiert. Im Zusammenhang mit der Glukokortikoid-Dauerbehandlung dieser Patienten muss mit einer Nebennierenrindeninsuffizienz gerechnet werden. Perioperativ erhalten diese Patienten intravenöse Hydrocortison-Injektionen unmittelbar präoperativ und in Abhängigkeit vom Ausmaß des operativen Eingriffs zusätzlich eine Infusion von Hydrocortison über den oder die folgenden Tage hinweg. Der hier beschriebene Patient sollte am OP-Tag den ACE-Hemmer Ramipril einnehmen (s. u.). Eine Regionalanästhesie stellt grundsätzlich eine mögliche Alternative dar; eine erhöhte Häufigkeit infektiöser Komplikationen wurde dabei nicht beobachtet.2 81 2.2 Dauermedikation 2.2 Dauermedikation KASUISTIK",
     "answer_tr": "Prensip olarak, transplantasyon yapılan hastalardaki anesteziyolojik prosedür, transplantasyonun koşullarından daha az, i. D. R. ortaya çıkan komorbiditelerin yanı sıra daha sonra gerekli alım yapılması, ör. B. immünosüpresif ilaçlar. Bu immünosüpresif ilaçları almak i. D. R. bir operasyon için duraklatılmadı. Bu hastalarda uzun süreli glukokortikoid tedavisine bağlı olarak adrenokortikal yetmezlik beklenmelidir. Perioperatif olarak, bu hastalara ameliyattan hemen önce intravenöz hidrokortizon enjeksiyonları yapılır ve cerrahi işlemin kapsamına bağlı olarak takip eden gün veya günlerde ek bir hidrokortizon infüzyonu yapılır. Burada anlatılan hasta ameliyat gününde ACE inhibitörü ramipril almalıdır (aşağıya bakınız). Bölgesel anestezi temel olarak olası bir alternatiftir; Enfeksiyöz komplikasyon sıklığında artış gözlenmedi.2 81 2.2 Uzun süreli ilaç tedavisi 2.2 Uzun süreli ilaç tedavisi",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_394",
@@ -17593,7 +17593,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hastaya uzun süreli ilaç tedavisi konusunda ne gibi tavsiyelerde bulunursunuz?",
     "answer_de": "Die Behandlung eines Diabetes mellitus mit dem Antidiabetikum Metformin beinhaltet ein geringes periope - ratives Risiko einer Laktatazidose (man spricht von etwa 0,03 Fällen pro 1.000 Patientenjahre). Gleichwohl wird die perioperative Einnahme von Metformin nicht empfohlen bei Patienten mit eingeschränkter Nieren - funktion, Herzinsuffizienz, kurz zurückliegendem Myokardinfarkt und eingeschränkter Leberfunktion. Be - reits in der Fachinformation wird empfohlen, die Einnahme dieses Medikaments 48 h vor einem operativen Eingriff und ebenso vor i. v. Gabe von Kontrastmittel abzusetzen. Allerdings ist bei lediglich kleinen ope - rativen Eingriffen eine individuelle Nutzen-Risiko-Abwägung und damit ggf. die ununterbrochene Einnahme von Metformin gerechtfertigt. Bei der Behandlung eines Diabetes mellitus mit Insulin sollte perioperativ in Abhängigkeit vom Blut - zuckerspiegel kurz wirkendes Insulin pausiert und nur noch lang wirkendes Insulin appliziert werden. Näheres hierzu siehe im Fallbeispiel zu Diabetes ( › Kap. 2.1.5 ). Eine Dauermedikation mit Schilddrüsenmedikamenten, Kontrazeptiva, Antazida, Analgetika, Anti - epileptika, Asthmamedikamenten, Kortikosteroiden (siehe hierzu auch das diesbezügliche Fallbeispiel) und Statinen sollte perioperativ nicht unterbrochen werden. KASUISTIK Eine 66-jährige Patientin soll sich wegen eines Ovarialkarzinoms einer ausgedehnten Laparotomie unterziehen. Wegen",
     "answer_tr": "Diyabetin antidiyabetik ilaç olan metformin ile tedavisi düşük bir perioperatif laktik asidoz riski içerir (1000 hasta yılı başına yaklaşık 0,03 vaka). Ancak böbrek fonksiyon bozukluğu, kalp yetmezliği, yakın zamanda geçirilmiş miyokard enfarktüsü ve karaciğer fonksiyon bozukluğu olan hastalarda metforminin perioperatif kullanımı önerilmemektedir. Uzman bilgileri zaten bu ilacın cerrahi bir işlemden 48 saat önce ve ayrıca i.v. öncesinde alınmasını önermektedir. v. Kontrast madde uygulamasını durdurun. Bununla birlikte, yalnızca küçük cerrahi prosedürler için bireysel bir risk-fayda değerlendirmesi yapılması ve dolayısıyla metforminin kesintisiz kullanımı haklı gösterilebilir. Diyabeti insülin ile tedavi ederken, kan şekeri seviyesine bağlı olarak ameliyat sırasında kısa etkili insüline ara verilmeli ve sadece uzun etkili insülin uygulanmalıdır. Daha fazla bilgi için diyabetle ilgili vaka çalışmasına bakın (› Bölüm 2.1.5). Tiroid ilaçları, kontraseptifler, antasitler, analjezikler, antiepileptikler, astım ilaçları, kortikosteroidler (ayrıca ilgili vaka çalışmasına bakınız) ve statinler ile uzun süreli tedavi perioperatif olarak kesilmemelidir. CASUISTICS 66 yaşında bir kadın hastaya yumurtalık kanseri nedeniyle kapsamlı bir laparotomi yapılması planlanıyor. yüzünden",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_396",
@@ -17605,7 +17605,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bu durumda nelere dikkat etmeniz gerekiyor?",
     "answer_de": "Eine Dauermedikation mit Antikoagulanzien ist v. a. indiziert bei Patienten nach Implantation einer künst - lichen Herzklappe zur Vermeidung von Klappenthrombosen, bei Patienten mit Vorhofflimmern zur Ver - meidung thrombembolischer Ereignisse, bei Patienten, bei denen insbesondere kardiale Stents implantiert wurden, zur Verhinderung von Stentthrombosen sowie im Rahmen einer postthrombotischen Behandlung. In Abhängigkeit von der jeweiligen Indikation zur Antikoagulation ist die Entscheidung über die Fortführung oder Unterbrechung dieser Behandlung zu treffen. Einfluss auf diese Entscheidung hat auch das geplante operative und anästhesiologische Verfahren. Grundsätzlich muss diese Entscheidung individuell und ggf. auch in Absprache mit dem Kardiologen oder Operateur getroffen werden. Dabei muss das jeweilige Risiko von Thrombosen bzw. thrombembolischen Ereignissen bei Unterbrechung der Antikoagulation dem peri - operativen Blutungsrisiko bei Fortführung der Antikoagulation gegenübergestellt werden. Besonderes Augenmerk hierbei verlangt die Dauermedikation mit Antikoagulanzien bei Patienten nach Implantation künstlicher Herzklappen bzw. kardialer Stents. Nach Implantation kardialer Stents ist in einer ersten Phase zur Verhinderung einer Stentthrombose üblicherweise eine sog. „doppelte Plättchenhemmung“ erforderlich, die unterschiedliche Mechanismen der Thrombozytenaggregation hemmt. Wenn ein solcher kardialer Stent eingeheilt ist (dies dauert bei medikamentenbeschichteten Stents deutlich länger), ist eine lebenslange Behandlung üblicherweise mit Acetylsalicylsäure erforderlich. Wie lange die erwähnte Phase",
     "answer_tr": "Antikoagülanlarla uzun süreli ilaç tedavisi esas olarak a. Yapay kalp kapakçığı implantasyonundan sonra kapak trombozunu önlemek için, atriyal fibrilasyonu olan hastalarda tromboembolik olayları önlemek için, özellikle kalp stentleri implante edilmiş hastalarda stent trombozunu önlemek için ve post-trombotik tedavinin bir parçası olarak endikedir. İlgili antikoagülasyon endikasyonuna bağlı olarak bu tedaviye devam etme veya tedaviye ara verme kararı verilmelidir. Planlanan cerrahi ve anestezi işlemi de bu kararı etkilemektedir. Prensip olarak bu karar bireysel olarak ve gerekirse kardiyolog veya cerrahla istişarede bulunularak verilmelidir. Antikoagülasyon kesildiğinde ilgili tromboz veya tromboembolik olay riski, antikoagülasyona devam edildiğinde perioperatif kanama riski ile karşılaştırılmalıdır. Yapay kalp kapakçıkları veya kalp stentleri implante edildikten sonra hastalarda antikoagülanlarla uzun süreli ilaç tedavisine özellikle dikkat edilmelidir. Kardiyak stentlerin implantasyonundan sonra, trombosit agregasyonunun farklı mekanizmalarını engelleyen stent trombozunu önlemek için genellikle ilk aşamada \"çift trombosit inhibisyonu\" gerekir. Böyle bir kalp stenti iyileştiğinde (ilaç salınımlı stentlerde bu süre önemli ölçüde daha uzun sürer), genellikle asetilsalisilik asitle ömür boyu tedavi gerekir. Bahsedilen aşamanın ne kadar sürdüğü",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_397",
@@ -17617,7 +17617,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Uzun süreli tedavisiyle ilgili olarak nelere dikkat etmelisiniz?",
     "answer_de": "Auch eine psychiatrische Dauermedikation sollte aus Anlass eines operativen Eingriffs nicht grundsätzlich unterbrochen werden. Insbesondere bei längerer Unterbrechung dieser Dauermedikation kann es zum Auf - treten von Symptomen der psychiatrischen Grunderkrankung kommen. Zu dieser Gruppe von Medikamenten gehören trizyklische Antidepressiva, die v. a. zur Behandlung von Depressionen eingesetzt werden. Sie hemmen die Wiederaufnahme von Serotonin, Noradrenalin und Dopamin im ZNS. Bei einer Dauermedikation mit diesen Medikamenten kann die Wirkung von Hypnotika, Inhalationsanästhetika und Opioiden ebenso verstärkt werden wie die Wirkung direkter Sympathomimetika. Eine Unterbrechung der Dauermedikation mit diesen Medikamenten kann zu einer psychiatrischen und Ent - zugssymptomatik führen. Auch eine Dauermedikation mit selektiven Serotonin- und Noradrenalin-Wiederaufnahmehemmern kann perioperativ fortgeführt werden. Auch hier kann das perioperative Absetzen dieser Medikamenten - gruppe zum Auftreten psychiatrischer Symptome führen. Bei den MAO-Hemmern muss zwischen der Gruppe der irreversiblen und unspezifischen Hemmstoffe der Monoaminoxidase (z. B. Tranylcypromin) und den spezifischen und reversiblen Inhibitoren (z. B. Moclobemid) unterschieden werden. Aufgrund des Wirkmechanismus der MAO-Hemmer kann es bei gleich - zeitiger Gabe von Pethidin oder Tramadol zu einem Serotonin-Syndrom kommen, das durch Symptome wie",
     "answer_tr": "Uzun süreli psikiyatrik tedavi genellikle cerrahi bir işlem nedeniyle kesilmemelidir. Özellikle uzun süreli kullanılan bu ilaca uzun süre ara verilirse altta yatan psikiyatrik hastalığın belirtileri ortaya çıkabilmektedir. Bu ilaç grubu, esas olarak trisiklik antidepresanları içerir. depresyon tedavisinde kullanılır. Merkezi sinir sisteminde serotonin, norepinefrin ve dopaminin geri alımını engellerler. Bu ilaçlarla uzun süreli tedavi, hipnotiklerin, inhalasyon anesteziklerinin ve opioidlerin etkisini ve ayrıca doğrudan sempatomimetiklerin etkisini artırabilir. Bu ilaçlarla uzun süreli ilaç kullanımına ara verilmesi, psikiyatrik ve yoksunluk semptomlarına yol açabilir. Seçici serotonin ve norepinefrin geri alım inhibitörleriyle uzun süreli tedaviye perioperatif dönemde de devam edilebilir. Burada da bu grup ilaçların ameliyat sırasında kesilmesi psikiyatrik belirtilerin ortaya çıkmasına yol açabilmektedir. MAO inhibitörleri söz konusu olduğunda, monoamin oksidazın geri dönüşümsüz ve spesifik olmayan inhibitörleri (örn. tranilsipromin) ile spesifik ve geri dönüşümlü inhibitörler (örn. moklobemid) grubu arasında bir ayrım yapılmalıdır. MAO inhibitörlerinin etki mekanizması nedeniyle, petidin veya tramadolün eşzamanlı uygulanması, aşağıdaki gibi semptomlarla karakterize edilen serotonin sendromuna yol açabilir:",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_398",
@@ -17665,7 +17665,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Sizce işlem için hangi damar yolları gerekli?",
     "answer_de": "Für die intravenöse Narkoseinduktion ist ein periphervenöser Venenzugang (PVK) erforderlich. Aufgrund der lang dauernden und ausgeprägten Kopftieflagerung ist eine invasive Blutdruckmessung sinnvoll. Dieser arterielle Zugang sollte bei kardiopulmonal vorerkrankten Patienten bereits vor Narkoseinduktion in Lokal - anästhesie angelegt werden. Aufgrund der engen anatomischen Verhältnisse im Operationsgebiet besteht ein Blutungsrisiko, weshalb ein weiterer, großlumiger PVK gelegt werden sollte. Ferner besteht prinzipiell ein Risiko für eine Luftembolie bei Eröffnung der präsakralen Venen, sodass ein zentralvenöser Katheter sinnvoll sein kann. Über diesen kann ggf. auch versucht werden, Luft zentralvenös abzusaugen. Ferner bietet er die Möglichkeit einer differenziert steuerbaren Katecholamintherapie. Wieviel Durchfluss lässt sich in Abhängigkeit vom Lumen verschiedener venöser Zugänge maximal erreichen? Nach dem Gesetz von Hagen und Poisseuille ist der Radius des Innendurchmessers die entscheidende Größe für den Durchfluss, da er in der 4. Potenz in die Formel eingeht ( › Tab. 3.1 ). Bei Verdoppelung des Lumens kann der 16-fache Durchfluss erzielt werden (14 = 1 vs. 24 = 16). Die Länge des Katheters ist v. a. bei zentral - venösen Kathetern von klinischer Relevanz. Wo punktieren Sie für die Anlage eines zentralvenösen Katheters (ZVK)? Nennen Sie typische Anwendungsgebiete und Komplikationen der verschiedenen Zugangswege. Klassische Punktionsstellen sind die V. jugularis interna (bevorzugt rechts) und die V. subclavia. Ebenfalls",
     "answer_tr": "İntravenöz anestezi indüksiyonu için periferik venöz erişim (PVK) gereklidir. Uzun süreli ve belirgin baş aşağı pozisyon nedeniyle, invazif bir kan basıncı ölçümü mantıklıdır. Kardiyopulmoner hastalığı olan hastalarda anestezi indüksiyonundan önce bu arteriyel erişim lokal anestezi altında sağlanmalıdır. Cerrahi bölgenin anatomik koşullarının dar olması nedeniyle kanama riski olduğundan geniş lümenli başka bir PVC yerleştirilmesi gerekir. Ayrıca, presakral damarlar açıldığında prensipte hava embolisi riski vardır, bu nedenle santral venöz kateter faydalı olabilir. Gerekirse, havayı merkezi venöz sistem yoluyla dışarı emmeyi denemek için de bunu kullanabilirsiniz. Aynı zamanda farklılaştırılmış kontrol edilebilir katekolamin tedavisi olanağı da sunar. Farklı venöz girişlerin lümenine bağlı olarak elde edilebilecek maksimum akış nedir? Hagen ve Poisseuille yasasına göre, formüle 4. kuvvet olarak girildiği için iç çapın yarıçapı akış için belirleyici niceliktir (› Tab. 3.1). Lümeni iki katına çıkararak 16 kat akış elde edilebilir (14 = 1 vs. 24 = 16). Kateterin uzunluğu v. a. santral venöz kateterler için klinik öneme sahiptir. Santral venöz kateteri (CVC) yerleştirmek için nereye delik açarsınız? Farklı erişim yollarının tipik uygulama alanlarını ve komplikasyonlarını adlandırın. Klasik delme bölgeleri internal şah damarı (tercihen sağda) ve subklavyen damardır. Ayrıca",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_402",
@@ -17689,7 +17689,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bu etkileyen faktörlerden hangisi için hangi ölçüm yöntemleri uygundur?",
     "answer_de": "Bei gegebener Indikation können die transösophageale Echokardiografie (TEE) sowie die trans - kardiopulmonale Thermodilution mit Pulskonturanalyse ergänzende Informationen liefern ( › Tab. 3.2 ). Die invasivere pulmonalarterielle Thermodilution mittels Pulmonalarterienkatheter ist nur noch in seltenen Ausnahmefällen erforderlich (z. B. schwere pulmonalarterielle Hypertonie).3 95 3.1 Allgemeine Anästhesie Welche Mindestanforderungen stellen die Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin sowie der Berufsverband Deutscher Anästhesisten an das anästhesiologische Monitoring? Direkt an jedem Anästhesie-Arbeitsplatz müssen vorhanden sein: • Patientennahe Atemgasmessung • Pulsoxymeter • EKG-Monitor • Blutdruckmessung In angemessener Zeit müssen am Arbeitsplatz einsetzbar sein: • Körpertemperaturmessung • Relaxometer",
     "answer_tr": "Gerekiyorsa, transözofageal ekokardiyografi (TEE) ve nabız kontur analiziyle birlikte transkardiyopulmoner termodilüsyon ek bilgi sağlayabilir (› Tablo 3.2). Pulmoner arter kateteri kullanılarak daha invaziv pulmoner arter termodilüsyonu yalnızca nadir istisnai durumlarda gereklidir (örn. şiddetli pulmoner arteriyel hipertansiyon).3 95 3.1 Genel anestezi Alman Anesteziyoloji ve Yoğun Bakım Derneği ve Alman Anestezi Uzmanları Meslek Birliği anesteziyolojik izleme konusunda hangi minimum gereklilikleri öngörüyor? Aşağıdakiler her anestezi iş istasyonunda doğrudan bulunmalıdır: • Hastaya yakın solunum gazı ölçümü • Nabız oksimetresi • EKG monitörü • Kan basıncı ölçümü Aşağıdakiler makul bir süre içinde işyerinde bulunmalıdır: • Vücut ısısı ölçümü • Rahatlama ölçer",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_404",
@@ -17701,7 +17701,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Şüphelendiğiniz teşhis nedir ve ne yapıyorsunuz?",
     "answer_de": "Die Lokalisation ist verdächtig auf eine Affektion des N. ulnaris, am ehesten infolge der intraoperativen Lagerung. Eine höher gelegene Schädigung im Plexus brachialis ist ebenfalls denkbar. Bei sonst fehlenden Beschwerden sollte zeitnah ein elektives neurologisches Konsil erfolgen: einerseits zur Dokumentation, andererseits aber auch mit der Frage nach Therapieempfehlungen. Es sollte frühzeitig eine physio- und ergotherapeutische Mitbehandlung erfolgen. Wer trägt die Verantwortung für die intraoperative Lagerung? Gemäß einer Vereinbarung des Berufsverbandes Deutscher Anästhesisten und des Berufsverbandes der Deutschen Chirurgen sind die Lagerung des Patienten vor, während und nach einer Operation grundsätzlich gemeinsame Aufgabe von Anästhesist und Chirurg. Der Chirurg trägt hinsichtlich der Lagerung auf dem Operationstisch zur eigentlichen Operation die Verantwortung. Sollten Einwände gegen die Lagerung aus an - ästhesiologischer Sicht bestehen, sind diese zu kommunizieren und zu dokumentieren. Der Anästhesist hat darüber hinaus die Verantwortung für Extremitäten, die er für Überwachung und Infusion benötigt. 3.1.2 Narkoseinduktion und -aufrechterhaltung, Narkosebeatmung Welche patientenseitigen, personellen und technischen Voraussetzungen müssen vor Einleitung der Narkose sichergestellt sein? Patientenseitige Voraussetzungen:",
     "answer_tr": "Büyük olasılıkla intraoperatif konumlandırmanın bir sonucu olarak, ulnar sinirin etkilenmesi açısından lokasyon şüphelidir. Brakiyal pleksusta daha yüksek bir lokasyonun hasar görmesi de düşünülebilir. Başka semptom yoksa, acilen seçmeli bir nörolojik konsültasyon yapılmalıdır: bir yandan dokümantasyon için, diğer yandan da tedavi önerileri istemek için. Fizyoterapi ve mesleki terapi erken bir aşamada yapılmalıdır. İntraoperatif konumlandırmadan kim sorumludur? Alman Anestezistler Meslek Birliği ile Alman Cerrahlar Meslek Birliği arasında yapılan anlaşmaya göre, ameliyat öncesinde, sırasında ve sonrasında hastanın konumlandırılması temel olarak anestezi uzmanı ve cerrahın ortak sorumluluğundadır. Cerrah, gerçek operasyon için ameliyat masasında pozisyon almaktan sorumludur. Estetik açıdan konumlandırmaya itirazlar varsa bunların iletilmesi ve belgelenmesi gerekir. Anestezist ayrıca monitörizasyon ve infüzyon için gerekli olan ekstremitelerden de sorumludur. 3.1.2 Anestezinin başlatılması ve sürdürülmesi, anestezi ventilasyonu Anestezi başlatılmadan önce hangi hasta, personel ve teknik gereksinimler sağlanmalıdır? Hasta gereksinimleri:",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_405",
@@ -17713,7 +17713,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Belirtilen gerekliliklerin yerine getirilmesi standart bir şekilde nasıl kontrol ediliyor ve belgeleniyor?",
     "answer_de": "Die WHO Surgical Safety Checklist stellt ein Instrument dar, das an kritischen Punkten des perioperativen Prozederes, u. a. vor Induktion der Narkose, das Abarbeiten einer Checkliste vorsieht. Die Nutzung einer Checkliste wird unbedingt empfohlen. Hierbei können schon etablierte Checklisten verwendet oder eigene Formulare erstellt werden. Beschreiben Sie den Ablauf der Narkoseeinleitung. Neben der vertrauensbildenden Kommunikation mit dem Patienten ist eine unmissverständliche Kommunikation („closed-loop communication“) mit dem beteiligten Personal eine wichtige Voraussetzung für alle Arbeitsschritte: • Unmittelbar vor Einleitung Narkosegerät und Schlauchzubehör nach DGAI-Empfehlung überprüfen („Schnelltest“). • Nach abschließender Prüfung der o. g. Voraussetzungen wird ein periphervenöser Zugang angelegt und der Patient präoxygeniert. • Medikamentengaben erfolgen auf Anordnung des Arztes mit eindeutiger Angabe von generischem Sub - stanznamen und Dosis (in Milligramm und Milliliter). Die Pflegekraft wiederholt, was sie verstanden hat. Wenn kein Widerspruch durch den Arzt erfolgt, injiziert die Pflegekraft wie angeordnet und kommuni - ziert die erfolgte Gabe. • Nach dem Wirkungseintritt der gewählten Induktionsmedikation wird der Atemweg gesichert. Im An -",
     "answer_tr": "DSÖ Cerrahi Güvenlik Kontrol Listesi, perioperatif prosedürde aşağıdakileri içeren kritik noktalarda kullanılabilecek bir araçtır: Anestezi indüksiyonundan önce bir kontrol listesi tamamlanmalıdır. Bir kontrol listesinin kullanılması şiddetle tavsiye edilir. Oluşturulan kontrol listeleri kullanılabilir veya kendi formlarınız oluşturulabilir. Anesteziyi başlatma sürecini açıklayın. Hastayla güven oluşturucu iletişimin yanı sıra, ilgili personel ile net iletişim (\"kapalı döngü iletişimi\") tüm çalışma adımları için önemli bir ön koşuldur: • İndüksiyondan hemen önce, anestezi makinesini ve tüp aksesuarlarını DGAI tavsiyesine göre (\"hızlı test\") kontrol edin. • Yukarıdakilerin son kontrolünden sonra. Periferik venöz erişim sağlanır ve hastaya oksijen verilir. • İlaç, jenerik madde adı ve dozu (miligram ve mililitre cinsinden) açıkça belirtilerek doktorun talimatı üzerine uygulanır. Hemşire anladığını tekrarlıyor. Doktordan herhangi bir itiraz gelmediği takdirde hemşire emredildiği şekilde enjeksiyon yapar ve idareye haber verir. • Seçilen indüksiyon ilacının etkisini gösterdikten sonra hava yolu güvenliği sağlanır. -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_406",
@@ -17725,7 +17725,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Preoksijenasyon/denitrojenizasyon ile neyi başarıyorsunuz ve bunu nasıl gerçekleştiriyorsunuz?",
     "answer_de": "Die Präoxygenierung / Denitrogenisierung, also das Auswaschen des Stickstoffs aus der funktionellen Resi - dualkapazität (FRC) und Ersetzen desselben durch Sauerstoff, dient der Verlängerung der Apnoetoleranz. Bei nahezu komplett mit Sauerstoff gefüllter FRC kann über mehrere Minuten (rechnerisch bis zu ca. 10 Minuten) eine Diffusion von Sauerstoff aus den Alveolen in die Kapillaren auch ohne Atembewegungen stattfinden; u. a. bei Kindern und Patienten mit reduzierter FRC (Adipositas, Schwangerschaft, akute oder chronische Lungenerkrankungen) ist die erreichbare Apnoetoleranz deutlich geringer.3 97 3.1 Allgemeine Anästhesie Eine korrekte Präoxygenierung / Denitrogenisierung muss mit dicht sitzender Maske und einem hohen Fluss reinen Sauerstoffs durchgeführt werden. Es soll eine exspiratorische Sauerstofffraktion (FeO 2) von ca. 90 % angestrebt werden. Dies ist i. d. R. nach ca. 3 Minuten normaler Atmung oder 10 maximal tiefen Atemzügen innerhalb von 1 Minute erreicht. Gerade bei Adipositas sind eine Oberkörperhochlagerung und ein positiver Atemwegsdruck (CPAP, z. B. 8 mbar) hilfreich, um die Effektivität der Präoxygenierung zu erhöhen. Welche Medikamentengruppen nutzen Sie zur Einleitung der Narkose? Typischerweise wird die Allgemeinanästhesie mit einer Kombination aus Medikamenten eingeleitet, die ver - schiedene Aufgaben erfüllen:",
     "answer_tr": "Preoksijenasyon/nitrojenizasyon, yani fonksiyonel rezidüel kapasiteden (FRC) nitrojenin yıkanarak oksijenle değiştirilmesi, apne toleransının uzatılmasına hizmet eder. FRC neredeyse tamamen oksijenle dolduğunda, oksijenin alveollerden kılcal damarlara difüzyonu birkaç dakika içinde (yaklaşık 10 dakikaya kadar hesaplanmıştır) gerçekleşebilir, hatta nefes alma hareketleri olmadan bile; ve ark. Çocuklarda ve FRC'si azalmış hastalarda (obezite, gebelik, akut veya kronik akciğer hastalıkları), elde edilebilecek apne toleransı önemli ölçüde daha düşüktür.3 97 3.1 Genel anestezi Doğru preoksijenasyon / nitrojen giderme, sıkıca oturan bir maske ve yüksek saf oksijen akışıyla gerçekleştirilmelidir. Amaç yaklaşık olarak ekspiratuar oksijen fraksiyonu (FeO 2) olmalıdır. %90. Bu ben. D. R. yaklaşık 3 dakikalık normal nefes almanın veya 1 dakika içinde maksimum 10 derin nefes almanın ardından ulaştı. Özellikle obezitede vücudun üst kısmının yükseltilmesi ve pozitif hava yolu basıncının (CPAP, örneğin 8 mbar) yükseltilmesi preoksijenasyonun etkinliğinin arttırılmasına yardımcı olur. Anestezi sağlamak için hangi ilaç gruplarını kullanıyorsunuz? Tipik olarak genel anestezi, farklı görevleri yerine getiren ilaçların bir kombinasyonu ile indüklenir:",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_407",
@@ -17785,7 +17785,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi şüpheli tanıyı ve hangi ayırıcı tanıları yapıyorsunuz?",
     "answer_de": "Anamnese, klinische Präsentation und Bildgebung lassen den Verdacht auf ein Unterdruck-Lungenödem („negative pressure pulmonary edema“, NPPE) aufkommen. Differenzialdiagnosen: • Atemwegsverlegung durch: – unzureichenden Muskeltonus – Sekret, Blut, Koagel – Fremdkörper (noch einliegende Rachentamponade) – Laryngospasmus • Überhang von: – Narkotika – Opioiden – Muskelrelaxanzien Abb. 3.1 Röntgen-Thorax a) nach Extubation b) nach NIV-Therapie [P570]3",
     "answer_tr": "Öykü, klinik görünüm ve görüntüleme, negatif basınçlı akciğer ödemi (NPPE) şüphesini artırmaktadır. Ayırıcı tanılar: • Aşağıdakilere bağlı hava yolu tıkanıklığı: – yetersiz kas tonusu – sekresyon, kan, pıhtı – yabancı cisim (farengeal tamponad hala mevcut) – laringospazm • Fazlalığı: – narkotikler – opioidler – kas gevşeticiler Şekil 3.1 Göğüs röntgeni a) ekstübasyondan sonra b) NIV tedavisinden sonra [P570]3",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_412",
@@ -17797,7 +17797,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ekstübasyon için temel gereksinimler nelerdir?",
     "answer_de": "• Normothermie • Vigilanz adäquat • Schutzreflexe ausreichend • Spontanatmung mit ausreichender Oxygenierung und Decarboxylierung • Vollständige neuromuskuläre Erholung • Atemweg nach Extubation frei; ggf. vor Extubation prüfen: – Laryngoskopie – Nebenlufttest bei entblocktem Tubuscuff – Tubus-Okklusions-Test (TOT) bei entblocktem Tubuscuff Müssen Sie immer eine Relaxometrie vor Extubation durchführen? Ja, immer dann, wenn Muskelrelaxanzien verwendet wurden. Die Wirkdauer der Muskelrelaxanzien unterliegt multiplen Faktoren ( › Kap. 1.3.3) und ist für den jeweiligen Patienten nicht sicher vorhersagbar. Moderate, aber dennoch relevante Restblockaden können mit den tradierten klinischen Zeichen wie Anheben und Halten des Kopfes, spontan generiertem normalem Tidalvolumen etc. nicht sicher detektiert werden. Welche Form der Relaxometrie sollte verwendet werden? Nur eine quantitative Messung z. B. mittels Akzelerometrie des Daumens (M. adductor pollicis) nach Sti -",
     "answer_tr": "• Normotermi • Dikkat yeterli • Koruyucu refleksler yeterli • Yeterli oksijenasyon ve dekarboksilasyon ile spontan solunum • Tam nöromüsküler iyileşme • Ekstübasyondan sonra hava yolu açık; Gerekirse, ekstübasyondan önce kontrol edin: – Laringoskopi – Tıkanık olmayan tüp kafı ile ikincil hava testi – Tıkanmayan tüp kafı ile tüp tıkanma testi (TOT) Ekstübasyondan önce her zaman relaksometri yapmak zorunda mısınız? Evet, kas gevşeticiler kullanıldığında. Kas gevşeticilerin etki süresi birçok faktöre bağlıdır (› Bölüm 1.3.3) ve her hasta için güvenilir bir şekilde tahmin edilemez. Orta düzeyde ancak yine de ilgili rezidüel tıkanıklıklar, başın kaldırılması ve tutulması, spontan olarak oluşturulan normal tidal hacim vb. gibi geleneksel klinik belirtiler kullanılarak güvenilir bir şekilde tespit edilemez. Hangi gevşeme ölçümü biçimi kullanılmalıdır? Yalnızca niceliksel bir ölçüm; B. Sti'ye göre başparmağın ivmeölçerinin kullanılması (M. adductor pollicis) -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_413",
@@ -17809,7 +17809,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Aspirasyon riski açısından anestezinin çıkarılmasına nasıl bakılmalıdır?",
     "answer_de": "Auch die Extubation ist in Bezug auf Aspiration von Mageninhalt eine kritische Phase. Daher sollten die Schutzreflexe sicher vorhanden sein und ggf. der Magen vor Narkoseausleitung erneut abgesaugt werden. Aus dem geburtshilflichen Bereich existieren Studien, in denen die Aspirationsinzidenz bei der Ausleitung höher war als bei der Einleitung der Narkose. Wie gehen Sie bei Auftreten einer respiratorischen Insuffizienz nach Extubation grundsätzlich vor? Unverzüglich muss Sauerstoff appliziert werden, am besten in Form einer dicht sitzenden Gesichtsmaske wie zur Präoxygenierung. Bei Bedarf muss personelle Unterstützung hinzugezogen werden. Es werden nun die möglichen Differenzialdiagnosen überprüft und therapiert: Bei Verlegungen der oberen Atemwege helfen Esmarch-Handgriff und Nasopharyngealtubus, bei einer Sekretobstruktion das Absaugen. Liegen Hinweise auf Restwirkungen von Opioiden oder Muskelrelaxanzien vor, können diese vorsichtig antagonisiert werden. Bei einem Laryngospasmus (v. a. in der Kinderanästhesie, › Kap. 5) ist oft eine erneute Sedierung nötig. Ein Bronchospasmus wird mit Bronchodilatanzien behandelt.3 103 3.2 Regionalanästhesie LITERATUR AkdÄ – Arzneimittelkommission der Deutschen Ärzteschaft. Drug Safety Mail 2013-62. Rote-Hand-Brief: Anwendungs -",
     "answer_tr": "Ekstübasyon mide içeriğinin aspirasyonu açısından da kritik bir aşamadır. Bu nedenle anestezi kaldırılmadan önce koruyucu reflekslerin mevcut olması ve gerekiyorsa midenin tekrar aspire edilmesi gerekir. Obstetrik alanda, çıkarma sırasında aspirasyon insidansının anestezi indüksiyonu sırasında olduğundan daha yüksek olduğunu gösteren çalışmalar vardır. Ekstübasyon sonrası solunum yetmezliği oluşursa ne yapmalısınız? Oksijen hemen, ideal olarak ön oksijenasyon için sıkı oturan bir yüz maskesi şeklinde uygulanmalıdır. Gerekirse personel desteği çağrılmalıdır. Olası ayırıcı tanılar artık kontrol edilip tedavi edilmektedir: Esmarch sapı ve nazofaringeal tüp, üst solunum yollarının tıkanmasına yardımcı olur ve emme, sekresyon tıkanıklığına yardımcı olur. Opioidlerin veya kas gevşeticilerin kalıcı etkilerine dair kanıt varsa, bunlar dikkatli bir şekilde antagonize edilebilir. Laringospazm durumunda (özellikle pediatrik anestezide, › Bölüm 5) sıklıkla sedasyonun yenilenmesi gerekir. Bronkospazm bronkodilatörlerle tedavi edilir.3 103 3.2 Bölgesel anestezi LİTERATÜR AkdÄ – Alman Tabipler Birliği İlaç Komisyonu. İlaç Güvenliği Postası 2013-62. Kırmızı El Mektubu: Başvuru",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_414",
@@ -17821,7 +17821,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Diz endoprotezi (TKA) implantasyonu için hangi periferik blokaj teknikleri uygundur?",
     "answer_de": "• N.-femoralis-Blockade → sensible Versorgung im Bereich des ventralen Oberschenkels • N.-ischiadicus-Blockade → sensible Versorgung des dorsalen Oberschenkels im Bereich der Kniekehle und der knöchernen Strukturen MERKE Eine effiziente postoperative Schmerztherapie bei Knie-TEP kann durch eine kombinierte Blockade des N. femoralis und zu - sätzliche proximale Blockade des N. ischiadicus erreicht werden. Dabei sind Single-Shot- oder Katheterverfahren möglich. Dürfen periphere Regionalanästhesieverfahren bei Therapie mit Antikoagulanzien durchgeführt werden? • Nach sorgfältiger Nutzen-Risiko-Abwägung können periphere Blockaden bei Patienten unter gerinnungs - hemmender Medikation durchgeführt werden. – Wenn möglich, Einhalten der gleichen Zeitintervalle wie für neuroaxiale Blockaden – Bei Psoaskompartment-, Paravertebral-, Rektusscheidenblock → obligate Einhaltung der gleichen Zeit - intervalle wie für neuroaxiale Blockaden • Obligate Aufklärung über Risiko von Hämatomentwicklung und Nervenschäden • Optimal: risikoärmstes Verfahren (problemlose Kompression möglich) + ultraschallgesteuerte Tech - nik + erfahrener Anästhesist • Periphere Regionalanästhesie + ASS 100 mg / Tag → unbedenklich",
     "answer_tr": "• Femoral sinir bloğu → ventral uyluk bölgesinde hassas besleme • Siyatik sinir bloğu → popliteal fossa ve kemik yapıları bölgesinde uyluğun dorsaline hassas besleme NOT TKA için etkili postoperatif ağrı tedavisi, femoral sinirin kombine blokajı ve siyatik sinirin ilave proksimal blokajı ile sağlanabilir. Tek atış veya kateter işlemleri mümkündür. Antikoagülan tedavisi sırasında periferik rejyonal anestezi işlemleri yapılabilir mi? • Antikoagülan ilaç kullanan hastalarda yarar ve riskler dikkatle tartıldıktan sonra periferik blokaj yapılabilir. – Mümkünse nöroaksiyel blokajlarla aynı zaman aralıklarına uyun – Psoas kompartmanı, paravertebral ve rektus kılıf blokları için → nöroaksiyel blokajlarla aynı zaman aralıklarına uyulması zorunlu • Hematom gelişimi ve sinir hasarı riski hakkında zorunlu bilgi • Optimal: en düşük riskli prosedür (sorunsuz kompresyon mümkündür) + ultrason kontrollü teknoloji + deneyimli anestezi uzmanı • Periferik Rejyonal anestezi + ASA 100 mg / gün → zararsız",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_415",
@@ -17833,7 +17833,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Periferik bölgesel anestezi için hangi kontrendikasyonlar dikkate alınmalıdır?",
     "answer_de": "• Absolute Kontraindikationen: – Ablehnung trotz eingehender Aufklärung – Infektionen an der geplanten Einstichstelle • Relative Kontraindikationen: – Gerinnungsstörungen – Vorbestehendes neurologisches Defizit Über welche Risiken muss im Zusammenhang mit peripheren Nervenblockaden aufgeklärt werden? • Periphere Regionalanästhesietechniken sind mit einer Komplikationsrate von < 0,1 % sichere Verfahren • Selten aber typisch: Nervenschädigung • Weitere Risiken: Blutung, Infektion, Katheterdislokation, Intoxikation, Allergien, ggf. Pneumothorax MERKE Bei geplanter alleiniger Regionalanästhesie muss der Patient sicherheitshalber immer auch für eine Allgemeinanästhesie aufgeklärt werden. Nennen Sie die hygienischen Anforderungen für periphere Nervenblockaden. • Durchführender: – Hygienische Händedesinfektion mit geeignetem Händedesinfektionsmittel",
     "answer_tr": "• Mutlak kontrendikasyonlar: – Ayrıntılı bilgiye rağmen reddedilme – Planlanan enjeksiyon bölgesinde enfeksiyonlar • Göreceli kontrendikasyonlar: – Pıhtılaşma bozuklukları – Önceden var olan nörolojik defisit Periferik sinir blokajlarıyla bağlantılı olarak hangi riskler açıklanmalıdır? • Periferik bölgesel anestezi teknikleri, komplikasyon oranı < %0,1 olan güvenli işlemlerdir. • Nadir ama tipik: sinir hasarı • Diğer riskler: kanama, enfeksiyon, kateter çıkması, zehirlenme, alerji, muhtemelen pnömotoraks NOT Yalnızca bölgesel anestezi planlanıyorsa, güvenli tarafta olmak için hasta daima genel anestezi konusunda bilgilendirilmelidir. Periferik sinir blokları için hijyenik gereksinimleri listeleyin. • Uygulayıcı: – Uygun el dezenfektanı ile hijyenik el dezenfeksiyonu",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_416",
@@ -17845,7 +17845,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Siyatik siniri anatomik işaretlerle bloke etmek için hangi seçenekler mevcuttur?",
     "answer_de": "• Proximaler Zugang: – Anteriorer Zugang (Technik nach Meier): → eine Handbreit des Patienten unterhalb der Leistenfalte durch Muskellücke zwischen M. rectus femoris und M. sartorius, Vorschieben der Stimulationskanüle im Winkel von ca. 75–85° zur Haut nach dorsokranial, in ca. 10–12 cm Tiefe liegt der N. ischiadicus. – Subtrochantärer Zugang (Technik nach Guardini): → Punktionsort liegt ca. 2 cm unterhalb und 4 cm distal des Trochanter major, Stichrichtung horizontal und wenig kranial, bei Punktion auf den Oberschenkelknochen muss Einstichpunkt nach dorsal versetzt werden; hilfreich ist Innenrotation der Hüfte, in ca. 10–12 cm Tiefe liegt der N. ischiadicus. – Transglutealer Zugang (Technik nach Labat): → Patient liegt auf der Seite, das zu blockierende Bein liegt oben und wird im Hüftgelenk 30° und im Kniegelenk 90° gebeugt. Von der Mitte der Ver - bindungsgeraden zwischen Trochanter major und Spina iliaca posterior superior wird eine senkrechte Linie 5 cm nach dorsal gezogen, an deren Ende befindet sich der Punktionsort. Die Stimulationskanüle wird senkrecht zur Hautoberfläche eingestochen, in etwa 5–8 cm wird der N. ischiadicus erreicht. • Distaler Zugang: Etwa 5 cm oberhalb der Kniescheibe lateral in der Loge zwischen M. vastus lateralis und dem sehnigen Anteil des M. biceps femoris, Stimulationsantwort zeigt sich nach etwa 4–5 cm Vorschub der Kanüle, Stichrichtung 30° nach dorsal und ca. 10° nach kranial.",
     "answer_tr": "• Proksimal erişim: – Önden yaklaşım (Meier tekniği): → hastanın kasık kıvrımının altından bir el genişliği kadar rektus femoris ve sartorius kasları arasındaki kas boşluğu boyunca stimülasyon kanülünü yaklaşık 2,5 derecelik bir açıyla ilerleterek. Dorsokraniyal yönde cilde 75-85° açıda bulunan siyatik sinir, yaklaşık 1,5 m derinlikte bulunur. 10-12cm. – Subtrokanterik erişim (Guardini tekniği): → Delinme yeri yakl. Büyük trokanterin 2 cm altında ve 4 cm distalinde, delinme yönü yatay ve hafif kranialde. Femurun delinmesi sırasında delme noktasının dorsal olarak hareket ettirilmesi gerekir; Kalçanın iç rotasyonu faydalıdır; siyatik sinir yakl. 10–12 cm. – Transgluteal yaklaşım (Labat tekniği): → Hasta yan yatar, blok yapılacak bacak üstte olup kalça ekleminde 30°, diz ekleminde 90° bükülür. Büyük trokanter ile posterior superior iliak omurgayı birleştiren düz çizginin ortasından dorsal olarak 5 cm dikey bir çizgi çizilir ve bunun sonunda delme yeri bulunur. Stimülasyon kanülü cilt yüzeyine dik olarak yerleştirilerek siyatik sinire yaklaşık 5-8 cm kadar ulaşılır. • Distal erişim: M.vastus lateralis ile M.biceps femoris'in tendinöz kısmı arasındaki kutunun lateralinde diz kapağının yaklaşık 5 cm yukarısında, kanülün yaklaşık 4–5 cm ilerletilmesinden sonra, yerleştirme yönü dorsal olarak 30° ve kranyal olarak yaklaşık 10° ilerletildikten sonra stimülasyon yanıtı belirgin hale gelir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_417",
@@ -17881,7 +17881,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Dermatom nedir ve omuriliğe yakın lokal anestezi için hangi dermatomlar önemlidir?",
     "answer_de": "• Dermatom: von einem Spinalnerven innerviertes segmentales Hautgebiet • Wichtige Dermatome: – C3, 4, 5 = Haut auf Schulter – Th4 = Mamille – Th6 = Xyphoid – Th10 = Bauchnabel – Th12 = Oberkante Symphyse • Erforderliche Anästhesieausbreitung verschiedener Operationen ( › Tab. 3.3 ): – Analgesieausdehnung begrenzt auf Wirbelsäulensegmente, bei denen Umschaltung der nozizeptiven Impulse von peripheren auf spinale Neurone erfolgt – Punktion in der Mitte der betroffenen Dermatome * bietet der Nadel Widerstand3 109 3.2 Regionalanästhesie – Pro Dermatom 1–2 ml Lokalanästhetikum; bei thorakaler Epiduralanästhesie (TEA) um ca. 30 % reduziert (Reduktion des Volumens auch mit ↑ Alter und ↓ Körpergröße)",
     "answer_tr": "• Dermatom: bir spinal sinir tarafından innerve edilen segmental cilt alanı • Önemli dermatomlar: – C3, 4, 5 = omuzdaki cilt – Th4 = meme başı – Th6 = ksifoid – Th10 = göbek deliği – Th12 = simfizin üst kenarı • Çeşitli operasyonlar için gerekli anestezi yayılımı ( › Tablo 3.3 ): – Nosiseptif impulsların periferik nöronlardan spinal nöronlara geçiş yaptığı omurga segmentleriyle sınırlı analjezi yayılımı - beyinde delik etkilenen dermatomların ortası * iğneye direnç sağlar3 109 3.2 Bölgesel anestezi - dermatom başına 1–2 ml lokal anestezik; Yaklaşık olarak azaltıldı. Torasik epidural anestezi (TEA) ile %30 (↑ yaş ve ↓ vücut boyutunda da hacim azalması)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_420",
@@ -17905,7 +17905,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "SPA'da lokal anestezinin etkisi neye bağlıdır?",
     "answer_de": "• Konzentration des LA im Liquor (u. a. Dosis, Volumen, Fettlöslichkeit, Barizität [Dichte: hyperbar durch Zusatz von Glukose 5–10 %]) • Oberfläche des exponierten Nervengewebes im Liquor (Spinalnerven ohne Epineurium) • Fettanteil im Nervengewebe • Blutfluss ins Gewebe (durch Pia mater und Arachnoidea) • Patient (Alter, Größe, intraabdominaler Druck [Schwangerschaft → um ⅓ ↓ Dosis], Lagerung) • Injektion (Punktionsort, Geschwindigkeit, Barbotage [Aspiration von Liquor in Spritze → Vermischung von LA und Liquor]) • Adjuvanzien: Opioide ( Fentanyl, Sufentanil ), Clonidin, Ketamin Wie führen Sie eine SPA durch? • Pat. sitzt seitlich auf OP-Tisch mit Beinen auf Hocker oder gerade auf OP-Tisch mit angewinkelten Beinen auf Tisch (dadurch oft bessere Kyphosierung der LWS). Abb. 3.3 Spinalnadeln (Nadelspitzen): links Quincke-Nadel, rechts Sprotte-Nadel [M582] Tab. 3.5 Vor- und Nachteile einer SPA Vorteile Nachteile",
     "answer_tr": "• BOS'ta LA konsantrasyonu (doz, hacim, yağ çözünürlüğü, barislik [yoğunluk: %5-10 glukoz eklenmesi nedeniyle hiperbarik] dahil) • BOS'ta açıkta kalan sinir dokusunun yüzeyi (epineuryumsuz omurilik sinirleri) • Sinir dokusundaki yağ içeriği • Dokuya kan akışı (pia mater ve araknoid aracılığıyla) • Hasta (yaş, boyut, karın içi basınç [hamilelik → yaklaşık ⅓ ↓ Doz], depolama) • Enjeksiyon (delme yeri, hız, barbotaj [CSF'nin şırıngaya aspirasyonu → LA ve CSF'nin karıştırılması]) • Adjuvanlar: opioidler (fentanil, sufentanil), klonidin, ketamin SPA'yı nasıl gerçekleştirirsiniz? • Hasta ameliyat masasında bacakları bir taburenin üzerinde olacak şekilde yanlamasına veya bacakları masaya doğru bükülmüş şekilde ameliyat masasına düz oturur (bu genellikle lomber omurganın daha iyi kifozuna neden olur). Şekil 3.3 Spinal iğneler (iğne uçları): Solda Quincke iğnesi, sağda Sprotte iğnesi [M582] Tab. 3.5 SPA'nın avantajları ve dezavantajları Avantajlar Dezavantajlar",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_422",
@@ -18025,7 +18025,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hasta için hangi anestezi prosedürünü ve izlemeyi seçiyorsunuz?",
     "answer_de": "• Allgemeinanästhesie mit RSI: Magensonde vor Intubation, Oberkörperhochlagerung, ggf. Natriumcitrat p. o., Absaugung bereithalten • Ein bis zwei periphere Venenzugänge • Standardmonitoring mit EKG, nichtinvasiver Blutdruckmessung, Pulsoxymetrie sowie Kapnometrie, Relaxometrie und Temperatur • Keine Verwendung von Lachgas (Darmdistension möglich, schlechtere Bedingungen für den Operateur. Lachgas wird heute praktisch nicht mehr verwendet.) Nach erfolgter Einleitung fahren Sie in den OP. Was müssen Sie hinsichtlich der Lagerung der Patientin bedenken? Die Patientin ist eher adipös, daher ist eine anspruchsvolle Lagerung zu erwarten: • Armlagerung: Wegen des Laparoskopieturms kann i. d. R. nur ein Arm ausgelagert werden. Im Vorfeld ist zu klären welcher, damit man Zugänge sinnvoll platzieren kann. • Schulterstützen: häufig Kopftieflagerung nötig, daher Patientensicherheit beachten, v. a. bei adipösen Patienten ist eine Sicherung durch Stützen durchzuführen. • Eine enge Absprache mit dem Operateur bzgl. vorgesehener Lagerungsmanöver ist nötig. Intraoperativ wird die Patientin in Trendelenburg-Position gelagert. Mit welchen Komplikationen bezüg -",
     "answer_tr": "• RSI ile genel anestezi: entübasyondan önce gastrik tüp, üst gövdenin kaldırılması, gerekirse sodyum sitrat s. o., aspirasyona hazır olun • Bir veya iki periferik venöz giriş • EKG, invaziv olmayan kan basıncı ölçümü, nabız oksimetresi ve ayrıca kapnometri, gevşeme ölçümü ve sıcaklık ile standart izleme • Nitröz oksit kullanılmaz (bağırsak şişkinliği mümkündür, cerrah için daha kötü koşullar. Nitröz oksit günümüzde pratik olarak artık kullanılmamaktadır.) İndüksiyondan sonra ameliyathaneye gidersiniz. Hastaya pozisyon verirken nelere dikkat etmelisiniz? Hasta oldukça obez olduğundan zorlu bir konumlandırma beklenebilir: • Kol konumlandırma: Laparoskopi kulesi nedeniyle, i. D. Genellikle yalnızca bir kol dışarıdan temin edilebilir. Erişim noktalarının hassas bir şekilde yerleştirilebilmesi için hangilerinin önceden açıklığa kavuşturulması önemlidir. • Omuz destekleri: Başın konumlandırılması sıklıkla gereklidir, bu nedenle özellikle hasta güvenliğine dikkat edin. A. Obez hastalar destekler kullanılarak sabitlenmelidir. • Planlanan konumlandırma manevraları konusunda cerrahla yakın istişare gereklidir. Ameliyat sırasında hastaya Trendelenburg pozisyonu verilir. Hangi komplikasyonlarla ilgili -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_432",
@@ -18037,7 +18037,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Günlük anestezi çalışmalarınızda düzenli olarak başka hangi laparoskopik prosedürlerle karşılaşıyorsunuz?",
     "answer_de": "• Allgemeinchirurgie: – Appendektomie – Cholezystektomie – Zunehmend auch laparoskopische oder laparoskopisch assistierte Tumorchirurgie, z. B. Sigmaresektio - nen oder Leberteilresektionen – Darmresektion und Stoma-Rückverlagerung – Ösophagektomie und Magenhochzug (sowohl abdominaler als auch thorakaler Teil minimalinvasiv möglich), teilweise unter Zuhilfenahme von Robotersystemen – Leistenhernien-OPs • Thoraxchirurgie: – Thymomentfernung – Videoassistierte Thorakoskopie – Lungenteilresektion • Gynäkologie: – Hysterektomie – Ovarektomie",
     "answer_tr": "• Genel cerrahi: – Apendektomi – Kolesistektomi – Giderek artan oranda laparoskopik veya laparoskopik yardımlı tümör cerrahisi, ör. B. Sigmoid rezeksiyonlar veya kısmi karaciğer rezeksiyonları – Bağırsak rezeksiyonu ve stomanın yeniden konumlandırılması – Bazen robotik sistemlerin yardımıyla özofajektomi ve gastrik pull-up (hem abdominal hem de torasik kısımlar minimal invazif olabilir) – Kasık fıtığı ameliyatları • Göğüs cerrahisi: – Timoma çıkarılması – Video yardımlı torakoskopi – Kısmi akciğer rezeksiyonu • Jinekoloji: – Histerektomi – Yumurtalıkların alınması",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_433",
@@ -18049,7 +18049,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Laparoskopik karın içi işlemler için hangi komorbiditeler önemlidir?",
     "answer_de": "• Kardiale Vorerkrankungen: – Herzinsuffizienz – Herzrhythmusstörungen – Arterielle Hypertonie (besonders, wenn schlecht eingestellt)3 124 3 Intraoperativ • Pulmologische Erkrankungen: – COPD / Asthma bronchiale – Lungenemphysem • Abdominale Erkrankungen: – Z. n. mehreren Voroperationen (Verwachsungen und dadurch längere OP-Zeit, Verletzungsrisiko etc.) – Thoraxmagen – Ileussymptomatik – Massiver Reflux Wie gestalten Sie die postoperative Schmerztherapie? • Es kann eine Infiltration der Einstichstellen oder eine Rektusscheidenblockade durchgeführt werden.",
     "answer_tr": "• Daha önce geçirilmiş kalp hastalıkları: – Kalp yetmezliği – Kardiyak aritmiler – Arteriyel hipertansiyon (özellikle kötü kontrol ediliyorsa)3 124 3 İntraoperatif • Akciğer hastalıkları: – KOAH / bronşiyal astım – Pulmoner amfizem • Karın hastalıkları: – Önceki birkaç ameliyattan sonra (yapışmalar ve dolayısıyla daha uzun ameliyat süresi, yaralanma riski vb.) – Torasik mide – İleus semptomları – Masif Reflü Postoperatif ağrı tedavisini nasıl tasarlıyorsunuz? • Delinme yerlerine infiltrasyon veya rektus kılıfı bloğu yapılabilir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_434",
@@ -18097,7 +18097,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ameliyat öncesi dikkate almanız gereken anesteziyolojik özellikler nelerdir?",
     "answer_de": "• Operative Versorgung im Regelfall in Allgemeinanästhesie: Aufgrund von Manipulationen im Halsbe - reich muss ein gesicherter Atemweg vorhanden sein, daher i. d. R. endotrachealer Tubus (vom Operateur häufig auch Stimulationstubus zur Lokalisation des N. recurrens gewünscht) • Größe der Struma: – Atemwegs- bzw. Trachealverlagerung möglich (Röntgen-Thorax ansehen) – Intubationshindernis möglich • Stoffwechsel überprüfen: keine Operation in manifester unbehandelter Hyper- oder Hypothyreose • Schluckstörung vorbestehend? Stridor vorbestehend? Gute Anamnese und Dokumentation • Vorbestehende Nervenschäden (Rekurrensschaden durch z. B. Schilddrüsentumor?!) Wie ist das anästhesiologische Vorgehen, wenn die Patientin Atemnot, Schluckstörung und eine CT-gesicherte Einengung der Trachea aufweist? CAVE Schwieriges Atemwegsmanagement zu erwarten! • Präoperative Anamnese: – Wie ist die Patientin tatsächlich eingeschränkt? Dysphagie? Aspirationsrisiko? Stridor? – HNO-Abklärung erwägen",
     "answer_tr": "• Genellikle genel anestezi altında cerrahi bakım: Boyun bölgesindeki manipülasyonlar nedeniyle güvenli bir hava yolunun mevcut olması gerekir, bu nedenle i. D. R. endotrakeal tüp (cerrah sıklıkla rekürren laringeal sinirin yerini tespit etmek için bir stimülasyon tüpü de ister) • Guatrın boyutu: – Hava yolu veya trakeal yer değiştirme olası (göğüs röntgenini görüntüleyin) – Entübasyona olası engel • Metabolizmayı kontrol edin: belirgin tedavi edilmemiş hiper veya hipotiroidizmde ameliyat yok • Önceden mevcut yutma bozukluğu var mı? Önceden var olan sertleşme? İyi bir anamnez ve dokümantasyon • Önceden var olan sinir hasarı (örn. tiroid tümörü nedeniyle tekrarlayan hasar?!) Hastada nefes darlığı, yutma güçlüğü ve trakeanın BT ile doğrulanmış daralması varsa anestezi prosedürü nedir? CAVE Zor hava yolu yönetimi bekleniyor! • Ameliyat öncesi anamnez: – Hasta aslında nasıl sınırlı? Disfaji mi? Aspirasyon riski var mı? Stridor mu? – KBB değerlendirmesini düşünün",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_438",
@@ -18133,7 +18133,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "İlaç ön tedavisi nasıl gerçekleştirilir ve hangi özel özellikler dikkate alınmalıdır?",
     "answer_de": "• Phenoxybenzamin p. o. (irreversibler Alphablocker). • Sollte eine zusätzliche Blockade mit einem Betablocker durchgeführt werden, ist darauf zu achten, dass zuvor eine suffiziente Alphablockade vorliegt. Ansonsten können die Katecholamine bevorzugt an α-Rezeptoren wirken und schwere hypertensive Krisen verursachen. Was können Hinweise auf eine suffiziente präoperative Blockade sein? • Keine krisenhaften Blutdruckwerte in den letzten 24 Stunden gemessen • Keine EKG-Veränderungen • Anamnestisch Zeichen der orthostatischen Hypotension Welche Medikamente richten Sie sich für den intraoperativen Verlauf? • Medikamente zur Blutdrucksenkung in der Phase vor Tumorexstirpation: – Urapidil, Nitroprussid-Natrium oder Glycerolnitrat – Kurz wirksame Substanzen verwenden • Medikamente zur Blutdrucksteigerung in der Phase nach Tumorexstirpation: Volumen bereitstellen, Noradrenalin, Adrenalin, evtl. muss Glukose kurzfristig substituiert werden Intraoperativ kommt es zu einem exzessiven Blutdruckanstieg. Was ist der Grund dafür, und was tun Sie? • Intraoperativ kann es z. B. durch Manipulation am Tumor zu einer Katecholaminausschüttung mit kon -",
     "answer_tr": "• Fenoksibenzamin s. O. (geri döndürülemez alfa engelleyici). • Beta bloker ile ek blokaj yapılıyorsa önceden yeterli alfa blokajının olduğundan emin olunmalıdır. Aksi takdirde katekolaminler öncelikli olarak α-reseptörleri üzerinde etki gösterebilir ve ciddi hipertansif krizlere neden olabilir. Yeterli preoperatif blokajın belirtileri neler olabilir? • Son 24 saatte kriz tansiyonu değerleri ölçülmedi • EKG değişikliği yok • Ortostatik hipotansiyon belirtileri öyküsü İntraoperatif süreçte hangi ilaçları kullanıyorsunuz? • Tümörün yok edilmesinden önceki aşamada kan basıncını düşüren ilaçlar: – Urapidil, nitroprussid sodyum veya gliserol nitrat – Kısa etkili maddeler kullanın • Tümörün yok edilmesinden sonraki aşamada kan basıncını artıran ilaçlar: Hacim sağlayın, norepinefrin, adrenalin, glukozun kısa bir süre için değiştirilmesi gerekebilir. Ameliyat sırasında kan basıncında aşırı bir artış meydana gelir. Bunun nedeni nedir ve ne yapıyorsunuz? • Ameliyat sırasında örn. B. tümörün katekolaminlerin salınmasını sağlayacak şekilde manipülasyonu yoluyla -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_441",
@@ -18169,7 +18169,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Göğüs cerrahisi öncesi nikotin yoksunluğunu nasıl değerlendiriyorsunuz?",
     "answer_de": "Raucher haben ein deutlich erhöhtes Risiko (2- bis 6-mal), eine pulmonale oder kardiale postoperative Kom - plikation zu erleiden ( › Tab. 3.9 ).3 130 3 Intraoperativ 3.4.2 Ein-Lungen-Ventilation (ELV) mit Physiologie und Tools Welches sind die typischen Standardeingriffe in der Thoraxchirurgie? • Lungen(teil)resektionen: – Meist geringe Blutung (gelegentlich aber starke Blutung!!!) – PDK Th 5 / 6 / 7 / 8 • Laserresektionen: – In der Regel deutlich geringere BlutungTab. 3.8 Abschätzung des Risikos der postoperativen Mortalität und Morbidität bezogen auf eine geplante Pneumonektomie Risiko niedrig vertretbar sehr hoch / Kontraindikation Funktion beider Lungen Klinik Dyspnoe (Grad 1–4) 0–1 2–3 3–4",
     "answer_tr": "Sigara içenlerin postoperatif pulmoner veya kardiyak komplikasyon yaşama riski anlamlı derecede yüksektir (2 ila 6 kat) (› Tablo 3.9).3 130 3 İntraoperatif 3.4.2 Fizyoloji ve aletlerle tek akciğer ventilasyonu (ELV) Göğüs cerrahisinde tipik standart prosedürler nelerdir? • Akciğer (kısmi) rezeksiyonları: – Genellikle küçük kanama (ancak ara sıra şiddetli kanama!!!) – PDK Th 5 / 6 / 7 / 8 • Lazer rezeksiyonları: – Genellikle önemli ölçüde daha az kanama Tab. 3.8 Planlanan pnömonektomiye bağlı postoperatif mortalite ve morbidite riskinin tahmini Risk düşük kabul edilebilir çok yüksek / kontrendikasyon Her iki akciğerin fonksiyonu Klinik Dispne (derece 1-4) 0-1 2-3 3-4",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_444",
@@ -18181,7 +18181,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Tek akciğer ventilasyonu için hangi endikasyonları biliyorsunuz?",
     "answer_de": "• Relativ: – Ösophaguschirurgie – Operationen an der thorakalen Wirbelsäule – Embolektomie der Pulmonalarterie – Lungentransplantation – Lungen(teil)resektionen – Thorakale Gefäßchirurgie – Videoassistierte Thorakoskopie (VATS)Tab. 3.9 Zeiträume der Normalisierung gestörter Organfunktionen nach Beginn der Nikotinkarenz (Wiedemann et al. 2004) Kurzzeiteffekt Erholungszeitraum Nikotinelimination 2–5 h CO-Elimination 12–48 h (O₂-Versorgung, spez. kardiale Ökonomie verbessert) Bronchiolentonus vermindert 20 min Zilienfunktion verbessert Stunden bis Tage Bronchoreaktivität Tage bis 4 Wochen Langzeiteffekt Erholungszeitraum",
     "answer_tr": "• Göreceli: – Özofagus cerrahisi – Torasik omurga ameliyatları – Pulmoner arter embolektomisi – Akciğer nakli – Akciğer (kısmi) rezeksiyonları – Torasik damar cerrahisi – Video yardımlı torakoskopi (VATS) Tab. 3.9 Nikotin yoksunluğunun başlamasından sonra bozulan organ fonksiyonlarının normale dönme dönemleri (Wiedemann ve ark. 2004) Kısa vadeli etki İyileşme süresi Nikotin eliminasyonu 2–5 saat CO eliminasyonu 12–48 saat (O₂ temini, spesifik kalp ekonomisinde iyileşme) Bronşiolar tonus 20 dakika azaldı Silya fonksiyonu saatler ila günler arasında iyileşti Bronkor reaktivitesi günler ila 4 hafta Uzun vadeli etki İyileşme süresi",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_445",
@@ -18193,7 +18193,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Akciğer ayrımı için hangi farklı seçenekleri biliyorsunuz?",
     "answer_de": "• Doppellumentuben (DLT): – Blind oder unter bronchoskopischer Sicht in den entsprechenden Hauptbronchus (anschließend bronchoskopische Lagekontrolle). – Proximale Blockmanschette in der Trachea und distale Blockmanschette in einem Hauptbronchus. – Lagekontrolle durch Blocken und Entblocken in Kombination mit Auskultation des Thorax oder durch eine direkte Bronchoskopie. – Für den Großteil der thoraxchirurgischen Eingriffe kann ein linksseitiger DLT verwendet werden. MERKE Die Bronchoskopie sollte Standard sein, da die Auskultationsmethode fehleranfälliger ist. Ein einsatzbereites Bronchoskop ist im thoraxchirurgischen OP immer vorzuhalten!3 133 3.4 Thoraxchirurgie – Für die ELV stehen folgende Tuben zur Verfügung: – Carlens-Tubus – White-Tubus – Bryce-Smith-Tubus",
     "answer_tr": "• Çift lümenli tüpler (DLT): – İlgili ana bronşa kör veya bronkoskopik görünüm (sonraki bronkoskopik pozisyon kontrolü). – Trakeada proksimal blok manşet ve ana bronşta distal blok manşet. – Toraks oskültasyonu veya direkt bronkoskopi ile kombinasyon halinde bloklama ve blokajı kaldırma yoluyla pozisyon kontrolü. – Göğüs cerrahisi prosedürlerinin çoğunda sol taraflı bir DLT kullanılabilir. NOT Bronkoskopi standart olmalıdır çünkü oskültasyon yöntemi hataya daha yatkındır. Göğüs cerrahisi ameliyathanesinde kullanıma hazır bir bronkoskop her zaman hazır bulundurulmalıdır!3 133 3.4 Göğüs cerrahisi – ELV için aşağıdaki tüpler mevcuttur: – Carlens tüpü – Beyaz tüp – Bryce-Smith tüpü",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_446",
@@ -18205,7 +18205,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hastalar için gerekli DLT boyutunu nasıl tahmin ediyorsunuz?",
     "answer_de": "• Größe und Geschlecht: – Frauen bis 150 cm 32 Ch, bis 160 cm 35 Ch und > 160 cm 39 Ch – Männer bis 160 cm 37 Ch, bis 170 cm 39 Ch und > 170 cm 41 Ch • Thoraxbild a. p.:  Hauptbronchus links =  Trachea × 0,68 (bis 0,9) • 3D-Rekonstruktion: Superposition von DLT-Scans MERKE Der kleinste Standard-DLT hat 28 Ch und einen Außendurchmesser von 9,3 mm. Das entspricht genau einem 7,0er-Tubus (→ Innendurchmesser). Für ein normal entwickeltes Kind passt der 28-Ch-DLT also etwa ab 12–14 Jahre oder 35–40 kg. Was ist die Hochfrequenz-Jet-Ventilation (HFJV), und wofür kann sie in der Thoraxchirurgie eingesetzt werden? • Gepulste Applikation von Gasportionen, die unter hoher kinetischer Energie in die Atemwege abgegeben werden • Jet-Frequenzen von 100–300 / min und Gasfluss bis zu 60 l / min → Atemvolumina von ca. 1,5–5 ml / kg • Venturi-Effekt → Durchmischung der Raumluft mit Verringerung der FiO₂ und ausreichenden CO₂-Elimination • Ungehinderte Exspiration gewährleisten",
     "answer_tr": "• Boy ve cinsiyet: – Kadınlar 150 cm'ye kadar 32 Ch, 160 cm'ye kadar 35 Ch ve > 160 cm 39 Ch – Erkekler 160 cm 37 Ch'ye kadar, 170 cm 39 Ch ve > 170 cm 41 Ch'e kadar • Göğüs görüntüsü a. s.:  sol ana bronş =  trakea × 0,68 (0,9'a kadar) • 3 boyutlu rekonstrüksiyon: DLT taramalarının süperpozisyonu NOT En küçük standart DLT'nin 28 Kanalı ve dış çapı 9,3 mm'dir. Bu tam olarak 7,0 boruya (→ iç çap) karşılık gelir. Normal gelişim gösteren bir çocuk için 28-Ch-DLT, 12-14 veya 35-40 kg yaş aralığına uygundur. Yüksek frekanslı jet ventilasyon (HFJV) nedir ve göğüs cerrahisinde ne için kullanılabilir? • Yüksek kinetik enerjiyle solunum yoluna salınan gaz kısımlarının darbeli uygulaması • 100-300/dak'lık jet frekansları ve 60 l/dak'ya kadar gaz akışı → yakl. 1,5-5 ml / kg • Venturi etkisi → Oda havasının FiO₂ azaltımı ve yeterli CO₂ eliminasyonu ile karıştırılması • Ekspirasyonun engellenmeden sağlanmasını sağlayın",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_447",
@@ -18241,7 +18241,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hastanın premedikasyonu sırasında hangi önemli bulguları topluyorsunuz?",
     "answer_de": "• Handelt es sich um ein neu aufgetretenes Vorhofflimmern, und ist möglicherweise eine kardiologische Vorstellung nötig? Mit welchem Medikament wird der Patient antikoaguliert, und ist ein Pausieren prä - operativ sinnvoll? Die OP erfolgt i. d. R. unter ASS, jedoch Pausieren von Vitamin-K-Antagonisten oder NOAK • Neurologische Untersuchung mit aktuellem Neurostatus: Bewusstsein, Sprachvermögen, sensible oder motorische Ausfälle, Schluckstörungen, Pupillenstatus, bestehen bereits Paresen durch stattgehabte Infarkte?3 137 3.5 Gefäßchirurgie • Kontraindikationen für eine Regionalanästhesie: – Kontralaterale Phrenikusparese oder Rekurrensparese – Kontralateraler Pneumothorax – Lokale Infektion – Strikte Ablehnung durch den Patienten • Ist der Patient prinzipiell für eine Operation in Lokalanästhesie geeignet? – Liegt eine ausgeprägte Angst- / Panikstörung vor?",
     "answer_tr": "• Bu yeni bir atriyal fibrilasyon başlangıcı mı ve kardiyoloji konsültasyonu gerekli olabilir mi? Hastaya hangi ilaçla antikoagüle tedavi uygulanıyor ve ameliyattan önce ara vermek mantıklı mı? Operasyon i. D. R. ASA altında, ancak K vitamini antagonistleri veya NOAC'lara ara veriliyor • Mevcut nörostatüs ile nörolojik muayene: bilinç, konuşma yeteneği, duyusal veya motor eksiklikler, yutma bozuklukları, gözbebeği durumu, önceki enfarktüslere bağlı zaten parezi var mı?3 137 3.5 Damar cerrahisi • Bölgesel anestezi için kontrendikasyonlar: – Kontralateral frenik sinir felci veya tekrarlayan laringeal sinir felci – Kontralateral Pnömotoraks – Lokal enfeksiyon – Hastanın kesin reddi • Hasta prensip olarak lokal anestezi altında yapılacak bir operasyona uygun mu? – Belirgin bir kaygı/panik bozukluğunuz var mı?",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_450",
@@ -18253,7 +18253,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hasta koopere mi ve yaklaşık 90-120 dakika boyunca sırtüstü yatabiliyor mu?",
     "answer_de": "– Verfügen Operateur und Anästhesist über die Expertise für eine OP in Lokalanästhesie? Der Patient möchte während der Operation unbedingt tief schlafen. Was erklären Sie ihm dazu? Allgemeinanästhesie Grundsätzlich kann der Eingriff in Allgemeinanästhesie durchgeführt werden. Es gibt keine eindeutige Überlegenheit eines Verfahrens (s. AWMF-Leitlinie 2012). • Nachteil: Notwendigkeit eines aufwendigen intraoperativen Neuromonitorings: Elektrophysiologie, Me - dianus-SSEP, zerebrale Oxymetrie, TCD, Karotis-Stumpfdruckmessung Vorteil Medianus-SSEP: ermöglicht sichere Erfassung einer Minderperfusion; Shunteinlage nur, wenn sich Zeichen für Minderperfusion zeigen, sichere Kontrolle einer ausreichenden Shuntfunktion möglich • Vorteile: – Gesicherter Atemweg – Neuroprotektive Maßnahmen möglich (z. B. Barbiturate) Regionalanästhesie • Vorteile: – Unmittelbare und direkte neurologische Beurteilbarkeit durch Kommunikation und Testung der Kraft in der Hand – Reduktion der Notwendigkeit von Shunteinlagen, damit geringere Gefahr von Embolien",
     "answer_tr": "– Cerrah ve anestezistin lokal anestezi altında operasyon yapabilecek uzmanlığı var mı? Hasta operasyon sırasında gerçekten derin bir uyku çekmek ister. Bu konuda ona ne açıklayacaksın? Genel anestezi Prensip olarak genel anestezi altında işlem yapılabilir. Hiçbir prosedürün açık bir üstünlüğü yoktur (bkz. AWMF yönergeleri 2012). • Dezavantajı: Karmaşık intraoperatif nöromonitörizasyon ihtiyacı: elektrofizyoloji, medyan sinir SSEP, serebral oksimetri, TCD, karotis güdük basıncı ölçümü Avantajı medyan sinir SSEP: hipoperfüzyonun güvenilir bir şekilde saptanmasını sağlar; Sadece hipoperfüzyon belirtileri varsa şant takılması, yeterli şant fonksiyonunun güvenilir kontrolü mümkündür • Avantajları: – Güvenli hava yolu – Nöroprotektif önlemler mümkündür (örn. barbitüratlar) Bölgesel anestezi • Avantajları: – İletişim yoluyla ve elin kuvvetinin test edilmesi yoluyla derhal ve doğrudan nörolojik değerlendirme – Şant yerleştirme ihtiyacının azalması, dolayısıyla emboli riskinin azalması",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_451",
@@ -18301,7 +18301,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Size damar cerrahisi konusunda başvuran tüm hastalarda nelere dikkat etmelisiniz?",
     "answer_de": "• Eingriffe mit erhöhter Mortalität von ca. 1–4 % • Vorerkranktes Patientenkollektiv: – Vorliegen einer peripheren arteriellen Verschlusskrankheit (pAVK) ( › Tab. 3.10 ). – Hohe Morbidität durch zusätzliche Arteriosklerose der Koronar- und der kraniellen Gefäße, Diabetes mellitus und Niereninsuffizienz. – Nicht selten liegen Nikotin- / Alkoholabusus vor. Welche Besonderheiten sind bei gefäßchirurgischen Patienten bezüglich der Antikoagulation prä- und intraoperativ zu bedenken? • Häufig nehmen die Patienten Medikamente zur Thrombozytenaggregationshemmung ein (Aspirin, Clopi - dogrel etc.). Diese Informationen sind wichtig bei der Anwendung regionalanästhesiologischer Verfahren und anderer invasiver Zugänge. • Intraoperativ wird vor Abklemmen von Gefäßen Heparin (ca. 75–100 IE / kg KG) injiziert, gelegentlich wird die Wirkung am OP-Ende teilweise mit Protamin antagonisiert. – Cave: Protamin enthält Fischeiweiß, sollte daher langsam verabreicht werden und kann zu allergischen Reaktionen führen. – Postoperativ sollte umgehend, d. h. bereits im Aufwachraum, mit der gewünschten Antikoagulation, i. d. R.",
     "answer_tr": "• Mortaliteyi yaklaşık olarak artıran müdahaleler. %1–4 • Daha önce hasta olan hasta popülasyonu: – Periferik arter hastalığının (PAD) varlığı (› Tablo 3.10). – Koroner ve kraniyal damarlarda ilave arteriyoskleroz, diyabet ve böbrek yetmezliği nedeniyle yüksek morbidite. – Nikotin/alkol kötüye kullanımı nadir değildir. Damar cerrahisi hastalarında ameliyat öncesi ve ameliyat sırasında antikoagülasyona ilişkin hangi özel özellikler dikkate alınmalıdır? • Hastalar sıklıkla trombosit agregasyonunu engelleyen ilaçlar (aspirin, Clopi-dogrel vb.) alır. Bu bilgi, bölgesel anestezi prosedürleri ve diğer invaziv yaklaşımlar kullanılırken önemlidir. • Heparin (yaklaşık 75–100 IU/kg vücut ağırlığı), damarların klemplenmesinden önce intraoperatif olarak enjekte edilir; Bazen operasyonun sonunda etki protamin ile kısmen antagonize edilir. - Uyarı: Protamin balık proteini içerir, bu nedenle yavaş uygulanmalıdır ve alerjik reaksiyonlara yol açabilir. – Ameliyat sonrası hemen olmalıdır, yani h. halihazırda derlenme odasında, istenen antikoagülasyonla birlikte, i. D. R.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_455",
@@ -18337,7 +18337,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Aortun hangi hastalıklarını ve hangi tedavi seçeneklerini biliyorsunuz?",
     "answer_de": "• Aortenaneurysma: Dilatation der Aorta → i. d. R. elektive OP (Klassifizierung › Abb. 3.9 ) • Aortendissektion: – Ruptur der Intima und Bildung eines falschen Lumens – Typ A: Dissektion der Aorta ascendens → Notfall mit dringlicher OP unter extrakorporaler Zirkulation (z. B. Aorta-ascendens-Ersatz, Bogenersatz)3 142 3 Intraoperativ CAVE Patienten haben regelhaft eine Perikardtamponade. – Typ B: Dissektion auf die Aorta descendens beschränkt → i. d. R. konservative Therapie, evtl. OP im Verlauf Für welches Anästhesieverfahren klären Sie die Patientin auf? Allgemeinanästhesie mit Intubationsnarkose und erweitertem Monitoring: • ZVK und High-Flow-Katheter, großlumiger Zugang, invasive Blutdruckmessung, 5-Kanal-EKG • TEE unbedingt bei Dissektionen",
     "answer_tr": "• Aort anevrizması: aortun genişlemesi → i. D. R. elektif cerrahi (sınıflandırma › Şekil 3.9 ) • Aort diseksiyonu: – İntima rüptürü ve sahte lümen oluşumu – Tip A: Çıkan aortun diseksiyonu → Ekstrakorporeal dolaşım altında acil cerrahi gerektiren acil durum (örn. çıkan aort replasmanı, ark replasmanı)3 142 3 İntraoperatif CAVE hastalarında genellikle bir Perikardiyal tamponad bulunur. – Tip B: İnen aorta ile sınırlı diseksiyon → i. D. R. konservatif tedavi, muhtemelen cerrahi sırasında hastayı hangi anestezi prosedürü hakkında bilgilendiriyorsunuz? Entübasyon anestezisi ve genişletilmiş izleme ile genel anestezi: • CVC ve yüksek akışlı kateter, geniş çaplı erişim, invazif kan basıncı ölçümü, 5 kanallı EKG • Diseksiyonlar için TEE gereklidir",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_458",
@@ -18349,7 +18349,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anestezi açısından nelere dikkat edilmelidir?",
     "answer_de": "• Anlage eines thorakalen PDK (Th6–9) grundsätzlich möglich, aber die folgenden Punkte bedenken: – Intraoperativ wird vor dem Clamping eine Heparingabe (3.000–7.000 IE) durchgeführt, zwischen Punktion und Heparingabe sollte mindestens 1 Stunde liegen, bei blutiger Punktion sollte mindestens 2 Stunden abgewartet werden. – Evtl. Anlage am Vortag erwägen! – Wie ist die aktuelle Antikoagulation, und ist ein Pausieren überhaupt sinnvoll möglich? Was ist für Sie außerdem in der anästhesiologischen Vorbereitung von Bedeutung? • Vorerkrankungen des Patienten: koronare Herzkrankheit, zerebrale Durchblutungsstörungen, Nieren - insuffizienz etc. • Relative Kontraindikationen gegenüber der Nutzung eines Cell-Savers, z. B. onkologische Grunderkran - kung: Dies gilt nicht bei Möglichkeit zur Bestrahlung des gewonnenen Eigenblutes oder bei tumorfernem Ein - griff, z. B. bei Z. n. Hirntumor. Abb. 3.9 Klassifikation dissezierender Aortenaneurysmen [L126]3",
     "answer_tr": "• Torasik PDK (Th6–9) oluşturmak genellikle mümkündür, ancak aşağıdaki noktaları göz önünde bulundurun: – İntraoperatif olarak, klemplemeden önce heparin (3,000–7,000 IU) uygulanır; Delinme ile heparin verilmesi arasında en az 1 saat olmalıdır; delinme kanlı ise en az 2 saat beklenmelidir. – Muhtemelen bir gün önce kurulumu yapmayı düşünün! – Mevcut antikoagülasyon nasıldır ve ara vermek mümkün mü? Anestezi hazırlıklarında sizin için başka neler önemlidir? • Hastanın önceki hastalıkları: koroner kalp hastalığı, serebral dolaşım bozuklukları, böbrek yetmezliği vb. • Hücre koruyucu kullanımına ilişkin göreceli kontrendikasyonlar, örn. B. Altta yatan onkolojik hastalık: Toplanan otolog kanın ışınlanmasının veya tümörden uzak bir ameliyatın (örn. B. Z.'de beyin tümöründen sonra. Şekil 3.9 Disseke aort anevrizmalarının sınıflandırılması [L126]3",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_459",
@@ -18373,7 +18373,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bunun nedeni ne olabilir?",
     "answer_de": "• Die arterielle Messung liegt in der linken A. radialis und die linke A. subclavia wurde durch die Stentpro - these verschlossen. • Sinnvoll ist daher die Platzierung in der rechten A. radialis. CAVE Eine Platzierung in der A. femoralis sollte nur nach Absprache mit dem Operateur erfolgen. • Bei Problemen mit der arteriellen Druckmessung kann aber auch der Operateur über den Leistenzugang eine arterielle Kurve ableiten. Welche anderen Erkrankungen werden in der Gefäßchirurgie häufig interventionell versorgt? • Abdominale oder thorakale Aortenaneurysmen durch sog. EVAR- („endovascular aortic repair“) oder TEVAR- („thoracic endovascular aortic repair“) Verfahren. • Versorgung einer A.-carotis-interna-Stenose über einen perkutan eingeführten Stent. • In der peripheren Gefäßchirurgie wird häufig thrombektomiert oder ballondilatiert mitunter auch ein Stent eingesetzt. • Hybridverfahren, bestehend aus Operation und Intervention, unter Nutzung moderner Bildgebung z. B. bei Pathologien des Aortenbogens. Nennen Sie wichtige Kontraindikationen bei endovaskulären Versorgungen.",
     "answer_tr": "• Arteriyel ölçüm sol radiyal arterde olup, sol subklavyen arter stent protezi ile kapatılmıştır. • Bu nedenle sağ radyal artere yerleştirme mantıklıdır. CAVE'in femoral artere yerleştirilmesi yalnızca cerrahla görüştükten sonra yapılmalıdır. • Arteriyel basınç ölçümünde sorun olması durumunda cerrah kasık erişimi yoluyla da bir arteriyel eğri elde edebilir. Damar cerrahisinde sıklıkla başka hangi hastalıklar girişimsel olarak tedavi edilir? • EVAR (“endovasküler aort onarımı”) veya TEVAR (“torasik endovasküler aort onarımı”) prosedürleri yoluyla abdominal veya torasik aort anevrizmaları. • Perkütan olarak yerleştirilen stent kullanılarak internal karotid arter stenozunun tedavisi. • Periferik damar cerrahisinde sıklıkla trombektomi veya balon dilatasyonu kullanılır, bazen de stent de kullanılır. • Modern görüntülemenin kullanıldığı, ameliyat ve müdahaleden oluşan hibrit prosedür; B. aort kemerinin patolojilerinde. Endovasküler prosedürler için önemli kontrendikasyonları listeleyin.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_461",
@@ -18385,7 +18385,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Başka hangi anamnestik bilgiler bu konuyu daraltmaya yardımcı olabilir?",
     "answer_de": "• Bei welchen Speisen kommt es zu einer Dysphagie (flüssig, breiig oder fest)? • Ist der Schluckakt schmerzhaft? • Kommt es zu einer Regurgitation von unverdauten Speisen? Welches Anästhesieverfahren wählen Sie? Eine Panendoskopie beinhaltet die Untersuchung des Oro- und Hypopharynx sowie eine Ösophagoskopie. Gerade die starre Ösophagoskopie muss in tiefer Allgemeinanästhesie erfolgen und wird i. d. R. unter neuromuskulärer Blockade durchgeführt, da durch Husten oder Würgen die Gefahr einer Ösophagusper - foration besteht. Wenn keine Proben entnommen werden, ist dieser Eingriff nach etwa 10 Minuten beendet. Bei Probenentnahmen kann sich die Eingriffszeit verdoppeln. Ein kurz wirksames Relaxans ist am besten geeignet. Hierfür stehen Suxamethonium (z. B. Lysthenon®, Pantolax®) und Mivacurium (z. B. Mivacron®) zur Verfügung. Wie leiten Sie die Narkose ein? Als Erstes muss überprüft werden, ob nach der Narkoseinduktion eine Maskenbeatmung möglich ist. Falls nicht: • Ggf. Narkose vertiefen • Ggf. Verlegung der Atemwege durch Erschlaffung der Schlundmuskulatur? Guedel-Tubus erwägen oder Versuch der Beatmung mit doppeltem C-Griff und der Beatmung durch einen Helfer",
     "answer_tr": "• Hangi gıdalar disfajiye neden olur (sıvı, lapa gibi veya katı)? • Yutma eylemi acı verici mi? • Sindirilmemiş yiyeceklerin kusması meydana gelir mi? Hangi anestezi prosedürünü seçersiniz? Panendoskopi, orofarinks ve hipofarinks muayenesinin yanı sıra özofagoskopiyi de içerir. Özellikle sert özofagoskopinin derin genel anestezi altında yapılması gerekir ve genellikle yapılır. D. R., öksürük veya boğulma nedeniyle yemek borusu delinmesi riski nedeniyle nöromüsküler blokaj altında gerçekleştirildi. Numune alınmadığı takdirde yaklaşık 10 dakika sonra bu işlem tamamlanır. Numune alırken işlem süresi iki katına çıkabilir. Kısa etkili bir gevşetici en iyisidir. Suksametonyum (örn. Lysthenon®, Pantolax®) ve mivakuryum (örn. Mivacron®) bu amaç için mevcuttur. Anesteziyi nasıl indüklersiniz? İlk adım, anestezi indüksiyonu sonrasında maske ventilasyonunun mümkün olup olmadığının kontrol edilmesidir. Değilse: • Gerekirse anesteziyi derinleştirin. • Gerekirse faringeal kasların gevşemesi nedeniyle hava yolunun tıkanması mı var? Guedel tüpünü kullanmayı veya çift C-kollu havalandırmayı ve bir asistan tarafından havalandırmayı deneyin",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_462",
@@ -18409,7 +18409,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Tüpten trakeostomi tüpüne nasıl geçiş yapılır?",
     "answer_de": "• Tubus vorsichtig unter Sicht zurückziehen, Tubusspitze bleibt subglottisch • Einlage eines Tubuswechsel-Katheters (z. B. Cook-Katheter®) vor Extubation zur Schienung für eine evtl. Reintubation bei schwierigem Atemweg und Möglichkeit der O₂-Insufflation 3.6.3 Abszesse KASUISTIK Sie werden vom Dienstarzt der Mund-Kiefer- und Gesichtschirurgie in die Zentrale Notaufnahme zu einem 25-jährigen Patienten gerufen. Vor 5 Tagen war eine ambulante Zahnextraktion durchgeführt worden. Jetzt erfolgt die notfallmäßige Vorstellung mit progredienter Schwellung und Schmerzen submandibular rechts, einer Dysphagie und eingeschränkter Mundöffnung. Welche zusätzlichen Informationen und Untersuchungen benötigen Sie zur präoperativen Patientenevaluation? Abszesse im Mund- und Halsbereich sind aufgrund ihrer anatomischen Nähe zu den oberen Luftwegen und ihrer rasch progredienten Symptomatik eine Herausforderung für den Anästhesisten und den Operateur. Neben relevanten Vorerkrankungen und Allergien muss eine Einschätzung der Atemwegsbehinderung mit konsekutiven Intubationsschwierigkeiten erfolgen. Wichtig hierfür sind folgende Informationen: • Wie lange bestehen die Symptome bereits? • Wie ausgeprägt ist die Mundöffnungseinschränkung? Ist die Ursache hauptsächlich schwellungs- oder",
     "answer_tr": "• Tüpü dikkatlice tekrar görüş altına çekin, tüpün ucu subglottik kalır • Hava yolu zorsa ve O₂ insüflasyonu mümkünse olası yeniden entübasyon için splintleme için ekstübasyondan önce bir tüp değiştirme kateteri (örn. Cook Catheter®) takın 3.6.3 Apse KASÜSTİKLERİ Ağız diş ve çene cerrahisinde görevli doktor tarafından merkezi acil servise götürüleceksiniz 25 yaşındaki hasta çağrıldı. 5 gün önce ayakta diş çekimi yapıldı. Hasta şu anda sağ submandibuler bölgede ilerleyici şişlik ve ağrı, disfaji ve ağız açıklığında kısıtlılık şikayetiyle acil servise getirildi. Ameliyat öncesi hasta değerlendirmesi için hangi ek bilgi ve tetkiklere ihtiyacınız var? Ağız ve boyun bölgesindeki abseler anatomik olarak üst solunum yollarına yakınlığı ve hızla ilerleyen semptomları nedeniyle anestezist ve cerrah için zorluk teşkil etmektedir. İlgili önceki hastalıklar ve alerjilere ek olarak, solunum tıkanıklığı ve ardından gelen entübasyon zorluklarının da değerlendirilmesi yapılmalıdır. Aşağıdaki bilgiler önemlidir: • Belirtiler ne kadar süredir var? • Ağız açma kısıtlılığı ne kadar şiddetlidir? Sebep esas olarak şişlik mi yoksa",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_464",
@@ -18433,7 +18433,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Nasıl devam edersiniz?",
     "answer_de": "Die fiberoptische Wachintubation bleibt der Goldstandard für den erwarteten schwierigen Atemweg. Insbesondere bei unmöglicher Maskenbeatmung ermöglicht sie eine Atemwegssicherung bei hoher Patientensicherheit. Durch die Entwicklung neuer Hilfsmittel ist der Einsatz der fiberoptischen Wachintubation als primäre Intubationsmethode sicherlich zurückgegangen, sollte vom Anästhesisten jedoch sicher beherrscht und bei entsprechender Indikation regelmäßig angewandt werden. In der praktischen Durchführung existieren verschiedene Vorgehensweisen. Hervorzuheben sind hierbei: • Abschwellende Nasentropfen (z. B. Xylometazolin 0,1 %) • Suffiziente topische Anästhesie der Schleimhaut (z. B. Lidocain 2 % als Spray oder inhalative Vernebelung; cave: Höchstdosis beachten) • Ggf. sedierende Maßnahmen bei ängstlichen oder unruhigen Patienten (z. B. Remifentanil 0,01–0,1 µg / kg / min) • Bougierung der Nasenpassage mit aufsteigenden Größen von Wendel-Tuben • Wahl einer geeigneten Tubusgröße in Abwägung von Ventilation und potenziellem Trauma beim Tubus - vorschub durch die Nase • Ggf. gezielte topische Lokalanästhetika-Applikation über das Bronchoskop • Narkosevertiefung erst nach sicherer Tubusplatzierung und positiver Kapnografie (Gefahr der sekundä -",
     "answer_tr": "Fiberoptik uyanık entübasyon, beklenen zor hava yolu için altın standart olmayı sürdürüyor. Özellikle maske ventilasyonunun mümkün olmadığı durumlarda üst düzeyde hasta güvenliği ile hava yolunun korunmasını sağlar. Yeni yardımcı araçların geliştirilmesi nedeniyle, fiberoptik uyanık entübasyonun birincil entübasyon yöntemi olarak kullanımı kesinlikle azalmıştır, ancak anestezist tarafından güvenle öğrenilmeli ve uygun olduğunda düzenli olarak kullanılmalıdır. Pratik uygulamaya yönelik farklı yaklaşımlar vardır. Aşağıdakiler vurgulanmalıdır: • Dekonjestan burun damlaları (örn. ksilometazolin %0,1) • Mukoza zarının yeterli topikal anestezisi (örn. sprey veya inhale nebülizasyon olarak %2 lidokain; mağara: maksimum doza uyun) • Gerekirse endişeli veya huzursuz hastalar için sedatif önlemler (örn. remifentanil 0,01–0,1 µg/kg/dak) • Bouging artan boyutlarda spiral tüplerle burun geçişinin kapatılması • Ventilasyon ve tüpün burun içinden ilerletilmesi sırasında olası travma dikkate alınarak uygun bir tüp boyutunun seçilmesi • Gerekirse, bronkoskop aracılığıyla hedefe yönelik topikal lokal anestezik uygulaması • Anestezinin yalnızca güvenli tüp yerleştirme ve pozitif kapnografi sonrasında derinleştirilmesi (ikincil -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_466",
@@ -18469,7 +18469,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Lazer ne anlama geliyor?",
     "answer_de": "Laser = light amplification by stimulated emission of radiation Welche Laserarten werden in der MKG und HNO vorwiegend eingesetzt? Wellenlänge (WL), Eindringtiefe (ET)? • CO₂ (WL = 10,6 µm; ET = 30 µm) • Neodym: YAG ( WL = 1064 nm; ET etwa 3 mm) Welche Möglichkeiten zur Beatmung bestehen? • Endotracheale Intubation (PVC oder Lasertubus) • Masken-, Jet-Beatmung und Hajek-Ventilation (Prinzip der eisernen Lunge) • Operative Versorgung in Apnoe3 151 3.6 HNO- und MKG-Eingriffe Was können Sie zur Gefahr des Tubusbrandes sagen, und welche Maßnahmen können zur Vermeidung durchgeführt werden? Der Tubus kann sich bei einem Beschuss durch den Laser (direkt oder Streustrahlung) entzünden, und der Brand kann in die Trachea weitergeleitet werden. Deshalb muss Wasser zur Löschung im Operationssaal bereitstehen, z. B. auch in vorbereiteten Perfusorspritzen. Die Abdeckung des Patienten sollte nicht aus Ein -",
     "answer_tr": "Lazer = radyasyonun uyarılmış emisyonu yoluyla ışık amplifikasyonu Çene-yüz cerrahisinde ve KBB'de ağırlıklı olarak hangi lazer türleri kullanılmaktadır? Dalga boyu (WL), nüfuz derinliği (ET)? • CO₂ (WL = 10,6 µm; ET = 30 µm) • Neodimyum: YAG (WL = 1064 nm; ET yaklaşık 3 mm) Ventilasyon için hangi seçenekler mevcuttur? • Endotrakeal entübasyon (PVC veya lazer tüp) • Maske, jet ventilasyon ve Hajek ventilasyon (demir akciğer prensibi) • Apnede cerrahi bakım3 151 3.6 KBB ve çene-yüz prosedürleri Tüp yangını tehlikesi hakkında ne söyleyebilirsiniz ve bundan kaçınmak için ne gibi önlemler alınabilir? Tüp, lazer (doğrudan veya dağınık radyasyon) tarafından bombalandığında tutuşabilir ve yangın trakeaya iletilebilir. Bu nedenle ameliyathanede söndürme amaçlı su bulunmalıdır; B. ayrıca hazırlanmış perfüzör şırıngalarında. Hastanın örtüsü olmamalıdır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_469",
@@ -18481,7 +18481,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anestezi yönetiminde ne gibi zorluklar ortaya çıkıyor?",
     "answer_de": "Im Vordergrund steht das Atemwegsmanagement bei potenziell schwieriger Intubation sowie bei Nähe des Operationsfeldes zu den oberen Atemwegen. Hieraus ergeben sich die folgenden Herausforderungen im peri - operativen Verlauf: • Die anatomischen Verhältnisse der oberen Atemwege können nicht nur durch die Raumforderung, sondern auch durch eine vorangegangene Strahlentherapie oder Voroperationen beeinträchtigt sein. • Die Intubationsbedingungen können zusätzlich durch eine eingeschränkte Zungenbeweglichkeit und reduzierte Mundöffnung erschwert werden. • Erhöhte Blutungsgefahr mit Sichtbehinderung durch kontaktvulnerables (Tumor-)Gewebe beim Intubationsvorgang. • Durch sterile Abdeckung und das Operationsfeld erschwerter Zugang zum Tubus und zu den Beatmungs - schläuchen mit erhöhter Dislokations- und Diskonnektionsgefahr (cave: sichere Tubusfixierung not - wendig). • Erhöhte Gefahr für Bradykardien, Rhythmusstörungen oder eine Hypotonie durch die Manipulation am Karotissinus. • Postoperative Extubation nur in Absprache mit dem Operateur; ausgedehnte mittellinienüberschreiten - de Unterkieferresektionen können ein Zurückfallen der Zunge mit Verlegung des Oropharynx begüns -",
     "answer_tr": "Odak noktası potansiyel olarak zor entübasyonda ve cerrahi alanın üst hava yoluna yakın olduğu durumlarda hava yolu yönetimidir. Bu, perioperatif süreçte aşağıdaki zorluklarla sonuçlanır: • Üst solunum yollarının anatomik koşulları yalnızca kitleden değil, aynı zamanda önceki radyasyon tedavisinden veya önceki operasyonlardan da etkilenebilir. • Entübasyon koşulları, sınırlı dil hareketliliği ve azalan ağız açıklığı nedeniyle daha da karmaşık hale gelebilir. • Entübasyon işlemi sırasında temasa duyarlı (tümör) doku nedeniyle görüş mesafesinin azalmasıyla birlikte kanama riskinin artması. • Steril kapak ve operasyon alanı nedeniyle tüpe ve havalandırma tüplerine erişim zordur ve yerinden çıkma ve bağlantının kesilmesi riski artar (uyarı: tüpün güvenli bir şekilde sabitlenmesi gerekir). • Karotis sinüs manipülasyonu nedeniyle artan bradikardi, aritmi veya hipotansiyon riski. • Ameliyat sonrası ekstübasyon yalnızca cerraha danışılarak yapılabilir; Kapsamlı orta hat geçişi - mandibular rezeksiyonlar, orofarenksin tıkanmasıyla dilin geriye düşmesine neden olabilir -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_470",
@@ -18493,7 +18493,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "İşitme kaybının gelişiminde hangi anatomik yapılar rol oynar?",
     "answer_de": "• Außenohr (Ohrmuschel, Gehörgang z. B. Cerumen, Missbildungen etc.) • Mittelohr (Pauke z. B. Otitis media, Otosklerose etc.) • Innenohr (Schnecke, z. B. Infektionskrankheiten, ototoxische Substanzen etc.) • Zentrale Störungen (Blutung, Entzündung, Defekte nach Chirurgie etc.) Was kann die Ursache einer Schwerhörigkeit sein? • Schalltrauma (Disko, Arbeitsplatz etc.) • Alter (Presbyakusis) • Tumoren (z. B. Akustikusneurinom) • Entzündungen (Masern, Herpes Zoster, Meningitis etc.) Welche Arten der Schwerhörigkeit kennen Sie? • Schallleitungsschwerhörigkeit ( SLS) • Schallempfindungs- bzw. Innenohrschwerhörigkeit ( SES bzw. IOS) Wie kann man SLS und SES (IOS) relativ einfach diagnostizieren? Mithilfe einer Stimmgabel (440 Hz). • Rinne-Test: Es wird ausgenutzt, dass die Schallleitung besser ist als die Knochenleitung. • Weber-Test: Eine Lateralisation deutet auf eine Hörstörung hin. Ein Hinweis auf die Art der Störung",
     "answer_tr": "• Dış kulak (kulak kepçesi, kulak kepçesi, kulak kepçesi, şekil bozuklukları vb.) • Orta kulak (timpani, örneğin otitis media, otoskleroz vb.) • İç kulak (koklea, örneğin bulaşıcı hastalıklar, ototoksik maddeler vb.) • Merkezi bozukluklar (kanama, iltihaplanma, ameliyat sonrası defektler vb.) İşitme kaybının nedeni ne olabilir? • Akustik travma (disko, iş yeri vb.) • Yaş (presbycusis) • Tümörler (örn. akustik nöroma) • İltihaplar (kızamık, herpes zoster, menenjit vb.) Ne tür işitme kaybı biliyorsunuz? • İletim tipi işitme kaybı (SLS) • Sensörinöral veya sensörinöral işitme kaybı (SES veya IOS) SLS ve SES (IOS) nasıl nispeten kolay teşhis edilebilir? Diyapazon kullanarak (440 Hz). • Rinne testi: Ses iletiminin kemik iletiminden daha iyi olduğu gerçeğinden yararlanılır. • Weber testi: Lateralizasyon işitme bozukluğunu gösterir. Bozukluğun türüne dair bir gösterge",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_471",
@@ -18565,7 +18565,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Depolama için nelere dikkat etmelisiniz?",
     "answer_de": "Die teils extremen Positionen in der robotischen Chirurgie verlangen besonders große Akribie bei der La - gerung der Patienten. Hierbei gilt die vereinbarte Zuständigkeits- und Verantwortungsaufteilung zwischen Anästhesisten und operativen Kollegen, wobei gegenseitige kollegiale Unterstützung selbstverständlich sein sollte. Da nach Abschluss der Lagerungsmaßnahmen der Zugang zum Patienten eingeschränkt ist, muss zu - vor sichergestellt sein, dass alle Kabel und Schläuche zur Überwachung und Infusion sicher konnektiert, nicht geknickt und gepolstert sind und für genügend Zuspritzmöglichkeiten (Dreiwegehähne) im intraoperativ zu - gänglichen Bereich gesorgt ist. Wie führen Sie intraoperativ die Anästhesie fort? Es sollte eine tiefe Anästhesie, ggf. ergänzt durch eine kontinuierliche Muskelrelaxation unter neuromuskulärem Monitoring durchgeführt werden. Insbesondere im Zuge von Lagerungsmanövern und Insufflation des Abdomens muss die Tubuslage kontrolliert und bei Bedarf korrigiert werden. Zur Beatmung sind teils hohe in- und exspiratorische Drücke notwendig. Was müssen Sie vor Narkoseausleitung besonders beachten? Die lange Kopftieflagerung kann bei einigen Patienten zu einer relevanten venösen Kongestion im Kopf-Hals- Bereich führen. Dies kann in Einzelfällen relevante Atemwegsschwellungen bewirken. Es sollte daher vor Extubation mittels „Cuff-leak-Test“ (Prüfen auf neben dem Tubus vorbeiströmende Luft bei entblocktem",
     "answer_tr": "Robotik cerrahide bazen aşırı pozisyonlar, hastaların konumlandırılmasında özellikle yüksek düzeyde titizlik gerektirir. Anestezi uzmanları ve operasyonel meslektaşlar arasında mutabakata varılan sorumluluk ve sorumluluk paylaşımı geçerlidir ve bu sayede karşılıklı meslektaş desteği sağlanmalıdır. Konumlandırma önlemleri tamamlandıktan sonra hastaya erişim kısıtlandığından, öncelikle monitörizasyon ve infüzyona yönelik tüm kablo ve tüplerin güvenli bir şekilde bağlandığından, bükülmediğinden ve dolgulanmadığından ve intraoperatif olarak erişilebilen alanda yeterli enjeksiyon seçeneklerinin (üç yollu valfler) bulunduğundan emin olunmalıdır. Ameliyat sırasında anesteziye nasıl devam edilir? Gerekirse nöromüsküler monitörizasyon altında sürekli kas gevşetmesi ile desteklenen derin anestezi uygulanmalıdır. Özellikle konumlandırma manevraları ve karın insüflasyonu sırasında tüpün konumu kontrol edilmeli ve gerekirse düzeltilmelidir. Ventilasyon için bazen yüksek inspiratuar ve ekspiratuar basınçlar gerekli olabilir. Anestezi kaldırılmadan önce özellikle nelere dikkat etmeniz gerekir? Başın uzun süre aşağıda konumlandırılması bazı hastalarda baş ve boyun bölgesinde ciddi venöz tıkanıklığa yol açabilir. Bireysel vakalarda bu, ilgili hava yolu şişmesine neden olabilir. Bu nedenle ekstübasyondan önce bir “kaf sızıntı testi” (tüp tıkalı değilken tüpten geçen havanın kontrol edilmesi) yapılmalıdır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_477",
@@ -18589,7 +18589,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Klinik sonuçları nelerdir?",
     "answer_de": "Die Hyperhydratation führt zur Hämodilution und – v. a. bei entsprechend vorerkrankten Patienten – zur kardialen Dekompensation und u. U. zum Lungenödem. Die Hyponatriämie führt aufgrund zerebraler Zell - schwellung zu diversen neurologischen Störungen wie Agitation, Kopfschmerzen, Erbrechen, Somnolenz, Koma und Krämpfen. Die Akkumulation von Glycin kann visuelle Störungen auslösen und Ammoniak als Stoffwechselprodukt des Glycins zur Enzephalopathie beitragen. Wie gehen Sie beim TUR-Syndrom therapeutisch vor? Der Operateur muss zügig auf die Komplikation hingewiesen werden und sollte die OP so rasch wie möglich abschließen. Der Hypervolämie kann mit Diuretika entgegengewirkt werden, die jedoch selbst Natrium aus - schwemmen. Bei deutlicher Hyponatriämie (ca. < 120 mmol / l) muss Natrium substituiert werden. Über die zulässige Geschwindigkeit der Natriumkorrektur bei schnell entstandener Hyponatriämie bestehen ver - schiedene Auffassungen. Eine Anhebung von ca. 1 mmol / l / h gilt allgemein als sicher. Manche Autoren befürworten auch eine schnellere Korrektur, da es sich beim TUR-Syndrom um eine sich akut entwickelnde Störung handelt. Gefährlich wäre aufgrund des Risikos einer zentralen pontinen Myelinolyse eine zu schnelle Korrektur (> 10 mmol / 24 h) bei einer chronisch bestehenden Hyponatriämie. Übelkeit, Agitation, Krämpfe etc. werden symptomatisch behandelt. Kennen Sie Risikofaktoren für das Auftreten eines TUR-Syndroms?",
     "answer_tr": "Hiperhidrasyon hemodilüsyona ve özellikle de yol açar. A. Daha önce hastalığı olan hastalarda – kalp dekompansasyonu ve muhtemelen akciğer ödemi için. Beyin hücrelerinin şişmesi nedeniyle hiponatremi ajitasyon, baş ağrısı, kusma, uyku hali, koma ve konvülsiyon gibi çeşitli nörolojik bozukluklara yol açar. Glisin birikmesi görme bozukluklarına neden olabilir ve glisinin bir metaboliti olan amonyak ensefalopatiye katkıda bulunabilir. TUR sendromunu terapötik olarak nasıl tedavi edersiniz? Cerrahın komplikasyondan hızla haberdar olması ve ameliyatı mümkün olduğu kadar çabuk tamamlaması gerekir. Hipervolemi, diüretiklerle önlenebilir, ancak bunlar sodyumu kendileri dışarı atar. Önemli hiponatremi varsa (yaklaşık < 120 mmol/l), sodyumun değiştirilmesi gerekir. Hızlı hiponatremi vakalarında izin verilen sodyum düzeltme hızı hakkında farklı görüşler vardır. Yaklaşık 1 mmol/l/saatlik bir artış genellikle güvenli kabul edilir. Bazı yazarlar ayrıca TUR sendromunun akut gelişen bir hastalık olması nedeniyle daha hızlı düzeltmeyi savunurlar. Santral pontin miyelinolizis riski nedeniyle kronik hiponatremide çok hızlı düzeltme (> 10 mmol / 24 saat) tehlikeli olabilir. Bulantı, ajitasyon, kramplar vb. semptomatik olarak tedavi edilir. TUR sendromunun ortaya çıkmasındaki risk faktörlerini biliyor musunuz?",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_479",
@@ -18721,7 +18721,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hamilelik sırasında obstetrik olmayan işlemler sırasında nelere dikkat etmeniz gerekir?",
     "answer_de": "In Abhängigkeit von der vorliegenden Schwangerschaftswoche müssen die physiologischen Veränderungen durch die Schwangerschaft berücksichtigt und dann z. B. das Atemminutenvolumen angepasst, eine RSI durchgeführt und eine Linksseitenlage zur Verhinderung eines Vena-cava-Kompressionssyndroms etabliert 3 168 3 Intraoperativ werden. Auch bei der Medikamentenauswahl ist die Schwangerschaft zu berücksichtigen, und es sind z. B. geeignete Vasopressoren wie Ephedrin, Phenylephrin oder Akrinor® vorzuhalten. Internetbasierte Ressourcen wie www.embryotox.de helfen bei der Auswahl sicherer Medikamente. Was müssen Sie bei Eingriffen in der Stillzeit beachten? Verschiedene Medikamente können über die Muttermilch auch vom Kind aufgenommen werden und negative Effekte hervorrufen. Acetylsalicylsäure und Metamizol sollten in der Stillzeit vermieden werden. Besonders gefährlich ist die Verwendung von codeinhaltigen Schmerzmitteln, da hier Störungen in der Metabolisierung durch genetischen Polymorphismus mit Akkumulation beschrieben sind, die zu toxischen Konzentrationen für das Kind führen können. Mit www.embryotox.de ist auch in der Stillzeit eine sichere Medikamentenauswahl möglich. 3.9.3 Erstversorgung des Neugeborenen",
     "answer_tr": "Hamileliğin mevcut haftasına bağlı olarak, hamileliğin neden olduğu fizyolojik değişiklikler dikkate alınmalı ve daha sonra örn. B. dakikadaki ventilasyon hacmi ayarlandı, RSI uygulandı ve vena kava kompresyon sendromunu önlemek için sol yan pozisyon oluşturuldu. 3 168 3 İntraoperatif olun. İlaç seçerken hamilelik de dikkate alınmalıdır, örneğin: B. efedrin, fenilefrin veya Akrinor® gibi uygun vazopresörleri hazır bulundurun. www.embryotox.de gibi internet tabanlı kaynaklar güvenli ilaçları seçmenize yardımcı olur. Emzirme döneminde müdahaleleri yaparken nelere dikkat etmelisiniz? Çeşitli ilaçlar da anne sütü yoluyla çocuk tarafından emilip olumsuz etkilere neden olabilir. Emzirme döneminde asetilsalisilik asit ve metamizolden kaçınılmalıdır. Kodein içeren ağrı kesicilerin kullanımı özellikle tehlikelidir çünkü genetik polimorfizmin neden olduğu ve çocukta toksik konsantrasyonlara yol açabilen birikimli metabolik bozukluklar anlatılmaktadır. www.embryotox.de ile emzirme döneminde de güvenle ilaç seçimi yapabilirsiniz. 3.9.3 Yenidoğan için ilk yardım",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_490",
@@ -18733,7 +18733,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Preeklampsi, şiddetli preeklampsi, eklampsi ve HELLP sendromu ne anlama gelir?",
     "answer_de": "• Präeklampsie: Schwangerschaftshypertonie und Proteinurie • Schwere Präeklampsie: Blutdruck > 160 / 110 mmHg und / oder Organdysfunktionen • Eklampsie: tonisch-klonische Krampfanfälle im Rahmen einer Präeklampsie, die keiner anderen Ursache zugeordnet werden können • HELLP (tritt teilweise auch ohne Proteinurie und / oder Hypertonie auf): – Hämolyse (Haptoglobin erniedrigt) – Elevated Liver Enzymes (Transaminasen über Normbereich) – Low Platelets (Thrombozyten < 100 / µl) Dysbalance zwischen angiogenetischen und antiangionetischen Faktoren in der Plazenta führt zu ge - neralisierter endothelialer Dysfunktion mit einem komplexen, alle Organsysteme betreffenden Krankheits - bild. Die Präeklampsie ist für 10–15 % aller mütterlichen Todesfälle verantwortlich. Gefahr besteht durch hypertensive Entgleisungen mit Hirnblutungen (Haupttodesursache). CAVE Gefahr insbesondere bei Narkoseeinleitungen, daher vorher RR-Kontrolle < 150 mmHg. Eklamptische Anfälle (nach Krampfanfall immer cCT-Kontrolle zum Blutungsausschluss), zerebrale Vasospasmen sowie kardiopulmonale und renale Komplikationen: Zwei Drittel der Fälle treten präpartal,",
     "answer_tr": "• Preeklampsi: gestasyonel hipertansiyon ve proteinüri • Şiddetli preeklampsi: kan basıncı > 160/110 mmHg ve/veya organ fonksiyon bozukluğu • Eklampsi: preeklampsi bağlamında başka herhangi bir nedene bağlanamayan tonik-klonik nöbetler • HELLP (bazen proteinüri ve/veya hipertansiyon olmadan da ortaya çıkar): – Hemoliz (haptoglobin azalmış) – Yüksek karaciğer enzimleri (Transaminazlar normalin üzerinde) aralığı) – Düşük trombositler (trombositler < 100 / µl) Plasentadaki anjiyojenik ve antianjiyonetik faktörler arasındaki dengesizlik, tüm organ sistemlerini etkileyen karmaşık bir klinik tabloyla genel endotel disfonksiyonuna yol açar. Preeklampsi tüm anne ölümlerinin %10-15'inden sorumludur. Beyin kanaması (ölümün ana nedeni) ile birlikte hipertansif bozukluk riski vardır. CAVE tehlikesi, özellikle anestezi indüklenirken, bu nedenle RR < 150 mmHg'yi önceden kontrol edin. Eklamptik nöbetler (nöbet sonrasında kanamayı dışlamak için daima cBT kontrolü), serebral vazospazmların yanı sıra kardiyopulmoner ve renal komplikasyonlar: vakaların üçte ikisi doğum öncesi meydana gelir,",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_491",
@@ -18744,8 +18744,8 @@ const EXAM_QUESTIONS = [
     "question_de": "Welche Substanzen würden Sie bei unserem Patienten wählen?",
     "question_tr": "Hastamız için hangi maddeleri seçersiniz?",
     "answer_de": "Für die Auswahl der zu verwendenden Sedativa gibt es aktuell keine allgemein akzeptierten Empfehlungen. Generell gilt, dass Medikamente mit kurzer Wirkdauer und guter Steuerbarkeit zu bevorzugen sind. Vor allem Propofol eignet sich sehr gut für eine kontrollierte Sedierung. Der Vorteil dieses lipidlöslichen Hypnotikums ohne analgetische Komponente liegt v. a. in seiner guten Steuerbarkeit. Da eine Koloskopie auch mit Probenentnahme i. d. R. nicht schmerzhaft ist, sollte im vorliegenden Fall bei einem Patienten ohne kardiorespiratorische Einschränkungen Propofol der Vorzug gegeben werden. Zur Anxiolyse kann bei unserem Patienten ein Benzodiazepin, vorzugsweise Midazolam, in Analogie zur Prämedikation bei Allgemeinanästhesien gegeben werden. Sollte eine Analgesie notwendig werden, so eignet sich ein kurz wirksames Analgetikum wie Remifentanil i. d. R. sehr gut. Aufgrund der kurzen kontextsensitiven Halbwertszeit endet die Wirkung zuverlässig 5–10 Minuten nach Ende der Dauerinfusion. Zu beachten ist, dass post interventionem keine analgetische Wirkung mehr gewährleistet ist.3 173 3.10 Außenbereiche MERKE Jedes Medikament ist vorsichtig und nach Wirkung zu titrieren. Dosisangaben sind lediglich als Richtwerte zu verstehen.",
-    "answer_tr": "Hangi sakinleştiricilerin kullanılacağını seçmek için şu anda genel kabul görmüş bir öneri bulunmamaktadır. Genel olarak etki süresi kısa ve kontrolü kolay olan ilaçlar tercih edilmelidir. Özellikle propofol kontrollü sedasyon için çok uygundur. Analjezik bileşen içermeyen bu yağda çözünebilen hipnotik maddenin avantajı öncelikle şunlardır: a. iyi kontrol edilebilirliği ile. Kolonoskopi aynı zamanda örnek almayı da içerdiğinden i. D. R. ağrılı olmadığından, kalp-solunum kısıtlaması olmayan hastada bu olguda propofol tercih edilmelidir. Anksiyoliz için hastamıza genel anestezi premedikasyonuna benzer şekilde bir benzodiazepin, tercihen midazolam verilebilir. Analjezi gerekiyorsa remifentanil gibi kısa etkili bir analjezik kullanılmalıdır. D. R. çok iyi. Kısa bağlama duyarlı yarı ömür nedeniyle, etki, sürekli infüzyonun bitiminden 5-10 dakika sonra güvenilir bir şekilde sona erer. Müdahale sonrasında analjezik etkinin artık garanti edilmediğine dikkat edilmelidir.3 173 3.10 Dış alanlar NOT Her ilaç dikkatlice ve etkisine göre titre edilmelidir. Doz bilgisi yalnızca bir kılavuz olarak anlaşılmalıdır.",
-    "is_high_yield": false
+    "answer_tr": "Kullanılacak sedatiflerin seçimi için günümüzde genel kabul görmüş bir öneri bulunmamaktadır. Genel olarak, etki süresi kısa ve kontrol edilebilirliği iyi olan ilaçların tercih edilmesi gerekir. Özellikle propofol, kontrollü sedasyon için oldukça uygundur. Analjezik bileşeni olmayan bu yağda çözünür hipnotigin avantajı, her şeyden önce iyi kontrol edilebilirliğinde yatar. Koloskopi, biyopsi alımıyla birlikte bile genellikle ağrılı olmadığından, kardiyorespiratuar kısıtlaması olmayan bu vakada propofol tercih edilmelidir. Anksiyoliz için hastamıza genel anestezideki premedikasyona benzer şekilde bir benzodiazepin, tercihen midazolam verilebilir. Eğer analjezi gerekirse, remifentanil gibi kısa etkili bir analjezik genellikle çok uygundur. Kısa bağlama duyarlı yarı ömür nedeniyle, etki sürekli infüzyonun sonlanmasından 5-10 dakika sonra güvenilir bir şekilde sona erer. Müdahale sonrasında artık analjezik etkinin garanti edilmediği unutulmamalıdır.3 173 3.10 Dış Alanlar NOT Her ilaç dikkatle ve etkisine göre titre edilmelidir. Doz bilgileri yalnızca kılavuz değer olarak anlaşılmalıdır.",
+    "is_high_yield": true
   },
   {
     "id": "q_492",
@@ -18757,7 +18757,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Müdahale sonrası ne gibi önlemlerin alınması gerekiyor?",
     "answer_de": "Vorausgesetzt, dass weder operativ noch anästhesiologisch während der Prozedur Komplikationen auf - getreten sind, ist eine ambulante Durchführung der Endoskopie problemlos möglich. Da jedoch noch Rest - wirkungen der Sedativa und Analgetika bestehen können, müssen gewisse Voraussetzungen erforderlich sein, bevor der Patient aus dem Aufwachraum entlassen werden kann: • Ungetrübtes Bewusstsein • Vorhandende Schutzreflexe • Stabiler Kreislauf • Ausreichende Spontanatmung • Uneingeschränkte Mobilität • Keine oder minimale Übelkeit • Mobilität wie prae interventionem • Trinken möglich Schließlich muss gewährleistet sein, dass der Patient sowohl während des Heimweges als auch zu Hause durch eine geeignete Person betreut wird. LITERATUR Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin. Analgosedierung für diagnostische und therapeutische Maß -",
     "answer_tr": "İşlem sırasında herhangi bir cerrahi veya anestezi komplikasyonu ortaya çıkmadığı sürece endoskopi ayaktan sorunsuz bir şekilde yapılabilir. Bununla birlikte, sedatiflerin ve analjeziklerin kalıntı etkileri hala mevcut olabileceğinden, hastanın derlenme odasından taburcu edilebilmesi için bazı ön koşulların gerekli olması gerekir: • Bilinç açıklığı • Koruyucu reflekslerin varlığı • Stabil dolaşım • Yeterli spontan solunum • Kısıtlanmamış hareketlilik • Mide bulantısının olmaması veya çok az olması • Müdahale öncesindeki gibi hareketlilik • İçme mümkün Son olarak, hastaya hem yolda hem de evde uygun bir kişi tarafından bakılması sağlanmalıdır. LİTERATÜR Alman Anesteziyoloji ve Yoğun Bakım Tıbbı Derneği. Diagnostik ve terapötik ölçümler için analgosedasyon",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_493",
@@ -18781,7 +18781,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi anestezi şeklini ve hangi izlemeyi seçersiniz?",
     "answer_de": "Die Narkoseeinleitung kann in einem Vorraum an einem Anästhesiearbeitsplatz durchgeführt werden. Es stehen MRT-geeignete Beatmungsgeräte und Anästhesieausstattungen zur Verfügung. Die Türen sollten während der Untersuchung geschlossen bleiben, da von außen eindringende Radiowellen die Unter - suchung beeinträchtigen. Als Narkoseform bietet sich ja nach Krankheitsbild entweder eine Allgemeinanästhesie oder eine Sedierung mit Kapnografiekontrolle an. Das Monitoring wird auf einen Bildschirm in den Kontrollraum außerhalb des MRTs übertragen. Obligatorisch sind EKG, NIBP, Pulsoxymetrie und Kapnometrie. Häufig ist beim Aus - senden der Radiowellen kein verwertbares EKG-Signal zu erhalten. Die Perfusoren müssen magnetisch abgeschirmt sein oder sich außerhalb des Magnetfeldes befinden. MERKE Kopf und Atemwege sind während der Untersuchung für den Anästhesisten weder zugänglich noch sichtbar. Auf einen adäquaten Lärmschutz für den Patienten ist zu achten. Sind Schrittmacher oder größere Prothesen MRT-geeignet? Es gibt MRT-taugliche Herzschrittmacher, die allerdings die Ausnahme darstellen. Vor der Untersuchung muss ein kardiologisches Konsil eingeholt werden mit der Fragestellung, ob der Patient schrittmacher - abhängig ist. Das Gerät kann dann entweder ausgeschaltet oder in einen starren Rhythmus versetzt werden",
     "answer_tr": "Anestezi indüksiyonu, anestezi iş istasyonunun bekleme odasında gerçekleştirilebilir. MR uyumlu ventilatörler ve anestezi ekipmanları mevcuttur. Dışarıdan gelen radyo dalgaları muayeneyi olumsuz etkilediği için muayene sırasında kapılar kapalı tutulmalıdır. Anestezi şekli olarak klinik tabloya göre genel anestezi veya kapnografi kontrollü sedasyon kullanılabilir. İzleme, MRI'nın dışındaki kontrol odasındaki bir ekrana iletilir. EKG, NIBP, nabız oksimetresi ve kapnometri zorunludur. Radyo dalgaları yayıldığında çoğunlukla kullanılabilir EKG sinyali elde edilemez. Perfüzörler manyetik olarak korunmalı veya manyetik alanın dışına yerleştirilmelidir. NOT Muayene sırasında anestezi uzmanı baş ve solunum yollarına erişemez ve onları göremez. Hasta için yeterli gürültü koruması sağlanmalıdır. Kalp pili veya daha büyük protezler MR için uygun mudur? MR'a uygun kalp pilleri vardır ancak bunlar istisnadır. Muayene öncesinde mutlaka kardiyoloji konsültasyonu yapılarak hastanın kalp piline bağımlı olup olmadığı sorulmalıdır. Daha sonra cihaz kapatılabilir veya katı bir ritme ayarlanabilir",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_495",
@@ -18805,7 +18805,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi anestezi şeklini ve hangi izlemeyi seçersiniz?",
     "answer_de": "In den meisten Fällen erfolgt eine Intubationsnarkose mit einer RSI und einer kontrollierten Beatmung unter Kapnometrie, Pulsoxymetrie, Blutdruck- und EKG-Monitoring. Eine Temperaturmessung für einen ad - äquaten Wärmeerhalt sollte installiert werden. Bei drohendem oder manifestem Hirndruck ist eine TIVA, z. B. mit Propofol und Remifentanil, durch - zuführen. Eine invasive arterielle Blutdruckmessung ist hier ebenfalls sinnvoll und kann meistens im Bypass der Schleuse des Radiologen durchgeführt werden. Hat das anästhesiologische Management Einfluss auf das Outcome der Prozedur? Einen möglicherweise richtungweisenden Beitrag kann das intraprozedurale anästhesiologische Manage - ment leisten, in erster Linie die Steuerung der Hirndurchblutung durch pharmazeutische oder ventilatorische Modulation. Eine Hyperkapnie führt zu einer intrazerebralen Vasodilatation mit Anstieg des Hirndrucks. Eine Hypo - kapnie bewirkt Gegenteiliges. Anzustreben ist eine Normoventilation. Welche Rolle spielt der Blutdruck während der Intervention? Je nach Pathogenese gilt es, den Blutdruck unterschiedlich zu bewerten. Unversorgte Aneurysmata erfordern eine vorsichtige Narkoseeinleitung unter adäquater Abschirmung, um Blutdruckanstiege und Rerupturen sicher zu verhindern.",
     "answer_tr": "Çoğu durumda, entübasyon anestezisi RSI ve kapnometri, nabız oksimetresi, kan basıncı ve EKG izleme ile kontrollü ventilasyon ile gerçekleştirilir. Yeterli ısı koruması için bir sıcaklık ölçümü kurulmalıdır. Yaklaşan veya belirgin bir kafa içi basıncı varsa, bir TIVA, ör. B. propofol ve remifentanil ile. İnvazif bir arteriyel kan basıncı ölçümü de burada faydalıdır ve genellikle radyolog kılıfının baypas edilmesiyle gerçekleştirilebilir. Anestezi yönetimi işlemin sonucunu etkiler mi? İşlem içi anestezi yönetimi, öncelikle farmasötik veya ventilasyon modülasyonu yoluyla serebral kan akışının kontrolü olmak üzere potansiyel olarak çığır açıcı bir katkı sağlayabilir. Hiperkapni, kafa içi basıncın artmasıyla birlikte intraserebral vazodilatasyona yol açar. Hipokapninin tam tersi bir etkisi vardır. Amaç normoventilasyonu sağlamaktır. Müdahale sırasında kan basıncının rolü nedir? Patogenezine bağlı olarak kan basıncının farklı değerlendirilmesi gerekir. Tedavi edilmeyen anevrizmalar, kan basıncındaki artışları ve yeniden yırtılmaları güvenli bir şekilde önlemek için yeterli korumayla dikkatli bir anestezi indüksiyonu gerektirir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_497",
@@ -18829,7 +18829,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Monro-Kellie doktrini ne diyor?",
     "answer_de": "Die Monro-Kellie-Doktrin definiert drei Volumenkompartimente im starren intrakraniellen Raum: • Hirngewebe (ca. 80 %) • Blut (ca. 12 %) • Liquor (ca. 8 %) Bei geschlossenem Schädel kompensieren das Ventrikelsystem (Liquor) und ein erhöhter Abfluss des ze - rebralen Blutvolumens (CBV) einen ansteigenden intrakraniellen Druck (ICP). Bei fortschreitender Volumen - zunahme bewirkt bereits eine minimale Volumenzunahme einen kritischen ICP-Anstieg ( › Abb. 3.14 ). Tab. 3.14 Schweregradeinteilung der SAB nach Hunt und Hess Grad Symptomatik I • Keine Symptomatik • Leichte Kopfschmerzen • Nackensteifigkeit II • Mäßige bis schwere Kopfschmerzen • Nackensteifigkeit • Hirnnervenausfälle III • Somnolenz",
     "answer_tr": "Monro-Kellie doktrini sert intrakraniyal boşlukta üç hacim bölmesi tanımlar: • Beyin dokusu (yaklaşık %80) • Kan (yaklaşık %12) • BOS (yaklaşık %8) Kafatası kapatıldığında, ventriküler sistem (BOS) ve artan beyin kan hacmi (CBV) dışarı akışı, artan kafa içi basıncını (ICP) telafi eder. Hacim arttıkça hacimdeki minimum bir artış bile ICP'de kritik bir artışa neden olur (› Şekil 3.14). Tablo 3.14 Hunt ve Hess Derecesine göre SAH'ın şiddet sınıflandırması Semptomlar I • Semptom yok • Hafif baş ağrıları • Boyun sertliği II • Orta ila şiddetli baş ağrıları • Boyun sertliği • Kranyal sinir defisitleri III • Uyuklama hali",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_499",
@@ -18841,7 +18841,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Artmış kafa içi basıncının hemodinamik etkileri nelerdir?",
     "answer_de": "Die als „Cushing-Reflex“ bezeichnete Trias • Bradykardie, • Hypertonie und • unregelmäßige Atmung Abb. 3.13 Verschiedene Methoden zur Messung des intrakraniellen Drucks [L126] Abb. 3.14 Verhalten des intrakraniellen Drucks (ICP) in Beziehung zu Volumenänderungen der intrakraniellen Bestand - teile [L126] 3 179 3.11 Neurochirurgie: intrakranielle Eingriffe ist häufig bei ausgeprägtem Anstieg des ICP zu beobachten. Eine reflektorische Steigerung des Blutdrucks soll der Abnahme des „zerebralen Perfusionsdrucks“ (CPP) entgegenwirken. Wie ist der CPP definiert? =− Zerebrale rPerfusionsdruck (CPP)m ittlererarterie llerDruck (MAP)intrakran iellerDruck (ICP) • Zerebraler Perfusionsdruck (CPP): – Der CPP reguliert den zerebralen Blutfluss (CBF) über zerebrale Vasodilatation und Vasokonstriktion.",
     "answer_tr": "“Cushing refleksi” olarak bilinen üçlü • Bradikardi, • Hipertansiyon ve • Düzensiz solunum Şekil 3.13 Kafa içi basıncı ölçmek için farklı yöntemler [L126] Şekil 3.14 Kafa içi bileşenlerin hacim değişiklikleriyle ilişkili olarak kafa içi basıncının (ICP) davranışı [L126] 3 179 3.11 Beyin cerrahisi: kafa içi prosedürler sıklıkla Gözlem ICP'sinde belirgin artış. Kan basıncındaki refleks artışın amacı “serebral perfüzyon basıncındaki” (CPP) azalmayı dengelemektir. CPP nasıl tanımlanır? =− Serebral perfüzyon basıncı (CPP)orta arter basıncı (MAP)intrakranyal basınç (ICP) • Serebral perfüzyon basıncı (CPP): – CPP, serebral vazodilatasyon ve vazokonstriksiyon yoluyla serebral kan akışını (CBF) düzenler.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_500",
@@ -18853,7 +18853,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "ICP anesteziyolojik olarak nasıl etkilenebilir?",
     "answer_de": "• Arterieller CO₂-Partialdruck (PaCO₂): – PaCO₂ ↑ → Vasodilatation → CBF ↑ → ICP ↑ – PaCO₂ ↓ → Vasokonstriktion → CBF ↓ → ICP↓Zerebraler Perfusionsdruck (CPP)= - mittlerer arterieller Druck (MAP)−in - trakranieller Druck (ICP) Tab. 3.15 Blutdruckmanagement bei Aufhebung der zerebralen Autoregulation Schädel-Hirn-Trauma • CPP zwischen 60–70 mmHg • RR syst: > 100 mmHg (50–69 Jahre); > 110 mmHg (15–49 Jahre; > 70 Jahre) Intrazerebrale Blutung RRsyst < 140 mmHg innerhalb der ersten 6 h nach Auftreten Subarachnoidalblutung Blutdruckschwankungen > 25 % vermeiden • MAP: 70–100 mmHg • RR syst: 120–140 mmHg Ischämischer Schlaganfall Blutdruck sollte dem Ausgangsblutdruck entsprechen. Obere Grenze RR syst: 220 mmHg, bei geplanter Thrombolyse 180 mmHg3 180 3 Intraoperativ",
     "answer_tr": "• Arteriyel CO₂ kısmi basıncı (PaCO₂): – PaCO₂ ↑ → vazodilatasyon → CBF ↑ → ICP ↑ – PaCO₂ ↓ → vazokonstriksiyon → CBF ↓ → ICP↓Serebral perfüzyon basıncı (CPP)= - ortalama arteriyel basınç (MAP)−in - Trakraniyal basınç (ICP) Tablo 3.15 Serebral kan basıncı yönetimi otoregülasyon ortadan kaldırılmıştır Travmatik beyin hasarı • CPP 60–70 mmHg arasında • RR sist: > 100 mmHg (50–69 yaş); > 110 mmHg (15-49 yaş; > 70 yaş) İntraserebral kanama RR sist < 140 mmHg, başlangıçtan sonraki ilk 6 saat içinde Subaraknoid kanama Kan basıncı dalgalanmalarından kaçının > %25 • OAB: 70-100 mmHg • RR sist: 120-140 mmHg İskemik inme Kan basıncı başlangıca uygun olmalıdır kan basıncı. RR sistemi üst sınırı: 220 mmHg, planlı tromboliz ile 180 mmHg3 180 3 İntraoperatif",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_501",
@@ -18865,7 +18865,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Beyin damarlarına yapılan müdahalelerin riskleri nelerdir?",
     "answer_de": "Aus der minimalen O₂-Reserve und der hohen Durchblutung des Gehirns ( › Tab. 3.17 ) resultieren bei Ein - griffen an Hirngefäßen zwei perioperative Risiken: Ischämie und Hämorrhagie! • Eine gute Vorbereitung auf Blutungsereignisse ist obligat! – Anlegen mehrerer großlumiger Zugänge – Anforderung von Blutkonserven – Vorbereitung von Infusionswärmegeräten – Temperaturmanagement (Normothermie anstreben) – Anwesenheitspflicht des gesamten operativen und anästhesiologischen Personals während des „Clippings“ • Zur Optimierung des Zugangsweges soll die Operation in sitzender Position durchgeführt werden. Welche weiteren Vorbereitungen treffen Sie? • Re-Assessment nach dem ADCDE-Schema • Präoperative Überprüfung der Tubuslage aufgrund schlechter perioperativer Interventionsmöglichkeit am Atemweg obligat! • Vorbereitungen zur Erkennung einer Luftembolie: – Pathophysiologie: In sitzender Position herrscht ein negativer Druck im venösen Gefäßsystem des Operationsgebietes bzw. in den Sinus durae matris. Bei Verletzung venöser Gefäße besteht daher",
     "answer_tr": "Minimum O₂ rezervi ve beyne giden yüksek kan akışı (› Tablo 3.17), serebral damarlar üzerinde çalışırken iki perioperatif riske yol açar: iskemi ve kanama! • Kanama olaylarına iyi hazırlık yapılması zorunludur! – Birkaç geniş çaplı erişim oluşturulması – Kan desteğinin talep edilmesi – İnfüzyon ısıtma cihazlarının hazırlanması – Sıcaklık yönetimi (normotermiyi hedefleyin) – “Kırpma” sırasında tüm cerrahi ve anestezi personelinin zorunlu katılımı • Erişim yolunu optimize etmek için operasyon oturma pozisyonunda gerçekleştirilmelidir. Başka ne gibi hazırlıklar yapıyorsunuz? • ADCDE şemasına göre yeniden değerlendirme • Hava yolunda perioperatif müdahale seçeneklerinin zayıf olması nedeniyle tüp pozisyonunun ameliyat öncesi kontrolü zorunludur! • Hava embolisi tespitine yönelik hazırlıklar: – Patofizyoloji: Oturma pozisyonunda, cerrahi bölgenin venöz damar sisteminde veya durae matris sinüsünde negatif basınç vardır. Bu nedenle venöz damarlarda yaralanma var",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_502",
@@ -18901,7 +18901,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "yaklaşık -80 mmHg'lik bir inspirasyon çekişi sağlayabilir.",
     "answer_de": "• Unterbindung des Blutzuflusses proximal des Operationssitus. • Verhinderung des perioperativen Blutverlustes und Möglichkeit, in einem blutleeren Situs zu operieren. • Manschettendruck von 200–300 mmHg generell empfohlen. • Okklusionszeit sollte 2,5 Stunden nicht überschreiten. Bei längerer OP-Dauer sollte das Tourniquet nach 2,5 Stunden für 10 Minuten geöffnet werden. • „Single-Shot“-Antibiose mindestens 5–10 Minuten vor Anlegen des Tourniquets, um ausreichende Wirkung im OP-Gebiet zu erzielen. • Komplikationen: – Nervenverletzungen – Muskelverletzungen – Gefäßverletzungen – Hautverletzungen – HF- und RR-Anstieg infolge von Ischämie und „Tourniquetschmerz“ – Anstieg des etCO 2 – Steigerung der Fibrinolyseaktivität ca. 15 Minuten nach Öffnen des Tourniquets (Blutungsgefahr) • Metabolische Veränderungen (Laktat ↑, PaCO₂ ↑, K+ ↑, PaO₂ ↓, pH ↓)",
     "answer_tr": "• Cerrahi bölgenin proksimalinde kan akışının kesilmesi. • Perioperatif kan kaybının önlenmesi ve kansız bölgede ameliyat imkanı. • Genellikle 200-300 mmHg'lik manşet basıncı önerilir. • Kapanma süresi 2,5 saati geçmemelidir. Operasyonun uzun sürmesi halinde 2,5 saat sonra turnikenin 10 dakika süreyle açılması gerekmektedir. • Cerrahi bölgede yeterli etkiyi sağlamak için turnikeyi uygulamadan en az 5-10 dakika önce “tek doz” antibiyotik. • Komplikasyonlar: – Sinir yaralanmaları – Kas yaralanmaları – Damar yaralanmaları – Cilt yaralanmaları – İskemi ve “turnike ağrısı” sonucu KAH ve RR artışı – EtCO 2'de artış – Fibrinoliz aktivitesinde yakl. Turnike açıldıktan 15 dakika sonra (kanama riski) • Metabolik değişiklikler (laktat ↑, PaCO₂ ↑, K+ ↑, PaO₂ ↓, pH ↓)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_505",
@@ -18937,7 +18937,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi ağrı yönetimi önlemlerini alıyorsunuz?",
     "answer_de": "• Erneute Austestung des PDK unter Monitoring • Ggf. Gabe von Opioid- bzw. Nichtopioid-Analgetika • Ausschluss Lagerungsschaden • Untersuchung OP-Situs, Drainagen, Verbände • Ischämieschmerz nach Bypass-OP Wie erklären Sie sich die Übelkeit? • Großer Oberbaucheingriff mit Stimulation der Triggerzone / Chemorezeptoren der Area postrema am Boden des IV. Ventrikels. Diese erhält Afferenzen über das Kleinhirn vom Vestibularapparat, von höheren Anteilen des Hirnstamms und des Kortex sowie von viszeral afferenten Nerven mit Ursprung in Herz, Hoden und verschiedenen Orten des Gastrointestinaltrakts. • Volatile Anästhetika, Opioide: Emetische Substanzen erreichen über den Blutkreislauf leicht die Chemo - rezeptor-Triggerzone, da die Blut-Hirn-Schranke im Bereich der Area postrema nur schlecht entwickelt ist.4 189 4.1 Aufwachraum (Verlegungskonzepte) Wie behandeln Sie postoperative Übelkeit und Erbrechen (PONV)? • Behandelbare Ursachen (z. B. intestinale Distension) therapieren",
     "answer_tr": "• PDK'nın gözlem altında tekrar test edilmesi • Gerektiğinde opioid veya opioid olmayan analjeziklerin uygulanması • Pozisyon hasarının dışlanması • Cerrahi bölgenin muayenesi, drenaj, pansumanlar • Bypass ameliyatı sonrası iskemi ağrısı Bulantıyı nasıl açıklayabilirsiniz? • Dördüncü ventrikül tabanındaki alan postrema tetik bölgesinin/kemoreseptörlerinin uyarıldığı büyük üst karın prosedürü. Bu, vestibüler aparattan, beyin sapı ve korteksin yüksek kısımlarından ve kalpten, testislerden ve gastrointestinal sistemin çeşitli yerlerinden kaynaklanan visseral aferent sinirlerden beyincik yoluyla aferentleri alır. • Uçucu anestezikler, opioidler: Emetik maddeler kan dolaşımı yoluyla kemoreseptör tetik bölgesine kolayca ulaşır çünkü postrema bölgesinde kan-beyin bariyeri yeterince gelişmemiştir.4 189 4.1 Derlenme odası (transfer konseptleri) Postoperatif bulantı ve kusmayı (PONV) nasıl tedavi edersiniz? • Tedavi edilebilir nedenleri (örn. bağırsak şişkinliği) tedavi edin.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_508",
@@ -18961,7 +18961,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ameliyat sonrası kardiyak aritmilerin olası nedenleri nelerdir?",
     "answer_de": "Die Häufigkeit und der Ursprungsort der Herzrhythmusstörungen (HRST) bestimmen die Dringlichkeit der Behandlung. MERKE Bei kardiovaskulärer Instabilität besteht unmittelbarer Handlungsbedarf. • Anamnestisch bekannte HRST • Elektrolytstörungen (Hypokaliämie, -kalzämie, -magnesiämie) • Ausgeprägte postoperative Inflammation (häufig Vorhofflimmern) • Respiratorische Fehlfunktion mit oder ohne Säure-Basen-Veränderungen • Postoperative Störungen des Erregungsbildungs- oder Erregungsleitungssystem (v. a. bei thorax- oder kardiochirurgischen Eingriffen) • Tachykardie bei insuffizienter Schmerztherapie, z. T. in Verbindung mit einer bestehenden Hypovolämie4 190 4 Postoperativ • Delir und andere Erregungszustände • Hyperthermie • Schilddrüsenfunktionsstörungen",
     "answer_tr": "Kardiyak aritmilerin (HRST) sıklığı ve köken yeri tedavinin aciliyetini belirler. NOT Kardiyovasküler dengesizlik varsa acil eylem gereklidir. • HRST geçmişi • Elektrolit bozuklukları (hipokalemi, kalsemi, magnezemi) • Belirgin postoperatif inflamasyon (genellikle atriyal fibrilasyon) • Asit bazlı değişikliklerle birlikte veya asit bazlı değişiklikler olmadan solunum fonksiyon bozukluğu • Uyarı üretimi veya iletim sisteminde ameliyat sonrası bozukluklar (özellikle torasik veya kalp cerrahisinde) • Yetersiz ağrı tedavisi durumunda taşikardi, ör. T. mevcut hipovolemi ile bağlantılı olarak4 190 4 Ameliyat sonrası • Deliryum ve diğer heyecan durumları • Hipertermi • Tiroid fonksiyon bozukluğu",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_510",
@@ -18973,7 +18973,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anjina semptomlarınız varsa ne gibi önlemler alıyorsunuz?",
     "answer_de": "• 12-Kanal-EKG • Abnahme herzspezifischer Marker wie Troponin T, CK-MB • Adäquate Schmerztherapie • Fortführung einer bestehenden Dauermedikation • Kardiologische Mitbeurteilung Beschreiben Sie Ursache, Symptome und Therapie eines zentralen anticholinergen Syndroms (ZAS). Das ZAS hat eine Häufigkeit von 1–4 % nach Regionalanästhesien und bis zu 4–10 % nach Allgemeinanäs - thesien. Als Ursache wird ein vermindertes zentralnervöses Angebot von Acetylcholin angenommen sowie eine Blockade von muscarinergen Neuronen vermutet, ausgelöst durch eine Vielzahl von zentralnervös wirkenden Substanzen wie z. B. Anästhetika, Neuroleptika, Antidepressiva, Lokalanästhetika, Antihistaminika, Opioide etc. Das ZAS kann in zwei verschiedenen Ausprägungsformen auftreten: mit Agitation oder mit Somnolenz. Das ZAS ist eine Ausschlussdiagnose, d. h., andere Ursachen wie z. B. ein Narkoseüberhang oder metabolische Ursachen müssen ausgeschlossen werden. Zur Diagnosesicherung müssen mindestens ein zentrales Symp - tom (Agitiertheit mit Desorientiertheit, Erregbarkeit, Halluzinationen etc. oder Somnolenz mit Amnesie oder Gedächtnisstörungen) sowie zwei periphere Symptome (trockene rote Haut, Mydriasis, Tachykardie / HRST, Harnverhalt, verminderte Speichelsekretion, verminderte Schweißsekretion) vorhanden sein.",
     "answer_tr": "• 12 derivasyonlu EKG • Troponin T, CK-MB gibi kalbe özgü belirteçlerde azalma • Yeterli ağrı tedavisi • Mevcut uzun süreli ilaç tedavisine devam edilmesi • Kardiyolojik ortak değerlendirme Merkezi antikolinerjik sendromun (CAS) nedenini, semptomlarını ve tedavisini tanımlayın. ZAS'ın sıklığı bölgesel anestezi sonrasında %1-4, genel anestezi sonrasında ise %4-10'a kadar çıkmaktadır. Nedenin, merkezi sinir sistemi üzerinde etkili olan çeşitli maddeler tarafından tetiklenen merkezi sinir sistemindeki asetilkolin arzının azalması ve muskarinik nöronların blokajı olduğu varsayılmaktadır: B. Anestezikler, nöroleptikler, antidepresanlar, lokal anestezikler, antihistaminikler, opioidler, vb. ZAS iki farklı biçimde ortaya çıkabilir: ajitasyon veya uyku hali ile. ZAS bir dışlama tanısıdır; yani B. anestezi aşırı yüklenmesi veya metabolik nedenler gibi diğer nedenlerin dışlanması gerekir. Tanıyı doğrulamak için en az bir merkezi semptom (yönelim bozukluğu, uyarılabilirlik, halüsinasyonlar vb. ile ajitasyon veya amnezi veya hafıza bozuklukları ile birlikte uyku hali) ve iki periferik semptom (kuru kırmızı cilt, midriyazis, taşikardi / HRST, idrar retansiyonu, tükürük salgısında azalma, ter salgısında azalma) mevcut olmalıdır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_511",
@@ -18997,7 +18997,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ne tür ağrıları biliyorsunuz ve hastanın ağrı durumunu nasıl değerlendiriyorsunuz?",
     "answer_de": "• Nozizeptiver Schmerz: – Hell, klar, gut lokalisierbar: z. B. Knochenschmerz – Dumpf, dunkel, diffus lokalisierbar: z. B. viszeraler Schmerz „Bauchschmerz“ • Myofaszialer Schmerz: – Ziehend, reißend, drückend – Mit Ausstrahlung, über Triggerpunkte gut provozierbar, „verspannter Nacken“ – Neuropathischer Schmerz: – Sekundenlanges, blitzartiges Einschießen „elektrischer Stromschlag“ – Kribbelparästhesien, „Ameisenlaufen“ • Rechtes Bein: nozizeptiver Wundschmerz mit niedriger Affektion • Linkes Bein: neuropathischer Schmerz mit Hinweis auf beginnenden Phantomschmerz und hoher Affektion Bei der Schmerzanamnese berichtet der Patient unter Tränen über seine aktuelle Lebenssituation. Er habe sich erst vor Kurzem als Zimmermann selbstständig gemacht, zudem erwarte seine Frau das erste Kind. Vor allem nachts wisse er nicht mehr, wie es finanziell weitergehen solle. In diesen Situationen seien die Schmerzen im linken Bein immer besonders stark und quälend. Skizzieren Sie kurz die Grundzüge eines biopsychosozialen Schmerzmodells und nennen Sie die Abgrenzung zwischen akutem und chronischem Schmerz.",
     "answer_tr": "• Nosiseptif ağrı: – Parlak, net, lokalize edilmesi kolay: ör. B. Kemik ağrısı – Donuk, koyu, yaygın lokalize: ör. B. iç organ ağrısı “mide ağrısı” • Miyofasyal ağrı: – Çekme, yırtılma, baskı – Radyasyonla, tetik noktalar yoluyla kolayca tetiklenen, “gergin boyun” – Nöropatik ağrı: – Saniyeler süren yıldırım benzeri atış “elektrik çarpması” – Karıncalanma parestezi, “iğnelenme” • Sağ bacak: düşük etkili nosiseptif yara ağrısı • Sol bacak: hayalet ağrının başlangıcına işaret eden ve yüksek duygusallık gösteren nöropatik ağrı. Ağrı öyküsü sırasında hasta mevcut yaşam durumunu gözyaşları içinde anlatır. Yakın zamanda marangoz olarak kendi işini kurdu ve eşi ilk çocuklarını bekliyor. Özellikle geceleri artık maddi açıdan işlerin nasıl devam edeceğini bilememektedir. Bu durumlarda sol bacaktaki ağrı her zaman özellikle şiddetli ve dayanılmaz olur. Biyopsikososyal ağrı modelinin temel özelliklerini kısaca özetleyin ve akut ve kronik ağrı arasındaki ayrımı belirtin.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_513",
@@ -19009,7 +19009,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ağrı tedavisinde sıklıkla kullanılan diğer yardımcı analjezikleri biliyor musunuz?",
     "answer_de": "• Pregabalin: – Neueres Antiepileptikum – Blockade von Ca2+-Kanälen – Therapie des neuropathischen Schmerzes (blitzartig einschießende Symptomatik) – Ebenfalls Eindosierung notwendig – Mögliches Abhängigkeitspotenzial (Beikonsum in der Drogenszene) • Mirtazapin: – Atypisches Antidepressivum – Präsynaptische α 2-Blockade, Serotonin-Antagonist – Therapie des neuropathischen Schmerzes (Kribbelparästhesie) – Schlafanstoßende Wirkung – Bessere Verträglichkeit bei älteren Menschen Bei weiteren Schmerzkonsilen berichtet der Patient über eine deutliche Reduktion des neuropathischen Schmerzes. Als be - sonders positiv bewertet er die schnelle Versorgung mit einer Unterschenkelprothese. Als mögliche berufliche Alternativen kristallisieren sich bei dem Patienten eine Umschulung zum Bauzeichner sowie eine Weiterbildung zum Techniker heraus.4",
     "answer_tr": "• Pregabalin: – Daha yeni antiepileptik ilaç – Ca2+ kanallarının blokajı – Nöropatik ağrı tedavisi (yıldırım benzeri semptomlar) – Ayrıca dozaj gerekli – Olası bağımlılık potansiyeli (ilaç sahnesinde ek kullanım) • Mirtazapin: – Atipik antidepresan – Presinaptik α 2 blokajı, serotonin antagonisti – Nöropatik ağrı tedavisi (karıncalanma parestezi) – Uyku Oluşturucu Etki – Yaşlılarda daha iyi tolere edilebilirlik. Daha sonraki ağrı konsültasyonları sırasında hasta, nöropatik ağrıda önemli bir azalma olduğunu bildirdi. Alt bacak protezinin hızla sağlanmasını özellikle olumlu olarak değerlendiriyor. Teknik ressam olarak yeniden eğitim ve teknisyen olarak ileri eğitim, hasta için olası kariyer alternatifleri olarak ortaya çıkıyor.4",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_514",
@@ -19033,7 +19033,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ameliyat sonrası titremeyi önlemek için ameliyat sırasında neler yapabilirsiniz?",
     "answer_de": "• Wärmeerhalt • Adäquate Wärmezufuhr • Vorgewärmte Spülflüssigkeiten und Infusionen Welche Auswirkungen hat Shivering auf den Körper? • Subjektives Empfinden des Patienten: starkes Unwohlsein und Verstärkung von Schmerzen4 197 4.3 Klassische Komplikationen • (Bis zu 5-fache!) Erhöhung des Sauerstoffbedarfs durch massive Muskelkontraktion – Bei unzureichenden Kompensationsmöglichkeiten des Körpers Risiko von z. B. Herzinfarkt und Dyspnoe erhöht • Anstieg des intrakraniellen Drucks (cave: akutes Schädel-Hirn-Trauma, vorbekannte Aneurysmen, Z. n. intrakraniellen OPs) • Anstieg des intraokularen Drucks (cave: Glaukom und Z. n. Augen-OP) • Erhöhtes Risiko für Nahtinsuffizienzen und Nachblutungen! Durch welche postoperativen Maßnahmen lässt sich Shivering eindämmen? • Adäquate Wärmezufuhr (warme Decken, warme Infusionen)",
     "answer_tr": "• Isı koruması • Yeterli ısı temini • Önceden ısıtılmış irigasyon sıvıları ve infüzyonlar Titreme vücutta ne gibi etkiler yaratır? • Hastanın subjektif hissi: şiddetli rahatsızlık ve artan ağrı4 197 4.3 Klasik komplikasyonlar • (5 katına kadar!) Yoğun kas kasılması nedeniyle oksijen ihtiyacında artış - Vücudun telafi etme yeteneği yetersizse, örn. B. Kalp krizi ve nefes darlığı artışı • Kafa içi basıncında artış (mağara: akut travmatik beyin hasarı, geçirilmiş anevrizmalar, kafa içi cerrahi sonrası) • Göz içi basıncında artış (mağara: glokom ve göz ameliyatı sonrası) • Dikiş yetersizliği ve ikincil kanama riskinde artış! Titremeyi önlemek için ameliyat sonrası ne gibi önlemler alınabilir? • Yeterli ısı kaynağı (sıcak battaniyeler, sıcak çaylar)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_516",
@@ -19057,7 +19057,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "PONV intraoperatif olarak nasıl önlenebilir?",
     "answer_de": "• Inhalationsanästhetika vermeiden und stattdessen eine totale intravenöse Anästhesie (TIVA) durch - führen • Medikamentöse Therapie: – Dexamethason (Kortikosteroid) → am besten bereits zur Narkoseeinleitung geben. Dosierung: 4–8 mg bei Erwachsenen, Kinder 0,1–0,15 mg / kg KG – Serotonin-Antagonisten (5-HT 3-Rezeptor-Antagonisten) → zur Narkoseausleitung: – Granisetron: Dosierung 1 mg bei Erwachsenen, Kinder 0,02 mg / kg KG. Bei Kindern < 2 Jahren kon - traindiziert. – Ondansetron: Dosierung 4 mg bei Erwachsenen, Kinder 0,1 mg / kg KG. Für Kinder < 2 Jahren liegen keine Daten vor. – Tropisetron: Dosierung 2 mg bei Erwachsenen, Kinder 0,1 mg / kg KG. Bei Kindern < 2 Jahren kon - traindiziert. – Dopamin-Antagonisten am D 2-Rezeptor: – Haloperidol: Dosierung 1–2 mg bei Erwachsenen. Für Kinder < 18 Jahre keine sicheren Daten. – Droperidol: Dosierung 0,625–1,25 mg bei Erwachsenen, ältere Patienten 0,625 mg, Kinder 0,01– 0,05 mg / kg KG (max. 1,25 mg). Bei Kindern < 2 Jahren kontraindiziert.",
     "answer_tr": "• İnhalasyon anesteziklerinden kaçının ve bunun yerine total intravenöz anestezi (TIVA) uygulayın. • İlaç tedavisi: – Deksametazon (kortikosteroid) → en iyi anestezi indüklenirken verilir. Dozaj: Erişkinlerde 4-8 mg, çocuklarda 0,1-0,15 mg/kg vücut ağırlığı - Serotonin antagonistleri (5-HT3 reseptör antagonistleri) → anestezinin giderilmesi için: - Granisetron: yetişkinlerde 1 mg, çocuklarda 0,02 mg/kg vücut ağırlığı dozajı. 2 yaşından küçük çocuklarda kontrendikedir. – Ondansetron: Yetişkinlerde dozaj 4 mg, çocuklarda 0,1 mg/kg vücut ağırlığı. 2 yaşın altındaki çocuklara ilişkin veri mevcut değildir. – Tropisetron: Yetişkinlerde dozaj 2 mg, çocuklarda 0,1 mg/kg vücut ağırlığı. 2 yaşından küçük çocuklarda kontrendikedir. – D2 reseptöründeki dopamin antagonistleri: – Haloperidol: yetişkinlerde 1-2 mg doz. 18 yaş altı çocuklar için güvenli veri yok. – Droperidol: Yetişkinlerde dozaj 0,625–1,25 mg, yaşlı hastalarda 0,625 mg, çocuklarda 0,01–0,05 mg/kg vücut ağırlığı (maks. 1,25 mg). 2 yaşından küçük çocuklarda kontrendikedir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_518",
@@ -19069,7 +19069,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Şiddetli PONV'de hangi komplikasyonlar ortaya çıkabilir?",
     "answer_de": "• Aspiration und Aspirationspneumonie • Boerhaave-Syndrom • Pneumothorax • Trachealruptur • Verlängerter Krankenhausaufenthalt bei ambulanten Patienten • Verlängerte Verweildauer im Aufwachraum4 199 4.3 Klassische Komplikationen 4.3.3 Laryngospasmus KASUISTIK Sie werden zur Unterstützung in den Ausleitungsraum gerufen. Ein Patient sei nach Extubation zwar wach, aber sehr unruhig und könne nicht „richtig“ atmen. Welche Ursachen kommen u. a. infrage? • Relaxanzienüberhang • Starke Schmerzen • Atemwegsbehinderung durch mechanische Ursachen (z. B. Hämatom nach Karotisdesobliteration)",
     "answer_tr": "• Aspirasyon ve aspirasyon pnömonisi • Boerhaave sendromu • Pnömotoraks • Trakeal rüptür • Ayakta tedavi gören hastalarda uzun süreli hastanede kalış süresi • Derlenme odasında uzun süreli kalış süresi4 199 4.3 Klasik komplikasyonlar 4.3.3 Laringospazm KASÜSTİK Destek için drenaj odasına çağrılacaksınız. Ekstübasyondan sonra hasta uyanıktı ancak çok huzursuzdu ve “düzgün” nefes alamıyordu. Diğer şeylerin yanı sıra nedenleri nelerdir? söz konusu mu? • Rahatlatıcı aşırı yüklenme • Şiddetli ağrı • Mekanik nedenlere bağlı hava yolu tıkanıklığı (örn. karotis deobliterasyonundan sonra hematom)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_519",
@@ -19081,7 +19081,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Laringospazm en sık ne zaman ortaya çıkar?",
     "answer_de": "• Einleitung 29 % • Während der Allgemeinanästhesie 23 % • Ausleitung 48 % Welche primären Maßnahmen würden Sie ergreifen? • Sauerstoffapplikation (100 %) über dicht sitzende Maske • Esmarch-Handgriff • Beseitigung von atemwegsverlegenden Sekreten, Unterbrechung schmerzhafter Stimuli • Bei Versagen: Propofol 1 mg/kg KG • Ggf. Narkose vertiefen und Applikation eines schnell wirkenden Muskelrelaxans (z. B. Succinylcholin 0,5 mg / kg KG) 4.3.4 Relaxanzienüberhang KASUISTIK Nach einer blanden unfallchirurgischen OP wollen Sie die Narkose bei einer Patientin beenden. Bei Ausleitung zeigt die Patientin jedoch keine adäquate Spontanatmung (AF 35 / min, Atemzugvolumen 80–120 ml), zudem wird sie hypertensiv und tachykard.4",
     "answer_tr": "• İndüksiyon %29 • Genel anestezi sırasında %23 • İhraç %48 Hangi temel önlemleri alırdınız? • Sıkı oturan bir maske ile oksijen uygulaması (%100) • Esmarch sapı • Hava yollarını tıkayan sekresyonların ortadan kaldırılması, ağrılı uyaranların kesilmesi • Başarısızlık durumunda: Propofol 1 mg/kg vücut ağırlığı • Gerekirse anesteziyi derinleştirin ve hızlı etkili bir kas gevşetici uygulayın (örn. süksinilkolin 0,5 mg / kg vücut ağırlığı) 4.3.4 Gevşetici fazlalığı KASUİSTİK Bir kaza ameliyatından sonra Bir hastadaki anesteziyi sonlandırmak istiyorum. Ancak taburcu edildiğinde hasta yeterli spontan solunum göstermez (AF 35/dk, tidal volüm 80-120 ml) ve aynı zamanda hipertansif ve taşikardik hale gelir.4",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_520",
@@ -19092,8 +19092,8 @@ const EXAM_QUESTIONS = [
     "question_de": "Welchen Verdacht äußern Sie?",
     "question_tr": "Hangi şüphenizi ifade ediyorsunuz?",
     "answer_de": "• Muskelrelaxanzienüberhang • Unterdrucklungenödem • Zentrales anticholinerges Syndrom Wie können Sie den Grad der Muskelrelaxierung überwachen? • Klinische Zeichen: – Intraoperativ: Rückkehr der Motorik von z. B. Fingern und Füßen, abdominales „Pressen“, Zwischen - atmung – Postoperativ: Kopfheben und -halten, Augenöffnen, suffiziente Spontanatmung, Händedrücken. Sensitivität der klinischen Zeichen ist gering, daher besser eine Relaxometrie durchführen. • Relaxometrie: – Einzelreize – Train-of-Four (TOF) – Post-Tetanic Count (PTC) – Double Burst Stimulation (DBS) Was ist der sog. Train-of-Four (TOF)? Über den Nervenstimulator erfolgt die Abgabe von vier Reizen im Abstand von 0,5 Sekunden (2 Hz) mit max.",
-    "answer_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
-    "is_high_yield": false
+    "answer_tr": "• Kas gevşetici kalıntısı (rezidüel blok) • Negatif basınçlı akciğer ödemi • Santral antikolinerjik sendrom. Kas gevşemesinin derecesi nasıl izlenir? • Klinik belirtiler: İntraoperatif parmak/ayak hareketleri, abdominal zorlanma, aralıklı solunum; postoperatif baş kaldırma/tutma, göz açma, yeterli spontan solunum, el sıkma (klinik bulguların duyarlılığı düşüktür!). • Kantitatif relaksometri: Tekli uyarı, Train-of-Four (TOF), Post-tetanik sayım (PTC), Double Burst Stimulation (DBS). TOF nedir? Sinir stimülatörü ile 0,5 saniye aralıklarla (2 Hz) supramaksimal 4 uyarı verilir; T4/T1 oranı değerlendirilir. Güvenli ekstübasyon için TOF oranı > %90 (0,9) olmalıdır.",
+    "is_high_yield": true
   },
   {
     "id": "q_521",
@@ -19105,7 +19105,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Depolarizan olmayan bir kas gevşetici maddenin etkilerini nasıl tersine çevirirsiniz?",
     "answer_de": "• Nichtdepolarisierende Muskelrelaxanzien können eine individuell sehr variable Wirkdauer haben, ins - besondere abhängig von Alter, Organfunktion (z. B. Leber-, Niereninsuffizienz), Geschlecht, Körpertem - peratur, Anästhesieverfahren (Einsatz inhalativer Anästhetika). Daher ist ein neuromuskuläres Monito - ring bei Einsatz von Muskelrelaxanzien immer erforderlich. • Besonders bei älteren Patienten ist die Wirkdauer von steroidalen nichtdepolarisierenden Muskelrelaxanzien sehr variabel und oft deutlich verlängert. • Antagonisten: Pyridostigmin, Ephedronium und Neostigmin – Alle genannten Substanzen gehören zur Gruppe der Acetylcholinesterase-Hemmer. Sie reversieren die mus - kelrelaxierende Wirkung indirekt, indem sie das Enzym Acetylcholinesterase (AChE) blockieren → Menge an Acetylcholin im synaptischen Spalt steigt → Verdrängung der Muskelrelaxanzien von der Bindungsstelle – Cave: Wirkung auch parasympathisch an muscarinergen Acetylcholinrezeptoren! Gefahr von Brady - kardie, Speichelfluss, Bronchokonstriktion, Übelkeit und Erbrechen etc. – Ceiling-Effekt: Darunter versteht man die Tatsache, dass die antagonistischen Effekte von AChE-Hem - mern durch die Menge von Acetylcholin im synaptischen Spalt begrenzt sind. – Substanzen erst einsetzen, wenn die spontane Erholung absehbar ist (d. h. ab TOF-Count von mindes - tens 1–2, besser 4).",
     "answer_tr": "• Depolarizan olmayan kas gevşeticilerin etki süresi, özellikle yaşa, organ fonksiyonuna (örn. karaciğer, böbrek yetmezliği), cinsiyete, vücut sıcaklığına, anestezi prosedürüne (inhale anestezik kullanımı) bağlı olarak çok değişken bir etki süresine sahip olabilir. Bu nedenle kas gevşetici kullanırken nöromüsküler izleme her zaman gereklidir. • Özellikle yaşlı hastalarda steroidal depolarizan olmayan kas gevşeticilerin etki süresi çok değişkendir ve sıklıkla önemli ölçüde uzar. • Antagonistler: piridostigmin, efedronyum ve neostigmin – Bahsedilen maddelerin tümü asetilkolinesteraz inhibitörleri grubuna aittir. Asetilkolinesteraz (AChE) enzimini bloke ederek kas gevşetici etkisini dolaylı olarak tersine çevirir → sinaptik yarıktaki asetilkolin miktarı artar → kas gevşeticilerin bağlanma bölgesinden uzaklaşmasını sağlar - Uyarı: muskarinik asetilkolin reseptörleri üzerinde de parasempatik bir etkiye sahiptir! Bradikardi, salivasyon, bronkokonstriksiyon, bulantı ve kusma tehlikesi vs. – Tavan etkisi: AChE inhibitörlerinin antagonistik etkilerinin sinaptik aralıktaki asetilkolin miktarı ile sınırlı olduğu gerçeğini ifade eder. – Maddeleri yalnızca kendiliğinden iyileşme öngörülebilir olduğunda kullanın (yani TOF sayısının en az 1-2, tercihen 4 olması durumunda).",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_522",
@@ -19165,7 +19165,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "“Anestezi kapasitesi” ile ilgili hangi hususların ve soruların ele alınması gerekiyor?",
     "answer_de": "Der Gesamteindruck des Kindes, bisherige Erfahrung mit Narkosen, eine Anamnese bzgl. Vorerkrankungen und eine Familienanamnese sind die Basis. Abgelaufene Infekte erhöhen das Risiko für respiratorische Komplikationen. Eine erhöhte tracheobronchiale Hyperreagibilität besteht auf jeden Fall in den 2 Wochen nach einem Atemwegsinfekt. Ist ein schwieriger oder erschwerter Atemweg (eingeschränkte Mundöffnung, Nasenatmung, Größe der Tonsillen, Schnarchen) zu erwarten? Labordiagnostik – was ist bei Kindern erforderlich? Anamnese und körperliche Untersuchung sind in den meisten Fällen ausreichend. Bei Infekten können die CRP-Bestimmung und ein Blutbild ggf. den Verdacht und die Schwere der Infektion untermauern. Nur vor großen und lang dauernden Operationen (Tumor-OP, Herz- und / oder Gefäßeingriffe, Eingriffe in der Nähe großer Gefäße) ist eine zusätzliche Labordiagnostik indiziert. Bei Kindern ist eine sorgfältige Blutungsanamnese (Nasenbluten, blaue Flecken, familiäre Blutungs - neigung) wichtiger als Gerinnungsglobalteste, da diese die häufigste Gerinnungsstörung bei Kindern, das autosomal-dominant vererbte Von-Willebrand-Syndrom (VWS), nicht erfassen. Welche präoperativen Vorbereitungen zur Anästhesie sind zu veranlassen? Es sollte nach Venen gesucht werden, welche die erfolgreiche Anlage eines Venenzugangs wahrscheinlich",
     "answer_tr": "Çocuğun genel izlenimi, daha önceki anestezi deneyimi, daha önceki hastalık öyküsü ve aile öyküsü temel oluşturur. Geçmişteki enfeksiyonlar solunum komplikasyonları riskini artırır. Her durumda, solunum yolu enfeksiyonundan sonraki 2 hafta içinde trakeobronşiyal hiperreaktivitede artış meydana gelir. Zor veya zor bir hava yolu (ağız açıklığının kısıtlı olması, burundan nefes alma, bademciklerin büyüklüğü, horlama) beklenebilir mi? Laboratuvar teşhisi – çocuklar için neler gereklidir? Çoğu durumda öykü ve fizik muayene yeterlidir. Enfeksiyon durumunda CRP testi ve kan sayımı enfeksiyonun şüphesini ve ciddiyetini destekleyebilir. Ek laboratuvar teşhisleri yalnızca büyük ve uzun süreli operasyonlardan (tümör cerrahisi, kalp ve/veya damar prosedürleri, büyük damarlara yakın prosedürler) önce endikedir. Çocuklarda dikkatli bir kanama öyküsü (burun kanaması, morluklar, ailede kanama öyküsü), genel pıhtılaşma testlerinden daha önemlidir; çünkü bu testler çocuklarda en yaygın pıhtılaşma bozukluğu olan otozomal dominant geçişli von Willebrand sendromunu (VWS) tespit etmez. Anestezi için ameliyat öncesi ne gibi hazırlıklar yapılmalıdır? Venöz erişimin başarılı bir şekilde oluşturulmasını mümkün kılan damarlar için bir araştırma yapılmalıdır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_527",
@@ -19177,7 +19177,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Çocuklar ne kadar süre ayık kalmalı?",
     "answer_de": "Im Allgemeinen gelten die gleichen Regeln wie bei Erwachsenen, es gibt aber Besonderheiten: • Säuglinge dürfen bis 4 Stunden vor dem Eingriff Milch erhalten. • Klare Flüssigkeit ist bei allen Kindern bis 1 Stunde vor dem Eingriff nicht nur erlaubt, sondern auch er - wünscht, weil die Kinder dann weniger hypovolämisch sind und sich i. d. R. auch besser führen lassen.5 207 5.2 Narkoseeinleitung und -führung 5.2 Narkoseeinleitung und -führung Welche Formen der Anästhesie sind bei diesem Kind zu wählen, und was muss beachtet werden? Prinzipiell ist sowohl eine Inhalationsanästhesie als auch eine TIVA möglich. In der Regel wird der o. g. Ein - griff in endotrachealer Intubationsnarkose durchgeführt, aber bei einem eingespielten Team (Anästhesist und Operateur) ist auch die Verwendung einer Larynxmaske möglich. Wie sollte die Anästhesieeinleitung erfolgen? Die intravenöse Narkoseeinleitung ist die sicherste. Gerade bei schwierigen Venenverhältnissen kann aber auch eine inhalative Narkoseeinleitung gewählt werden. Dazu ist es i. Allg. vorteilhaft, das Kreissystem zuvor mit Sevofluran in einer Konzentration von 6–8 Vol.-% zu füllen. Welche alternativen Möglichkeiten der Narkoseeinleitung gibt es bei unkooperativen Kindern?",
     "answer_tr": "Genel olarak yetişkinler için de aynı kurallar geçerlidir ancak bazı özel durumlar da vardır: • Bebeklerin işlemden 4 saat öncesine kadar süt almasına izin verilir. • Berrak sıvılara yalnızca işlemden 1 saat öncesine kadar tüm çocuklar için izin verilmez, aynı zamanda çocukların daha az hipovolemik olması ve örneğin d. R. ayrıca daha iyi yönlendirilebilir.5 207 5.2 Anestezi indüksiyonu ve yönetimi 5.2 Anestezi indüksiyonu ve yönetimi Bu çocuk için hangi anestezi şekli seçilmeli ve nelere dikkat edilmelidir? Prensip olarak hem inhalasyon anestezisi hem de TIVA mümkündür. Kural olarak, yukarıda bahsedilen İşlem endotrakeal entübasyon anestezisi altında gerçekleştirilir, ancak iyi koordine edilmiş bir ekiple (anestezi uzmanı ve cerrah) laringeal maskenin kullanılması da mümkündür. Anestezi indüksiyonu nasıl olmalıdır? İntravenöz anestezi indüksiyonu en güvenli olanıdır. Özellikle zor venöz durumlarda anestezinin inhalasyon indüksiyonu da seçilebilir. Bunun için var. Devre sisteminin öncelikle hacimce %6-8 konsantrasyonundaki sevofluranla doldurulması genellikle avantajlıdır. İşbirliği yapmayan çocuklarda anesteziyi indüklemek için hangi alternatif seçenekler vardır?",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_528",
@@ -19189,7 +19189,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Çocuklarda hangi temel farmakolojik özelliklerin dikkate alınması gerekir?",
     "answer_de": "Was bedeutet dies für die Dosierung von Propofol, Opioiden und Muskelrelaxans? Das Verteilungsvolumen ist bei Kindern deutlich erhöht. Kleinkinder benötigen deshalb eine deutlich höhere Propofol-Einleitungsdosis (3–5 mg / kg) als Erwachsene. Allerdings sind die Nebenwirkungen zu beachten, 5 208 5 Besonderheiten der Kinderanästhesie insbesondere die mit Propofol assoziierte Vasodilatation, die bei Neugeborenen und kleinen Säuglingen zu anhaltendem Blutdruckabfall führen kann. Die Abbau- und Eliminationsmechanismen sowie die Ausbildung von Opioidrezeptoren und Acetylcholin - rezeptoren an der motorischen Endplatte reifen bei Kindern im Wesentlichen innerhalb der ersten 6 Lebens - monate. Im Neugeborenen- und Säuglingsalter weisen deshalb fast alle Medikamente eine verlängerte Wirk - dauer auf und müssen vorsichtig titriert werden. 5.3 Klassische Schwierigkeiten, Komplikationen und Nebenwirkungen Sie haben das Kind mit Propofol eingeleitet. Es lässt sich aber schwierig mit der Maske beatmen. Man sieht, dass sich das Abdomen leicht vorwölbt. Wie gehen Sie bei schwieriger Maskenbeatmung vor?",
     "answer_tr": "Bu propofol, opioid ve kas gevşeticilerin dozajı açısından ne anlama geliyor? Çocuklarda dağılım hacmi önemli ölçüde artar. Bu nedenle küçük çocuklar yetişkinlere göre önemli ölçüde daha yüksek propofol indüksiyon dozuna (3-5 mg/kg) ihtiyaç duyarlar. Bununla birlikte, yan etkileri de dikkate alınmalıdır. 5 208 5 Pediatrik anestezinin özel özellikleri, özellikle yenidoğanlarda ve küçük bebeklerde kan basıncında kalıcı bir düşüşe yol açabilen propofol ile ilişkili vazodilatasyon. Motor uç plakasında opioid reseptörleri ve asetilkolin reseptörlerinin oluşumunun yanı sıra bozunma ve eliminasyon mekanizmaları çocuklarda esas olarak yaşamın ilk 6 ayı içinde olgunlaşır. Yenidoğanlarda ve bebeklik döneminde hemen hemen tüm ilaçların etki süresi uzundur ve dikkatli bir şekilde titre edilmeleri gerekir. 5.3 Klasik zorluklar, komplikasyonlar ve yan etkiler Çocuğa propofol tedavisine başladınız. Ancak maskeyle havalandırmak zordur. Karnın hafifçe şiştiğini görebilirsiniz. Maske ventilasyonunun zor olması durumunda nasıl ilerlemelisiniz?",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_529",
@@ -19201,7 +19201,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Laringospazmın tedavisi nedir?",
     "answer_de": "Erste Maßnahmen sind eine relativ hochfrequente Ventilation mit 100 % Sauerstoff und kleinen Tidalvolumina, um eine Magenüberblähung zu vermeiden, und ein kräftiger Esmarch-Handgriff. Parallel ist eine sofortige Narkosevertiefung mit Propofol 1–3 mg / kg KG erforderlich. In den meisten Fällen führen diese Maßnahmen zum Erfolg. Wenn dadurch der Laryngospasmus nicht durchbrochen werden kann, muss eine schnelle Re - laxierung mit Rocuronium oder Succinylcholin erfolgen. Abb. 5.2 Atemwegsmanagement mit Gesichtsmaske: Neutralstellung, Esmarch-Handgriff (mit dem Ringfinger) und geöffneter Mund. Beim spontan atmenden Kind hilft CPAP zusätzlich, den Luftweg offenzuhalten. [T517] 5 210 5 Besonderheiten der Kinderanästhesie Wie sieht die Therapie des Bronchospasmus aus? Die Therapie besteht ebenfalls in einer zügigen Narkosevertiefung und dann der inhalativen Applikation von β2-Mimetika oder Adrenalin. PONV – Welche prophylaktischen Maßnahmen sind sinnvoll? PONV tritt bei Kindern häufig, insbesondere nach HNO- und Augeneingriffen, auf. Präoperativ kann das Risiko mittels spezieller 4-Punkte-Scores bei Kindern ermittelt werden (OP-Dauer > 30 Minuten, Alter",
     "answer_tr": "İlk önlemler arasında mide şişmesini önlemek için %100 oksijen ve küçük tidal hacimlerle nispeten yüksek frekanslı ventilasyon ve güçlü bir Esmarch manevrası yer alır. Aynı zamanda anestezinin derhal 1-3 mg/kg vücut ağırlığı propofol ile derinleştirilmesi gerekmektedir. Çoğu durumda bu önlemler başarılıdır. Eğer bu laringospazmı kırmazsa roküronyum veya süksinilkolin ile hızlı gevşeme uygulanmalıdır. Şekil 5.2 Yüz maskesiyle hava yolu yönetimi: nötr konum, Esmarch tutuşu (yüzük parmağıyla) ve açık ağız. Kendiliğinden nefes alan çocuklarda CPAP aynı zamanda hava yolunun açık tutulmasına da yardımcı olur. [T517] 5 210 5 Pediatrik anestezinin özellikleri Bronkospazmın tedavisi nasıldır? Terapi ayrıca anestezinin hızla derinleştirilmesinden ve ardından β2-mimetiklerin veya adrenalinin inhale uygulanmasından oluşur. PONV – Hangi profilaktik önlemler anlamlıdır? PONV çocuklarda özellikle KBB ve göz prosedürlerinden sonra yaygındır. Ameliyat öncesi çocuklarda özel 4 puanlık skorlar (ameliyat süresi > 30 dakika, yaş) kullanılarak risk belirlenebilir.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_530",
@@ -19213,7 +19213,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Temel perioperatif sıvı yönetimi neye benzer?",
     "answer_de": "Der Erhaltungsbedarf berechnet sich bei Kindern nach der 4-2-1er-Regel. Gleichzeitig müssen aber präope - rative Defizite ausgeglichen werden. Deshalb empfiehlt eine S1-Leitlinie zur perioperativen Flüssigkeits - therapie (Wiss. AK Kinderanästhesie der DGAI 2016) als Grundinfusionsrate 10 ml / kg / h (für die ersten 1–2 Stunden). Die Infusionsrate muss im Verlauf der OP an die speziellen Bedürfnisse angepasst werden. Bei Hypovolämie sollen Volumenboli von 10–20 ml / kg KG Vollelektrolytlösung appliziert werden (cave: bei herzinsuffizienten Kindern initial nur 5 ml / kg KG). Generell sollen Kinder so kurz wie möglich nüchtern gehalten werden; klare Flüssigkeit ist bis 1 Stunde vor OP (neue europäische Empfehlung 2018) nicht nur erlaubt, sondern auch erwünscht, sofern keine Kon - traindikationen im Sinne von verzögerter oder behinderter Magenentleerung bestehen. Säuglinge dürfen bis 4 Stunden vor der OP Milch trinken. Postoperativ sollen Kinder wieder trinken, sobald ausreichende Vigilanz und Schutzreflexe der Atemwege bestehen. Warum ist Regionalanästhesie bei Kindern wünschenswert? Worin bestehen die Unterschiede zu Er - wachsenen hinsichtlich der Durchführung? Welche Blockaden werden häufig angewandt? Im Neugeborenen- und Säuglingsalter werden Apnoen nach Anästhesie gefürchtet. Insbesondere bis zur 60. postkonzeptionellen Woche besteht dafür ein erhöhtes Risiko. Regionalanästhesiologische Methoden er -",
     "answer_tr": "Çocuklar için bakım gereksinimi 4-2-1 kuralı kullanılarak hesaplanır. Ancak aynı zamanda ameliyat öncesi eksikliklerin de telafi edilmesi gerekir. Bu nedenle, perioperatif sıvı tedavisine yönelik S1 kılavuzu (Wiss. AK Kinderanestezi, DGAI 2016) 10 ml/kg/saatlik temel infüzyon hızını (ilk 1-2 saat için) önerir. İnfüzyon hızı operasyon sırasında spesifik ihtiyaçlara göre ayarlanmalıdır. Hipovolemi durumunda, tam elektrolit solüsyonunun 10-20 ml/kg vücut ağırlığı hacim bolusları uygulanmalıdır (dikkat: kalp yetmezliği olan çocuklarda başlangıçta sadece 5 ml/kg vücut ağırlığı). Genel olarak çocuklar mümkün olduğu kadar kısa bir süre için ayık tutulmalıdır; Berrak sıvıya izin verilmesinin yanı sıra, mide boşalmasının gecikmesi veya engellenmesi gibi herhangi bir kontrendikasyon olmaması koşuluyla, ameliyattan 1 saat öncesine kadar da tercih edilebilir (yeni Avrupa tavsiyesi 2018). Bebeklerin ameliyattan 4 saat öncesine kadar süt içmesine izin verilir. Ameliyat sonrası çocukların solunum yollarında yeterli dikkat ve koruyucu refleksler oluştuğunda tekrar su içmeleri gerekir. Çocuklarda bölgesel anestezi neden tercih edilir? Uygulama açısından yetişkinlerden farklılıkları nelerdir? Hangi blokajlar sıklıkla kullanılır? Yenidoğanlarda ve bebeklik döneminde anestezi sonrası apnelerden korkulur. Özellikle gebe kalma sonrası 60. haftaya kadar bu riskin artması söz konusudur. Bölgesel anestezi yöntemleri -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_531",
@@ -19333,7 +19333,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Anestezi indüksiyonuna nasıl devam edersiniz?",
     "answer_de": "Bei V. a. paralytischen Ileus: • Anlegen einer Magensonde und Absaugen • Entfernen der Magensonde vor der Narkoseeinleitung • Am ehesten Oberkörperhochlage, wenn die Kreislaufsituation es zulässt und die Intubationsbedingungen dadurch nicht deutlich erschwert werden • Narkoseeinleitung als Rapid Sequence Induction (RSI) Trotz Ihrer Vorsichtsmaßnahmen kommt es unmittelbar nach Narkoseinduktion zu starkem Erbrechen mit z. T. unverdauten Nahrungsresten. Wie handeln Sie in dieser Situation, um eine Aspiration zu verhindern oder zumindest zu limitieren? • Wenn möglich, sofortige Intubation und Blocken des Endotrachealtubus • Sofortige Tubus-Lagekontrolle (Kapnografie!) • Bei nicht unmittelbar zu sicherndem Atemweg frühzeitig zusätzliche personelle Hilfe organisieren! • Bei massivem Erbrechen ohne die Möglichkeit der unmittelbaren Intubation unter Sicht Oberkörper, wenn möglich, absenken und mit starrem Absauger die Mundhöhle freisaugen, um bessere Bedingungen für eine Intubation unter Sicht zu schaffen • Bei ausgeprägtem Sättigungsabfall v. a. bei konsekutiver Bradykardie und / oder Hypotonie sind frustrane",
     "answer_tr": "V. a. paralitik ileus: • Gastrik tüpün yerleştirilmesi ve aspirasyonu • Anestezi indüksiyonundan önce gastrik tüpün çıkarılması • Büyük olasılıkla dolaşım durumu izin veriyorsa ve entübasyon koşulları önemli ölçüde zorlaşmıyorsa üst gövde yükseltilmiş halde • Hızlı Sıralı İndüksiyon (RSI) olarak anestezi indüksiyonu Önlemlerinize rağmen, anestezi indüksiyonundan hemen sonra şiddetli kusma meydana gelir, örn. T. sindirilmemiş gıda kalıntıları. Bu durumda aspirasyonu önlemek veya en azından sınırlamak için nasıl hareket edersiniz? • Mümkünse, endotrakeal tüpün derhal entübasyonu ve bloke edilmesi • Derhal tüp pozisyonunun kontrolü (kapnografi!) • Hava yolu hemen güvence altına alınamıyorsa, erken bir aşamada ek personel yardımı ayarlayın! • Görüş altında anında entübasyon olanağı olmayan şiddetli kusma durumunda, mümkünse üst gövdeyi indirin ve görme altında entübasyon için daha iyi koşullar yaratmak amacıyla ağız boşluğunu sert bir emme cihazıyla vakumlayın. • Satürasyonda belirgin bir düşüş varsa, v. a. ardışık bradikardi ve/veya hipotansiyonun olması sinir bozucudur",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_541",
@@ -19345,7 +19345,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Bir sonraki adımınız nedir?",
     "answer_de": "• Absaugen der Lunge mit einem möglichst großlumigen Absaugkatheter. • Bei Aspiration von größeren Nahrungspartikeln mit wahrscheinlicher Verlegung größerer Bronchien ist eine Bronchoskopie indiziert. • Die Bronchoskopie sollte schnell und fokussiert auf die Entfernung größerer verlegender Partikel durchgeführt werden.7 221 7.1 Aspiration CAVE • Ausdauernde Bronchoskopien zum Absaugen von möglichst viel Aspirat aus allen Bronchialostien führen zu ausgeprägter mechanischer Reizung und ggf. zur Verletzung der Bronchialschleimhaut mit konsekutiver Freisetzung von proinflammatorischen Zytokinen und sind damit kontraindiziert! • Eine Bronchiallavage mit dem Ziel, das saure Aspirat zu verdünnen, führt ggf. zu einer tieferen Verteilung des Aspirats und kann die Lungenschädigung damit aggravieren! • Die bronchiale Instillation von Bikarbonatlösung zum Neutralisieren des sauren Aspirats ist gefährlich und nicht indiziert! • Nach einmaligem Absaugen bzw. einer kurzen Bronchoskopie wird die Beatmung initial mit einem",
     "answer_tr": "• Mümkün olan en geniş lümene sahip bir emme kateteri kullanarak akciğerleri aspire edin. • Daha büyük yiyecek parçacıklarının aspirasyonunun daha büyük bronşları tıkaması muhtemelse bronkoskopi endikedir. • Bronkoskopi hızlı bir şekilde ve tıkayıcı daha büyük parçacıkların uzaklaştırılmasına odaklanılarak gerçekleştirilmelidir.7 221 7.1 Aspirasyon MAĞARASI • Tüm bronşiyal açıklıklardan mümkün olduğu kadar fazla aspirasyon yapmak için ısrarlı bronkoskopiler, proinflamatuar sitokinlerin art arda salınmasıyla belirgin mekanik tahrişe ve muhtemelen bronşiyal mukozada hasara yol açar ve bu nedenle kontrendikedir! • Asidik aspiratın seyreltilmesi amacıyla yapılan bronş lavajı, aspiratın daha derine dağılmasına neden olabilir ve dolayısıyla akciğer hasarını ağırlaştırabilir! • Asidik aspiratı nötralize etmek için bronşlara bikarbonat solüsyonu damlatılması tehlikelidir ve endike değildir! • Tek bir aspirasyon veya kısa bir bronkoskopi sonrasında ventilasyona ilk olarak bir el ile başlanır.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_542",
@@ -19369,7 +19369,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Antibiyotik profilaksisi endike midir?",
     "answer_de": "Nein. Grundsätzlich ist eine Antibiotikaprophylaxe nach Aspiration von Magensaft nicht indiziert. Aus - nahmen können im Einzelfall bei Risikopatienten mit einer hohen Wahrscheinlichkeit der pathologischen Keimbesiedelung des oberen Gastrointestinaltrakts (z. B. Patienten mit GIT-Tumor) und / oder ausgeprägten pulmonalen Vorerkrankungen mit vorbestehender deutlich eingeschränkter pulmonaler Leistungsreserve indiziert sein. Der Patient gibt nach der Extubation leichte Luftnot an und fiebert innerhalb der ersten Stunden nach der Aspiration bis auf 38,5 °C. Welche Untersuchungen führen Sie durch? • Auskultation • Laborentnahme (kleines Blutbild, CRP, ggf. PCT) • Röntgen-Thorax Welche Kriterien fordern Sie, um die Diagnose „Aspirationspneumonie“ stellen zu können? • Fieber (unspezifisch, auch allein durch proinflammatorische Zytokine nach der Aspiration möglich) • Erhöhte Entzündungswerte im Labor (erhöhtes CRP post-OP allein wenig aussagekräftig, bei entzündli - cher Grunderkrankung wie in diesem Beispiel können Leukozyten und PCT auch durch die Appendizitis erhöht sein)",
     "answer_tr": "Hayır. Prensip olarak mide suyunun aspirasyonundan sonra antibiyotik profilaksisi endike değildir. Üst gastrointestinal sistemde patolojik mikrop kolonizasyonu olasılığı yüksek olan yüksek riskli hastalar (örn. GIT tümörü olan hastalar) ve/veya önceden mevcut önemli ölçüde sınırlı pulmoner performans rezervi olan ciddi önceki pulmoner hastalıkları olan yüksek riskli hastalar için bireysel vakalarda istisnalar belirtilebilir. Ekstübasyondan sonra hasta hafif nefes darlığı bildirir ve aspirasyondan sonraki ilk birkaç saat içinde ateşi 38,5 °C'ye kadar çıkar. Hangi testleri yapıyorsunuz? • Oskültasyon • Laboratuvar örneklemesi (düşük kan sayımı, CRP, gerekirse PCT) • Göğüs röntgeni “Aspirasyon pnömonisi” tanısını koyabilmek için hangi kriterlere ihtiyacınız var? • Ateş (spesifik değil, aspirasyon sonrası sadece proinflamatuar sitokinler nedeniyle de mümkündür) • Laboratuvarda artmış inflamasyon değerleri (ameliyat sonrası CRP yüksekliği tek başına çok bilgilendirici değildir; bu örnekte olduğu gibi altta yatan bir inflamatuar hastalık durumunda apandisit nedeniyle lökositler ve PCT de yükselebilir)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_544",
@@ -19381,7 +19381,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi hesaplanmış antibiyotik tedavisini kullanırsınız?",
     "answer_de": "• Erwartetes Keimspektrum: Anaerobier und grampositive Kokken, seltener gramnegative Stäbchen • Primäres Regime: Ampicillin-Sulbactam • Bei hospitalisierten Patienten mit dem Risiko gastrointestinaler Besiedelung mit resistenten gramnegati - ven Bakterien ggf. Piperacillin-Tazobactam • Bei Penicillinallergie: Ceftriaxon + Metronidazol oder Moxifloxacin7 223 7.2 Schock 7.2 Schock Thorsten Annecke KASUISTIK Sie werden zu einem Notfall auf einer allgemeinchirurgischen Station gerufen. Eine 75-jährige Patientin wurde 3 Tage zuvor bei V. a. Pankreas-Ca einer Whipple-Operation unterzogen. Der postoperative Verlauf war zunächst unauffällig. Jetzt wurde sie plötzlich somnolent, blass und kaltschweißig aufgefunden (AF 28 / min, Sinusrhythmus 135 / min, RR 75 / 50 mmHg; Temperatur 36,5 °C, venöse BGA: Laktat 12 mmol / l). Unter welchem klinischen Syndrom leidet diese Patientin? Die Patientin zeigt Zeichen eines Schocks.",
     "answer_tr": "• Beklenen bakteri spektrumu: anaeroblar ve gram-pozitif koklar, daha nadiren gram-negatif çubuklar • Birincil rejim: ampisilin-sulbaktam • Dirençli gram-negatif bakterilerle gastrointestinal kolonizasyon riski olan hastanede yatan hastalarda piperasilin-tazobaktam kullanılabilir • Penisilin alerjisi için: seftriakson + metronidazol veya moksifloksasin7 223 7.2 Şok 7.2 Şok Thorsten Annecke CASUISTICS Genel cerrahi koğuşunda acil bir duruma çağrıldınız. 75 yaşındaki hasta, 3 gün önce V.a. Pankreas Ca'ya Whipple ameliyatı uygulandı. Ameliyat sonrası seyir başlangıçta dikkat çekici değildi. Şimdi birdenbire uykulu, solgun ve soğuk terli olduğu görüldü (AF 28 / dak, sinüs ritmi 135 / dak, RR 75 / 50 mmHg; sıcaklık 36,5 ° C, venöz BGA: laktat 12 mmol / l). Bu hasta hangi klinik sendromdan muzdariptir? Hasta şok belirtileri gösteriyor.",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_545",
@@ -19549,7 +19549,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Ne yapabilirsin?",
     "answer_de": "Falls der Patient kreislaufstabil ist, Triggermechanismen für die Myokardischämie behandeln: 1. Tachykardie 2. Hypertonie 3. Hypotonie 4. Hypothermie 5. Anämie Sie haben die Hypoxie ausgeschlossen, der Patient ist kreislaufstabil, etCO 2 im Normbereich. Hb-Bestimmung, Glukose, Temperatur und Elektrolyte sind normwertig. Der Patient hat einen Bigeminus. Wie würden Sie die Rhythmusstörungen behandeln? • Magnesiumgabe, z. B. 9 mmol als Kurzinfusion • Xylocain 1 mg / kg KG oder • Amiodaron 5 mg / kg KG, cave: Schilddrüsenwerte Die Operation wird mit Sinusrhythmus und ST-Hebung zu Ende gebracht. Was machen Sie weiter? • Anamnese erheben: Angina-pectoris-Beschwerden des Patienten? • 12-Kanal-EKG",
     "answer_tr": "Hastanın dolaşımı stabilse miyokard iskemisi tetikleyici mekanizmalarını tedavi edin: 1. Taşikardi 2. Hipertansiyon 3. Hipotansiyon 4. Hipotermi 5. Anemi Hipoksiyi dışladınız, hastanın dolaşımı stabil, etCO2 normal aralıkta. Hb tayini, glikoz, sıcaklık ve elektrolitler normaldir. Hastanın bigeminusu var. Aritmiyi nasıl tedavi edersiniz? • Magnezyum uygulaması, örn. B. Kısa infüzyon olarak 9 mmol • Xylocaine 1 mg/kg vücut ağırlığı veya • Amiodaron 5 mg/kg vücut ağırlığı, mağara: tiroid değerleri Ameliyat sinüs ritmi ve ST elevasyonu ile tamamlanır. Bundan sonra ne yapacaksınız? • Anamnez alın: Hastada anjina pektoris belirtileri var mı? • 12 uçlu EKG",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_559",
@@ -19597,7 +19597,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Yoğun bakım ünitesinde nelere dikkat edilmelidir?",
     "answer_de": "• Hämodynamische, hämostaseologische und metabolische Stabilisierung • Wärmeerhalt • Secondary Survey abschließen, sorgfältig dokumentieren • Alle radiologischen Befunde überprüfen (HWS-Verletzung, Vertebralis-, Aortendissektion ausgeschlossen?) • Tetanusschutz • Diurese aufrechterhalten (Gefahr einer „Crush-Niere“) • Auf Entwicklung von Kompartmentsyndromen achten (Extremitäten, Abdomen) • Second Look nach Stabilisierung planen7 239 7.7 Polytrauma Wie beurteilen Sie die Versorgung durch den Notarzt vor Ort? Bei präklinisch nicht kontrollierbarer Blutung mit traumatisch-hämodynamischem Schock ist allein der schnellst - mögliche Transport in die nächste geeignete Klinik lebensrettend. Bei inneren Blutungen durch eine Beckenfrak - tur kann die korrekte Anlage einer Beckenschlinge lebensrettend sein. Der Notarzt hat somit korrekt gehandelt. KASUISTIK",
     "answer_tr": "• Hemodinamik, hemostazolojik ve metabolik stabilizasyon • Isı koruması • İkincil incelemeyi tamamlayın, dikkatlice belgeleyin • Tüm radyolojik bulguları kontrol edin (servikal omurga yaralanması, vertebral arter diseksiyonu, aort diseksiyonu hariç mi?) • Tetanos koruması • Diürezi koruyun (\"böbreğin ezilmesi\" riski) • Kompartman sendromlarının (ekstremiteler, karın) gelişimini izleyin • Stabilizasyondan sonra ikinci bakımı planlayın7 239 7.7 Politravma Acil doktor tarafından aşağıdaki durumlarda sağlanan bakımı nasıl değerlendiriyorsunuz? sitesi? Travmatik hemodinamik şok ile hastane öncesi kontrol edilemeyen kanama durumunda, yalnızca en yakın uygun kliniğe mümkün olan en hızlı nakil hayatınızı kurtarabilir. Pelvik kırığın neden olduğu iç kanama durumunda, pelvik askının doğru yerleştirilmesi hayat kurtarıcı olabilir. Bu nedenle acil doktoru doğru davrandı. KASUİSTİK",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_563",
@@ -19609,7 +19609,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hangi şüpheli tanıları koyuyorsunuz?",
     "answer_de": "• Schweres Schädel-Hirn-Trauma (SHT) • Femurfrakturen beidseits Ist bei diesem Patienten eine kontrollierte Hypotension indiziert? Bei SHT ist eine kontrollierte Hypotension im Rahmen eines „Damage-Control-Resuscitation“-Kon - zepts kontraindiziert. Der zerebrale Perfusionsdruck ist direkt vom arteriellen Mitteldruck abhängig (CPP = MAP – ICP). In diesem Fall ist durch Volumen- und ggf. Vasopressorgabe ein systolischer Druck von 120 mmHg anzustreben. Wie gehen Sie weiter vor? • Schockraumversorgung nach cABCD-Konzept • Diagnostik mit Ganzkörper-CT / cCT • Normotension / Normoventilation / Normoxämie / Normothermie erhalten • Tranexamsäure 1 g + 1 g über 8 Stunden; bei Z. n. Marcumar®-Therapie Gerinnung durch PPSB-Gabe stabilisieren; Point-of-Care-Gerinnungsdiagnostik und Therapie • Nach Befund ggf. schnellstmögliche neurochirurgische Intervention; ICP-Monitoring • Damage Control Surgery (Fixateur externe, OP-Zeit streng begrenzen) Nach Ganzkörper-CT und operativer Versorgung des akuten epiduralen Hämatoms und Anlage einer externen Ventrikel -",
     "answer_tr": "• Şiddetli travmatik beyin hasarı (TBI) • Bilateral femur kırıkları Bu hastada kontrollü hipotansiyon endike midir? TBI'da “hasar-kontrol-resüsitasyon” konseptinin bir parçası olarak kontrollü hipotansiyon kontrendikedir. Serebral perfüzyon basıncı doğrudan ortalama arter basıncına bağlıdır (CPP = MAP – ICP). Bu durumda amaç volüm ve gerekiyorsa vazopressör verilerek sistolik basıncın 120 mmHg'ye ulaştırılmasıdır. Nasıl devam edersiniz? • CABCD konseptine göre şok odası bakımı • Tüm vücut CT / cCT ile teşhis • Normotansiyon / normoventilasyon / normoksemi / normoterminin sürdürülmesi • Traneksamik asit 1 g + 1 g, 8 saat boyunca; Marcumar® tedavisinden sonra PPSB uygulayarak pıhtılaşmayı stabilize edin; Hasta başı pıhtılaşma teşhisi ve tedavisi • Gerekiyorsa mümkün olan en kısa sürede beyin cerrahisi müdahalesi; ICP izleme • Hasar kontrol ameliyatı (dış fiksatör, çalışma süresini kesin olarak sınırlandırın) Tüm vücut BT'si ve akut epidural hematomun cerrahi tedavisi ve harici bir ventrikül oluşturulmasından sonra -",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_564",
@@ -19633,7 +19633,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hastayı yoğun bakıma kabul ederken hangi bilgiler önemlidir?",
     "answer_de": "• Vorerkrankungen der Patientin (Kardiale Vorgeschichte? Pulmologische Erkrankungen? Neurologische Erkrankungen? etc.) • Vormedikation (insb. Antikoagulation, Herz-Kreislauf-Medikamente, Immunsuppression) • Allergien und Unverträglichkeiten • Operatives Vorgehen: – Was genau ist operiert worden? (Laparoskopie oder offene OP?) – Gab es intraoperative Komplikationen oder Besonderheiten? (Blutungen? Transfusionen? Kreislauf - reaktionen? Beatmungsprobleme? Lagerungsprobleme oder V. a. Lagerungsschäden?) – Gab es Komplikationen bei der Narkoseeinleitung (V. a. Aspiration? Intubationsbedingungen?) und / oder bei der Anlage von Kathetern (z. B. ZVK, Dauerkatheter, arterieller Katheter, PDK)? – Welche Drainagen wurden durch die Operateure angelegt? Genaue Lagebeziehung wichtig (z. B. Drainage an Anastomose, retroperitoneal etc.) • Postoperatives Vorgehen: – Gibt es spezielle Anordnungen durch die Operateure oder vom Anästhesisten? (z. B. Röntgenbild, sono - grafische Kontrolle) – Soll eine antibiotische Therapie gegeben werden? Gab es intraoperativ eine Antibiose und, wenn ja, wie oft?",
     "answer_tr": "• Hastanın önceki hastalıkları (kalp öyküsü? Akciğer hastalıkları? Nörolojik hastalıklar? vb.) • Ön ilaç tedavisi (özellikle antikoagülasyon, kardiyovasküler ilaçlar, immünsüpresyon) • Alerjiler ve intoleranslar • Cerrahi prosedür: – Tam olarak neyle ameliyat edildi? (Laparoskopi mi, açık ameliyat mı?) – Herhangi bir intraoperatif komplikasyon veya özel durum var mıydı? (Kanama? Transfüzyonlar? Dolaşım reaksiyonları? Ventilasyon sorunları? Konumlandırma sorunları veya hepsinden önemlisi konumlandırma hasarı?) – Anestezi indüksiyonu sırasında (özellikle aspirasyon? Entübasyon koşulları?) ve/veya kateterlerin yerleştirilmesi sırasında (örn. CVC, kalıcı kateter, arteriyel kateter, PDK) komplikasyon oldu mu? – Cerrahlar tarafından hangi drenler yerleştirildi? Tam konumsal ilişki önemlidir (örn. anastomozda drenaj, retroperitoneal vb.) • Ameliyat sonrası prosedür: – Cerrahın veya anestezi uzmanının özel talimatları var mı? (örn. röntgen, sonografik kontrol) – Antibiyotik tedavisi verilmeli mi? Ameliyat sırasında size antibiyotik verildi mi ve verildiyse ne sıklıkla?",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_566",
@@ -19645,7 +19645,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Hala kan ürünleri var mı?",
     "answer_de": "• Dokumentation von ärztlichen Ansprechpartnern (Wer war Operateur? Welcher Anästhesist hat die Nar - kose geleitet?) • Gibt es Angehörige, die noch informiert werden müssen? Die Patientin hat eine vorbekannte Herzinsuffizienz und hat intraoperativ 2 Liter kristalloide Flüssigkeit über 8 Stunden erhalten. Aktuell ist die Patientin hochgradig katecholaminunterstützt und tachykard. Welche Möglichkeiten haben Sie, um den Volumenstatus der Patientin zu überprüfen? • Passive-Leg-Raising-Test (Trendelenburg-Lagerung und / oder Anheben der Beine) → Anstieg des MAP > 10 % als Zeichen für Volumenmangel7 241 7.8 Allgemeine Prinzipien der Intensivtherapie • Bei arteriellem Katheter: Bestimmung der Pulse Pressure Variation (PPV) → > 10 % als Zeichen für Volumenmangel; schauen, ob die arterielle Druckkurve onduliert • BGA: Laktatwert, Hkt, Base Excess (BE), zentralvenöse Sättigung (ScvO 2) bestimmen • Transthorakale Echokardiografie und Sonografie der V. cava inferior • Transkardiopulmonale Thermodilution / Pulmonaliskatheter zur Bestimmung des Volumenstatus (ITBV, GEDV), Schlagvolumen und Veränderung des Schlagvolumens in Abhängigkeit von Beatmungsparametern",
     "answer_tr": "• Tıbbi temasların belgelenmesi (Cerrah kimdi? Anesteziyi hangi anestezi uzmanı uyguladı?) • Hala bilgilendirilmesi gereken akrabalar var mı? Hastanın kalp yetmezliği öyküsü var ve ameliyat sırasında 8 saat boyunca 2 litre kristaloid sıvı aldı. Hasta şu anda yüksek düzeyde katekolamin destekli ve taşikardiktir. Hastanın hacim durumunu kontrol etmek için hangi seçeneklere sahipsiniz? • Pasif bacak kaldırma testi (Trendelenburg pozisyonu ve/veya bacakları kaldırmak) → Hacim eksikliği belirtisi olarak OAB'de > %10 artış7 241 7.8 Yoğun tedavinin genel prensipleri • Arteriyel kateter ile: Nabız basıncı değişiminin (PPV) belirlenmesi → hacim eksikliği belirtisi olarak > %10; arteriyel basınç eğrisinin dalgalı olup olmadığına bakın • BGA: laktat değerini, Hct'yi, baz fazlalığını (BE), santral venöz satürasyonu (ScvO 2) belirleyin • Transtorasik ekokardiyografi ve alt vena kava sonografisi • Hacim durumunu (ITBV, GEDV), atım hacmini ve ventilasyon parametrelerine bağlı olarak atım hacmindeki değişikliği belirlemek için transkardiyopulmoner termodilüsyon / pulmoner kateter",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_567",
@@ -19657,7 +19657,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Yoğun bakım hastası için hacim terapisini nasıl tasarlarsınız?",
     "answer_de": "• Primär mit kristalloiden Flüssigkeiten: – Hierbei sollen balancierte isotone Vollelektrolytlösungen verwendet werden. – Isotone Kochsalzlösungen sollen beim Intensivpatienten nicht verwendet werden. • Kolloidale Flüssigkeiten: – Hydroxyethylstärke (HES): derzeit bei kritisch kranken Patienten nicht empfohlen. – Bei unzureichender Wirkung auf kristalloide Lösungen kann auf Humanalbumin oder Gelatinelösun - gen ausgewichen werden. • Bei Intensivpatienten mit schwerem Schädel-Hirn-Trauma sollen wegen der Gefahr eines Hirnödems keine hypoosmolaren Lösungen zur Volumentherapie verwendet werden. Die Patientin soll postoperativ mindestens 2 Tage nüchtern bleiben. Wie sollten Sie eine Ernährungstherapie planen? Im vorliegenden Fall sollte eine parenterale Ernährungstherapie erst erfolgen, nachdem die hämodynamische Stabilisierung erfolgt ist und wenn • bereits eine präoperative Mangelernährung vorliegt; • ohne manifeste Mangelernährung, wenn die Patientin – > 7 Tage keine orale Kostaufnahme haben darf,",
     "answer_tr": "• Öncelikle kristaloid sıvılarda: – Burada dengeli izotonik katı elektrolit çözeltileri kullanılmalıdır. – Yoğun bakım hastalarında izotonik salin solüsyonları kullanılmamalıdır. • Kolloidal sıvılar: – Hidroksietil nişasta (HES): şu anda kritik hastalarda önerilmemektedir. – Kristalloid solüsyonların etkisi yetersizse bunun yerine insan albumini veya jelatin solüsyonları kullanılabilir. • Ağır travmatik beyin hasarı olan yoğun bakım hastalarında, beyin ödemi riski nedeniyle hipoozmolar solüsyonlar volüm tedavisinde kullanılmamalıdır. Hasta ameliyat sonrası en az 2 gün oruç tutmalıdır. Beslenme tedavisini nasıl planlamalısınız? Mevcut durumda parenteral beslenme tedavisi yalnızca hemodinamik stabilizasyon sağlandıktan sonra ve aşağıdaki durumlarda gerçekleştirilmelidir: • ameliyat öncesi malnütrisyon halihazırda mevcutsa; • belirgin bir yetersiz beslenme olmadan, eğer hastanın 7 günden fazla bir süre boyunca ağızdan yemek yemesine izin verilmiyorsa,",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_568",
@@ -19669,7 +19669,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Yoğun bakımdaki bir hastanın enerji ihtiyacını nasıl hesaplarsınız?",
     "answer_de": "• Energiebedarf (EB): Ruheenergiebedarf × Stressfaktor (0,5–2) • Standard-Energiebedarf: – Bis 20–30 Jahre: 25 kcal / kg KG – Bis 30–70 Jahre: 22,5 kcal / kg KG – ≥ 70 Jahre: 20 kcal / kg KG Anmerkung: Ist-Gewicht bei Patienten mit BMI 25–30, bei BMI > 30 Normalgewicht ermitteln. • Patienten mit assistierter Beatmung benötigen 10–15 % mehr Kalorien als Patienten mit kontrollierter Beatmung (Aktivitätsfaktor 1,1).7 242 7 Notfall- und Intensivtherapie • Berechnung: – z. B. Formel nach Harris-Benedict (BEE): +× +× −× +× +× −× == =Männer:66,47(13,75G )(5H )(6,76 A) Frau en:65,51 (9,56G )(1,85 H) (4,67A )",
     "answer_tr": "• Enerji gereksinimi (EB): Dinlenme enerji gereksinimi × stres faktörü (0,5-2) • Standart enerji gereksinimi: – 20-30 yaşa kadar: 25 kcal/kg vücut ağırlığı – 30-70 yaşa kadar: 22,5 kcal/kg vücut ağırlığı – ≥ 70 yaş: 20 kcal/kg vücut ağırlığı Not: BMI > 30 normal kilo için BMI'si 25-30 olan hastalar için gerçek ağırlığı belirleyin. • Destekli ventilasyona sahip hastalar, kontrollü ventilasyona sahip hastalara göre %10-15 daha fazla kaloriye ihtiyaç duyar (aktivite faktörü 1,1).7 242 7 Acil durum ve yoğun bakım tedavisi • Hesaplama: – örn. B. Harris-Benedict'e (BEE) göre formül: +× +× −× +× +× −× == =Erkekler:66,47(13,75G)(5H)(6,76A) Kadınlar:65,51(9,56G)(1,85H)(4,67A)",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_569",
@@ -19681,7 +19681,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Kaloriler bireysel besin bileşenleri arasında nasıl dağıtılır?",
     "answer_de": "Standardernährung: • Fette: 40–50 % des Kalorienbedarfs • Kohlenhydrate: 30–40 % des Kalorienbedarfs • Proteine: 40 g / 1.000 ml Ernährungslösung Individuelle Anpassung ist z. B. bei Niereninsuffizienz erforderlich. Was müssen Sie bei Beginn der postoperativen Antikoagulation auf der Intensivstation bedenken? • Gibt es ein Risiko für Nachblutungen? • Wie ist die aktuelle Gerinnungssituation? • Gibt es eine Indikation für eine therapeutische Antikoagulation? • Gab es präoperativ eine Antikoagulation? • Welche Möglichkeiten der Antikoagulation haben wir? – Ist der Patient noch höhergradig katecholaminpflichtig? – Ist eine s. c. Applikation möglich? – Gibt es Kontraindikationen gegen bestimmte Antikoagulanzien? (HIT in der Vorgeschichte, Allergien) – Ist eine Niereninsuffizienz oder Dialysepflichtigkeit bekannt? (Dosisanpassung!) • An Kontrolle der Antikoagulation denken (aPTT-Kontrolle bei Heparin-Perfusor, Anti-Xa-Kontrolle bei",
     "answer_tr": "Standart diyet: • Yağlar: Kalori ihtiyacının %40-50'si • Karbonhidratlar: Kalori ihtiyacının %30-40'ı • Proteinler: 40 g / 1.000 ml Beslenme çözümü Bireysel adaptasyon örn. B. böbrek yetmezliği vakalarında gereklidir. Yoğun bakımda postoperatif antikoagülasyona başlarken nelere dikkat etmelisiniz? • İkincil kanama riski var mı? • Mevcut pıhtılaşma durumu nedir? • Terapötik antikoagülasyon endikasyonu var mı? • Ameliyat öncesinde antikoagülasyon var mıydı? • Hangi antikoagülasyon seçeneklerimiz var? – Hasta hala büyük ölçüde katekolaminlere bağımlı mı? – Bir sc. Başvuru mümkün mü? – Bazı antikoagülanların kontrendikasyonları var mı? (HIT öyküsü, alerji) – Bilinen böbrek yetmezliği veya diyaliz ihtiyacı var mı? (Doz ayarlaması!) • Antikoagülasyonun izlenmesini düşünün (heparin perfüzör ile aPTT kontrolü, anti-Xa kontrolü ile",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_570",
@@ -19765,7 +19765,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Renal replasman tedavisinin en önemli endikasyonlarını sayın?",
     "answer_de": "Indikationen der Nierenersatztherapie bei kritisch kranken Patienten › Tab. 7.3 Tab. 7.3 Indikationen der Nierenersatztherapie bei kritisch kranken Patienten (nach Joannidis 2011) Absolute Indikationen Relative Indikationen Urämiesymptomatik / -komplikationen Harnstoff > 100–160 mg / dl Therapieresistente Azidose (pH < 7,1) Serum-Kreatinin > 2,5–5 mg / dl Schwere Elektrolytentgleisung Oligurie / Anurie Hyperthermie Therapieresistente Hypervolämie (Organödeme) Intoxikation mit dialysablen Substanzen (z. B. Lithium, Theophyllin, Alkohole)7 247 7.10 Verbrennungen Welche Vorteile haben kontinuierliche im Vergleich zu intermittierenden Dialyseverfahren für Intensivpatienten? • Ggf. bessere hämodynamische Stabilität • Kontinuierliche Kontrolle über die Flüssigkeitsbilanz • Langsamere Konzentrationsangleichung, Vermeiden eines „Dysäquilibriumsyndroms“",
     "answer_tr": "Kritik hastalarda renal replasman tedavisi endikasyonları › Tab. 7.3 Sekme. 7.3 Kritik hastalarda renal replasman tedavisi endikasyonları (Joannidis 2011'e göre) Mutlak endikasyonlar Göreceli endikasyonlar Üremi semptomları/komplikasyonları Üre > 100–160 mg/dl Tedaviye dirençli asidoz (pH < 7,1) Serum kreatinin > 2,5–5 mg/dl Şiddetli elektrolit dengesizliği Oligüri / anüri Hipertermi Tedaviye dirençli hipervolemi (organ) ödem) Diyalizle çözülebilen maddelerle zehirlenme (örn. lityum, teofilin, alkoller)7 247 7.10 Yanıklar Yoğun bakım hastaları için sürekli diyaliz işlemlerinin aralıklı diyaliz işlemlerine göre ne gibi avantajları vardır? • Gerekirse daha iyi hemodinamik stabilite • Sıvı dengesi üzerinde sürekli kontrol • Daha yavaş konsantrasyon ayarı, \"dengesizlik sendromu\"ndan kaçınılması",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_577",
@@ -19777,7 +19777,7 @@ const EXAM_QUESTIONS = [
     "question_tr": "Yanığın boyutunu nasıl belirlersiniz?",
     "answer_de": "Das Ausmaß der Verbrennung kann bei Erwachsenen z. B. anhand der Neuner-Regel nach Wallace abge - schätzt werden ( › Tab. 7.4 ). Nach der Handflächenregel gilt, dass die Handfläche des Patienten mit ausgestreckten Fingern etwa 1 % der Körperoberfläche beträgt. Beschreiben Sie die verschiedenen Verbrennungsgrade (Verbrennungstiefe) und das zugehörige klinische Bild. Die Einteilung der Schweregrade von Verbrennungen ist › Tab. 7.5 zu entnehmen. Was sind Indikationen zur Verlegung in ein Brandverletztenzentrum? • Verbrennungen an Gesicht, Hals, Händen, Füßen, Genitalregion, Achselregion, großen Gelenken • > 15 % VKOF II° oder > 10 % VKOF III° • Begleitverletzungen, Inhalationstrauma Tab. 7.4 Bestimmung der verbrannten Körperoberfläche (VKOF) in % VKOF in [%] Erwachsene (Neuner-Regel) Kinder Kopf und Hals 9 15 Arme je 9 je 9",
     "answer_tr": "Yetişkinlerde yanığın boyutu şu şekilde olabilir: B. Wallace'ın dokuz kuralı kullanılarak tahmin edilebilir (› Tablo 7.4). Avuç içi kuralına göre hastanın parmakları uzatılmış haldeki avucu vücut yüzey alanının yaklaşık %1'i kadardır. Farklı derecelerdeki yanıkları (yanık derinliği) ve ilişkili klinik tabloyu tanımlayın. Yanık ciddiyetinin sınıflandırması › Tablo 7.5'te bulunabilir. Yanık merkezine transfer için endikasyonlar nelerdir? • Yüz, boyun, eller, ayaklar, genital bölge, koltuk altı bölgesi, büyük eklemlerdeki yanıklar • > %15 VKOF II° veya > %10 VKOF III° • Eşlik eden yaralanmalar, solunum travması Tablo 7.4 Yanık vücut yüzey alanının (VKOF) [%] cinsinden VKOF cinsinden belirlenmesi Yetişkinler (dokuz kuralı) Çocuklar Baş ve boyun 9 15 kol her biri 9 9",
-    "is_high_yield": false
+    "is_high_yield": true
   },
   {
     "id": "q_578",
@@ -20358,6 +20358,118 @@ const EXAM_QUESTIONS = [
       }
     ],
     "is_high_yield": true
+  },
+  {
+    "id": "q_dus_01",
+    "category": "Herz-Kreislauf & Hämodynamik",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (Prof. Dr. T. Annecke / Kienbaum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 76-jähriger Patient mit hochgradiger symptomatischer Aortenklappenstenose (KÖF 0,7 cm², mittlerer Druckgradient 52 mmHg, LVEF 45%) soll sich einer dringlichen laparoskopischen Hemikolektomie bei stenosierendem Kolonkarzinom unterziehen. Der Operateur fragt, ob eine Spinalanästhesie 'schonender' wäre. Welche anästhesiologische Strategie verfolgen Sie, wie lauten Ihre hämodynamischen Zielparameter, welcher Vasopressor ist Mittel der 1. Wahl und warum ist eine Spinalanästhesie absolut kontraindiziert?",
+    "question_tr": "76 yaşında, ileri derecede semptomatik aort darlığı (KÖF 0,7 cm², ortalama basınç gradyanı 52 mmHg, LVEF %45) olan bir hasta tıkayıcı kolon karsinomu nedeniyle acil laparoskopik hemikolektomiye alınacaktır. Cerrah, spinal anestezinin 'daha az yorucu/güvenli' olup olmayacağını sormaktadır. Hangi anestezi stratejisini izlersiniz, hemodinamik hedef parametreleriniz nelerdir, ilk tercih vazopressör hangisidir ve spinal anestezi neden kesinlikle kontrendikedir?",
+    "answer_de": "1. KONTRAINDIKATION SPINALANÄSTHESIE: Eine Spinalanästhesie ist bei schwerer Aortenklappenstenose streng kontraindiziert! Die rasche Sympathikolyse führt zu einer massiven peripheren Vasodilation mit dramatischem SVR-Abfall. Da der feste Stenosequerschnitt das Schlagvolumen limitiert, kann der Abfall des diastolischen Drucks nicht kompensiert werden; die Koronarperfusion des konzentrisch hypertrophierten linken Ventrikels bricht zusammen -> therapierefraktäre Myokardischämie und Kammerflimmern/Asystolie!\n\n2. HÄMODYNAMISCHE ZIELPARAMETER ('DIE TRIAS DER AKS'):\n• Afterload/SVR: Unbedingt hoch-normal halten! MAP >= 70–80 mmHg zur Sicherung der Koronarperfusion.\n• Vorlast (Preload): Hoch-normal (strikte Euvolämie, keine Hypovolämie), da der steife Ventrikel hohe Füllungsdrücke benötigt.\n• Herzfrequenz: Strikt 60–80/min Sinusrhythmus. Vermeidung von Tachykardie (verkürzt Diastolendauer drastisch) und Bradykardie (Schlagvolumen ist starr fixiert, HZV sinkt proportional).\n\n3. ANÄSTHESIEFÜHRUNG:\n• Invasive arterielle Blutdruckmessung zwingend VOR Narkoseeinleitung etablieren.\n• Schonende Allgemeinanästhesie (z.B. Etomidat oder titriertes Propofol + hochdosiertes Sufentanil/Fentanyl + Rocuronium).\n• Vasopressor der 1. Wahl: Noradrenalin oder Phenylephrin (reine periphere Alpha-1-Vasokonstriktion ohne frequenzsteigernde Inotropie). Sofort als Perfusor oder titrierte Boli bereitstellen.\n• Laparoskopie: Niedrigen intraabdominellen Druck (10–12 mmHg) und langsame Insufflation fordern, um venöse Rückstrombehinderung zu minimieren.",
+    "answer_tr": "1. SPİNAL ANESTEZİ KONTRENDİKASYONU: Ağır aort darlığında spinal anestezi kesinlikle kontrendikedir! Hızlı gelişen sempatik blokaj periferik vazodilatasyona ve SVR'de dramatik bir düşüşe yol açar. Sabit stenotik kapak alanı nedeniyle atım hacmi artırılamaz, diyastolik kan basıncı düşer ve hipertrofik sol ventrikülün koroner perfüzyonu çöker -> ölümcül miyokard iskemisi ve kardiyak arrest!\n\n2. HEMODİNAMİK HEDEF ÜÇLÜSÜ:\n• Art yük (SVR): Koroner perfüzyon için yüksek-normal tutulmalıdır (MAP >= 70–80 mmHg).\n• Ön yük (Preload): Sert sol ventrikülün dolumu için yüksek-normal (övolemi).\n• Kalp hızı: Kesinlikle 60–80/dk sinüs ritmi (taşikardi diyastolü ve dolumu kısaltır; bradikardi debiyi düşürür).\n\n3. ANESTEZİ YÖNETİMİ:\n• İnvaziv arteryel tansiyon takibi anestezi indüksiyonundan ÖNCE açılmalıdır.\n• Dengeli genel anestezi (Etomidat veya titre propofol + sufentanil + roküronyum).\n• İlk tercih vazopressör: Noradrenalin veya Fenilefrin (alfa-1 vazokonstriksiyon; taşikardi yapmadan SVR'yi yükseltir).\n• Laparoskopide düşük karın içi basınç (10–12 mmHg) ve yavaş insüflasyon istenmelidir.",
+    "examiner_tip": "Düsseldorfer ÄKNO-Klassiker! Wer hier 'Spinalanästhesie' vorschlägt oder Tachykardie toleriert, fällt sofort durch. Arterieller Zugang vor Einleitung, Noradrenalin/Phenylephrin bereitstellen, Vorlast hoch halten, Sinusrhythmus 60–80 bpm!",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_02",
+    "category": "Atemwegsmanagement & Beatmung",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (Prof. Dr. A. Hohn / Thorax)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Während einer videoassistierten Thorakotomie (VATS) mit linksseitigem Doppellumentubus (DLT) fällt die SpO2 unter Einlungenventilation (OLV) im rechten Seitenlager rasch von 98% auf 81% ab. Beschreiben Sie das strukturierte 5-Stufen-Rettungsschema bei akuter Hypoxämie unter Einlungenventilation und wie Sie die korrekte DLT-Lage fiberoptisch verifizieren.",
+    "question_tr": "Sol taraflı çift lümenli tüp (DLT) ile sağ yan pozisyonda gerçekleştirilen video yardımlı torakotomi (VATS) sırasında, tek akciğer ventilasyonunda (OLV) SpO2 hızla %98'den %81'e düşmektedir. Tek akciğer ventilasyonunda akut hipoksemi için yapılandırılmış 5 basamaklı kurtarma şemasını ve DLT pozisyonunun fiberoptik olarak nasıl doğrulanacağını açıklayınız.",
+    "answer_de": "1. STRUKTURIERTES 5-STUFEN-RETTUNGSSCHEMA BEI OLV-HYPOXÄMIE:\n• Stufe 1: Sofortige Erhöhung der FiO2 auf 1,0 an der abhängigen (ventilierten) Lunge.\n• Stufe 2: Fiberoptische Lagekontrolle des DLT durch den trachealen und bronchialen Schenkel. Sekretabsaugung. Ausschluss von Tubusdislokation, Cuffherniation oder Knickung.\n• Stufe 3: CPAP (2–5 cmH2O) mit 100% O2 an die kollabierte/nicht-ventilierte (obenliegende) Lunge applizieren (z.B. über spezielles CPAP-Ventil am DLT). Dies perfundiert alveoläres Kapillarblut ohne die chirurgische Sicht nennenswert zu beeinträchtigen und senkt die Shuntfraktion dramatisch.\n• Stufe 4: Optimierung der Beatmung der abhängigen Lunge: PEEP-Titration (5–8 cmH2O), vorsichtige Alveolarrekrutierung, Einhaltung eines lungenprotektiven Driving Pressure (Delta P <= 14 cmH2O).\n• Stufe 5: Wenn refraktär: Operateur informieren! Chirurgisches temporäres Abklemmen der ipsilateralen Pulmonalarterie (beseitigt den Shunt sofort) oder kurzzeitige Wiederaufnahme der Zwei-Lungen-Ventilation.\n\n2. FIBEROPTISCHE LAGEKONTROLLE EINES LINKSSEITIGEN DLT:\n• Trachealer Blick: Die Carina muss frei einsehbar sein. Der blaue Bronchuscuff des linken Schenkels muss knapp unterhalb der Carina im linken Hauptbronchus liegen, darf aber NICHT über die Carina in die Trachea herniieren (Gefahr der Verlegung des rechten Hauptbronchus!).\n• Bronchialer Blick: Durch den linken Bronchialschenkel wird die Aufteilung in linken Ober- und Unterlappenbronchus frei eingesehen.",
+    "answer_tr": "1. OLV HİPOKSEMİSİNDE YAPILANDIRILMIŞ 5 BASAMAKLI KURTARMA PLANI:\n• Basamak 1: Havalandırılan (bağımlı) akciğerde FiO2 derhal 1.0 yapılır.\n• Basamak 2: Fiberoptik bronkoskopi ile DLT tüp pozisyonu doğrulanır, sekresyonlar aspire edilir, katlanma veya yerinden oynama dışlanır.\n• Basamak 3: Havalandırılmayan (ameliyat edilen) kollabe akciğere 2–5 cmH2O basınçla 100% O2 CPAP uygulanır (cerrahi görüşü bozmadan şantı belirgin azaltır).\n• Basamak 4: Havalandırılan akciğere PEEP optimizasyonu (5–8 cmH2O), alveolar rekrütman manevrası, lunge-protective sürüş basıncı (Delta P <= 14 cmH2O).\n• Basamak 5: Dirençli ise cerrah bilgilendirilir -> opere edilen taraf pulmoner arterinin geçici klemplenmesi (şantı sıfırlar) veya iki akciğer ventilasyonuna geri dönülmesi.\n\n2. SOL DLT FİBEROPTİK KONTROLÜ:\n• Trakeal lümen bakısı: Karina serbestçe görülmeli, sol bronşiyal tüpün mavi kafı karinanın hemen altında olmalı, trakeya taşmamalıdır.\n• Bronşiyal lümen bakısı: Sol üst ve alt lob bronş ayrımı net görülmeli, lümen tıkanmamış olmalıdır.",
+    "examiner_tip": "Prüfungsrhetorik: Niemals hektisch werden! Die 5 Stufen der Reihe nach aufsagen: FiO2 1.0 -> Bronchoskopie -> CPAP nicht-ventilierte Lunge -> PEEP abhängige Lunge -> Chirurg informieren.",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_03",
+    "category": "Notfallmedizin & Reanimation",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (Prof. Dr. P. Kienbaum / Schockraum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Schockraum Düsseldorf: Ein 34-jähriger Polytraumapatient (Motorradunfall) präsentiert sich mit instabilem Becken, freier intraabdomineller Flüssigkeit und schwerem Schädel-Hirn-Trauma (GCS 6, rechts erweiterte Pupille). Blutdruck 75/40 mmHg, HF 135/min. Wie lösen Sie das Dilemma zwischen permissiver Hypotonie und neuroprotektiver Perfusion, wie lautet das Tranexamsäure-Regime und wie steuern Sie die Gerinnung anhand von ROTEM (FIBTEM/EXTEM)?",
+    "question_tr": "Düsseldorf Şok Odası: 34 yaşında politravma hastası (motosiklet kazası) stabil olmayan pelvis, batın içi serbest sıvı ve ağır kafa travması (GCS 6, sağda genişlemiş pupilla) ile getirilmiştir. Kan basıncı 75/40 mmHg, Nabız 135/dk. Permisif hipotansiyon ile nöroprotektif perfüzyon arasındaki ikilemi nasıl çözersiniz, traneksamik asit protokolü nedir ve koagülasyonu ROTEM (FIBTEM/EXTEM) ile nasıl yönetirsiniz?",
+    "answer_de": "1. DILEMMA PERMISSIVE HYPOTONIE VS. SHT:\n• Leitliniengrundsatz: Bei begleitendem schwerem Schädel-Hirn-Trauma (GCS <= 8, Anisokorie) ist die permissive Hypotonie (MAP 50–65 mmHg) STRENG KONTRAINDIZIERT!\n• Zerebraler Perfusionsdruck: Ein Abfall des MAP führt bei erhöhtem ICP zur zerebralen Ischämie mit irreversibler Sekundärschädigung.\n• Zielparameter: Ziel-CPP >= 60–70 mmHg erfordert einen MAP >= 80–90 mmHg (systolischer Blutdruck >= 100–110 mmHg). Kreislaufstabilisierung mit Noradrenalin und balancierten Kristalloiden, Beckenschlinge (Pelvic Binder) unverzüglich anlegen!\n\n2. TRANEXAMSÄURE-REGIME (TXA):\n• Sofortige Gabe von 1 g Tranexamsäure i.v. als Kurzinfusion über 10 Minuten, gefolgt von einer Erhaltungsinfusion von 1 g über 8 Stunden.\n• Zeitfenster: Zwingend innerhalb der ersten 3 Stunden nach Trauma (CRASH-2/CRASH-3 belegen signifikante Mortalitätsreduktion; Gabe nach > 3h erhöht das Sterberisiko!).\n\n3. ROTEM-BASIERTE ZIELGERICHTETE GERINNUNGSTHERAPIE:\n• FIBTEM A10 (oder MCF) < 10 mm: Fibrinogenmangel -> Sofortige Gabe von Fibrinogenkonzentrat (initial 3–4 g i.v., Ziel-A10 > 12–14 mm).\n• EXTEM CT > 80 s: Verzögerte Thrombinbildung / Mangel an Gerinnungsfaktoren -> Prothrombinkomplex-Konzentrat (PPSB 20–30 IE/kg i.v.) oder FFP.\n• EXTEM ML > 15%: Nachweis einer Hyperfibrinolyse -> Bestätigung für frühzeitige TXA-Gabe.\n• EXTEM A10 < 40 mm bei normalem FIBTEM: Thrombozytendefizit / Dysfunktion -> Gabe von Thrombozytenkonzentrat (TK).\n• Kalziumkontrolle: Ionisiertes Ca2+ > 1,1 mmol/l sichern (CaCl2 10% 10 ml nach 2-4 EK), Normothermie (> 36°C) und Normazidose (pH > 7,25) aufrechterhalten.",
+    "answer_tr": "1. PERMİSİF HİPOTANSİYON VS. KAFA TRAVMASI İKİLEMİ:\n• Ağır kafa travmasında (GCS <= 8, anizokori) permisif hipotansiyon (MAP 50–65 mmHg) KESİNLİKLE KONTRENDİKEDİR!\n• MAP düşüklüğü artmış kafa içi basınç varlığında serebral iskemiye ve sekonder beyin hasarına yol açar.\n• Hedef: CPP >= 60–70 mmHg sağlamak için MAP >= 80–90 mmHg (sistolik KB >= 100–110 mmHg) hedeflenir. Noradrenalin ve kristalloid ile resüsitasyon yapılır, derhal pelvik kemer takılır!\n\n2. TRANEKSAMİK ASİT (TXA) PROTOKOLÜ:\n• Travmadan sonraki ilk 3 saat içinde hemen 10 dakikada 1 g i.v. bolus, ardından 8 saatte 1 g i.v. infüzyon (CRASH-2/3).\n\n3. ROTEM TABANLI HEDEFE YÖNELİK KOAGÜLASYON YÖNETİMİ:\n• FIBTEM A10 < 10 mm: Fibrinojen eksikliği -> 3–4 g Fibrinojen konsantresi i.v.\n• EXTEM CT > 80 sn: Pıhtılaşma faktörü / trombin açığı -> Protrombin kompleksi (PCC / PPSB 20–30 IU/kg) veya TDP.\n• EXTEM ML > %15: Hiperfibrinoliz teyidi.\n• EXTEM A10 < 40 mm (FIBTEM normalken): Trombosit eksikliği -> Trombosit süspansiyonu.\n• İyonize Ca2+ > 1.1 mmol/l tutulmalı (CaCl2 10% 10 ml), normotermi (> 36°C) korunmalıdır.",
+    "examiner_tip": "Düsseldorfer Schockraum-Falle: Permissive Hypotonie ist bei schwerem SHT verboten! Unbedingt CPP >= 60-70 mmHg und MAP >= 80-90 mmHg fordern!",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_04",
+    "category": "Pharmakologie",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (Prof. Dr. F. Wappler / MH-Zentrum)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "15 Minuten nach Einleitung einer Narkose mit Fentanyl, Propofol, Succinylcholin und Weiterführung mit Sevofluran registrieren Sie einen steilen Anstieg des endexspiratorischen CO2 von 35 auf 84 mmHg trotz Verdoppelung des Atemminutenvolumens. Die Herzfrequenz steigt auf 155/min, es besteht eine Kieferklemme (Masseterspasmus). Nennen Sie die Verdachtsdiagnose, das sofortige 8-Punkte-Notfallprotokoll, die genaue Dantrolen-Dosierung/Zubereitung und die Therapie der lebensbedrohlichen Hyperkaliämie.",
+    "question_tr": "Fentanil, propofol, süksinilkolin ile indüksiyon ve sevofluran ile idame edilen anestezinin 15. dakikasında, dakika ventilasyonu iki katına çıkarılmasına rağmen end-tidal CO2'nin 35'ten 84 mmHg'ye fırladığını görüyorsunuz. Nabız 155/dk'ya yükseliyor ve çenede kilitlenme (masseter spazmı) mevcut. Ön tanıyı, 8 basamaklı acil protokolü, dantrolen dozu ve hazırlanışını ve hiperkalemi tedavisini açıklayınız.",
+    "answer_de": "1. VERDACHTSDIAGNOSE: Maligne Hyperthermie (MH) – hypermetabolische Krise der Skelettmuskulatur.\n\n2. SOFORTIGES 8-PUNKTE-NOTFALLPROTOKOLL:\n• 1. Trigger STOPPEN: Sevofluran-Verdampfer sofort ausschalten/abnehmen, Succinylcholin verbieten.\n• 2. Hyperventilation mit 100% O2 bei maximalem Frischgasflow (>= 10–15 l/min).\n• 3. Aktivkohlefilter (Vapor-Clean) in Inspirations- und Exspirationsschenkel einsetzen (oder Beatmungsgerät austauschen, falls verzögerungsfrei möglich).\n• 4. Narkosevertiefung mit TIVA: Propofol und Opioide (Fentanyl/Sufentanil).\n• 5. DANTROLEN APPLIZIEREN: Initial 2,5 mg/kg i.v. rasch als Bolus injizieren. Alle 5–10 Minuten wiederholen bis zum Abklingen von Hyperkapnie, Tachykardie und Rigor (Maximaldosis 10 mg/kg, selten mehr).\n• 6. Aktive Kühlung einleiten: Kalte kristalloide Infusionen (4°C), Eisbeutel an Nacken, Axillae und Leisten, kalte Magenspülung. WICHTIG: Kühlung bei 38,5°C Kernkörpertemperatur stoppen, um Hypothermie-Overshoot zu vermeiden!\n• 7. Hyperkaliämie & Azidose therapieren (Details siehe unten).\n• 8. Forcierte Diurese (Mannitol/Furosemid, Ziel-Urin > 1,5–2 ml/kg/h) zum Schutz der Nieren vor Myoglobinurie (Rhabdomyolyse). MH-Hotline anrufen!\n\n3. DANTROLEN-ZUBEREITUNG:\n• Standard-Dantrolen (Dantrolen i.v.): Jede Flasche enthält 20 mg Trockensubstanz und muss in 60 ml sterilem Wasser (Aqua ad iniectabilia) unter kräftigem Schütteln gelöst werden (bei 70 kg Patient ca. 9 Flaschen!).\n• Ryanodex® (moderne Formulierung): 250 mg Trockensubstanz pro Flasche, wird in nur 5 ml Aqua gelöst (Sekundenschnelle Zubereitung!).\n\n4. NOTFALLTHERAPIE DER HYPERKALIÄMIE:\n• 10 ml Calciumgluconat 10% (oder CaCl2) langsam i.v. zur Membranstabilisierung des Herzens.\n• Glukose-Insulin-Infusion: 100 ml Glukose 20% + 10–12 IE Altinsulin i.v. über 15–30 Minuten.\n• Natriumbikarbonat (NaHCO3 8,4% 1–2 mmol/kg i.v.) bei metabolischer Azidose (pH < 7,15).",
+    "answer_tr": "1. ÖN TANI: Malign Hipertermi (MH) – iskelet kasının hipermetabolik krizi.\n\n2. 8 BASAMAKLI ACİL PROTOKOL:\n• 1. Tetikleyicileri DURDUR: Sevofluran derhal kapatılır/sökülür, süksinilkolin kesilir.\n• 2. %100 O2 ile maksimum taze gaz akımında (>= 10–15 L/dk) hiperventilasyon.\n• 3. Solunum devresine aktif kömür filtreleri (Vapor-Clean) takılır.\n• 4. TIVA ile anestezi idamesi (Propofol + Opioid).\n• 5. DANTROLEN: 2.5 mg/kg i.v. hızlı bolus; klinik gerileyene dek 5–10 dakikada bir tekrarlanır (maksimum 10 mg/kg).\n• 6. Aktif soğutma: Soğuk salin infüzyonu (4°C), buz torbaları. KKT 38.5°C'ye inince soğutma DURDURULUR!\n• 7. Hiperkalemi ve asidoz tedavisi.\n• 8. Rabdomiyolize bağlı böbrek hasarını önlemek için zorlu diürez (> 1.5–2 ml/kg/saat).\n\n3. DANTROLEN HAZIRLANIŞI:\n• Klasik formülasyon: Her 20 mg flakon 60 ml steril enjeksiyonluk su (Aqua) ile çözülür.\n• Ryanodex: 250 mg flakon sadece 5 ml su ile saniyeler içinde çözülür.\n\n4. HİPERKALEMİ TEDAVİSİ:\n• Kardiyak membran stabilizasyonu için 10 ml Kalsiyum glukonat %10 i.v. yavaş.\n• Glukoz-İnsülin: %20 Glukoz 100 ml + 10-12 IU regüler insülin i.v.\n• Ağır metabolik asidozda (pH < 7.15) NaHCO3 8.4% 1-2 mmol/kg.",
+    "examiner_tip": "Düsseldorfer KO-Frage von Prof. Wappler: EtCO2 ist das früheste Zeichen, Hyperthermie ein Spätzeichen! Dantrolen 2.5 mg/kg i.v. muss wie aus der Pistole geschossen genannt werden!",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_05",
+    "category": "Intensivmedizin & Sepsis",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (DIVI / Intensivkommission)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 68-jähriger Patient wird mit V. a. uroseptischen Schock auf Ihre Intensivstation aufgenommen: MAP 52 mmHg, HF 125/min, Laktat 4,2 mmol/l, Leukozyten 19.500/µl. Nach den aktuellen Leitlinien (Surviving Sepsis Campaign / Sepsis-3): Was beinhaltet das '1-Hour-Bundle', welcher Vasopressor ist 1. Wahl mit welchem Zielwert und wie definieren Sie ein ARDS nach den Berlin-Kriterien inklusive Beatmungszielen und Indikation zur Bauchlagerung?",
+    "question_tr": "68 yaşında hasta üroseptik şok şüphesiyle yoğun bakımınıza kabul ediliyor: MAP 52 mmHg, Nabız 125/dk, Laktat 4,2 mmol/l, Lökosit 19.500/µl. Güncel kılavuzlara göre (Surviving Sepsis / Sepsis-3): '1-Hour-Bundle' neleri içerir, ilk tercih vazopressör ve hedef değer nedir; Berlin kriterlerine göre ARDS nasıl tanımlanır, mekanik ventilasyon hedefleri ve pron pozisyonu endikasyonu nedir?",
+    "answer_de": "1. SEPSIS-3 '1-HOUR-BUNDLE' (SURVIVING SEPSIS CAMPAIGN):\n• 1. Laktat sofort messen (Re-Evaluation nach 2–4 Stunden zur Beurteilung der Schock-Clearance).\n• 2. Blutkulturen VOR Beginn der antimikrobiellen Therapie abnehmen (mindestens 2 Paare, aerob und anaerob).\n• 3. Breitspektrum-Antibiotika i.v. innerhalb der ersten 60 Minuten verabreichen (z.B. Piperacillin/Tazobactam oder Carbapenem).\n• 4. Rasche Volumengabe von 30 ml/kg balancierten Kristalloiden (Sterofundin/Jonosteril) innerhalb der ersten 3 Stunden bei Hypotonie oder Laktat >= 4 mmol/l (KEINE synthetischen Kolloide/HES!).\n• 5. Vasopressor der 1. Wahl: Noradrenalin titrieren auf einen Ziel-MAP >= 65 mmHg. Bei fortbestehend hoher Noradrenalin-Dosis (> 0,25 µg/kg/min) frühzeitig Vasopressin (0,03 IE/min fest) addieren und Hydrocortison (200 mg/Tag) erwägen.\n\n2. ARDS DEFINITION (BERLIN-KRITERIEN 2012):\n• Timing: Akuter Beginn innerhalb von 7 Tagen nach bekanntem klinischen Auslöser.\n• Bildgebung: Beidseitige Infiltrate im Röntgen-Thorax oder CT, die nicht vollständig durch Ergüsse oder Atelektasen erklärt sind.\n• Ödemursache: Respiratorische Insuffizienz nicht primär durch Herzinsuffizienz oder Hypervolämie bedingt (Echokardiographie zum Ausschluss kardiogenen Lungenödems).\n• Oxygenierungsindex (Horovitz-Quotient PaO2/FiO2 bei PEEP >= 5 cmH2O):\n  - Mildes ARDS: 200 < PaO2/FiO2 <= 300 mmHg\n  - Moderates ARDS: 100 < PaO2/FiO2 <= 200 mmHg\n  - Schweres ARDS: PaO2/FiO2 <= 100 mmHg\n\n3. LUNGENPROTEKTIVE BEATMUNGSZIELE & BAUCHLAGERUNG:\n• Tidalvolumen: Strikt 6 ml/kg Idealgewicht (PBW - Predicted Body Weight, Formel Männer: 50 + 0,91 x [Größe - 152,4]).\n• Plateaudruck (Pplat): <= 30 cmH2O.\n• Driving Pressure (Delta P = Pplat - PEEP): Strikt <= 14–15 cmH2O (stärkster Prädiktor für Überleben!).\n• Permissive Hyperkapnie (pH >= 7,20 tolerieren).\n• Bauchlagerung (Prone Positioning): Mindestens 16 aufeinanderfolgende Stunden pro Tag bei moderatem/schwerem ARDS mit PaO2/FiO2 < 150 mmHg (PROSEVA-Studie: hochsignifikante Senkung der 28-Tage-Mortalität von 32,8% auf 16%!).",
+    "answer_tr": "1. SEPSİS-3 '1-SAAT PAKETİ' (SURVIVING SEPSIS):\n• 1. Serum laktatını hemen ölç (2-4 saatte bir tekrarla).\n• 2. Antibiyotikten ÖNCE en az 2 set (aerob/anaerob) kan kültürü al.\n• 3. İlk 60 dakika içinde geniş spektrumlu i.v. antibiyotik başla.\n• 4. Hipotansiyon veya laktat >= 4 ise 30 ml/kg dengeli kristalloid infüzyonu yap.\n• 5. İlk tercih vazopressör: Noradrenalin ile hedef MAP >= 65 mmHg sağla. Yüksek dozda vazopressin (0.03 IU/dk) ve hidrokortizon (200 mg/gün) ekle.\n\n2. ARDS BERLİN TANIMI:\n• Zaman: 1 hafta içinde akut başlangıç.\n• Radyoloji: Akciğer grafisinde/BT'de bilateral infiltratlar.\n• Ödem nedeni: Kardiyojenik ödem dışlanmalıdır.\n• Horovitz Oranı (PaO2/FiO2, PEEP >= 5 iken): Hafif (200-300), Orta (100-200), Ağır (<= 100 mmHg).\n\n3. AKCİĞER KORUYUCU VENTİLASYON VE PRON:\n• Tidal hacim: 6 ml/kg ideal vücut ağırlığı (PBW).\n• Plato basıncı: <= 30 cmH2O.\n• Sürüş basıncı (Driving Pressure Delta P = Pplat - PEEP): <= 14 cmH2O.\n• Pron Pozisyonu (Yüzüstü): PaO2/FiO2 < 150 mmHg ise günde en az 16 kesintisiz saat uygulanmalıdır (PROSEVA çalışması mortaliteyi yarıya indirmiştir).",
+    "examiner_tip": "Düsseldorfer Intensiv-Prüfer lieben Zahlen: 30 ml/kg Kristalloide, MAP >= 65 mmHg, Vt 6 ml/kg PBW, Driving Pressure <= 14, Bauchlagerung >= 16h bei Horovitz < 150!",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_06",
+    "category": "Geburtshilfliche Anästhesie",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (Geburtshilfe Kommission)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Notsectio-Alarm im Kreißsaal: Schwangere (38. SSW) mit persistierender fetaler Bradykardie (55/min) bei V. a. vorzeitige Plazentalösung. Wie lautet die geforderte Entscheidungs-Entbindungs-Zeit (EEZ), welche anästhesiologischen Besonderheiten gelten für die Narkoseeinleitung (RSI) und Lagerung, und wie sieht das therapeutische Vorgehen bei begleitender schwerer Präeklampsie (Krampfprophylaxe/Therapie) aus?",
+    "question_tr": "Doğumhanede acil sezaryen alarmı: 38. gebelik haftasında, dekolman plasenta şüphesiyle fetüste persistan bradikardi (55/dk). İstenen Karar-Doğum Süresi (EEZ) nedir, anestezi indüksiyonu (RSI) ve pozisyonlamada hangi özellikler geçerlidir ve eşlik eden ağır preeklampside (nöbet profilaksisi/tedavisi) terapötik yaklaşım nasıldır?",
+    "answer_de": "1. ENTSCHEIDUNGS-ENTBINDUNGS-ZEIT (EEZ):\n• Bei Notsectio (Dringlichkeitsstufe 1 / Kategorie 1 nach Lucas): Maximal 20 Minuten von der Indikationsstellung bis zur Entwicklung des Kindes (DGAI/DGGG-Leitlinie).\n\n2. ANÄSTHESIOLOGISCHES VORGEHEN BEI NOTSECTIO:\n• Lagerung: Sofortige Linksseitenkippung des OP-Tisches um 15–30° (oder Keilkissen unter rechte Hüfte) zur Dekompression der Vena cava inferior (Vermeidung des lebensgefährlichen Vena-cava-Kompressionssyndroms mit maternaler Hypotonie und uteroplazentarem Perfusionsabfall).\n• Präoxygenierung: 100% O2 über dicht sitzende Maske (3 Minuten oder 8 Vitalkapazitätsatemzüge, Ziel: EtO2 > 90%).\n• RSI (Rapid Sequence Induction): Keine Zwischenbeatmung! Propofol 2,0–2,5 mg/kg (oder Thiopental 4–5 mg/kg) + Rocuronium 1,0–1,2 mg/kg (Sugammadex 16 mg/kg für Notfall-Reversierung bei CICO bereitstellen) oder Succinylcholin 1,0–1,5 mg/kg.\n• Intubation: Gecuffter Tubus 6,5–7,0 mm ID (Gefahr des Glottisödems in Gravidität!). Lagebestätigung durch 4 gleichförmige Kapnographiekurven -> Freigabe: 'Tubus liegt, Schnitt frei!'.\n• Nach Abnabelung: Oxytocin 3–5 IE langsam i.v. als Kurzinfusion, Cefazolin 2 g i.v., Vertiefung mit Opioiden (Sufentanil).\n\n3. THERAPIE BEI SCHWERER PRÄEKLAMPSIE / EKLAMPSIE:\n• Krampfprophylaxe & Therapie: Magnesiumsulfat (MgSO4) ist das Mittel der 1. Wahl (NICHT Benzodiazepine!).\n  - Ladedosis: 4–6 g MgSO4 i.v. als Kurzinfusion über 15–20 Minuten.\n  - Erhaltungsdosis: 1–2 g/h kontinuierlich über Perfusor für mind. 24 Stunden post partum.\n  - Therapeutischer Zielspiegel: 2,0–3,5 mmol/l.\n  - Toxizitätszeichen: Patellarsehnenreflex erloschen (> 3,5 mmol/l), Atemdepression (> 5 mmol/l), Herzstillstand (> 7 mmol/l).\n  - Antidot: Calciumgluconat 10% (10 ml i.v. langsam über 3 Minuten injizieren).\n• Blutdrucksenkung: Urapidil (Ebrantil 10–25 mg i.v. titriert) oder Labetalol/Nifedipin. Ziel-Blutdruck: Systolisch 140–150 mmHg, Diastolisch 90–100 mmHg (keine exzessive Blutdrucksenkung, um die plazentare Perfusion nicht zu gefährden!).",
+    "answer_tr": "1. KARAR-DOĞUM SÜRESİ (EEZ):\n• Kategori 1 Acil Sezaryende karar ile bebeğin doğumu arasındaki süre maksimum 20 dakikadır.\n\n2. ANNE İÇİN ACİL SEZARYEN YÖNETİMİ:\n• Pozisyonlama: Vena cava inferior basısını önlemek için ameliyat masasına 15–30° sola eğim (sol yan tilt) verilmesi ZORUNLUDUR.\n• Hızlı Seri İndüksiyon (RSI): %100 O2 ile 3 dk preoksijenasyon. Maske ile havalandırma yapılmaz! Propofol 2–2.5 mg/kg + Roküronyum 1.2 mg/kg (veya Süksinilkolin 1–1.5 mg/kg). Ödem nedeniyle 6.5–7.0 mm kafllı tüp kullanılır. Kapnografi ile tüp doğrulanır -> cerraha 'Kesi serbest' denir.\n• Kordon klemplendikten sonra: Oksitosin 3–5 IU yavaş i.v. + Cefazolin 2 g + Sufentanil.\n\n3. AĞIR PREEKLAMPSİ / EKLAMPSİ TEDAVİSİ:\n• Nöbet profilaksisi ve tedavisinde İLK TERCİH Magnezyum Sülfattır (Benzodiazepin değil!):\n  - Yükleme: 15–20 dakikada 4–6 g MgSO4 i.v.\n  - İdame: 24 saat boyunca 1–2 g/saat infüzyon. Hedef serum düzeyi 2.0–3.5 mmol/l.\n  - Toksisite belirtisi: Derin tendon refleksi kaybı, solunum depresyonu.\n  - Antidotu: Kalsiyum Glukonat %10 (10 ml yavaş i.v.).\n• Antihipertansif tedavi: Urapidil titrasyonu ile hedef KB 140–150 / 90–100 mmHg.",
+    "examiner_tip": "Düsseldorfer Geburtshilfe-Falle: Linksseitenkippung muss SOFORT genannt werden! EEZ <= 20 min. Mg-Sulfat ist Mittel der Wahl bei Eklampsie (NICHT Diazepam!).",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_07",
+    "category": "Regionalanästhesie & Lokalanästhetika",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (DGAI / Regionalanästhesie)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Eine 64-jährige Patientin zur Knie-TEP erhält eine Spinalanästhesie und soll postoperativ analgetisch mit einem Femoraliskatheter versorgt werden. Sie nimmt regelmäßig Rivaroxaban (Xarelto 20 mg/d) und ASS 100 mg/d ein. Welche zeitlichen Karenzintervalle müssen vor der Punktion und vor der Katheterentfernung nach der aktuellen DGAI/ÖGARI-Leitlinie eingehalten werden? Wenn es nach Bolusgabe von Ropivacain am Katheter zu Krampfanfall und breitem Kammerrhythmus kommt: Wie lautet Ihr Notfallprotokoll (LAST) inklusive Lipidtherapie?",
+    "question_tr": "Diz protezi ameliyatı planlanan 64 yaşında bir kadın hastaya spinal anestezi ve postoperatif analjezi için femoral kateter planlanıyor. Hasta düzenli olarak Rivaroksaban (Xarelto 20 mg/gün) ve ASA 100 mg/gün kullanmaktadır. Güncel DGAI/ÖGARI kılavuzuna göre ponksiyon ve kateter çekilmesi öncesinde hangi bekleme sürelerine uyulmalıdır? Kateterden ropivakain bolusu sonrası nöbet ve geniş QRS ventriküler ritim gelişirse: Lipid tedavisi dahil acil protokolünüz (LAST) nedir?",
+    "answer_de": "1. ANTIKOAGULATIONS-KARENZZEITEN (DGAI/ÖGARI LEITLINIE RÜCKENMARKSNAHE REGIONALANÄSTHESIE):\n• ASS 100 mg Monotherapie: Keine Pause erforderlich! Punktion und Katheteranlage dürfen ohne zeitliche Einschränkung durchgeführt werden.\n• Rivaroxaban (Xarelto 20 mg/d):\n  - Vor Punktion: Mindestens 48 Stunden Pause (bei normaler Nierenfunktion GFR > 50 ml/min; bei GFR 30–50 ml/min mindestens 72 Stunden!).\n  - Vor Katheterentfernung: Ebenfalls mindestens 48 Stunden Pause nach der letzten Gabe.\n  - Wiederansetzen nach Katheterentfernung: Frühestens 6 Stunden NACH Entfernung des Katheters darf die nächste Dosis Rivaroxaban verabreicht werden!\n• Zum Vergleich: Prophylaktisches NMH (z.B. Enoxaparin 40 mg) erfordert 12h Pause vor Punktion/Katheterzug und 4h danach; therapeutisches NMH erfordert 24h Pause vor Punktion/Katheterzug und 4h danach.\n\n2. NOTFALLPROTOKOLL LOKALANÄSTHETIKA-SYSTEMTOXIZITÄT (LAST):\n• Sofortige Maßnahmen: Lokalanästhetika-Injektion SOFORT stoppen, Hilfe rufen, Lipid-Notfall-Kit anfordern, 100% O2, Hyperventilation (Hypoxie und Azidose verstärken die Kardiotoxizität dramatisch!).\n• Krampfdurchbrechung: Midazolam 0,05–0,1 mg/kg i.v. (Propofol nur in minimalen Dosen bei stabilem Kreislauf; KEINE großen Boli wegen additiver Myokarddepression!).\n• LIPIDTHERAPIE (INTRALIPID 20% / LIPIDRESUE):\n  - Bolus: 1,5 ml/kg i.v. 20% Lipidemulsion über 1 Minute injizieren (ca. 100 ml bei 70 kg).\n  - Kontinuierliche Infusion: Unmittelbar anschließend 0,25 ml/kg/min i.v. (ca. 1000 ml/h).\n  - Re-Evaluation: Bei anhaltender Kreislaufinstabilität Bolus bis zu 2-mal alle 5 Minuten wiederholen und Infusionsrate auf 0,5 ml/kg/min verdoppeln.\n  - Maximaldosis: Maximal 12 ml/kg Gesamtdosis in den ersten 30 Minuten.\n• Reanimation (CPR) bei LAST:\n  - Prolongierte CPR durchführen (> 60 Minuten!), da das Lipid das Lokalanästhetikum kontinuierlich aus dem Myokardgewebe extrahiert ('Lipid-Sink-Effekt').\n  - Adrenalin stark reduzieren (< 1 µg/kg Bolus, z.B. 10–50 µg statt 1 mg!), da hohe Adrenalindosen Arrhythmien aggravieren.\n  - STRENG KONTRAINDIZIERT: Vasopressin, Lidocain, Kalziumantagonisten, Betablocker!",
+    "answer_tr": "1. ANTİKOAGÜLASYON BEKLEME SÜRELERİ (DGAI/ÖGARI KILAVUZU):\n• ASA 100 mg tek başına: Kesilmesine gerek yoktur, nöraksiyel blok uygulanabilir.\n• Rivaroksaban (Xarelto 20 mg/gün):\n  - Ponksiyon öncesi: En az 48 saat kesilmelidir (GFR 30-50 ise 72 saat!).\n  - Kateter çekilmesi öncesi: Son dozdan sonra en az 48 saat beklenmelidir.\n  - Kateter çekildikten sonra tekrar başlama: Kateter çekildikten EN ERKEN 6 saat sonra yeni doz verilebilir!\n• Proflaktik DDAH (Enoksaparin 40 mg): 12 saat; Terapötik DDAH: 24 saat bekleme süresi.\n\n2. LOKAL ANESTEZİK SİSTEMİK TOKSİSİTESİ (LAST) ACİL PROTOKOLÜ:\n• LA enjeksiyonunu DERHAL DURDUR, yardım çağır, Lipid Kurtarma Kitini iste, %100 O2 ve hiperventilasyon sağla.\n• Nöbet tedavisi: Midazolam 0.05-0.1 mg/kg i.v. (kardiyak depresyon riski nedeniyle propofol bolusundan kaçının).\n• LİPİD KURTARMA PROTOKOLÜ (%20 İNTRALİPİD):\n  - Bolus: 1.5 ml/kg i.v. %20 lipid emülsiyonu 1 dakikada verilir (70 kg için ~100 ml).\n  - İdame: Hemen ardından 0.25 ml/kg/dk sürekli infüzyon (~1000 ml/saat).\n  - İnstabilite sürerse: 5 dk arayla bolus 2 kez tekrarlanabilir, infüzyon 0.5 ml/kg/dk'ya çıkarılabilir. İlk 30 dakikada maksimum 12 ml/kg.\n• CPR Özellikleri: En az 60 dk uzatılmış CPR yapılmalıdır. Adrenalin dozu azaltılmalıdır (< 1 mcg/kg bolus). Vazopressin, lidokain, kalsiyum kanal blokeri ve beta blokerler KESİNLİKLE KONTRENDİKEDİR!",
+    "examiner_tip": "Düsseldorfer Prüfungs-Schwerpunkt: Exakte Stundenwerte kennen (Rivaroxaban 48h vor Punktion, 6h nach Entfernung). Lipidtherapie 1.5 ml/kg Bolus + 0.25 ml/kg/min Infusion muss sekundenschnell abrufbar sein!",
+    "is_high_yield": true,
+    "is_dus_protocol": true
+  },
+  {
+    "id": "q_dus_08",
+    "category": "Kinderanästhesie & Pädiatrie",
+    "source_book": "ÄKNO Düsseldorf Prüfungsprotokoll (Kinderanästhesie)",
+    "image": null,
+    "question_type": "open",
+    "question_de": "Ein 4-jähriges Kind (16 kg) entwickelt unmittelbar nach Extubation im OP-Saal nach einer unkomplizierten Tonsillotomie eine schwere Einziehung jugulär und epigastrisch, paradoxicales Atemmuster und einen inspiratorischen/biphasischen Stridor mit raschem Abfall der SpO2 auf 74% und Bradykardie von 55/min. Beschreiben Sie die Differenzialdiagnose, die anatomischen Besonderheiten des pädiatrischen Atemwegs, die Tubusgrößenformel und den exakten Stufenplan zur Beherrschung dieses Notfalls.",
+    "question_tr": "4 yaşında bir çocuk (16 kg) sorunsuz bir tonsillotomi sonrası ameliyathanede ekstübe edildikten hemen sonra juguler ve epigastrik çekilmeler, paradoksal solunum ve inspiratuar/bifazik stridor ile SpO2'nin hızla %74'e düşmesi ve 55/dk bradikardi geliştiriyor. Ayırıcı tanıyı, pediatrik hava yolunun anatomik özelliklerini, endotrakeal tüp boyutu formülünü ve bu acil durumun yönetimine yönelik basamaklı planı açıklayınız.",
+    "answer_de": "1. NOTFALLDIAGNOSE & DIFFERENZIALDIAGNOSE:\n• Diagnose: Akuter schwerer pädiatrischer Laryngospasmus mit drohender hypoxischer Asystolie.\n• Differenzialdiagnosen: Postoperative Blutung/Koagel in der Glottis ('Tonsillenblutung'), subglottisches Schleimhautödem (Pseudokrupp), Aspiration, Larynxödem, Bronchospasmus.\n\n2. ANATOMISCHE BESONDERHEITEN DES PÄDIATRISCHEN ATEMWEGS:\n• Prominentes Occiput: Führt in Rückenlage zur Kopfbeugung (Unterpolsterung der Schultern nötig!).\n• Große Zunge relativ zur Mundhöhle (Verlegung des Oropharynx).\n• Hoher Kehlkopf (Larynx auf Höhe C3–C4 beim Kleinkind vs. C5–C6 beim Erwachsenen).\n• Epiglottis: Lang, schlaff, U-förmig, steht in spitzem Winkel zur Pharynxwand.\n• Trichterförmiger Larynx: Engste Stelle ist der unelastische Ringknorpel (Cartilago cricoidea, subglottisch bis zum ca. 8.–10. Lebensjahr), nicht die Stimmritze!\n• Kurze Trachea (ca. 4–5 cm beim Kleinkind): Hohes Risiko der endobronchialen Intubation bei Kopfbewegung.\n\n3. TUBUSGRÖSSENFORMELN (4 JAHRE, 16 KG):\n• Gecuffter Tubus (Motoyama/Khine): ID (mm) = Alter / 4 + 3,5 = 4 / 4 + 3,5 = 4,5 mm ID (Cuffdruck maximal 15–20 cmH2O!).\n• Ungecuffter Tubus: ID (mm) = Alter / 4 + 4,0 = 4 / 4 + 4,0 = 5,0 mm ID.\n• Orale Einführungstiefe: Tiefe (cm) = Alter / 2 + 12 = 4 / 2 + 12 = 14 cm (Faustregel: 3 x Tubus-ID = 3 x 4,5 = 13,5 cm).\n\n4. STUFENPLAN ZUR BEHERRSCHUNG DES LARYNGOSPASMUS:\n• Stufe 1: 100% O2 mit dichtsitzender Maske und kontinuierlichem CPAP (10–15 cmH2O) über den Beatmungsbeutel applizieren. Absaugen stoppen (Stimulus beenden!).\n• Stufe 2: Larson-Manöver ('Laryngospasm notch'): Kräftiger bilateraler Druck im Kieferwinkel zwischen Proc. mastoideus und Unterkieferast nach medial-anterior bei gleichzeitigem Vorziehen des Unterkiefers (Esmarch-Handgriff).\n• Stufe 3 (Medikamentöse Entlastung): Propofol 0,5–1 mg/kg i.v. (8–16 mg) zur Spasmolyse bei erhaltener Spontanatmung.\n• Stufe 4 (Schwere Hypoxie / Bradykardie < 60/min): SOFORTIGE Gabe von Succinylcholin 0,5–1,0 mg/kg i.v. (8–16 mg i.v., alternativ 3–4 mg/kg i.m.) ZUSAMMEN mit Atropin 0,02 mg/kg i.v. (0,3 mg, Mindestdosis 0,1 mg!), um eine letale vagale Asystolie zu verhindern!\n• Stufe 5: Nach Spasmolyse Maskenbeatmung fortsetzen. Nach erfolgreicher Entlastung mindestens 2 Stunden auf postobstruktives Unterdruck-Lungenödem (NPPE) überwachen!",
+    "answer_tr": "1. ACİL TANI VE AYIRICI TANI:\n• Tanı: Hipoksik kardiyak arrest tehdidi oluşturan Akut Ağır Pediatrik Laringospazm.\n• Ayırıcı tanılar: Postoperatif kanama/pıhtı, subglottik ödem (krup), aspirasyon, laringeal ödem.\n\n2. PEDİATRİK HAVA YOLUNUN ANATOMİK FARKLILIKLARI:\n• Büyük oksiput (başın öne bükülmesini önlemek için omuz altı desteklenmelidir).\n• Ağız boşluğuna oranla büyük dil.\n• Yüksek larinks konumu (C3–C4 seviyesinde).\n• Uzun, gevşek, U biçimli epiglot.\n• Huni biçimli hava yolu: En dar yer vokal kordlar değil, krikoid kıkırdaktır (subglottik bölge).\n• Kısa trakea (~4-5 cm): Tek taraflı entübasyon riski yüksektir.\n\n3. TÜP BOYUTU HESAPLAMA (4 YAŞ):\n• Kaflı tüp: ID = Yaş/4 + 3.5 = 4/4 + 3.5 = 4.5 mm ID (Kaf basıncı <= 20 cmH2O).\n• Kafsız tüp: ID = Yaş/4 + 4.0 = 5.0 mm ID.\n• Giriş derinliği: Yaş/2 + 12 = 14 cm (veya 3 x Tüp ID = 13.5 cm).\n\n4. LARİNGOSPAZM BASAMAKLI TEDAVİ PLANI:\n• Basamak 1: %100 O2 ve sıkı oturan maske ile 10–15 cmH2O CPAP uygulanır. Cerrahi ve aspirasyon uyarısı durdurulur.\n• Basamak 2: Larson manevrası (mastoid ile çene köşesi arasındaki çentiğe iki taraflı güçlü baskı) ve Esmarch manevrası ile çenenin öne çekilmesi.\n• Basamak 3: Propofol 0.5–1 mg/kg i.v. (8–16 mg) ile spazmoliz.\n• Basamak 4: Ağır hipoksi veya bradikardide derhal Süksinilkolin 0.5–1 mg/kg i.v. + vagal arresti önlemek için MUTLAKA Atropin 0.02 mg/kg i.v. (min. 0.1 mg) birlikte verilir!\n• Basamak 5: Spazm çözüldükten sonra ventilasyon sürdürülür. Hasta negatif basınçlı akciğer ödemi (NPPE) açısından en az 2 saat izlenir.",
+    "examiner_tip": "Düsseldorfer Pädiatrie-Klassiker: Succinylcholin beim Kleinkind IMMER mit Atropin kombinieren, um vagale Asystolie zu verhindern! Tubusformel gecufft: Alter/4 + 3.5!",
+    "is_high_yield": true,
+    "is_dus_protocol": true
   }
 ];
 

@@ -297,6 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.filterMode === 'high_yield') {
         return !!q.is_high_yield;
       }
+      if (state.filterMode === 'dus_examiners') {
+        return !!q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'));
+      }
       if (state.filterMode === 'weakness') {
         return !qAns || !qAns.submitted || !qAns.isCorrect;
       }
@@ -976,7 +979,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Header badges
     const elBadgeHy = document.getElementById('badge-hy');
     if (elBadgeHy) {
-      elBadgeHy.style.display = currentQ.is_high_yield ? 'inline-block' : 'none';
+      if (currentQ.is_dus_protocol || (currentQ.source_book && currentQ.source_book.includes('Düsseldorf'))) {
+        elBadgeHy.style.display = 'inline-block';
+        elBadgeHy.textContent = '🏛️ ÄKNO Düsseldorf Protokoll';
+        elBadgeHy.style.background = 'linear-gradient(135deg, #b45309, #d97706)';
+        elBadgeHy.style.color = '#ffffff';
+      } else if (currentQ.is_high_yield) {
+        elBadgeHy.style.display = 'inline-block';
+        elBadgeHy.textContent = '⭐ ÄKNO Top-Frage';
+        elBadgeHy.style.background = '';
+        elBadgeHy.style.color = '';
+      } else {
+        elBadgeHy.style.display = 'none';
+      }
     }
 
     if (elBadgeType) {
@@ -1729,8 +1744,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (filterVal === 'all') {
             card.classList.remove('hidden');
           } else {
-            const cardCat = card.getAttribute('data-category');
-            if (cardCat === filterVal) {
+            const cardCat = card.getAttribute('data-category') || '';
+            if (cardCat.split(' ').includes(filterVal)) {
               card.classList.remove('hidden');
             } else {
               card.classList.add('hidden');
@@ -1739,6 +1754,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     });
+  }
+
+  // --- ÄKNO Düsseldorf Guide Modal ---
+  const elAeknoGuideTrigger = document.getElementById('aekno-guide-trigger');
+  const elAeknoGuideModal = document.getElementById('aekno-guide-modal');
+  const elAeknoGuideModalClose = document.getElementById('aekno-guide-modal-close');
+
+  if (elAeknoGuideTrigger && elAeknoGuideModal) {
+    elAeknoGuideTrigger.addEventListener('click', () => elAeknoGuideModal.classList.add('active'));
+  }
+  if (elAeknoGuideModalClose && elAeknoGuideModal) {
+    elAeknoGuideModalClose.addEventListener('click', () => closeModal(elAeknoGuideModal));
+  }
+  if (elAeknoGuideModal) {
+    elAeknoGuideModal.addEventListener('click', (e) => {
+      if (e.target === elAeknoGuideModal) closeModal(elAeknoGuideModal);
+    });
+
+    // Tab switching
+    const guideTabBtns = elAeknoGuideModal.querySelectorAll('.aekno-tab-btn');
+    const guidePanels = elAeknoGuideModal.querySelectorAll('.aekno-panel');
+    guideTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        guideTabBtns.forEach(b => b.classList.remove('active'));
+        guidePanels.forEach(p => {
+          p.classList.remove('active');
+          p.style.display = 'none';
+        });
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        const targetPanel = document.getElementById(`aekno-panel-${tabId}`);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+          targetPanel.style.display = 'block';
+        }
+      });
+    });
+
+    // Launch buttons
+    const btnLaunchDus = document.getElementById('btn-launch-dus-cases');
+    const btnLaunchHy = document.getElementById('btn-launch-aekno-hy');
+    const btnLaunchMock = document.getElementById('btn-launch-mock-exam');
+
+    if (btnLaunchDus) {
+      btnLaunchDus.addEventListener('click', () => {
+        closeModal(elAeknoGuideModal);
+        const dusChip = document.querySelector('.filter-chip[data-filter="dus_examiners"]');
+        if (dusChip) {
+          dusChip.click();
+        } else {
+          state.filterMode = 'dus_examiners';
+          state.currentIndex = 0;
+          renderCurrentQuestion();
+          renderStats();
+        }
+      });
+    }
+    if (btnLaunchHy) {
+      btnLaunchHy.addEventListener('click', () => {
+        closeModal(elAeknoGuideModal);
+        const hyChip = document.querySelector('.filter-chip[data-filter="high_yield"]');
+        if (hyChip) {
+          hyChip.click();
+        } else {
+          state.filterMode = 'high_yield';
+          state.currentIndex = 0;
+          renderCurrentQuestion();
+          renderStats();
+        }
+      });
+    }
+    if (btnLaunchMock) {
+      btnLaunchMock.addEventListener('click', () => {
+        closeModal(elAeknoGuideModal);
+        const mockBtn = document.getElementById('mock-exam-trigger');
+        if (mockBtn) mockBtn.click();
+      });
+    }
   }
 
   // --- Clinical Anesthesia Calculator Modal ---

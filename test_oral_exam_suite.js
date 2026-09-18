@@ -423,7 +423,26 @@ assert(cssCode.includes('.btn-toggle-tr-sub'), 'styles.css must include styling 
 assert(cssCode.includes('.tr-subtitle-collapsible.open'), 'styles.css must include slide-down styles for .tr-subtitle-collapsible.open');
 console.log('[PASS] Single-Click Expandable Turkish Translation Collapsible UI verified.');
 
-console.log('\n🎉 ALL 21 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 22. Test ÄKNO Düsseldorf Examiners, Protocols & KO-Kriterien Integration
+const dusQuestions = questions.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
+assert.strictEqual(dusQuestions.length, 8, `Expected exactly 8 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
+dusQuestions.forEach(dq => {
+  assert(dq.question_de && dq.question_de.length > 50, `DUS question ${dq.id} missing detailed German stem`);
+  assert(dq.question_tr && dq.question_tr.length > 50, `DUS question ${dq.id} missing Turkish translation`);
+  assert(dq.answer_de && dq.answer_de.length > 100, `DUS question ${dq.id} missing clinical model answer`);
+  assert(dq.answer_tr && dq.answer_tr.length > 100, `DUS question ${dq.id} missing Turkish answer translation`);
+  assert(dq.examiner_tip && dq.examiner_tip.length > 10, `DUS question ${dq.id} missing examiner tip`);
+  assert.strictEqual(dq.is_high_yield, true, `DUS question ${dq.id} must be tagged as high yield`);
+});
+
+assert(htmlContent.includes('aekno-guide-modal'), 'index.html must include #aekno-guide-modal');
+assert(htmlContent.includes('aekno-guide-trigger'), 'index.html must include #aekno-guide-trigger');
+assert(htmlContent.includes('ÄKNO Düsseldorf – Prüfungskommission &amp; KO-Kriterien') || htmlContent.includes('ÄKNO Düsseldorf – Prüfungskommission & KO-Kriterien'), 'Pocket Card 15 must be present');
+assert(appCode.includes("state.filterMode === 'dus_examiners'"), 'app.js must handle dus_examiners filter');
+
+console.log('[PASS] ÄKNO Düsseldorf Protocol Questions & Commission Guide Suite verified.');
+
+console.log('\n🎉 ALL 22 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

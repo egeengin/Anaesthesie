@@ -60,6 +60,9 @@
         </div>
 
         <div class="nav-action-pill">
+          <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & KO-Kriterien">
+            <span>🏛️</span> <span class="pill-btn-text">Düsseldorf Guide</span>
+          </button>
           <button id="pocket-trigger" class="pill-btn" title="Notfall- & Medikamenten-Taschenkarte">
             <span>📇</span> <span class="pill-btn-text">Notfallkarte</span>
           </button>
@@ -94,7 +97,7 @@
       <div class="dash-compact-left">
         <div class="dash-stat-item">
           <span class="dash-label">Lernfortschritt:</span>
-          <span id="stat-progress-text" class="dash-val">0 / 600 (0%)</span>
+          <span id="stat-progress-text" class="dash-val">0 / 608 (0%)</span>
         </div>
         <div class="dash-progress-bar-wrap">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
@@ -139,6 +142,7 @@
         <button class="filter-chip active" data-filter="all">Alle Fragen</button>
         <button class="filter-chip" data-filter="sm2_due">🧠 Spaced Repetition (Fällig)</button>
         <button class="filter-chip" data-filter="high_yield">⭐ ÄKNO NRW Top-Fragen</button>
+        <button class="filter-chip" data-filter="dus_examiners">🏛️ Düsseldorf Prüfer-Fälle</button>
         <button class="filter-chip" data-filter="weakness">🎯 Schwachstellen-Fokus</button>
         <button class="filter-chip" data-filter="unanswered">Offen (Unbeantwortet)</button>
         <button class="filter-chip" data-filter="incorrect">Falsch beantwortet</button>
@@ -147,9 +151,9 @@
 
       <div class="mode-selector">
         <select id="type-filter">
-          <option value="all">Alle Formate (580)</option>
-          <option value="options">✅ Aussagenbewertung (327)</option>
-          <option value="open">📋 Fallbasierte Prüfung (253)</option>
+          <option value="all">Alle Formate (608)</option>
+          <option value="options">✅ Aussagenbewertung (332)</option>
+          <option value="open">📋 Fallbasierte Prüfung (276)</option>
           <option value="image">🖼️ Befund- & Bilddiagnostik (33)</option>
         </select>
 
@@ -594,7 +598,8 @@
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
         <!-- Quick Category Filter Bar for Emergency Cards -->
         <div class="pocket-filter-bar" id="pocket-filter-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; position: sticky; top: 0; background: var(--bg-secondary); padding: 0.5rem 0; z-index: 10; border-bottom: 1px solid var(--border-color);">
-          <button class="pocket-filter-btn active" data-filter="all">Alle (13)</button>
+          <button class="pocket-filter-btn active" data-filter="all">Alle (15)</button>
+          <button class="pocket-filter-btn" data-filter="dus">🏛️ ÄKNO Düsseldorf</button>
           <button class="pocket-filter-btn" data-filter="tox">⚠️ MH & LAST</button>
           <button class="pocket-filter-btn" data-filter="airway">🫁 Atemweg & CICO</button>
           <button class="pocket-filter-btn" data-filter="cpr">❤️‍🔥 Notfall & CPR</button>
@@ -798,7 +803,258 @@
             </table>
           </div>
 
+          <!-- 15. ÄKNO Düsseldorf Prüfungs-Checkliste & Prüfer-Fallen -->
+          <div class="pocket-card-item" data-category="dus cpr" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">🏛️ ÄKNO Düsseldorf – Prüfungskommission & KO-Kriterien</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
+              <tr><td style="width: 28%;"><strong>Prüfungsort & Setting:</strong></td><td>Haus der Ärzteschaft, Tersteegenstr. 9, 40474 Düsseldorf. 3-köpfige Kommission (Vorsitz + 2 Prüfer). Dauer 30–45 Min.</td></tr>
+              <tr><td><strong>Aortenstenose (AKS):</strong></td><td><strong>Spinalanästhesie absolut verboten!</strong> Afterload halten (Noradrenalin/Phenylephrin bereit), Preload hoch-normal, Sinusrhythmus 60–80/min!</td></tr>
+              <tr><td><strong>Thorax / OLV Hypoxie:</strong></td><td><strong>5-Stufen-Rettung:</strong> 1. FiO₂ 1.0 → 2. Fiberoptik-Lagekontrolle → 3. CPAP (2–5 cmH₂O) nicht-ventilierte Lunge → 4. PEEP abhängige Lunge → 5. Chirurg klemmt PA.</td></tr>
+              <tr><td><strong>Schockraum / SHT:</strong></td><td><strong>Permissive Hypotonie bei SHT kontraindiziert!</strong> Ziel-CPP ≥ 60–70 mmHg erfordert MAP ≥ 80–90 mmHg. TXA 1 g Bolus < 3h + 1 g/8h. ROTEM: FIBTEM A10 < 10 mm → Fibrinogen 3–4 g; EXTEM CT > 80s → PPSB.</td></tr>
+              <tr><td><strong>Maligne Hyperthermie:</strong></td><td>Frühzeichen: <strong>EtCO₂-Anstieg</strong> + Masseterspasmus (Hyperthermie ist Spätzeichen!). Sofort Trigger STOP, 100% O₂, <strong>Dantrolen 2.5 mg/kg i.v.</strong>, Kühlung stoppen bei 38.5°C, Hyperkaliämie: Ca-Gluconat 10% + Glukose-Insulin.</td></tr>
+              <tr><td><strong>Geburtshilfe Notfall:</strong></td><td>Notsectio EEZ <strong>≤ 20 Min</strong>, RSI mit <strong>15–30° Linksseitenkippung</strong>. Eklampsie: <strong>Magnesiumsulfat 4–6 g i.v.</strong> (Ziel 2–3.5 mmol/l, Antidot Ca-Gluconat). PPH 4-T Schema (Oxytocin → Sulproston → TXA → Fibrinogen → Bakri-Ballon).</td></tr>
+              <tr><td><strong>Regional & Gerinnung:</strong></td><td>Rückenmarksnah: Prophylakt. NMH 12h, therapeut. NMH <strong>24h Pause</strong>, Rivaroxaban <strong>48h Pause</strong> (6h nach Katheterzug). LAST: <strong>Lipid 20% 1.5 ml/kg Bolus</strong> + 0.25 ml/kg/min Infusion.</td></tr>
+              <tr><td><strong>Pädiatrie Notfall:</strong></td><td>Gecuffter Tubus: Alter/4 + 3.5. Laryngospasmus: 100% O₂ CPAP → Larson-Punkt → Propofol 0.5–1 mg/kg → <strong>Succinylcholin 0.5–1 mg/kg + Atropin 0.02 mg/kg</strong> (vagale Asystolie verhindern!).</td></tr>
+            </table>
+          </div>
+
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÄKNO Düsseldorf Examiners & Protocols Modal -->
+  <div id="aekno-guide-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 960px;">
+      <div class="modal-header">
+        <div>
+          <h2 style="margin: 0; font-size: 1.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🏛️</span> <span>Ärztekammer Nordrhein (Düsseldorf) – Prüfungs-Kompass</span>
+          </h2>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">
+            Haus der Ärzteschaft, Tersteegenstr. 9, 40474 Düsseldorf · Prüfungskommission, Prüfer-Profile & KO-Kriterien
+          </span>
+        </div>
+        <button id="aekno-guide-modal-close" class="btn-icon">✕</button>
+      </div>
+
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto; padding: 1.25rem;">
+        <!-- Guide Tab Bar -->
+        <div class="aekno-tab-bar" id="aekno-tab-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+          <button class="aekno-tab-btn active" data-tab="setting">🏛️ Prüfungsablauf & Setting</button>
+          <button class="aekno-tab-btn" data-tab="examiners">👨‍⚕️ Prüfer-Profile & Lieblingsthemen</button>
+          <button class="aekno-tab-btn" data-tab="ko">⚠️ Die 7 Düsseldorfer KO-Fallen</button>
+          <button class="aekno-tab-btn" data-tab="rhetoric">💬 ÄKNO-Prüfungsrhetorik</button>
+          <button class="aekno-tab-btn" data-tab="launch">🚀 Schnellstart Düsseldorf</button>
+        </div>
+
+        <!-- Tab 1: Setting & Ablauf -->
+        <div id="aekno-panel-setting" class="aekno-panel active">
+          <div style="background: var(--bg-tertiary); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-bottom: 1rem;">
+            <h3 style="margin-top: 0; font-size: 1.1rem; color: var(--primary-color);">📍 Prüfungsort & Rahmenbedingungen</h3>
+            <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">
+              Die Facharztprüfungen der Ärztekammer Nordrhein (ÄkNo) finden im <strong>Haus der Ärzteschaft, Tersteegenstraße 9, 40474 Düsseldorf</strong> (Stadtteil Golzheim) statt.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem;">
+              <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: 6px; border: 1px solid var(--border-color);">
+                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">👥 Die Prüfungskommission</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                  Besteht aus <strong>3 Mitgliedern</strong>: 1 Prüfungsvorsitzender (meist Klinikdirektor/Ordinarius) und 2 Fachprüfer (Chefärzte/Leitende Oberärzte).
+                </div>
+              </div>
+              <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: 6px; border: 1px solid var(--border-color);">
+                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">⏱️ Prüfungsdauer & Modus</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                  <strong>30 bis maximal 45 Minuten</strong> als mündliche Einzelprüfung. Es gibt keine schriftlichen Tests – reine Fallbesprechung und Notfalldialog!
+                </div>
+              </div>
+              <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: 6px; border: 1px solid var(--border-color);">
+                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">🔄 Die 4 Prüfungsrunden</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                  Typischerweise <strong>3–4 Fälle</strong> aus den 5 Säulen: 1. Allgemeinanästhesie, 2. Notfall/Trauma, 3. Intensivmedizin/Beatmung, 4. Spezielle Gebiete (Thorax/Geburtshilfe/Pädiatrie).
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-tertiary); padding: 1.25rem; border-radius: 8px;">
+            <h4 style="margin-top: 0; font-size: 0.95rem; font-weight: 700;">🎯 Was die Düsseldorfer Kommission wirklich bewertet:</h4>
+            <ul style="font-size: 0.88rem; line-height: 1.7; padding-left: 1.25rem; margin-bottom: 0;">
+              <li><strong>Patientensicherheit vor Detailwissen:</strong> Ein Kandidat, der strukturierte SOPs und Algorithmen beherrscht, besteht sicher. Wer lebensbedrohliche Warnsignale übersieht, fällt durch.</li>
+              <li><strong>Entscheidungsfreude ("Clinical Leadership"):</strong> Keine vagen Aussagen wie "man könnte eventuell...". In Düsseldorf will die Kommission klare Ansagen hören: <em>"Ich fordere sofort Hilfe an, gebe 100% O₂, appliziere 2,5 mg/kg Dantrolen i.v. und wechsle das Schlauchsystem."</em></li>
+              <li><strong>Ruhige, strukturierte Prüfungsrhetorik:</strong> Jeder Fall gliedert sich in: 1. Risiko- und Befundanalyse, 2. Narkosevorbereitung & Monitoring, 3. Narkoseführung & Zwischenfallmanagement, 4. Postoperative Versorgung & Intensivweiterbehandlung.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 2: Examiners & Profiles -->
+        <div id="aekno-panel-examiners" class="aekno-panel" style="display: none;">
+          <div style="display: grid; gap: 1rem;">
+            
+            <!-- Prof. Annecke -->
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; font-size: 1rem; color: #3b82f6;">Prof. Dr. med. Thorsten Annecke</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Direktor Klinikum Leverkusen / ehem. UK Köln · Fachbuchautor ("Annecke & Hohn")</span>
+              </div>
+              <div style="font-size: 0.88rem; line-height: 1.6;">
+                <strong>Lieblingsthemen & Prüfungsstil:</strong><br>
+                • <em>Aortenklappenstenose (AKS):</em> Warum ist eine Spinalanästhesie absolut kontraindiziert? Hämodynamische Trias: SVR erhalten (Noradrenalin/Phenylephrin), Vorlast hoch-normal, Sinusrhythmus 60–80/min.<br>
+                • <em>Thoraxanästhesie:</em> Doppellumentubus (DLT), fiberoptische Lagekontrolle, 5-Stufen-Rettungsplan bei akuter Hypoxämie unter Einlungenventilation (FiO₂ 1.0 → Bronchoskopie → CPAP auf kollabierte Lunge → PEEP abhängige Lunge → chirurgisches Klemmen der Pulmonalarterie).<br>
+                • <em>Schwieriger Atemweg:</em> Konsequente DGAI-Stufen (Plan A bis D). Koniotomie muss ohne Zögern benannt werden.
+              </div>
+            </div>
+
+            <!-- Prof. Hohn -->
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #10b981;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; font-size: 1rem; color: #10b981;">Prof. Dr. med. Andreas Hohn</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Chefarzt Ev. Krankenhaus Köln-Kalk / ehem. UK Köln · Co-Autor "Facharztprüfung Anästhesiologie"</span>
+              </div>
+              <div style="font-size: 0.88rem; line-height: 1.6;">
+                <strong>Lieblingsthemen & Prüfungsstil:</strong><br>
+                • <em>Muskelrelaxometrie & Reversierung:</em> Train-of-Four (TOF), TOF-Ratio > 0.9 für sichere Extubation. Sugammadex Dosierungen (2 mg/kg bei TOFC ≥ 2; 4 mg/kg bei PTC 1–2; 16 mg/kg Notfall-Reversierung nach Rocuronium 1.2 mg/kg).<br>
+                • <em>Extubation & Aufwachraum:</em> Muskelrelaxanzien-Überhang vs. Negativ-Druck-Lungenödem (NPPE) vs. Zentrales Anticholinerges Syndrom (ZAS / Physostigmin 1–2 mg i.v.).<br>
+                • <em>Postoperative Analgesie & Opioid-induzierte Hyperalgesie (OIH).</em>
+              </div>
+            </div>
+
+            <!-- Prof. Kienbaum -->
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; font-size: 1rem; color: #f59e0b;">Prof. Dr. med. Peter Kienbaum</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)</span>
+              </div>
+              <div style="font-size: 0.88rem; line-height: 1.6;">
+                <strong>Lieblingsthemen & Prüfungsstil:</strong><br>
+                • <em>Kardiovaskuläre Hämodynamik & Monitoring:</em> Arterieller Zugang, ZVK, TEE-Befunde, PiCCO/Pulse Contour (SVV, PPV, CI).<br>
+                • <em>Schockraum Polytrauma:</em> Der Konflikt zwischen permissiver Hypotonie (MAP 50–65) und schwerem Schädel-Hirn-Trauma (CPP ≥ 60–70 mmHg / MAP ≥ 80–90 mmHg). Bei SHT ist permissive Hypotonie KONTRAINDIZIERT!<br>
+                • <em>Gerinnung & Massivtransfusion:</em> ROTEM-Algorithmus (FIBTEM A10 < 10 mm → Fibrinogen 3–4 g; EXTEM CT > 80 s → PPSB; EXTEM ML > 15% → TXA).
+              </div>
+            </div>
+
+            <!-- Prof. Wappler -->
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; font-size: 1rem; color: #ef4444;">Prof. Dr. med. Frank Wappler</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Kliniken der Stadt Köln / Universität Witten/Herdecke · Nationales MH-Zentrum</span>
+              </div>
+              <div style="font-size: 0.88rem; line-height: 1.6;">
+                <strong>Lieblingsthemen & Prüfungsstil:</strong><br>
+                • <em>Maligne Hyperthermie (MH):</em> Triggersubstanzen (Volatila + Succinylcholin). Frühestes Zeichen: Ungeklärter steiler EtCO₂-Anstieg + Masseterspasmus! Notfallsequenz: Trigger STOP, 100% O₂ High Flow, Dantrolen 2.5 mg/kg i.v. Bolus, Kühlung stoppen bei 38.5°C, Hyperkaliämie-Notfalltherapie (Ca-Gluconat 10% + Glukose-Insulin).<br>
+                • <em>Anaphylaxie & LAST:</em> Ring & Messmer Stadien, Tryptase-Diagnostik, Intralipid 20% (1.5 ml/kg Bolus + 0.25 ml/kg/min Infusion).
+              </div>
+            </div>
+
+            <!-- Geburtshilfe & Pädiatrie -->
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #ec4899;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; font-size: 1rem; color: #ec4899;">ÄKNO Geburtshilfe- & Pädiatrie-Kommission</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Spezialprüfer für Notfallsektio, Eklampsie, PPH & Kindernotfälle</span>
+              </div>
+              <div style="font-size: 0.88rem; line-height: 1.6;">
+                <strong>Lieblingsthemen & Prüfungsstil:</strong><br>
+                • <em>Notsectio:</em> Entscheidungs-Entbindungs-Zeit (EEZ) ≤ 20 Min. RSI mit 15–30° Linksseitenkippung (Vena-cava-Syndrom).<br>
+                • <em>Eklampsie & HELLP:</em> Magnesiumsulfat 4–6 g i.v. Kurzinfusion + 1–2 g/h Erhaltung (Therapiespiegel 2–3.5 mmol/l, Antidot Ca-Gluconat 10%). Blutdrucksenkung mit Urapidil (Ziel 140–150/90–100 mmHg).<br>
+                • <em>Pädiatrischer Laryngospasmus:</em> 100% O₂ CPAP → Larson-Druckpunkt → Propofol 0.5–1 mg/kg → Succinylcholin 0.5–1 mg/kg + Atropin 0.02 mg/kg (vagale Asystolie verhindern!).
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 3: The 7 KO Criteria -->
+        <div id="aekno-panel-ko" class="aekno-panel" style="display: none;">
+          <div style="background: rgba(239,68,68,0.08); padding: 1rem; border-radius: 8px; border: 1px solid #ef4444; margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0; color: #ef4444; font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🚨</span> <span>Die 7 Düsseldorfer "KO-Kriterien" (Sofort-Nicht-Bestehen)</span>
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+              In den ÄKNO-Protokollen führen die folgenden 7 Fehlentscheidungen regelmäßig zum sofortigen Abbruch oder Nichtbestehen der Prüfung:
+            </p>
+          </div>
+
+          <div style="display: grid; gap: 0.75rem;">
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">1. Spinalanästhesie bei schwerer Aortenklappenstenose:</strong><br>
+              Sympathikolyse führt zum SVR-Abfall; der starre Stenosequerschnitt verhindert einen Schlagvolumenausgleich → diastolischer Blutdruck bricht ein → irreversible Myokardischämie und Asystolie!
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">2. Permissive Hypotonie bei schwerem Schädel-Hirn-Trauma:</strong><br>
+              Bei SHT (GCS ≤ 8) ist permissive Hypotonie (MAP 50–65) streng kontraindiziert! Ein CPP ≥ 60–70 mmHg erfordert zwingend einen MAP ≥ 80–90 mmHg (systolisch ≥ 100–110 mmHg).
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">3. Zögern bei CICO (Cannot Intubate, Cannot Oxygenate):</strong><br>
+              Wer nach gescheiterter Intubation und Larynxmaske endlos weiterintubiert statt unverzüglich Plan D (chirurgische Koniotomie: Skalpell-Bougie-Tubus) auszurufen, besteht nicht.
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">4. Fehlendes Dantrolen / falsche Zubereitung bei Maligner Hyperthermie:</strong><br>
+              Unkenntnis der Initialdosis (2.5 mg/kg i.v.) oder das Nicht-Erkennen des EtCO₂-Anstiegs als frühestes Zeichen führt zum Durchfall.
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">5. Rückenmarksnahe Punktion unter therapeutischer Antikoagulation:</strong><br>
+              Missachtung der DGAI-Karenzzeiten (z.B. therapeutisches NMH < 24h oder Rivaroxaban < 48–72h vor Punktion oder Katheterzug) birgt das fatale Risiko des spinalen Epiduralhämatoms.
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">6. Verzicht auf Linksseitenkippung bei Notsectio / Reanimation Schwangerer:</strong><br>
+              Ohne 15–30° Linksseitenkippung blockiert der gravide Uterus die Vena cava inferior (Aortokavale Kompression) → kompletter Zusammenbruch des venösen Rückstroms.
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 0.85rem; line-height: 1.5;">
+              <strong style="color: #ef4444;">7. Falsche Schock-Sequenz beim Kreislaufstillstand (ALS):</strong><br>
+              Schockabgabe bei Asystolie/PEA oder Adrenalingabe VOR dem 3. Schock bei Kammerflimmern (VF).
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Rhetoric & Language Patterns -->
+        <div id="aekno-panel-rhetoric" class="aekno-panel" style="display: none;">
+          <div style="background: var(--bg-tertiary); padding: 1.25rem; border-radius: 8px; margin-bottom: 1rem;">
+            <h3 style="margin-top: 0; font-size: 1.05rem; color: var(--text-primary);">🗣️ Die 4-Phasen-Prüfungsrhetorik in Düsseldorf</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+              In Düsseldorf punktet man durch eine standardisierte, ruhige Sprachstruktur. Starten Sie niemals unstrukturiert mit Einzelmedikamenten, sondern führen Sie den Prüfer durch folgende 4 Phasen:
+            </p>
+            <div style="display: grid; gap: 0.75rem;">
+              <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px; border-left: 3px solid #3b82f6;">
+                <strong>Phase 1 – Problemdefinition & Risikostratifizierung:</strong><br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);"><em>"Wir haben hier einen 76-jährigen Patienten mit hochgradiger symptomatischer Aortenklappenstenose und dringlicher Operationsindikation. Die zentralen pathophysiologischen Risiken sind..."</em></span>
+              </div>
+              <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong>Phase 2 – Vorbereitung & Erweitertes Monitoring:</strong><br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);"><em>"Vor Narkoseeinleitung etabliere ich zwingend eine invasive arterielle Blutdruckmessung, lege zwei großlumige Zugänge und stelle Noradrenalin sowie Notfallmedikamente unmittelbar bereit."</em></span>
+              </div>
+              <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                <strong>Phase 3 – Narkoseführung & Zwischenfall-Algorithmus:</strong><br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);"><em>"Ich wähle eine schonende Allgemeinanästhesie mit Etomidat, Sufentanil und Rocuronium. Kommt es intraoperativ zur Hypotonie, greife ich primär zu Phenylephrin/Noradrenalin zur SVR-Hebung..."</em></span>
+              </div>
+              <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px; border-left: 3px solid #8b5cf6;">
+                <strong>Phase 4 – Postoperative Weiterbehandlung & Intensivüberwachung:</strong><br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);"><em>"Postoperativ übernehme ich den Patienten intubiert auf die operative Intensivstation zur kontinuierlichen Hämodynamik- und Schmerztherapie."</em></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Launch / Quickstart -->
+        <div id="aekno-panel-launch" class="aekno-panel" style="display: none;">
+          <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 8px; text-align: center;">
+            <h3 style="margin-top: 0; font-size: 1.2rem; color: var(--text-primary);">🚀 Gezieltes Düsseldorf-Training starten</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 600px; margin: 0.5rem auto 1.5rem auto;">
+              Wählen Sie Ihren bevorzugten Lernpfad für die Prüfung bei der Ärztekammer Nordrhein:
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <button id="btn-launch-dus-cases" class="btn btn-primary" style="padding: 0.75rem 1.25rem; font-weight: 600;">
+                🏛️ Die 8 Düsseldorf Protokoll-Fälle trainieren
+              </button>
+              <button id="btn-launch-aekno-hy" class="btn btn-secondary" style="padding: 0.75rem 1.25rem; font-weight: 600;">
+                ⭐ Alle 469 ÄKNO Top-Fragen laden
+              </button>
+              <button id="btn-launch-mock-exam" class="btn btn-secondary" style="padding: 0.75rem 1.25rem; font-weight: 600;">
+                ⏱️ 45-Min Mündliche Simulation starten
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

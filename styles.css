@@ -3158,8 +3158,9 @@ footer {
   display: none !important;
 }
 
-/* --- Clinical Anesthesia Calculator Modal Styling --- */
-.calc-tab-btn {
+/* --- Clinical Anesthesia Calculator & ÄKNO Guide Modal Styling --- */
+.calc-tab-btn,
+.aekno-tab-btn {
   background: var(--bg-tertiary);
   color: var(--text-secondary);
   border: 1px solid var(--border-color);
@@ -3171,13 +3172,15 @@ footer {
   transition: all 0.2s ease;
 }
 
-.calc-tab-btn:hover {
+.calc-tab-btn:hover,
+.aekno-tab-btn:hover {
   border-color: var(--primary);
   color: var(--text-primary);
   background: rgba(13, 148, 136, 0.1);
 }
 
-.calc-tab-btn.active {
+.calc-tab-btn.active,
+.aekno-tab-btn.active {
   background: var(--primary);
   color: #ffffff;
   border-color: var(--primary);
