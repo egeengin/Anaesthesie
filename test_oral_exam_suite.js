@@ -116,13 +116,13 @@ function generateVerbalFramework(category, stem) {
 function generatePitfalls(category, text) {
   const t = text.toLowerCase();
   if (t.includes('maligne hyperthermie') || t.includes('dantrolen')) {
-    return '❌ No-Go: Niemals Kalziumantagonisten bei Verdacht auf Maligne Hyperthermie geben!';
+    return '❌ Kardinalfehler (K.O.-Kriterium): Niemals Kalziumantagonisten bei Verdacht auf Maligne Hyperthermie geben!';
   } else if (t.includes('last') || t.includes('lokalanästhetik')) {
-    return '❌ No-Go: Kein Vasopressin, kein Lidocain, kein Amiodaron bei LAST!';
+    return '❌ Kardinalfehler (K.O.-Kriterium): Kein Vasopressin, kein Lidocain, kein Amiodaron bei LAST!';
   } else if (t.includes('hyponatriäm') || t.includes('natrium')) {
-    return '❌ No-Go: Zu schneller Natriumausgleich bei chronischer Hyponatriämie (> 8–10 mmol/l/24h) birgt die Gefahr der pontinen Myelinolyse!';
+    return '❌ Kardinalfehler (K.O.-Kriterium): Zu schneller Natriumausgleich bei chronischer Hyponatriämie (> 8–10 mmol/l/24h) birgt die Gefahr der pontinen Myelinolyse!';
   } else {
-    return '❌ Prüfungsfalle: Unstrukturiertes Reagieren ohne Priorisierung nach dem ABCDE-Schema!';
+    return '❌ Kritische Prüfungsfalle: Unstrukturiertes Reagieren ohne Priorisierung nach dem ABCDE-Schema!';
   }
 }
 

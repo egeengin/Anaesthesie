@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const elTypeFilter = document.getElementById('type-filter');
   const elCategoryFilter = document.getElementById('category-filter');
+  const elSearchInput = document.getElementById('search-input');
   const elFilterChips = document.querySelectorAll('.filter-chip');
   const elModeSelect = document.getElementById('mode-select');
 
@@ -728,19 +729,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const text = (stem + ' ' + answer).toLowerCase();
 
     if (text.includes('maligne hyperthermie') || text.includes('dantrolen')) {
-      return '❌ No-Go: Niemals Kalziumantagonisten (z. B. Diltiazem, Verapamil) bei Verdacht auf Maligne Hyperthermie geben – Gefahr des irreversiblen hyperkaliämischen Herzstillstands!';
+      return '❌ Kardinalfehler (K.O.-Kriterium): Niemals Kalziumantagonisten (z. B. Diltiazem, Verapamil) bei Verdacht auf Maligne Hyperthermie geben – Gefahr des irreversiblen hyperkaliämischen Herzstillstands!';
     } else if (text.includes('last') || text.includes('lokalanästhetik')) {
-      return '❌ No-Go: Kein Vasopressin, kein Lidocain, kein Amiodaron bei LAST! Adrenalin nur streng titriert (< 1 µg/kg) dosieren!';
+      return '❌ Kardinalfehler (K.O.-Kriterium): Kein Vasopressin, kein Lidocain, kein Amiodaron bei LAST! Adrenalin nur streng titriert (< 1 µg/kg) dosieren!';
     } else if (text.includes('atemweg') || text.includes('intubat') || text.includes('cico')) {
-      return '❌ Prüfungsfalle: Mehr als 3 Intubationsversuche ohne Optimierung (Videolaryngoskopie/BURP) überschreiten. Bei CICO sofort die Koniotomie einleiten!';
+      return '❌ Kritische Prüfungsfalle: Mehr als 3 Intubationsversuche ohne Optimierung (Videolaryngoskopie/BURP) überschreiten. Bei CICO sofort die Koniotomie einleiten!';
     } else if (text.includes('hyponatriäm') || text.includes('natrium')) {
-      return '❌ No-Go: Zu schneller Natriumausgleich bei chronischer Hyponatriämie (> 8–10 mmol/l/24h) birgt die tödliche Gefahr der pontinen Myelinolyse!';
+      return '❌ Kardinalfehler (K.O.-Kriterium): Zu schneller Natriumausgleich bei chronischer Hyponatriämie (> 8–10 mmol/l/24h) birgt die tödliche Gefahr der pontinen Myelinolyse!';
     } else if (text.includes('hyperkaliäm') || text.includes('kalium')) {
-      return '❌ No-Go: Gabe von Succinylcholin bei bekannter Hyperkaliämie oder Verbrennungen > 24h (Gefahr des Asystolie-Stillstands)!';
+      return '❌ Kardinalfehler (K.O.-Kriterium): Gabe von Succinylcholin bei bekannter Hyperkaliämie oder Verbrennungen > 24h (Gefahr des Asystolie-Stillstands)!';
     } else if (text.includes('spannungspneumothorax')) {
-      return '❌ No-Go: PEEP-Erhöhung bei V.a. Spannungspneumothorax verschärft den Kreislaufstillstand – sofort Nadel- bzw. Minithorakotomie durchführen!';
+      return '❌ Kardinalfehler (K.O.-Kriterium): PEEP-Erhöhung bei V.a. Spannungspneumothorax verschärft den Kreislaufstillstand – sofort Nadel- bzw. Minithorakotomie durchführen!';
     } else {
-      return '❌ Prüfungsfalle: Unstrukturiertes Reagieren ohne Priorisierung nach dem ABCDE-Schema sowie das Übersehen vitaler Kontraindikationen!';
+      return '❌ Kritische Prüfungsfalle: Unstrukturiertes Reagieren ohne Priorisierung nach dem ABCDE-Schema sowie das Übersehen vitaler Kontraindikationen!';
     }
   }
 
@@ -1302,8 +1303,17 @@ document.addEventListener('DOMContentLoaded', () => {
       state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
     }
 
+    // Daily study count tracking
+    const todayStr = new Date().toISOString().slice(0, 10);
+    if (state.dailyDate !== todayStr) {
+      state.dailyDate = todayStr;
+      state.dailyCount = 0;
+    }
+    state.dailyCount = (state.dailyCount || 0) + 1;
+
     saveState();
     renderCurrentQuestion();
+    updateAnalytics();
   }
 
   // --- Check & Submit Answer (Interactive Options Mode) ---
@@ -1354,8 +1364,17 @@ document.addEventListener('DOMContentLoaded', () => {
       state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
     }
 
+    // Daily study count tracking
+    const todayStrCheck = new Date().toISOString().slice(0, 10);
+    if (state.dailyDate !== todayStrCheck) {
+      state.dailyDate = todayStrCheck;
+      state.dailyCount = 0;
+    }
+    state.dailyCount = (state.dailyCount || 0) + 1;
+
     saveState();
     renderCurrentQuestion();
+    updateAnalytics();
   }
 
   // --- Flag for Review / Wiederholen ---
@@ -1632,10 +1651,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.documentElement.setAttribute('data-theme', state.theme);
-    if (state.subtitleMode) {
-      elSubToggle.classList.add('active');
-    } else {
-      elSubToggle.classList.remove('active');
+    if (elSubToggle) {
+      if (state.subtitleMode) {
+        elSubToggle.classList.add('active');
+      } else {
+        elSubToggle.classList.remove('active');
+      }
     }
 
     if (state.studyMode) {
@@ -1656,65 +1677,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Export Progress (JSON Backup) ---
-  elBtnExportProgress.addEventListener('click', () => {
-    const backupData = {
-      version: '2.0',
-      timestamp: new Date().toISOString(),
-      state: state
-    };
+  if (elBtnExportProgress) {
+    elBtnExportProgress.addEventListener('click', () => {
+      const backupData = {
+        version: '2.0',
+        timestamp: new Date().toISOString(),
+        state: state
+      };
 
-    const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `facharzt_anaesthesie_backup_${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-  });
+      const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `facharzt_anaesthesie_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
 
   // --- Import Progress ---
-  elBtnImportTrigger.addEventListener('click', () => elImportFileInput.click());
+  if (elBtnImportTrigger && elImportFileInput) {
+    elBtnImportTrigger.addEventListener('click', () => elImportFileInput.click());
+  }
 
-  elImportFileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  if (elImportFileInput) {
+    elImportFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const imported = JSON.parse(event.target.result);
-        if (imported && imported.state) {
-          state = { ...state, ...imported.state };
-          saveState();
-          renderCurrentQuestion();
-          alert('✅ Lernfortschritt erfolgreich importiert!');
-          closeModal(elSettingsModal);
-        } else {
-          alert('❌ Ungültige Backup-Datei.');
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const imported = JSON.parse(event.target.result);
+          if (imported && imported.state) {
+            state = { ...state, ...imported.state };
+            saveState();
+            renderCurrentQuestion();
+            alert('✅ Lernfortschritt erfolgreich importiert!');
+            closeModal(elSettingsModal);
+          } else {
+            alert('❌ Ungültige Backup-Datei.');
+          }
+        } catch (err) {
+          alert('❌ Fehler beim Lesen der Backup-Datei.');
         }
-      } catch (err) {
-        alert('❌ Fehler beim Lesen der Backup-Datei.');
-      }
-    };
-    reader.readAsText(file);
-  });
+      };
+      reader.readAsText(file);
+    });
+  }
 
   // --- Confirmed Reset Progress ---
-  elBtnResetProgress.addEventListener('click', () => {
-    const confirmed = confirm("⚠️ Sind Sie sicher, dass Sie Ihren gesamten Lernfortschritt zurücksetzen möchten?\n\nAlle gespeicherten Antworten und Erfolgsstatistiken werden unwiderruflich gelöscht!");
-    if (confirmed) {
-      localStorage.removeItem(STORAGE_KEY);
-      state.answers = {};
-      state.flagged = {};
-      state.userNotes = {};
-      state.currentIndex = 0;
-      saveState();
-      updateAnalytics();
-      renderCurrentQuestion();
-      alert('🗑️ Lernfortschritt komplett zurückgesetzt.');
-      closeModal(elSettingsModal);
-    }
-  });
+  if (elBtnResetProgress) {
+    elBtnResetProgress.addEventListener('click', () => {
+      const confirmed = confirm("⚠️ Sind Sie sicher, dass Sie Ihren gesamten Lernfortschritt zurücksetzen möchten?\n\nAlle gespeicherten Antworten und Erfolgsstatistiken werden unwiderruflich gelöscht!");
+      if (confirmed) {
+        localStorage.removeItem(STORAGE_KEY);
+        state.answers = {};
+        state.flagged = {};
+        state.userNotes = {};
+        state.currentIndex = 0;
+        saveState();
+        updateAnalytics();
+        renderCurrentQuestion();
+        alert('🗑️ Lernfortschritt komplett zurückgesetzt.');
+        closeModal(elSettingsModal);
+      }
+    });
+  }
 
   // --- Emergency Pocket Cards Modal ---
   const elPocketTrigger = document.getElementById('pocket-trigger');
@@ -1807,7 +1836,7 @@ document.addEventListener('DOMContentLoaded', () => {
           state.filterMode = 'dus_examiners';
           state.currentIndex = 0;
           renderCurrentQuestion();
-          renderStats();
+          updateAnalytics();
         }
       });
     }
@@ -1821,7 +1850,7 @@ document.addEventListener('DOMContentLoaded', () => {
           state.filterMode = 'high_yield';
           state.currentIndex = 0;
           renderCurrentQuestion();
-          renderStats();
+          updateAnalytics();
         }
       });
     }
@@ -2174,27 +2203,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Navigation & UI Handlers ---
-  elBtnNext.addEventListener('click', () => {
-    if (state.currentIndex < filteredQuestions.length - 1) {
-      state.currentIndex++;
-      saveState();
-      renderCurrentQuestion();
-    }
-  });
+  if (elBtnNext) {
+    elBtnNext.addEventListener('click', () => {
+      if (state.currentIndex < filteredQuestions.length - 1) {
+        state.currentIndex++;
+        saveState();
+        renderCurrentQuestion();
+      }
+    });
+  }
 
-  elBtnPrev.addEventListener('click', () => {
-    if (state.currentIndex > 0) {
-      state.currentIndex--;
-      saveState();
-      renderCurrentQuestion();
-    }
-  });
+  if (elBtnPrev) {
+    elBtnPrev.addEventListener('click', () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        saveState();
+        renderCurrentQuestion();
+      }
+    });
+  }
 
-  elBtnCheck.addEventListener('click', checkAnswer);
-  elBtnReview.addEventListener('click', toggleFlagForReview);
-  elBtnReveal.addEventListener('click', revealAnswer);
-  elBtnKnewIt.addEventListener('click', () => selfAssess(true));
-  elBtnDidntKnow.addEventListener('click', () => selfAssess(false));
+  if (elBtnCheck) elBtnCheck.addEventListener('click', checkAnswer);
+  if (elBtnReview) elBtnReview.addEventListener('click', toggleFlagForReview);
+  if (elBtnReveal) elBtnReveal.addEventListener('click', revealAnswer);
+  if (elBtnKnewIt) elBtnKnewIt.addEventListener('click', () => selfAssess(true));
+  if (elBtnDidntKnow) elBtnDidntKnow.addEventListener('click', () => selfAssess(false));
 
   // --- Personal Medical Notes Auto-Save & Cloud Sync Engine ---
   const elUserNoteText = document.getElementById('user-note-text');
@@ -2299,18 +2332,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Type Filter Dropdown
+  if (elTypeFilter) {
+    elTypeFilter.addEventListener('change', (e) => {
+      state.typeFilter = e.target.value;
+      state.currentIndex = 0;
+      saveState();
+      renderCurrentQuestion();
+    });
+  }
+
+  // Live Medical Full-Text Search Input
+  if (elSearchInput) {
+    let searchDebounceTimer = null;
+    elSearchInput.addEventListener('input', (e) => {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        state.searchQuery = e.target.value.trim();
+        state.currentIndex = 0;
+        renderCurrentQuestion();
+      }, 250);
+    });
+  }
+
   // Practice Mode Dropdown
   if (elModeSelect) {
     elModeSelect.addEventListener('change', (e) => {
       const val = e.target.value;
-      if (val === 'simulation') {
-        startExamSimulation();
-      } else {
-        stopExamSimulation(false);
-        state.randomOrder = (val === 'random');
-        if (state.randomOrder) {
-          filteredQuestions.sort(() => Math.random() - 0.5);
-        }
+      state.randomOrder = (val === 'random');
+      if (state.randomOrder) {
+        filteredQuestions.sort(() => Math.random() - 0.5);
       }
       state.currentIndex = 0;
       saveState();
