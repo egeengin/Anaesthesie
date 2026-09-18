@@ -351,7 +351,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const formattedTR = formatAnswerText(textTR);
     
     if (state.subtitleMode) {
-      return `<div class="de-text-block">${formattedDE}</div><div class="tr-subtitle-block">🇹🇷 ${formattedTR}</div>`;
+      return `
+        <div class="de-text-block">${formattedDE}</div>
+        <button class="btn-toggle-tr-sub" type="button" aria-expanded="false" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+          <span>🇹🇷 Übersetzung</span> <span class="tr-chevron">▼</span>
+        </button>
+        <div class="tr-subtitle-collapsible">
+          <div class="tr-subtitle-inner">🇹🇷 ${formattedTR}</div>
+        </div>
+      `;
     } else {
       return `<div class="de-text-block tr-hover" data-tr="${escapeHtml(textTR)}">${formattedDE}</div>`;
     }

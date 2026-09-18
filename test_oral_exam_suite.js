@@ -411,7 +411,20 @@ assert(htmlContent.includes('Clopidogrel'), 'Clopidogrel must be documented');
 assert(htmlContent.includes('5 Tage Pause'), '5-day pause must be documented');
 console.log('[PASS] Neuraxial Anesthesia & Anticoagulation (SPA/EDA) DGAI S1-Leitlinie verified.');
 
-console.log('\n🎉 ALL 20 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 21. Test Single-Click Expandable Turkish Translation Collapsible Rendering
+const appPath = path.join(__dirname, 'app.js');
+const appCode = fs.readFileSync(appPath, 'utf8');
+assert(appCode.includes('btn-toggle-tr-sub'), 'app.js must render single-click collapsible button btn-toggle-tr-sub');
+assert(appCode.includes('tr-subtitle-collapsible'), 'app.js must render collapsible container tr-subtitle-collapsible');
+
+const cssPath = path.join(__dirname, 'styles.css');
+const cssCode = fs.readFileSync(cssPath, 'utf8');
+assert(cssCode.includes('.btn-toggle-tr-sub'), 'styles.css must include styling for .btn-toggle-tr-sub');
+assert(cssCode.includes('.tr-subtitle-collapsible.open'), 'styles.css must include slide-down styles for .tr-subtitle-collapsible.open');
+console.log('[PASS] Single-Click Expandable Turkish Translation Collapsible UI verified.');
+
+console.log('\n🎉 ALL 21 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 
