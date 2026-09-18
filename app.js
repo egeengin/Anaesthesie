@@ -299,6 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const qAns = state.answers[q.id];
       const isFlagged = !!state.flagged[q.id];
 
+      if (state.filterMode === 'sm2_due') {
+        const sm2Item = state.sm2Data ? state.sm2Data[q.id] : null;
+        if (!sm2Item) return false;
+        return Date.now() >= (sm2Item.dueDate || 0);
+      }
       if (state.filterMode === 'high_yield') {
         return !!q.is_high_yield;
       }
@@ -1529,6 +1534,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elStatHy) {
       const hyCount = EXAM_QUESTIONS.filter(q => q.is_high_yield).length;
       elStatHy.textContent = hyCount;
+    }
+
+    // Dynamic SM-2 Spaced Repetition Due Counter on Filter Chip
+    let sm2DueCount = 0;
+    if (state.sm2Data) {
+      const now = Date.now();
+      Object.values(state.sm2Data).forEach(item => {
+        if (item && item.dueDate && now >= item.dueDate) {
+          sm2DueCount++;
+        }
+      });
+    }
+    const elChipSm2 = document.querySelector('.filter-chip[data-filter="sm2_due"]');
+    if (elChipSm2) {
+      elChipSm2.textContent = `🧠 Spaced Repetition (${sm2DueCount} fällig)`;
     }
 
     // Daily Goal calculation

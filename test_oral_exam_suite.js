@@ -443,6 +443,7 @@ assert(htmlContent.includes('aekno-guide-modal'), 'index.html must include #aekn
 assert(htmlContent.includes('aekno-guide-trigger'), 'index.html must include #aekno-guide-trigger');
 assert(htmlContent.includes('ÄKNO Düsseldorf – Prüfungskommission &amp; KO-Kriterien') || htmlContent.includes('ÄKNO Düsseldorf – Prüfungskommission & KO-Kriterien'), 'Pocket Card 15 must be present');
 assert(appCode.includes("state.filterMode === 'dus_examiners'"), 'app.js must handle dus_examiners filter');
+assert(appCode.includes("state.filterMode === 'sm2_due'"), 'app.js must handle sm2_due filter');
 
 console.log('[PASS] ÄKNO Düsseldorf Protocol Questions & Commission Guide Suite verified.');
 
