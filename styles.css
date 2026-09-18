@@ -2805,6 +2805,126 @@ footer {
   color: #fcd34d;
 }
 
+/* --- 7b. Examiner Profile Reveal Card (ÄKNO Düsseldorf Protocol Cases) --- */
+.examiner-reveal-box {
+  margin-top: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  background: var(--bg-tertiary);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.badge-examiner-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(59, 130, 246, 0.08);
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: background 0.2s ease;
+  text-align: left;
+}
+
+.badge-examiner-toggle:hover {
+  background: rgba(59, 130, 246, 0.16);
+}
+
+.badge-examiner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.examiner-badge-icon {
+  font-size: 1.15rem;
+}
+
+.examiner-toggle-chevron {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.badge-examiner-toggle[aria-expanded="true"] .examiner-toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.examiner-reveal-card {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  background: var(--bg-primary);
+}
+
+.examiner-reveal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.examiner-reveal-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.examiner-reveal-clinic {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.examiner-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.examiner-profile-item {
+  background: var(--bg-secondary);
+  padding: 0.7rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.examiner-profile-item strong {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.examiner-profile-item.alert-trap {
+  border-left: 3px solid #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.examiner-profile-item.alert-trap strong {
+  color: #ef4444;
+}
+
+.examiner-profile-item.alert-pass {
+  border-left: 3px solid #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.examiner-profile-item.alert-pass strong {
+  color: #10b981;
+}
+
 /* --- 8. Reveal Button & 3 High-Impact Micro-Cards --- */
 .btn-reveal-rubric {
   width: 100%;

@@ -94,6 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnStep3Toggle = document.getElementById('btn-step3-toggle');
   const elPanelExaminer = document.getElementById('panel-examiner');
   const elExaminerQuoteText = document.getElementById('examiner-quote-text');
+  const elExaminerRevealBox = document.getElementById('examiner-reveal-box');
+  const elBadgeExaminerToggle = document.getElementById('badge-examiner-toggle');
+  const elExaminerBadgeTitle = document.getElementById('examiner-badge-title');
+  const elExaminerRevealCard = document.getElementById('examiner-reveal-card');
 
   const elStep4Container = document.getElementById('step4-container');
   const elRevealContainer = document.getElementById('reveal-container');
@@ -616,6 +620,63 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  function getExaminerProfileForCase(q) {
+    if (!q) return null;
+    if (q.examiner_profile) return q.examiner_profile;
+    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.source_book || '')).toLowerCase();
+
+    if (text.includes('aortenklappen') || text.includes('einlungenventilation') || text.includes('dlt') || text.includes('annecke') || text.includes('doppellumentubus')) {
+      return {
+        name: 'Prof. Dr. med. Thorsten Annecke',
+        hospital: 'Direktor Klinikum Leverkusen / ehem. UK Köln · ÄKNO Prüfungsvorsitzender',
+        focus: 'Aortenklappenstenose (keine SPA!), Einlungenventilation & 5-Stufen-Hypoxämie-Algorithmus, DGAI-Atemwegs-Stufen',
+        trap: 'Vorschlag einer Spinalanästhesie bei Aortenklappenstenose oder Hektik ohne Fiberoptik bei DLT-Fehllage',
+        keywords: 'SVR hochhalten, Noradrenalin/Phenylephrin, Arterie VOR Einleitung, 100% FiO₂ → CPAP kollabierte Lunge'
+      };
+    } else if (text.includes('sugammadex') || text.includes('relaxometrie') || text.includes('tof') || text.includes('hohn') || text.includes('aufwachraum')) {
+      return {
+        name: 'Prof. Dr. med. Andreas Hohn',
+        hospital: 'Chefarzt Ev. Krankenhaus Köln-Kalk / ehem. UK Köln · ÄKNO Fachprüfer',
+        focus: 'Quantitative Relaxometrie (TOF-Ratio ≥ 0.9), Sugammadex-Dosierungen (2 vs. 4 vs. 16 mg/kg), ZAS vs. Überhang',
+        trap: 'Extubation ohne Relaxometrie-Nachweis oder Verwechslung von NPPE mit Muskelrelaxanzien-Überhang',
+        keywords: 'TOF-Ratio ≥ 0.9, Sugammadex 16 mg/kg Notfall-Rescue, Posttetanic Count (PTC), Physostigmin bei ZAS'
+      };
+    } else if (text.includes('kienbaum') || text.includes('polytrauma') || text.includes('rotem') || text.includes('schädel-hirn') || text.includes('massivtransfusion') || text.includes('tee')) {
+      return {
+        name: 'Prof. Dr. med. Peter Kienbaum',
+        hospital: 'Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)',
+        focus: 'Hämodynamik & PiCCO/TEE, Schockraum-Algorithmus, Ziel-CPP ≥ 60–70 mmHg bei SHT, ROTEM-gezielte Gerinnung',
+        trap: 'Permissive Hypotonie bei Schädel-Hirn-Trauma (absolutes K.O.-Kriterium!) oder ungezielte FFP-Gabe ohne ROTEM',
+        keywords: 'CPP = MAP - ICP, kein PEEP-Überdruck bei Spannungspneu, Fibrinogen bei FIBTEM A10 < 10 mm, TXA vor 3h'
+      };
+    } else if (text.includes('wappler') || text.includes('maligne hyperthermie') || text.includes('dantrolen') || text.includes('last') || text.includes('intralipid')) {
+      return {
+        name: 'Prof. Dr. med. Frank Wappler',
+        hospital: 'Kliniken der Stadt Köln / Universität Witten/Herdecke · Nationales MH-Referenzzentrum',
+        focus: 'Maligne Hyperthermie (EtCO₂-Anstieg, Dantrolen 2.5 mg/kg), Lokalanästhetika-Intoxikation (Intralipid 20%)',
+        trap: 'Kalziumantagonisten bei V.a. MH oder Vasopressin/Lidocain bei LAST (sofortiges Durchfallen!)',
+        keywords: 'Trigger STOP, 100% O₂ High Flow, Dantrolen 2.5 mg/kg i.v., Intralipid 1.5 ml/kg Bolus, Kühlung bis 38.5°C'
+      };
+    } else if (text.includes('sectio') || text.includes('eklampsie') || text.includes('hellp') || text.includes('schwanger') || text.includes('pädiatr') || text.includes('kind')) {
+      return {
+        name: 'ÄKNO Spezialkommission Geburtshilfe & Pädiatrie',
+        hospital: 'Ärztekammer Nordrhein (Düsseldorf) · Fachprüfer für Notfallsektio & Pädiatrie',
+        focus: 'Notsectio EEZ ≤ 20 min, Linksseitenkippung 15–30°, Magnesiumsulfat 4–6 g, Larson-Punkt bei Laryngospasmus',
+        trap: 'Vergessen der Linksseitenkippung (Vena-cava-Kompression) oder Spinalanästhesie bei Thrombozytopenie < 50.000/µl',
+        keywords: '15–30° Linksseitenkippung, RSI mit Krikoiddruck (Sellick), Tubus mit Cuff (ID = Alter/4 + 3.5), Atropin 0.02 mg/kg'
+      };
+    } else if (q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'))) {
+      return {
+        name: 'ÄKNO Prüfungskommission Düsseldorf',
+        hospital: 'Haus der Ärzteschaft, Tersteegenstr. 9, 40474 Düsseldorf',
+        focus: 'Strukturierte Priorisierung nach ABCDE, Patientensicherheit vor Detailwissen, klare Ansagen',
+        trap: 'Zögern bei Reanimation oder Atemwegsnotfall, unstrukturiertes Aufzählen von Medikamenten',
+        keywords: 'ABCDE-Schema, klare Team-Anweisungen, zeitnahe Kausaltherapie, Vermeidung von K.O.-Kriterien'
+      };
+    }
+    return null;
+  }
+
   function getRealisticVitalsForCase(category, stem, answer) {
     const text = (stem + ' ' + answer).toLowerCase();
 
@@ -804,6 +865,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (elBtnStep2Toggle) elBtnStep2Toggle.addEventListener('click', () => toggleStep2());
   if (elBtnStep3Toggle) elBtnStep3Toggle.addEventListener('click', () => toggleStep3());
   if (elBtnReveal) elBtnReveal.addEventListener('click', () => revealStep4());
+
+  if (elBadgeExaminerToggle && elExaminerRevealCard) {
+    elBadgeExaminerToggle.addEventListener('click', () => {
+      const isExpanded = elExaminerRevealCard.style.display !== 'none';
+      elExaminerRevealCard.style.display = isExpanded ? 'none' : 'block';
+      elBadgeExaminerToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+    });
+  }
 
   if (elBtnRevealAllCloze) {
     elBtnRevealAllCloze.addEventListener('click', () => {
@@ -1082,9 +1151,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const elDiagNotes = document.getElementById('diagnostic-notes-box');
     if (elDiagNotes) elDiagNotes.textContent = v.notes;
 
-    // Step 3: Populate Examiner Steering Intervention
+    // Step 3: Populate Examiner Steering Intervention & Reveal Card
     if (elExaminerQuoteText) {
       elExaminerQuoteText.textContent = parsedCase.examinerIntervention;
+    }
+
+    const examinerProfile = getExaminerProfileForCase(currentQ);
+    if (examinerProfile && elExaminerRevealBox && elExaminerRevealCard) {
+      elExaminerRevealBox.style.display = 'block';
+      elExaminerRevealCard.style.display = 'none';
+      if (elBadgeExaminerToggle) elBadgeExaminerToggle.setAttribute('aria-expanded', 'false');
+      if (elExaminerBadgeTitle) {
+        const shortName = examinerProfile.name.split('/')[0].trim();
+        elExaminerBadgeTitle.textContent = `🏛️ ÄKNO Düsseldorf: Prüfer-Profil (${shortName})`;
+      }
+      elExaminerRevealCard.innerHTML = `
+        <div class="examiner-reveal-header">
+          <div class="examiner-reveal-name">👨‍⚕️ ${examinerProfile.name}</div>
+          <div class="examiner-reveal-clinic">📍 ${examinerProfile.hospital}</div>
+        </div>
+        <div class="examiner-profile-grid">
+          <div class="examiner-profile-item">
+            <strong>🎯 Prüfungsschwerpunkt</strong>
+            <span>${examinerProfile.focus}</span>
+          </div>
+          <div class="examiner-profile-item alert-trap">
+            <strong>⚠️ Typische Prüfungsfalle</strong>
+            <span>${examinerProfile.trap}</span>
+          </div>
+          <div class="examiner-profile-item alert-pass">
+            <strong>⭐ Signalwörter für Bestnote</strong>
+            <span>${examinerProfile.keywords}</span>
+          </div>
+        </div>
+      `;
+    } else if (elExaminerRevealBox) {
+      elExaminerRevealBox.style.display = 'none';
     }
 
     // Step 4: Populate 3 High-Impact Model Answer Micro-Cards

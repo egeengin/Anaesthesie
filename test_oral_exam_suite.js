@@ -425,7 +425,11 @@ console.log('[PASS] Single-Click Expandable Turkish Translation Collapsible UI v
 
 // 22. Test ÄKNO Düsseldorf Examiners, Protocols & KO-Kriterien Integration
 const dusQuestions = questions.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
-assert.strictEqual(dusQuestions.length, 8, `Expected exactly 8 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
+assert.strictEqual(dusQuestions.length, 16, `Expected exactly 16 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
+assert(htmlContent.includes('examiner-reveal-box'), 'index.html must include #examiner-reveal-box');
+assert(htmlContent.includes('badge-examiner-toggle'), 'index.html must include #badge-examiner-toggle');
+assert(htmlContent.includes('examiner-reveal-card'), 'index.html must include #examiner-reveal-card');
+assert(appCode.includes('getExaminerProfileForCase'), 'app.js must include getExaminerProfileForCase');
 dusQuestions.forEach(dq => {
   assert(dq.question_de && dq.question_de.length > 50, `DUS question ${dq.id} missing detailed German stem`);
   assert(dq.question_tr && dq.question_tr.length > 50, `DUS question ${dq.id} missing Turkish translation`);
