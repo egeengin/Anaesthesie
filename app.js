@@ -2583,6 +2583,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // User Guide Modal
+  const elUserGuideTrigger = document.getElementById('user-guide-trigger');
+  const elUserGuideModal = document.getElementById('user-guide-modal');
+  const elUserGuideModalClose = document.getElementById('user-guide-modal-close');
+  const elBtnUserGuideCloseBottom = document.getElementById('btn-user-guide-close-bottom');
+
+  if (elUserGuideTrigger && elUserGuideModal) {
+    elUserGuideTrigger.addEventListener('click', () => elUserGuideModal.classList.add('active'));
+  }
+  if (elUserGuideModalClose && elUserGuideModal) {
+    elUserGuideModalClose.addEventListener('click', () => closeModal(elUserGuideModal));
+  }
+  if (elBtnUserGuideCloseBottom && elUserGuideModal) {
+    elBtnUserGuideCloseBottom.addEventListener('click', () => closeModal(elUserGuideModal));
+  }
+  if (elUserGuideModal) {
+    elUserGuideModal.addEventListener('click', (e) => {
+      if (e.target === elUserGuideModal) closeModal(elUserGuideModal);
+    });
+  }
+
   // Filter Chips
   if (elFilterChips) {
     elFilterChips.forEach(chip => {

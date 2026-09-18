@@ -78,6 +78,9 @@
           <button id="grid-trigger" class="pill-btn" title="Fragenübersicht & Navigation">
             <span>📑</span> <span class="pill-btn-text">Übersicht</span>
           </button>
+          <button id="user-guide-trigger" class="pill-btn" title="Offizieller Benutzerleitfaden & Prüfungsanleitung">
+            <span>📖</span> <span class="pill-btn-text">Leitfaden</span>
+          </button>
           <button id="theme-toggle" class="pill-btn" title="Dark Mode umschalten">
             <span>🌙</span>
           </button>
@@ -97,7 +100,7 @@
       <div class="dash-compact-left">
         <div class="dash-stat-item">
           <span class="dash-label">Lernfortschritt:</span>
-          <span id="stat-progress-text" class="dash-val">0 / 608 (0%)</span>
+          <span id="stat-progress-text" class="dash-val">0 / 616 (0%)</span>
         </div>
         <div class="dash-progress-bar-wrap">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
@@ -556,6 +559,77 @@
         <div id="question-grid" class="question-grid-container">
           <!-- Dynamically rendered buttons -->
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official User Guide & Study Manual Modal -->
+  <div id="user-guide-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 860px;">
+      <div class="modal-header">
+        <h2>📖 Facharztprüfung Anästhesiologie — Benutzerleitfaden</h2>
+        <button id="user-guide-modal-close" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto; line-height: 1.6;">
+        
+        <div class="settings-box highlight-box" style="margin-bottom: 1.25rem;">
+          <h3 style="margin-top: 0;">🎯 Zielgerichtet für die ÄKNO Düsseldorf</h3>
+          <p>Dieses System wurde exakt auf die mündliche Facharztprüfung an der <strong>Ärztekammer Nordrhein (Haus der Ärzteschaft, Düsseldorf)</strong> abgestimmt. Es simuliert den realen Prüfungsablauf mit Prüfer-Interventionen, Sprachmustern und Prüfer-Profilen.</p>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1.5rem;">
+          <h3>🧭 1. Die 4-Schritte-Prüfungsmethode</h3>
+          <p>In der Prüfung erhalten Sie Patientendaten schrittweise. Die App bildet dies 1:1 ab:</p>
+          <ul style="padding-left: 1.25rem;">
+            <li><strong>Schritt 1 (Fallvorstellung)</strong>: Lesen Sie Fall & Kernfrage. Formulieren Sie gedanklich sofort Ihre Verdachtsdiagnose.</li>
+            <li><strong>Schritt 2 (Vitals & BGA)</strong>: Taste <kbd>2</kbd> drücken. Analysieren Sie Hämodynamik, Beatmungsparameter und arterielle BGA.</li>
+            <li><strong>Schritt 3 (Prüfer-Intervention)</strong>: Taste <kbd>3</kbd> drücken. Der Prüfer hakt nach oder der Patient dekompensiert. Bei Düsseldorfer Fällen zeigt das <em>Prüfer-Profil</em> die typischen K.O.-Fallen von Prof. Annecke, Prof. Kienbaum, Prof. Hohn oder Prof. Wappler!</li>
+            <li><strong>Schritt 4 (Musterantwort)</strong>: Taste <kbd>4</kbd> oder <kbd>Space</kbd>. Schaltet die 3 High-Impact Antwortblöcke frei.</li>
+          </ul>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1.5rem;">
+          <h3>🗣️ 2. Die 3 High-Impact Antwortblöcke</h3>
+          <ul style="padding-left: 1.25rem;">
+            <li><strong>🗣️ "Wie sage ich es?" (Redemittel)</strong>: Liefert Ihnen strukturierte verbale Einstiegssätze für sofortige Souveränität. Mit <strong>🔊 Redemittel vorlesen</strong> können Sie sich die Aussprache im Prüfertempo anhören!</li>
+            <li><strong>🎯 Schlüsselbegriffe & Dosierungen</strong>: Die Prüfer-Checkliste mit allen harten Fakten (Dantrolen 2,5 mg/kg, Sugammadex 16 mg/kg, Intralipid 1,5 ml/kg etc.).</li>
+            <li><strong>⚠️ Kritische Prüfungsfallen (K.O.-Kriterien)</strong>: Tödliche Fehler, die zum sofortigen Durchfallen führen (z. B. Permissive Hypotonie bei SHT, Spinalanästhesie bei Aortenstenose).</li>
+          </ul>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1.5rem;">
+          <h3>🧠 3. Spaced Repetition (SM-2)</h3>
+          <p>Bewerten Sie sich nach dem Aufdecken selbst mit <strong>Gewusst (4)</strong> (Taste <kbd>K</kbd>/<kbd>G</kbd>) oder <strong>Nicht gewusst (1)</strong> (Taste <kbd>F</kbd>). Der Filter-Chip <strong>🧠 Spaced Repetition (X fällig)</strong> liefert Ihnen täglich exakt die zur Wiederholung anstehenden Fragen.</p>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1.5rem;">
+          <h3>📇 4. Notfallkarten, Rechner & 45-Min Prüfung</h3>
+          <ul style="padding-left: 1.25rem;">
+            <li><strong>📇 Notfallkarte</strong>: 15 interaktive SOPs (Maligne Hyperthermie, LAST, CICO, DGAI S1 Antikoagulation vor SPA/PDK).</li>
+            <li><strong>🧮 Rechner</strong>: Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Vt, Lokalanästhetika-Maximaldosen & Intralipid, Natriumdefizit & ODS-Grenzen.</li>
+            <li><strong>⏱️ 45-Min Prüfung</strong>: Vollständige mündliche Simulation mit 6 Fällen und Prüfer-Timer.</li>
+          </ul>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1rem;">
+          <h3>⌨️ 5. Tastatur-Kurzbefehle (Schnellübersicht)</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>Space</kbd> / <kbd>Enter</kbd></strong></td><td>Schritt vorwärts / Antwort aufdecken</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd>, <kbd>4</kbd></strong></td><td>Direktsprung zu Schritt 1, 2, 3 oder 4</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>K</kbd> / <kbd>G</kbd></strong></td><td>Selbstbewertung: Gewusst (SM-2 Good)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>F</kbd></strong></td><td>Selbstbewertung: Nicht gewusst (SM-2 Again)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>U</kbd></strong></td><td>Türkische Satzübersetzung umschalten</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>P</kbd></strong></td><td>Audio-Aussprache abspielen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>V</kbd></strong></td><td>Sprachaufnahme (Voice Exam) starten/stoppen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>→</kbd> / <kbd>D</kbd></strong></td><td>Nächste Frage</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>←</kbd> / <kbd>A</kbd></strong></td><td>Vorherige Frage</td></tr>
+            <tr><td style="padding: 0.35rem 0;"><strong><kbd>⌘K</kbd></strong></td><td>Suchleiste öffnen</td></tr>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end;">
+        <button id="btn-user-guide-close-bottom" class="btn btn-primary">Verstanden & Loslegen</button>
       </div>
     </div>
   </div>

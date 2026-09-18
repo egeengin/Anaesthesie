@@ -1,51 +1,67 @@
-# Facharztprüfung Anästhesiologie - Smart Study System (NRW) 🩺
+# Facharztprüfung Anästhesiologie — Smart Study & Oral Exam Suite (ÄKNO Düsseldorf) 🩺🎓
 
-Ein modernes, interaktives Lern- und Prüfungssystem für die **Facharztprüfung Anästhesiologie (Nordrhein-Westfalen)**.
+Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche Facharztprüfung Anästhesiologie an der Ärztekammer Nordrhein (Haus der Ärzteschaft, Düsseldorf)**.
+
+> 📖 **Ausführlicher Benutzerleitfaden**: Bitte lesen Sie die vollständige Dokumentation in [**USER_GUIDE.md**](USER_GUIDE.md).
 
 ---
 
 ## 🌟 Hauptfunktionen & Features
 
-1. **Vollständige Fragensammlung (580 Prüfungsfragen)**:
-   - Exzerpiert und strukturiert aus den Standard-Prüfungswerken in `Books/` (*Kehl & Wilke, Annecke & Hohn, Winterhalter*).
-   - Kategorisiert in alle Facharzt-Themengebiete (*Atemweg, Herz-Kreislauf, Klinische Chemie, Beatmung, Pharmakologie, Notfallmedizin, Regionalanästhesie, Intensivmedizin, Schmerztherapie, Geburtshilfe*).
+1. **Vollständiger, klinisch validierter Fragenkatalog (616 Prüfungsfragen)**:
+   - **332 strukturierte MCQs / Mehrfachaussagen** (*Kehl & Wilke*).
+   - **284 komplexe klinische Fälle** (*Annecke & Hohn, Winterhalter*).
+   - **16 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_16`) mit Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler*).
+   - **0 Datenanomalien**: Alle OCR-Silbentrennungen, Formelartefakte und abgeschnittenen Zeilenenden vollständig bereinigt.
 
-2. **NRW Prüfungsformate Filter**:
-   - **📋 Fallbasierte Prüfung (253 Fragen)**: Komplexe klinische Fälle aus Annecke & Hohn (*Präoperativ, Intraoperativ, Intensivstation*).
-   - **✅ Aussagenbewertung (327 Fragen)**: Strukturierte Mehrfachaussagen aus Kehl & Wilke mit interaktiven *Richtig* / *Falsch* Toggles für jede einzelne Aussage (`a.`, `b.`, `c.`, `d.`, `e.`).
-   - **🖼️ Befund- & Bilddiagnostik (15 Fragen)**: EKG, ROTEM, Röntgen, Beatmungs- und Atemwegsdiagramme direkt zu den Fragen eingebunden.
+2. **Die 4-Schritte-Prüfungsmethode (Progressive Disclosure)**:
+   - **Schritt 1**: Fallvorstellung & Prüfungsfrage.
+   - **Schritt 2**: Vitalparameter, Hämodynamik & BGA-Befund.
+   - **Schritt 3**: Prüfer-Intervention mit Audio-Ausgabe (`🔊 Prüferfrage vorlesen`) und Düsseldorfer Prüferprofil.
+   - **Schritt 4**: Freischaltung der 3 High-Impact Antwortblöcke.
 
-3. **100% Zweisprachiges System (Vollständige Türkische Satzübersetzung)**:
-   - **Haupttext**: Vollständiger deutscher Fragentext und Erklärungen oben.
-   - **Untertitel-Modus (Aktiv)**: Jeder Satz wird direkt darunter in einem übersichtlichen türkischen Infokasten (`🇹🇷 ...`) übersetzt.
-   - **Hover-Modus**: Umschaltbar auf Hover-Tooltips.
+3. **Die 3 High-Impact Antwortblöcke**:
+   - 🗣️ **"Wie sage ich es?"**: Strukturierte Formulierungshilfe & Redemittel mit nativem Aussprache-Trainer (`🔊 Redemittel vorlesen`).
+   - 🎯 **Schlüsselbegriffe & Dosierungen**: Prüfer-Checkliste mit allen harten Fakten.
+   - ⚠️ **Kritische Prüfungsfallen & Kardinalfehler**: K.O.-Kriterien zur Vermeidung des Durchfallens.
 
-4. **Passwort-Schutz (Login-Gate)**:
-   - Zugangsschutz beim Öffnen der Anwendung (`egemelis`).
-   - Verhindert unbefugten Zugriff. Der Anmeldestatus bleibt auf dem Gerät gespeichert.
+4. **Wissenschaftliches Spaced Repetition (SM-2)**:
+   - Täglich dynamisch berechnete Wiederholungs-Queue: **`🧠 Spaced Repetition (X fällig)`**.
+   - Schnelle Selbstbewertung mit <kbd>K</kbd> (*Gewusst*) oder <kbd>F</kbd> (*Nicht gewusst*).
 
-5. **Geräte-Synchronisation & Backup**:
-   - **Export**: Sichern Sie den gesamten Lernfortschritt als `.json`-Datei.
-   - **Import**: Laden Sie die Backup-Datei auf jedem beliebigen Smartphone, Tablet oder Laptop hoch.
+5. **Spracherkennung (Voice Exam)**:
+   - Freies mündliches Antworten per Mikrofon (<kbd>V</kbd>) via Web Speech API mit Live-Transkription.
+
+6. **15 Notfallkarten / Pocket SOPs**:
+   - Maligne Hyperthermie (Dantrolen 2,5 mg/kg), LAST & Lipid-Rescue, CICO Koniotomie, PPH, ERC ALS, DGAI S1 Rückenmarksnahe Regionalanästhesie & Antikoagulation.
+
+7. **4 Klinische Facharztrechner**:
+   - Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Vt (6 & 8 ml/kg), Lokalanästhetika-Maximaldosen & Lipid-Rescue, Natriumdefizit & ODS-Sicherheitsgrenzen.
+
+8. **45-Minuten Prüfungssimulation**:
+   - Echte Simulation mit 6 randomisierten Facharzt-Fällen und digitalem Prüfungs-Timer.
+
+9. **Verlustfreie Cloud-Synchronisation**:
+   - Gehärteter Union-Merge verhindert Datenüberschreibungen zwischen Klinik-iPad und Desktop-Rechner.
 
 ---
 
-## 🚀 Live auf GitHub
-
-- **Repository**: [https://github.com/egeengin/Anaesthesie.git](https://github.com/egeengin/Anaesthesie.git)
-- **GitHub Pages Live URL**: [https://egeengin.github.io/Anaesthesie/](https://egeengin.github.io/Anaesthesie/)
-
----
-
-## 💻 Lokale Ausführung
+## 🚀 Schnelleinstieg & Lokale Ausführung
 
 ```bash
-python3 -m http.server 8085
+# Im Projektverzeichnis ausführen:
+python3 -m http.server 8080
 ```
-Anwendung aufrufen: `http://localhost:8085`
+Anwendung im Browser öffnen: **`http://localhost:8080`** (oder port 8085).
+
+- **Standard-Passwort**: `egemelis`
+- **In-App Leitfaden**: Klicken Sie in der oberen Leiste auf **`📖 Leitfaden`** oder lesen Sie [**USER_GUIDE.md**](USER_GUIDE.md).
 
 ---
 
-## 🔒 Zugangspasswort
+## 🧪 Test Suite & Qualitätssicherung
 
-Standard-Passwort: `egemelis`
+```bash
+node test_oral_exam_suite.js
+```
+✅ **23 von 23 Test-Suites bestanden (100% Coverage)**.
