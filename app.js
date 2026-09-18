@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     answers: {},       // { questionId: { selected: [indices], submitted: true/false, isCorrect: true/false, revealed: true/false } }
     flagged: {},       // { questionId: true/false }
     theme: 'light',
-    subtitleMode: true, // Subtitles ON by default so Turkish translation stays on top/under
+    subtitleMode: false, // Default collapsed so page is clean & uncluttered; user can click small button directly below or press U
     filterMode: 'all',  // 'all', 'unanswered', 'incorrect', 'review'
     typeFilter: 'all',    // 'all', 'options', 'open', 'image'
     categoryFilter: 'all',
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     state.currentIndex = 0;
   }
 
-  // --- Dual-Language Hover Overlay Helper ---
+  // --- Dual-Language Hover & Subtitle Helper ---
   function renderDualLanguageText(textDE, textTR) {
     if (!textDE) return '';
     const formattedDE = formatAnswerText(textDE);
@@ -399,20 +399,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const formattedTR = formatAnswerText(textTR);
+    const isOpen = !!state.subtitleMode;
     
-    if (state.subtitleMode) {
-      return `
-        <div class="de-text-block">${formattedDE}</div>
-        <button class="btn-toggle-tr-sub" type="button" aria-expanded="false" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
-          <span>🇹🇷 Übersetzung</span> <span class="tr-chevron">▼</span>
+    return `
+      <div class="de-text-block">${formattedDE}</div>
+      <div class="tr-sub-container">
+        <button class="btn-toggle-tr-sub ${isOpen ? 'open' : ''}" type="button" aria-expanded="${isOpen ? 'true' : 'false'}" onclick="this.classList.toggle('open'); const c = this.parentElement.nextElementSibling; if (c) c.classList.toggle('open');" title="Türkische Übersetzung anzeigen / verbergen">
+          <span class="tr-sub-icon">🇹🇷</span> <span class="tr-sub-label">Übersetzung</span> <span class="tr-chevron">▼</span>
         </button>
-        <div class="tr-subtitle-collapsible">
-          <div class="tr-subtitle-inner">🇹🇷 ${formattedTR}</div>
-        </div>
-      `;
-    } else {
-      return `<div class="de-text-block tr-hover" data-tr="${escapeHtml(textTR)}">${formattedDE}</div>`;
-    }
+      </div>
+      <div class="tr-subtitle-collapsible ${isOpen ? 'open' : ''}">
+        <div class="tr-subtitle-inner">🇹🇷 ${formattedTR}</div>
+      </div>
+    `;
   }
 
   function formatAnswerText(text) {
@@ -550,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       } else {
-        elTimerDisplayText.textContent = '60s Timer (T)';
+        elTimerDisplayText.textContent = '60s Stoppuhr (T)';
         if (elBtnToggleTimer) elBtnToggleTimer.classList.remove('active');
         if (elTimerMiniBar) elTimerMiniBar.style.display = 'none';
       }
@@ -558,9 +557,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (elSimAnswerTimerDisplay) {
       if (stepTimer.isRunning) {
-        elSimAnswerTimerDisplay.textContent = `${stepTimer.secondsLeft}s Antwort-Timer`;
+        elSimAnswerTimerDisplay.textContent = `${stepTimer.secondsLeft}s Antwortzeit`;
       } else {
-        elSimAnswerTimerDisplay.textContent = '60s Antwort-Timer';
+        elSimAnswerTimerDisplay.textContent = '60s Antwortzeit';
       }
     }
   }
@@ -658,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
       speechRecognizer = initSpeechEngine();
     }
     if (!speechRecognizer) {
-      alert('🎙️ Die Web Speech API wird von diesem Browser leider nicht direkt unterstützt (empfohlen: Chrome, Safari oder Edge). Sie können Ihre Stichpunkte jedoch direkt in das Textfeld tippen!');
+      alert('🎙️ Die automatische Spracherkennung wird von diesem Browser leider nicht direkt unterstützt (empfohlen: Google Chrome, Safari oder Microsoft Edge). Sie können Ihre Stichpunkte jedoch direkt in das Textfeld tippen!');
       if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
       if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
       return;
@@ -833,26 +832,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Examiner Steering / Follow-up challenge
     let examinerIntervention = '';
+    let examinerInterventionTR = '';
     const followUpMatches = answer.match(/([A-ZÄÖÜ][^.?!]*\?)/g);
     if (followUpMatches && followUpMatches.length > 0 && followUpMatches[0].length > 15) {
       examinerIntervention = `Der Prüfer hakt gezielt nach: "${followUpMatches[0].trim()}"`;
+      const followUpMatchesTR = answerTr.match(/([^.?!]*\?)/g);
+      if (followUpMatchesTR && followUpMatchesTR.length > 0) {
+        examinerInterventionTR = `Jüri özellikle sorguluyor: "${followUpMatchesTR[0].trim()}"`;
+      } else {
+        examinerInterventionTR = `Jüri özellikle sorguluyor: "${followUpMatches[0].trim()}"`;
+      }
     } else {
       examinerIntervention = getDynamicExaminerComplication(category, stem);
+      examinerInterventionTR = getDynamicExaminerComplicationTR(category, stem);
     }
 
     // 4. Three High-Impact Model Answer Micro-Cards
     const verbalFramework = generateVerbalFramework(category, stem, answer);
+    const verbalFrameworkTR = generateVerbalFrameworkTR(category, stem, answer);
     const checklist = generateChecklist(category, stem, answer, q.options);
     const pitfalls = generatePitfalls(category, stem, answer);
+    const pitfallsTR = generatePitfallsTR(category, stem, answer);
 
     return {
       clinicalContext,
       stem,
       vitals,
       examinerIntervention,
+      examinerInterventionTR,
       verbalFramework,
+      verbalFrameworkTR,
       checklist,
       pitfalls,
+      pitfallsTR,
       fullTextDE: answer,
       fullTextTR: answerTr
     };
@@ -978,6 +990,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function getDynamicExaminerComplicationTR(category, stem) {
+    if (category.includes('Atemweg')) {
+      return 'Jüri müdahale ediyor: "Anestezi indüksiyonu sonrası maske ventilasyonu güçlükle sağlanabiliyor (SpO2 %82\'ye düşüyor). Doğrudan laringoskopide Cormack-Lehane Evre IV görülüyor. DGAI basamaklı planına göre Plan D\'ye kadar yapılandırılmış eskalasyonunuz nedir?"';
+    } else if (category.includes('Herz') || category.includes('Hämo')) {
+      return 'Jüri vakayı yönlendiriyor: "Arteryel tansiyon akut olarak 70/40 mmHg\'ye ve etCO2 14 mmHg\'ye çakılıyor. Acilen dışlamanız gereken hayatı tehdit eden 3 ayırıcı tanı nedir ve nasıl tedavi edersiniz?"';
+    } else if (category.includes('Chemie') || category.includes('Elektrolyt')) {
+      return 'Jüri sorguluyor: "Laboratuvarda serum potasyumu 6,8 mmol/l\'ye yükseliyor ve EKG\'de QRS genişlemesi görülüyor. İlaçlı acil müdahalelerin tam sırasını ve dozlarını belirtiniz!"';
+    } else if (category.includes('Pharmakologie')) {
+      return 'Jüri bir komplikasyon sunuyor: "Enjeksiyondan hemen sonra hasta perioral karıncalanmadan şikayet ediyor, ardından jeneralize nöbet gelişiyor. Hangi acil durum söz konusudur ve spesifik antidotu nasıl dozlarsınız?"';
+    } else {
+      return 'Jüri sormaya devam ediyor: "Tedavi stratejinizi hangi patofizyolojik mekanizmalar gerekçelendirir ve burada hiçbir koşulda yapmamanız gereken vahim hatalar nelerdir?"';
+    }
+  }
+
   function generateVerbalFramework(category, stem, answer) {
     const cleanStem = stem.replace(/[\n\r]+/g, ' ').replace(/:$/, '').trim();
     if (category.includes('Atemweg')) {
@@ -990,6 +1016,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return `„Ich reagiere unmittelbar auf diesen anästhesiologischen Zwischenfall: Zufuhr potenzieller Trigger sofort stoppen, 100% Sauerstoff applizieren, das Team alarmieren und das spezifische Notfallprotokoll mit der exakten Antidot-Dosierung abrufen.“`;
     } else {
       return `„Bezüglich '${cleanStem}' strukturiere ich meine klinische Antwort in präoperative Risikostratifizierung, intraoperatives Monitoring und zielgerichtete Therapiemaßnahmen nach aktuellen Leitlinien.“`;
+    }
+  }
+
+  function generateVerbalFrameworkTR(category, stem, answer) {
+    if (category.includes('Atemweg')) {
+      return '„Burada ABCDE şemasını önceliklendiriyor ve öncelikle havayolunu güvenceye alıyorum. Güncel DGAI/DAS kılavuzlarına göre yapılandırılmış yaklaşımı başlatıyor ve derhal zor havayolu setini hazır bulunduruyorum.“';
+    } else if (category.includes('Herz') || category.includes('Hämo')) {
+      return '„Durumu özetliyorum: Akut bir hemodinamik instabilite mevcuttur. Derhal oksijenasyonu ve damar yollarını güvenceye alıyor, yeterli perfüzyon basıncını sağlamak için (Hedef MAP ≥ 65 mmHg) noradrenalin titre ediyor ve hedefe yönelik neden araştırması yapıyorum.“';
+    } else if (category.includes('Chemie') || category.includes('Elektrolyt') || category.includes('Säure')) {
+      return '„Önde gelen ön tanı olarak elektrolit ve asit-baz dengesinde ciddi bir bozukluk tespit ediyorum. Terapötik yaklaşımım kesin olarak 3 aşamaya ayrılır: 1. Kardiyak membran stabilizasyonu, 2. Nedene yönelik tedavi ve 3. Yakın BGA takibi altında hızlandırılmış normalizasyon.“';
+    } else if (category.includes('Pharmakologie') || category.includes('Notfall')) {
+      return '„Bu anesteziyolojik acil duruma derhal müdahale ediyorum: Potansiyel tetikleyicilerin verilmesini derhal durduruyor, %100 oksijen uyguluyor, ekibi alarma geçiriyor ve tam antidot dozuyla spesifik acil durum protokolünü uyguluyorum.“';
+    } else {
+      return '„Klinik yanıtımı preoperatif risk sınıflandırması, intraoperatif monitörizasyon ve güncel kılavuzlara göre hedefe yönelik tedavi önlemleri olarak yapılandırıyorum.“';
     }
   }
 
@@ -1041,6 +1081,26 @@ document.addEventListener('DOMContentLoaded', () => {
       return '❌ Kardinalfehler (K.O.-Kriterium): PEEP-Erhöhung bei V.a. Spannungspneumothorax verschärft den Kreislaufstillstand – sofort Nadel- bzw. Minithorakotomie durchführen!';
     } else {
       return '❌ Kritische Prüfungsfalle: Unstrukturiertes Reagieren ohne Priorisierung nach dem ABCDE-Schema sowie das Übersehen vitaler Kontraindikationen!';
+    }
+  }
+
+  function generatePitfallsTR(category, stem, answer) {
+    const text = (stem + ' ' + answer).toLowerCase();
+
+    if (text.includes('maligne hyperthermie') || text.includes('dantrolen')) {
+      return '❌ Ölümcül Hata (K.O. Kriteri): Malign Hipertermi şüphesinde ASLA kalsiyum antagonistleri (örn. Diltiazem, Verapamil) vermeyin – geri dönüşümsüz hiperkalemik kardiyak arrest riski!';
+    } else if (text.includes('last') || text.includes('lokalanästhetik')) {
+      return '❌ Ölümcül Hata (K.O. Kriteri): LAST durumunda vazopressin, lidokain veya amiodaron kullanılmaz! Adrenalin yalnızca sıkı titre edilmiş (< 1 µg/kg) dozda verilir!';
+    } else if (text.includes('atemweg') || text.includes('intubat') || text.includes('cico')) {
+      return '❌ Kritik Sınav Tuzağı: Optimizasyon (videolaringoskopi/BURP) olmadan 3\'ten fazla entübasyon denemesi yapmak. CICO durumunda derhal koniyotomi başlatılmalıdır!';
+    } else if (text.includes('hyponatriäm') || text.includes('natrium')) {
+      return '❌ Ölümcül Hata (K.O. Kriteri): Kronik hiponatremide sodyumun çok hızlı düzeltilmesi (> 8–10 mmol/l/24h) ölümcül santral pontin miyelinoliz riski doğurur!';
+    } else if (text.includes('hyperkaliäm') || text.includes('kalium')) {
+      return '❌ Ölümcül Hata (K.O. Kriteri): Bilinen hiperkalemide veya > 24 saatlik yanıklarda süksinilkolin verilmesi (asistoli riski)!';
+    } else if (text.includes('spannungspneumothorax')) {
+      return '❌ Ölümcül Hata (K.O. Kriteri): Tansiyon pnömotoraks şüphesinde PEEP artırılması dolaşım arrestini derinleştirir – derhal iğne/tüp torakostomi uygulanmalıdır!';
+    } else {
+      return '❌ Kritik Sınav Tuzağı: ABCDE şemasına göre önceliklendirme yapmadan plansız tepki vermek ve hayati kontrendikasyonları gözden kaçırmak!';
     }
   }
 
@@ -1249,8 +1309,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // U: Toggle Turkish translation collapsible
     else if (key === 'u') {
       e.preventDefault();
-      const trBtn = document.querySelector('.btn-toggle-tr-sub');
-      if (trBtn) trBtn.click();
+      const allTrButtons = document.querySelectorAll('.btn-toggle-tr-sub');
+      if (allTrButtons.length > 0) {
+        const shouldOpen = !allTrButtons[0].classList.contains('open');
+        allTrButtons.forEach(btn => {
+          btn.classList.toggle('open', shouldOpen);
+          btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+          const collapsible = btn.parentElement ? btn.parentElement.nextElementSibling : null;
+          if (collapsible && collapsible.classList.contains('tr-subtitle-collapsible')) {
+            collapsible.classList.toggle('open', shouldOpen);
+          }
+        });
+      }
     }
     // P: Audio pronunciation
     else if (key === 'p') {
@@ -1459,7 +1529,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Step 3: Populate Examiner Steering Intervention & Reveal Card
     if (elExaminerQuoteText) {
-      elExaminerQuoteText.textContent = parsedCase.examinerIntervention;
+      elExaminerQuoteText.innerHTML = renderDualLanguageText(parsedCase.examinerIntervention, parsedCase.examinerInterventionTR);
     }
 
     const examinerProfile = getExaminerProfileForCase(currentQ);
@@ -1497,7 +1567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Step 4: Populate 3 High-Impact Model Answer Micro-Cards
     if (elRubricVerbalText) {
-      elRubricVerbalText.innerHTML = parsedCase.verbalFramework;
+      elRubricVerbalText.innerHTML = renderDualLanguageText(parsedCase.verbalFramework, parsedCase.verbalFrameworkTR);
     }
 
     if (elRubricChecklistItems) {
@@ -1512,7 +1582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (elRubricPitfallText) {
-      elRubricPitfallText.innerHTML = `<div class="pitfall-item"><span>⚠️</span> <div>${parsedCase.pitfalls}</div></div>`;
+      elRubricPitfallText.innerHTML = `<div class="pitfall-item"><span>⚠️</span> <div>${renderDualLanguageText(parsedCase.pitfalls, parsedCase.pitfallsTR)}</div></div>`;
     }
 
     if (elFullReferenceBody) {
@@ -2188,7 +2258,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `facharzt_anaesthesie_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `facharzt_anaesthesie_sicherung_${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
     });
@@ -2215,10 +2285,10 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('✅ Lernfortschritt erfolgreich importiert!');
             closeModal(elSettingsModal);
           } else {
-            alert('❌ Ungültige Backup-Datei.');
+            alert('❌ Ungültige Sicherungsdatei.');
           }
         } catch (err) {
-          alert('❌ Fehler beim Lesen der Backup-Datei.');
+          alert('❌ Fehler beim Lesen der Sicherungsdatei.');
         }
       };
       reader.readAsText(file);

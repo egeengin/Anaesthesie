@@ -3887,6 +3887,126 @@ body.mode-simulation-active #step3-container {
   border: 1px dashed var(--border-color);
 }
 
+/* ==========================================================================
+   COMPACT TURKISH TRANSLATION TOGGLE BUTTON (SUBTITLES & DIRECT TRANSLATION)
+   Small button placed directly below the German text block
+   ========================================================================== */
+.tr-sub-container {
+  display: flex;
+  align-items: center;
+  margin-top: 0.3rem;
+  margin-bottom: 0.25rem;
+}
 
+.btn-toggle-tr-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  background: rgba(13, 148, 136, 0.07);
+  color: #0d9488;
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.25;
+  cursor: pointer;
+  opacity: 0.88;
+  transition: all 0.15s ease;
+  user-select: none;
+}
 
+.btn-toggle-tr-sub:hover {
+  opacity: 1;
+  background: rgba(13, 148, 136, 0.16);
+  border-color: #0d9488;
+  transform: translateY(-1px);
+}
 
+.btn-toggle-tr-sub:active {
+  transform: translateY(0);
+}
+
+.btn-toggle-tr-sub .tr-sub-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.btn-toggle-tr-sub .tr-sub-label {
+  letter-spacing: 0.2px;
+}
+
+.btn-toggle-tr-sub .tr-chevron {
+  display: inline-block;
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+  margin-left: 0.1rem;
+}
+
+.btn-toggle-tr-sub.open {
+  background: rgba(13, 148, 136, 0.18);
+  border-color: #0d9488;
+  color: #0f766e;
+}
+
+.btn-toggle-tr-sub.open .tr-chevron {
+  transform: rotate(180deg);
+}
+
+.tr-subtitle-collapsible {
+  display: none;
+  margin-top: 0.25rem;
+  margin-bottom: 0.45rem;
+  width: 100%;
+}
+
+.tr-subtitle-collapsible.open {
+  display: block;
+  animation: trFadeIn 0.2s ease-in-out;
+}
+
+@keyframes trFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tr-subtitle-inner {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #0f766e;
+  background: rgba(13, 148, 136, 0.05);
+  border-left: 3px solid #0d9488;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0 5px 5px 0;
+  font-style: italic;
+}
+
+/* Dark Mode Overrides for Translation Button */
+[data-theme="dark"] .btn-toggle-tr-sub {
+  background: rgba(45, 212, 191, 0.1);
+  color: #2dd4bf;
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+[data-theme="dark"] .btn-toggle-tr-sub:hover {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2dd4bf;
+}
+
+[data-theme="dark"] .btn-toggle-tr-sub.open {
+  background: rgba(45, 212, 191, 0.25);
+  border-color: #2dd4bf;
+  color: #5eead4;
+}
+
+[data-theme="dark"] .tr-subtitle-inner {
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.08);
+  border-left-color: #2dd4bf;
+}

@@ -60,8 +60,8 @@
         </div>
 
         <div class="nav-action-pill">
-          <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & KO-Kriterien">
-            <span>🏛️</span> <span class="pill-btn-text">Düsseldorf Guide</span>
+          <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & K.O.-Kriterien">
+            <span>🏛️</span> <span class="pill-btn-text">Düsseldorf-Kompass</span>
           </button>
           <button id="pocket-trigger" class="pill-btn" title="Notfall- & Medikamenten-Taschenkarte">
             <span>📇</span> <span class="pill-btn-text">Notfallkarte</span>
@@ -72,8 +72,8 @@
           <button id="mock-exam-trigger" class="pill-btn" title="45-Minütige Mündliche Facharztprüfung Simulieren">
             <span>⏱️</span> <span class="pill-btn-text">45-Min Prüfung</span>
           </button>
-          <button id="sub-toggle" class="pill-btn active" title="Untertitelmodus für Türkisch umschalten">
-            <span>🇹🇷</span> <span class="pill-btn-text">Untertitel</span>
+          <button id="sub-toggle" class="pill-btn" title="Türkische Übersetzung umschalten">
+            <span>🇹🇷</span> <span class="pill-btn-text">Übersetzung</span>
           </button>
           <button id="grid-trigger" class="pill-btn" title="Fragenübersicht & Navigation">
             <span>📑</span> <span class="pill-btn-text">Übersicht</span>
@@ -81,10 +81,10 @@
           <button id="user-guide-trigger" class="pill-btn" title="Offizieller Benutzerleitfaden & Prüfungsanleitung">
             <span>📖</span> <span class="pill-btn-text">Leitfaden</span>
           </button>
-          <button id="theme-toggle" class="pill-btn" title="Dark Mode umschalten">
+          <button id="theme-toggle" class="pill-btn" title="Dunkelmodus umschalten">
             <span>🌙</span>
           </button>
-          <button id="settings-trigger" class="pill-btn" title="Einstellungen & Daten-Backup">
+          <button id="settings-trigger" class="pill-btn" title="Einstellungen & Datensicherung">
             <span>⚙️</span>
           </button>
         </div>
@@ -115,7 +115,7 @@
           <span>🎯 Tagesziel:</span> <strong id="stat-daily-goal">0/20</strong>
         </div>
         <div class="dash-badge-item">
-          <span>🔥 Streak:</span> <strong id="stat-streak">0 Tage</strong>
+          <span>🔥 Lernserie:</span> <strong id="stat-streak">0 Tage</strong>
         </div>
       </div>
     </section>
@@ -124,7 +124,7 @@
     <section id="exam-simulation-bar" class="exam-simulation-bar" style="display: none;">
       <div class="sim-hud-left">
         <span class="sim-aekno-badge">🏛️ ÄKNO Düsseldorf Mündliche Prüfung</span>
-        <span id="sim-case-counter" class="sim-case-counter">Fall 1 von 36</span>
+        <span id="sim-case-counter" class="sim-case-counter">Fall 1 von 304</span>
       </div>
       <div class="sim-hud-center">
         <div class="exam-timer-box" title="Gesamte Prüfungszeit">
@@ -134,7 +134,7 @@
         </div>
         <div class="sim-answer-timer-box" id="sim-answer-timer-box" title="60s Countdown für Ihre mündliche Antwort">
           <button id="btn-sim-answer-timer" class="btn-sim-timer" type="button">
-            <span>⏱️</span> <span id="sim-answer-timer-display">60s Antwort-Timer</span>
+            <span>⏱️</span> <span id="sim-answer-timer-display">60s Antwortzeit</span>
           </button>
         </div>
       </div>
@@ -156,20 +156,20 @@
 
       <div class="filter-group">
         <button class="filter-chip active" data-filter="all">Alle Fragen</button>
-        <button class="filter-chip" data-filter="sm2_due">🧠 Spaced Repetition (Fällig)</button>
+        <button class="filter-chip" data-filter="sm2_due">🧠 Intervall-Wiederholung (SM-2)</button>
         <button class="filter-chip" data-filter="high_yield">⭐ ÄKNO NRW Top-Fragen</button>
         <button class="filter-chip" data-filter="dus_examiners">🏛️ Düsseldorf Prüfer-Fälle</button>
         <button class="filter-chip" data-filter="weakness">🎯 Schwachstellen-Fokus</button>
         <button class="filter-chip" data-filter="unanswered">Offen (Unbeantwortet)</button>
         <button class="filter-chip" data-filter="incorrect">Falsch beantwortet</button>
-        <button class="filter-chip" data-filter="review">★ Wiederholen (Flagged)</button>
+        <button class="filter-chip" data-filter="review">★ Wiederholen (Markiert)</button>
       </div>
 
       <div class="mode-selector">
         <select id="type-filter">
-          <option value="all">Alle Formate (608)</option>
+          <option value="all">Alle Formate (636)</option>
           <option value="options">✅ Aussagenbewertung (332)</option>
-          <option value="open">📋 Fallbasierte Prüfung (276)</option>
+          <option value="open">📋 Fallbasierte Prüfung (304)</option>
           <option value="image">🖼️ Befund- & Bilddiagnostik (33)</option>
         </select>
 
@@ -207,7 +207,7 @@
           <span class="mode-icon">⚡</span>
           <span class="mode-info">
             <strong>Blitz-Karteikarten</strong>
-            <small>Cloze-Masken für Dosierungen & Fakten</small>
+            <small>Lücken-Masken für Dosierungen & Fakten</small>
           </span>
         </button>
       </div>
@@ -256,7 +256,7 @@
         <div class="timer-pill-container">
           <button id="btn-toggle-timer" class="oral-tool-btn" title="60-Sekunden Countdown für mündliche Antwort (T)">
             <span class="tool-icon">⏱️</span>
-            <span id="timer-display-text" class="timer-display-text">60s Timer</span>
+            <span id="timer-display-text" class="timer-display-text">60s Stoppuhr</span>
           </button>
           <div id="timer-progress-ring" class="timer-mini-bar" style="display: none;">
             <div id="timer-mini-fill" class="timer-mini-fill"></div>
@@ -264,7 +264,7 @@
         </div>
 
         <div class="voice-pill-container">
-          <button id="btn-toggle-mic" class="oral-tool-btn" title="Antwort laut einsprechen (Web Speech API / Audio) (Taste V)">
+          <button id="btn-toggle-mic" class="oral-tool-btn" title="Antwort laut einsprechen (Spracherkennung) (Taste V)">
             <span class="tool-icon">🎙️</span>
             <span id="mic-status-text">Antwort einsprechen <kbd class="kbd-hint">V</kbd></span>
           </button>
@@ -279,7 +279,7 @@
           <span class="wave-bar"></span>
         </div>
 
-        <button id="btn-audio-speak" class="btn-icon btn-audio" title="Fall & Fragetext laut vorlesen (Audio-Reader)">
+        <button id="btn-audio-speak" class="btn-icon btn-audio" title="Fall & Fragetext laut vorlesen (Sprachausgabe)">
           <span>🔊 Vorlesen</span>
         </button>
       </div>
@@ -289,7 +289,7 @@
         <div class="transcript-header">
           <div class="transcript-pulse-badge">
             <span class="pulse-dot"></span>
-            <strong id="transcript-badge-title">Ihre mündliche Antwort (Live-Transkription):</strong>
+            <strong id="transcript-badge-title">Ihre mündliche Antwort (Echtzeit-Spracherkennung):</strong>
           </div>
           <div class="transcript-controls">
             <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
@@ -636,14 +636,14 @@
           <p>In der Prüfung erhalten Sie Patientendaten schrittweise. Die App bildet dies 1:1 ab:</p>
           <ul style="padding-left: 1.25rem;">
             <li><strong>Schritt 1 (Fallvorstellung)</strong>: Lesen Sie Fall & Kernfrage. Formulieren Sie gedanklich sofort Ihre Verdachtsdiagnose.</li>
-            <li><strong>Schritt 2 (Vitals & BGA)</strong>: Taste <kbd>2</kbd> drücken. Analysieren Sie Hämodynamik, Beatmungsparameter und arterielle BGA.</li>
+            <li><strong>Schritt 2 (Vitalwerte & BGA)</strong>: Taste <kbd>2</kbd> drücken. Analysieren Sie Hämodynamik, Beatmungsparameter und arterielle BGA.</li>
             <li><strong>Schritt 3 (Prüfer-Intervention)</strong>: Taste <kbd>3</kbd> drücken. Der Prüfer hakt nach oder der Patient dekompensiert. Bei Düsseldorfer Fällen zeigt das <em>Prüfer-Profil</em> die typischen K.O.-Fallen von Prof. Annecke, Prof. Kienbaum, Prof. Hohn oder Prof. Wappler!</li>
-            <li><strong>Schritt 4 (Musterantwort)</strong>: Taste <kbd>4</kbd> oder <kbd>Space</kbd>. Schaltet die 3 High-Impact Antwortblöcke frei.</li>
+            <li><strong>Schritt 4 (Musterantwort)</strong>: Taste <kbd>4</kbd> oder <kbd>Space</kbd>. Schaltet die 3 Kern-Erfolgsblöcke frei.</li>
           </ul>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>🗣️ 2. Die 3 High-Impact Antwortblöcke</h3>
+          <h3>🗣️ 2. Die 3 Kern-Erfolgsblöcke</h3>
           <ul style="padding-left: 1.25rem;">
             <li><strong>🗣️ "Wie sage ich es?" (Redemittel)</strong>: Liefert Ihnen strukturierte verbale Einstiegssätze für sofortige Souveränität. Mit <strong>🔊 Redemittel vorlesen</strong> können Sie sich die Aussprache im Prüfertempo anhören!</li>
             <li><strong>🎯 Schlüsselbegriffe & Dosierungen</strong>: Die Prüfer-Checkliste mit allen harten Fakten (Dantrolen 2,5 mg/kg, Sugammadex 16 mg/kg, Intralipid 1,5 ml/kg etc.).</li>
@@ -652,8 +652,8 @@
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>🧠 3. Spaced Repetition (SM-2)</h3>
-          <p>Bewerten Sie sich nach dem Aufdecken selbst mit <strong>Gewusst (4)</strong> (Taste <kbd>K</kbd>/<kbd>G</kbd>) oder <strong>Nicht gewusst (1)</strong> (Taste <kbd>F</kbd>). Der Filter-Chip <strong>🧠 Spaced Repetition (X fällig)</strong> liefert Ihnen täglich exakt die zur Wiederholung anstehenden Fragen.</p>
+          <h3>🧠 3. Intervall-Wiederholung (SM-2)</h3>
+          <p>Bewerten Sie sich nach dem Aufdecken selbst mit <strong>Gewusst (4)</strong> (Taste <kbd>K</kbd>/<kbd>G</kbd>) oder <strong>Nicht gewusst (1)</strong> (Taste <kbd>F</kbd>). Der Filter-Chip <strong>🧠 Intervall-Wiederholung (X fällig)</strong> liefert Ihnen täglich exakt die zur Wiederholung anstehenden Fragen.</p>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
@@ -661,7 +661,7 @@
           <ul style="padding-left: 1.25rem;">
             <li><strong>📇 Notfallkarte</strong>: 15 interaktive SOPs (Maligne Hyperthermie, LAST, CICO, DGAI S1 Antikoagulation vor SPA/PDK).</li>
             <li><strong>🧮 Rechner</strong>: Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Vt, Lokalanästhetika-Maximaldosen & Intralipid, Natriumdefizit & ODS-Grenzen.</li>
-            <li><strong>⏱️ 45-Min Prüfung</strong>: Vollständige mündliche Simulation mit 6 Fällen und Prüfer-Timer.</li>
+            <li><strong>⏱️ 45-Min Prüfung</strong>: Vollständige mündliche Simulation mit 4 Fällen und Prüfungszeit.</li>
           </ul>
         </div>
 
@@ -670,11 +670,11 @@
           <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>Space</kbd> / <kbd>Enter</kbd></strong></td><td>Schritt vorwärts / Antwort aufdecken</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd>, <kbd>4</kbd></strong></td><td>Direktsprung zu Schritt 1, 2, 3 oder 4</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>K</kbd> / <kbd>G</kbd></strong></td><td>Selbstbewertung: Gewusst (SM-2 Good)</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>F</kbd></strong></td><td>Selbstbewertung: Nicht gewusst (SM-2 Again)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>K</kbd> / <kbd>G</kbd></strong></td><td>Selbstbewertung: Gewusst (Note Gut)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>F</kbd></strong></td><td>Selbstbewertung: Nicht gewusst (Wiederholen)</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>U</kbd></strong></td><td>Türkische Satzübersetzung umschalten</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>P</kbd></strong></td><td>Audio-Aussprache abspielen</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>V</kbd></strong></td><td>Sprachaufnahme (Voice Exam) starten/stoppen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>P</kbd></strong></td><td>Mündliche Aussprache vorlesen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>V</kbd></strong></td><td>Mündliche Sprachaufnahme starten/stoppen</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>→</kbd> / <kbd>D</kbd></strong></td><td>Nächste Frage</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>←</kbd> / <kbd>A</kbd></strong></td><td>Vorherige Frage</td></tr>
             <tr><td style="padding: 0.35rem 0;"><strong><kbd>⌘K</kbd></strong></td><td>Suchleiste öffnen</td></tr>
@@ -699,7 +699,7 @@
         <div class="settings-section">
           
           <div class="settings-box highlight-box">
-            <h3>☁️ Automatische Wolken-Synchronisation (Cloud Auto-Sync)</h3>
+            <h3>☁️ Automatische Wolken-Synchronisation (Cloud-Synchronisation)</h3>
             <p>Ihr Lernfortschritt wird <strong>automatisch in Echtzeit in der Cloud gespeichert</strong>. Öffnen Sie die App auf Ihrem Smartphone, Tablet oder Laptop – Ihre Antworten und Statistiken sind sofort auf allen Geräten synchronisiert!</p>
             <div class="settings-actions">
               <button id="btn-cloud-sync-now" class="btn btn-primary">
@@ -710,10 +710,10 @@
 
           <div class="settings-box">
             <h3>📲 Lernfortschritt Manuell Sichern & Drucken</h3>
-            <p>Exportieren Sie Ihren Fortschritt als Backup-Datei oder drucken Sie Ihre Markierungen als Spickzettel aus.</p>
+            <p>Exportieren Sie Ihren Fortschritt als Sicherungsdatei oder drucken Sie Ihre Markierungen als Spickzettel aus.</p>
             <div class="settings-actions">
               <button id="btn-export-progress" class="btn btn-secondary">
-                <span>📥</span> Fortschritt Exportieren (Backup JSON)
+                <span>📥</span> Fortschritt Exportieren (JSON-Sicherung)
               </button>
               
               <button id="btn-import-trigger" class="btn btn-secondary">
