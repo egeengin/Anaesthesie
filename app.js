@@ -71,6 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBadgeReview = document.getElementById('badge-review');
   const elQuestionNumber = document.getElementById('question-number');
 
+  // Simulation HUD & Timers
+  const elExamSimulationBar = document.getElementById('exam-simulation-bar');
+  const elSimCaseCounter = document.getElementById('sim-case-counter');
+  const elExamTimer = document.getElementById('exam-timer');
+  const elBtnSimAnswerTimer = document.getElementById('btn-sim-answer-timer');
+  const elSimAnswerTimerDisplay = document.getElementById('sim-answer-timer-display');
+  const elBtnStopExam = document.getElementById('btn-stop-exam');
+
   // Stepper & Oral Tools Elements
   const elStepperIndicatorBar = document.getElementById('stepper-indicator-bar');
   const elOralToolsBar = document.getElementById('oral-tools-bar');
@@ -80,9 +88,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const elTimerMiniFill = document.getElementById('timer-mini-fill');
   const elBtnToggleMic = document.getElementById('btn-toggle-mic');
   const elMicStatusText = document.getElementById('mic-status-text');
+  const elAudioWaveVisualizer = document.getElementById('audio-wave-visualizer');
   const elSpeechTranscriptBox = document.getElementById('speech-transcript-box');
+  const elSpeechTranscriptInput = document.getElementById('speech-transcript-input');
   const elSpeechTranscriptText = document.getElementById('speech-transcript-text');
   const elBtnClearTranscript = document.getElementById('btn-clear-transcript');
+  const elBtnEvaluateVoice = document.getElementById('btn-evaluate-voice');
+  const elBtnQuickReveal = document.getElementById('btn-quick-reveal');
+  const elVoiceEvalCard = document.getElementById('voice-eval-card');
+  const elEvalScoreBadge = document.getElementById('eval-score-badge');
+  const elEvalStatusMsg = document.getElementById('eval-status-msg');
+  const elEvalMatchedTags = document.getElementById('eval-matched-tags');
+  const elEvalMissedTags = document.getElementById('eval-missed-tags');
   
   // Step Containers & Accordions
   const elStep1Container = document.getElementById('step1-container');
@@ -264,7 +281,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Filtering Question Bank ---
   function getFilteredQuestions() {
-    return EXAM_QUESTIONS.filter(q => {
+    let list = EXAM_QUESTIONS.filter(q => {
+      // In Oral Simulation Mode (Mode A), STRICTLY eliminate all multiple-choice options questions
+      if (state.studyMode === 'simulation') {
+        if (q.question_type === 'options' || (q.options && q.options.length > 0)) {
+          return false;
+        }
+      }
+
       // Live Global Medical Search Filter
       if (state.searchQuery && state.searchQuery.trim()) {
         const query = state.searchQuery.trim().toLowerCase();
@@ -308,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return !!q.is_high_yield;
       }
       if (state.filterMode === 'dus_examiners') {
-        return !!q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'));
+        return !!q.is_dus_protocol || (q.source_book && (q.source_book.includes('Düsseldorf') || q.source_book.includes('D\u00fcsseldorf')));
       }
       if (state.filterMode === 'weakness') {
         return !qAns || !qAns.submitted || !qAns.isCorrect;
@@ -325,6 +349,19 @@ document.addEventListener('DOMContentLoaded', () => {
       
       return true;
     });
+
+    // In Simulation mode, prioritize authentic Düsseldorf ÄKNO protocol questions first!
+    if (state.studyMode === 'simulation' && !state.randomOrder) {
+      list.sort((a, b) => {
+        const aDus = !!a.is_dus_protocol || (a.source_book && (a.source_book.includes('Düsseldorf') || a.source_book.includes('D\u00fcsseldorf')));
+        const bDus = !!b.is_dus_protocol || (b.source_book && (b.source_book.includes('Düsseldorf') || b.source_book.includes('D\u00fcsseldorf')));
+        if (aDus && !bDus) return -1;
+        if (!aDus && bDus) return 1;
+        return 0;
+      });
+    }
+
+    return list;
   }
 
   function initCategoryDropdown() {
@@ -389,6 +426,47 @@ document.addEventListener('DOMContentLoaded', () => {
   function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  // --- 45-Minute Total Exam Simulation Timer ---
+  let examSimulationTimeLeft = 45 * 60; // 2700 Seconds
+  let examSimulationTimerId = null;
+
+  function startExamSimulationTimer() {
+    stopExamSimulationTimer();
+    updateExamSimulationTimerUI();
+    examSimulationTimerId = setInterval(() => {
+      if (examSimulationTimeLeft > 0) {
+        examSimulationTimeLeft--;
+        updateExamSimulationTimerUI();
+        if (examSimulationTimeLeft === 5 * 60) {
+          playAudioTone(580, 'sine', 0.4); // 5-minute warning
+        }
+      } else {
+        stopExamSimulationTimer();
+        playAudioTone(440, 'triangle', 0.8);
+        alert('⏱️ Die 45-minütige mündliche Prüfungszeit ist abgelaufen!');
+      }
+    }, 1000);
+  }
+
+  function stopExamSimulationTimer() {
+    if (examSimulationTimerId) {
+      clearInterval(examSimulationTimerId);
+      examSimulationTimerId = null;
+    }
+  }
+
+  function resetExamSimulationTimer() {
+    examSimulationTimeLeft = 45 * 60;
+    updateExamSimulationTimerUI();
+  }
+
+  function updateExamSimulationTimerUI() {
+    if (!elExamTimer) return;
+    const mins = Math.floor(examSimulationTimeLeft / 60);
+    const secs = examSimulationTimeLeft % 60;
+    elExamTimer.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   }
 
   // --- 60-Second Exam Step Timer Engine ---
@@ -458,33 +536,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateStepTimerUI() {
-    if (!elTimerDisplayText) return;
-    if (stepTimer.isRunning) {
-      elTimerDisplayText.textContent = `${stepTimer.secondsLeft}s`;
-      if (elBtnToggleTimer) elBtnToggleTimer.classList.add('active');
-      if (elTimerMiniFill) {
-        const pct = Math.max(0, Math.min(100, (stepTimer.secondsLeft / 60) * 100));
-        elTimerMiniFill.style.width = `${pct}%`;
-        if (stepTimer.secondsLeft <= 10) {
-          elTimerMiniFill.classList.add('urgent');
-        } else {
-          elTimerMiniFill.classList.remove('urgent');
+    if (elTimerDisplayText) {
+      if (stepTimer.isRunning) {
+        elTimerDisplayText.textContent = `${stepTimer.secondsLeft}s`;
+        if (elBtnToggleTimer) elBtnToggleTimer.classList.add('active');
+        if (elTimerMiniFill) {
+          const pct = Math.max(0, Math.min(100, (stepTimer.secondsLeft / 60) * 100));
+          elTimerMiniFill.style.width = `${pct}%`;
+          if (stepTimer.secondsLeft <= 10) {
+            elTimerMiniFill.classList.add('urgent');
+          } else {
+            elTimerMiniFill.classList.remove('urgent');
+          }
         }
+      } else {
+        elTimerDisplayText.textContent = '60s Timer (T)';
+        if (elBtnToggleTimer) elBtnToggleTimer.classList.remove('active');
+        if (elTimerMiniBar) elTimerMiniBar.style.display = 'none';
       }
-    } else {
-      elTimerDisplayText.textContent = '60s Timer (T)';
-      if (elBtnToggleTimer) elBtnToggleTimer.classList.remove('active');
-      if (elTimerMiniBar) elTimerMiniBar.style.display = 'none';
+    }
+
+    if (elSimAnswerTimerDisplay) {
+      if (stepTimer.isRunning) {
+        elSimAnswerTimerDisplay.textContent = `${stepTimer.secondsLeft}s Antwort-Timer`;
+      } else {
+        elSimAnswerTimerDisplay.textContent = '60s Antwort-Timer';
+      }
     }
   }
 
   if (elBtnToggleTimer) {
     elBtnToggleTimer.addEventListener('click', toggleStepTimer);
   }
+  if (elBtnSimAnswerTimer) {
+    elBtnSimAnswerTimer.addEventListener('click', toggleStepTimer);
+  }
 
-  // --- Voice Dictation & Web Speech API Engine ---
+  // --- Voice Dictation, Speech Recognition & Clinical Evaluation Engine ---
   let speechRecognizer = null;
   let isRecordingVoice = false;
+  let finalSpokenTranscript = '';
 
   function initSpeechEngine() {
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -496,28 +587,62 @@ document.addEventListener('DOMContentLoaded', () => {
       rec.continuous = true;
       rec.interimResults = true;
 
-      rec.onresult = (event) => {
-        let transcript = '';
-        for (let i = 0; i < event.results.length; ++i) {
-          transcript += event.results[i][0].transcript;
-        }
+      rec.onstart = () => {
+        isRecordingVoice = true;
+        if (elBtnToggleMic) elBtnToggleMic.classList.add('recording');
+        if (elMicStatusText) elMicStatusText.innerHTML = '🔴 Aufnahme läuft... <kbd class="kbd-hint">V</kbd>';
         if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+        if (elAudioWaveVisualizer) {
+          elAudioWaveVisualizer.style.display = 'inline-flex';
+          elAudioWaveVisualizer.classList.add('pulsing');
+        }
+      };
+
+      rec.onresult = (event) => {
+        let interim = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalSpokenTranscript += event.results[i][0].transcript + ' ';
+          } else {
+            interim += event.results[i][0].transcript;
+          }
+        }
+        const fullSpoken = (finalSpokenTranscript + interim).trim();
+        if (elSpeechTranscriptInput) {
+          elSpeechTranscriptInput.value = fullSpoken;
+        }
         if (elSpeechTranscriptText) {
-          elSpeechTranscriptText.textContent = transcript || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
+          elSpeechTranscriptText.textContent = fullSpoken || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
         }
       };
 
       rec.onerror = (e) => {
         console.warn('Speech API Error:', e.error);
         if (e.error === 'not-allowed') {
-          alert('🎙️ Mikrofonzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in den Browsereinstellungen.');
+          alert('🎙️ Mikrofonzugriff wurde verweigert. Bitte erlauben Sie den Mikrofonzugriff in den Browsereinstellungen, um die Spracheingabe zu nutzen.');
+          stopVoiceRecording();
+        } else if (e.error === 'no-speech') {
+          // Keep listening during natural candidate thinking pauses
+        } else {
+          stopVoiceRecording();
         }
-        stopVoiceRecording();
       };
 
       rec.onend = () => {
         if (isRecordingVoice) {
-          try { rec.start(); } catch (err) {}
+          // Browser paused speech stream; safely resume
+          setTimeout(() => {
+            if (isRecordingVoice) {
+              try { rec.start(); } catch (err) {}
+            }
+          }, 150);
+        } else {
+          if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
+          if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
+          if (elAudioWaveVisualizer) {
+            elAudioWaveVisualizer.classList.remove('pulsing');
+            elAudioWaveVisualizer.style.display = 'none';
+          }
         }
       };
 
@@ -533,16 +658,26 @@ document.addEventListener('DOMContentLoaded', () => {
       speechRecognizer = initSpeechEngine();
     }
     if (!speechRecognizer) {
-      alert('🎙️ Die Web Speech API wird von diesem Browser leider nicht unterstützt (empfohlen: Chrome, Safari oder Edge).');
+      alert('🎙️ Die Web Speech API wird von diesem Browser leider nicht direkt unterstützt (empfohlen: Chrome, Safari oder Edge). Sie können Ihre Stichpunkte jedoch direkt in das Textfeld tippen!');
+      if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+      if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
       return;
     }
 
     try {
       isRecordingVoice = true;
+      finalSpokenTranscript = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
+      if (finalSpokenTranscript && !finalSpokenTranscript.endsWith(' ')) {
+        finalSpokenTranscript += ' ';
+      }
       speechRecognizer.start();
       if (elBtnToggleMic) elBtnToggleMic.classList.add('recording');
       if (elMicStatusText) elMicStatusText.innerHTML = '🔴 Aufnahme läuft... <kbd class="kbd-hint">V</kbd>';
       if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+      if (elAudioWaveVisualizer) {
+        elAudioWaveVisualizer.style.display = 'inline-flex';
+        elAudioWaveVisualizer.classList.add('pulsing');
+      }
     } catch (err) {
       console.warn('Start voice recording error:', err);
     }
@@ -555,6 +690,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
     if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
+    if (elAudioWaveVisualizer) {
+      elAudioWaveVisualizer.classList.remove('pulsing');
+      elAudioWaveVisualizer.style.display = 'none';
+    }
   }
 
   function toggleVoiceRecording() {
@@ -565,13 +704,107 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function evaluateVoiceAnswer() {
+    stopVoiceRecording();
+
+    const spokenText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
+    if (!spokenText) {
+      alert('⚠️ Bitte sprechen Sie zuerst Ihre Antwort ein oder notieren Sie Stichpunkte im Textfeld, bevor Sie auswerten.');
+      if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
+      return;
+    }
+
+    filteredQuestions = getFilteredQuestions();
+    const currentQ = filteredQuestions[state.currentIndex];
+    if (!currentQ) return;
+    const parsedCase = parseOralExamCase(currentQ);
+
+    const targetRubric = (parsedCase.checklist && parsedCase.checklist.length)
+      ? parsedCase.checklist
+      : [currentQ.answer_de || ''];
+
+    let evalResult = { matchedIndices: [], matchRatio: 0, keywordsMatched: [] };
+    if (typeof VoiceExamEngine !== 'undefined' && VoiceExamEngine.evaluateSpokenAnswer) {
+      evalResult = VoiceExamEngine.evaluateSpokenAnswer(spokenText, targetRubric);
+    }
+
+    const pct = Math.round(evalResult.matchRatio * 100);
+
+    if (elVoiceEvalCard) {
+      elVoiceEvalCard.style.display = 'block';
+
+      if (elEvalScoreBadge) {
+        elEvalScoreBadge.textContent = `🎯 ${pct}% Treffer (${evalResult.matchedIndices.length}/${targetRubric.length} Kriterien)`;
+        elEvalScoreBadge.className = 'eval-score-badge ' + (pct >= 70 ? '' : (pct >= 40 ? 'mid' : 'low'));
+      }
+
+      if (elEvalStatusMsg) {
+        if (pct >= 75) {
+          elEvalStatusMsg.textContent = '🎉 Ausgezeichnet! Sie haben die entscheidenden ÄKNO-Leitlinienkriterien genannt.';
+        } else if (pct >= 45) {
+          elEvalStatusMsg.textContent = '👍 Solide Struktur! Einige wichtige Signalbegriffe fehlen noch (siehe unten).';
+        } else {
+          elEvalStatusMsg.textContent = '⚠️ Wichtige K.O.-Kriterien oder Leitlinienpunkte ausgelassen. Vergleichen Sie mit der Musterantwort.';
+        }
+      }
+
+      if (elEvalMatchedTags) {
+        if (evalResult.keywordsMatched.length > 0) {
+          elEvalMatchedTags.innerHTML = evalResult.keywordsMatched.map(kw => `<span class="keyword-tag matched">✓ ${escapeHtml(kw)}</span>`).join('');
+        } else {
+          elEvalMatchedTags.innerHTML = '<span class="eval-empty-hint">Keine spezifischen Signalwörter erkannt</span>';
+        }
+      }
+
+      if (elEvalMissedTags) {
+        const missed = targetRubric.filter((_, idx) => !evalResult.matchedIndices.includes(idx));
+        if (missed.length > 0) {
+          elEvalMissedTags.innerHTML = missed.map(item => {
+            const cleanItem = item.replace(/<[^>]*>/g, '').substring(0, 75);
+            return `<span class="keyword-tag missed">○ ${escapeHtml(cleanItem)}${item.length > 75 ? '...' : ''}</span>`;
+          }).join('');
+        } else {
+          elEvalMissedTags.innerHTML = '<span class="eval-empty-hint">Alle Kernkriterien abgedeckt! 🌟</span>';
+        }
+      }
+    }
+
+    // Automatically reveal model answer
+    revealAnswer();
+
+    // Highlight matched items in the checklist
+    if (elRubricChecklistItems) {
+      const rows = elRubricChecklistItems.querySelectorAll('.checklist-item-row');
+      rows.forEach((row, idx) => {
+        if (evalResult.matchedIndices.includes(idx)) {
+          row.style.background = 'rgba(16, 185, 129, 0.12)';
+          row.style.borderRadius = '6px';
+        }
+      });
+    }
+  }
+
   if (elBtnToggleMic) {
     elBtnToggleMic.addEventListener('click', toggleVoiceRecording);
   }
 
-  if (elBtnClearTranscript && elSpeechTranscriptText) {
+  if (elBtnEvaluateVoice) {
+    elBtnEvaluateVoice.addEventListener('click', evaluateVoiceAnswer);
+  }
+
+  if (elBtnQuickReveal) {
+    elBtnQuickReveal.addEventListener('click', () => {
+      stopVoiceRecording();
+      revealAnswer();
+    });
+  }
+
+  if (elBtnClearTranscript) {
     elBtnClearTranscript.addEventListener('click', () => {
-      elSpeechTranscriptText.textContent = 'Sprechen Sie jetzt frei Ihre Antwort ein...';
+      finalSpokenTranscript = '';
+      if (elSpeechTranscriptInput) elSpeechTranscriptInput.value = '';
+      if (elSpeechTranscriptText) elSpeechTranscriptText.textContent = 'Sprechen Sie jetzt frei Ihre Antwort ein...';
+      if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
     });
   }
 
@@ -828,6 +1061,13 @@ document.addEventListener('DOMContentLoaded', () => {
     state.studyMode = mode;
     saveState();
 
+    const isSim = (mode === 'simulation');
+    document.body.classList.toggle('mode-simulation-active', isSim);
+
+    if (elExamSimulationBar) {
+      elExamSimulationBar.style.display = isSim ? 'flex' : 'none';
+    }
+
     // Update active tab buttons
     if (elModeTabSim) elModeTabSim.classList.toggle('active', mode === 'simulation');
     if (elModeTabGuide) elModeTabGuide.classList.toggle('active', mode === 'guideline');
@@ -837,12 +1077,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elModeTabGuide) elModeTabGuide.setAttribute('aria-selected', mode === 'guideline');
     if (elModeTabCloze) elModeTabCloze.setAttribute('aria-selected', mode === 'flashcard');
 
+    if (isSim) {
+      startExamSimulationTimer();
+    } else {
+      stopExamSimulationTimer();
+      stopStepTimer();
+      stopVoiceRecording();
+    }
+
+    state.currentIndex = 0;
     renderCurrentQuestion();
   }
 
   if (elModeTabSim) elModeTabSim.addEventListener('click', () => setStudyMode('simulation'));
   if (elModeTabGuide) elModeTabGuide.addEventListener('click', () => setStudyMode('guideline'));
   if (elModeTabCloze) elModeTabCloze.addEventListener('click', () => setStudyMode('flashcard'));
+  if (elBtnStopExam) elBtnStopExam.addEventListener('click', () => setStudyMode('guideline'));
 
   // --- Progressive Stepper Accordion Toggles ---
   function toggleStep2(forceOpen = null) {
@@ -1040,20 +1290,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function navigateToNextQuestion() {
+    stopVoiceRecording();
+    stopStepTimer();
+    if (elSpeechTranscriptInput) elSpeechTranscriptInput.value = '';
+    if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
+
     filteredQuestions = getFilteredQuestions();
     if (state.currentIndex < filteredQuestions.length - 1) {
       state.currentIndex++;
       saveState();
       renderCurrentQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
   function navigateToPrevQuestion() {
+    stopVoiceRecording();
+    stopStepTimer();
+    if (elSpeechTranscriptInput) elSpeechTranscriptInput.value = '';
+    if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
+
     filteredQuestions = getFilteredQuestions();
     if (state.currentIndex > 0) {
       state.currentIndex--;
       saveState();
       renderCurrentQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -1360,6 +1622,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ──────────────────────── MODE SPECIFIC DISPLAY STATES ────────────────────────
+    const isSim = (mode === 'simulation');
+    document.body.classList.toggle('mode-simulation-active', isSim);
+
+    if (elExamSimulationBar) {
+      elExamSimulationBar.style.display = isSim ? 'flex' : 'none';
+    }
+    if (elSimCaseCounter && isSim) {
+      elSimCaseCounter.textContent = `Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
+    }
+
     if (mode === 'guideline') {
       // Mode B: "Spickzettel / Leitfaden" (Continuous Reading - everything open)
       if (elStepperIndicatorBar) elStepperIndicatorBar.style.display = 'none';
@@ -1385,12 +1657,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (elStepperIndicatorBar) elStepperIndicatorBar.style.display = 'flex';
       if (elOralToolsBar) elOralToolsBar.style.display = 'flex';
 
+      // Keep clinical vitals and examiner dialogue open for realistic immersion
+      toggleStep2(true);
+      toggleStep3(true);
+
       if (qState.revealed || qState.submitted) {
         if (elRevealContainer) elRevealContainer.style.display = 'none';
         if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
         if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
-        toggleStep2(true);
-        toggleStep3(true);
       } else {
         if (elRevealContainer) elRevealContainer.style.display = 'flex';
         if (elHighImpactRubric) elHighImpactRubric.style.display = 'none';
@@ -1874,10 +2148,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    const isSim = (state.studyMode === 'simulation');
+    document.body.classList.toggle('mode-simulation-active', isSim);
+    if (elExamSimulationBar) {
+      elExamSimulationBar.style.display = isSim ? 'flex' : 'none';
+    }
+
     if (state.studyMode) {
       if (elModeTabSim) elModeTabSim.classList.toggle('active', state.studyMode === 'simulation');
       if (elModeTabGuide) elModeTabGuide.classList.toggle('active', state.studyMode === 'guideline');
       if (elModeTabCloze) elModeTabCloze.classList.toggle('active', state.studyMode === 'flashcard');
+    }
+
+    if (isSim) {
+      startExamSimulationTimer();
     }
 
     // Trigger cloud auto-sync asynchronously

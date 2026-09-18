@@ -120,16 +120,29 @@
       </div>
     </section>
 
-    <!-- Exam Simulation Active Banner -->
+    <!-- Exam Simulation Active Banner / Oral Board HUD -->
     <section id="exam-simulation-bar" class="exam-simulation-bar" style="display: none;">
-      <div class="exam-timer-box">
-        <span class="timer-icon">⏱️</span>
-        <span id="exam-timer" class="exam-timer">45:00</span>
-        <span class="timer-label">NRW Prüfungssimulation (10 Fragen)</span>
+      <div class="sim-hud-left">
+        <span class="sim-aekno-badge">🏛️ ÄKNO Düsseldorf Mündliche Prüfung</span>
+        <span id="sim-case-counter" class="sim-case-counter">Fall 1 von 36</span>
       </div>
-      <button id="btn-stop-exam" class="btn btn-danger-outline btn-sm">
-        Simulation Beenden
-      </button>
+      <div class="sim-hud-center">
+        <div class="exam-timer-box" title="Gesamte Prüfungszeit">
+          <span class="timer-icon">⏱️</span>
+          <span id="exam-timer" class="exam-timer">45:00</span>
+          <span class="timer-sublabel">Gesamtzeit</span>
+        </div>
+        <div class="sim-answer-timer-box" id="sim-answer-timer-box" title="60s Countdown für Ihre mündliche Antwort">
+          <button id="btn-sim-answer-timer" class="btn-sim-timer" type="button">
+            <span>⏱️</span> <span id="sim-answer-timer-display">60s Antwort-Timer</span>
+          </button>
+        </div>
+      </div>
+      <div class="sim-hud-right">
+        <button id="btn-stop-exam" class="btn btn-danger-outline btn-sm" title="Prüfungssimulation beenden und zur Lernübersicht zurückkehren">
+          ✕ Simulation Beenden
+        </button>
+      </div>
     </section>
 
     <!-- Toolbar: Filter Chips & Category Selector -->
@@ -251,14 +264,23 @@
         </div>
 
         <div class="voice-pill-container">
-          <button id="btn-toggle-mic" class="oral-tool-btn" title="Antwort laut einsprechen (Web Speech API / Audio) (V)">
+          <button id="btn-toggle-mic" class="oral-tool-btn" title="Antwort laut einsprechen (Web Speech API / Audio) (Taste V)">
             <span class="tool-icon">🎙️</span>
             <span id="mic-status-text">Antwort einsprechen <kbd class="kbd-hint">V</kbd></span>
           </button>
         </div>
 
+        <!-- Real-Time Audio Level Waveform Indicator -->
+        <div class="audio-wave-visualizer" id="audio-wave-visualizer" style="display: none;" title="Mikrofon-Aktivität">
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+        </div>
+
         <button id="btn-audio-speak" class="btn-icon btn-audio" title="Fall & Fragetext laut vorlesen (Audio-Reader)">
-          <span>🔊</span>
+          <span>🔊 Vorlesen</span>
         </button>
       </div>
 
@@ -267,12 +289,44 @@
         <div class="transcript-header">
           <div class="transcript-pulse-badge">
             <span class="pulse-dot"></span>
-            <strong>Ihre mündliche Antwort (Live-Transkription):</strong>
+            <strong id="transcript-badge-title">Ihre mündliche Antwort (Live-Transkription):</strong>
           </div>
-          <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
+          <div class="transcript-controls">
+            <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
+          </div>
         </div>
-        <div id="speech-transcript-text" class="transcript-content" placeholder="Sprechen Sie jetzt frei Ihre klinische Antwort ein...">
-          Sprechen Sie jetzt frei Ihre Antwort ein...
+        
+        <textarea id="speech-transcript-input" class="transcript-textarea" placeholder="Sprechen Sie Ihre Antwort jetzt laut ein... (Ihre Worte erscheinen hier automatisch in Echtzeit oder Sie können Stichpunkte direkt tippen)"></textarea>
+
+        <div class="transcript-action-row">
+          <button id="btn-evaluate-voice" class="btn btn-primary" type="button" title="Antwort beenden und gegen ÄKNO-Schlüsselbegriffe auswerten">
+            <span>🎯</span> Antwort beenden & Auswerten
+          </button>
+          <button id="btn-quick-reveal" class="btn btn-secondary" type="button" title="Musterantwort und Redemittel sofort aufdecken">
+            <span>👁️</span> Musterantwort freischalten
+          </button>
+        </div>
+
+        <!-- Real-Time Clinical Keyword Evaluation Card -->
+        <div id="voice-eval-card" class="voice-eval-card" style="display: none;">
+          <div class="eval-card-header">
+            <div class="eval-score-badge" id="eval-score-badge">🎯 0% Treffer</div>
+            <div class="eval-status-msg" id="eval-status-msg">Auswertung Ihrer mündlichen Antwort</div>
+          </div>
+          <div class="eval-keywords-grid">
+            <div class="eval-column eval-matched">
+              <div class="eval-column-title">🟢 Genannte Signalwörter & Kriterien:</div>
+              <div class="eval-tags-container" id="eval-matched-tags">
+                <span class="eval-empty-hint">Noch keine Begriffe erfasst</span>
+              </div>
+            </div>
+            <div class="eval-column eval-missed">
+              <div class="eval-column-title">⚪ Noch fehlende Kernaspekte:</div>
+              <div class="eval-tags-container" id="eval-missed-tags">
+                <span class="eval-empty-hint">-</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

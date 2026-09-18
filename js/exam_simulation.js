@@ -10,7 +10,8 @@
 
   class MockExamSimulation {
     constructor(allQuestions) {
-      this.allQuestions = allQuestions || [];
+      // Strictly oral cases, no multiple-choice options questions
+      this.allQuestions = (allQuestions || []).filter(q => q.question_type === 'open' || !q.options || q.options.length === 0);
       this.activeCases = [];
       this.currentCaseIndex = 0;
       this.secondsRemaining = EXAM_DURATION_SECONDS;
@@ -38,7 +39,14 @@
       const cat3 = this.allQuestions.filter(q => q.category.includes('Intensiv') || q.category.includes('Beatmung') || q.category.includes('Sepsis'));
       const cat4 = this.allQuestions.filter(q => q.category.includes('Notfall') || q.category.includes('Kinder') || q.category.includes('Geburtshilfe') || q.category.includes('Neuro'));
 
-      const pickRandom = (arr) => arr.length ? arr[Math.floor(Math.random() * arr.length)] : this.allQuestions[Math.floor(Math.random() * this.allQuestions.length)];
+      const pickRandom = (arr) => {
+        const pool = arr.length ? arr : this.allQuestions;
+        const dusCases = pool.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
+        if (dusCases.length && Math.random() < 0.6) {
+          return dusCases[Math.floor(Math.random() * dusCases.length)];
+        }
+        return pool[Math.floor(Math.random() * pool.length)];
+      };
 
       this.activeCases = [
         pickRandom(cat1),

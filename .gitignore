@@ -26,4 +26,7 @@ scratch/
 Thumbs.db
 .vscode/
 .idea/
-EOF
+
+# AI agent skills & config
+.agents/
+.gemini/

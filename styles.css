@@ -3599,6 +3599,294 @@ footer {
   border-left-color: #2dd4bf;
 }
 
+/* ==========================================================================
+   DÜSSELDORF ÄKNO LIVE ORAL EXAM SIMULATION: DISTRACTION-FREE COCKPIT
+   ========================================================================== */
+
+/* 1. Hide general study clutter in Live Simulation Mode */
+body.mode-simulation-active .dashboard-compact,
+body.mode-simulation-active .toolbar,
+body.mode-simulation-active #stepper-indicator-bar,
+body.mode-simulation-active #options-container,
+body.mode-simulation-active .user-note-card,
+body.mode-simulation-active #cloze-controls-bar {
+  display: none !important;
+}
+
+/* 2. Simulation HUD Bar */
+.sim-hud-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sim-aekno-badge {
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #ffffff;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.3);
+}
+
+.sim-case-counter {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fef08a;
+}
+
+.sim-hud-center {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.timer-sublabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.btn-sim-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-sim-timer:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-sim-timer.active {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #ffffff;
+  animation: pulseRed 1s infinite;
+}
+
+/* 3. Hero Question Typography & Card Styling in Simulation */
+body.mode-simulation-active .quiz-card {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 8px 30px rgba(13, 148, 136, 0.15);
+  padding: 1.75rem;
+  border-radius: 14px;
+}
+
+[data-theme="dark"] body.mode-simulation-active .quiz-card {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border-color: #0d9488;
+}
+
+body.mode-simulation-active #step1-container {
+  background: var(--bg-primary);
+  border: 1.5px solid rgba(13, 148, 136, 0.2);
+  border-radius: 12px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+body.mode-simulation-active #question-text {
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.75;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+body.mode-simulation-active #step3-container {
+  border: 2px solid rgba(245, 158, 11, 0.35);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(217, 119, 6, 0.02) 100%);
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+/* 4. Live Audio Waveform Visualizer */
+.audio-wave-visualizer {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+  padding: 0 0.5rem;
+}
+
+.audio-wave-visualizer .wave-bar {
+  display: inline-block;
+  width: 4px;
+  height: 6px;
+  background: #ef4444;
+  border-radius: 2px;
+  transition: height 0.08s ease;
+}
+
+.audio-wave-visualizer .wave-bar.pulsing {
+  animation: wavePulse 0.8s infinite alternate ease-in-out;
+}
+
+.audio-wave-visualizer .wave-bar:nth-child(2).pulsing { animation-delay: 0.15s; }
+.audio-wave-visualizer .wave-bar:nth-child(3).pulsing { animation-delay: 0.3s; }
+.audio-wave-visualizer .wave-bar:nth-child(4).pulsing { animation-delay: 0.45s; }
+.audio-wave-visualizer .wave-bar:nth-child(5).pulsing { animation-delay: 0.6s; }
+
+@keyframes wavePulse {
+  0% { height: 6px; }
+  100% { height: 22px; }
+}
+
+/* 5. Live Speech Transcript Textarea & Action Row */
+.transcript-textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #fde68a;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.transcript-textarea:focus {
+  outline: none;
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+}
+
+[data-theme="dark"] .transcript-textarea {
+  background: var(--bg-secondary);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.transcript-action-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  flex-wrap: wrap;
+}
+
+/* 6. Real-Time Clinical Keyword Evaluation Card */
+.voice-eval-card {
+  margin-top: 1.15rem;
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.eval-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.eval-score-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+}
+
+.eval-score-badge.low {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.eval-score-badge.mid {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.eval-status-msg {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.eval-keywords-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .eval-keywords-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.eval-column-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+}
+
+.eval-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.eval-empty-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.keyword-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.keyword-tag.matched {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] .keyword-tag.matched {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.keyword-tag.missed {
+  background: rgba(100, 116, 139, 0.08);
+  color: var(--text-secondary);
+  border: 1px dashed var(--border-color);
+}
+
 
 
 
