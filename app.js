@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     randomOrder: false,
     studyMode: 'simulation', // 'simulation' (Mode A), 'guideline' (Mode B), 'flashcard' (Mode C)
     userNotes: {},
+    speechRate: 0.95,        // 0.8x, 0.95x, 1.15x
     stepState: {}      // { [qId]: { step: 1..4, vitalsOpen: bool, examinerOpen: bool, revealed: bool, clozesUnmasked: bool } }
   };
 
@@ -2233,6 +2234,11 @@ document.addEventListener('DOMContentLoaded', () => {
       startExamSimulationTimer();
     }
 
+    const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
+    if (elAudioSpeedDisplay && state.speechRate) {
+      elAudioSpeedDisplay.textContent = `${state.speechRate}x`;
+    }
+
     // Trigger cloud auto-sync asynchronously
     syncFromCloud();
   }
@@ -2684,7 +2690,34 @@ document.addEventListener('DOMContentLoaded', () => {
     calcSodium();
   }
 
-  // --- Audio Speech Reader ---
+  // --- Clean German Speech Text Extractor (Filters out embedded Turkish collapsibles) ---
+  function getCleanSpeechText(element) {
+    if (!element) return '';
+    const deEl = element.querySelector('.de-text-block');
+    if (deEl) return deEl.textContent.trim();
+    const clone = element.cloneNode(true);
+    clone.querySelectorAll('.tr-sub-container, .tr-subtitle-collapsible, .badge, script').forEach(n => n.remove());
+    return clone.textContent.trim();
+  }
+
+  // --- Audio Speed Toggle (0.8x / 0.95x / 1.15x) ---
+  const elBtnAudioSpeed = document.getElementById('btn-audio-speed');
+  const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
+
+  if (elBtnAudioSpeed) {
+    elBtnAudioSpeed.addEventListener('click', () => {
+      const rates = [0.8, 0.95, 1.15];
+      let cur = state.speechRate || 0.95;
+      let idx = rates.findIndex(r => Math.abs(r - cur) < 0.05);
+      let nextIdx = (idx + 1) % rates.length;
+      state.speechRate = rates[nextIdx];
+      saveState();
+      if (elAudioSpeedDisplay) elAudioSpeedDisplay.textContent = `${state.speechRate}x`;
+      if (typeof playAudioTone === 'function') playAudioTone(520, 'sine', 0.08);
+    });
+  }
+
+  // --- Audio Speech Reader (Question Stem) ---
   const elBtnAudioSpeak = document.getElementById('btn-audio-speak');
   if (elBtnAudioSpeak) {
     elBtnAudioSpeak.addEventListener('click', () => {
@@ -2702,7 +2735,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'de-DE';
-        utterance.rate = 0.95;
+        utterance.rate = state.speechRate || 0.95;
 
         utterance.onstart = () => elBtnAudioSpeak.classList.add('speaking');
         utterance.onend = () => elBtnAudioSpeak.classList.remove('speaking');
@@ -2729,12 +2762,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
 
         const elQuote = document.getElementById('examiner-quote-text');
-        const textToRead = elQuote ? elQuote.textContent.trim() : '';
+        const textToRead = getCleanSpeechText(elQuote);
         if (!textToRead) return;
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'de-DE';
-        utterance.rate = 0.92;
+        utterance.rate = state.speechRate || 0.95;
 
         utterance.onstart = () => elBtnAudioSpeakExaminer.classList.add('speaking');
         utterance.onend = () => elBtnAudioSpeakExaminer.classList.remove('speaking');
@@ -2759,12 +2792,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
 
         const elVerbal = document.getElementById('rubric-verbal-text');
-        const textToRead = elVerbal ? elVerbal.textContent.trim() : '';
+        const textToRead = getCleanSpeechText(elVerbal);
         if (!textToRead) return;
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'de-DE';
-        utterance.rate = 0.92;
+        utterance.rate = state.speechRate || 0.95;
 
         utterance.onstart = () => elBtnAudioSpeakVerbal.classList.add('speaking');
         utterance.onend = () => elBtnAudioSpeakVerbal.classList.remove('speaking');

@@ -101,7 +101,12 @@ Für ausländische Kolleginnen und Kollegen sowie für maximale Sprachpräzision
 2. **🔊 Prüferfrage vorlesen** (Schritt 3):
    - Simuliert die direkte Ansprache durch den Prüfungsvorsitzenden. Hören Sie sich die Frage an und antworten Sie laut!
 3. **🔊 Redemittel vorlesen** (Schritt 4):
-   - Liest die Modellantwort im idealen Prüfungsrhythmus vor (Tempo: 0,92). Nutzen Sie die "Shadowing"-Technik: Hören Sie den Satz und sprechen Sie ihn laut nach!
+   - Liest die Modellantwort im idealen Prüfungsrhythmus vor. Nutzen Sie die "Shadowing"-Technik: Hören Sie den Satz und sprechen Sie ihn laut nach!
+4. **⚡ Tempowahlschalter (`0.8x / 0.95x / 1.15x`)**:
+   - Direkt in der Werkzeugleiste können Sie das Vorlesetempo mit einem Klick umschalten:
+     - `0.8x`: Verlangsamtes Lerntempo für schwierige Fachwörter und Artikulationstraining.
+     - `0.95x`: Natürliches, souveränes Prüfungstempo (Standard).
+     - `1.15x`: Schneller Stresstest für Fortgeschrittene.
 
 ---
 
@@ -151,9 +156,9 @@ Klicken Sie in der oberen Menüleiste auf **`🏛️ Düsseldorfer Prüfer & Pro
 
 ---
 
-## 8. Notfallkarten & Pocket SOPs (15 interaktive Karten)
+## 8. Notfallkarten & Pocket SOPs (16 interaktive Karten)
 
-Klicken Sie auf **`📇 Notfallkarte`**, um 15 interaktive Taschen-SOPs mit Dosierungsempfehlungen aufzurufen:
+Klicken Sie auf **`📇 Notfallkarte`**, um 16 interaktive Taschen-SOPs mit Dosierungsempfehlungen aufzurufen:
 1. **Maligne Hyperthermie (MH)**: Dantrolen 2,5 mg/kg, Kühlung, Hyperventilation.
 2. **LAST & Lipid Rescue**: Intralipid 20 % (1,5 ml/kg Bolus, dann 0,25–0,5 ml/kg/min).
 3. **CICO (Cannot Intubate, Cannot Oxygenate)**: Skalpell-Bougie-Tubus Koniotomie nach DGAI.
@@ -162,7 +167,16 @@ Klicken Sie auf **`📇 Notfallkarte`**, um 15 interaktive Taschen-SOPs mit Dosi
 6. **Reanimation (ERC ALS)**: Rhythmusanalyse, Defibrillation, Amiodaron 300 mg / 150 mg, Adrenalin 1 mg alle 3–5 min.
 7. **DGAI S1 Rückenmarksnahe Regionalanästhesie & Antikoagulation**: Vollständige Zeitabstände (Prophylaxe vs. Therapie) für NMH, UFH, DOAKs (Rivaroxaban, Apixaban, Edoxaban, Dabigatran) vor Punktion und Katheterzug.
 8. **ÄKNO Düsseldorf – Prüfungskommission & KO-Kriterien**: Zusammenfassende Prüfermatrix.
-9. *Weitere Karten*: Pädiatrische Notfälle, Laryngospasmus, Status epilepticus, Transfusionsreaktionen, etc.
+9. **🧠 High-Yield Merkformeln & Leitlinien-Eselsbrücken (Mnemonics Hub)**:
+   - **4H & HITS**: Reversible Reanimationsursachen (Hypoxie, Hypovolämie, Hypo-/Hyperkaliämie, Hypothermie | Herzbeuteltamponade, Intoxikation, Thrombose, Spannungspneu).
+   - **VORTEX / CICO**: 3 Linien optimieren (Maske → SGA → Tubus), bei Scheitern sofortige Koniotomie.
+   - **LEMON**: Atemwegsscreening (Look, 3-3-2 Regel, Mallampati, Obstruction, Neck).
+   - **MONA BH**: Akutes Koronarsyndrom (Morphin, O2 < 90%, Nitrat, ASS, Betablocker, Heparin).
+   - **STOP-Bang**: OSAS-Risikostratifizierung (≥ 3 Punkte: Hochrisiko).
+   - **APGAR**: Neonatales Scoring nach 1, 5 und 10 Minuten.
+   - **Rocuronium vs. Sugammadex**: 2 mg/kg bei 2 TOF vs. 16 mg/kg Notfall-Sofortantagonisierung bei RSI.
+   - **Natrium-Sicherheitsregel**: Maximaler Na⁺-Anstieg 8–10 mmol/l pro 24 Stunden.
+10. *Weitere Karten*: Pädiatrische Notfälle, Laryngospasmus, Status epilepticus, Transfusionsreaktionen, etc.
 
 ---
 

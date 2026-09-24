@@ -224,7 +224,7 @@
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
         </div>
         <div class="quiz-header-right">
-          <div id="question-number" class="question-number">Frage 1 von 578</div>
+          <div id="question-number" class="question-number">Frage 1 von 636</div>
         </div>
       </div>
 
@@ -281,6 +281,11 @@
 
         <button id="btn-audio-speak" class="btn-icon btn-audio" title="Fall & Fragetext laut vorlesen (Sprachausgabe)">
           <span>🔊 Vorlesen</span>
+        </button>
+
+        <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" title="Aussprache-Tempo anpassen (0.8x / 1.0x / 1.2x)">
+          <span class="tool-icon">⚡</span>
+          <span id="audio-speed-display">0.95x</span>
         </button>
       </div>
 
@@ -643,9 +648,10 @@
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>🗣️ 2. Die 3 High-Impact Kern-Erfolgsblöcke</h3>
+          <h3>🗣️ 2. Die 3 High-Impact Kern-Erfolgsblöcke & Audio-Trainer</h3>
           <ul style="padding-left: 1.25rem;">
             <li><strong>🗣️ Block 1: "Wie sage ich es?" (Redemittel)</strong>: Liefert Ihnen strukturierte verbale Einstiegssätze für maximale Souveränität. Mit <strong>🔊 Redemittel vorlesen</strong> hören Sie die optimale Betonung im gemächlichen Prüfertempo (Shadowing-Methode).</li>
+            <li><strong>⚡ Tempowahlschalter (0.8x / 0.95x / 1.15x)</strong>: Mit dem <strong>⚡</strong>-Button in der Werkzeugleiste passen Sie das Vorlesetempo jederzeit flexibel an Ihr Lerntempo an.</li>
             <li><strong>🎯 Block 2: Schlüsselbegriffe & Dosierungen</strong>: Die Prüfer-Checkliste mit allen harten Fakten (z. B. Dantrolen 2,5 mg/kg, Sugammadex 16 mg/kg, Intralipid 1,5 ml/kg etc.).</li>
             <li><strong>⚠️ Block 3: Kritische Prüfungsfallen (K.O.-Kriterien)</strong>: Kardinalfehler, die zum sofortigen Nichtbestehen führen (z. B. Permissive Hypotonie bei SHT, Spinalanästhesie bei schwerer Aortenstenose, Calciumantagonisten bei Maligner Hyperthermie).</li>
           </ul>
@@ -674,7 +680,7 @@
         <div class="guide-section" style="margin-bottom: 1.5rem;">
           <h3>📇 6. Notfallkarten, Rechner & Prüfungssimulation</h3>
           <ul style="padding-left: 1.25rem;">
-            <li><strong>📇 Notfallkarte</strong>: 15 interaktive SOPs (Maligne Hyperthermie, LAST & Intralipid, CICO Koniotomie, DGAI S1 Antikoagulation vor SPA/PDK).</li>
+            <li><strong>📇 Notfallkarte</strong>: 16 interaktive SOPs (Maligne Hyperthermie, LAST & Intralipid, CICO Koniotomie, DGAI S1 Antikoagulation vor SPA/PDK und <strong>Neu: 🧠 Mnemonics Hub</strong> mit 4H & HITS, VORTEX, LEMON, STOP-Bang, APGAR, Sugammadex).</li>
             <li><strong>🧮 Rechner</strong>: Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Tidalvolumen, LA-Maximaldosen & Intralipid, Natriumdefizit & ODS-Grenzen (+8–10 mmol/l/24h).</li>
             <li><strong>⏱️ 45-Min Prüfung</strong>: Vollständige Prüfungssimulation im ablenkungsfreien Cockpit mit Zeiterfassung.</li>
           </ul>
@@ -767,7 +773,8 @@
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
         <!-- Quick Category Filter Bar for Emergency Cards -->
         <div class="pocket-filter-bar" id="pocket-filter-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; position: sticky; top: 0; background: var(--bg-secondary); padding: 0.5rem 0; z-index: 10; border-bottom: 1px solid var(--border-color);">
-          <button class="pocket-filter-btn active" data-filter="all">Alle (15)</button>
+          <button class="pocket-filter-btn active" data-filter="all">Alle (16)</button>
+          <button class="pocket-filter-btn" data-filter="mnemonics">🧠 Merkformeln</button>
           <button class="pocket-filter-btn" data-filter="dus">🏛️ ÄKNO Düsseldorf</button>
           <button class="pocket-filter-btn" data-filter="tox">⚠️ MH & LAST</button>
           <button class="pocket-filter-btn" data-filter="airway">🫁 Atemweg & CICO</button>
@@ -984,6 +991,21 @@
               <tr><td><strong>Geburtshilfe Notfall:</strong></td><td>Notsectio EEZ <strong>≤ 20 Min</strong>, RSI mit <strong>15–30° Linksseitenkippung</strong>. Eklampsie: <strong>Magnesiumsulfat 4–6 g i.v.</strong> (Ziel 2–3.5 mmol/l, Antidot Ca-Gluconat). PPH 4-T Schema (Oxytocin → Sulproston → TXA → Fibrinogen → Bakri-Ballon).</td></tr>
               <tr><td><strong>Regional & Gerinnung:</strong></td><td>Rückenmarksnah: Prophylakt. NMH 12h, therapeut. NMH <strong>24h Pause</strong>, Rivaroxaban <strong>48h Pause</strong> (6h nach Katheterzug). LAST: <strong>Lipid 20% 1.5 ml/kg Bolus</strong> + 0.25 ml/kg/min Infusion.</td></tr>
               <tr><td><strong>Pädiatrie Notfall:</strong></td><td>Gecuffter Tubus: Alter/4 + 3.5. Laryngospasmus: 100% O₂ CPAP → Larson-Punkt → Propofol 0.5–1 mg/kg → <strong>Succinylcholin 0.5–1 mg/kg + Atropin 0.02 mg/kg</strong> (vagale Asystolie verhindern!).</td></tr>
+            </table>
+          </div>
+
+          <!-- 16. High-Yield Merkformeln & Leitlinien-Eselsbrücken (Mnemonics Hub) -->
+          <div class="pocket-card-item" data-category="mnemonics airway cpr drugs" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+            <div class="pocket-card-title" style="font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem;">🧠 High-Yield Merkformeln &amp; Leitlinien-Eselsbrücken (Mnemonics Hub)</div>
+            <table class="pocket-table" style="width: 100%; font-size: 0.85rem; line-height: 1.6;">
+              <tr><td style="width: 28%;"><strong>4H &amp; HITS (ERC ALS):</strong></td><td><strong>4H:</strong> Hypoxie, Hypovolämie, Hypo-/Hyperkaliämie (Elektrolytstörungen), Hypothermie.<br><strong>HITS:</strong> Herzbeuteltamponade, Intoxikation, Thrombose (Lungenarterienembolie / Myokardinfarkt), Spannungspneumothorax (Tension).</td></tr>
+              <tr><td><strong>VORTEX-Ansatz:</strong></td><td>Maximal <strong>3 Versuche</strong> pro Linie optimieren: 1. Gesichtsmaske → 2. Larynxmaske (SGA) → 3. Endotrachealtubus (ETT). Bei Scheitern aller 3 Linien: <strong>Unverzüglich CICO deklarieren &amp; Skalpell-Bougie-Tubus Koniotomie</strong>.</td></tr>
+              <tr><td><strong>LEMON Atemweg:</strong></td><td><strong>L</strong>ook externally (Adipositas, fliehendes Kinn) &bull; <strong>E</strong>valuate 3-3-2 Regel (Mundöffnung, Schneidezahn-Zungenbein, Schildknorpel) &bull; <strong>M</strong>allampati (III/IV) &bull; <strong>O</strong>bstruction &bull; <strong>N</strong>eck mobility.</td></tr>
+              <tr><td><strong>MONA BH (ACS):</strong></td><td><strong>M</strong>orphin (analgetisch/anxiolytisch) &bull; <strong>O</strong>xygenierung (nur bei SpO₂ &lt; 90%) &bull; <strong>N</strong>itrat (s.l. oder i.v., Kontraindikation: PDE-5-Hemmer!) &bull; <strong>A</strong>SS 150–300 mg i.v. &bull; <strong>B</strong>etablocker &bull; <strong>H</strong>eparin (UFH 5000 IE).</td></tr>
+              <tr><td><strong>STOP-Bang (OSAS):</strong></td><td><strong>S</strong>noring &bull; <strong>T</strong>ired &bull; <strong>O</strong>bserved apnea &bull; <strong>P</strong>ressure (Hypertonus) &bull; <strong>B</strong>MI &gt; 35 &bull; <strong>A</strong>ge &gt; 50 &bull; <strong>N</strong>eck &gt; 40 cm &bull; <strong>G</strong>ender male. (≥ 3 Punkte: hohes Risiko für schwierigen Atemweg &amp; postoperative Hypoxie).</td></tr>
+              <tr><td><strong>APGAR &amp; Neugeborene:</strong></td><td><strong>A</strong>ussehen (Hautfarbe) &bull; <strong>P</strong>uls (Herzfrequenz &gt; 100/min) &bull; <strong>G</strong>rimassieren (Reflexe) &bull; <strong>A</strong>ktivität (Muskeltonus) &bull; <strong>R</strong>espiration (Atmung/Schreien) nach 1, 5 und 10 Minuten.</td></tr>
+              <tr><td><strong>Roc vs. Sugammadex:</strong></td><td>Rocuronium 0,6 mg/kg → Sugammadex <strong>2 mg/kg</strong> bei 2 Reizen im TOF.<br>Rocuronium 1,2 mg/kg (RSI) → Sugammadex <strong>16 mg/kg</strong> als sofortige Rescue-Antagonisierung bei CICO.</td></tr>
+              <tr><td><strong>Natrium-Sicherheitsregel:</strong></td><td>Maximale Anstiegsrate bei chronischer Hyponatriämie: <strong>maximal 8–10 mmol/l pro 24 Stunden</strong> (Schutz vor osmotischer Demyelinisierung / pontiner Myelinolyse!).</td></tr>
             </table>
           </div>
 

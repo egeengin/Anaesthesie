@@ -34,8 +34,9 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
    - Automatische Signalwort-Erkennung: Gleicht die gesprochene Antwort in Echtzeit mit der Checkliste ab, berechnet Trefferquote (%) und zeigt genannte vs. vergessene Leitlinienpunkte.
    - Integrierter **60-Sekunden Antwort-Timer** (<kbd>T</kbd>).
 
-6. **15 Notfallkarten / Pocket SOPs**:
+6. **16 Notfallkarten / Pocket SOPs**:
    - Maligne Hyperthermie (Dantrolen 2,5 mg/kg), LAST & Lipid-Rescue, CICO Koniotomie, PPH, ERC ALS, DGAI S1 Rückenmarksnahe Regionalanästhesie & Antikoagulation.
+   - **Neu: Card 16 (Mnemonics Hub)**: 4H & HITS, VORTEX/CICO, LEMON, MONA BH, STOP-Bang, APGAR, Sugammadex-Dosen.
 
 7. **4 Klinische Facharztrechner**:
    - Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Vt (6 & 8 ml/kg), Lokalanästhetika-Maximaldosen & Lipid-Rescue, Natriumdefizit & ODS-Sicherheitsgrenzen.
@@ -71,4 +72,4 @@ Anwendung im Browser öffnen: **`http://localhost:8080`** (oder port 8085).
 ```bash
 node test_oral_exam_suite.js
 ```
-✅ **24 von 24 Test-Suites bestanden (100% Coverage)**.
+✅ **25 von 25 Test-Suites bestanden (100% Coverage)**.

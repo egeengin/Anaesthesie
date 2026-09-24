@@ -466,7 +466,16 @@ assert(appCode.includes('evaluateVoiceAnswer'), 'app.js must implement evaluateV
 assert(appCode.includes('toggleStepTimer'), 'app.js must implement toggleStepTimer');
 console.log('[PASS] ÄKNO Live Simulation Cockpit & Voice Rubric Evaluation Suite verified.');
 
-console.log('\n🎉 ALL 24 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 25. Test Audio Speed Controller & Pocket Card 16 Mnemonics Hub Suite
+assert(htmlContent.includes('btn-audio-speed'), 'index.html must include #btn-audio-speed');
+assert(htmlContent.includes('audio-speed-display'), 'index.html must include #audio-speed-display');
+assert(htmlContent.includes('High-Yield Merkformeln &amp; Leitlinien-Eselsbrücken') || htmlContent.includes('High-Yield Merkformeln & Leitlinien-Eselsbrücken'), 'Pocket Card 16 must be present in index.html');
+assert(appCode.includes('getCleanSpeechText'), 'app.js must implement getCleanSpeechText to prevent reading non-German text');
+assert(appCode.includes('speechRate'), 'app.js must support speechRate state');
+assert(cssCode.includes('.audio-speed-pill'), 'styles.css must style .audio-speed-pill');
+console.log('[PASS] Audio Speed Controller & Pocket Card 16 Mnemonics Hub Suite verified.');
+
+console.log('\n🎉 ALL 25 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

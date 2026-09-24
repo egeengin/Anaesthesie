@@ -3056,6 +3056,41 @@ footer {
   animation: pulse 1.2s infinite;
 }
 
+.audio-speed-pill {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+}
+
+.audio-speed-pill:hover {
+  background: rgba(13, 148, 136, 0.12);
+  color: #0d9488;
+  border-color: #0d9488;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .audio-speed-pill {
+  background: var(--bg-tertiary);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .audio-speed-pill:hover {
+  background: rgba(45, 212, 191, 0.15);
+  color: #2dd4bf;
+  border-color: #2dd4bf;
+}
+
 .examiner-audio-bar {
   margin-top: 0.5rem;
   margin-bottom: 0.35rem;
