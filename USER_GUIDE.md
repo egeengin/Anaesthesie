@@ -9,15 +9,16 @@
 2. [Die 4-Schritte-Prüfungsmethode (Progressive Disclosure)](#2-die-4-schritte-prüfungsmethode-progressive-disclosure)
 3. [Die 3 High-Impact Antwortblöcke](#3-die-3-high-impact-antwortblöcke)
 4. [Aussprache-Trainer & Audio-Funktionen (Speech Synthesis)](#4-aussprache-trainer--audio-funktionen-speech-synthesis)
-5. [Sprachaufnahme & Simulation mündlicher Antworten (Voice Exam)](#5-sprachaufnahme--simulation-mündlicher-antworten-voice-exam)
+5. [Sprachaufnahme & Live-Rubrik-Auswertung (Voice Exam Cockpit)](#5-sprachaufnahme--live-rubrik-auswertung-voice-exam-cockpit)
 6. [Spaced Repetition (SM-2) & "Heute fällig"-Filter](#6-spaced-repetition-sm-2--heute-fällig-filter)
-7. [Düsseldorfer Prüfungskommission & 16 Original-Protokolle](#7-düsseldorfer-prüfungskommission--16-original-protokolle)
+7. [Düsseldorfer Prüfungskommission & 36 Original-Protokolle](#7-düsseldorfer-prüfungskommission--36-original-protokolle)
 8. [Notfallkarten & Pocket SOPs (15 interaktive Karten)](#8-notfallkarten--pocket-sops-15-interaktive-karten)
 9. [Klinische Rechner & Formeln](#9-klinische-rechner--formeln)
 10. [45-Minuten Mündliche Prüfungssimulation](#10-45-minuten-mündliche-prüfungssimulation)
-11. [Tastatur-Kurzbefehle (Keyboard Shortcuts)](#11-tastatur-kurzbefehle-keyboard-shortcuts)
-12. [Cloud-Synchronisation, Backup & Multi-Device Nutzung](#12-cloud-synchronisation-backup--multi-device-nutzung)
-13. [PWA-Installation & Offline-Nutzung (iOS / Android)](#13-pwa-installation--offline-nutzung-ios--android)
+11. [Türkische Übersetzung per Ein-Klick-Ausklappung](#11-türkische-übersetzung-per-ein-klick-ausklappung)
+12. [Tastatur-Kurzbefehle (Keyboard Shortcuts)](#12-tastatur-kurzbefehle-keyboard-shortcuts)
+13. [Cloud-Synchronisation, Backup & Multi-Device Nutzung](#13-cloud-synchronisation-backup--multi-device-nutzung)
+14. [PWA-Installation & Offline-Nutzung (iOS / Android)](#14-pwa-installation--offline-nutzung-ios--android)
 
 ---
 
@@ -30,11 +31,11 @@
 
 ### 🧭 Navigation & Filterleiste
 Oben im Dashboard finden Sie:
-- **Kompakter Fortschrittsbalken**: Gesamtfortschritt (0 / 616 Fragen), Erfolgsquote (Quote %), Tagesziel (z. B. 0/20) und tägliche Lernserie (Streak in Tagen).
+- **Kompakter Fortschrittsbalken**: Gesamtfortschritt (0 / 636 Fragen), Erfolgsquote (Quote %), Tagesziel (z. B. 0/20) und tägliche Lernserie (Streak in Tagen).
 - **Themen-Filter (Chips)**:
-  - `Alle (616)`: Gesamter Fragenkatalog.
-  - `Offene Fälle (284)`: Komplexe mündliche Kasuistiken.
-  - `ÄKNO Protokolle (16)`: Authentische Düsseldorfer Prüfungsprotokolle mit Prüferprofilen.
+  - `Alle (636)`: Gesamter Fragenkatalog.
+  - `Offene Fälle (304)`: Komplexe mündliche Kasuistiken.
+  - `ÄKNO Protokolle (36)`: Authentische Düsseldorfer Prüfungsprotokolle mit Prüferprofilen.
   - `🧠 Spaced Repetition (X fällig)`: Fragen, die nach dem SuperMemo-2-Algorithmus heute zur Wiederholung anstehen.
   - `⭐ Favoriten`: Ihre mit dem Stern markierten Lernkarten.
   - `⚠️ K.O.-Fallen`: Fragen mit tödlichen Fehlern / Prüfungsfallen.
@@ -104,12 +105,18 @@ Für ausländische Kolleginnen und Kollegen sowie für maximale Sprachpräzision
 
 ---
 
-## 5. Sprachaufnahme & Simulation mündlicher Antworten (Voice Exam)
+## 5. Sprachaufnahme & Live-Rubrik-Auswertung (Voice Exam Cockpit)
+
+Die Facharztprüfung ist eine rein mündliche Prüfung. Entscheidend ist nicht nur das theoretische Wissen, sondern das laute, präzise Formulieren unter Zeitdruck:
 
 - Klicken Sie auf **`🎙️ Antwort einsprechen (V)`** (oder Taste `V`).
-- Das System nutzt die Web Speech API für eine Live-Spracherkennung im Browser.
-- Sprechen Sie Ihre Antwort frei und laut auf Deutsch ein.
-- Ihr Transkript wird in Echtzeit angezeigt und nach dem Aufdecken der Antwort mit den Schlüsselbegriffen der Prüfer-Checkliste abgeglichen!
+- **Live-Wellenform-Visualisierer**: Eine rote Audiowelle animiert in Echtzeit mit Ihrer Stimme.
+- **Echtzeit-Spracherkennung**: Ihr gesprochener Text wird automatisch im Eingabefeld transkribiert. Sie können bei Bedarf einzelne Worte per Tastatur korrigieren.
+- **Klinische Auswertung (`🎯 Auswerten & Aufdecken`)**:
+  - Gleicht Ihre gesprochenen Worte in Millisekunden mit den harten Signalwörtern und Dosierungen der Prüfer-Checkliste ab.
+  - **Treffer-Quote (%)**: Zeigt sofort, wie viel Prozent der geforderten Kriterien Sie genannt haben (Grün ≥ 70%, Gelb ≥ 40%, Rot < 40%).
+  - **Trefferliste (`✓ Grün`)**: Alle von Ihnen genannten Signalbegriffe (z. B. *cABCDE, Dantrolen, Fibrinogen, Sugammadex*).
+  - **Fehlende Kriterien (`○ Grau`)**: Was Sie vergessen haben und in der Nachfrage des Prüfers gedroht hätte.
 
 ---
 
@@ -124,9 +131,9 @@ Das System nutzt den wissenschaftlich bewährten **SuperMemo-2 (SM-2) Spaced Rep
 
 ---
 
-## 7. Düsseldorfer Prüfungskommission & 16 Original-Protokolle
+## 7. Düsseldorfer Prüfungskommission & 36 Original-Protokolle
 
-Klicken Sie in der oberen Menüleiste auf **`🎓 Düsseldorfer Prüfer & Protokolle`** (oder nutzen Sie den Themenfilter `ÄKNO Protokolle`).
+Klicken Sie in der oberen Menüleiste auf **`🏛️ Düsseldorfer Prüfer & Protokolle`** (oder nutzen Sie den Themenfilter `ÄKNO Protokolle (36)`).
 
 ### Die 4 Düsseldorfer Leitfiguren:
 1. **Prof. Dr. T. Annecke (Klinikum Leverkusen)**:
@@ -179,14 +186,25 @@ Klicken Sie auf **`🧮 Rechner`** für 4 sofort einsatzbereite klinische Fachar
 
 ## 10. 45-Minuten Mündliche Prüfungssimulation
 
-Klicken Sie auf **`⏱️ 45-Min Prüfung`**, um eine echte Prüfungssimulation zu starten:
-- Generiert ein Prüfungsset aus **6 randomisierten Fällen** aus verschiedenen Schwerpunkten (Allgemeinchirurgie, Kardio, Trauma, Pädiatrie, Geburtshilfe, Notfall).
-- **HUD-Timer**: 45 Minuten Gesamtuhr mit Zeitanzeige pro Frage (ca. 7 Minuten pro Fall).
-- Trainiert das Zeitmanagement und das schnelle Umschalten zwischen verschiedenen klinischen Themen.
+Klicken Sie auf **`⏱️ 45-Min Prüfung`**, um in das ablenkungsfreie Prüfungscockpit zu wechseln:
+- **Ablenkungsfreies Cockpit**: Blendet Multiple-Choice-Optionen, Notizen und Navigationsleisten automatisch aus, damit Sie wie in der echten Prüfung vor der Kommission sitzen.
+- **HUD-Timer**:
+  - **45 Minuten Gesamtuhr** für das gesamte Prüfungsgespräch.
+  - **60s Antwortzeit-Timer**: Trainiert das prägnante Antworten ohne langes Zögern.
+- **Reales Fragenset**: 4–6 komplexe Kasuistiken quer durch alle Kernbereiche (Trauma, Kardio, Geburtshilfe, Pädiatrie, Intensiv).
 
 ---
 
-## 11. Tastatur-Kurzbefehle (Keyboard Shortcuts)
+## 11. Türkische Übersetzung per Ein-Klick-Ausklappung
+
+Für schnelles Verständnis medizinischer Feinheiten ohne Verlust der deutschen Sprachimmersion:
+- Unter jedem deutschen Textblock (Fallvorstellung, Vitalwerte, Prüfer-Intervention, Redemittel, Checkliste) befindet sich ein dezenter **`🇹🇷 Türkçe Çeviri`**-Button.
+- Ein Klick (oder Taste <kbd>U</kbd>) klappt die präzise türkische Fachübersetzung direkt unter dem Text sanft auf.
+- Ein erneuter Klick schließt sie wieder.
+
+---
+
+## 12. Tastatur-Kurzbefehle (Keyboard Shortcuts)
 
 Für maximal schnelles Lernen am Desktop oder Laptop:
 
@@ -210,7 +228,7 @@ Für maximal schnelles Lernen am Desktop oder Laptop:
 
 ---
 
-## 12. Cloud-Synchronisation, Backup & Multi-Device Nutzung
+## 13. Cloud-Synchronisation, Backup & Multi-Device Nutzung
 
 ### ☁️ Automatische Cloud-Synchronisation
 - Wenn Sie online sind, synchronisiert die App Ihre Antworten, Lesezeichen, SM-2-Zeitpläne und Notizen automatisch mit der gesicherten Cloud.
@@ -227,7 +245,7 @@ Für maximal schnelles Lernen am Desktop oder Laptop:
 
 ---
 
-## 13. PWA-Installation & Offline-Nutzung (iOS / Android)
+## 14. PWA-Installation & Offline-Nutzung (iOS / Android)
 
 Die Anwendung ist als **Progressive Web App (PWA)** konzipiert und funktioniert dank Service Worker vollständig ohne Internetverbindung:
 
@@ -236,7 +254,7 @@ Die Anwendung ist als **Progressive Web App (PWA)** konzipiert und funktioniert 
 2. Tippen Sie auf das **Teilen-Symbol** (Viereck mit Pfeil nach oben).
 3. Wählen Sie **"Zum Home-Bildschirm"** (*Add to Home Screen*).
 4. Tippen Sie auf **Hinzufügen**.
-5. Die App öffnet sich nun im randlosen Vollbildmodus wie eine native iOS-App und speichert alle 616 Fragen offline auf Ihrem Gerät!
+5. Die App öffnet sich nun im randlosen Vollbildmodus wie eine native iOS-App und speichert alle 636 Fragen offline auf Ihrem Gerät!
 
 ### 🤖 Installation auf Android (Chrome)
 1. Öffnen Sie die URL in **Google Chrome**.

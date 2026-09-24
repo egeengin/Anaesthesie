@@ -8,10 +8,10 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
 
 ## 🌟 Hauptfunktionen & Features
 
-1. **Vollständiger, klinisch validierter Fragenkatalog (616 Prüfungsfragen)**:
+1. **Vollständiger, klinisch validierter Fragenkatalog (636 Prüfungsfragen)**:
    - **332 strukturierte MCQs / Mehrfachaussagen** (*Kehl & Wilke*).
-   - **284 komplexe klinische Fälle** (*Annecke & Hohn, Winterhalter*).
-   - **16 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_16`) mit Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler*).
+   - **304 komplexe klinische Kasuistiken** (*Annecke & Hohn, Winterhalter*).
+   - **36 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_36`) mit detaillierten Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler*).
    - **0 Datenanomalien**: Alle OCR-Silbentrennungen, Formelartefakte und abgeschnittenen Zeilenenden vollständig bereinigt.
 
 2. **Die 4-Schritte-Prüfungsmethode (Progressive Disclosure)**:
@@ -29,8 +29,10 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
    - Täglich dynamisch berechnete Wiederholungs-Queue: **`🧠 Spaced Repetition (X fällig)`**.
    - Schnelle Selbstbewertung mit <kbd>K</kbd> (*Gewusst*) oder <kbd>F</kbd> (*Nicht gewusst*).
 
-5. **Spracherkennung (Voice Exam)**:
-   - Freies mündliches Antworten per Mikrofon (<kbd>V</kbd>) via Web Speech API mit Live-Transkription.
+5. **Sprachaufnahme & Live-Rubrik-Auswertung (Voice Exam Cockpit)**:
+   - Freies mündliches Antworten per Mikrofon (<kbd>V</kbd>) via Web Speech API mit Echtzeit-Audiowelle.
+   - Automatische Signalwort-Erkennung: Gleicht die gesprochene Antwort in Echtzeit mit der Checkliste ab, berechnet Trefferquote (%) und zeigt genannte vs. vergessene Leitlinienpunkte.
+   - Integrierter **60-Sekunden Antwort-Timer** (<kbd>T</kbd>).
 
 6. **15 Notfallkarten / Pocket SOPs**:
    - Maligne Hyperthermie (Dantrolen 2,5 mg/kg), LAST & Lipid-Rescue, CICO Koniotomie, PPH, ERC ALS, DGAI S1 Rückenmarksnahe Regionalanästhesie & Antikoagulation.
@@ -38,11 +40,16 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
 7. **4 Klinische Facharztrechner**:
    - Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Vt (6 & 8 ml/kg), Lokalanästhetika-Maximaldosen & Lipid-Rescue, Natriumdefizit & ODS-Sicherheitsgrenzen.
 
-8. **45-Minuten Prüfungssimulation**:
-   - Echte Simulation mit 6 randomisierten Facharzt-Fällen und digitalem Prüfungs-Timer.
+8. **45-Minuten Mündliche Prüfungssimulation (Ablenkungsfreies Cockpit)**:
+   - Blendet Multiple-Choice-Optionen und Navigationsleisten automatisch aus für maximalen Prüfungsfokus.
+   - 45-Minuten Gesamtuhr & 60s Antwort-Timer.
 
-9. **Verlustfreie Cloud-Synchronisation**:
+9. **Türkische Übersetzung per Ein-Klick-Ausklappung**:
+   - Dezent direkt unter jedem Textabschnitt eingebetteter **🇹🇷 Türkçe Çeviri**-Button (<kbd>U</kbd>).
+
+10. **Verlustfreie Cloud-Synchronisation & PWA-Offline-Betrieb**:
    - Gehärteter Union-Merge verhindert Datenüberschreibungen zwischen Klinik-iPad und Desktop-Rechner.
+   - Vollständig offlinefähig dank modernem Service Worker.
 
 ---
 
@@ -64,4 +71,4 @@ Anwendung im Browser öffnen: **`http://localhost:8080`** (oder port 8085).
 ```bash
 node test_oral_exam_suite.js
 ```
-✅ **23 von 23 Test-Suites bestanden (100% Coverage)**.
+✅ **24 von 24 Test-Suites bestanden (100% Coverage)**.

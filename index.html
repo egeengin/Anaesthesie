@@ -100,7 +100,7 @@
       <div class="dash-compact-left">
         <div class="dash-stat-item">
           <span class="dash-label">Lernfortschritt:</span>
-          <span id="stat-progress-text" class="dash-val">0 / 616 (0%)</span>
+          <span id="stat-progress-text" class="dash-val">0 / 636 (0%)</span>
         </div>
         <div class="dash-progress-bar-wrap">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
@@ -619,65 +619,82 @@
 
   <!-- Official User Guide & Study Manual Modal -->
   <div id="user-guide-modal" class="modal-backdrop">
-    <div class="modal-content" style="max-width: 860px;">
+    <div class="modal-content" style="max-width: 880px;">
       <div class="modal-header">
-        <h2>📖 Facharztprüfung Anästhesiologie — Benutzerleitfaden</h2>
+        <h2>📖 Facharztprüfung Anästhesiologie — Offizieller Benutzerleitfaden</h2>
         <button id="user-guide-modal-close" class="btn-icon">✕</button>
       </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto; line-height: 1.6;">
         
         <div class="settings-box highlight-box" style="margin-bottom: 1.25rem;">
-          <h3 style="margin-top: 0;">🎯 Zielgerichtet für die ÄKNO Düsseldorf</h3>
-          <p>Dieses System wurde exakt auf die mündliche Facharztprüfung an der <strong>Ärztekammer Nordrhein (Haus der Ärzteschaft, Düsseldorf)</strong> abgestimmt. Es simuliert den realen Prüfungsablauf mit Prüfer-Interventionen, Sprachmustern und Prüfer-Profilen.</p>
+          <h3 style="margin-top: 0;">🎯 Speziell für die ÄKNO Düsseldorf (Haus der Ärzteschaft)</h3>
+          <p>Dieses High-Yield Lernsystem wurde gezielt für Melis und die mündliche Facharztprüfung an der <strong>Ärztekammer Nordrhein</strong> entwickelt. Es umfasst <strong>636 klinisch geprüfte Fragen</strong> (304 komplexe Kasuistiken & <strong>36 authentische Düsseldorfer Prüfungsprotokolle</strong>) und bildet das reale Prüfungsgespräch 1:1 nach.</p>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>🧭 1. Die 4-Schritte-Prüfungsmethode</h3>
-          <p>In der Prüfung erhalten Sie Patientendaten schrittweise. Die App bildet dies 1:1 ab:</p>
+          <h3>🧭 1. Die 4-Schritte-Prüfungsmethode (Progressive Disclosure)</h3>
+          <p>In der Prüfung erhalten Sie Patienteninformationen sukzessive. Die App leitet Sie methodisch durch 4 Stufen:</p>
           <ul style="padding-left: 1.25rem;">
-            <li><strong>Schritt 1 (Fallvorstellung)</strong>: Lesen Sie Fall & Kernfrage. Formulieren Sie gedanklich sofort Ihre Verdachtsdiagnose.</li>
-            <li><strong>Schritt 2 (Vitalwerte & BGA)</strong>: Taste <kbd>2</kbd> drücken. Analysieren Sie Hämodynamik, Beatmungsparameter und arterielle BGA.</li>
-            <li><strong>Schritt 3 (Prüfer-Intervention)</strong>: Taste <kbd>3</kbd> drücken. Der Prüfer hakt nach oder der Patient dekompensiert. Bei Düsseldorfer Fällen zeigt das <em>Prüfer-Profil</em> die typischen K.O.-Fallen von Prof. Annecke, Prof. Kienbaum, Prof. Hohn oder Prof. Wappler!</li>
-            <li><strong>Schritt 4 (Musterantwort)</strong>: Taste <kbd>4</kbd> oder <kbd>Space</kbd>. Schaltet die 3 Kern-Erfolgsblöcke frei.</li>
+            <li><strong>Schritt 1 (Fallvorstellung & Kasuistik)</strong>: Lesen Sie den Ausgangsbefund. Formulieren Sie im Kopf sofort Verdachtsdiagnose und cABCDE-Prioritäten.</li>
+            <li><strong>Schritt 2 (Vitalwerte & BGA-Panel)</strong>: Taste <kbd>2</kbd>. Beurteilen Sie Monitoring, Hämodynamik (HF, NIBP, MAP), Beatmung (SpO₂, EtCO₂) und arterielle BGA (pH, pO₂, pCO₂, BE, Laktat).</li>
+            <li><strong>Schritt 3 (Prüfer-Intervention & Zwischenfrage)</strong>: Taste <kbd>3</kbd>. Der Prüfer konfrontiert Sie mit einer Komplikation oder hakt gezielt nach. Bei Düsseldorfer Fällen zeigt das <em>🏛️ Prüfer-Profil</em> die Schwerpunkte und Fallen von <strong>Prof. Annecke, Prof. Kienbaum, Prof. Hohn oder Prof. Wappler</strong>. Mit <strong>🔊 Prüferfrage vorlesen</strong> hören Sie die Frage akustisch!</li>
+            <li><strong>Schritt 4 (Musterantwort & Bewertungsrubrik)</strong>: Taste <kbd>4</kbd> oder <kbd>Space</kbd>. Schaltet die 3 Kern-Erfolgsblöcke frei.</li>
           </ul>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>🗣️ 2. Die 3 Kern-Erfolgsblöcke</h3>
+          <h3>🗣️ 2. Die 3 High-Impact Kern-Erfolgsblöcke</h3>
           <ul style="padding-left: 1.25rem;">
-            <li><strong>🗣️ "Wie sage ich es?" (Redemittel)</strong>: Liefert Ihnen strukturierte verbale Einstiegssätze für sofortige Souveränität. Mit <strong>🔊 Redemittel vorlesen</strong> können Sie sich die Aussprache im Prüfertempo anhören!</li>
-            <li><strong>🎯 Schlüsselbegriffe & Dosierungen</strong>: Die Prüfer-Checkliste mit allen harten Fakten (Dantrolen 2,5 mg/kg, Sugammadex 16 mg/kg, Intralipid 1,5 ml/kg etc.).</li>
-            <li><strong>⚠️ Kritische Prüfungsfallen (K.O.-Kriterien)</strong>: Tödliche Fehler, die zum sofortigen Durchfallen führen (z. B. Permissive Hypotonie bei SHT, Spinalanästhesie bei Aortenstenose).</li>
+            <li><strong>🗣️ Block 1: "Wie sage ich es?" (Redemittel)</strong>: Liefert Ihnen strukturierte verbale Einstiegssätze für maximale Souveränität. Mit <strong>🔊 Redemittel vorlesen</strong> hören Sie die optimale Betonung im gemächlichen Prüfertempo (Shadowing-Methode).</li>
+            <li><strong>🎯 Block 2: Schlüsselbegriffe & Dosierungen</strong>: Die Prüfer-Checkliste mit allen harten Fakten (z. B. Dantrolen 2,5 mg/kg, Sugammadex 16 mg/kg, Intralipid 1,5 ml/kg etc.).</li>
+            <li><strong>⚠️ Block 3: Kritische Prüfungsfallen (K.O.-Kriterien)</strong>: Kardinalfehler, die zum sofortigen Nichtbestehen führen (z. B. Permissive Hypotonie bei SHT, Spinalanästhesie bei schwerer Aortenstenose, Calciumantagonisten bei Maligner Hyperthermie).</li>
           </ul>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>🧠 3. Intervall-Wiederholung (SM-2)</h3>
-          <p>Bewerten Sie sich nach dem Aufdecken selbst mit <strong>Gewusst (4)</strong> (Taste <kbd>K</kbd>/<kbd>G</kbd>) oder <strong>Nicht gewusst (1)</strong> (Taste <kbd>F</kbd>). Der Filter-Chip <strong>🧠 Intervall-Wiederholung (X fällig)</strong> liefert Ihnen täglich exakt die zur Wiederholung anstehenden Fragen.</p>
+          <h3>🎙️ 3. Live-Sprachaufnahme & Rubrikauswertung (Voice Exam Cockpit)</h3>
+          <p>Trainieren Sie das freie, laute Sprechen unter realen Prüfungsbedingungen:</p>
+          <ul style="padding-left: 1.25rem;">
+            <li>Klicken Sie auf <strong>🎙️ Antwort einsprechen</strong> (Taste <kbd>V</kbd>) oder starten Sie den <strong>60s Antwortzeit-Timer</strong> (Taste <kbd>T</kbd>).</li>
+            <li>Eine animierte Audiowelle visualisiert Ihre Stimme in Echtzeit, während Ihr gesprochener Text direkt transkribiert wird.</li>
+            <li>Klicken Sie auf <strong>🎯 Auswerten & Aufdecken</strong>: Das System gleicht Ihre Antwort mit der Checkliste ab und zeigt Ihre <strong>Treffer-Quote (%)</strong>, genannte Schlagwörter (<em>✓ Grün</em>) sowie fehlende Leitlinienpunkte (<em>○ Grau</em>).</li>
+          </ul>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">
-          <h3>📇 4. Notfallkarten, Rechner & 45-Min Prüfung</h3>
+          <h3>🇹🇷 4. Türkische Übersetzung per Ein-Klick-Ausklappung</h3>
+          <p>Unter jedem Frage-, Vitalwerte- und Antwortblock befindet sich ein dezenter <strong>🇹🇷 Türkçe Çeviri</strong>-Button (Taste <kbd>U</kbd>). So können Sie bei Bedarf sofort die türkische Übersetzung einsehen, ohne die deutsche Sprachimmersion zu stören.</p>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1.5rem;">
+          <h3>🧠 5. Spaced Repetition (SM-2 Algorithmus)</h3>
+          <p>Bewerten Sie sich nach jeder Frage mit <strong>Gewusst (4)</strong> (Taste <kbd>K</kbd>/<kbd>G</kbd>) oder <strong>Nicht gewusst (1)</strong> (Taste <kbd>F</kbd>). Nutzen Sie den Filter-Chip <strong>🧠 Spaced Repetition</strong>, um tagesaktuell fällige Wiederholungskarten abzuarbeiten.</p>
+        </div>
+
+        <div class="guide-section" style="margin-bottom: 1.5rem;">
+          <h3>📇 6. Notfallkarten, Rechner & Prüfungssimulation</h3>
           <ul style="padding-left: 1.25rem;">
-            <li><strong>📇 Notfallkarte</strong>: 15 interaktive SOPs (Maligne Hyperthermie, LAST, CICO, DGAI S1 Antikoagulation vor SPA/PDK).</li>
-            <li><strong>🧮 Rechner</strong>: Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Vt, Lokalanästhetika-Maximaldosen & Intralipid, Natriumdefizit & ODS-Grenzen.</li>
-            <li><strong>⏱️ 45-Min Prüfung</strong>: Vollständige mündliche Simulation mit 4 Fällen und Prüfungszeit.</li>
+            <li><strong>📇 Notfallkarte</strong>: 15 interaktive SOPs (Maligne Hyperthermie, LAST & Intralipid, CICO Koniotomie, DGAI S1 Antikoagulation vor SPA/PDK).</li>
+            <li><strong>🧮 Rechner</strong>: Pädiatrie (Tubus & Notfalldosen), ARDS PBW & Tidalvolumen, LA-Maximaldosen & Intralipid, Natriumdefizit & ODS-Grenzen (+8–10 mmol/l/24h).</li>
+            <li><strong>⏱️ 45-Min Prüfung</strong>: Vollständige Prüfungssimulation im ablenkungsfreien Cockpit mit Zeiterfassung.</li>
           </ul>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1rem;">
-          <h3>⌨️ 5. Tastatur-Kurzbefehle (Schnellübersicht)</h3>
+          <h3>⌨️ 7. Tastatur-Kurzbefehle (Schnellübersicht)</h3>
           <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>Space</kbd> / <kbd>Enter</kbd></strong></td><td>Schritt vorwärts / Antwort aufdecken</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd>, <kbd>4</kbd></strong></td><td>Direktsprung zu Schritt 1, 2, 3 oder 4</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>K</kbd> / <kbd>G</kbd></strong></td><td>Selbstbewertung: Gewusst (Note Gut)</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>F</kbd></strong></td><td>Selbstbewertung: Nicht gewusst (Wiederholen)</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>U</kbd></strong></td><td>Türkische Satzübersetzung umschalten</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>P</kbd></strong></td><td>Mündliche Aussprache vorlesen</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>V</kbd></strong></td><td>Mündliche Sprachaufnahme starten/stoppen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>K</kbd> / <kbd>G</kbd></strong></td><td>Selbstbewertung: Gewusst (Intervall verlängern)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>F</kbd></strong></td><td>Selbstbewertung: Nicht gewusst (Morgen wiederholen)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>U</kbd></strong></td><td>Türkische Satzübersetzung auf-/zuklappen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>P</kbd></strong></td><td>Aussprache-Trainer (Audio vorlesen)</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>V</kbd></strong></td><td>Sprachaufnahme (Mikrofon) starten/stoppen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>T</kbd></strong></td><td>60-Sekunden Antwort-Timer starten/stoppen</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>→</kbd> / <kbd>D</kbd></strong></td><td>Nächste Frage</td></tr>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>←</kbd> / <kbd>A</kbd></strong></td><td>Vorherige Frage</td></tr>
-            <tr><td style="padding: 0.35rem 0;"><strong><kbd>⌘K</kbd></strong></td><td>Suchleiste öffnen</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.35rem 0;"><strong><kbd>M</kbd></strong></td><td>Frage merken / Favoriten-Stern</td></tr>
+            <tr><td style="padding: 0.35rem 0;"><strong><kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd></strong></td><td>Schnellsuche öffnen</td></tr>
           </table>
         </div>
 

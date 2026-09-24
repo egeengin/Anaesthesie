@@ -425,7 +425,7 @@ console.log('[PASS] Single-Click Expandable Turkish Translation Collapsible UI v
 
 // 22. Test ÄKNO Düsseldorf Examiners, Protocols & KO-Kriterien Integration
 const dusQuestions = questions.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
-assert.strictEqual(dusQuestions.length, 16, `Expected exactly 16 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
+assert.strictEqual(dusQuestions.length, 36, `Expected exactly 36 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
 assert(htmlContent.includes('examiner-reveal-box'), 'index.html must include #examiner-reveal-box');
 assert(htmlContent.includes('badge-examiner-toggle'), 'index.html must include #badge-examiner-toggle');
 assert(htmlContent.includes('examiner-reveal-card'), 'index.html must include #examiner-reveal-card');
@@ -457,7 +457,16 @@ assert(appCode.includes('robustAnswers'), 'app.js must implement robust union me
 assert(appCode.includes('robustSm2'), 'app.js must implement timestamp-based union merge for SM-2 cards');
 console.log('[PASS] Audio Pronunciation & Multi-Device Cloud Sync Hardening Suite verified.');
 
-console.log('\n🎉 ALL 23 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 24. Test ÄKNO Live Simulation Cockpit & Voice Rubric Evaluation Suite
+assert(htmlContent.includes('exam-simulation-bar'), 'index.html must include #exam-simulation-bar');
+assert(htmlContent.includes('btn-sim-answer-timer'), 'index.html must include #btn-sim-answer-timer');
+assert(cssCode.includes('.audio-wave-visualizer'), 'styles.css must style .audio-wave-visualizer');
+assert(cssCode.includes('.voice-eval-card'), 'styles.css must style .voice-eval-card');
+assert(appCode.includes('evaluateVoiceAnswer'), 'app.js must implement evaluateVoiceAnswer');
+assert(appCode.includes('toggleStepTimer'), 'app.js must implement toggleStepTimer');
+console.log('[PASS] ÄKNO Live Simulation Cockpit & Voice Rubric Evaluation Suite verified.');
+
+console.log('\n🎉 ALL 24 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 
