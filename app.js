@@ -193,6 +193,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnImportTrigger = document.getElementById('btn-import-trigger');
   const elImportFileInput = document.getElementById('import-file-input');
   const elBtnResetProgress = document.getElementById('btn-reset-progress');
+  const elToastContainer = document.getElementById('app-toast-container');
+
+  // --- Modern Non-Blocking Clinical Toast Notification Engine ---
+  function showToast(message, type = 'info', duration = 3500) {
+    if (!elToastContainer) {
+      console.log(`[Toast ${type}]:`, message);
+      return;
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `app-toast toast-${type}`;
+    
+    let icon = 'ℹ️';
+    if (type === 'success') icon = '✅';
+    else if (type === 'warning') icon = '⚠️';
+    else if (type === 'error' || type === 'danger') icon = '🚨';
+
+    toast.innerHTML = `
+      <span class="app-toast-icon">${icon}</span>
+      <div class="app-toast-content">${message}</div>
+    `;
+
+    elToastContainer.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.classList.add('toast-visible');
+    });
+
+    let dismissTimer = setTimeout(() => {
+      dismiss();
+    }, duration);
+
+    function dismiss() {
+      clearTimeout(dismissTimer);
+      toast.classList.remove('toast-visible');
+      toast.classList.add('toast-hiding');
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 350);
+    }
+
+    toast.addEventListener('click', dismiss);
+  }
 
   // Sync subtitle toggle button state
   if (elSubToggle) {
@@ -1806,6 +1851,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const userChoice = qState.userChoices[opt.key];
           const optEl = document.createElement('div');
           optEl.className = 'option-card-item';
+          optEl.dataset.key = opt.key;
 
           if (qState.submitted) {
             const isUserCorrect = (userChoice === opt.is_correct);
@@ -1851,7 +1897,9 @@ document.addEventListener('DOMContentLoaded', () => {
               qState.userChoices[opt.key] = true;
               state.answers[currentQ.id] = qState;
               saveState();
-              renderCurrentQuestion();
+              btnTrue.classList.add('active');
+              btnFalse.classList.remove('active');
+              optEl.classList.remove('opt-card-warning');
             });
 
             btnFalse.addEventListener('click', (e) => {
@@ -1859,7 +1907,9 @@ document.addEventListener('DOMContentLoaded', () => {
               qState.userChoices[opt.key] = false;
               state.answers[currentQ.id] = qState;
               saveState();
-              renderCurrentQuestion();
+              btnFalse.classList.add('active');
+              btnTrue.classList.remove('active');
+              optEl.classList.remove('opt-card-warning');
             });
           }
 
@@ -1981,10 +2031,20 @@ document.addEventListener('DOMContentLoaded', () => {
     state.answers[currentQ.id] = qState;
 
     // Automatic SuperMemo-2 Spaced Repetition calculation
+    let sm2Item = null;
     if (typeof SM2Engine !== 'undefined') {
       state.sm2Data = state.sm2Data || {};
       const quality = qualityOverride !== undefined ? qualityOverride : (knewIt ? 4 : 1);
       state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
+      sm2Item = state.sm2Data[currentQ.id];
+    }
+
+    if (knewIt) {
+      const days = sm2Item ? sm2Item.interval : 1;
+      const ease = sm2Item ? sm2Item.easeFactor : '2.5';
+      showToast(`✅ Gewusst! SM-2 Intervall: Wiederholung in ${days} Tag(en) (EF: ${ease})`, 'success', 3200);
+    } else {
+      showToast(`🔄 Im Wiederholungs-Fokus gespeichert (morgen fällig).`, 'info', 3200);
     }
 
     // Daily study count tracking
@@ -2015,6 +2075,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.answers[currentQ.id] = qState;
       saveState();
       renderCurrentQuestion();
+      showToast(`🔄 Frage zur erneuten Bearbeitung zurückgesetzt.`, 'info', 2500);
       return;
     }
 
@@ -2022,7 +2083,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const unAnsweredKeys = currentQ.options.filter(opt => qState.userChoices[opt.key] === undefined);
     if (unAnsweredKeys.length > 0) {
       const keysStr = unAnsweredKeys.map(o => o.key.toUpperCase()).join(', ');
-      alert(`Bitte bewerten Sie alle Aussagen (Richtig oder Falsch) bevor Sie auswerten.\nNoch offen: ${keysStr}`);
+      
+      // Highlight the unanswered option cards with gentle warning pulse
+      if (elOptionsContainer) {
+        unAnsweredKeys.forEach(opt => {
+          const card = elOptionsContainer.querySelector(`.option-card-item[data-key="${opt.key}"]`);
+          if (card) {
+            card.classList.remove('opt-card-warning');
+            void card.offsetWidth; // Force reflow to replay pulse
+            card.classList.add('opt-card-warning');
+          }
+        });
+      }
+
+      showToast(`Bitte alle Aussagen bewerten! Noch offen: ${keysStr}`, 'warning', 4000);
       return;
     }
 
@@ -2042,10 +2116,20 @@ document.addEventListener('DOMContentLoaded', () => {
     state.answers[currentQ.id] = qState;
 
     // Automatic SuperMemo-2 Spaced Repetition calculation for MCQ options
+    let sm2Feedback = null;
     if (typeof SM2Engine !== 'undefined') {
       state.sm2Data = state.sm2Data || {};
       const quality = isPassed ? 4 : 1;
       state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
+      sm2Feedback = state.sm2Data[currentQ.id];
+    }
+
+    // Instant Clinical Feedback Toast
+    if (isPassed) {
+      const repTxt = sm2Feedback ? ` • Wiederholung in ${sm2Feedback.interval} Tag(en)` : '';
+      showToast(`🎯 Bestanden! ${correctCount}/${totalOpts} Aussagen richtig bewertet${repTxt}`, 'success', 4000);
+    } else {
+      showToast(`⚠️ Nicht bestanden (${correctCount}/${totalOpts} richtig). Zur Wiederholung markiert.`, 'error', 4000);
     }
 
     // Daily study count tracking

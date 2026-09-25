@@ -737,6 +737,126 @@
         failureReason: "Frühzeitige Adrenalingabe vor dem 3. Schock bei VF/pVT senkt die Defibrillationserfolgsrate und das Überleben drastisch (ERC-Leitlinie K.O.-Kriterium)!",
         mandatoryKeywords: ["3. schock", "adrenalin 1 mg", "amiodaron 300", "cpr 2 minuten", "4 h", "hits"]
       }
+    },
+    q_dus_37: {
+      examiner: {
+        name: "Prof. Dr. med. Thorsten Annecke",
+        hospital: "Klinikum Leverkusen · ÄKNO Prüfungsvorsitzender",
+        focus: "Schilddrüsenchirurgie, Nachblutung, Notfall-Atemweg & bettseitige Dekompression",
+        trap: "Warten auf Chirurgen oder CT-Diagnostik bei drohender Asphyxie (K.O.-Kriterium!)"
+      },
+      speechIntro: "Eine 40-jährige Patientin wird 3 Stunden nach Hemithyroidektomie im Aufwachraum zunehmend dyspnoisch mit Stridor, kloßiger Sprache und Halsschwellung. SpO2 fällt auf 84 %. Was sind Ihre Differenzialdiagnosen und wie gehen Sie sofort vor?",
+      crisis: {
+        title: "⚡ Drohende Erstickung & Intubationshindernis!",
+        prompt_de: "Die Patientin verliert das Bewusstsein, SpO2 fällt auf 74%! Bei Laryngoskopie sehen Sie nur noch ein massiv nach rechts komprimiertes Ödem, kein Einblick! Was ist Ihre rettende Sofortentscheidung am Bett in den nächsten 30 Sekunden?",
+        vitals: { spo2: "74%", bp: "195/110", map: "138 mmHg", hr: "136 /min", etco2: "58 mmHg", temp: "37.2 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "Sofortige Wund- und Faszienöffnung am Bett mit den Fingern/Klemme! Druckentlastung des Hämatoms zur Trachealdekompression, danach Re-Intubation oder Koniotomie!"
+      },
+      koCriteria: {
+        forbiddenPatterns: [/warten auf den chirurgen/i, /patientin ins ct/i, /abwarten/i, /keine nahtöffnung/i],
+        failureReason: "Bei erstickendem Hals-Nachblutungshämatom darf niemals auf den OP/Chirurgen gewartet oder ein CT gemacht werden – nur die sofortige bettseitige Wund- und Faszienöffnung rettet vor der Asphyxie!",
+        mandatoryKeywords: ["bettseit", "wunde eröffnen", "faszie", "hämatom", "druckentlastung", "koniotomie"]
+      }
+    },
+    q_dus_38: {
+      examiner: {
+        name: "Prof. Dr. med. Thorsten Annecke / Schroeder",
+        hospital: "ÄKNO Prüfungskommission (Neuroanästhesie)",
+        focus: "Rupturiertes Hirnaneurysma, Coiling, transmuraler Druck, TIVA, Normoventilation & Nimodipin",
+        trap: "Hypertensive Entgleisung bei Laryngoskopie (Re-Ruptur!) oder forcierte Hyperventilation"
+      },
+      speechIntro: "Eine 58-jährige somnolente Patientin (Hunt & Hess III) mit rupturiertem Basilariskopf-Aneurysma soll gecoilt werden. Erläutern Sie die Bedeutung des transmuralen Drucks, Ihre Narkoseführung und die Blutdruckziele vor und nach Verschluss.",
+      crisis: {
+        title: "⚡ Aneurysma-Re-Ruptur mit Cushing-Reflex!",
+        prompt_de: "Der Neuroradiologe meldet Kontrastmittelaustritt – Aneurysmaruptur! Der Blutdruck schießt auf 215/120 mmHg, Herzfrequenz stürzt auf 36/min ab! Was ist Ihre unmittelbare Notfalltherapie?",
+        vitals: { spo2: "97%", bp: "215/120", map: "151 mmHg", hr: "36 /min", etco2: "35 mmHg", temp: "36.8 °C", rhythm: "Sinusbradykardie (Cushing)", alert: true },
+        targetAction: "Sofortige MAP-Senkung mit Urapidil (10-25 mg) / Esmolol, transiente Hyperventilation (PaCO2 30-35 mmHg), Mannitol 20% oder hypertones NaCl, Protamin bei Heparingabe, EVD öffnen!"
+      },
+      koCriteria: {
+        forbiddenPatterns: [/atropin als alleinige therapie/i, /blutdruckanstieg ignorieren/i, /map unter 50 senken/i],
+        failureReason: "Cushing-Trias bei Aneurysmaruptur erfordert sofortiges Hirndruck- und Blutdruckmanagement; Atropingabe ohne ICP-Senkung oder extremes Absenken des MAP unter den ICP zerstört die Hirnperfusion!",
+        mandatoryKeywords: ["transmural", "urapidil", "tiva", "normoventilation", "nimodipin", "cushing"]
+      }
+    },
+    q_dus_39: {
+      examiner: {
+        name: "Prof. Dr. med. Andreas Hohn / Becke",
+        hospital: "ÄKNO Prüfungskommission (Kinderanästhesie)",
+        focus: "Fallot-Tetralogie, Rechts-Links-Shunt, Tet-Spell, Phenylephrin & Adrenalin-Kontraindikation",
+        trap: "Adrenalingabe bei hyperzyanotischem Anfall / Tet-Spell (absolutes K.O.-Kriterium!)"
+      },
+      speechIntro: "Ein 3 Monate altes Mädchen (4,5 kg) mit unkorrigierter Fallot-Tetralogie kommt zur Leistenhernien-OP. Beschreiben Sie die Shuntphysiologie, Narkoseprinzipien und die Behandlung eines intraoperativen Tet-Spells.",
+      crisis: {
+        title: "⚡ Akuter hyperzyanotischer Tet-Spell!",
+        prompt_de: "Nach der Intubation wird das Kind aschgrau-zyanotisch! SpO2 fällt auf 28%, etCO2 bricht auf 18 mmHg ein! Wie durchbrechen Sie diesen lebensbedrohlichen Infundibulumkrampf Schritt für Schritt?",
+        vitals: { spo2: "28%", bp: "52/28", map: "36 mmHg", hr: "58 /min", etco2: "18 mmHg", temp: "36.6 °C", rhythm: "Sinusrhythmus", alert: true },
+        targetAction: "FiO2 1,0, Knie-Brust-Lage (mechanische SVR-Erhöhung), Narkose vertiefen (Sufentanil/Sevofluran), Noradrenalin (1 µg/kg) oder Phenylephrin (5-10 µg/kg), Volumenbolus (10-20 ml/kg)! KEIN Adrenalin!"
+      },
+      koCriteria: {
+        forbiddenPatterns: [/adrenalin bolus/i, /adrenalin spritzen/i, /vasodilatanzien geben/i],
+        failureReason: "Adrenalin kontrahiert das Infundibulum noch stärker über Beta-Rezeptoren und schließt den RV-Ausflusstrakt komplett ab – führt zum hypoxischen Kreislaufstillstand!",
+        mandatoryKeywords: ["knie-brust", "svr", "infundibulum", "phenylephrin", "noradrenalin", "narkose vertiefen"]
+      }
+    },
+    q_dus_40: {
+      examiner: {
+        name: "Prof. Dr. med. Andreas Hohn",
+        hospital: "Universitätsklinikum Köln / Bergmannsheil Bochum · Verbrennungszentrum",
+        focus: "Schweres Verbrennungstrauma, Inhalation, Parkland-Formel & Succinylcholin-Kontraindikation",
+        trap: "Gabe von Succinylcholin bei Verbrennung ab 24h nach Trauma (tödliche Hyperkaliämie / K.O.!)"
+      },
+      speechIntro: "Ein 45-jähriger Arbeiter (80 kg) mit 27% Verbrennungen und Inhalationstrauma soll an Tag 3 nach dem Unfall operiert werden. Erläutern Sie das Atemwegsmanagement, die Parkland-Formel und die Wahl des Muskelrelaxans.",
+      crisis: {
+        title: "⚡ Akute fulminante Hyperkaliämie nach Succinylcholin!",
+        prompt_de: "Ein junger Kollege hat versehentlich Succinylcholin an Tag 3 injiziert! Im EKG sieht man zeltförmige T-Wellen, QRS-Verbreiterung und Kammerflimmern! Was ist der Mechanismus und wie retten Sie den Patienten?",
+        vitals: { spo2: "42%", bp: "40/15", map: "23 mmHg", hr: "148 /min -> VF", etco2: "15 mmHg", temp: "36.4 °C", rhythm: "Kammerflimmern / ventrikuläre Tachykardie", alert: true },
+        targetAction: "Sofortige CPR & Defibrillation, Kalziumchlorid 10% (10 ml i.v. zur Membranstabilisierung), Glukose 20% (100 ml) + 10 IE Normalinsulin, Natriumbikarbonat 8,4%, Hyperventilation!"
+      },
+      koCriteria: {
+        forbiddenPatterns: [/succinylcholin ist unbedenklich/i, /succinylcholin an tag 3 wiederholen/i, /kaliumchlorid geben/i],
+        failureReason: "Succinylcholin ist ab 24-48h nach Verbrennung wegen extrajunktioneller Rezeptor-Upregulation streng kontraindiziert; führt zu tödlicher Hyperkaliämie mit Asystolie!",
+        mandatoryKeywords: ["parkland", "up-regulation", "extrajunktionell", "hyperkaliämie", "calcium", "rocuronium"]
+      }
+    },
+    q_dus_41: {
+      examiner: {
+        name: "Prof. Dr. med. Thorsten Annecke",
+        hospital: "Klinikum Leverkusen · ÄKNO Prüfungsvorsitzender (Geburtshilfe)",
+        focus: "Notsectio Kategorie 1 (Cito), EEZ <= 20 min, RSI, Oxytocin-Dosisgrenze & Uterusatonie",
+        trap: "Bolusgabe von 10 IE Oxytocin (akuter Kreislaufkollaps!) oder Rückenlage ohne Linksneigung"
+      },
+      speechIntro: "Funkalarm im Kreißsaal: Cito-Sectio wegen fetaler Bradykardie (HF 55/min). Erläutern Sie E-E-Zeit, RSI-Durchführung bei der Schwangeren, Oxytocindosierung und den Algorithmus bei 'Cannot Intubate'.",
+      crisis: {
+        title: "⚡ Kreislaufabsturz & Uterusatonie nach Oxytocin-Bolus!",
+        prompt_de: "Nach Kindsentwicklung wurde versehentlich eine ganze Ampulle Oxytocin (10 IE) schnell i.v. injiziert! Der Blutdruck stürzt auf 60/30 mmHg ab, der Uterus ist teigig weich und blutet massiv! Was tun Sie sofort?",
+        vitals: { spo2: "88%", bp: "60/30", map: "40 mmHg", hr: "135 /min", etco2: "22 mmHg", temp: "36.5 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "Noradrenalin-Bolus/Perfusor, zügige Kristalloide, Sulproston (Nalador) i.v. titrieren, Tranexamsäure (1-2 g i.v.), Gebärmuttermassage (Credé), Linksneigung beibehalten!"
+      },
+      koCriteria: {
+        forbiddenPatterns: [/10 ie oxytocin bolus wiederholen/i, /keine linksseitenlage/i, /nur abwarten/i],
+        failureReason: "Schnelle Oxytocin-Boli >5 IE lösen massive Vasodilatation und kardialen Kollaps aus; bei Atonie muss Sulproston und Tranexamsäure plus Vasopressor zum Einsatz kommen!",
+        mandatoryKeywords: ["20 minuten", "linksseitenlage", "oxytocin 3-5", "sulproston", "larynxmaske 2. generation", "rsi"]
+      }
+    },
+    q_dus_42: {
+      examiner: {
+        name: "Prof. Dr. med. Andreas Hohn / Annecke",
+        hospital: "ÄKNO Prüfungskommission (Aufwachraum & Atemweg)",
+        focus: "Laryngospasmus, Unterdrucklungenödem (NPPE), Larson-Handgriff, CPAP & PEEP",
+        trap: "Fehldiagnose als Bronchospasmus oder Auslassen von PEEP bei schaumigem Unterdrucködem"
+      },
+      speechIntro: "Ein 26-jähriger Patient zeigt nach laparoskopischer Appendektomie Schaukelatmung, Stridor und schließlich Apnoe bei SpO2 68%. Aus dem Mund quillt rosafarbener Schaum. Erläutern Sie Pathophysiologie und Stufentherapie.",
+      crisis: {
+        title: "⚡ Akuter Laryngospasmus mit Unterdrucklungenödem!",
+        prompt_de: "Der Patient saugt maximal am Thorax, kein Atemhub geht durch, SpO2 fällt auf 62%, rosafarbener Schaum schießt in die Maske! Wie handeln Sie von Sekunde zu Sekunde?",
+        vitals: { spo2: "62%", bp: "185/110", map: "135 mmHg", hr: "145 /min", etco2: "65 mmHg", temp: "37.0 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "100% O2 unter CPAP (APL-Ventil 15-20 cmH2O), Larson-Handgriff, Propofol (0,5-1 mg/kg) i.v., bei Versagen Succinylcholin (0,5-1 mg/kg) + Re-Intubation, invasive Beatmung mit PEEP (8-12 cmH2O)!"
+      },
+      koCriteria: {
+        forbiddenPatterns: [/nur salbutamol geben/i, /patient auf normalstation/i, /kein peep/i],
+        failureReason: "Unterdrucklungenödem entsteht durch extreme negative intrathorakale Drücke gegen die geschlossene Glottis; wer kein PEEP und keine Narkosevertiefung/Relaxierung einleitet, lässt den Patienten ersticken!",
+        mandatoryKeywords: ["laryngospasmus", "unterdrucklungenödem", "larson", "cpap", "propofol", "peep", "succinylcholin"]
+      }
     }
   };
 

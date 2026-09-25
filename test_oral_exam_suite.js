@@ -428,7 +428,7 @@ console.log('[PASS] Seamless Hover Turkish Translation (Clean Box Level, No Sent
 
 // 22. Test ÄKNO Düsseldorf Examiners, Protocols & KO-Kriterien Integration
 const dusQuestions = questions.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
-assert.strictEqual(dusQuestions.length, 36, `Expected exactly 36 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
+assert.strictEqual(dusQuestions.length, 42, `Expected exactly 42 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
 assert(htmlContent.includes('examiner-reveal-box'), 'index.html must include #examiner-reveal-box');
 assert(htmlContent.includes('badge-examiner-toggle'), 'index.html must include #badge-examiner-toggle');
 assert(htmlContent.includes('examiner-reveal-card'), 'index.html must include #examiner-reveal-card');
@@ -480,13 +480,21 @@ console.log('[PASS] Audio Speed Controller & Pocket Card 16 Mnemonics Hub Suite 
 
 // 26. Test ÄKNO Düsseldorf Dynamic Live Simulation & K.O.-Criteria Radar Suite
 const { DUS_SIMULATION_REGISTRY } = MockExamSimulation;
-assert(DUS_SIMULATION_REGISTRY && Object.keys(DUS_SIMULATION_REGISTRY).length === 36, 'All 36 authentic Düsseldorf protocol questions must be registered in DUS_SIMULATION_REGISTRY');
+assert(DUS_SIMULATION_REGISTRY && Object.keys(DUS_SIMULATION_REGISTRY).length === 42, 'All 42 authentic Düsseldorf protocol questions must be registered in DUS_SIMULATION_REGISTRY');
 
 // Verify examiner profile, crisis complication and KO criteria structure
 const q1Reg = DUS_SIMULATION_REGISTRY['q_dus_01'];
 assert(q1Reg && q1Reg.examiner && q1Reg.examiner.name.includes('Annecke'), 'q_dus_01 must be linked to Prof. Annecke');
 assert(q1Reg.crisis && q1Reg.crisis.vitals && q1Reg.crisis.prompt_de, 'q_dus_01 must contain crisis vitals and prompt');
 assert(q1Reg.koCriteria && q1Reg.koCriteria.forbiddenPatterns, 'q_dus_01 must contain fatal KO criteria patterns');
+
+// Verify newly added authentic cases (Annecke & Hohn Kasuistiken)
+const q37Reg = DUS_SIMULATION_REGISTRY['q_dus_37'];
+assert(q37Reg && q37Reg.examiner.name.includes('Annecke'), 'q_dus_37 must be linked to Prof. Annecke');
+assert(q37Reg.crisis.vitals.spo2 === '74%', 'q_dus_37 crisis vitals verified');
+const q40Reg = DUS_SIMULATION_REGISTRY['q_dus_40'];
+assert(q40Reg && q40Reg.examiner.name.includes('Hohn'), 'q_dus_40 must be linked to Prof. Hohn');
+assert(q40Reg.koCriteria.forbiddenPatterns.length > 0, 'q_dus_40 Succinylcholin KO criteria verified');
 
 // Verify immediate failure on KO violation (Spinal in aortic stenosis)
 const koEval = MockExamSimulation.evaluateCandidateAnswer('q_dus_01', 'Ich schlage eine Spinalanästhesie vor, da schonender.', ['SVR', 'Arterie']);
