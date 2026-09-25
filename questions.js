@@ -139,7 +139,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Der Serumlaktatspiegel sollte nur im arteriellen Blut bestimmt werden.",
-        "text_tr": "düzensiz nefes alma",
+        "text_tr": "Serum laktat düzeyi yalnızca arteriyel kanda belirlenmelidir.",
         "is_correct": false,
         "explanation_de": "Der Laktatspiegel kann ohne gravierende Differenzen im gemischtvenösen, zentralvenösen oder arteriellen Blut bestimmt werden.",
         "explanation_tr": "Laktat düzeyi karışık venöz, santral venöz veya arteriyel kanda ciddi farklar olmaksızın belirlenebilir."
@@ -147,7 +147,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Eine mittelschwere Leberfunktionsstörung führt als alleinige Ursache nicht zu einem Anstieg des Serumlaktatspiegels.",
-        "text_tr": "Tek neden olan orta derecede karaciğer yetmezliği serum laktat düzeylerinde artışa yol açmaz. 10 1Bölüm 1 · Genel bir",
+        "text_tr": "Tek başına orta derecede karaciğer yetmezliği serum laktat düzeylerinde artışa yol açmaz.",
         "is_correct": true,
         "explanation_de": "Auch eine stark geschädigte Leber kann aufgrund der hohen Organreserven die anfallenden Laktationen zur Glukoneogenese heran-ziehen. Erst bei schwerster Schädigung der Leberfunktion (>90 % Funk-tionsverlust) kann die Laktatverstoffwechslung nicht mehr stattfinden, und die Leber kann selbst zu einem laktatproduzierenden Organ werden.",
         "explanation_tr": "Ağır hasar görmüş bir karaciğer bile, yüksek organ rezervleri nedeniyle ortaya çıkan laktasyonu glukoneogenez için kullanabilir. Ancak karaciğer fonksiyonu ciddi şekilde hasar gördüğünde (>%90 fonksiyon kaybı) laktat metabolizması artık gerçekleşemez ve karaciğerin kendisi laktat üreten bir organ haline gelebilir."
@@ -479,7 +479,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "metabolischer Azidose.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Metabolik asidoz.",
         "is_correct": true,
         "explanation_de": "Bei metabolischer Azidose werden kompensatorisch intrazelluläre Kaliumionen gegen extrazelluläre Wasserstoffionen ausgetauscht, um den pH-Wert zu normalisieren.",
         "explanation_tr": "Metabolik asidozda pH değerini normalleştirmek için telafi edici hücre içi potasyum iyonları hücre dışı hidrojen iyonlarıyla değiştirilir."
@@ -927,7 +927,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Ein Sphygmomanometer misst den intrapleuralen Druck.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Sfigmomanometre intraplevral basıncı ölçer.",
         "is_correct": true,
         "explanation_de": "Die Aussage ist fachlich zutreffend: Ein Sphygmomanometer misst den intrapleuralen Druck.",
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir."
@@ -1075,7 +1075,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Mit Erhöhung des Gasflusses nimmt die Abhängigkeit der Kalibrierung von der Viskosität des Gases zu.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Gaz akışı arttıkça kalibrasyonun gazın viskozitesine bağımlılığı artar.",
         "is_correct": false,
         "explanation_de": "Je höher der Gasfluss ist, desto größer ist die Abhängigkeit von der Dichte.",
         "explanation_tr": "Gaz akışı ne kadar yüksek olursa yoğunluğa bağımlılık da o kadar fazla olur."
@@ -1083,7 +1083,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Ein Rotameter, das für Cyclopropan kalibriert ist, zeigt für die Messung des Gasflusses von CO₂ bei einem Flussbereich von 1 000 ml/min einen Fehler von rund 18 % und bei einem Flussbereich von 100 ml/min einen Fehler von 100 % an (Cyclopropan hat die gleiche Dichte, aber nur 60 % der Visko-sität von CO₂ ).",
-        "text_tr": "CO₂'nin gaz akışını ölçerken, siklopropan için kalibre edilmiş bir rotametre, 1.000 ml/dak'lık bir akış aralığında yaklaşık %18'lik bir hata ve 100 ml/dak'lık bir akış aralığında %100'lük bir hata gösterir (siklopropan aynı yoğunluğa sahiptir ancak CO₂'nin viskozitesinin yalnızca %60'ına sahiptir). 23 1 1.2 · Fizik",
+        "text_tr": "CO₂ gaz akışını ölçerken, siklopropan için kalibre edilmiş bir rotametre, 1.000 ml/dak akış aralığında yaklaşık %18, 100 ml/dak akış aralığında ise %100 hata gösterir (siklopropan aynı yoğunluğa sahiptir ancak CO₂ viskozitesinin yalnızca %60'ına sahiptir).",
         "is_correct": true,
         "explanation_de": "Dies ist die Veranschaulichung des oben Gesagten. Da bei niedrigem Flussbereich die Viskosität eine große Rolle spielt und die in diesem Beispiel genannten Gase eine unterschiedliche Viskosität aufweisen, zeigt der Rotameter anstelle von 100 ml/min 200 ml/min an, da ein deutlicher Viskositätsunterschied zwischen den Gasen besteht. Im hohen Flussbe-reich kommt hingegen mehr die Abhängigkeit von der Dichte zum Tragen (gleiche Dichte der Gase), sodass das Rotameter einen geringeren Mess-fehler anzeigt, nämlich anstatt 1 000 ml/min »nur« 1 180 ml/min.",
         "explanation_tr": "Bu yukarıdakilerin gösterimidir. Düşük akış aralığında viskozite önemli bir rol oynadığından ve bu örnekte bahsedilen gazların viskoziteleri farklı olduğundan rotametre 100 ml/dak yerine 200 ml/dak'yı gösterir çünkü gazlar arasında belirgin bir viskozite farkı vardır. Ancak yüksek akış aralığında yoğunluğa bağlılık daha önemlidir (gazların aynı yoğunluğu), böylece rotametre daha küçük bir ölçüm hatası gösterir, yani 1.000 ml/dak yerine \"sadece\" 1.180 ml/dak."
@@ -1291,7 +1291,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Der relative prozentuale Gasanteil eines Gasgemisches ändert sich nicht in Abhängigkeit vom Umgebungsdruck.",
-        "text_tr": "Bir gaz karışımındaki gazın bağıl yüzdesi ortam basıncına bağlı olarak değişmez. 26 1Bölüm 1 · Genel bir şey",
+        "text_tr": "Bir gaz karışımındaki gazın bağıl yüzdesi ortam basıncına bağlı olarak değişmez.",
         "is_correct": true,
         "explanation_de": "Das Gesetz nach Dalton besagt, dass die Summe der prozentualen Gasanteile bei sich ändernden Umgebungsdrücken gleich bleibt. Dies be-deutet, dass Sauerstoff 21 % des Volumenanteils der Luft ausmacht, sowohl in Meereshöhe als auch auf dem Mount Everest/Großglockner. Dies bedeu-tet aber auch, dass bei fallendem Umgebungsdruck die einzelnen Partial-drücke prozentual abnehmen. Die Summe der Partialdrücke ist gleich dem Umgebungsdruck.",
         "explanation_tr": "Dalton yasası, ortam basıncı değiştikçe gaz yüzdelerinin toplamının aynı kaldığını belirtir. Bu, oksijenin hem deniz seviyesinde hem de Everest/Grossglockner Dağı'nda hacim olarak havanın %21'ini oluşturduğu anlamına gelir. Ancak bu aynı zamanda ortam basıncı düştüğünde bireysel kısmi basınçların yüzde cinsinden azaldığı anlamına da gelir. Kısmi basınçların toplamı ortam basıncına eşittir."
@@ -1647,7 +1647,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Liegt die Körperkerntemperatur in der thermoneutralen Zone, tritt keine endogene Hitzeproduktion auf.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Vücut merkez sıcaklığı termonötral bölgedeyse endojen ısı üretimi meydana gelmez.",
         "is_correct": true,
         "explanation_de": "Die thermoneutrale Zone ist die Körperkerntemperatur, bei der weder eine zusätzliche Thermogenese noch eine zusätzliche Hitze abgabe stattfindet. Diese Zone ist eng reguliert und hat eine Spanne von nur 0,2 °C.",
         "explanation_tr": "Termonötral bölge, ne ek termojenezin ne de ek ısı salınımının meydana gelmediği çekirdek vücut sıcaklığıdır. Bu bölge sıkı bir şekilde düzenlenmiştir ve yalnızca 0,2°C'lik bir aralığa sahiptir."
@@ -1655,7 +1655,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Anästhetika verschieben die Zitterschwelle in Richtung höhere Temperatur.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Anestezikler titreme eşiğini daha yüksek bir sıcaklığa doğru kaydırır.",
         "is_correct": false,
         "explanation_de": "Anästhetika verschieben die Zitterschwelle in Richtung niedrigere Temperatur und die Schwelle zum Schwitzen in Richtung höhere Tempera-tur. Dies bedeutet, dass sich die thermoneutrale Zone nun über eine Span-ne von rund 4 °C bewegt. Unter 0,9 % Isofluran wird die Zitterschwelle auf 35 °C gesenkt.",
         "explanation_tr": "Anestezikler titreme eşiğini daha düşük sıcaklıklara, terleme eşiğini ise daha yüksek sıcaklıklara doğru kaydırır. Bu, termonötr bölgenin artık yaklaşık 4 °C aralığında hareket ettiği anlamına gelir. %0,9 izofluranın altında titreme eşiği 35 °C'ye düşürülür."
@@ -1707,7 +1707,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die Nernst-Gleichung beschreibt die Leitfähigkeit von Na-Kanälen.",
-        "text_tr": "Nernst denklemi Na kanallarının iletkenliğini açıklar. 35 2 · Fizyoloji2",
+        "text_tr": "Nernst denklemi Na⁺ kanallarının iletkenliğini açıklar.",
         "is_correct": false,
         "explanation_de": "Die Nernst-Gleichung beschreibt nicht die Leitfähigkeit von Ionenkanälen. Sie erlaubt es aufgrund des Verhältnisses von intra- und extrazel-lulären Ionenkonzentrationen, das resultierende elektrochemische Poten-zial zu berechnen. Die vereinfachte Gleichung lautet: E = –61×log(K i + /K a + ) [mV]. Für Kalium entsteht so bei Einsetzen von 40 für das Verhältnis Ionen innen/außen ein Potenzial von –97 mV.",
         "explanation_tr": "Nernst denklemi iyon kanallarının iletkenliğini tanımlamaz. Hücre içi ve hücre dışı iyon konsantrasyonlarının oranına bağlı olarak ortaya çıkan elektrokimyasal potansiyelin hesaplanmasına olanak tanır. Basitleştirilmiş denklem şu şekildedir: E = –61×log(K i + /K a + ) [mV]. Potasyum için iç/dış iyon oranı 40'a ayarlandığında –97 mV'luk bir potansiyel yaratılır."
@@ -1759,7 +1759,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die Verlängerung des Aktionspotenzials im Herzmuskel (Plateauphase) wird hauptsächlich durch eine Abnahme der Kalziumleitfähigkeit hervor-gerufen.",
-        "text_tr": "Kalp kasındaki aksiyon potansiyelinin uzamasına (plato fazı) esas olarak kalsiyum iletkenliğinin azalması neden olur. 36 2Bölüm 2 · Fizyoloji",
+        "text_tr": "Kalp kasındaki aksiyon potansiyelinin uzamasına (plato fazı) esas olarak kalsiyum iletkenliğinin azalması neden olur.",
         "is_correct": false,
         "explanation_de": "Die Zunahme der Kalziumleitfähigkeit ist die Grundlage für die Plateauphase des Aktionspotenzials einer Herzmuskelfaser.",
         "explanation_tr": "Kalsiyum iletkenliğindeki artış, kalp kası lifinin aksiyon potansiyelinin plato fazının temelini oluşturur."
@@ -1811,7 +1811,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die Ausschüttung von ACh geschieht kontinuierlich.",
-        "text_tr": "miyoklonusa yol açar",
+        "text_tr": "Asetilkolin (ACh) salınımı sürekli olarak gerçekleşir.",
         "is_correct": true,
         "explanation_de": "Die Aussage ist fachlich zutreffend: Die Ausschüttung von ACh geschieht kontinuierlich.",
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: miyoklonusa yol açar"
@@ -2019,7 +2019,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die BR reagieren auf Blutdruckänderungen nur langsam.",
-        "text_tr": "BR, kan basıncındaki değişikliklere yalnızca yavaş tepki verir. 40 2Bölüm 2 · Fizyoloji",
+        "text_tr": "Baroreseptörler kan basıncındaki değişikliklere yalnızca yavaş tepki verir.",
         "is_correct": false,
         "explanation_de": "Im Gegenteil, die BR reagieren sehr schnell auf Blutdruckschwankungen, so schnell, dass sogar die Druckschwankungen der Pulsamplitude zu einer Veränderung der Entladungsrate während Systole und Diastole führen.",
         "explanation_tr": "Aksine, BR kan basıncındaki dalgalanmalara çok hızlı tepki verir, o kadar hızlıdır ki, nabız genliğindeki basınç dalgalanmaları bile sistol ve diyastol sırasında deşarj hızında bir değişikliğe yol açar."
@@ -2071,7 +2071,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "spielen für die Kurzzeitblutdruckregulierung eine wichtige Rolle.",
-        "text_tr": "Kısa süreli kan basıncının düzenlenmesinde önemli bir rol oynar. 41 2 · Fizyoloji2",
+        "text_tr": "Kısa süreli kan basıncının düzenlenmesinde önemli bir rol oynar.",
         "is_correct": true,
         "explanation_de": "Kurzzeitige Schwankungen des Blutdrucks auszugleichen ist die Funktion des BR-Reflexes.",
         "explanation_tr": "BR refleksinin işlevi kan basıncındaki kısa süreli dalgalanmaları telafi etmektir."
@@ -2123,7 +2123,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "CHR reagieren auf einen erhöhten pO₂.",
-        "text_tr": "CHR artan pO₂'ye yanıt verir. 42 2Bölüm 2 · Fizyoloji",
+        "text_tr": "Kemoreseptörler artan pO₂'ye yanıt verir.",
         "is_correct": false,
         "explanation_de": "Die pCHR reagieren auf eine Verminderung des pO₂, nicht auf eine Erhöhung. Im Gegensatz dazu reagieren die zentralen Chemorezepto-ren überhaupt nicht auf eine Verminderung des pO₂. Dies bedeutet einen totalen Ausfall der Steuerung der Atmung als Antwort auf eine Hypoxämie bei Ausfall der pCHR.",
         "explanation_tr": "PCHR, pO₂'deki bir artışa değil, bir azalmaya yanıt verir. Bunun aksine, merkezi kemoreseptörler pO₂'deki bir azalmaya hiçbir şekilde tepki vermez. Bu, pCHR başarısızlığı üzerine hipoksemiye yanıt olarak solunum kontrolünün tamamen kaybedildiğini temsil eder."
@@ -2383,7 +2383,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Große v-Wellen deuten auf eine Trikuspidalstenose hin.",
-        "text_tr": "Büyük v dalgaları triküspit stenozu düşündürüyor. 46 2Bölüm 2 · Fizyoloji",
+        "text_tr": "Büyük v dalgaları triküspit darlığını düşündürür.",
         "is_correct": false,
         "explanation_de": "Hohe v-Wellen deuten auf eine Trikuspidalinsuffizienz hin. Da bei einer Trikuspidalinsuffizienz die x-Wellen fehlen, kommt es zu großen Ver-schmelzungswellen von c und v. Diese cv-Wellen (= große v-Welle) sieht man auch bei einer konstriktiven Perikarditis.",
         "explanation_tr": "Yüksek v dalgaları triküspit yetersizliğini gösterir. Triküspit yetersizliğinde x dalgaları eksik olduğundan büyük c ve v füzyon dalgaları oluşur. Bu cv dalgaları (=büyük v dalgası) konstriktif perikarditte de görülür."
@@ -2539,7 +2539,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Rund 10 % des CO₂ wird als Carbaminohämoglobin transportiert.",
-        "text_tr": "CO₂'nin yaklaşık %10'u karbaminohemoglobin olarak taşınır. 48 2Bölüm 2 · Fizyoloji",
+        "text_tr": "CO₂'nin yaklaşık %10'u karbaminohemoglobin olarak taşınır.",
         "is_correct": true,
         "explanation_de": "10 % des Gesamt-CO₂ werden als Carbaminohämoglobin im Blut transportiert. Zusammengefasst: Das Gesamt-CO₂ wird zu 80 % als Bikarbonat (35 % innerhalb, 45 % außerhalb der Erythrozyten im Plasma), zu 10 % als Carbaminohämoglobin und zu 10 % als physikalisch gelöstes Gas transportiert.",
         "explanation_tr": "Toplam CO₂'nin %10'u kanda karbaminohemoglobin olarak taşınır. Özetle: Toplam CO₂'nin %80'i bikarbonat olarak (%35'i içeride, %45'i plazmadaki eritrositlerin dışında), %10'u karbaminohemoglobin olarak ve %10'u fiziksel olarak çözünmüş gaz olarak taşınır."
@@ -2591,7 +2591,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "wird durch die Bindung an Hämoglobin inaktiviert.",
-        "text_tr": "Hemoglobin'e bağlanarak inaktive olur. 49 2 · Fizyoloji2",
+        "text_tr": "Hemoglobine bağlanarak inaktive olur.",
         "is_correct": true,
         "explanation_de": "NO hat eine HWZ unter 5 s, da es an das Fe-Atom des Hämoglobins gebunden wird. Bei inhalativer Gabe kann es zu Stickstoffdioxid oxi-diert werden, was zu einer pulmonalen Schädigung führen kann. Daneben kommt es zur Methämoglobinbildung.",
         "explanation_tr": "NO, hemoglobinin Fe atomuna bağlı olduğundan 5 saniyeden daha düşük bir HV'ye sahiptir. Solunum yoluyla uygulandığında nitrojen dioksite oksitlenebilir ve bu da akciğer hasarına yol açabilir. Ayrıca methemoglobin oluşur."
@@ -3043,7 +3043,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "dient als ein Maß für das linksventrikuläre enddiastolische Volumen (LVEDV).",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Sol ventrikül diyastol sonu hacminin (LVEDV) bir ölçüsü olarak hizmet eder.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort b.",
         "explanation_tr": "Cevap b'ye bakınız."
@@ -3111,7 +3111,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Lage außerhalb der Zone III nach West",
-        "text_tr": "Bölge III'ün dışında Batı'daki konum 56 2Bölüm 2 · Fizyoloji",
+        "text_tr": "West Bölge III'ün dışında yerleşim gösterir.",
         "is_correct": true,
         "explanation_de": "Streng genommen ist nur in der Zone III nach West (basale Lungenabschnitte) eine kontinuierliche Übertragung der Drücke vom linken Vorhof bis zur Pulmonalarterie gegeben. Nur in der Zone III besteht ein von den Atemexkursionen nicht unterbrochener Blutfluss zwischen distaler Pulmonaliskatheteröffnung und linkem Vorhof.",
         "explanation_tr": "Kesin olarak konuşursak, yalnızca batıdaki III. Bölgede (bazal akciğer bölümleri), sol atriyumdan pulmoner artere sürekli bir basınç aktarımı vardır. Yalnızca III. Bölgede, distal pulmoner arter kateter açıklığı ile sol atriyum arasında nefes alma gezileri ile kesintisiz kan akışı vardır."
@@ -3235,7 +3235,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "Häufig besteht eine Perikarditis.",
-        "text_tr": "plazmatik pıhtılaşmayı engeller",
+        "text_tr": "Sıklıkla perikardit mevcuttur.",
         "is_correct": true,
         "explanation_de": "Bei chronischer Niereninsuffizienz ist eine Perikarditis nicht selten. Arterielle Hypertonie und eine Anämie liegen fast immer vor.",
         "explanation_tr": "Kronik böbrek yetmezliğinde perikardit nadir değildir. Arteriyel hipertansiyon ve anemi neredeyse her zaman mevcuttur."
@@ -3579,7 +3579,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "kann Thrombosen verursachen. 63",
-        "text_tr": "tromboza neden olabilir. 63 2 2.1 · Pıhtılaşma",
+        "text_tr": "Tromboza neden olabilir.",
         "is_correct": true,
         "explanation_de": "Aufgrund einer heparininduzierten Thrombozytopenie (HIT ) kann es paradoxerweise unter An tikoagulationstherapie mit Heparin zu Thrombosen kommen. Bei der schwerwiegenderen Form, HIT Typ II, werden Anti-köper gegen Heparin-Plättchenfaktor-4-Komplexe gebildet, die Thrombo-zyten anbinden. Dadurch kommt es zu Thrombosen und evtl. zu einer Ver-brauchskoagulopathie.",
         "explanation_tr": "Paradoksal olarak, heparine bağlı trombositopeniye (HIT) bağlı olarak heparinle antikoagülasyon tedavisi sırasında tromboz meydana gelebilir. Daha ciddi form olan HIT tip II'de, trombositlere bağlanan heparin-trombosit faktör-4 komplekslerine karşı antikorlar oluşur. Bu tromboza ve muhtemelen tüketim koagülopatisine yol açar."
@@ -4099,7 +4099,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die Antikoagulation mit Heparinoiden kann über die PTT überwacht werden.",
-        "text_tr": "Heparinoidlerle antikoagülasyon PTT ile izlenebilir. 70 2Bölüm 2 · Fizyoloji",
+        "text_tr": "Heparinoidlerle antikoagülasyon aPTT ile izlenebilir.",
         "is_correct": false,
         "explanation_de": "Die Therapie mit Heparinoiden (Danaparoin ) muss mit Hilfe der Anti-Faktor-Xa-Aktivität evaluiert werden.",
         "explanation_tr": "Heparinoidlerle (Danaparoin) tedavi, anti-faktör Xa aktivitesi kullanılarak değerlendirilmelidir."
@@ -4247,7 +4247,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Bei gleichzeitiger Einnahme von Rifampicin ist die Plasmakonzentration von Dabigatran erniedrigt.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Rifampisin ile eşzamanlı kullanımda dabigatranın plazma konsantrasyonu düşer.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort c. Carbamazepin oder Phenytoin wirken auch als P-gp-Induktoren.",
         "explanation_tr": "Cevap c'ye bakınız. Karbamazepin veya fenitoin aynı zamanda P-gp indükleyicileri olarak da görev yapar."
@@ -4255,7 +4255,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Bei Patienten über 80 Jahren muss mit einem höheren Blutungsrisiko gerechnet werden.",
-        "text_tr": "Heparin bir lipoproteindir.",
+        "text_tr": "80 yaşın üzerindeki hastalarda daha yüksek bir kanama riski beklenmelidir.",
         "is_correct": true,
         "explanation_de": "Hohes Alter ist ein unabhängiger Risikofaktor für das Auftreten einer Blutungskomplikation (z. B. zerebrale Blutung). Der Einsatz von Dabigatran in dieser Patientengruppe wird das Blutungsrisiko daher (weiter) erhöhen. 73",
         "explanation_tr": "Yaşlılık, kanama komplikasyonlarının (örn. beyin kanaması) ortaya çıkması açısından bağımsız bir risk faktörüdür. Bu nedenle bu hasta grubunda dabigatran kullanımı kanama riskini (daha da) artıracaktır. 73 2 2,2 · Hormon sistemi 2,2 Hormon sistemi"
@@ -4567,7 +4567,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Intraoperativ sind regelmäßige Blutzuckerkontrollen notwendig. 77",
-        "text_tr": "Ameliyat sırasında düzenli kan şekeri kontrolleri gereklidir. 77 2 2.2 · Endokrin sistemi",
+        "text_tr": "Ameliyat sırasında düzenli kan şekeri kontrolleri gereklidir.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.",
         "explanation_tr": "Cevap a'ya bakınız."
@@ -4639,7 +4639,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "wirkt zentral sedierend.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Santral sedatif etki gösterir.",
         "is_correct": false,
         "explanation_de": "Histamin, das biogene Amin der Aminosäure Histidin, wirkt über zentrale H 1 -Rezeptoren erregend und emetogen. H 1 -Blocker wirken dagegen zentral sedierend und antiemetisch.",
         "explanation_tr": "Histidin amino asidinin biyojenik amini olan histamin, merkezi H1 reseptörleri yoluyla uyarıcı ve emetojenik etkiye sahiptir. H 1 blokerleri ise merkezi sakinleştirici ve antiemetik etkiye sahiptir."
@@ -5050,7 +5050,7 @@ const EXAM_QUESTIONS = [
     "image": null,
     "question_type": "options",
     "stem_de": "Bei Ein-Lungen-Ventilation (ELV) können die folgenden Maß nahmen die Oxygenierung des Patienten verbessern:",
-    "stem_tr": "Diyaliz ve/veya hemofiltrasyon 249 6 · Yoğun bakım tıbbı6",
+    "stem_tr": "Tek akciğer ventilasyonunda (ELV) aşağıdaki önlemler hastanın oksijenasyonunu iyileştirebilir:",
     "options": [
       {
         "key": "a",
@@ -5451,7 +5451,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die Mm. intercostales externi werden bei der forcierten Exspiration einge-setzt.",
-        "text_tr": "mm. intercostales externi zorla son kullanma tarihi için kullanılır. 90 2Bölüm 2 · Fizyoloji",
+        "text_tr": "M. intercostales externi zorlu ekspirasyon için kullanılır.",
         "is_correct": false,
         "explanation_de": "Die Mm. intercostales interni kontrahieren bei der forcierten Exspiration. F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3_ 3, © Springer-Verlag GmbH Deutschland 201791 3 Pharma kologie Franz Kehl, Hans-Joachim Wilke",
         "explanation_tr": "mm. Zorla sona erme sırasında intercostales interni sözleşmesi. F. Kehl, H.-J. Wilke, anestezi. Sorular ve cevaplar, DOI 10.1007/978-3-662-53664-3_ 3, © Springer-Verlag GmbH Almanya 201791 3 Farmakoloji Franz Kehl, Hans-Joachim Wilke"
@@ -5606,8 +5606,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Lidocain 93 3 3 · Pharma kologie",
-        "text_tr": "Lidokain 93 3 3 · Farmakoloji",
+        "text_de": "Lidocain",
+        "text_tr": "Lidokain",
         "is_correct": true,
         "explanation_de": "Die quantitativ wichtige Metabolisierung findet allerdings in der Leber statt. Lidocain wird zu Methylxylidid und Monoethylglycinxylidid (MEGX) metabolisiert. MEGX kann zur Quantifizierung der Lebermetaboli-sierungsleistung herangezogen werden. Die Lunge erfüllt auch vielfältige Syntheseleistungen. Neben Surfactant werden hier Prostaglandine, Hista-min, Kallikrein, Von-Willebrand-Faktor und Gewebeplasminogenaktivator (tPA) gebildet (Stoelting 2005, S. 691).",
         "explanation_tr": "Ancak kantitatif olarak önemli olan metabolizma karaciğerde gerçekleşir. Lidokain, metilksilidid ve monoetilglisineksilidide (MEGX) metabolize olur. MEGX karaciğerin metabolik performansını ölçmek için kullanılabilir. Akciğerler ayrıca çeşitli sentetik işlevleri de yerine getirir. Burada sürfaktanın yanı sıra prostaglandinler, hista-min, kallikrein, von Willebrand faktörü ve doku plazminojen aktivatörü (tPA) de oluşur (Stoelting 2005, s. 691)."
@@ -5919,7 +5919,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "wird durch Plasmaesterasen metabolisiert",
-        "text_tr": "Bir serbest dalıcıda, deniz seviyesinde ölçülen toplam akciğer hacmi (V 0 ), 20 m deniz derinliğinde (V 1 ) yarıya iner,",
+        "text_tr": "Plazma esterazları tarafından metabolize edilir.",
         "is_correct": true,
         "explanation_de": "Die Aussage ist fachlich zutreffend: wird durch Plasmaesterasen metabolisiert",
         "explanation_tr": "Bu ifade tıbbi olarak doğrudur: Bir serbest dalıcıda, deniz seviyesinde ölçülen toplam akciğer hacmi (V 0 ), 20 m deniz derinliğinde (V 1 ) yarıya iner,"
@@ -6179,7 +6179,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "ist größer in der Schwangerschaft",
-        "text_tr": "gebelikte daha büyüktür 100 3Bölüm 3 · Farmakoloji",
+        "text_tr": "Gebelikte daha büyüktür.",
         "is_correct": false,
         "explanation_de": "In der Schwangerschaft und bis ca. 72 h postpartal ist die MAC erheblich reduziert (30 %).",
         "explanation_tr": "MAC, hamilelik sırasında ve doğum sonrası yaklaşık 72 saate kadar önemli ölçüde azalır (%30)."
@@ -6579,7 +6579,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "Für Isofluran konnte tierexperimentell eine teratogene Potenz aus-geschlossen werden.",
-        "text_tr": "Hayvan deneylerinde izofluran için teratojenik etki göz ardı edilmiştir. 106 3Bölüm 3 · Farmakoloji",
+        "text_tr": "Hayvan deneylerinde izofluran için teratojenik etki dışlanmıştır.",
         "is_correct": true,
         "explanation_de": "Die volatilen Anästhetika Halothan, Enfluran und Isofluran haben bei Applikation einer MAC von 0,75 über weniger als 6 h keine teratogene Potenz.",
         "explanation_tr": "Uçucu anestetikler halotan, enfluran ve izofluran, 0,75 MAC değerinde 6 saatten daha kısa bir süre uygulandığında teratojenik potansiyele sahip değildir."
@@ -6891,7 +6891,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Succinylcholin kann gefahrlos querschnittgelähmten Patienten gegeben werden. 111",
-        "text_tr": "Belden aşağısı felçli hastalara süksinilkolin güvenle verilebilir. 111 3 3.3 · Kas gevşeticiler",
+        "text_tr": "Parapleji hastalarına süksinilkolin güvenle verilebilir.",
         "is_correct": false,
         "explanation_de": "Jede Erkrankung, die mit einer muskulären Denervierung einhergeht, führt zur Bildung extrajunktionaler ACh-Rezeptoren. Durch die Gabe von SCh wird dabei soviel K + freigesetzt, dass rasche Anstiege um mehr als weitere 7 mmol/l im Plasma (Serum-K + >12 mmol/l) zur Asystolie führen können. Daher ist SCh absolut kontraindiziert bei Patienten, die Lähmun-gen aufweisen, insbesondere bei Vorliegen eines Querschnittsyndroms.",
         "explanation_tr": "Kas denervasyonuyla ilişkili herhangi bir hastalık, eklem dışı ACh reseptörlerinin oluşumuna yol açar. SCh'nin uygulanması o kadar çok K+ salgılar ki, plazmada 7 mmol/l'den fazla hızlı artışlar (serum K+ >12 mmol/l) asistoliye yol açabilir. Bu nedenle SCh, felçli hastalarda, özellikle de omurilik sendromunun varlığında kesinlikle kontrendikedir."
@@ -7275,7 +7275,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "Physostigmin",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Fizostigmin",
         "is_correct": true,
         "explanation_de": "Medikamente, die kovalent an die Acetylcholinesterase binden und so die Spaltung von Acetylcholin (ACh) blockieren, sind irreversible ACh-Esterasehemmer. Physostigmin ist liquorgängig und kann daher auch bei einem zentralen anticholinergen Syndrom eingesetzt werden.",
         "explanation_tr": "Asetilkolinesteraza kovalent olarak bağlanan ve böylece asetilkolinin (ACh) bölünmesini bloke eden ilaçlar, geri dönüşümsüz ACh esteraz inhibitörleridir. Fizostigmin likörden geçer ve bu nedenle merkezi antikolinerjik sendromda da kullanılabilir."
@@ -7291,7 +7291,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "Carbachol",
-        "text_tr": "• Hemodinamik, hemostazolojik ve metabolik stabilizasyon • Isı koruması • İkincil incelemeyi tamamlayın, dikkatlice belgeleyin • Tüm radyolojik bulguları kontrol edin (servikal omurga yaralanması, vertebral arter diseksiyonu, aort diseksiyonu hariç mi?) • Tetanos koruması • Diürezi koruyun (\"böbreğin ezilmesi\" riski) • Kompartman sendromlarının (ekstremiteler, karın) gelişimini izleyin • Stabilizasyondan sonra ikinci bakımı planlayın7 239 7.7 Politravma Acil doktor tarafından aşağıdaki durumlarda sağlanan bakımı nasıl değerlendiriyorsunuz? sitesi? Travmatik hemodinamik şok ile hastane öncesi kontrol edilemeyen kanama durumunda, yalnızca en yakın uygun kliniğe mümkün olan en hızlı nakil hayatınızı kurtarabilir. Pelvik kırığın neden olduğu iç kanama durumunda, pelvik askının doğru yerleştirilmesi hayat kurtarıcı olabilir. Bu nedenle acil doktoru doğru davrandı. KASUİSTİK",
+        "text_tr": "Karbakol",
         "is_correct": false,
         "explanation_de": "Carbachol ist ein synthetisches Strukturanalogon von ACh, das von der ACh-Esterase nicht gespalten werden kann. Es ist damit ein Parasym-pathomimetikum und wird v. a. zur Therapie des nicht obstruktiven Harn-verhalts eingesetzt (Doryl ® ).",
         "explanation_tr": "Karbakol, ACh esteraz tarafından parçalanamayan ACh'nin sentetik bir yapısal analoğudur. Bu nedenle bir parasempatomimetiktir ve öncelikli olarak kullanılır. A. obstrüktif olmayan idrar retansiyonunu tedavi etmek için kullanılır (Doryl ®)."
@@ -7359,7 +7359,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "tiefe Atemzüge 117",
-        "text_tr": "derin nefesler 117 3 3,4 · Opioidler",
+        "text_tr": "Derin nefesler alma.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort d.",
         "explanation_tr": "Cevap d'ye bakınız."
@@ -7507,7 +7507,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "ist ein Partialantagonist am δ-Rezeptor.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "δ-reseptöründe parsiyel bir antagonisttir.",
         "is_correct": false,
         "explanation_de": "Naloxon ist ein reiner Antagonist am δ -Rezeptor.",
         "explanation_tr": "Nalokson δ reseptöründe saf bir antagonisttir."
@@ -7827,7 +7827,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "ist ein Dopamin- und Noradrenalin-Wiederaufnahmehemmer.",
-        "text_tr": "dopamin ve norepinefrin geri alım inhibitörüdür. 122 3Bölüm 3 · Farmakoloji",
+        "text_tr": "Dopamin ve norepinefrin geri alım inhibitörüdür.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a. 3.5 Antihypertensiva",
         "explanation_tr": "Cevap a'ya bakınız. 3.5 Antihipertansifler"
@@ -8175,7 +8175,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "erhöht die Plasmaosmolarität.",
-        "text_tr": "Yüzey gerilimi akciğerlerin elastik geri getirme kuvvetlerinin yaklaşık 2/3'ünden sorumludur.",
+        "text_tr": "Plazma ozmolaritesini artırır.",
         "is_correct": true,
         "explanation_de": "Mannit 20–40 % ist hyperosmolar und wird in einer Dosis von 0,25–1,0 g/kgKG als Kurzinfusion verabreicht. Durch die fehlende Verstoff-wechselung bleibt die Hyperosmolarität bei normaler Nierenfunktion ca. 2 h erhalten. Die HWZ beträgt rund 45 min.",
         "explanation_tr": "Mannitol %20-40 hiperosmolar olup 0.25-1.0 g/kg vücut ağırlığı dozunda kısa infüzyon şeklinde uygulanır. Metabolizma eksikliği nedeniyle hiperosmolarite normal böbrek fonksiyonuyla yaklaşık 2 saat boyunca korunur. HWZ yaklaşık 45 dakikadır."
@@ -8191,7 +8191,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "führt zu einer intrazellulären Dehydratation. 127",
-        "text_tr": "hücre içi dehidrasyona yol açar. 127 3 3.6 · Diüretikler",
+        "text_tr": "Hücre içi dehidrasyona yol açar.",
         "is_correct": true,
         "explanation_de": "Dadurch, dass interstitielles Wasser nach intravasal verschoben wird, wird wiederum intrazelluläres Wasser nach interstitiell verschoben und somit letztlich intrazellulär dehydriert. Dies ist die Grundlage der Therapie des Hirnödems mit M annit. Voraussetzung ist eine intakte Blut- Hirn-Schranke, da sonst mit einem Rebound-Phänomen gerechnet werden muss. Es kommt zu einem erneuten Anstieg des Hirndrucks durch Einlage-rung von Mannit in das Hirnparenchym.",
         "explanation_tr": "İnterstisyel su intravasküler olarak kaydığı için, hücre içi su da interstisyel olarak kayar ve sonuçta hücre içi olarak dehidre olur. Bu, beyin ödeminin M annit ile tedavisinin temelidir. Ön koşul sağlam bir kan-beyin bariyeridir, aksi takdirde bir geri tepme fenomeni beklenmelidir. Mannitolün beyin parankiminde birikmesi nedeniyle kafa içi basıncında yeniden bir artış olur."
@@ -8399,7 +8399,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "trockener geröteter Haut",
-        "text_tr": "kuru, kızarmış cilt 130 3Bölüm 3 · Farmakoloji",
+        "text_tr": "Kuru, kızarmış cilt.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort d. Hinzu kommen myokardiale Depression mit Verlängerung des QRS-Komplexes und ventrikuläre Arrhythmien. Die Behandlung der Vergiftung besteht in der frühen Phase (innerhalb der ersten 10 h) in einer Magenspülung und Kohleinstillation. Eine Hämoperfusion oder Hämodialyse ist aufgrund der hohen Proteinbindung nutzlos. Krampf-anfälle werden mit Diazepam und Phenytoin, das auch antiarrhythmisch wirkt, durchbrochen. Eine Alkalisierung mit Natriumbikarbonat und die kontrollierte Hyperventilation kann die myokardiale Toxizität vorübergehend mildern. Bei AV-Blockierungen ist die Gabe von Isoproterenol, bzw. Orciprenalin indi-ziert, bei Auftreten einer Hypotension steht die Volumen- und Katecholamin-therapie im Vordergrund.",
         "explanation_tr": "Cevap d'ye bakınız. Ayrıca QRS kompleksinin uzaması ve ventriküler aritmilerle birlikte miyokard depresyonu da vardır. Erken dönemdeki (ilk 10 saat içindeki) zehirlenmelerin tedavisi mide lavajı ve kömür damlatılmasından oluşur. Hemoperfüzyon veya hemodiyaliz, proteinlere yüksek bağlanma nedeniyle yararsızdır. Antiaritmik etkisi de olan diazepam ve fenitoin ile nöbetler durdurulur. Sodyum bikarbonat ile alkalizasyon ve kontrollü hiperventilasyon, miyokardiyal toksisiteyi geçici olarak hafifletebilir. AV blokajları durumunda izoproterenol veya orsiprenalin uygulanması endikedir; hipotansiyon meydana gelirse hacim ve katekolamin tedavisine odaklanılır."
@@ -8903,7 +8903,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "kann die Clearance von Bupivacain um 35 % vermindern.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Bupivakain klirensini %35 oranında azaltabilir.",
         "is_correct": true,
         "explanation_de": "Propranolol führt zu einer Verminderung des hepatischen Blutflusses und zu einer Verminderung der Metabolisierungsleistung der Leber. Amidlokalanästhetika können daher in Gegenwart von Propranolol ver-mindert metabolisiert werden, was zu einer Erhöhung der Toxizität beitra-gen kann. 137",
         "explanation_tr": "Propranolol hepatik kan akışında azalmaya ve karaciğerin metabolik kapasitesinde azalmaya yol açar. Bu nedenle amid lokal anesteziklerin propranolol varlığında metabolizması azalabilir ve bu da toksisitenin artmasına katkıda bulunabilir. 137 3 3,9 · Adrenerjik reseptör blokerleri"
@@ -9594,8 +9594,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "Bei Grad V nur der weiche Gaumen, die Epiglottis ist nicht mehr sichtbar. 147 4 · Anäst hesie4",
-        "text_tr": "Derece V'de sadece yumuşak damak ve epiglot artık görülmez. 147 4 · Anestezi4",
+        "text_de": "Bei Grad V nur der weiche Gaumen, die Epiglottis ist nicht mehr sichtbar.",
+        "text_tr": "Evre V'te sadece yumuşak damak görülür, epiglot artık görünmez.",
         "is_correct": false,
         "explanation_de": "Grad V gibt es nach der Einteilung von Cormack und Lehane nicht.",
         "explanation_tr": "Cormack ve Lehane'nin sınıflamasına göre V. derece mevcut değildir."
@@ -9906,8 +9906,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "intravasale Hämolyse 151 4 · Anäst hesie4",
-        "text_tr": "intravasküler hemoliz 151 4 · Anestezi4",
+        "text_de": "intravasale Hämolyse",
+        "text_tr": "İntravasküler hemoliz",
         "is_correct": true,
         "explanation_de": "Bei einem Abfall des Serumnatriumspiegels auf 110 mmol/l kann es zu einer osmotischen intravasalen Hämolyse (Anschwellen der Erythro-zyten) kommen.",
         "explanation_tr": "Serum sodyum düzeyi 110 mmol/l'ye düşerse ozmotik intravasküler hemoliz (eritrositlerin şişmesi) meydana gelebilir."
@@ -10442,7 +10442,7 @@ const EXAM_QUESTIONS = [
     "image": null,
     "question_type": "options",
     "stem_de": "Ein junger, gesunder Mann:",
-    "stem_tr": "Adrenalin 190 5Bölüm 5 · Bölgesel anestezi",
+    "stem_tr": "Genç, sağlıklı bir erkek:",
     "options": [
       {
         "key": "a",
@@ -10531,7 +10531,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Doxorubicin ist ausgesprochen kardiotoxisch.",
-        "text_tr": "Doksorubisin son derece kardiyotoksiktir. 160 4Bölüm 4 · Anestezi",
+        "text_tr": "Doksorubisin son derece kardiyotoksiktir.",
         "is_correct": true,
         "explanation_de": "Doxorubicin, ein Anthracyclin, wird u. a. in der Behandlung von Hodentumoren eingesetzt. Es hat eine akute, dosisunabhängige Kardio-toxizität, die sich in einer Linksherzinsuffizienz, malignen Herzrhythmus-störungen und einer erhöhten Inzidenz des plötzlichen Herztodes mani-festiert. Darüber hinaus wird eine chronische, dosisabhängige Kardio-toxizität beschrieben, die zum biventrikulären Herzversagen führen kann.",
         "explanation_tr": "Diğer şeylerin yanı sıra bir antrasiklin olan doksorubisin kullanılır. testis tümörlerinin tedavisinde kullanılır. Sol kalp yetmezliği, malign kardiyak aritmiler ve artan ani kardiyak ölüm insidansı ile kendini gösteren akut, dozdan bağımsız kardiyotoksisiteye sahiptir. Ayrıca biventriküler kalp yetmezliğine yol açabilen kronik, doza bağımlı kardiyotoksisite de anlatılmaktadır."
@@ -10738,8 +10738,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "e",
-        "text_de": "wird von Cholinesterasen gespalten. 165 5 · Regionala nästhesie5",
-        "text_tr": "kolinesterazlar tarafından parçalanır. 165 5 · Bölgesel anestezi5",
+        "text_de": "wird von Cholinesterasen gespalten.",
+        "text_tr": "Kolinesterazlar tarafından parçalanır.",
         "is_correct": false,
         "explanation_de": "Prilocain gehört zu den Amidlokalanästhetika und wird hepatisch hydrolysiert. Die Ester-LA werden von Cholinesterasen hydrolysiert.",
         "explanation_tr": "Prilokain amid lokal anesteziklerden biridir ve hepatik olarak hidrolize edilir. Ester LA kolinesterazlar tarafından hidrolize edilir."
@@ -10931,7 +10931,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "Bei Auftreten von präkonvulsiven Warnzeichen sollte der Patient auf-gefordert werden zu hyperventilieren.",
-        "text_tr": "Prekonvülsif uyarı işaretleri ortaya çıkarsa hastadan hiperventilasyon yapması istenmelidir. 168 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Prekonvülsif uyarı işaretleri ortaya çıkarsa hastadan hiperventilasyon yapması istenmelidir.",
         "is_correct": true,
         "explanation_de": "Das Auftreten von präkonvulsiven Warnzeichen erfordert: 1. Abbruch der weiteren Gabe des Lokalanästhetikums; 2. Hyperventilation, da eine zerebrale Vasokonstriktion durch Hypokapnie den Antransport von LA vermindert; 3. i.v.-Gabe von Diazepam 2,5–5 mg (Antikonvulsivum).",
         "explanation_tr": "Prekonvülsif uyarı işaretlerinin ortaya çıkması şunları gerektirir: 1. Lokal anestezik uygulamasının daha fazla durdurulması; 2. Hipokapniye bağlı serebral vazokonstriksiyon LA'nın taşınmasını azalttığı için hiperventilasyon; 3. 2,5-5 mg diazepamın (antikonvülsan) IV uygulaması."
@@ -11206,7 +11206,7 @@ const EXAM_QUESTIONS = [
     "image": null,
     "question_type": "options",
     "stem_de": "Die Wirkdauer eines Lokalanästhetikums (LA) korreliert:",
-    "stem_tr": "Nabız ölçümü yok. Fizikte momentum, büyük bir cismin hareketini tanımlar. Görsel olarak, dürtü kabaca çarpışan iki nesnenin \"kuvvetine\" karşılık gelir. Hareket eden her cisim, çarpışma sırasında momentumunu kısmen veya tamamen başka cisimlere aktarabilir veya başka cisimlerden devralabilir. 21 1 1.2 · Fizik",
+    "stem_tr": "Bir lokal anesteziğin (LA) etki süresi şununla korelasyon gösterir:",
     "options": [
       {
         "key": "a",
@@ -11263,7 +11263,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "LA wirken positiv chronotrop.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Lokal anestezikler pozitif kronotropik etki gösterir.",
         "is_correct": false,
         "explanation_de": "LA wirken generell negativ inotrop, negativ chronotrop, negativ bathmotrop und negativ dromotrop. Aufgrund dieser Eigenschaften kann z. B. Lidocain zur Behandlung ventrikulärer Rhythmusstörungen eingesetzt werden.",
         "explanation_tr": "LA genellikle negatif inotropik, negatif kronotropik, negatif batmotropik ve negatif dromotropik etkiye sahiptir. Bu özellikler nedeniyle, ör. B. Lidokain ventriküler aritmileri tedavi etmek için kullanılabilir."
@@ -11278,8 +11278,8 @@ const EXAM_QUESTIONS = [
       },
       {
         "key": "c",
-        "text_de": "Das Vorliegen einer Gewebsazidose kann einen Wirkverlust des LA verur sachen. 173 5 · Regionala nästhesie5",
-        "text_tr": "Doku asidozunun varlığı LA etkinliğinin kaybına neden olabilir. 173 5 · Bölgesel anestezi5",
+        "text_de": "Das Vorliegen einer Gewebsazidose kann einen Wirkverlust des LA verursachen.",
+        "text_tr": "Doku asidozunun varlığı LA etkinliğinde kayba neden olabilir.",
         "is_correct": true,
         "explanation_de": "Im sauren Milieu (z. B. bei Entzündung) wird ein großer Teil des LA protoniert und einfach positiv geladen (quaternäre Ammonium-struktur). Dadurch kann das LA nicht in das Zellinnere (dem Wirkort) gelangen und es kommt zu einem ausgeprägten Wirkungsverlust.",
         "explanation_tr": "Asidik bir ortamda (örneğin iltihaplanmada), LA'nın büyük bir kısmı protonlanır ve basitçe pozitif olarak yüklenir (kuaterner amonyum yapısı). Sonuç olarak LA, hücrenin iç kısmına (etki alanı) ulaşamaz ve belirgin bir etkinlik kaybı olur."
@@ -11487,7 +11487,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Bupivacain",
-        "text_tr": "Bupivakain 176 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Bupivakain",
         "is_correct": false,
         "explanation_de": "Bupivacain hat, wie andere Lokalanästhetika auch, membranstabilisierende Eigenschaften. Es führt zunächst zu einer Dämpfung höherer kortikaler Zentren und damit evtl. zu einer Aktivierung untergeordneter Zentren (Temporallappenanfälle) durch Disinhibition. Hieraus erklären sich die bekannten klinischen Nebenwirkungen wie Exzitation, Nausea und epi-leptische Anfälle (initial Erregung, dann Dämpfung). Erst zuletzt entsteht eine komplette zerebrale Depression. Bupivacain hat demnach keine kli-nisch nutzbaren antikonvulsiven Eigenschaften.",
         "explanation_tr": "Bupivakain, diğer lokal anestezikler gibi membran stabilize edici özelliklere sahiptir. Başlangıçta yüksek kortikal merkezlerin sönümlenmesine ve dolayısıyla muhtemelen disinhibisyon yoluyla daha düşük seviyeli merkezlerin aktivasyonuna (temporal lob nöbetleri) yol açar. Bu, uyarılma, mide bulantısı ve epileptik nöbetler (önce heyecan, sonra depresyon) gibi iyi bilinen klinik yan etkileri açıklamaktadır. Ancak sonunda tam bir serebral depresyon gelişir. Bupivakainin bu nedenle klinik olarak yararlı antikonvülsan özellikleri yoktur."
@@ -11747,7 +11747,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Diuretika vom Typ des Furosemid vermindern den ICP. 179",
-        "text_tr": "Furosemid tipi diüretikler ICP'yi azaltır. 179 5 5.1 · Nöroanestezi",
+        "text_tr": "Furosemid tipi diüretikler intrakraniyal basıncı (ICP) azaltır.",
         "is_correct": true,
         "explanation_de": "Furosemid wirkt nicht nur auf das Natriumchloridtransportprotein der Tubuluszellen der Nieren, sondern auch auf die Ependym- und Plexus-choroideus-Zellen des Gehirns und führt damit zu einer Verminderung der Liquorproduktion und damit zu einer Abnahme des ICP. Die Kammerwas-serproduktion des Auge s wird über denselben Wirkmechanismus reduziert.",
         "explanation_tr": "Furosemid sadece böbreklerin tübüler hücrelerinin sodyum klorür taşıma proteinine değil, aynı zamanda beynin ependimal ve koroid pleksus hücrelerine de etki ederek BOS üretiminde bir azalmaya ve dolayısıyla ICP'de bir azalmaya yol açar. Aynı etki mekanizmasıyla gözün sulu mizah üretimi azalır."
@@ -11871,7 +11871,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "die Schleimhaut des weichen Gaumens",
-        "text_tr": "Hipertermi",
+        "text_tr": "Yumuşak damağın mukozası.",
         "is_correct": true,
         "explanation_de": "Dieser Bereich wird über den N. maxillaris V 2 versorgt. Die Endäste laufen über den N. palatinus major und minor.",
         "explanation_tr": "Bu alan V2 maksiller sinir tarafından beslenir. Terminal dalları büyük ve küçük palatin sinirlerinin üzerinden geçer."
@@ -12007,7 +12007,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Es wird hauptsächlich im Hypothalamus verschaltet.",
-        "text_tr": "Esas olarak hipotalamusta bağlantılıdır. 182 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Esas olarak hipotalamusta bağlantılıdır.",
         "is_correct": true,
         "explanation_de": "Hauptintegrationsort des ANS ist der Hypothalamus. Von hier aus wird auch auf hormonellem Weg über die Adeno- und Neurohypophyse der Stoffwechsel gesteuert.",
         "explanation_tr": "ANS'nin ana entegrasyon bölgesi hipotalamustur. Buradan metabolizma, adeno ve nörohipofiz aracılığıyla hormonal olarak da kontrol edilir."
@@ -13039,7 +13039,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Überinfusion",
-        "text_tr": "Propofol gerçek ağırlığa göre dozlanır.",
+        "text_tr": "Aşırı sıvı yüklemesi (hipervolemi / aşırı infüzyon).",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.e. Richtig. Siehe Antwort a.",
         "explanation_tr": "Bkz. cevap a.e. Doğru. Cevap a'ya bakınız."
@@ -13559,7 +13559,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "d",
         "text_de": "Der Hämoglobingehalt des Neugeborenen liegt bei 14 bei 16 g/dl.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Yenidoğanın hemoglobin düzeyi 14 ila 16 g/dl arasındadır.",
         "is_correct": false,
         "explanation_de": "Der Hämoglobingehalt liegt bei etwa 18–20 g/dl. Es handelt sich um fetales Hämoglobin, dessen O₂ -Affinität im Vergleich zu adultem Hämoglobin erhöht ist.",
         "explanation_tr": "Hemoglobin içeriği 18-20 g/dl civarındadır. Yetişkin hemoglobine kıyasla O₂ afinitesi artan fetal hemoglobindir."
@@ -13775,7 +13775,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Thiopental wird in einer Dosierung von 8 mg/kgKG i.v. zur Einleitung bei Säuglingen gegeben.",
-        "text_tr": "Tiyopental i.v. olarak uygulanır. 8 mg/kg vücut ağırlığı dozunda. Bebeklerde indüksiyon için verilir. 206 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Tiyopental bebeklerde indüksiyon için 8 mg/kg vücut ağırlığı dozunda i.v. uygulanır.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.",
         "explanation_tr": "Cevap a'ya bakınız."
@@ -14211,7 +14211,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Der Ductus venosus verschließt sich innerhalb von 4 Wochen nach der Geburt.",
-        "text_tr": "Duktus venosus doğumdan sonraki 4 hafta içinde kapanır. 212 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Duktus venozus doğumdan sonraki 4 hafta içinde kapanır.",
         "is_correct": false,
         "explanation_de": "Der Ductus venosus verschließt sich innerhalb einer Woche nach Geburt.",
         "explanation_tr": "Duktus venosus doğumdan sonraki bir hafta içinde kapanır."
@@ -14263,7 +14263,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "kommt es häufig zu Intubationsschwierigkeiten.",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Sıklıkla entübasyon zorlukları ortaya çıkar.",
         "is_correct": true,
         "explanation_de": "Es entwickelt sich häufig ein ausgeprägtes Ödem der oberen Luftwege mit Larynxbeteiligung, welche die Einstellung der Glottis erschweren kann. 213",
         "explanation_tr": "Üst solunum yollarında belirgin ödem sıklıkla gırtlak tutulumuyla gelişir ve bu durum glottisin ayarlanmasını zorlaştırabilir. 213 5 5.5 · Kadın Doğum"
@@ -14283,7 +14283,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "a",
         "text_de": "sollte die Spinalanästhesie oder Periduralanästhesie gegenüber der Allgemeinanästhesie bevorzugt werden.",
-        "text_tr": "Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1",
+        "text_tr": "Spinal anestezi veya epidural anestezi, genel anesteziye tercih edilmelidir.",
         "is_correct": true,
         "explanation_de": "Da die Gefahren und Komplikationen der Allgemeinanästhesie bei Schwangeren (Intubationsprobleme, Hypoxie, Aspiration) durch eine Regio-nalanästhesie umgangen werden (bei komplikationslosem Verlauf), sollte bei Elektiveingriffen ein Regionalanästhesieverfahren gewählt werden.",
         "explanation_tr": "Gebelerde genel anestezinin tehlikeleri ve komplikasyonları (entübasyon sorunları, hipoksi, aspirasyon) bölgesel anestezi ile (eğer süreç sorunsuz geçiyorsa) önlendiğinden, elektif işlemlerde bölgesel anestezi yöntemi seçilmelidir."
@@ -14367,7 +14367,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "wird durch Unterlegen eines Keils unter die linke Gesäßhälfte verhindert.",
-        "text_tr": "Kalçanın sol yarısının altına takoz konularak bu durum önlenir. 214 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Kalçanın sol tarafının altına takoz konularak bu durum önlenir.",
         "is_correct": false,
         "explanation_de": "Der Keil wird unter die rechte Gesäßhälfte gelegt.",
         "explanation_tr": "Takoz kalçanın sağ yarısının altına yerleştirilir."
@@ -14471,7 +14471,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Anämie 215",
-        "text_tr": "Anemi 215 5 5,6 · Geriatri",
+        "text_tr": "Anemi.",
         "is_correct": false,
         "explanation_de": "Siehe Antwort a.",
         "explanation_tr": "Cevap a'ya bakınız."
@@ -14575,7 +14575,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Die linksventrikuläre Nachlast ist im Alter in der Regel erhöht.",
-        "text_tr": "Sol ventriküler afterload genellikle yaşla birlikte artar. 216 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Sol ventriküler ard yük (afterload) genellikle yaşla birlikte artar.",
         "is_correct": true,
         "explanation_de": "Der periphere Gefäßwiderstand steigt im Alter regelhaft an, und die Nachlast ist somit erhöht.",
         "explanation_tr": "Periferik vasküler direnç genellikle yaşla birlikte artar ve dolayısıyla afterload da artar."
@@ -14731,7 +14731,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "führt zu einer Kontraktilitätsminderung des Herzmuskels.",
-        "text_tr": "kalp kasının kontraktilitesinde azalmaya yol açar. 218 5Bölüm 5 · Bölgesel anestezi",
+        "text_tr": "Kalp kasının kontraktilitesinde azalmaya yol açar.",
         "is_correct": false,
         "explanation_de": "Eine negativ inotrope Wirkung ist aufgrund der Hemmung der Kalziumfreisetzung aus dem sarkoplasmatischen Retikulum zwar theore-tisch denkbar, spielt aber in der Praxis keine Rolle. Es wird auch keine Vaso-dilatation ausgelöst oder die uterine Kontraktion vermindert.",
         "explanation_tr": "Sarkoplazmik retikulumdan kalsiyum salınımının inhibisyonu nedeniyle teorik olarak negatif bir inotropik etki düşünülebilir ancak pratikte hiçbir rolü yoktur. Vazodilatasyon tetiklenmez veya uterus kasılması azalmaz."
@@ -14783,7 +14783,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "ist häufig bei Patienten mit einem »central core disease« vorhanden. 219",
-        "text_tr": "santral çekirdek hastalığı olan hastalarda sıklıkla mevcuttur. 219 5 5,7 · Malign hipertermi",
+        "text_tr": "Santral kor hastalığı (Central Core Disease) olan hastalarda sıklıkla mevcuttur.",
         "is_correct": true,
         "explanation_de": "Das »central core disease« ist eine mitochondriale Myopathie, die auf eine MH hinweist. Daneben ist eine Vielzahl von Myopathien be-schrieben worden, die mit einer MH vergesellschaftet sind. Eine spezifische Myopathie als ein morphologisches Korrelat der MH gibt es nicht. Praktisch sind alle Myopathien so zu behandeln, als ob sie ein erhöhtes Risiko der MH bedingen.",
         "explanation_tr": "Merkezi çekirdek hastalığı, MH'yi gösteren bir mitokondriyal miyopatidir. Ayrıca MH ile ilişkili çok sayıda miyopati tanımlanmıştır. MH'nin morfolojik korelasyonu olarak spesifik bir miyopati yoktur. Pratik olarak tüm miyopatiler, MH riskinde artışa neden oluyormuş gibi tedavi edilmelidir."
@@ -14819,7 +14819,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "c",
         "text_de": "Amidlokalanästhetika",
-        "text_tr": "plazma sodyum seviyelerinde bir düşüş meydana gelebilir.",
+        "text_tr": "Amid grubu lokal anestezikler.",
         "is_correct": true,
         "explanation_de": "Richtig.",
         "explanation_tr": "Doğru."
@@ -15043,7 +15043,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "DHB 223",
-        "text_tr": "DHB 223 5 5,8 · Porfiri",
+        "text_tr": "DHB (Dihidrobenzperidol).",
         "is_correct": true,
         "explanation_de": "Unter den Antiemetika gilt DHB als »sicher«, während Metoclopramid als »unsicher« klassifiziert wurde.",
         "explanation_tr": "Antiemetikler arasında DHB \"güvenli\" olarak kabul edilirken metoklopramid \"güvensiz\" olarak sınıflandırıldı."
@@ -15459,7 +15459,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Hyper- oder Hypalgesie 229",
-        "text_tr": "Hiper veya hipaljezi 229 5 5.10 · Ağrı tedavisi",
+        "text_tr": "Hiperaljezi veya hipoaljezi.",
         "is_correct": true,
         "explanation_de": "Siehe Antwort a.",
         "explanation_tr": "Cevap a'ya bakınız."
@@ -15955,7 +15955,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "b",
         "text_de": "ein erniedrigter peripherer Gefäßwiderstand (TPR).",
-        "text_tr": "periferik vasküler direncin (TPR) azalması. 237 6 · Yoğun bakım hekimliği6",
+        "text_tr": "Periferik vasküler direncin (TPR) azalması.",
         "is_correct": true,
         "explanation_de": "Der periphere Gefäßwiderstand ist deutlich erniedrigt.",
         "explanation_tr": "Periferik vasküler direnç önemli ölçüde azalır."
@@ -16139,7 +16139,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "b",
         "text_de": "extravasaler Hämolyse",
-        "text_tr": "Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.",
+        "text_tr": "Ekstravasküler hemoliz.",
         "is_correct": false,
         "explanation_de": "Die extravasale Hämolyse ist für die deutlich weniger bedrohlichen, verzögerten Unverträglichkeitsreaktionen (Unverträglichkeitsreaktionen der Blutuntergruppen) typisch.",
         "explanation_tr": "Ekstravasküler hemoliz, önemli ölçüde daha az tehdit edici, gecikmiş intolerans reaksiyonlarının (kan alt gruplarının intolerans reaksiyonları) tipik bir örneğidir."
@@ -16319,7 +16319,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "kommt es häufig zu einer Hyperphosphatämie.",
-        "text_tr": "Hiperfosfatemi sıklıkla ortaya çıkar. 243 6 · Yoğun bakım hekimliği6",
+        "text_tr": "Hiperfosfatemi sıklıkla ortaya çıkar.",
         "is_correct": false,
         "explanation_de": "Unter den Bedingungen der TPE wird häufig eine Hypophosphatämie beobachtet, weil im Stadium der positiven Stickstoffbilanz (Anabo-lie) Kalium und Phosphat nach intrazellulär aufgenommen werden. Im Rah-men einer Katabolie mit akutem Nierenversagen (Phosphatakkumulation) kommt es dagegen zu einer Hyperphosphatämie.",
         "explanation_tr": "TPE koşulları altında, potasyum ve fosfatın pozitif nitrojen dengesi (anabolizma) aşamasında hücre içi olarak emilmesi nedeniyle hipofosfatemi sıklıkla gözlenir. Ancak akut böbrek yetmezliği (fosfat birikimi) ile birlikte katabolizma bağlamında hiperfosfatemi meydana gelir."
@@ -16667,7 +16667,7 @@ const EXAM_QUESTIONS = [
       {
         "key": "e",
         "text_de": "Dialyse und/oder Hämofiltration",
-        "text_tr": "Diyaliz ve/veya hemofiltrasyon 249 6 · Yoğun bakım tıbbı6",
+        "text_tr": "Diyaliz ve/veya hemofiltrasyon.",
         "is_correct": false,
         "explanation_de": "Diese wird eingesetzt, wenn die Nierenfunktion bei schwerer metabolischer Alkalose ausgefallen ist.",
         "explanation_tr": "Bu, şiddetli metabolik alkaloz nedeniyle böbrek fonksiyonu başarısız olduğunda kullanılır."
@@ -17040,7 +17040,7 @@ const EXAM_QUESTIONS = [
     "question_de": "Welches Einleitungshypnotikum wählen Sie?",
     "question_tr": "Hangi indüksiyon hipnotiğini seçersiniz?",
     "answer_de": "Im geschilderten Szenario der Intubation eines Patienten im schweren septischen Schock muss bei der Einleitung einer Allgemeinanästhesie mit schweren hämodynamischen Nebenwirkungen gerechnet werden. Die Einleitung muss darüber hinaus als Rapid Sequence Induction (RSI) durchgeführt werden. Als Einleitungshypnotikum kommt hier v. a. Ketamin oder S-Ketamin in Kombination mit Midazolam in Betracht. Was wissen Sie über Ketamin? Ketamin ist ein Phencyclidinderivat und steht chemisch den Halluzinogenen nahe. Es ist ein racemisches Gemisch aus den beiden Enantiomeren (S)- und (R)-Ketamin. Ketamin S ist stärker wirksam und steht ebenfalls als Pharmakon zur Verfügung. Die Wirkung von Ketamin resultiert aus seiner Bindung an den N-Methyl- D-Aspartat-Rezeptor (NMDA-Rezeptor). Es ist das einzige Einleitungshypnotikum mit einer ausgeprägten analgetischen und das Herz-Kreislauf-System stimulierenden Wirkung. Hierdurch ist es insbesondere bei septischen und hypovolämischen Schockzuständen besonders geeignet. Bei kardialen Patienten muss abgewogen werden, ob die stimulierende Wirkung auf den Sympathikus mit Erhöhung von HZV, peripherem Widerstand und myokardialem Sauerstoffverbrauch in der individuellen pathophysiologischen Situation positiv oder negativ erscheint. In niedriger Dosierung kann es auch zur Analgosedierung verwendet werden. Auch die nasale und intramuskuläre Applikation sind möglich. Ketamin erzeugt eine dissoziative Anästhesie. Bizarre Träume und Halluzinationen sind beschrieben, sodass eine Kombination mit einem Benzodiazepin",
-    "answer_tr": "Hiperkapni sistemik dolaşımda vazodilatasyona neden olur ve serebral direnç azalır. Serebral ödem veya artmış kafa içi basıncı PHC kullanımına kontrendikasyonlardır. iksir. Burada birincil ekstrapulmoner süreç öncülük eder; B. toksin infiltrasyonu yoluyla pulmoner vasküler endotele ikincil hasara yol açar. Ancak ARDS primer alveolar hasara bağlı olarak da gelişebilir. Bu, asidik mide içeriğinin aspirasyonu, akciğer kontüzyonu, zatürre veya zehirli gazların solunması sonrası görülen durumdur. 83 2 2.3 · Akciğer fizyolojisi",
+    "answer_tr": "Hiperkapni sistemik dolaşımda vazodilatasyona neden olur ve serebral vasküler direnç azalır. Serebral ödem veya artmış kafa içi basıncı PHC (permissif hiperkapni) kullanımına kontrendikasyonlardır. Primer ekstrapulmoner süreçte toksin infiltrasyonu pulmoner vasküler endotele ikincil hasara yol açar. Ancak ARDS primer alveoler hasara bağlı olarak da gelişebilir (asidik mide içeriği aspirasyonu, akciğer kontüzyonu, pnömoni veya toksik gaz inhalasyonu sonrası).",
     "is_high_yield": true
   },
   {
@@ -19522,7 +19522,7 @@ const EXAM_QUESTIONS = [
     "image": null,
     "question_type": "open",
     "question_de": "Welche Differenzialdiagnosen kommen in Betracht?",
-    "question_tr": "Bölge III dışından Batıya kadar konum 56 2Bölüm 2 · Fizyoloji",
+    "question_tr": "Hangi ayırıcı tanılar dikkate alınmalıdır?",
     "answer_de": "• Epidemiologisch und im vorliegenden Fall auch anamnestisch ist ein plötzlicher Herztod die wahrscheinlichste Differenzialdiagnose. • Aufgrund der Anamnese eines thorakalen Schmerzereignisses muss außerdem an eine Lungenarterienembolie gedacht werden. • Zudem sollten reversible Ursachen eines Kreislaufstillstands abgeklärt werden („4 H / HITS“): – Hypoxie – Hypo- / Hyperkaliämie – Hypo- / Hyperthermie – Hypovolämie (s. a. Schock, › Kap. 1.2.3) – Herzbeuteltamponade – Intoxikation – Thrombembolie – Spannungspneumothorax Wie gehen Sie nach erfolgreicher CPR vor? Postreanimationssyndrom Durch den Herz-Kreislauf-Stillstand entsteht eine systemische Ischämie. Nach erfolgreicher CPR tritt ein kombinierter",
     "answer_tr": "• Epidemiyolojik olarak ve bu olguda da öyküye dayalı olarak ani kardiyak ölüm en olası ayırıcı tanıdır. • Torasik ağrı olayı öyküsü nedeniyle pulmoner arter embolisi de düşünülmelidir. • Ayrıca kalp durmasının geri döndürülebilir nedenleri açıklığa kavuşturulmalıdır (“4 H / HITS”): – Hipoksi – Hipo/hiperkalemi – Hipo/hipertermi – Hipovolemi (ayrıca bkz. şok, › Bölüm 1.2.3) – Kardiyak tamponad – Zehirlenme – Tromboembolizm – Tansiyon pnömotoraks Başarılı CPR'den sonra nasıl ilerlersiniz? Postresüsitasyon sendromu Sistemik iskemi, kardiyovasküler arestin bir sonucu olarak ortaya çıkar. Başarılı CPR'den sonra birleşik bir CPR meydana gelir",
     "is_high_yield": true

@@ -51,8 +51,14 @@ from collections import Counter
 with open("questions.js", "r", encoding="utf-8") as f:
     raw = f.read()
 
-json_str = re.sub(r'^.*?=\s*', '', raw, count=1, flags=re.DOTALL)
-json_str = json_str.rstrip().rstrip(';')
+# Extract content between first '[' and last ']'
+start_idx = raw.find('[')
+end_idx = raw.rfind(']')
+if start_idx != -1 and end_idx != -1:
+    json_str = raw[start_idx:end_idx+1]
+else:
+    json_str = re.sub(r'^.*?=\s*', '', raw, count=1, flags=re.DOTALL).rstrip().rstrip(';')
+
 questions = json.loads(json_str)
 
 print(f"Loaded {len(questions)} questions from questions.js\n")

@@ -1357,6 +1357,11 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (key === 'm') {
       toggleFlagForReview();
     }
+    // ? or H: Toggle Keyboard Shortcut HUD
+    else if (e.key === '?' || key === 'h') {
+      e.preventDefault();
+      toggleShortcutModal();
+    }
   });
 
   function navigateToNextQuestion() {
@@ -1575,8 +1580,13 @@ document.addEventListener('DOMContentLoaded', () => {
       parsedCase.checklist.forEach(itemText => {
         const row = document.createElement('div');
         row.className = 'checklist-item-row';
+        row.title = 'Antippen zum Abhaken / Markieren';
         const formatted = (mode === 'flashcard') ? generateClozeMaskedHtml(itemText) : itemText;
         row.innerHTML = `<span class="checklist-check">✓</span> <div>${formatted}</div>`;
+        row.addEventListener('click', (e) => {
+          if (e.target && e.target.classList && e.target.classList.contains('cloze-blur')) return;
+          row.classList.toggle('checked-active');
+        });
         elRubricChecklistItems.appendChild(row);
       });
     }
@@ -1959,14 +1969,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Render Direct Jump Modal Grid (Categorized by Topics) ---
-  function openQuestionGridModal() {
+  // --- Render Direct Jump Modal Grid (Categorized by Topics with Live Search & Filtering) ---
+  let jumpModalSearchQuery = '';
+  let jumpModalFilter = 'all';
+
+  function renderJumpModalGrid() {
+    if (!elQuestionGrid) return;
     elQuestionGrid.innerHTML = '';
+
+    const query = jumpModalSearchQuery.trim().toLowerCase();
     
-    const categories = Array.from(new Set(EXAM_QUESTIONS.map(q => q.category)));
+    // Filter questions based on modal search and chips
+    const matchingQuestions = EXAM_QUESTIONS.filter(q => {
+      // 1. Chip filter
+      const qAns = state.answers[q.id];
+      const isFlagged = !!state.flagged[q.id];
+      if (jumpModalFilter === 'dus') {
+        const isDus = !!q.is_dus_protocol || (q.source_book && (q.source_book.includes('Düsseldorf') || q.source_book.includes('D\u00fcsseldorf')));
+        if (!isDus) return false;
+      } else if (jumpModalFilter === 'high_yield') {
+        if (!q.is_high_yield) return false;
+      } else if (jumpModalFilter === 'unanswered') {
+        if (qAns && qAns.submitted) return false;
+      } else if (jumpModalFilter === 'incorrect') {
+        if (!qAns || !qAns.submitted || qAns.isCorrect) return false;
+      } else if (jumpModalFilter === 'review') {
+        if (!isFlagged) return false;
+      } else if (jumpModalFilter === 'notes') {
+        const hasNote = state.userNotes && state.userNotes[q.id] && state.userNotes[q.id].trim();
+        if (!hasNote) return false;
+      }
+
+      // 2. Text query
+      if (query) {
+        const textToSearch = [
+          q.stem_de, q.stem_tr, q.question_de, q.question_tr,
+          q.answer_de, q.category, q.source_book, q.examiner_tip
+        ].filter(Boolean).join(' ').toLowerCase();
+        if (!textToSearch.includes(query)) return false;
+      }
+
+      return true;
+    });
+
+    if (matchingQuestions.length === 0) {
+      elQuestionGrid.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.95rem;">🔍 Keine Fragen gefunden für diese Filterauswahl.</div>';
+      return;
+    }
+
+    const categories = Array.from(new Set(matchingQuestions.map(q => q.category)));
     
     categories.forEach(cat => {
-      const catQuestions = EXAM_QUESTIONS.filter(q => q.category === cat);
+      const catQuestions = matchingQuestions.filter(q => q.category === cat);
       if (!catQuestions.length) return;
 
       const block = document.createElement('div');
@@ -1986,8 +2040,17 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.className = 'q-grid-btn';
         btn.textContent = globalIdx;
 
+        // Tooltip snippet
+        const promptSnippet = (q.stem_de || q.question_de || '').substring(0, 75) + '...';
+        btn.title = `Frage ${globalIdx}: ${promptSnippet}`;
+
         const qAns = state.answers[q.id];
         const isFlagged = !!state.flagged[q.id];
+        const hasNote = state.userNotes && state.userNotes[q.id] && state.userNotes[q.id].trim();
+
+        if (hasNote) {
+          btn.classList.add('has-user-note');
+        }
 
         if (isFlagged) {
           btn.classList.add('flagged-review');
@@ -2010,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', () => {
             state.categoryFilter = 'all';
             state.searchQuery = '';
             if (elSearchInput) elSearchInput.value = '';
-            elCategoryFilter.value = 'all';
+            if (elCategoryFilter) elCategoryFilter.value = 'all';
             elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
             filteredQuestions = getFilteredQuestions();
           }
@@ -2028,12 +2091,64 @@ document.addEventListener('DOMContentLoaded', () => {
       block.appendChild(gridSub);
       elQuestionGrid.appendChild(block);
     });
+  }
 
+  function openQuestionGridModal() {
+    // Wire up search & filter listeners once
+    const jumpSearchInput = document.getElementById('jump-search-input');
+    if (jumpSearchInput && !jumpSearchInput.dataset.wired) {
+      jumpSearchInput.dataset.wired = 'true';
+      jumpSearchInput.addEventListener('input', (e) => {
+        jumpModalSearchQuery = e.target.value;
+        renderJumpModalGrid();
+      });
+    }
+
+    const jumpChips = document.querySelectorAll('.jump-chip');
+    jumpChips.forEach(chip => {
+      if (!chip.dataset.wired) {
+        chip.dataset.wired = 'true';
+        chip.addEventListener('click', () => {
+          jumpChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          jumpModalFilter = chip.dataset.jumpFilter || 'all';
+          renderJumpModalGrid();
+        });
+      }
+    });
+
+    renderJumpModalGrid();
     elJumpModal.classList.add('active');
   }
 
   function closeModal(modalEl) {
-    modalEl.classList.remove('active');
+    if (modalEl) modalEl.classList.remove('active');
+  }
+
+  // --- Keyboard Shortcuts Quick HUD Modal ---
+  const elShortcutModal = document.getElementById('shortcut-modal');
+  const elBtnShortcutFloat = document.getElementById('btn-shortcut-float');
+  const elShortcutModalClose = document.getElementById('shortcut-modal-close');
+
+  function toggleShortcutModal() {
+    if (!elShortcutModal) return;
+    if (elShortcutModal.classList.contains('active')) {
+      closeModal(elShortcutModal);
+    } else {
+      elShortcutModal.classList.add('active');
+    }
+  }
+
+  if (elBtnShortcutFloat) {
+    elBtnShortcutFloat.addEventListener('click', toggleShortcutModal);
+  }
+  if (elShortcutModalClose) {
+    elShortcutModalClose.addEventListener('click', () => closeModal(elShortcutModal));
+  }
+  if (elShortcutModal) {
+    elShortcutModal.addEventListener('click', (e) => {
+      if (e.target === elShortcutModal) closeModal(elShortcutModal);
+    });
   }
 
   // --- Automatic Cloud Auto-Sync Engine (RESTful API Cloud KV Store) ---
@@ -2494,6 +2609,21 @@ document.addEventListener('DOMContentLoaded', () => {
     elPedsWeight.addEventListener('input', calcPediatrics);
   }
 
+  // Global helper for calculator copy-to-clipboard
+  window.copyCalcValues = function(text, btn) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✓ In Zwischenablage kopiert!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove('copied');
+        }, 2200);
+      });
+    }
+  };
+
   function calcPediatrics() {
     if (!elPedsResults) return;
     const age = parseFloat(elPedsAge ? elPedsAge.value : 4) || 4;
@@ -2542,6 +2672,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="calc-metric-value">${fluidsMin} – ${fluidsMax} ml</div>
         <div class="calc-metric-note">10–20 ml/kg kristalloide Vollelektrolytlösung</div>
       </div>
+      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+        <button class="btn-calc-copy" onclick="copyCalcValues('Pädiatrie (${age} Jahre, ${wt} kg): Tubus ${cuffed.toFixed(1)} mm (Tiefe ${depth.toFixed(1)} cm) | Adrenalin ${adrMg} mg | Atropin ${atropin} mg | Defib ${defib} J | Rocuronium ${rocuronium} mg (RSI: ${rocuroniumRSI} mg)', this)">
+          📋 Pädiatrie-Werte kopieren
+        </button>
+      </div>
     `;
   }
 
@@ -2585,6 +2720,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="calc-metric-title">⚠️ Driving Pressure Limit</div>
         <div class="calc-metric-value">ΔP ≤ 14 cmH₂O</div>
         <div class="calc-metric-note">ΔP = P_plat – PEEP. Bei Überschreitung: Mortalität ↑</div>
+      </div>
+      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+        <button class="btn-calc-copy" onclick="copyCalcValues('ARDS Beatmung (${height} cm): PBW ${pbw.toFixed(1)} kg | Vt (6 ml/kg): ${vt6} ml (Goldstandard) | Vt (8 ml/kg): ${vt8} ml | Max. Driving Pressure: ΔP ≤ 14 cmH₂O', this)">
+          📋 Beatmungswerte kopieren
+        </button>
       </div>
     `;
   }
@@ -2634,6 +2774,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="calc-metric-value">${lipidBolus} ml i.v.</div>
         <div class="calc-metric-note">1.5 ml/kg über 1 Min bei LAST, danach 0.25 ml/kg/min</div>
       </div>
+      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+        <button class="btn-calc-copy" onclick="copyCalcValues('LA Höchstdosen (${wt} kg): Ropivacain ${ropi} mg | Bupivacain ${bupi} mg | Lidocain pur ${lidoPur} mg (mit Adr: ${lidoAdr} mg) | Prilocain ${prilo} mg | Intralipid 20% Bolus: ${lipidBolus} ml', this)">
+          📋 LA-Dosen kopieren
+        </button>
+      </div>
     `;
   }
 
@@ -2680,6 +2825,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="calc-metric-value">≤ ${maxDayNa} mmol/l</div>
         <div class="calc-metric-note"><strong>Max. +8 bis 10 mmol/l pro 24h!</strong> Gefahr der pontinen Myelinolyse (ODS) bei zu raschem Ausgleich!</div>
       </div>
+      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+        <button class="btn-calc-copy" onclick="copyCalcValues('Natrium-Defizit (${wt} kg, Na_ist: ${naCur} mmol/l): TBW ${tbw.toFixed(1)} L | Defizit bis 140: ${deficit} mmol | Max. 24h-Grenze: ≤ ${maxDayNa} mmol/l (+8 mmol/l max/Tag)', this)">
+          📋 Natrium-Werte kopieren
+        </button>
+      </div>
     `;
   }
 
@@ -2688,6 +2838,22 @@ document.addEventListener('DOMContentLoaded', () => {
     calcArds();
     calcLA();
     calcSodium();
+  }
+
+  // --- Natural German Neural Voice Selector ---
+  let preferredGermanVoice = null;
+  function updateGermanVoice() {
+    if (!('speechSynthesis' in window)) return;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices || !voices.length) return;
+    preferredGermanVoice = voices.find(v => v.lang.startsWith('de') && (v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('Siri') || v.name.includes('Google') || v.name.includes('Anna') || v.name.includes('Markus') || v.name.includes('Petra') || v.name.includes('Yannick') || v.name.includes('Hedda')))
+      || voices.find(v => v.lang === 'de-DE' && !v.name.includes('Compact'))
+      || voices.find(v => v.lang.startsWith('de'))
+      || null;
+  }
+  if ('speechSynthesis' in window) {
+    updateGermanVoice();
+    window.speechSynthesis.onvoiceschanged = updateGermanVoice;
   }
 
   // --- Clean German Speech Text Extractor (Filters out embedded Turkish collapsibles) ---
@@ -2735,6 +2901,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'de-DE';
+        if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
         utterance.rate = state.speechRate || 0.95;
 
         utterance.onstart = () => elBtnAudioSpeak.classList.add('speaking');
@@ -2767,6 +2934,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'de-DE';
+        if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
         utterance.rate = state.speechRate || 0.95;
 
         utterance.onstart = () => elBtnAudioSpeakExaminer.classList.add('speaking');
@@ -2797,6 +2965,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'de-DE';
+        if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
         utterance.rate = state.speechRate || 0.95;
 
         utterance.onstart = () => elBtnAudioSpeakVerbal.classList.add('speaking');

@@ -615,6 +615,18 @@
         <button id="modal-close" class="btn-icon">✕</button>
       </div>
       <div class="modal-body">
+        <div class="jump-modal-controls" style="margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <input type="text" id="jump-search-input" class="search-input" placeholder="🔍 In 636 Fragen suchen (z.B. Maligne Hyperthermie, LAST, Aortenstenose, DLT)..." style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 0.9rem;" />
+          <div class="jump-filter-chips" style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <button class="filter-chip active jump-chip" data-jump-filter="all">Alle (636)</button>
+            <button class="filter-chip jump-chip" data-jump-filter="dus">🏛️ Düsseldorf</button>
+            <button class="filter-chip jump-chip" data-jump-filter="high_yield">⭐ Top-Fragen</button>
+            <button class="filter-chip jump-chip" data-jump-filter="unanswered">Offen</button>
+            <button class="filter-chip jump-chip" data-jump-filter="incorrect">Falsch</button>
+            <button class="filter-chip jump-chip" data-jump-filter="review">★ Markiert</button>
+            <button class="filter-chip jump-chip" data-jump-filter="notes">📝 Notizen</button>
+          </div>
+        </div>
         <div id="question-grid" class="question-grid-container">
           <!-- Dynamically rendered buttons -->
         </div>
@@ -747,6 +759,16 @@
                 <span>📄</span> Spickzettel Drucken (PDF)
               </button>
               <input type="file" id="import-file-input" accept=".json" style="display: none;" />
+            </div>
+          </div>
+
+          <div class="settings-box">
+            <h3>🔒 Zugang & Sitzungssicherheit</h3>
+            <p>Sperren Sie Ihren aktuellen Bildschirm für ungestörte Lernpausen oder melden Sie sich ab.</p>
+            <div class="settings-actions">
+              <button id="lock-trigger" class="btn btn-secondary">
+                <span>🔒</span> Sitzung sperren (Abmelden)
+              </button>
             </div>
           </div>
 
@@ -1391,6 +1413,63 @@
         <!-- Exam Report Card (Shown upon completion) -->
         <div id="mock-exam-report" style="display: none;" class="mock-report-card">
           <!-- Rendered by JS upon exam completion -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Quick Shortcut HUD Trigger Button -->
+  <button id="btn-shortcut-float" class="floating-shortcut-pill" title="Tastatur-Kurzbefehle einblenden (Taste ?)">
+    <span>⌨️</span>
+    <span class="shortcut-pill-label">Kurzbefehle</span>
+    <kbd>?</kbd>
+  </button>
+
+  <!-- Interactive Keyboard Shortcuts Quick HUD Modal -->
+  <div id="shortcut-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 640px;">
+      <div class="modal-header">
+        <h2 style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.2rem;">
+          <span>⌨️</span> <span>Tastatur-Kurzbefehle (Quick HUD)</span>
+        </h2>
+        <button id="shortcut-modal-close" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body" style="padding: 1rem 1.25rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem;">
+          <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.6rem; font-size: 0.85rem;">NAVIGATION & STUFEN</div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>Schritt vorwärts / Aufdecken</span> <kbd class="kbd-hint">Space / Enter</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>Direktsprung Schritt 1 bis 4</span> <kbd class="kbd-hint">1, 2, 3, 4</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>Nächste / Vorherige Frage</span> <kbd class="kbd-hint">→ / ←</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+              <span>Frage merken (Favoritenstern)</span> <kbd class="kbd-hint">M</kbd>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <div style="font-weight: 700; color: var(--success); margin-bottom: 0.6rem; font-size: 0.85rem;">BEWERTUNG & SPRACHTRAINER</div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>Gewusst (Intervall +)</span> <kbd class="kbd-hint">K / G</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>Nicht gewusst (Morgen wieder)</span> <kbd class="kbd-hint">F</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>Sprachaufnahme (Mikrofon)</span> <kbd class="kbd-hint">V</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.45rem; font-size: 0.85rem;">
+              <span>60s Antwort-Countdown</span> <kbd class="kbd-hint">T</kbd>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+              <span>Türkçe Çeviri aufklappen</span> <kbd class="kbd-hint">U</kbd>
+            </div>
+          </div>
         </div>
       </div>
     </div>

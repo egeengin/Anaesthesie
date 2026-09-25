@@ -17,6 +17,14 @@
   --primary: #0284c7;
   --primary-hover: #0369a1;
   --primary-light: #e0f2fe;
+
+  /* Aliases for cross-component compatibility */
+  --primary-color: #0284c7;
+  --accent-color: #0d9488;
+  --border-color: #e1e9e8;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --surface-card: #ffffff;
   
   --success: #10b981;
   --success-bg: #ecfdf5;
@@ -36,6 +44,7 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 15px rgba(2, 132, 199, 0.25);
   
   --radius-sm: 6px;
   --radius-md: 12px;
@@ -43,6 +52,7 @@
   --radius-full: 9999px;
   
   --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Outfit', var(--font-family);
   
   --transition-fast: 0.15s ease;
@@ -63,6 +73,14 @@
   --primary: #38bdf8;
   --primary-hover: #0284c7;
   --primary-light: rgba(56, 189, 248, 0.15);
+
+  /* Aliases for cross-component compatibility */
+  --primary-color: #38bdf8;
+  --accent-color: #14b8a6;
+  --border-color: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --surface-card: #1e293b;
   
   --success: #34d399;
   --success-bg: rgba(52, 211, 153, 0.15);
@@ -78,6 +96,7 @@
   
   --purple: #a78bfa;
   --purple-bg: rgba(167, 139, 250, 0.15);
+  --shadow-glow: 0 0 15px rgba(56, 189, 248, 0.25);
 }
 
 /* Base resets */
@@ -4045,3 +4064,139 @@ body.mode-simulation-active #step3-container {
   background: rgba(45, 212, 191, 0.08);
   border-left-color: #2dd4bf;
 }
+
+/* ==========================================================================
+   INTERACTIVE RECALL CHECKLIST & ACTIVE STATE
+   ========================================================================== */
+.checklist-item-row {
+  cursor: pointer;
+  user-select: none;
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.checklist-item-row:hover {
+  background: var(--bg-tertiary);
+}
+
+.checklist-item-row.checked-active {
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+}
+
+.checklist-item-row.checked-active .checklist-check {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
+}
+
+/* ==========================================================================
+   PULSING STEPPER NODES & ELEVATED CARDS
+   ========================================================================== */
+.stepper-step.active .step-badge {
+  box-shadow: 0 0 0 4px var(--primary-light), 0 0 12px rgba(2, 132, 199, 0.3);
+  animation: pulseBadge 2.2s infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% {
+    box-shadow: 0 0 0 4px var(--primary-light), 0 0 12px rgba(2, 132, 199, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 7px var(--primary-light), 0 0 18px rgba(2, 132, 199, 0.45);
+  }
+}
+
+/* Question Grid Button Note Indicator */
+.q-grid-btn {
+  position: relative;
+}
+
+.q-grid-btn.has-user-note::after {
+  content: '📝';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   FLOATING SHORTCUT HUD & MODAL
+   ========================================================================== */
+.floating-shortcut-pill {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all var(--transition-fast);
+}
+
+.floating-shortcut-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.floating-shortcut-pill kbd {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.75rem;
+  font-family: monospace;
+}
+
+@media (max-width: 768px) {
+  .floating-shortcut-pill .shortcut-pill-label {
+    display: none;
+  }
+  .floating-shortcut-pill {
+    padding: 0.5rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Calculator Copy Button */
+.btn-calc-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 0.75rem;
+}
+
+.btn-calc-copy:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-calc-copy.copied {
+  background: var(--success-bg);
+  border-color: var(--success);
+  color: var(--success);
+}
+
