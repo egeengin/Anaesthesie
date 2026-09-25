@@ -403,18 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
     state.currentIndex = 0;
   }
 
-  // --- Dual-Language Hover & Dwell Translation Helper ---
-  function splitSentences(text) {
-    if (!text) return [];
-    const protectedText = text
-      .replace(/\b(z\.\s*B\.|z\.\s*T\.|u\.\s*a\.|d\.\s*h\.|bzw\.|ca\.|evtl\.|ggf\.|min\.|max\.|Tab\.|Abb\.|Nr\.|vs\.)/gi, match => match.replace(/\./g, '___DOT___'))
-      .replace(/(\d+)\.(\d+)/g, '$1___DOT___$2');
-    const parts = protectedText.split(/(?<=[.!?])\s+|\n+/);
-    return parts
-      .map(p => p.replace(/___DOT___/g, '.').trim())
-      .filter(p => p.length > 0);
-  }
-
+  // --- Dual-Language Hover Translation Helper ---
   function renderDualLanguageText(textDE, textTR) {
     if (!textDE) return '';
     const formattedDE = formatAnswerText(textDE);
@@ -422,32 +411,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return `<div class="de-text-block">${formattedDE}</div>`;
     }
     
-    const sentencesDE = splitSentences(textDE);
-    const sentencesTR = splitSentences(textTR);
     const cleanTR = textTR.replace(/•/g, '<br>•').trim();
 
-    let renderedDE = '';
-
-    // If both have multiple sentences and their counts match, wrap each sentence individually with its exact translation
-    if (sentencesDE.length > 1 && sentencesTR.length === sentencesDE.length) {
-      renderedDE = sentencesDE.map((sDe, idx) => {
-        const sTr = sentencesTR[idx];
-        return `<span class="translatable-sentence" data-tr="${escapeHtml(sTr)}" tabindex="0" title="🇹🇷 ${escapeHtml(sTr)}">${formatAnswerText(sDe)}</span>`;
-      }).join(' ');
-    } else if (sentencesDE.length > 1 && sentencesTR.length > 1) {
-      // Multiple sentences with slight count variation: map proportionally
-      renderedDE = sentencesDE.map((sDe, idx) => {
-        const sTr = sentencesTR[Math.min(idx, sentencesTR.length - 1)] || cleanTR;
-        return `<span class="translatable-sentence" data-tr="${escapeHtml(sTr)}" tabindex="0" title="🇹🇷 ${escapeHtml(sTr)}">${formatAnswerText(sDe)}</span>`;
-      }).join(' ');
-    } else {
-      // Single sentence or compact block: entire text unit is interactive
-      renderedDE = `<span class="translatable-sentence" data-tr="${escapeHtml(cleanTR)}" tabindex="0" title="🇹🇷 ${escapeHtml(cleanTR)}">${formattedDE}</span>`;
-    }
-
     return `
-      <div class="translatable-box" data-tr="${escapeHtml(cleanTR)}">
-        <div class="de-text-block">${renderedDE}</div>
+      <div class="translatable-box" data-tr="${escapeHtml(cleanTR)}" tabindex="0">
+        <div class="de-text-block">${formattedDE}</div>
         <div class="hover-tr-preview" aria-hidden="true">
           <span class="hover-tr-badge">🇹🇷</span>
           <span class="hover-tr-content">${formatAnswerText(cleanTR)}</span>
@@ -1613,12 +1581,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const row = document.createElement('div');
         row.className = 'checklist-item-row translatable-box';
         if (itemTR) row.setAttribute('data-tr', itemTR);
-        row.title = 'Antippen zum Abhaken / Hovern für türkische Übersetzung';
+        row.title = 'Antippen zum Abhaken';
         const formatted = (mode === 'flashcard') ? generateClozeMaskedHtml(itemText) : itemText;
         row.innerHTML = `
-          <div style="display: flex; align-items: flex-start; gap: 0.5rem; width: 100%;">
+          <div class="checklist-item-main">
             <span class="checklist-check">✓</span> 
-            <div style="flex-grow: 1;">${formatted}</div>
+            <div class="checklist-item-text">${formatted}</div>
           </div>
           ${itemTR ? `<div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span> <span class="hover-tr-content">${itemTR}</span></div>` : ''}
         `;
@@ -3470,129 +3438,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Seamless Hover & Dwell Turkish Translation HUD ---
+  // --- Clean Overall Turkish Translation HUD (Box-Level Only, No Sentence Popups) ---
   function initHoverTranslationHUD() {
-    let tooltip = document.getElementById('floating-tr-tooltip');
-    if (!tooltip) {
-      tooltip = document.createElement('div');
-      tooltip.id = 'floating-tr-tooltip';
-      tooltip.innerHTML = `
-        <div class="tr-tooltip-header">
-          <span style="font-size: 0.9rem;">🇹🇷</span> <span>TÜRKÇE ÇEVİRİ</span>
-        </div>
-        <div class="tr-tooltip-body" id="floating-tr-body"></div>
-      `;
-      document.body.appendChild(tooltip);
-    }
-
-    const tooltipBody = document.getElementById('floating-tr-body');
-    let hoverTimeout = null;
-    let activeTarget = null;
-
-    function showTooltip(target, textTR, isSentence) {
-      if (!textTR || !textTR.trim()) return;
-      activeTarget = target;
-      tooltipBody.innerHTML = formatAnswerText(textTR.trim());
-      
-      const headerTitle = tooltip.querySelector('.tr-tooltip-header span:last-child');
-      if (headerTitle) {
-        headerTitle.textContent = isSentence ? 'TÜRKÇE CÜMLE ÇEVİRİSİ' : 'TÜRKÇE ÇEVİRİ';
-      }
-
-      // Position near target
-      const rect = target.getBoundingClientRect();
-      const tooltipWidth = Math.min(420, window.innerWidth - 32);
-      tooltip.style.maxWidth = tooltipWidth + 'px';
-
-      // Prefer displaying directly below the sentence/box, or above if close to bottom
-      let top = rect.bottom + 8;
-      let left = Math.max(16, Math.min(rect.left, window.innerWidth - tooltipWidth - 16));
-
-      if (top + 120 > window.innerHeight) {
-        top = Math.max(16, rect.top - 85);
-      }
-
-      tooltip.style.top = `${top}px`;
-      tooltip.style.left = `${left}px`;
-      tooltip.classList.add('visible');
-    }
-
-    function hideTooltip() {
-      if (hoverTimeout) clearTimeout(hoverTimeout);
-      tooltip.classList.remove('visible');
-      if (activeTarget && activeTarget.classList.contains('translatable-sentence')) {
-        activeTarget.classList.remove('sentence-active');
-      }
-      activeTarget = null;
-    }
-
-    // Mouseover delegation: works across ALL pages and sections
-    document.addEventListener('mouseover', (e) => {
-      const sentence = e.target.closest('.translatable-sentence');
-      if (sentence && sentence.getAttribute('data-tr')) {
-        if (hoverTimeout) clearTimeout(hoverTimeout);
-        sentence.classList.add('sentence-active');
-        hoverTimeout = setTimeout(() => {
-          showTooltip(sentence, sentence.getAttribute('data-tr'), true);
-        }, 60);
-        return;
-      }
-
-      const box = e.target.closest('.translatable-box, .checklist-item-row[data-tr]');
-      if (box && box.getAttribute('data-tr')) {
-        if (hoverTimeout) clearTimeout(hoverTimeout);
-        hoverTimeout = setTimeout(() => {
-          // If already hovering on a specific sentence inside, sentence takes priority
-          if (document.querySelector('.translatable-sentence.sentence-active')) return;
-          showTooltip(box, box.getAttribute('data-tr'), false);
-        }, 150);
-        return;
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      const sentence = e.target.closest('.translatable-sentence');
-      if (sentence) {
-        sentence.classList.remove('sentence-active');
-      }
-      if (!e.relatedTarget || !e.relatedTarget.closest('#floating-tr-tooltip, .translatable-sentence, .translatable-box, .checklist-item-row')) {
-        hideTooltip();
-      }
-    });
-
-    // Touch device tap support: tap on sentence or box to show translation
+    // Touch tap support: tap on any translatable box to toggle inline translation preview
     document.addEventListener('click', (e) => {
-      const sentence = e.target.closest('.translatable-sentence');
-      if (sentence && sentence.getAttribute('data-tr')) {
-        if (activeTarget === sentence && tooltip.classList.contains('visible')) {
-          hideTooltip();
-        } else {
-          showTooltip(sentence, sentence.getAttribute('data-tr'), true);
+      const box = e.target.closest('.translatable-box');
+      if (box && !e.target.closest('button, input, select, textarea, kbd, a')) {
+        const preview = box.querySelector('.hover-tr-preview');
+        if (preview) {
+          preview.classList.toggle('force-visible');
         }
-        return;
-      }
-
-      const box = e.target.closest('.translatable-box, .checklist-item-row[data-tr]');
-      if (box && box.getAttribute('data-tr')) {
-        if (activeTarget === box && tooltip.classList.contains('visible')) {
-          hideTooltip();
-        } else {
-          showTooltip(box, box.getAttribute('data-tr'), false);
-        }
-        return;
-      }
-
-      if (!e.target.closest('#floating-tr-tooltip')) {
-        hideTooltip();
       }
     });
-
-    // Dismiss on scroll to avoid detached tooltip
-    window.addEventListener('scroll', () => {
-      if (tooltip.classList.contains('visible')) {
-        hideTooltip();
-      }
-    }, { passive: true });
   }
 
   // Initializing App

@@ -415,18 +415,16 @@ console.log('[PASS] Neuraxial Anesthesia & Anticoagulation (SPA/EDA) DGAI S1-Lei
 const appPath = path.join(__dirname, 'app.js');
 const appCode = fs.readFileSync(appPath, 'utf8');
 assert(!appCode.includes('btn-toggle-tr-sub'), 'app.js must remove obsolete button btn-toggle-tr-sub');
-assert(appCode.includes('translatable-sentence'), 'app.js must render sentence-level translatable spans');
+assert(!appCode.includes('translatable-sentence'), 'app.js must remove sentence-wise translatable-sentence spans as requested');
 assert(appCode.includes('translatable-box'), 'app.js must render box-level translatable containers');
 assert(appCode.includes('hover-tr-preview'), 'app.js must render hover-tr-preview elements');
 assert(appCode.includes('initHoverTranslationHUD'), 'app.js must initialize hover translation HUD');
 
 const cssPath = path.join(__dirname, 'styles.css');
 const cssCode = fs.readFileSync(cssPath, 'utf8');
-assert(cssCode.includes('.translatable-sentence'), 'styles.css must include styling for .translatable-sentence');
 assert(cssCode.includes('.translatable-box'), 'styles.css must include styling for .translatable-box');
 assert(cssCode.includes('.hover-tr-preview'), 'styles.css must include styling for .hover-tr-preview');
-assert(cssCode.includes('#floating-tr-tooltip'), 'styles.css must include styling for #floating-tr-tooltip');
-console.log('[PASS] Seamless Hover & Dwell Turkish Translation (Sentence & Box Level) verified.');
+console.log('[PASS] Seamless Hover Turkish Translation (Clean Box Level, No Sentence Popups) verified.');
 
 // 22. Test ÄKNO Düsseldorf Examiners, Protocols & KO-Kriterien Integration
 const dusQuestions = questions.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
