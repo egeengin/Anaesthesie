@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="anesthesiaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0d9488" />
-      <stop offset="100%" stop-color="#047857" />
+      <stop offset="0%" stop-color="#8D6346" />
+      <stop offset="100%" stop-color="#6F492E" />
     </linearGradient>
   </defs>
   <!-- Rounded Medical App Icon Surface -->
