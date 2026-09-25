@@ -478,7 +478,47 @@ assert(appCode.includes('speechRate'), 'app.js must support speechRate state');
 assert(cssCode.includes('.audio-speed-pill'), 'styles.css must style .audio-speed-pill');
 console.log('[PASS] Audio Speed Controller & Pocket Card 16 Mnemonics Hub Suite verified.');
 
-console.log('\n🎉 ALL 25 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 26. Test ÄKNO Düsseldorf Dynamic Live Simulation & K.O.-Criteria Radar Suite
+const { DUS_SIMULATION_REGISTRY } = MockExamSimulation;
+assert(DUS_SIMULATION_REGISTRY && Object.keys(DUS_SIMULATION_REGISTRY).length === 36, 'All 36 authentic Düsseldorf protocol questions must be registered in DUS_SIMULATION_REGISTRY');
+
+// Verify examiner profile, crisis complication and KO criteria structure
+const q1Reg = DUS_SIMULATION_REGISTRY['q_dus_01'];
+assert(q1Reg && q1Reg.examiner && q1Reg.examiner.name.includes('Annecke'), 'q_dus_01 must be linked to Prof. Annecke');
+assert(q1Reg.crisis && q1Reg.crisis.vitals && q1Reg.crisis.prompt_de, 'q_dus_01 must contain crisis vitals and prompt');
+assert(q1Reg.koCriteria && q1Reg.koCriteria.forbiddenPatterns, 'q_dus_01 must contain fatal KO criteria patterns');
+
+// Verify immediate failure on KO violation (Spinal in aortic stenosis)
+const koEval = MockExamSimulation.evaluateCandidateAnswer('q_dus_01', 'Ich schlage eine Spinalanästhesie vor, da schonender.', ['SVR', 'Arterie']);
+assert(koEval.passed === false, 'KO violation must fail the candidate');
+assert(koEval.grade === 5.0, 'KO violation must yield Grade 5.0');
+assert(koEval.koViolated === true, 'koViolated flag must be true');
+
+// Verify passing score on solid answer
+const passEval = MockExamSimulation.evaluateCandidateAnswer('q_dus_01', 'Ich etabliere eine invasive arterielle Blutdruckmessung vor Narkoseeinleitung. Noradrenalin stellen wir bereit, um den SVR hochzuhalten. Vorlast sichern und Sinusrhythmus halten.', ['Invasive arterielle Blutdruckmessung', 'Noradrenalin', 'Vorlast']);
+assert(passEval.passed === true, 'Appropriate answer must pass');
+assert(passEval.grade <= 2.0, 'Solid answer must score Grade 1.0 or 2.0');
+assert(passEval.koViolated === false, 'koViolated flag must be false for safe answer');
+
+// Verify HTML and CSS integration
+assert(htmlContent.includes('sim-live-cockpit'), 'index.html must include #sim-live-cockpit');
+assert(htmlContent.includes('btn-sim-speak-stem'), 'index.html must include #btn-sim-speak-stem');
+assert(htmlContent.includes('btn-sim-peek-stem'), 'index.html must include #btn-sim-peek-stem');
+assert(htmlContent.includes('btn-sim-trigger-crisis'), 'index.html must include #btn-sim-trigger-crisis');
+assert(htmlContent.includes('sim-rhetoric-prompter'), 'index.html must include #sim-rhetoric-prompter');
+assert(htmlContent.includes('sim-crisis-banner'), 'index.html must include #sim-crisis-banner');
+assert(htmlContent.includes('sim-ko-radar-display'), 'index.html must include #sim-ko-radar-display');
+
+assert(cssCode.includes('.sim-live-cockpit'), 'styles.css must style .sim-live-cockpit');
+assert(cssCode.includes('.sim-crisis-banner'), 'styles.css must style .sim-crisis-banner');
+assert(cssCode.includes('.vital-crisis-flash'), 'styles.css must style .vital-crisis-flash');
+assert(cssCode.includes('.sim-ko-alert-box'), 'styles.css must style .sim-ko-alert-box');
+
+// Verify app.js simulation pool restriction
+assert(appCode.includes('is_dus_protocol'), 'app.js must filter for is_dus_protocol in simulation mode');
+console.log('[PASS] ÄKNO Düsseldorf Dynamic Live Simulation & K.O.-Criteria Radar Suite verified.');
+
+console.log('\n🎉 ALL 26 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

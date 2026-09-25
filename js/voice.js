@@ -157,6 +157,16 @@
         keywordsMatched: Array.from(new Set(keywordsMatched))
       };
     }
+
+    /**
+     * Evaluates candidate spoken answer using ÄKNO Düsseldorf K.O.-radar and scoring engine
+     */
+    static evaluateDüsseldorfExam(questionId, transcript, targetPearls) {
+      if (typeof MockExamSimulation !== 'undefined' && typeof MockExamSimulation.evaluateCandidateAnswer === 'function') {
+        return MockExamSimulation.evaluateCandidateAnswer(questionId, transcript, targetPearls);
+      }
+      return VoiceExamEngine.evaluateSpokenAnswer(transcript, targetPearls);
+    }
   }
 
   if (typeof module !== 'undefined' && module.exports) {

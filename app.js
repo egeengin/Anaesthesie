@@ -114,6 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const elEvalMatchedTags = document.getElementById('eval-matched-tags');
   const elEvalMissedTags = document.getElementById('eval-missed-tags');
   
+  // ÄKNO Live Simulation Cockpit Elements
+  const elSimLiveCockpit = document.getElementById('sim-live-cockpit');
+  const elSimExaminerAvatar = document.getElementById('sim-examiner-avatar');
+  const elSimExaminerName = document.getElementById('sim-examiner-name');
+  const elSimExaminerClinic = document.getElementById('sim-examiner-clinic');
+  const elBtnSimSpeakStem = document.getElementById('btn-sim-speak-stem');
+  const elBtnSimPeekStem = document.getElementById('btn-sim-peek-stem');
+  const elSimPeekLabel = document.getElementById('sim-peek-label');
+  const elBtnSimTriggerCrisis = document.getElementById('btn-sim-trigger-crisis');
+  const elSimRhetoricPrompter = document.getElementById('sim-rhetoric-prompter');
+  const elSimCrisisBanner = document.getElementById('sim-crisis-banner');
+  const elSimCrisisTitle = document.getElementById('sim-crisis-title');
+  const elSimCrisisPrompt = document.getElementById('sim-crisis-prompt');
+  const elBtnSimSpeakCrisis = document.getElementById('btn-sim-speak-crisis');
+  const elSimKoRadarDisplay = document.getElementById('sim-ko-radar-display');
+  const elSimEvalGradeBadge = document.getElementById('sim-eval-grade-badge');
+  const elSimKoAlertBox = document.getElementById('sim-ko-alert-box');
+  const elSimKoAlertBody = document.getElementById('sim-ko-alert-body');
+  const elSimSafeBadge = document.getElementById('sim-safe-badge');
+  const elSimStatementText = document.getElementById('sim-statement-text');
+  
   // Step Containers & Accordions
   const elStep1Container = document.getElementById('step1-container');
   const elStep2Container = document.getElementById('step2-container');
@@ -295,8 +316,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Filtering Question Bank ---
   function getFilteredQuestions() {
     let list = EXAM_QUESTIONS.filter(q => {
-      // In Oral Simulation Mode (Mode A), STRICTLY eliminate all multiple-choice options questions
+      // In Oral Simulation Mode (Mode A), STRICTLY focus on authentic ÄKNO Düsseldorf protocol cases (36 cases)
       if (state.studyMode === 'simulation') {
+        const isDus = !!q.is_dus_protocol || (q.source_book && (q.source_book.includes('Düsseldorf') || q.source_book.includes('D\u00fcsseldorf')));
+        if (!isDus) return false;
         if (q.question_type === 'options' || (q.options && q.options.length > 0)) {
           return false;
         }
@@ -765,6 +788,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // ÄKNO Düsseldorf Simulation Evaluation & K.O.-Criteria Check
+    const isSimMode = (state.studyMode === 'simulation');
+    if (isSimMode && typeof MockExamSimulation !== 'undefined' && MockExamSimulation.evaluateCandidateAnswer) {
+      const simEval = MockExamSimulation.evaluateCandidateAnswer(currentQ.id, spokenText, targetRubric);
+      if (elSimKoRadarDisplay) {
+        elSimKoRadarDisplay.style.display = 'block';
+        if (elSimEvalGradeBadge) {
+          elSimEvalGradeBadge.textContent = simEval.gradeText;
+          elSimEvalGradeBadge.style.color = simEval.passed ? 'var(--primary)' : '#dc2626';
+        }
+
+        if (simEval.koViolated) {
+          if (elSimKoAlertBox) {
+            elSimKoAlertBox.style.display = 'block';
+            if (elSimKoAlertBody) elSimKoAlertBody.textContent = simEval.koReason;
+          }
+          if (elSimSafeBadge) elSimSafeBadge.style.display = 'none';
+          playAudioTone(330, 'sawtooth', 0.6); // Harsh fail tone
+        } else {
+          if (elSimKoAlertBox) elSimKoAlertBox.style.display = 'none';
+          if (elSimSafeBadge) elSimSafeBadge.style.display = 'block';
+          playAudioTone(587.33, 'triangle', 0.35); // Success tone
+        }
+
+        if (elSimStatementText) {
+          elSimStatementText.textContent = simEval.examinerFeedback;
+        }
+      }
+    }
+
     // Automatically reveal model answer
     revealAnswer();
 
@@ -801,8 +854,97 @@ document.addEventListener('DOMContentLoaded', () => {
       if (elSpeechTranscriptInput) elSpeechTranscriptInput.value = '';
       if (elSpeechTranscriptText) elSpeechTranscriptText.textContent = 'Sprechen Sie jetzt frei Ihre Antwort ein...';
       if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
+      if (elSimKoRadarDisplay) elSimKoRadarDisplay.style.display = 'none';
     });
   }
+
+  // --- Dynamic ÄKNO Düsseldorf Live Cockpit Event Listeners ---
+  if (elBtnSimSpeakStem) {
+    elBtnSimSpeakStem.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
+      const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+        ? MockExamSimulation.getRegistry(currentQ.id)
+        : null;
+      const textToSpeak = reg ? reg.speechIntro : (currentQ.stem_de || currentQ.question_de);
+      speakText(getCleanSpeechText(textToSpeak));
+    });
+  }
+
+  if (elBtnSimPeekStem) {
+    elBtnSimPeekStem.addEventListener('click', () => {
+      if (!elQuestionText) return;
+      const isHidden = (elQuestionText.style.display === 'none');
+      elQuestionText.style.display = isHidden ? 'block' : 'none';
+      if (elSimPeekLabel) {
+        elSimPeekLabel.textContent = isHidden ? 'Falltext verbergen (Hörtest)' : 'Falltext einblenden';
+      }
+    });
+  }
+
+  function triggerCrisisComplication() {
+    filteredQuestions = getFilteredQuestions();
+    const currentQ = filteredQuestions[state.currentIndex];
+    if (!currentQ) return;
+    const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+      ? MockExamSimulation.getRegistry(currentQ.id)
+      : null;
+    if (!reg || !reg.crisis) return;
+
+    if (elSimCrisisBanner) {
+      elSimCrisisBanner.style.display = 'block';
+      if (elSimCrisisTitle) elSimCrisisTitle.textContent = reg.crisis.title;
+      if (elSimCrisisPrompt) elSimCrisisPrompt.textContent = reg.crisis.prompt_de;
+    }
+
+    // Update vital numbers to crisis state
+    const v = reg.crisis.vitals;
+    if (v) {
+      const setElemText = (id, txt) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = txt;
+      };
+      if (v.spo2) setElemText('vital-val-spo2', v.spo2);
+      if (v.bp) setElemText('vital-val-bp', v.bp);
+      if (v.map) setElemText('vital-val-map', `(MAP ${v.map})`);
+      if (v.hr) setElemText('vital-val-hr', v.hr);
+      if (v.rhythm) setElemText('vital-val-rhythm', v.rhythm);
+      if (v.etco2) setElemText('vital-val-etco2', v.etco2);
+    }
+
+    const elMonDashboard = document.getElementById('clinical-monitor-dashboard');
+    if (elMonDashboard) elMonDashboard.classList.add('vital-crisis-flash');
+
+    toggleStep2(true); // Open vitals panel if closed
+    playAudioTone(880, 'sine', 0.35); // Emergency alert beep
+    speakText(reg.crisis.prompt_de);
+  }
+
+  if (elBtnSimTriggerCrisis) {
+    elBtnSimTriggerCrisis.addEventListener('click', triggerCrisisComplication);
+  }
+
+  if (elBtnSimSpeakCrisis) {
+    elBtnSimSpeakCrisis.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
+      const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+        ? MockExamSimulation.getRegistry(currentQ.id)
+        : null;
+      if (reg && reg.crisis) speakText(reg.crisis.prompt_de);
+    });
+  }
+
+  // 4-Phase Rhetoric Buttons
+  const elRhetoricPhases = document.querySelectorAll('.sim-rhetoric-phase');
+  elRhetoricPhases.forEach(btn => {
+    btn.addEventListener('click', () => {
+      elRhetoricPhases.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
 
   // --- Medical EdTech Dialogue Parser & Clinical Synthesizer ---
   function parseOralExamCase(q) {
@@ -869,6 +1011,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getExaminerProfileForCase(q) {
     if (!q) return null;
+    if (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry) {
+      const reg = MockExamSimulation.getRegistry(q.id);
+      if (reg && reg.examiner) return reg.examiner;
+    }
     if (q.examiner_profile) return q.examiner_profile;
     const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.source_book || '')).toLowerCase();
 
@@ -1461,9 +1607,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const globalIdx = EXAM_QUESTIONS.findIndex(q => q.id === currentQ.id) + 1;
+    const isSimMode = (mode === 'simulation');
     if (elQuestionNumber) {
-      elQuestionNumber.textContent = `Fall ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
+      if (isSimMode) {
+        elQuestionNumber.textContent = `🏛️ ÄKNO Düsseldorf: Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
+      } else {
+        const globalIdx = EXAM_QUESTIONS.findIndex(q => q.id === currentQ.id) + 1;
+        elQuestionNumber.textContent = `Fall ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
+      }
+    }
+
+    if (elSimCaseCounter) {
+      elSimCaseCounter.textContent = `🏛️ ÄKNO Düsseldorf: Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
+    }
+
+    // Live ÄKNO Simulation Cockpit Setup
+    if (elSimLiveCockpit) {
+      elSimLiveCockpit.style.display = isSimMode ? 'block' : 'none';
+      if (isSimMode) {
+        const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+          ? MockExamSimulation.getRegistry(currentQ.id)
+          : null;
+        const prof = reg ? reg.examiner : getExaminerProfileForCase(currentQ);
+        if (prof) {
+          if (elSimExaminerName) elSimExaminerName.textContent = prof.name;
+          if (elSimExaminerClinic) elSimExaminerClinic.textContent = prof.hospital;
+        }
+        if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
+        if (elSimKoRadarDisplay) elSimKoRadarDisplay.style.display = 'none';
+        const elMonDashboard = document.getElementById('clinical-monitor-dashboard');
+        if (elMonDashboard) elMonDashboard.classList.remove('vital-crisis-flash');
+
+        if (elQuestionText) elQuestionText.style.display = 'block';
+        if (elSimPeekLabel) elSimPeekLabel.textContent = 'Falltext verbergen (Hörtest)';
+      }
     }
 
     // Parse question through Medical EdTech Dialogue Engine

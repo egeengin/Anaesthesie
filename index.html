@@ -337,6 +337,116 @@
         <img id="question-image" src="" alt="Abbildung zur Frage" class="question-image" />
       </div>
 
+      <!-- ==================== ÄKNO DÜSSELDORF LIVE SIMULATION COCKPIT ==================== -->
+      <div id="sim-live-cockpit" class="sim-live-cockpit" style="display: none;">
+        <!-- Examiner Commission Stage Bar -->
+        <div class="sim-examiner-stage-card">
+          <div class="sim-examiner-avatar-box">
+            <div class="sim-examiner-avatar" id="sim-examiner-avatar">👨‍⚕️</div>
+            <div class="sim-examiner-meta">
+              <div class="sim-examiner-badge-row">
+                <span class="sim-commission-tag">🏛️ ÄKNO Düsseldorf Prüfungskommission</span>
+                <span class="sim-protocol-case-tag" id="sim-protocol-case-tag">Düsseldorfer Original-Protokoll</span>
+              </div>
+              <h3 class="sim-examiner-name" id="sim-examiner-name">Prof. Dr. med. Thorsten Annecke</h3>
+              <p class="sim-examiner-clinic" id="sim-examiner-clinic">Klinikum Leverkusen / ÄKNO Prüfungsvorsitzender</p>
+            </div>
+          </div>
+
+          <div class="sim-examiner-actions">
+            <button id="btn-sim-speak-stem" class="btn-sim-action btn-sim-speak" type="button" title="Prüfer liest den Fall laut vor">
+              <span class="sim-btn-icon">🔊</span>
+              <span>Prüfer spricht Fall vor</span>
+            </button>
+            <button id="btn-sim-peek-stem" class="btn-sim-action btn-sim-peek" type="button" title="Falltext verbergen oder einblenden für reines Hör-Verstehen">
+              <span class="sim-btn-icon">👁️</span>
+              <span id="sim-peek-label">Falltext verbergen (Hörtest)</span>
+            </button>
+            <button id="btn-sim-trigger-crisis" class="btn-sim-action btn-sim-crisis" type="button" title="Prüfer unterbricht mit akutem Zwischenfall!">
+              <span class="sim-btn-icon">⚡</span>
+              <span>Prüfer unterbricht: Akut-Zwischenfall!</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4-Phase Düsseldorfer Rhetoric Prompter -->
+        <div class="sim-rhetoric-prompter" id="sim-rhetoric-prompter">
+          <div class="sim-rhetoric-header">
+            <span class="rhetoric-title">🗣️ Düsseldorfer 4-Stufen-Prüfungsrhetorik:</span>
+            <span class="rhetoric-sub">Strukturieren Sie Ihre mündliche Antwort nach diesem Schema:</span>
+          </div>
+          <div class="sim-rhetoric-grid">
+            <button class="sim-rhetoric-phase active" data-phase="1" type="button">
+              <span class="phase-num">1</span>
+              <span class="phase-label">Risiken & Gefährdungen</span>
+            </button>
+            <button class="sim-rhetoric-phase" data-phase="2" type="button">
+              <span class="phase-num">2</span>
+              <span class="phase-label">Vorbereitung & Monitoring</span>
+            </button>
+            <button class="sim-rhetoric-phase" data-phase="3" type="button">
+              <span class="phase-num">3</span>
+              <span class="phase-label">Induktion & Narkose</span>
+            </button>
+            <button class="sim-rhetoric-phase" data-phase="4" type="button">
+              <span class="phase-num">4</span>
+              <span class="phase-label">Notfall & Komplikationsplan</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Acute Crisis Interruption Banner (Triggered mid-case) -->
+        <div id="sim-crisis-banner" class="sim-crisis-banner" style="display: none;">
+          <div class="sim-crisis-top">
+            <div class="sim-crisis-badge">
+              <span class="crisis-pulse-beacon"></span>
+              <strong id="sim-crisis-title">⚡ PRÜFER-ZWISCHENFALL (ÄKNO DÜSSELDORF)</strong>
+            </div>
+            <button id="btn-sim-speak-crisis" class="btn-xs btn-text" type="button" title="Akut-Zwischenfall laut vorlesen">
+              🔊 Vorlesen
+            </button>
+          </div>
+          <div class="sim-crisis-prompt" id="sim-crisis-prompt">
+            <!-- Acute complication spoken by examiner -->
+          </div>
+          <div class="sim-crisis-vitals-callout">
+            <span>🚨 <strong>Alarmzustand am Monitor:</strong> Vitalparameter und BGA in Schritt 2 sind akut dekompensiert! Was tun Sie in den nächsten 30 Sekunden?!</span>
+          </div>
+        </div>
+
+        <!-- ÄKNO Evaluation Card & K.O.-Criteria Radar (Shown after answer evaluation) -->
+        <div id="sim-ko-radar-display" class="sim-ko-radar-display" style="display: none;">
+          <div class="sim-eval-grade-banner" id="sim-eval-grade-banner">
+            <div class="sim-eval-grade-badge" id="sim-eval-grade-badge">Note 1.0 (Sehr Gut)</div>
+            <div class="sim-eval-grade-title" id="sim-eval-grade-title">Offizielle ÄKNO-Bewertung</div>
+          </div>
+          
+          <!-- K.O. Criteria Alert Box (Appears if fatal error occurred) -->
+          <div id="sim-ko-alert-box" class="sim-ko-alert-box" style="display: none;">
+            <div class="ko-alert-header">
+              <span class="ko-alert-icon">🚨</span>
+              <strong>K.O.-KRITERIUM VERLETZT – PRÜFUNGSABBRUCH</strong>
+            </div>
+            <div class="ko-alert-body" id="sim-ko-alert-body">
+              <!-- Fatal malpractice explanation -->
+            </div>
+          </div>
+
+          <!-- Safe Navigation Badge (If no K.O. occurred) -->
+          <div id="sim-safe-badge" class="sim-safe-badge" style="display: none;">
+            <span>🛡️</span> <strong>K.O.-Kriterien Radar:</strong> Keine vitalen Kontraindikationen verletzt. Patientensicherheit gewahrt.
+          </div>
+
+          <!-- Official Examiner Commission Statement -->
+          <div class="sim-commission-statement">
+            <div class="statement-author" id="sim-statement-author">👨‍⚕️ Kommentar des Prüfungsvorsitzenden:</div>
+            <div class="statement-text" id="sim-statement-text">
+              <!-- Dynamic examiner feedback -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- ==================== STEP 1: INITIAL PRESENTATION & BASELINE ==================== -->
       <div id="step1-container" class="dialogue-step-card step-active">
         <div class="step-card-header">
