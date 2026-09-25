@@ -3587,70 +3587,132 @@ footer {
   border-color: var(--primary);
 }
 
-/* --- Single-Click Expandable Turkish Translation Collapsible --- */
-.btn-toggle-tr-sub {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: rgba(141, 99, 70, 0.08);
-  color: var(--primary);
-  border: 1px solid rgba(141, 99, 70, 0.22);
-  padding: 0.25rem 0.65rem;
-  border-radius: 12px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0.45rem;
-  transition: all 0.2s ease;
+/* ==========================================================================
+   INTERACTIVE SEAMLESS HOVER TRANSLATION (SENTENCE & BOX LEVEL)
+   Replaces clunky buttons with effortless hover/dwell translation
+   ========================================================================== */
+
+/* 1. Sentence-Level Translatable Elements */
+.translatable-sentence {
+  position: relative;
+  display: inline;
+  border-radius: 4px;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+  cursor: text;
 }
 
-[data-theme="dark"] .btn-toggle-tr-sub {
-  background: rgba(216, 164, 127, 0.12);
-  color: var(--primary);
-  border-color: rgba(216, 164, 127, 0.25);
+.translatable-sentence:hover,
+.translatable-sentence.sentence-active {
+  background-color: rgba(141, 99, 70, 0.12);
+  box-shadow: 0 0 0 2px rgba(141, 99, 70, 0.12);
 }
 
-.btn-toggle-tr-sub:hover {
-  background: rgba(141, 99, 70, 0.15);
-  transform: translateY(-1px);
+[data-theme="dark"] .translatable-sentence:hover,
+[data-theme="dark"] .translatable-sentence.sentence-active {
+  background-color: rgba(216, 164, 127, 0.2);
+  box-shadow: 0 0 0 2px rgba(216, 164, 127, 0.2);
 }
 
-.btn-toggle-tr-sub .tr-chevron {
-  font-size: 0.7rem;
-  transition: transform 0.25s ease;
+/* 2. Box-Level Translatable Containers */
+.translatable-box {
+  position: relative;
+  transition: border-color 0.2s ease;
 }
 
-.btn-toggle-tr-sub.open .tr-chevron {
-  transform: rotate(180deg);
-}
-
-.tr-subtitle-collapsible {
+/* 3. Inline Smooth-Reveal Hover Preview Card */
+.hover-tr-preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
   max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin-top 0.25s ease;
   opacity: 0;
+  overflow: hidden;
   margin-top: 0;
-}
-
-.tr-subtitle-collapsible.open {
-  max-height: 600px;
-  opacity: 1;
-  margin-top: 0.45rem;
-}
-
-.tr-subtitle-inner {
-  background: var(--primary-light);
+  padding: 0 0.85rem;
   border-left: 3px solid var(--primary);
-  padding: 0.6rem 0.85rem;
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 8px 8px 0;
+  background: var(--primary-light);
+  color: var(--text-main);
   font-size: 0.88rem;
-  color: var(--text-primary);
   line-height: 1.55;
+  font-style: italic;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.25s ease, 
+              padding 0.25s ease, 
+              margin-top 0.25s ease;
+  pointer-events: auto;
 }
 
-[data-theme="dark"] .tr-subtitle-inner {
+.translatable-box:hover .hover-tr-preview,
+.translatable-box:focus-within .hover-tr-preview,
+.hover-tr-preview.force-visible {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 0.55rem;
+  padding: 0.55rem 0.85rem;
+  box-shadow: 0 2px 10px rgba(141, 99, 70, 0.08);
+}
+
+[data-theme="dark"] .hover-tr-preview {
   background: rgba(216, 164, 127, 0.1);
   border-left-color: var(--primary);
+  color: var(--text-main);
+}
+
+.hover-tr-badge {
+  font-style: normal;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.hover-tr-content {
+  flex-grow: 1;
+}
+
+/* 4. Luxury Floating Translation Popover / HUD */
+#floating-tr-tooltip {
+  position: fixed;
+  z-index: 9999;
+  max-width: 440px;
+  min-width: 220px;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  border-top: 3px solid var(--primary);
+  border-radius: 10px;
+  padding: 0.65rem 0.95rem;
+  box-shadow: 0 12px 30px rgba(45, 36, 30, 0.18), 0 4px 10px rgba(45, 36, 30, 0.08);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#floating-tr-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#floating-tr-tooltip .tr-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+
+#floating-tr-tooltip .tr-tooltip-body {
+  color: var(--text-main);
+  font-style: italic;
 }
 
 /* ==========================================================================
@@ -3945,125 +4007,7 @@ body.mode-simulation-active #step3-container {
    COMPACT TURKISH TRANSLATION TOGGLE BUTTON (SUBTITLES & DIRECT TRANSLATION)
    Small button placed directly below the German text block
    ========================================================================== */
-.tr-sub-container {
-  display: flex;
-  align-items: center;
-  margin-top: 0.3rem;
-  margin-bottom: 0.25rem;
-}
 
-.btn-toggle-tr-sub {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  background: rgba(141, 99, 70, 0.08);
-  color: var(--primary);
-  border: 1px solid rgba(141, 99, 70, 0.22);
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.25;
-  cursor: pointer;
-  opacity: 0.88;
-  transition: all 0.15s ease;
-  user-select: none;
-}
-
-.btn-toggle-tr-sub:hover {
-  opacity: 1;
-  background: rgba(141, 99, 70, 0.16);
-  border-color: var(--primary);
-  transform: translateY(-1px);
-}
-
-.btn-toggle-tr-sub:active {
-  transform: translateY(0);
-}
-
-.btn-toggle-tr-sub .tr-sub-icon {
-  font-size: 0.75rem;
-  line-height: 1;
-}
-
-.btn-toggle-tr-sub .tr-sub-label {
-  letter-spacing: 0.2px;
-}
-
-.btn-toggle-tr-sub .tr-chevron {
-  display: inline-block;
-  font-size: 0.6rem;
-  transition: transform 0.2s ease;
-  margin-left: 0.1rem;
-}
-
-.btn-toggle-tr-sub.open {
-  background: rgba(141, 99, 70, 0.2);
-  border-color: var(--primary);
-  color: var(--primary-hover);
-}
-
-.btn-toggle-tr-sub.open .tr-chevron {
-  transform: rotate(180deg);
-}
-
-.tr-subtitle-collapsible {
-  display: none;
-  margin-top: 0.25rem;
-  margin-bottom: 0.45rem;
-  width: 100%;
-}
-
-.tr-subtitle-collapsible.open {
-  display: block;
-  animation: trFadeIn 0.2s ease-in-out;
-}
-
-@keyframes trFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tr-subtitle-inner {
-  font-size: 0.86rem;
-  line-height: 1.5;
-  color: var(--text-primary);
-  background: var(--primary-light);
-  border-left: 3px solid var(--primary);
-  padding: 0.35rem 0.65rem;
-  border-radius: 0 5px 5px 0;
-  font-style: italic;
-}
-
-/* Dark Mode Overrides for Translation Button */
-[data-theme="dark"] .btn-toggle-tr-sub {
-  background: rgba(216, 164, 127, 0.12);
-  color: var(--primary);
-  border-color: rgba(216, 164, 127, 0.28);
-}
-
-[data-theme="dark"] .btn-toggle-tr-sub:hover {
-  background: rgba(216, 164, 127, 0.2);
-  border-color: var(--primary);
-}
-
-[data-theme="dark"] .btn-toggle-tr-sub.open {
-  background: rgba(216, 164, 127, 0.25);
-  border-color: var(--primary);
-  color: #F7F2EC;
-}
-
-[data-theme="dark"] .tr-subtitle-inner {
-  color: #F7F2EC;
-  background: rgba(216, 164, 127, 0.1);
-  border-left-color: var(--primary);
-}
 
 /* ==========================================================================
    INTERACTIVE RECALL CHECKLIST & ACTIVE STATE
