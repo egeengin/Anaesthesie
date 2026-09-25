@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         stopExamSimulationTimer();
         playAudioTone(440, 'triangle', 0.8);
-        alert('⏱️ Die 45-minütige mündliche Prüfungszeit ist abgelaufen!');
+        showToast('⏱️ Die 45-minütige mündliche Prüfungszeit ist abgelaufen!', 'warning', 6000);
       }
     }, 1000);
   }
@@ -683,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rec.onerror = (e) => {
         console.warn('Speech API Error:', e.error);
         if (e.error === 'not-allowed') {
-          alert('🎙️ Mikrofonzugriff wurde verweigert. Bitte erlauben Sie den Mikrofonzugriff in den Browsereinstellungen, um die Spracheingabe zu nutzen.');
+          showToast('🎙️ Mikrofonzugriff wurde verweigert. Bitte in den Browsereinstellungen erlauben.', 'warning', 5000);
           stopVoiceRecording();
         } else if (e.error === 'no-speech') {
           // Keep listening during natural candidate thinking pauses
@@ -722,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
       speechRecognizer = initSpeechEngine();
     }
     if (!speechRecognizer) {
-      alert('🎙️ Die automatische Spracherkennung wird von diesem Browser leider nicht direkt unterstützt (empfohlen: Google Chrome, Safari oder Microsoft Edge). Sie können Ihre Stichpunkte jedoch direkt in das Textfeld tippen!');
+      showToast('🎙️ Spracherkennung wird in diesem Browser nicht unterstützt. Sie können Stichpunkte direkt tippen!', 'info', 5000);
       if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
       if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
       return;
@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const spokenText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
     if (!spokenText) {
-      alert('⚠️ Bitte sprechen Sie zuerst Ihre Antwort ein oder notieren Sie Stichpunkte im Textfeld, bevor Sie auswerten.');
+      showToast('⚠️ Bitte sprechen Sie zuerst Ihre Antwort ein oder notieren Sie Stichpunkte im Textfeld.', 'warning', 4000);
       if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
       return;
     }
@@ -2629,7 +2629,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (elBtnCloudSyncNow) {
     elBtnCloudSyncNow.addEventListener('click', async () => {
       await syncFromCloud();
-      alert('☁️ Wolken-Synchronisation ausgeführt!');
+      showToast('☁️ Wolken-Synchronisation erfolgreich ausgeführt!', 'success', 3500);
     });
   }
 
@@ -2670,13 +2670,13 @@ document.addEventListener('DOMContentLoaded', () => {
             state = { ...state, ...imported.state };
             saveState();
             renderCurrentQuestion();
-            alert('✅ Lernfortschritt erfolgreich importiert!');
+            showToast('✅ Lernfortschritt erfolgreich importiert!', 'success', 3500);
             closeModal(elSettingsModal);
           } else {
-            alert('❌ Ungültige Sicherungsdatei.');
+            showToast('❌ Ungültige Sicherungsdatei.', 'error', 3500);
           }
         } catch (err) {
-          alert('❌ Fehler beim Lesen der Sicherungsdatei.');
+          showToast('❌ Fehler beim Lesen der Sicherungsdatei.', 'error', 3500);
         }
       };
       reader.readAsText(file);
@@ -2696,7 +2696,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveState();
         updateAnalytics();
         renderCurrentQuestion();
-        alert('🗑️ Lernfortschritt komplett zurückgesetzt.');
+        showToast('🗑️ Lernfortschritt komplett zurückgesetzt.', 'info', 3500);
         closeModal(elSettingsModal);
       }
     });
@@ -3178,7 +3178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.speechSynthesis.speak(utterance);
       } else {
-        alert('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.');
+        showToast('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.', 'warning', 4000);
       }
     });
   }
@@ -3253,7 +3253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const flaggedQuestions = EXAM_QUESTIONS.filter(q => flaggedIds.includes(q.id));
 
       if (!flaggedQuestions.length) {
-        alert('📄 Sie haben derzeit keine Fragen mit ★ Wiederholen markiert.');
+        showToast('📄 Sie haben derzeit keine Fragen mit ★ Wiederholen markiert.', 'info', 3500);
         return;
       }
 
