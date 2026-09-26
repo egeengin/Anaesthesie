@@ -293,6 +293,33 @@
           <span class="tool-icon">⚡</span>
           <span id="audio-speed-display">0.95x</span>
         </button>
+
+        <!-- Natural Neural Voice Selector (Apple Siri / Google / Edge Natural) -->
+        <div class="voice-picker-wrapper" id="voice-picker-wrapper">
+          <button id="btn-audio-voice" class="oral-tool-btn audio-voice-pill" type="button" title="Vorlesestimme auswählen (Siri, Google, Katja oder Systemstimmen)">
+            <span class="tool-icon">🗣️</span>
+            <span id="audio-voice-display" class="voice-name-text">Stimme</span>
+            <span class="voice-caret">▾</span>
+          </button>
+          
+          <div id="audio-voice-dropdown" class="audio-voice-dropdown" style="display: none;" role="dialog" aria-label="Vorlesestimme auswählen">
+            <div class="voice-dropdown-header">
+              <span class="voice-dropdown-title">🎙️ Vorlesestimme wählen</span>
+              <button id="btn-close-voice-dropdown" class="voice-close-btn" type="button" aria-label="Schließen">&times;</button>
+            </div>
+            <div id="voice-options-list" class="voice-options-list">
+              <div class="voice-loading-notice">Lade Stimmen...</div>
+            </div>
+            <div class="voice-dropdown-footer">
+              <button id="btn-test-voice-preview" class="btn-voice-preview" type="button">
+                <span>▶️</span> Probe anhören
+              </button>
+              <div class="voice-mac-tip">
+                🍎 <strong>Tipp für Mac:</strong> Für maximale Natürlichkeit öffnen Sie <em>Systemeinstellungen &gt; Bedienungshilfen &gt; Gesprochene Inhalte &gt; Systemstimme</em> und wählen Sie <strong>Siri</strong> oder <strong>Anna (Verbessert)</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Live Voice Dictation & Speech Recognition Box -->
@@ -563,9 +590,25 @@
                 <button id="btn-audio-speak-examiner" class="btn-audio-action-sm" type="button" title="Prüfer-Frage laut vorlesen">
                   <span>🔊 Prüferfrage vorlesen</span>
                 </button>
+                <button id="btn-toggle-examiner-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zur Prüfer-Intervention anzeigen">
+                  <span>💡 Musterantwort anzeigen</span>
+                </button>
               </div>
               <div class="candidate-directive">
                 👉 <strong>Ihre verbale Aufgabe:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die typischen Kardinalfehler & K.O.-Kriterien!
+              </div>
+
+              <!-- Inline Revealable Examiner Answer inside Step 3 -->
+              <div id="examiner-inline-answer-box" class="examiner-inline-answer-box" style="display: none;">
+                <div class="examiner-inline-header">
+                  <strong>💡 ÄKNO-Musterantwort zur Prüfer-Intervention:</strong>
+                  <button id="btn-audio-speak-examiner-ans" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen">
+                    <span>🔊 Antwort vorlesen</span>
+                  </button>
+                </div>
+                <div id="examiner-inline-answer-text" class="examiner-inline-answer-text">
+                  <!-- Dynamically populated answer -->
+                </div>
               </div>
             </div>
           </div>
@@ -605,8 +648,32 @@
           </button>
         </div>
 
-        <!-- 3 High-Impact Model Answer Micro-Cards -->
+        <!-- 3 High-Impact Model Answer Micro-Cards + Examiner Solution Card -->
         <div id="high-impact-rubric" class="high-impact-rubric" style="display: none;">
+
+          <!-- Block 0: Examiner Complication & Solution -->
+          <div class="rubric-card examiner-solution-card" id="rubric-block-examiner-solution">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">👨‍⚕️</span>
+                <h3>Lösung der Prüfer-Intervention (Klinische Wendung & Soforttherapie)</h3>
+              </div>
+              <div class="rubric-header-actions">
+                <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen">
+                  <span>🔊 Prüfer-Lösung vorlesen</span>
+                </button>
+                <span class="rubric-tag-alert">ÄKNO Notfall-Lösung</span>
+              </div>
+            </div>
+            <div class="rubric-card-body">
+              <div class="examiner-solution-prompt" id="rubric-examiner-prompt-text">
+                <!-- Question repeated for clarity -->
+              </div>
+              <div class="examiner-solution-content" id="rubric-examiner-solution-text">
+                <!-- Detailed model answer -->
+              </div>
+            </div>
+          </div>
           
           <!-- Block 1: Verbal Framework (Wie sage ich es?) -->
           <div class="rubric-card verbal-framework-card" id="rubric-block-verbal">

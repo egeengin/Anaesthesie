@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     studyMode: 'simulation', // 'simulation' (Mode A), 'guideline' (Mode B), 'flashcard' (Mode C)
     userNotes: {},
     speechRate: 0.95,        // 0.8x, 0.95x, 1.15x
+    preferredVoiceName: localStorage.getItem('facharzt_preferred_voice') || '',
+    speechPitch: 1.0,
     stepState: {}      // { [qId]: { step: 1..4, vitalsOpen: bool, examinerOpen: bool, revealed: bool, clozesUnmasked: bool } }
   };
 
@@ -149,6 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBadgeExaminerToggle = document.getElementById('badge-examiner-toggle');
   const elExaminerBadgeTitle = document.getElementById('examiner-badge-title');
   const elExaminerRevealCard = document.getElementById('examiner-reveal-card');
+  const elBtnToggleExaminerAnswer = document.getElementById('btn-toggle-examiner-answer');
+  const elExaminerInlineAnswerBox = document.getElementById('examiner-inline-answer-box');
+  const elExaminerInlineAnswerText = document.getElementById('examiner-inline-answer-text');
+  const elBtnAudioSpeakExaminerAns = document.getElementById('btn-audio-speak-examiner-ans');
+  const elRubricBlockExaminerSolution = document.getElementById('rubric-block-examiner-solution');
+  const elRubricExaminerPromptText = document.getElementById('rubric-examiner-prompt-text');
+  const elRubricExaminerSolutionText = document.getElementById('rubric-examiner-solution-text');
+  const elBtnAudioSpeakSolution = document.getElementById('btn-audio-speak-solution');
 
   const elStep4Container = document.getElementById('step4-container');
   const elRevealContainer = document.getElementById('reveal-container');
@@ -1014,24 +1024,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Realistic Vitals & BGA Panel tailored to topic
     const vitals = getRealisticVitalsForCase(category, stem, answer);
 
-    // 3. Examiner Steering / Follow-up challenge
+    // 3. Examiner Steering / Follow-up challenge & Full Clinical Model Solution
     let examinerIntervention = '';
     let examinerInterventionTR = '';
-    const followUpMatches = answer.match(/([A-ZÄÖÜ][^.?!]*\?)/g);
-    if (followUpMatches && followUpMatches.length > 0 && followUpMatches[0].length > 15) {
-      examinerIntervention = `Der Prüfer hakt gezielt nach: "${followUpMatches[0].trim()}"`;
-      const followUpMatchesTR = answerTr.match(/([^.?!]*\?)/g);
-      if (followUpMatchesTR && followUpMatchesTR.length > 0) {
-        examinerInterventionTR = `Jüri özellikle sorguluyor: "${followUpMatchesTR[0].trim()}"`;
-      } else {
-        examinerInterventionTR = `Jüri özellikle sorguluyor: "${followUpMatches[0].trim()}"`;
+    let examinerAnswer = '';
+    let examinerAnswerTR = '';
+
+    // Check 1: Authentic ÄKNO Düsseldorf Protocol Registry (MockExamSimulation)
+    const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+      ? MockExamSimulation.getRegistry(q.id)
+      : null;
+
+    if (reg && reg.crisis) {
+      examinerIntervention = reg.crisis.prompt_de;
+      examinerInterventionTR = reg.crisis.prompt_tr || reg.crisis.prompt_de;
+      examinerAnswer = reg.crisis.targetAction;
+      examinerAnswerTR = reg.crisis.targetAction_tr || reg.crisis.targetAction;
+      if (reg.koCriteria && reg.koCriteria.failureReason) {
+        examinerAnswer += `\n\n⚠️ K.O.-Kriterium / Prüfungsfalle:\n${reg.koCriteria.failureReason}`;
+        examinerAnswerTR += `\n\n⚠️ K.O. Kriteri / Sınav Tuzağı:\n${reg.koCriteria.failureReason}`;
       }
+    } else if (q.examiner_intervention && q.examiner_answer) {
+      examinerIntervention = q.examiner_intervention;
+      examinerInterventionTR = q.examiner_intervention_tr || q.examiner_intervention;
+      examinerAnswer = q.examiner_answer;
+      examinerAnswerTR = q.examiner_answer_tr || q.examiner_answer;
     } else {
-      examinerIntervention = getDynamicExaminerComplication(category, stem);
-      examinerInterventionTR = getDynamicExaminerComplicationTR(category, stem);
+      // Check 2: Clean subquestion from textbook answer if present
+      const subqRegex = /(?:^|[.!?\n])\s*([A-ZÄÖÜ][^.!?\n•–—]{8,85}\?)\s*([\s\S]+)$/;
+      const match = answer.match(subqRegex);
+      if (match && match[1].length > 15 && match[2].trim().length > 35 && !match[1].includes('•') && !match[1].includes('–')) {
+        examinerIntervention = `Der Prüfer hakt gezielt nach: "${match[1].trim()}"`;
+        examinerAnswer = match[2].trim();
+        const matchTR = answerTr ? answerTr.match(subqRegex) : null;
+        if (matchTR && matchTR[1]) {
+          examinerInterventionTR = `Jüri özellikle sorguluyor: "${matchTR[1].trim()}"`;
+          examinerAnswerTR = matchTR[2].trim();
+        } else {
+          examinerInterventionTR = `Jüri özellikle sorguluyor: "${match[1].trim()}"`;
+          examinerAnswerTR = examinerAnswer;
+        }
+      } else {
+        // Check 3: Domain-specific dynamic clinical complication & model answer
+        const dynamicEntry = getDynamicExaminerCase(category, stem, q);
+        examinerIntervention = dynamicEntry.question_de;
+        examinerInterventionTR = dynamicEntry.question_tr;
+        examinerAnswer = dynamicEntry.answer_de;
+        examinerAnswerTR = dynamicEntry.answer_tr;
+      }
     }
 
-    // 4. Three High-Impact Model Answer Micro-Cards
+    // 4. Three High-Impact Model Answer Micro-Cards + Examiner Solution
     const verbalFramework = generateVerbalFramework(category, stem, answer);
     const verbalFrameworkTR = generateVerbalFrameworkTR(category, stem, answer);
     const checklist = generateChecklist(category, stem, answer, q.options);
@@ -1044,6 +1087,8 @@ document.addEventListener('DOMContentLoaded', () => {
       vitals,
       examinerIntervention,
       examinerInterventionTR,
+      examinerAnswer,
+      examinerAnswerTR,
       verbalFramework,
       verbalFrameworkTR,
       checklist,
@@ -1164,32 +1209,453 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function getDynamicExaminerComplication(category, stem) {
-    if (category.includes('Atemweg')) {
-      return 'Der Prüfer interveniert: "Nach Narkoseeinleitung gelingt die Maskenbeatmung nur mit Mühe (SpO2 fällt auf 82%). Die direkte Laryngoskopie zeigt Cormack-Lehane Grad IV. Wie lautet Ihre strukturierte Eskalation nach dem DGAI-Stufenplan bis Plan D?"';
-    } else if (category.includes('Herz') || category.includes('Hämo')) {
-      return 'Der Prüfer steuert den Fall: "Der arterielle Druck fällt akut auf 70/40 mmHg und die etCO2 stürzt auf 14 mmHg ab. Welche 3 lebensbedrohlichen Differenzialdiagnosen müssen Sie sofort ausschließen und wie therapieren Sie?"';
-    } else if (category.includes('Chemie') || category.includes('Elektrolyt')) {
-      return 'Der Prüfer hakt nach: "Das Serum-Kalium steigt im Labor auf 6,8 mmol/l mit QRS-Verbreiterung im EKG. Nennen Sie exakt die Reihenfolge und Dosierung der medikamentösen Notfallmaßnahmen!"';
-    } else if (category.includes('Pharmakologie')) {
-      return 'Der Prüfer stellt eine Komplikation: "Unmittelbar nach Injektion klagt der Patient über periorales Kribbeln, gefolgt von einem generalisierten Krampfanfall. Welcher Notfall liegt vor und wie dosieren Sie das spezifische Antidot?"';
-    } else {
-      return 'Der Prüfer fragt weiter: "Welche pathophysiologischen Mechanismen begründen Ihre Therapiestrategie und welche gravierenden Fehler dürfen Ihnen hier unter keinen Umständen unterlaufen?"';
+  function getDynamicExaminerCase(category, stem, q) {
+    // 1. Herz-Kreislauf & Hämodynamik
+    if (category.includes('Herz') || category.includes('Hämo')) {
+      return {
+        question_de: 'Der Prüfer steuert den Fall: "Der arterielle Druck fällt akut auf 70/40 mmHg und die etCO2 stürzt auf 14 mmHg ab. Welche 3 lebensbedrohlichen Differenzialdiagnosen müssen Sie sofort ausschließen und wie therapieren Sie?"',
+        question_tr: 'Jüri vakayı yönlendiriyor: "Arteryel tansiyon akut olarak 70/40 mmHg\'ye ve etCO2 14 mmHg\'ye çakılıyor. Acilen dışlamanız gereken hayatı tehdit eden 3 ayırıcı tanı nedir ve nasıl tedavi edersiniz?"',
+        answer_de: `Die 3 lebensbedrohlichen Differenzialdiagnosen bei akutem RR- und etCO2-Absturz:
+1. Fulminante Lungenarterienembolie (LAE) / Gasembolie:
+   • Pathophysiologie: Akuter Verschluss des Pulmonalisstromgebiets → massiver Anstieg des alveolären Totraums (Belüftung ohne Perfusion) lässt das etCO2 steil abstürzen; akutes Rechtsherzversagen mit linksventrikulärem Vorlastabfall bedingt die schwere Hypotonie.
+   • Soforttherapie: 100% O2, Notfall-Echokardiographie (TEE: Rechtsherzdilatation, McConnell-Zeichen), Kreislaufstützung mit Noradrenalin (Ziel-MAP ≥ 65 mmHg) und ggf. Inotropika (Dobutamin), bei persistierendem Schock sofortige Lysetherapie (Alteplase 50–100 mg i.v. über 2 h bzw. 50 mg Bolus bei CPR) oder chirurgische/interventionelle Embolektomie.
+2. Spannungspneumothorax:
+   • Pathophysiologie: Ventilmechanismus führt zu progredientem intrapleuralem Druckanstieg → Kompression von Vena cava und rechtem Vorhof, venöser Rückstrom versiegt (obstruktiver Schock, RR stürzt ab); Beatmungsspitzendruck (Pmax) steigt steil an, etCO2 fällt infolge des minimierten Herzzeitvolumens ab.
+   • Soforttherapie: SOFORTIGE Nadeldekompression VOR jedem Röntgen! Punktion mit großlumiger Kanüle (≥ 14G) im 2. ICR Medioklavikularlinie (Monaldi) oder 4./5. ICR vordere bis mittlere Axillarlinie (Bülau/ATLS); anschließend Anlage einer Bülau-Thoraxdrainage mit Wasserschloss.
+3. Schwere Anaphylaxie (Grad III–IV) / Akuter Kreislaufkollaps (Massive Blutung / Myokardinfarkt / Tubusdislokation):
+   • Pathophysiologie: Massive systemische Vasodilatation und Kapillarleck führen zum Zusammenbruch des SVR und der Organperfusion; begleitender Bronchospasmus treibt die Beatmungsdrücke in die Höhe.
+   • Soforttherapie: Zufuhr aller potenziellen Trigger (Relaxanzien, Antibiotika, Kolloide, Latex) SOFORT STOPPEN! 100% O2, Hilfe rufen. Mittel der 1. Wahl ist ADRENALIN (Epinephrin): titrierter Bolus 10–50 µg i.v. alle 1–2 Minuten bei intubiertem/überwachtem Patienten (0,5 mg i.m. bei fehlendem venösem Zugang); rasche Druckinfusion von 20–30 ml/kg balancierten Kristalloiden; Zweitlinie: H1/H2-Blocker (Clemastin, Ranitidin) und Glukokortikoide (Prednisolon 250–500 mg i.v.).`,
+        answer_tr: `Ani tansiyon ve etCO2 çakılmasında hayatı tehdit eden 3 ayırıcı tanı:
+1. Masif Pulmoner Emboli (PTE) / Gaz Embolisi:
+   • Patofizyoloji: Pulmoner vasküler yatağın ani tıkanması → devasa alveoler ölü boşluk (perfüzyonsuz ventilasyon) etCO2'nin aniden çakılmasına yol açar; akut sağ kalp yetmezliği ve sol ventrikül dolumunun çökmesi ağır hipotansiyon yapar.
+   • Acil Tedavi: %100 O2, acil TEE ile sağ ventrikül dilatasyonunun doğrulanması, Noradrenalin ile MAP ≥ 65 mmHg hedeflenmesi; dirençli şokta acil tromboliz (Alteplaz 50–100 mg i.v.) veya embolektomi.
+2. Tansiyon Pnömotoraks:
+   • Patofizyoloji: Tek yönlü kapak mekanizmasıyla plevral basınç fırlar → vena kava ve kalbe venöz dönüş tıkanır (obstrüktif şok, tansiyon düşer); tepe solunum basıncı fırlar, kardiyak debi çöktüğü için etCO2 hızla düşer.
+   • Acil Tedavi: Grafi BEKLEMEDEN ANINDA iğne dekompresyonu! 2. İKA medioklaviküler hat (Monaldi) veya 4./5. İKA ön aksiller hat (Bülau); ardından derhal su altı drenajlı toraks tüpü takılması.
+3. Ağır Anafilaksi (Evre III–IV) / Masif Şok (Kanamalı çöküş / Akut MI / Tüp dislokasyonu):
+   • Patofizyoloji: Sistemik vazodilatasyon ve kapiller kaçış vasküler rezistansı çökertir; eşlik eden bronkospazm solunum basınçlarını artırır.
+   • Acil Tedavi: Tüm olası tetikleyicileri (kas gevşetici, antibiyotik, kolloid, lateks) DERHAL KES! %100 O2, ekibi alarma geçir. 1. seçenek ilaç ADRENALİN: İntübe hastada titre edilerek 10–50 µg i.v. bolus (damar yolu yoksa 0,5 mg i.m.); 20–30 ml/kg hızlı kristalloid yüklemesi; ikincil olarak antihistaminik ve kortikosteroid.`
+      };
     }
+
+    // 2. Atemwegsmanagement & Beatmung
+    if (category.includes('Atemweg')) {
+      return {
+        question_de: 'Der Prüfer interveniert: "Nach Narkoseeinleitung gelingt die Maskenbeatmung nur mit Mühe (SpO2 fällt auf 82%). Die direkte Laryngoskopie zeigt Cormack-Lehane Grad IV. Wie lautet Ihre strukturierte Eskalation nach dem DGAI-Stufenplan bis Plan D?"',
+        question_tr: 'Jüri müdahale ediyor: "Anestezi indüksiyonu sonrası maske ventilasyonu güçlükle sağlanabiliyor (SpO2 %82\'ye düşüyor). Doğrudan laringoskopide Cormack-Lehane Evre IV görülüyor. DGAI basamaklı planına göre Plan D\'ye kadar yapılandırılmış eskalasyonunuz nedir?"',
+        answer_de: `Strukturierte Eskalation nach dem DGAI-Stufenplan "Schwieriger Atemweg":
+• Plan A (Optimierung Maskenbeatmung & Laryngoskopie):
+  - Ruf nach Hilfe ("Atemwegsnotfall!"), 100% O2 mit High-Flow.
+  - Zweihändiger C-E-Griff mit Esmarch-Handgriff, Guedel- oder Wendl-Tubus einlegen.
+  - Sofortiger Wechsel auf Videolaryngoskopie (z. B. hyperangulierter Spatel wie McGrath/C-MAC) kombiniert mit vorgebogenem Bougie / Führungsstab.
+  - Maximal 2–3 vorsichtige Intubationsversuche zur Vermeidung von Larynxödem und Blutung.
+• Plan B (Supraglottischer Atemweg / SGA):
+  - Wenn Intubation fehlschlägt: Platzierung einer Larynxmaske (LMA) der 2. Generation (mit gastralem Absaugkanal, z. B. Supreme, ProSeal, Ambu AuraGain) oder eines Larynxtubus.
+  - Bei suffizienter SGA-Ventilation: Oxygenierung gerettet ("Can Ventilate, Cannot Intubate").
+• Plan C (Aufwachen lassen / Wake-up):
+  - Bei elektiven Eingriffen und stabiler SGA-Ventilation: Narkosezufuhr stoppen, Muskelrelaxierung sofort antagonisieren (Sugammadex 16 mg/kg i.v. bei Rocuronium für blitzschnelle Reversierung), Patient erwachen lassen.
+• Plan D (Cannot Intubate, Cannot Oxygenate - CICO / eFONA):
+  - Gelingt weder Intubation noch SGA-Beatmung (SpO2 stürzt weiter ab, CICO-Notfall): Sofortiger chirurgischer Notfallzugang zur Trachea (emergency Front-of-Neck Access - eFONA).
+  - Skalpell-Bougie-Tubus-Technik am Ligamentum cricothyroideum:
+    1. Skalpell quer durch Lig. cricothyroideum führen.
+    2. Klinge um 90° nach kaudal drehen zur Spreizung des Spalts.
+    3. Bougie entlang der Klinge in die Trachea vorschieben (Rastung an Knorpelspangen spüren).
+    4. Gecufften Endotrachealtubus (Größe 6,0 mm ID) über den Bougie vorschieben, Cuff blocken, Beatmung konnektieren und Kapnographie verifizieren.`,
+        answer_tr: `DGAI "Zor Havayolu" Kılavuzuna Göre Basamaklı Eskalasyon:
+• Plan A (Maske & Laringoskopi Optimizasyonu):
+  - Yardım çağır ("Havayolu acili!"), yüksek akımlı %100 O2 ver.
+  - İki elle C-E tutuşu ve Esmarch manevrası, uygun Guedel veya Wendl kanülü yerleştir.
+  - Doğrudan Videolaringoskopiye geç (McGrath/C-MAC hiperangüle bleyd) ve önceden bükülmüş buji/stile kullan.
+  - Ödem ve travmayı önlemek için en fazla 2–3 entübasyon denemesiyle sınırla.
+• Plan B (Supraglottik Havayolu / SGA):
+  - Entübasyon başarısız olursa: Mide drenaj kanallı 2. nesil Laringeal Maske (LMA Supreme, ProSeal, AuraGain) veya Laringeal Tüp yerleştir.
+  - SGA ile ventilasyon sağlanırsa oksijenasyon kurtarılmış olur ("Havalandırılabilir, Entübe Edilemez").
+• Plan C (Uyandırma):
+  - Elektif ameliyatlarda ve SGA ile hasta stabilse: Anesteziyi kes, kas gevşemesini hızla geri çevir (Rokuronyum için acil kurtarma dozu Sugammadeks 16 mg/kg i.v.), hastayı uyandır.
+• Plan D (Entübe Edilemez, Havalandırılamaz - CICO / eFONA):
+  - Maske ve SGA ile havalandırma sağlanamazsa: Acil cerrahi havayolu (eFONA) basamağına geçilir.
+  - Krikotiroid ligaman üzerinden Skalpel-Buji-Tüp tekniği:
+    1. Krikotiroid membrana transvers skalpel kesisi yap.
+    2. Bıçağı 90° kaudale çevirerek aralığı açık tut.
+    3. Buji kılavuzunu trakeya içine ilerlet (halkaları hisset).
+    4. 6.0 mm kafli endotrakeal tüpü buji üzerinden kaydır, kafi şişir ve kapnografi ile doğrula.`
+      };
+    }
+
+    // 3. Klinische Chemie & Elektrolyte
+    if (category.includes('Chemie') || category.includes('Elektrolyt')) {
+      return {
+        question_de: 'Der Prüfer hakt nach: "Das Serum-Kalium steigt im Labor auf 6,8 mmol/l mit QRS-Verbreiterung im EKG. Nennen Sie exakt die Reihenfolge und Dosierung der medikamentösen Notfallmaßnahmen!"',
+        question_tr: 'Jüri sorguluyor: "Laboratuvarda serum potasyumu 6,8 mmol/l\'ye yükseliyor ve EKG\'de QRS genişlemesi görülüyor. İlaçlı acil müdahalelerin tam sırasını ve dozlarını belirtiniz!"',
+        answer_de: `Strikte 3-Stufen-Notfalltherapie der schweren Hyperkaliämie:
+1. Membranstabilisierung (SOFORT - Wirkeintritt in 1–3 Minuten):
+   • Calciumgluconat 10%: 10 ml i.v. langsam über 2–3 Minuten (oder Calciumchlorid 10% 5–10 ml über ZVK).
+   • Rationale: Hebt das Schwellenpotenzial der Herzmuskelzelle an und schützt das Myokard sofort vor Kammerflimmern und Asystolie (Achtung: Senkt NICHT den Kaliumwert!).
+   • Bei anhaltenden EKG-Auffälligkeiten nach 5–10 Minuten repetieren!
+2. Kalium-Shift nach intrazellulär (Wirkeintritt in 15–30 Minuten):
+   • Glukose-Insulin-Infusion: 25 g Glukose (z. B. 125 ml Glukose 20%) + 10 IE Normalinsulin (Altinsulin) i.v. über 30 Minuten infundieren. Stündliche Blutzuckerkontrolle zwingend!
+   • Beta-2-Sympathomimetika: Salbutamol 10–20 mg vernebeln oder 0,5 mg langsam i.v. (stimuliert Na+/K+-ATPase).
+   • Natriumbicarbonat 8,4%: 50–100 ml i.v. langsam (nur bei begleitender metabolischer Azidose und gesicherter Ventilation indiziert). Milde Hyperventilation (Ziel-PaCO2 30–35 mmHg).
+3. Forcierte Kalium-Elimination aus dem Organismus:
+   • Schleifendiuretika: Furosemid 40–80 mg i.v. (bei erhaltener Nierenfunktion und Euvolämie).
+   • Kationenaustauscherharze: Lokelma (Natrium-Zirkonium-Cyclosilikat) 10 g p.o. oder Resonium.
+   • Ultima Ratio: Akute Hämodialyse / Hämofiltration bei Nierenversagen, Anurie oder refraktärem Verlauf.`,
+        answer_tr: `Ağır Hiperkalemide 3 Aşamalı Acil Tedavi:
+1. Kardiyak Membran Stabilizasyonu (ANINDA - 1–3 dakika içinde etki):
+   • Kalsiyum glukonat %10: 10 ml i.v. yavaşça 2–3 dakika içinde (veya santral yoldan Kalsiyum klorür %10 5–10 ml).
+   • Rasyonel: Miyokard hücre eşik potansiyelini yükselterek ventriküler fibrilasyon ve arresti önler (Potasyum seviyesini düşürmez!).
+   • EKG bozukluğu sürerse 5–10 dakika sonra tekrarla!
+2. Potasyumun Hücre İçine Kaydırılması (15–30 dakika içinde etki):
+   • Glukoz-İnsülin İnfüzyonu: 25 g Glukoz (%20 Dekstroz 125 ml) + 10 Ü Kristalize Normal İnsülin i.v. 30 dakikada verilir. Kan şekeri takibi şart!
+   • Beta-2 Agonist: Salbutamol 10–20 mg nebül veya yavaş i.v. (Na+/K+ ATPazı uyarır).
+   • Sodyum Bikarbonat %8,4: 50–100 ml i.v. (asidoz varlığında ve ventilasyon sağlandığında). Hafif hiperventilasyon (hedef PaCO2 30–35 mmHg).
+3. Potasyumun Vücuttan Uzaklaştırılması:
+   • Kıvrım Diüretiği: Furosemid 40–80 mg i.v. (idrar çıkışı varsa).
+   • Potasyum Bağlayıcı Reçineler: Lokelma 10 g veya Resonium.
+   • Kesin Çözüm: Anüri veya dirençli hiperkalemide acil Hemodiyaliz!`
+      };
+    }
+
+    // 4. Pharmakologie & Toxikologie / LAST
+    if (category.includes('Pharmakologie') || category.includes('Toxikologie')) {
+      return {
+        question_de: 'Der Prüfer stellt eine Komplikation: "Unmittelbar nach Injektion klagt der Patient über periorales Kribbeln, gefolgt von einem generalisierten Krampfanfall. Welcher Notfall liegt vor und wie dosieren Sie das spezifische Antidot?"',
+        question_tr: 'Jüri bir komplikasyon sunuyor: "Enjeksiyondan hemen sonra hasta perioral karıncalanmadan şikayet ediyor, ardından jeneralize nöbet gelişiyor. Hangi acil durum söz konusudur ve spesifik antidotu nasıl dozlarsınız?"',
+        answer_de: `Diagnose: Lokalanästhetika-induzierte Systemtoxizität (LAST - Local Anesthetic Systemic Toxicity).
+Leitliniengerechte Notfallmaßnahmen & Lipid-Rescue (DGAI / ASRA):
+1. Akutmaßnahmen:
+   • Lokalanästhetika-Zufuhr SOFORT STOPPEN! Hilfe anfordern, LAST-Rescue-Kit ("Lipid-Box") anfordern.
+   • 100% Sauerstoff, zügige Atemwegssicherung (Hypoxie und Azidose verstärken die Kardiotoxizität!).
+   • Krampfanfall durchbrechen: Midazolam 0,05–0,1 mg/kg i.v. titriert (2–5 mg). Propofol nur sehr zurückhaltend und niedrig dosiert wegen Gefahr zusätzlicher Myokarddepression.
+2. Spezifisches Antidot (Lipidemulsion 20%, z. B. Intralipid® 20%):
+   • Bolus: 1,5 ml/kg KG i.v. über 1 Minute (ca. 100 ml beim 70-kg-Patienten).
+   • Erhaltungsinfusion: 0,25 ml/kg KG/min kontinuierlich (ca. 1000 ml/h).
+   • Bei therapierefraktärer Instabilität / CPR: Bolus nach 3–5 min bis zu 2-mal wiederholen und Infusionsrate auf 0,5 ml/kg/min verdoppeln.
+   • Maximale Gesamtdosis: 10–12 ml/kg in den ersten 30 Minuten nicht überschreiten!
+3. Reanimation Besonderheiten:
+   • Adrenalin NIEDRIG dosieren (< 1 µg/kg Bolus, z. B. 10–50 µg statt 1 mg!), um ventrikuläre Tachyarrhythmien zu vermeiden.
+   • KONTRAINDIZIERT: Vasopressin, Calciumkanalblocker, Betablocker, Lokalanästhetika (Lidocain!).
+   • Prolongierte CPR durchführen: Reanimation mindestens 60 Minuten aufrechterhalten, da Lipidemulsion das Toxin über Zeit extrahiert.`,
+        answer_tr: `Tanı: Lokal Anestezik Sistemik Toksisitesi (LAST).
+Kılavuzlara Uygun Acil Müdahale ve Lipid Tedavisi:
+1. İlk Girişimler:
+   • Lokal anestezik enjeksiyonunu DERHAL DURDUR! Ekibi çağır, Lipid Kurtarma Kiti'ni getirt.
+   • %100 Oksijen desteği sağla, havayolunu emniyete al (hipoksi ve asidoz kardiyotoksisiteyi katlar).
+   • Nöbeti sonlandır: Titre edilerek Midazolam 2–5 mg i.v. (propofolden kardiyak depresyon riski nedeniyle kaçın).
+2. Spesifik Antidot (%20 Lipid Emülsiyonu - Intralipid 20%):
+   • Başlangıç Bolusu: 1,5 ml/kg i.v. 1 dakika içinde (70 kg hasta için ~100 ml).
+   • İdame İnfüzyon: 0,25 ml/kg/dk sürekli infüzyon.
+   • Şok veya arrest sürerse: Bolusu 3–5 dakika arayla en fazla 2 kez tekrarla ve idame hızını 0,5 ml/kg/dk'ya çıkar.
+   • Maksimum doz: İlk 30 dakikada toplam 10–12 ml/kg'ı aşma!
+3. Kardiyak Arrest Yönetimi:
+   • Adrenalin dozunu DÜŞÜK tut (< 1 µg/kg, örn. 10–50 µg bolus; 1 mg standart doz aritmiyi tetikler!).
+   • KONTRENDİKE: Vazopressin, kalsiyum kanal blokerleri, beta blokerler ve Lidokain!
+   • Uzamış KPR: Lipid bağlanması zaman aldığından resüsitasyonu en az 60 dakika sürdür.`
+      };
+    }
+
+    // 5. Säure-Basen-Haushalt & Blutgase
+    if (category.includes('Säure') || category.includes('Blutgase')) {
+      return {
+        question_de: 'Der Prüfer legt Ihnen eine BGA vor: "pH 7,12, PaCO2 62 mmHg, PaO2 58 mmHg, BE -8 mmol/l, Laktat 4,8 mmol/l. Welche kombinierte Störung liegt vor und wie priorisieren Sie Ihre therapeutischen Sofortschritte?"',
+        question_tr: 'Jüri bir kan gazı sunuyor: "pH 7,12, PaCO2 62 mmHg, PaO2 58 mmHg, BE -8 mmol/l, Laktat 4,8 mmol/l. Hangi kombine bozukluk mevcuttur ve acil tedavi adımlarınızı nasıl önceliklendirirsiniz?"',
+        answer_de: `Diagnose: Kombinierte schwere respiratorische und metabolische Azidose mit Laktatazidose bei ventilatorischer Insuffizienz und peripherer Gewebehypoxie.
+Priorisierte Therapiestruktur:
+1. Respiratorische Sofortkorrektur (PaCO2 senken & Hypoxämie beheben):
+   • 100% Sauerstoff (FiO2 1,0).
+   • Bei Spontanatmung: Sofortige NIV oder endotracheale Intubation.
+   • Bei Beatmung: Minutenventilation steigern (Atemfrequenz anheben, Tidalvolumen 6 ml/kg PBW optimieren), um das PaCO2 kontrolliert auf 35–40 mmHg abzuhemen. PEEP adäquat titrieren.
+2. Hämodynamische Kausaltherapie (Gewebeperfusion wiederherstellen):
+   • Vasopressor: Noradrenalin-Perfusor zur Sicherung des Organperfusionsdrucks (Ziel-MAP ≥ 65 mmHg).
+   • Gezielte Volumentherapie mit balancierten Kristalloiden (keine hyperchlorämische NaCl 0,9%!) zur Beseitigung der anaeroben Laktatproduktion.
+3. Differenzierte Indikation für Natriumbicarbonat:
+   • Natriumbicarbonat 8,4% (50–100 mmol) NUR erwägen bei pH < 7,15 und NACH Sicherstellung einer ausreichenden alveolären Ventilation, da durch die Pufferung CO2 entsteht (HCO3- + H+ ↔ H2CO3 ↔ H2O + CO2), das zwingend abgeatmet werden muss, um eine intrazelluläre paradoxe Azidose zu verhindern!`,
+        answer_tr: `Tanı: Ventilatör yetmezliği ve doku hipoperfüzyonuna bağlı kombine ağır respiratuar ve laktik asidoz.
+Öncelikli Tedavi Basamakları:
+1. Solunumsal Acil Düzeltme (CO2 atılımı ve hipokseminin giderilmesi):
+   • %100 Oksijen (FiO2 1,0).
+   • Spontan soluyorsa acil NİV veya endotrakeal entübasyon.
+   • Ventilatörde ise dakika ventilasyonunu artırarak (solunum sayısı ve Vt 6 ml/kg PBW optimizasyonu) PaCO2'yi kontrollü şekilde 35–40 mmHg'ye düşür.
+2. Hemodinamik Kausal Tedavi (Doku perfüzyonunun sağlanması):
+   • Noradrenalin perfüzörü ile hedef MAP ≥ 65 mmHg sağlanması.
+   • Dengeli kristaloidlerle hedefe yönelik volüm replasmanı (anaerobik laktat üretimini kırmak için).
+3. Sodyum Bikarbonat Endikasyonu:
+   • Yalnızca pH < 7,15 ise ve MUTLAKA alveoler ventilasyon güvenceye alındıktan sonra düşünülmelidir; çünkü bikarbonat tamponlaması CO2 üretir ve bu CO2 atılamazsa hücre içi paradoksal asidoz derinleşir!`
+      };
+    }
+
+    // 6. Kinderanästhesie & Pädiatrie
+    if (category.includes('Kinder') || category.includes('Pädiatrie')) {
+      return {
+        question_de: 'Der Prüfer interveniert im Saal: "Unmittelbar nach Extubation eines 3-jährigen Kindes kommt es zu Stridor, thorakalen Einziehungen und die SpO2 stürzt auf 72% ab bei Bradykardie von 45/min. Wie lautet Ihr Notfallalgorithmus?"',
+        question_tr: 'Jüri müdahale ediyor: "3 yaşındaki bir çocuğun ekstübasyonundan hemen sonra stridor, göğüs çekilmeleri gelişiyor ve SpO2 %72\'ye, kalp hızı 45/dk\'ya düşüyor. Acil durum algoritmanız nedir?"',
+        answer_de: `Diagnose: Akuter Laryngospasmus mit bedrohlicher hypoxischer Bradykardie.
+Stufenplan:
+1. Sofortmaßnahmen:
+   • 100% O2 mit dicht sitzender Maske und CPAP (APL-Ventil auf 15–20 cmH2O zudrehen, kontinuierlicher Überdruck sprengt den Spasmus).
+   • Larson-Handgriff ("Laryngospasm notch"): Beidseitig kräftiger Druck mit den Mittelfingern in die Grube hinter dem aufsteigenden Unterkieferast (Processus mastoideus / Kieferwinkel) nach anterior-medial.
+   • Rachenraum vorsichtig von Blut/Sekret absaugen (keine tiefe mechanische Reizung der Glottis!).
+2. Medikamentöse Eskalation:
+   • Wenn Spasmus persistiert: Propofol-Bolus 0,5–1,0 mg/kg i.v. zur Spasmusdurchbrechung.
+3. K.O.-Kriterium bei Bradykardie:
+   • Fällt HF < 60/min oder droht Asystolie: ZWINGEND Succinylcholin (0,5–1,0 mg/kg i.v. oder 3–4 mg/kg i.m.) ZUSAMMEN MIT ATROPIN (0,02 mg/kg i.v., Mindestdosis 0,1 mg)!
+   • Niemals Succinylcholin ohne Atropin beim hypoxischen Kleinkind geben (Gefahr des vagalen Herzstillstands!).
+   • Re-Intubation mit gecufftem Tubus (Größe: Alter/4 + 3,5 = 3/4 + 3,5 = 4,0 oder 4,5 mm ID).`,
+        answer_tr: `Tanı: Hipoksik bradikardi ile seyreden akut laringospazm (Pediyatrik acil!).
+Basamaklı Müdahale Planı:
+1. İlk Müdahaleler:
+   • Sıkı oturan maske ile %100 O2 ve sürekli CPAP (APL valfini 15–20 cmH2O'ya sıkarak spazmı aşmak).
+   • Larson manevrası: Mastoid çıkıntı arkası çene köşesine iki elle derin bası uygulayarak laringospazmı kırmak.
+   • Nazikçe farenksteki sekresyonu aspire etmek.
+2. İlaçlı Kademeli Yaklaşım:
+   • Spazm çözülmezse düşük doz Propofol (0,5–1 mg/kg i.v.).
+3. Hayati K.O. Kriteri:
+   • Kalp hızı < 60/dk altına inerse: Süksinilkolin (0,5–1,0 mg/kg i.v.) MUTLAKA ATROPİN (0,02 mg/kg i.v., min 0,1 mg) ile birlikte uygulanmalıdır! Atropinsiz süksinilkolin vagal asistoliye yol açar.
+   • Kafli tüple re-entübasyon (Tüp çapı = Yaş/4 + 3,5).`
+      };
+    }
+
+    // 7. Regionalanästhesie
+    if (category.includes('Regional')) {
+      return {
+        question_de: 'Der Prüfer hakt nach: "Bei Anlage einer interskalenären Plexusblockade klagt der Patient plötzlich über Heiserkeit, Atemnot und Sie bemerken eine Ptosis und Miosis einseitig. Welche Nerven sind tangiert und wie klären Sie den Patienten auf?"',
+        question_tr: 'Jüri sorguluyor: "İnterskalen blok uygulaması sırasında hasta aniden ses kısıklığı, nefes darlığı tarifliyor ve tek taraflı pitozis ile miyozis fark ediyorsunuz. Hangi sinirler etkilenmiştir ve hastayı nasıl aydınlatırsınız?"',
+        answer_de: `Anatomische Ursachen & Betroffene Nerven:
+1. Horner-Syndrom (Ptosis, Miosis, Enophthalmus):
+   • Ursache: Akzidentelle Mitblockade des zervikalen Truncus sympathicus / Ganglion stellatum durch nach medial diffundierendes Lokalanästhetikum.
+2. Heiserkeit & Klossgefühl:
+   • Ursache: Blockade des N. laryngeus recurrens (Ast des N. vagus) mit einseitiger Stimmlippenparese.
+3. Atemnot & verminderte Lungenbelüftung:
+   • Ursache: 100%ige ipsilaterale N. phrenicus-Parese (Zwerchfellhochstand) bei anteriorer Diffusion über den M. scalenus anterior.
+Vorgehen & Aufklärung:
+• Patient sofort beruhigen: Das ist eine bekannte, vollkommen reversible Begleitwirkung und KEINE bleibende Nervenschädigung!
+• Oberkörper hochlagern, Sauerstoffinsufflation über Nasenbrille (2–4 l/min).
+• Pulsoxymetrie und Atemmuster engmaschig überwachen.
+• Bei schweren vorbestehenden pulmonalen Vorerkrankungen (schwere COPD, Lungenfibrose) ist die interskalenäre Blockade wegen des Phrenicus-Ausfalls kontraindiziert.`,
+        answer_tr: `Anatomik Nedenler ve Etkilenen Sinirler:
+1. Horner Sendromu (Pitozis, miyozis, enoftalmus): Mediyale yayılan lokal anesteziğin servikal sempatik zinciri / ganglion stellatum'u bloke etmesi.
+2. Ses kısıklığı: N. laryngeus recurrens blokajına bağlı tek taraflı vokal kord felci.
+3. Nefes darlığı: M. scalenus anterior önünden geçen N. phrenicus'un %100 oranında geçici blokajı sonucu tek taraflı diyafram parezisi.
+Yönetim ve Bilgilendirme:
+• Hastayı rahatlat: Tamamen geçici, ilacın etkisi geçince düzelecek fizyolojik bir yan etkidir, kalıcı hasar değildir.
+• Baş yukarı pozisyon ver, nazal 2–4 l/dk O2 desteği sağla.
+• İleri KOAH hastalarında frenik sinir felci nedeniyle interskalen blok kontrendikedir.`
+      };
+    }
+
+    // 8. Reanimation & Notfallmedizin / ALS
+    if (category.includes('Notfall') || category.includes('Reanimation') || category.includes('ALS')) {
+      return {
+        question_de: 'Der Prüfer konfrontiert Sie: "Mitten im Eingriff meldet der Monitor Kammerflimmern. Nach dem 1. Schock (200 J biphasisch) und 2 Minuten CPR persistiert das Flimmern. Ein Kollege ruft: \'Gib sofort 1 mg Adrenalin!\' Wie entscheiden Sie und warum?"',
+        question_tr: 'Jüri yüzleştiriyor: "Ameliyat esnasında monitörde ventriküler fibrilasyon görülüyor. 1. şok (200 J) ve 2 dk KPR sonrası VF sürüyor. Bir meslektaşınız \'Hemen 1 mg Adrenalin yap!\' diyor. Kararınız nedir ve neden?"',
+        answer_de: `Entscheidung: KLARES VETO! ("Halt, Stopp! Nach aktuellen ERC-Leitlinien wird nach dem 1. und 2. Schock KEIN Adrenalin verabreicht!").
+Begründung & Korrekter Algorithmus:
+1. Begründung:
+   • Eine zu frühe Adrenalingabe nach dem 1. oder 2. Schock erhöht die myokardiale Sauerstoffschuld und induziert refraktäre Arrhythmien, ohne das Überleben zu verbessern.
+2. Korrekte Reanimationsfolge bei schockbarem Rhythmus (VF / pVT):
+   • 1. Schock (200 J biphasisch) → Sofort 2 Minuten Herzdruckmassage (100–120/min kontinuierlich).
+   • Rhythmusanalyse: Persistierendes VF → 2. Schock abgeben → Sofort 2 Minuten CPR!
+   • Rhythmusanalyse: Persistierendes VF → 3. SCHOCK abgeben → JETZT ERST:
+     - Adrenalin 1 mg i.v./i.o. verabreichen (dann alle 3–5 min / jeden 2. Zyklus wiederholen).
+     - Amiodaron 300 mg i.v. Bolus (oder Lidocain 100 mg i.v. als Alternative). Nach dem 5. Schock nochmals Amiodaron 150 mg i.v.
+3. Reversible Ursachen (4Hs & HITS) parallel abarbeiten:
+   • Hypoxie, Hypovolämie, Hypo-/Hyperkaliämie, Hypo-/Hyperthermie.
+   • Herzbeuteltamponade, Intoxikation, Thromboembolie, Spannungspneumothorax.`,
+        answer_tr: `Karar: KESİN VETO! ("Durun! ERC kılavuzlarına göre 1. ve 2. şoktan sonra Adrenalin KESİNLİKLE VERİLMEZ!").
+Gerekçe ve Doğru Algoritma:
+1. Gerekçe: Erken adrenalin miyokardiyal oksijen tüketimini artırır ve dirençli VF'yi tetikler.
+2. Şoklanabilir Ritimde Doğru Sıralama:
+   • 1. Şok (200 J) → Kesintisiz 2 dakika KPR.
+   • Ritim kontrolü: VF sürüyor → 2. Şok → Kesintisiz 2 dakika KPR.
+   • Ritim kontrolü: VF sürüyor → 3. ŞOK → İŞTE ŞİMDİ İLK KEZ:
+     - Adrenalin 1 mg i.v. (ardından her 3–5 dakikada bir).
+     - Amiodaron 300 mg i.v. bolus (5. şok sonrası 150 mg tekrar).
+3. 4H ve 4T geri döndürülebilir nedenleri dışla.`
+      };
+    }
+
+    // 9. Intensivmedizin & Sepsis
+    if (category.includes('Intensiv') || category.includes('Sepsis')) {
+      return {
+        question_de: 'Der Prüfer verschärft die Lage: "Auf der Intensivstation entwickelt der Patient im septischen Schock trotz 30 ml/kg Kristalloiden und Noradrenalin (0,4 µg/kg/min) einen MAP von nur 52 mmHg und Laktat 5,2 mmol/l. Welcher Zweitlinien-Vasopressor ist indiziert und wie dosieren Sie ihn?"',
+        question_tr: 'Jüri durumu zorlaştırıyor: "Yoğun bakımda septik şoktaki hastada 30 ml/kg sıvı ve noradrenalin (0,4 µg/kg/dk) rağmen MAP 52 mmHg ve laktat 5,2 mmol/l kalıyor. Hangi 2. basamak vazopressör endikedir ve nasıl dozlarsınız?"',
+        answer_de: `Leitlinien-Therapie nach Surviving Sepsis Campaign (SSC):
+1. Zweitlinien-Vasopressor der Wahl:
+   • Vasopressin (Argipressin) hinzufügen!
+   • Dosierung: Fixe Laufrate von 0,03 I.E./min (wird NICHT titriert!).
+   • Rationale: Durch relative Vasopressin-Defizienz bei Sepsis kommt es zu deutlicher Vasokonstriktion über V1-Rezeptoren und drastischer Einsparung von Noradrenalin.
+2. Ergänzende Maßnahmen bei vasopressor-refraktärem Schock:
+   • Hydrocortison: 200 mg/Tag i.v. (entweder kontinuierlich 8,3 mg/h oder 50 mg alle 6h i.v.) zur Behebung der relativen Nebennierenrindeninsuffizienz.
+   • Bei myokardialer Dysfunktion (erhöhte Füllungsdrücke, LVEF erniedrigt im TTE): Dobutamin-Perfusor (2–10 µg/kg/min) zuschalten.
+3. Kardinalfehler vermeiden:
+   • Keine synthetischen Kolloide (HES / Gelatine) nachgeben (Nephrotoxizität und erhöhte Mortalität!).
+   • Kein weiteres unkontrolliertes "Überwässern" nach den initialen 30 ml/kg (Gefahr von Lungenödem, Bauchkapselödem, Organstauung).
+   • Ziel-MAP strikt ≥ 65 mmHg halten!`,
+        answer_tr: `Surviving Sepsis Kılavuzuna Göre Yaklaşım:
+1. Seçilecek 2. Basamak Vazopressör:
+   • Vazopressin (Argipressin) eklenmelidir!
+   • Doz: 0,03 Ü/dk SABİT HIZDA (titre edilmez!).
+   • Rasyonel: V1 reseptörleri üzerinden vazokonstriksiyon sağlayarak noradrenalin ihtiyacını dramatik biçimde azaltır.
+2. Dirençli Şokta Ek Tedaviler:
+   • Hidrokortizon 200 mg/gün i.v. (rölatif adrenal yetmezliği düzeltmek için).
+   • Miyokardiyal disfonksiyon varsa Dobutamin (2–10 µg/kg/dk) infüzyonu.
+3. Hatalardan Kaçınma: Sentetik kolloidlerden (HES) kesinlikle kaçın, aşırı sıvı yüklemesi yapma, hedef MAP ≥ 65 mmHg koru.`
+      };
+    }
+
+    // 10. Transfusionsmedizin & Hämostaseologie
+    if (category.includes('Transfusion') || category.includes('Hämostase')) {
+      return {
+        question_de: 'Der Prüfer fordert Sie heraus: "Bei intraoperativer Massivblutung zeigt das ROTEM: EXTEM CT normal, aber FIBTEM A10 nur 6 mm. Der Chirurg fordert sofort 4 FFP. Wie lautet Ihre gezielte Gerinnungstherapie nach aktuellen Leitlinien?"',
+        question_tr: 'Jüri meydan okuyor: "Masif intraoperatif kanamada ROTEM sonucu: EXTEM CT normal, ancak FIBTEM A10 yalnızca 6 mm. Cerrah acilen 4 ünite TDP istiyor. Güncel kılavuzlara göre hedefe yönelik kanama yönetiminiz nedir?"',
+        answer_de: `Entscheidung: Widerspruch gegen die blinde FFP-Gabe!
+Begründung & Gezielter ROTEM-Algorithmus:
+1. Rationale:
+   • FIBTEM A10 von 6 mm entspricht einer kritischen Hypofibrinogenämie (< 1,5 g/l).
+   • FFP enthalten pro Beutel nur ca. 1,5–2,0 g Fibrinogen in großem Volumen (~250–300 ml). Um 4 g Fibrinogen zuzuführen, müssten 2 Liter FFP transfundiert werden → fatale Hypervolämie mit Rechtsherzüberlastung (TACO) oder immunologischer Lungenschädigung (TRALI) und Verdünnungskoagulopathie!
+2. Gezielte Substitution:
+   • Fibrinogenkonzentrat: Sofort 2–4 g i.v. (Faustformel: Erhöhung des FIBTEM A10 um 2 mm pro 1 g Fibrinogen beim 70-kg-Patienten; Ziel-FIBTEM A10 ≥ 10–12 mm).
+   • Tranexamsäure: 1–2 g i.v. als Kurzinfusion über 10 min (falls noch nicht erfolgt, zwingend innerhalb der ersten 3 Stunden nach Blutungsbeginn zur Vermeidung von Hyperfibrinolyse).
+3. Kalzium- und Temperaturkontrolle:
+   • Ionisiertes Kalzium zwingend > 1,1–1,2 mmol/l halten (Calciumgluconat/Calciumchlorid i.v. bei Zitratbelastung durch EK-Gabe).
+   • Körperkerntemperatur > 36,0 °C durch aktive Wärmematten und Blutwärmer sichern.`,
+        answer_tr: `Karar: Körü körüne TDP verilmesine VETO!
+Gerekçe ve Hedefe Yönelik Tedavi:
+1. Rasyonel: FIBTEM A10 = 6 mm kritik hipofibrinojenemiyi (< 1,5 g/l) gösterir. TDP düşük fibrinojen içerir ve hacim yüklenmesine (TACO/TRALI) yol açar.
+2. Spesifik Tedavi:
+   • Fibrinojen konsantresi: Anında 2–4 g i.v. (Hedef FIBTEM A10 ≥ 10–12 mm).
+   • Traneksamik asit: 1–2 g i.v. (ilk 3 saatte hiperfibrinolizi önlemek için).
+3. Kalsiyum ve Sıcaklık: İyonize kalsiyum > 1,1 mmol/l ve vücut sıcaklığı > 36 °C tutulmalıdır.`
+      };
+    }
+
+    // 11. Geburtshilfliche Anästhesie
+    if (category.includes('Geburt') || category.includes('Sectio')) {
+      return {
+        question_de: 'Der Prüfer schlägt vor: "Bei einer Eklampsie mit generalisiertem Krampfanfall und RR 210/120 mmHg rät die Hebamme zur schnellen Gabe von 10 mg Diazepam. Wie reagieren Sie und was ist die evidenzbasierte Therapie?"',
+        question_tr: 'Jüri öneriyor: "Eklampsi nöbeti geçiren ve tansiyonu 210/120 mmHg olan gebede ebe hızla 10 mg diazepam yapılmasını öneriyor. Yanıtınız ve kanıta dayalı tedaviniz nedir?"',
+        answer_de: `Entscheidung: Sofortiger Widerspruch gegen Diazepam!
+Leitlinienkonzept bei Eklampsie (DGGG/DGAI):
+1. Krampfdurchbrechung & -prophylaxe (Mittel der 1. Wahl):
+   • Magnesiumsulfat (MgSO4): 4–6 g i.v. als Kurzinfusion über 15–20 Minuten.
+   • Anschließend Erhaltungsdosis von 1–2 g/h über Perfusor für mindestens 24 Stunden postpartal.
+   • Zwingend am Bett bereithalten: Calciumgluconat 10% (10 ml i.v. langsam) als spezifisches Antidot bei Magnesiumtoxizität (Atemdepression, Reflexverlust).
+   • Benzodiazepine sind kontraindiziert bzw. nur absolute Reserve bei refraktärem Status epilepticus, da sie die fetale Depression massiv verstärken und die mütterliche Vigilanz trüben.
+2. Blutdrucksenkung:
+   • Urapidil: 12,5–25 mg i.v. langsam titriert oder Perfusor (Ziel-RR systolisch 140–160 mmHg, diastolisch 90–105 mmHg; nicht zu tief senken wegen uteroplazentarer Minderperfusion!).
+3. Geburtshilfliche Sofortmaßnahmen:
+   • Zwingend 15–30° Linksseitenkippung des OP-Tischs zur Entlastung der Vena cava inferior!
+   • Zügige Indikationsstellung zur Notsectio (EEZ ≤ 20 min).`,
+        answer_tr: `Karar: Diazepam önerisine KESİN RET!
+Kılavuzlara Uygun Eklampsi Tedavisi:
+1. Nöbet Tedavisi ve Profilaksisi (1. Seçenek):
+   • Magnezyum sülfat: 4–6 g i.v. yükleme dozu (15–20 dakikada), ardından 1–2 g/saat idame infüzyon.
+   • Antidot Kalsiyum glukonat %10 başucunda hazır bekletilmelidir.
+   • Benzodiazepinler fetal solunum depresyonunu artırdığı için kontrendikedir.
+2. Tansiyon Kontrolü: Urapidil 12,5–25 mg i.v. yavaş titrasyon (hedef sistolik 140–160 mmHg).
+3. Doğum Önlemleri: Vena kava basısını önlemek için masayı 15–30° sola eğ, acil sezaryen hazırlığı yap (EEZ ≤ 20 dk).`
+      };
+    }
+
+    // 12. Thoraxanästhesie
+    if (category.includes('Thorax')) {
+      return {
+        question_de: 'Der Prüfer simuliert: "Während der Einlungenventilation fällt die SpO2 trotz 100% FiO2 auf 78% ab. Nennen Sie das strukturierte 5-Stufen-Rettungsschema bei akuter OLV-Hypoxämie!"',
+        question_tr: 'Jüri simüle ediyor: "Tek akciğer ventilasyonu sırasında %100 FiO2\'ye rağmen SpO2 %78\'e düşüyor. Akut OLV hipoksemisinde 5 basamaklı kurtarma şemasını sayınız!"',
+        answer_de: `Strukturiertes 5-Stufen-Hypoxämieschema (Hohn / DGAI):
+• Stufe 1: FiO2 an der abhängigen (ventilierten) Lunge sofort auf 1,0 erhöhen. Beatmungsdruck und Tidalvolumen kontrollieren (Vt 4–6 ml/kg PBW).
+• Stufe 2: Fiberoptische Tubuslagekontrolle! Bronchoskop über den DLT einführen und Carina sowie Bronchialmanschette inspizieren (häufigste Ursache ist DLT-Dislokation oder Sekretverlegung!).
+• Stufe 3: CPAP an die nicht-ventilierte (operierte) Lunge anlegen (2–5 cmH2O mit 100% O2). Das oxygeniert das Shuntblut der kollabierten Lunge, ohne die chirurgische Sicht nennenswert zu behindern!
+• Stufe 4: PEEP an der ventilierten Lunge vorsichtig hochtitrieren (5–10 cmH2O) zur Atelektasenrekrutierung (Cave: Zu hoher PEEP leitet Blut in die nicht-ventilierte Shunt-Lunge um!).
+• Stufe 5: Wenn SpO2 < 85% persistiert: Sofortige Unterbrechung der Einlungenventilation! Operateur auffordern, die Lunge freizugeben, und Wiederaufnahme der 2-Lungen-Ventilation bis zur Stabilisierung.`,
+        answer_tr: `Tek Akciğer Ventilasyonunda 5 Basamaklı Hipoksemi Algoritması:
+• 1. Basamak: Havalandırılan akciğere derhal %100 FiO2 ver, Vt 4–6 ml/kg PBW kontrol et.
+• 2. Basamak: Fiberoptik bronkoskopi ile çift lümenli tüpün yerini kontrol et (en sık neden dislokasyon veya sekresyondur!).
+• 3. Basamak: Havalandırılmayan kollabe akciğere 2–5 cmH2O CPAP uygula (%100 O2 ile şant kanını oksijenlendirir).
+• 4. Basamak: Havalandırılan akciğere PEEP (5–10 cmH2O) titre et.
+• 5. Basamak: SpO2 < %85 sürerse cerraha haber vererek tek akciğer ventilasyonunu derhal durdur ve iki akciğeri de havalandır.`
+      };
+    }
+
+    // 13. Neuroanästhesie & ICP
+    if (category.includes('Neuro') || category.includes('ICP') || category.includes('SHT')) {
+      return {
+        question_de: 'Der Prüfer stellt eine Falle: "Bei akutem Schädel-Hirn-Trauma mit ICP 28 mmHg schlägt der Notarzt vor, den MAP auf 60 mmHg zu senken, um die Hirnblutung nicht zu verstärken. Warum führt das zum sofortigen Durchfallen?"',
+        question_tr: 'Jüri bir tuzak kuruyor: "KİBAS ve ICP 28 mmHg olan kafa travmalı hastada acil hekimi kanamayı artırmamak için MAP\'ı 60 mmHg\'ye düşürmeyi öneriyor. Bu neden sınavdan anında kalma nedenidir?"',
+        answer_de: `Prüfungsfalle & K.O.-Kriterium:
+• Physiologie: Der zerebrale Perfusionsdruck (CPP) berechnet sich als: CPP = MAP - ICP.
+• Bei einem MAP von 60 mmHg und einem ICP von 28 mmHg beträgt der CPP nur: 60 - 28 = 32 mmHg!
+• Die Leitlinien fordern zwingend einen Ziel-CPP von ≥ 60–70 mmHg!
+• Ein CPP von 32 mmHg führt zur akuten ischämischen Nekrose des Hirnparenchyms, zerebralem Ödem und fataler Einklemmung im Foramen magnum!
+Korrekte Therapiemaßnahmen:
+1. MAP sofort mit Noradrenalin auf mindestens 90–100 mmHg anheben, um den CPP > 65 mmHg zu garantieren!
+2. Oberkörper 30° hochlagern (venöser Abfluss optimieren, keine Halsvenenstauung).
+3. Osmotherapie: Hypertones NaCl (z. B. NaCl 3% Bolus 2 ml/kg) oder Mannitol 20% (0,5–1 g/kg i.v.).
+4. Tiefe Sedierung und Analgesie (Propofol/Sufentanil), Normokapnie (PaCO2 35–38 mmHg; keine tiefe Dauerhyperventilation!).`,
+        answer_tr: `Tuzak ve K.O. Kriteri:
+• Serebral perfüzyon basıncı formülü: CPP = MAP - ICP.
+• MAP 60 ve ICP 28 iken CPP yalnızca 32 mmHg olur (Kılavuzlar en az 60–70 mmHg şart koşar!). Bu ölümcül iskemi ve fıtıklaşmaya yol açar.
+Doğru Yaklaşım:
+1. Noradrenalin ile MAP'ı hemen ≥ 90–100 mmHg seviyesine yükselt.
+2. Baş 30° yukarı pozisyon ver, juguler drenajı rahatlat.
+3. Osmoterapi: Hipertonik salin (%3 NaCl 2 ml/kg) veya Mannitol %20.
+4. Derin sedasyon, normokapni (PaCO2 35–38 mmHg).`
+      };
+    }
+
+    // 14. Aufwachraum & Postoperative Komplikationen
+    if (category.includes('Aufwachraum') || category.includes('Lungenödem')) {
+      return {
+        question_de: 'Der Prüfer konfrontiert Sie im Aufwachraum: "30 Minuten nach komplikationsloser Extubation entwickelt ein junger muskulöser Patient plötzlich akute Dyspnoe, blutigen schaumigen Auswurf und die SpO2 stürzt auf 76%. Was ist passiert und wie therapieren Sie?"',
+        question_tr: 'Jüri derlenme odasında soruyor: "Sorunsuz ekstübasyondan 30 dk sonra genç kaslı bir hastada aniden ağır dispne, kanlı köpüklü balgam gelişiyor ve SpO2 %76\'ya düşüyor. Ne oldu ve nasıl tedavi edersiniz?"',
+        answer_de: `Diagnose: Negativdruck-Lungenödem (NPPE - Negative Pressure Pulmonary Edema / Müller-Manöver).
+Pathophysiologie:
+• Nach Laryngospasmus oder Tubusbiss atmet der muskulöse Patient mit maximaler Inspiration gegen die verschlossene Glottis an.
+• Erzeugung massiver intrathorakaler Unterdrücke (bis -50 bis -100 cmH2O) führt zum steilen Anstieg des venösen Rückstroms und Zerreißung der Alveolo-Kapillären-Membran mit massivem transsudativem Permeabilitätsödem.
+Therapie:
+1. 100% Sauerstoff unter kontinuierlichem CPAP (10–12 cmH2O) oder NIV zur mechanischen Verdrängung des Ödems aus den Alveolen.
+2. Oberkörper aufrecht lagern (Vorlastsenkung).
+3. Sedierung und Beruhigung (z. B. Morphin 2–5 mg i.v. titriert).
+4. Bei schwerer Erschöpfung oder Hypoxie: Sofortige Re-Intubation und invasive PEEP-Beatmung (PEEP 10–14 mbar). Typischerweise rasche Erholung binnen 12–24 Stunden.`,
+        answer_tr: `Tanı: Negatif Basınçlı Akciğer Ödemi (NPPE / Müller manevrası).
+Patofizyoloji: Laringospazm veya tüp ısırma sonrası kapalı glottise karşı güçlü soluma çabası göğüs içinde aşırı negatif basınç yaratarak alveollere sıvı dolmasına neden olur.
+Tedavi:
+1. %100 Oksijen ile sürekli CPAP (10–12 cmH2O) veya NİV.
+2. Oturur pozisyon (baş yukarı).
+3. Titre edilerek morfin i.v. (ön yükü azaltmak için).
+4. Yetersiz kalırsa PEEP (10–14 mbar) ile acil re-entübasyon.`
+      };
+    }
+
+    // 15. Default / Allgemeine Anästhesie
+    return {
+      question_de: 'Der Prüfer fragt weiter: "Welche pathophysiologischen Mechanismen begründen Ihre Therapiestrategie und welche gravierenden Fehler dürfen Ihnen hier unter keinen Umständen unterlaufen?"',
+      question_tr: 'Jüri sormaya devam ediyor: "Tedavi stratejinizi hangi patofizyolojik mekanizmalar gerekçelendirir ve burada hiçbir koşulda yapmamanız gereken vahim hatalar nelerdir?"',
+      answer_de: `Prüfer-Erwartungshorizont & Strukturierte Facharzt-Antwort:
+1. Pathophysiologische Begründung nach ABCDE:
+   • Airway & Breathing: Frühe Sicherung der Oxygenierung und Ventilation zur Vorbeugung sekundärer Hypoxieschäden (Gehirn, Myokard).
+   • Circulation: Aufrechterhaltung eines zielgerichteten Organperfusionsdrucks (Ziel-MAP ≥ 65 mmHg) durch balancierte Volumentherapie und frühzeitigen Vasopressoreinsatz (Noradrenalin) vor übermäßiger Volumenüberladung.
+2. Die 3 Kardinalfehler & K.O.-Kriterien:
+   • 1. Zeitverzögerung lebensrettender Maßnahmen durch unstrukturiertes Handeln ("Treat first what kills first!").
+   • 2. Verabreichung absolut kontraindizierter Substanzen (z. B. Kalziumantagonisten bei Maligner Hyperthermie, Benzodiazepine als 1. Wahl bei Eklampsie, Spinalanästhesie bei schwerer Aortenklappenstenose).
+   • 3. Fehlende Teamführung und geschlossene Kommunikation (Closed-Loop) im Notfall.`,
+      answer_tr: `Uzmanlık Sınavı Yanıtı:
+1. ABCDE Patofizyolojik Temellendirme:
+   • Oksijenasyon ve ventilasyonun erken güvenceye alınması ile sekonder organ hasarının önlenmesi.
+   • Noradrenalin ile hedef MAP ≥ 65 mmHg organ perfüzyon basıncının korunması, aşırı sıvı yüklenmesinden kaçınılması.
+2. 3 Vahim Hata ve K.O. Kriteri:
+   • 1. Tedavi edilebilir hayati nedenlerin geciktirilmesi.
+   • 2. Kontrendike ilaçların verilmesi (MH'de kalsiyum blokeri, eklampside ilk seçenek olarak diazepam verilmesi vb.).
+   • 3. Kapalı devre ekip iletişiminin (Closed-loop) uygulanmaması.`
+    };
+  }
+
+  function getDynamicExaminerComplication(category, stem) {
+    return getDynamicExaminerCase(category, stem).question_de;
   }
 
   function getDynamicExaminerComplicationTR(category, stem) {
-    if (category.includes('Atemweg')) {
-      return 'Jüri müdahale ediyor: "Anestezi indüksiyonu sonrası maske ventilasyonu güçlükle sağlanabiliyor (SpO2 %82\'ye düşüyor). Doğrudan laringoskopide Cormack-Lehane Evre IV görülüyor. DGAI basamaklı planına göre Plan D\'ye kadar yapılandırılmış eskalasyonunuz nedir?"';
-    } else if (category.includes('Herz') || category.includes('Hämo')) {
-      return 'Jüri vakayı yönlendiriyor: "Arteryel tansiyon akut olarak 70/40 mmHg\'ye ve etCO2 14 mmHg\'ye çakılıyor. Acilen dışlamanız gereken hayatı tehdit eden 3 ayırıcı tanı nedir ve nasıl tedavi edersiniz?"';
-    } else if (category.includes('Chemie') || category.includes('Elektrolyt')) {
-      return 'Jüri sorguluyor: "Laboratuvarda serum potasyumu 6,8 mmol/l\'ye yükseliyor ve EKG\'de QRS genişlemesi görülüyor. İlaçlı acil müdahalelerin tam sırasını ve dozlarını belirtiniz!"';
-    } else if (category.includes('Pharmakologie')) {
-      return 'Jüri bir komplikasyon sunuyor: "Enjeksiyondan hemen sonra hasta perioral karıncalanmadan şikayet ediyor, ardından jeneralize nöbet gelişiyor. Hangi acil durum söz konusudur ve spesifik antidotu nasıl dozlarsınız?"';
-    } else {
-      return 'Jüri sormaya devam ediyor: "Tedavi stratejinizi hangi patofizyolojik mekanizmalar gerekçelendirir ve burada hiçbir koşulda yapmamanız gereken vahim hatalar nelerdir?"';
-    }
+    return getDynamicExaminerCase(category, stem).question_tr;
   }
 
   function generateVerbalFramework(category, stem, answer) {
@@ -1744,9 +2210,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const elDiagNotes = document.getElementById('diagnostic-notes-box');
     if (elDiagNotes) elDiagNotes.textContent = v.notes;
 
-    // Step 3: Populate Examiner Steering Intervention & Reveal Card
+    // Step 3: Populate Examiner Steering Intervention, Inline Answer & Reveal Card
     if (elExaminerQuoteText) {
       elExaminerQuoteText.innerHTML = renderDualLanguageText(parsedCase.examinerIntervention, parsedCase.examinerInterventionTR);
+    }
+    if (elExaminerInlineAnswerText) {
+      elExaminerInlineAnswerText.innerHTML = renderDualLanguageText(highlightDosagesAndUnits(parsedCase.examinerAnswer), highlightDosagesAndUnits(parsedCase.examinerAnswerTR));
+    }
+    if (elExaminerInlineAnswerBox) {
+      elExaminerInlineAnswerBox.style.display = 'none';
+    }
+    if (elBtnToggleExaminerAnswer) {
+      elBtnToggleExaminerAnswer.innerHTML = '<span>💡</span> Musterantwort anzeigen';
+    }
+
+    // Step 4: Populate Examiner Solution Card
+    if (elRubricExaminerPromptText) {
+      elRubricExaminerPromptText.innerHTML = renderDualLanguageText(parsedCase.examinerIntervention, parsedCase.examinerInterventionTR);
+    }
+    if (elRubricExaminerSolutionText) {
+      elRubricExaminerSolutionText.innerHTML = renderDualLanguageText(highlightDosagesAndUnits(parsedCase.examinerAnswer), highlightDosagesAndUnits(parsedCase.examinerAnswerTR));
     }
 
     const examinerProfile = getExaminerProfileForCase(currentQ);
@@ -3386,30 +3869,444 @@ document.addEventListener('DOMContentLoaded', () => {
     calcSodium();
   }
 
-  // --- Natural German Neural Voice Selector ---
+  // ==========================================================================
+  // NATURAL MEDICAL SPEECH SYNTHESIS ENGINE (Profi-Sprachausgabe & Stimmenwahl)
+  // ==========================================================================
+
+  // --- Medical Text Speech Preprocessor (Expands abbreviations into phonetic natural German) ---
+  function prepareMedicalTextForSpeech(rawText) {
+    if (!rawText) return '';
+
+    let text = String(rawText);
+
+    // 1. Strip HTML tags
+    text = text.replace(/<[^>]*>/g, ' ');
+
+    // 2. Strip Markdown formatting
+    text = text.replace(/\*\*([^*]+)\*\*/g, '$1'); // bold **text**
+    text = text.replace(/\*([^*]+)\*/g, '$1');     // italic *text*
+    text = text.replace(/__([^_]+)__/g, '$1');     // bold __text__
+    text = text.replace(/_([^_]+)_/g, '$1');       // italic _text_
+    text = text.replace(/^#+\s+/gm, '');           // headers #
+    text = text.replace(/^[\*\-•]\s+/gm, '');      // bullet points
+    text = text.replace(/`([^`]+)`/g, '$1');       // code blocks
+
+    // 3. Remove Emojis & Graphic Symbols that TTS reads awkwardly
+    text = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E0}-\u{1F1FF}🚨⚠️💉🩺🩸⏱️📋💡🧠🎯★☆✓✗]/gu, ' ');
+
+    // 4. Clean brackets and test markers
+    text = text.replace(/\[\s*x\s*\]/gi, 'richtig');
+    text = text.replace(/\[\s* \s*\]/gi, '');
+    text = text.replace(/[\[\]]/g, ', ');
+
+    // 5. Medical Ratios & Ranges
+    text = text.replace(/\b1\s*:\s*10\.?000\b/g, 'eins zu zehntausend');
+    text = text.replace(/\b1\s*:\s*100\.?000\b/g, 'eins zu einhunderttausend');
+    text = text.replace(/\b1\s*:\s*200\.?000\b/g, 'eins zu zweihunderttausend');
+    text = text.replace(/\b1\s*:\s*1\b/g, 'eins zu eins');
+    text = text.replace(/(\d+)\s*[-–—]\s*(\d+)\s*([a-zA-Z%]+)/g, '$1 bis $2 $3');
+
+    // 6. Blood Pressure & Hemodynamics
+    text = text.replace(/\b(?:RR|Blutdruck)?\s*(\d{2,3})\s*[\/\\]\s*(\d{2,3})\s*(?:mmHg)?\b/gi, 'Blutdruck $1 zu $2 Millimeter Quecksilbersäule');
+    text = text.replace(/\bRR\s*[:=]?\s*(\d{2,3})\b/gi, 'Blutdruck $1');
+    text = text.replace(/\b(\d{2,3})\s*[\/\\]\s*(\d{2,3})\b/g, '$1 zu $2');
+
+    // Heart Rate & Frequency
+    text = text.replace(/\b(?:HF|Herzfrequenz)\s*[:=]?\s*(\d{2,3})\s*(?:\/\s*min|bpm|min[-⁻]¹)?\b/gi, 'Herzfrequenz $1 pro Minute');
+    text = text.replace(/\b(\d+)\s*[\/\\]\s*min\b/gi, '$1 pro Minute');
+    text = text.replace(/\b(\d+)\s*min[-⁻]¹\b/gi, '$1 pro Minute');
+
+    // Saturation & Ventilation
+    text = text.replace(/\b(?:SpO2|sO2|SaO2)\s*[:=]?\s*(\d{1,3})\s*%/gi, 'Sauerstoffsättigung $1 Prozent');
+    text = text.replace(/\bSpO2\b/gi, 'Sauerstoffsättigung');
+    text = text.replace(/\betCO2\s*[:=]?\s*(\d{1,3})\s*(?:mmHg)?\b/gi, 'endexspiratorisches CO2 $1 Millimeter Quecksilbersäule');
+    text = text.replace(/\betCO2\b/gi, 'endexspiratorisches C O zwei');
+    text = text.replace(/\bFiO2\s*[:=]?\s*([0-1][,\.]\d+|\d{1,3}\s*%)\b/gi, 'F i O zwei $1');
+    text = text.replace(/\bPEEP\s*[:=]?\s*(\d+)\s*(?:cmH2O|mbar)?\b/gi, 'Peep $1 Zentimeter Wassersäule');
+    text = text.replace(/\bVT\s*[:=]?\s*(\d+)\s*ml\b/gi, 'Atemzugvolumen $1 Milliliter');
+    text = text.replace(/\bAF\s*[:=]?\s*(\d+)\b/gi, 'Atemfrequenz $1 pro Minute');
+
+    // 7. BGA & Labs
+    text = text.replace(/\bBGA\s*:/gi, 'Blutgasanalyse:');
+    text = text.replace(/\bBGA\b/gi, 'Blutgasanalyse');
+    text = text.replace(/\bpH\s*[:=]?\s*(\d+[,.]\d+)\b/gi, 'p H $1');
+    text = text.replace(/\bpCO2\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmHg)?\b/gi, 'p C O zwei $1 Millimeter Quecksilbersäule');
+    text = text.replace(/\bpO2\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmHg)?\b/gi, 'p O zwei $1 Millimeter Quecksilbersäule');
+    text = text.replace(/\bBE\s*[:=]?\s*([+-]?\d+[,.]?\d*)\s*(?:mmol\/l)?\b/gi, 'Base Excess $1 Millimol pro Liter');
+    text = text.replace(/\bBase Excess\s*-\s*(\d+)/gi, 'Base Excess minus $1');
+    text = text.replace(/\bLaktat\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmol\/l)?\b/gi, 'Laktat $1 Millimol pro Liter');
+
+    // 8. Dosages & Body Weight
+    text = text.replace(/\b(\d+[,.]?\d*)\s*mg\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Milligramm pro Kilogramm Körpergewicht ');
+    text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg\s*[\/\\]\s*min\b/gi, '$1 Mikrogramm pro Kilogramm pro Minute ');
+    text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Mikrogramm pro Kilogramm Körpergewicht ');
+    text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\b/gi, '$1 Mikrogramm ');
+    text = text.replace(/\b(\d+[,.]?\d*)\s*mg\b/gi, '$1 Milligramm ');
+    text = text.replace(/\b(\d+[,.]?\d*)\s*ml\b/gi, '$1 Milliliter ');
+    text = text.replace(/\bkg\/m²\b/gi, 'Kilogramm pro Quadratmeter');
+    text = text.replace(/\bkg\s+KG\b/gi, 'Kilogramm Körpergewicht');
+    text = text.replace(/\b(\d+)\s*kg\b/gi, '$1 Kilogramm');
+
+    // Standalone Units
+    text = text.replace(/\bmmol\/[lL]\b/g, 'Millimol pro Liter');
+    text = text.replace(/\bmg\/dl\b/gi, 'Milligramm pro Deziliter');
+    text = text.replace(/\bg\/dl\b/gi, 'Gramm pro Deziliter');
+    text = text.replace(/\bcmH2O\b/gi, 'Zentimeter Wassersäule');
+    text = text.replace(/\bmmHg\b/gi, 'Millimeter Quecksilbersäule');
+    text = text.replace(/\bmbar\b/gi, 'Millibar');
+
+    // Medication timing
+    text = text.replace(/\b1-0-0\b/g, 'morgens eins');
+    text = text.replace(/\b1-0-1\b/g, 'morgens und abends eins');
+    text = text.replace(/\b1-1-1\b/g, 'dreimal täglich eins');
+
+    // 9. Clinical Routes & Abbreviations
+    text = text.replace(/\bi\.v\./gi, 'intravenös');
+    text = text.replace(/\bs\.c\./gi, 'subkutan');
+    text = text.replace(/\bi\.m\./gi, 'intramuskulär');
+    text = text.replace(/\bp\.o\./gi, 'per os');
+    text = text.replace(/\bi\.a\./gi, 'intraarteriell');
+    text = text.replace(/\bp\.i\./gi, 'per inhalationem');
+
+    text = text.replace(/\bz\.B\./gi, 'zum Beispiel');
+    text = text.replace(/\bu\.a\./gi, 'unter anderem');
+    text = text.replace(/\bd\.h\./gi, 'das heißt');
+    text = text.replace(/\bbzw\./gi, 'beziehungsweise');
+    text = text.replace(/\bggf\./gi, 'gegebenenfalls');
+    text = text.replace(/\bca\./gi, 'circa');
+    text = text.replace(/\bevtl\./gi, 'eventuell');
+    text = text.replace(/\bV\.a\./gi, 'Verdacht auf');
+    text = text.replace(/\bZ\.n\./gi, 'Zustand nach');
+    text = text.replace(/\bPat\./gi, 'Patient');
+
+    // Specific Medical Terms & Acronyms
+    text = text.replace(/\bOP\b/g, 'Operation');
+    text = text.replace(/\bZVK\b/g, 'Zentraler Venenkatheter');
+    text = text.replace(/\bPDK\b/g, 'Periduralkatheter');
+    text = text.replace(/\bEDA\b/g, 'Epiduralanästhesie');
+    text = text.replace(/\bSPA\b/g, 'Spinalanästhesie');
+    text = text.replace(/\bEKG\b/g, 'E K G');
+    text = text.replace(/\bEKs\b/g, 'Erythrozytenkonzentrate');
+    text = text.replace(/\bEK\b/g, 'Erythrozytenkonzentrat');
+    text = text.replace(/\bFFPs\b/g, 'Fresh Frozen Plasmas');
+    text = text.replace(/\bFFP\b/g, 'Fresh Frozen Plasma');
+    text = text.replace(/\bTKs\b/g, 'Thrombozytenkonzentrate');
+    text = text.replace(/\bTK\b/g, 'Thrombozytenkonzentrat');
+    text = text.replace(/\bLAST\b/g, 'Lokalanästhetika-Intoxikation');
+    text = text.replace(/\bMH\b/g, 'Maligne Hyperthermie');
+    text = text.replace(/\bCICO\b/g, 'Cannot Intubate Cannot Oxygenate');
+    text = text.replace(/\bALS\b/g, 'Advanced Life Support');
+    text = text.replace(/\bCPR\b/g, 'Reanimation');
+    text = text.replace(/\bROSC\b/g, 'Return of Spontaneous Circulation');
+    text = text.replace(/\bARDS\b/g, 'A R D S');
+    text = text.replace(/\bKHK\b/g, 'koronare Herzkrankheit');
+    text = text.replace(/\bCOPD\b/g, 'C O P D');
+    text = text.replace(/\bpAVK\b/g, 'periphere arterielle Verschlusskrankheit');
+    text = text.replace(/\bOSAS\b/g, 'obstruktives Schlafapnoe-Syndrom');
+    text = text.replace(/\bBMI\b/g, 'Body-Mass-Index');
+
+    // 10. Clean whitespace & punctuation (protecting German decimal numbers like 7,28 or 0,6)
+    text = text.replace(/\s+/g, ' ');
+    text = text.replace(/(?<!\d),/g, ', ');
+    text = text.replace(/,(?!\d|\s)/g, ', ');
+    text = text.replace(/\s*([;:.!?])\s*/g, '$1 ');
+
+    return text.trim();
+  }
+
+  // --- Clean German Speech Text Extractor (Filters out Turkish collapsibles & buttons) ---
+  function getCleanSpeechText(elementOrText) {
+    if (!elementOrText) return '';
+    if (typeof elementOrText === 'string') {
+      return prepareMedicalTextForSpeech(elementOrText);
+    }
+    const deEl = elementOrText.querySelector ? elementOrText.querySelector('.de-text-block') : null;
+    let raw = '';
+    if (deEl) {
+      raw = deEl.textContent.trim();
+    } else if (elementOrText.cloneNode) {
+      const clone = elementOrText.cloneNode(true);
+      clone.querySelectorAll('.tr-sub-container, .tr-subtitle-collapsible, .badge, script, button').forEach(n => n.remove());
+      raw = clone.textContent.trim();
+    } else {
+      raw = String(elementOrText);
+    }
+    return prepareMedicalTextForSpeech(raw);
+  }
+
+  // --- Smart German Voice Ranking & Selection Engine ---
   let preferredGermanVoice = null;
+  let availableGermanVoices = [];
+
+  function scoreGermanVoice(v) {
+    let score = 0;
+    const name = (v.name || '').toLowerCase();
+    const lang = (v.lang || '').toLowerCase();
+
+    // Must be German language
+    if (!lang.startsWith('de')) return -100;
+
+    // Region boost: Germany (de-DE), Austria (de-AT), Switzerland (de-CH)
+    if (lang === 'de-de') score += 10;
+    else if (lang.startsWith('de')) score += 5;
+
+    // Tier 1: Natural / Neural / Online / Siri
+    if (name.includes('natural') || name.includes('neural') || name.includes('online')) score += 100;
+    if (name.includes('siri')) score += 95;
+    if (name.includes('enhanced') || name.includes('premium') || name.includes('verbessert')) score += 85;
+    if (name.includes('google')) score += 60;
+
+    // Tier 2: Specific high-fidelity voices
+    if (name.includes('katja') || name.includes('conrad') || name.includes('amala') || name.includes('killian')) score += 45;
+    if (name.includes('helena') || name.includes('markus') || name.includes('petra') || name.includes('viktor') || name.includes('yannick')) score += 35;
+
+    // Penalize legacy robotic/compact voices
+    if (name.includes('compact') || name.includes('kompakt')) score -= 60;
+    if (name.includes('espeak')) score -= 70;
+
+    return score;
+  }
+
+  function rankGermanVoices(voices) {
+    if (!voices || !voices.length) return [];
+    const deVoices = voices.filter(v => (v.lang || '').toLowerCase().startsWith('de'));
+    if (!deVoices.length) return voices;
+    return deVoices.sort((a, b) => scoreGermanVoice(b) - scoreGermanVoice(a));
+  }
+
+  function getVoiceQualityBadge(v) {
+    const name = (v.name || '').toLowerCase();
+    if (name.includes('natural') || name.includes('neural') || name.includes('online')) {
+      return '<span class="voice-badge-neural">🌟 KI Natural</span>';
+    }
+    if (name.includes('siri')) {
+      return '<span class="voice-badge-siri">🍎 Siri</span>';
+    }
+    if (name.includes('enhanced') || name.includes('premium') || name.includes('verbessert')) {
+      return '<span class="voice-badge-neural">✨ Verbessert</span>';
+    }
+    if (name.includes('google')) {
+      return '<span class="voice-badge-siri">Google</span>';
+    }
+    return '<span class="voice-badge-system">System</span>';
+  }
+
+  function getCleanVoiceDisplayName(name) {
+    if (!name) return 'Stimme';
+    return name
+      .replace(/\s*\(German\s*\(Germany\)\)/gi, '')
+      .replace(/\s*\(Deutsch\s*\(Deutschland\)\)/gi, '')
+      .replace(/\s*\(de-DE\)/gi, '')
+      .replace(/\s*-\s*German\s*\(Germany\)/gi, '')
+      .trim();
+  }
+
   function updateGermanVoice() {
     if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    if (!voices || !voices.length) return;
-    preferredGermanVoice = voices.find(v => v.lang.startsWith('de') && (v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('Siri') || v.name.includes('Google') || v.name.includes('Anna') || v.name.includes('Markus') || v.name.includes('Petra') || v.name.includes('Yannick') || v.name.includes('Hedda')))
-      || voices.find(v => v.lang === 'de-DE' && !v.name.includes('Compact'))
-      || voices.find(v => v.lang.startsWith('de'))
-      || null;
+    const allVoices = window.speechSynthesis.getVoices();
+    if (!allVoices || !allVoices.length) return;
+
+    availableGermanVoices = rankGermanVoices(allVoices);
+    if (!availableGermanVoices.length) return;
+
+    // Match saved voice from state or localStorage
+    const savedVoiceName = state.preferredVoiceName || localStorage.getItem('facharzt_preferred_voice') || '';
+    if (savedVoiceName) {
+      preferredGermanVoice = availableGermanVoices.find(v => v.name === savedVoiceName) || null;
+    }
+
+    // Fallback to top-ranked natural voice
+    if (!preferredGermanVoice) {
+      preferredGermanVoice = availableGermanVoices[0];
+    }
+
+    // Update UI elements
+    const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
+    if (elAudioVoiceDisplay && preferredGermanVoice) {
+      elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(preferredGermanVoice.name);
+      elAudioVoiceDisplay.title = `${preferredGermanVoice.name} (${preferredGermanVoice.lang})`;
+    }
+
+    renderVoiceOptionsDropdown();
   }
+
+  function renderVoiceOptionsDropdown() {
+    const container = document.getElementById('voice-options-list');
+    if (!container) return;
+
+    if (!availableGermanVoices.length) {
+      container.innerHTML = '<div class="voice-loading-notice">Keine deutschen Stimmen erkannt.</div>';
+      return;
+    }
+
+    container.innerHTML = availableGermanVoices.map(v => {
+      const isCurrent = preferredGermanVoice && preferredGermanVoice.name === v.name;
+      const cleanName = getCleanVoiceDisplayName(v.name);
+      const badge = getVoiceQualityBadge(v);
+      return `
+        <button class="voice-option-item ${isCurrent ? 'active' : ''}" type="button" data-voice-name="${v.name}">
+          <div class="voice-item-left">
+            <span class="voice-status-icon">${isCurrent ? '✓' : '○'}</span>
+            <span class="voice-item-title">${cleanName}</span>
+          </div>
+          <div class="voice-item-right">${badge}</div>
+        </button>
+      `;
+    }).join('');
+
+    // Attach click listeners to voice items
+    container.querySelectorAll('.voice-option-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const voiceName = btn.getAttribute('data-voice-name');
+        const chosen = availableGermanVoices.find(v => v.name === voiceName);
+        if (chosen) {
+          preferredGermanVoice = chosen;
+          state.preferredVoiceName = chosen.name;
+          try {
+            localStorage.setItem('facharzt_preferred_voice', chosen.name);
+          } catch (e) {}
+          saveState();
+
+          const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
+          if (elAudioVoiceDisplay) {
+            elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(chosen.name);
+            elAudioVoiceDisplay.title = `${chosen.name} (${chosen.lang})`;
+          }
+
+          renderVoiceOptionsDropdown();
+          if (typeof playAudioTone === 'function') playAudioTone(640, 'sine', 0.1);
+        }
+      });
+    });
+  }
+
   if ('speechSynthesis' in window) {
     updateGermanVoice();
     window.speechSynthesis.onvoiceschanged = updateGermanVoice;
   }
 
-  // --- Clean German Speech Text Extractor (Filters out embedded Turkish collapsibles) ---
-  function getCleanSpeechText(element) {
-    if (!element) return '';
-    const deEl = element.querySelector('.de-text-block');
-    if (deEl) return deEl.textContent.trim();
-    const clone = element.cloneNode(true);
-    clone.querySelectorAll('.tr-sub-container, .tr-subtitle-collapsible, .badge, script').forEach(n => n.remove());
-    return clone.textContent.trim();
+  // --- Natural Sentence Chunking & Playback Controller ---
+  let isSpeakingMedical = false;
+  let activeMedicalTriggerBtn = null;
+
+  function stopMedicalSpeech() {
+    isSpeakingMedical = false;
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+    activeMedicalTriggerBtn = null;
+  }
+
+  function speakMedicalText(textOrElement, triggerBtn = null, onEnd = null) {
+    if (!('speechSynthesis' in window)) {
+      showToast('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.', 'warning', 4000);
+      return;
+    }
+
+    // Toggle stop if already speaking this exact button
+    if (isSpeakingMedical && triggerBtn && triggerBtn === activeMedicalTriggerBtn) {
+      stopMedicalSpeech();
+      return;
+    }
+
+    stopMedicalSpeech();
+
+    const cleanText = getCleanSpeechText(textOrElement);
+    if (!cleanText || !cleanText.trim()) return;
+
+    // Split text into natural sentence chunks (respecting German decimal commas and abbreviations)
+    const rawChunks = cleanText.split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9])/g).filter(s => s.trim().length > 0);
+    const chunks = rawChunks.length ? rawChunks : [cleanText];
+
+    isSpeakingMedical = true;
+    activeMedicalTriggerBtn = triggerBtn;
+    if (triggerBtn) triggerBtn.classList.add('speaking');
+
+    let chunkIndex = 0;
+
+    function speakNextChunk() {
+      if (!isSpeakingMedical || chunkIndex >= chunks.length) {
+        isSpeakingMedical = false;
+        if (triggerBtn) triggerBtn.classList.remove('speaking');
+        activeMedicalTriggerBtn = null;
+        if (typeof onEnd === 'function') onEnd();
+        return;
+      }
+
+      const chunkText = chunks[chunkIndex++].trim();
+      if (!chunkText) {
+        speakNextChunk();
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(chunkText);
+      utterance.lang = 'de-DE';
+      if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
+      utterance.rate = state.speechRate || 0.95;
+      utterance.pitch = state.speechPitch || 1.0;
+
+      utterance.onend = () => {
+        if (isSpeakingMedical) {
+          // Human breathing pause (50ms) between sentences provides natural prosody
+          setTimeout(speakNextChunk, 50);
+        }
+      };
+
+      utterance.onerror = (e) => {
+        if (e.error === 'canceled' || e.error === 'interrupted') return;
+        console.warn('SpeechSynthesis error on chunk:', e);
+        if (isSpeakingMedical) speakNextChunk();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    speakNextChunk();
+  }
+
+  // Global alias so all cockpit / emergency / simulation calls use the natural medical engine
+  window.speakText = speakMedicalText;
+
+  // --- Voice Selector Dropdown UI Handlers ---
+  const elBtnAudioVoice = document.getElementById('btn-audio-voice');
+  const elAudioVoiceDropdown = document.getElementById('audio-voice-dropdown');
+  const elBtnCloseVoiceDropdown = document.getElementById('btn-close-voice-dropdown');
+  const elBtnTestVoicePreview = document.getElementById('btn-test-voice-preview');
+
+  if (elBtnAudioVoice && elAudioVoiceDropdown) {
+    elBtnAudioVoice.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = (elAudioVoiceDropdown.style.display !== 'none');
+      elAudioVoiceDropdown.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) {
+        updateGermanVoice();
+      }
+    });
+
+    if (elBtnCloseVoiceDropdown) {
+      elBtnCloseVoiceDropdown.addEventListener('click', (e) => {
+        e.stopPropagation();
+        elAudioVoiceDropdown.style.display = 'none';
+      });
+    }
+
+    if (elBtnTestVoicePreview) {
+      elBtnTestVoicePreview.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const testSentence = "Guten Tag, Herr Kollege. Wir beginnen mit der Facharztprüfung Anästhesiologie. Bitte schildern Sie Ihr strukturiertes Vorgehen.";
+        speakMedicalText(testSentence, elBtnTestVoicePreview);
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (elAudioVoiceDropdown.style.display !== 'none') {
+        const wrapper = document.getElementById('voice-picker-wrapper');
+        if (wrapper && !wrapper.contains(e.target)) {
+          elAudioVoiceDropdown.style.display = 'none';
+        }
+      }
+    });
   }
 
   // --- Audio Speed Toggle (0.8x / 0.95x / 1.15x) ---
@@ -3433,31 +4330,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnAudioSpeak = document.getElementById('btn-audio-speak');
   if (elBtnAudioSpeak) {
     elBtnAudioSpeak.addEventListener('click', () => {
-      if ('speechSynthesis' in window) {
-        if (window.speechSynthesis.speaking) {
-          window.speechSynthesis.cancel();
-          document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
-          return;
-        }
-
-        filteredQuestions = getFilteredQuestions();
-        if (!filteredQuestions.length) return;
-        const currentQ = filteredQuestions[state.currentIndex];
-        const textToRead = currentQ.stem_de || currentQ.question_de || '';
-
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = 'de-DE';
-        if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
-        utterance.rate = state.speechRate || 0.95;
-
-        utterance.onstart = () => elBtnAudioSpeak.classList.add('speaking');
-        utterance.onend = () => elBtnAudioSpeak.classList.remove('speaking');
-        utterance.onerror = () => elBtnAudioSpeak.classList.remove('speaking');
-
-        window.speechSynthesis.speak(utterance);
-      } else {
-        showToast('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.', 'warning', 4000);
-      }
+      filteredQuestions = getFilteredQuestions();
+      if (!filteredQuestions.length) return;
+      const currentQ = filteredQuestions[state.currentIndex];
+      const textToRead = currentQ.stem_de || currentQ.question_de || '';
+      speakMedicalText(textToRead, elBtnAudioSpeak);
     });
   }
 
@@ -3465,29 +4342,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnAudioSpeakExaminer = document.getElementById('btn-audio-speak-examiner');
   if (elBtnAudioSpeakExaminer) {
     elBtnAudioSpeakExaminer.addEventListener('click', () => {
-      if ('speechSynthesis' in window) {
-        if (window.speechSynthesis.speaking && elBtnAudioSpeakExaminer.classList.contains('speaking')) {
-          window.speechSynthesis.cancel();
-          elBtnAudioSpeakExaminer.classList.remove('speaking');
-          return;
-        }
-        window.speechSynthesis.cancel();
-        document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+      const elQuote = document.getElementById('examiner-quote-text');
+      speakMedicalText(elQuote, elBtnAudioSpeakExaminer);
+    });
+  }
 
-        const elQuote = document.getElementById('examiner-quote-text');
-        const textToRead = getCleanSpeechText(elQuote);
-        if (!textToRead) return;
+  // --- Inline Examiner Answer Toggle ---
+  if (elBtnToggleExaminerAnswer) {
+    elBtnToggleExaminerAnswer.addEventListener('click', () => {
+      if (!elExaminerInlineAnswerBox) return;
+      const isVisible = (elExaminerInlineAnswerBox.style.display !== 'none');
+      elExaminerInlineAnswerBox.style.display = isVisible ? 'none' : 'block';
+      elBtnToggleExaminerAnswer.innerHTML = isVisible
+        ? '<span>💡</span> Musterantwort anzeigen'
+        : '<span>💡</span> Musterantwort verbergen';
+    });
+  }
 
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = 'de-DE';
-        if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
-        utterance.rate = state.speechRate || 0.95;
+  // --- Audio Pronunciation: Examiner Model Answer (Step 3 inline) ---
+  if (elBtnAudioSpeakExaminerAns) {
+    elBtnAudioSpeakExaminerAns.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
+      const parsedCase = parseOralExamCase(currentQ);
+      if (parsedCase && parsedCase.examinerAnswer) {
+        speakMedicalText(parsedCase.examinerAnswer, elBtnAudioSpeakExaminerAns);
+      }
+    });
+  }
 
-        utterance.onstart = () => elBtnAudioSpeakExaminer.classList.add('speaking');
-        utterance.onend = () => elBtnAudioSpeakExaminer.classList.remove('speaking');
-        utterance.onerror = () => elBtnAudioSpeakExaminer.classList.remove('speaking');
-
-        window.speechSynthesis.speak(utterance);
+  // --- Audio Pronunciation: Examiner Solution Card (Step 4) ---
+  if (elBtnAudioSpeakSolution) {
+    elBtnAudioSpeakSolution.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
+      const parsedCase = parseOralExamCase(currentQ);
+      if (parsedCase && parsedCase.examinerAnswer) {
+        speakMedicalText(parsedCase.examinerAnswer, elBtnAudioSpeakSolution);
       }
     });
   }
@@ -3496,30 +4389,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnAudioSpeakVerbal = document.getElementById('btn-audio-speak-verbal');
   if (elBtnAudioSpeakVerbal) {
     elBtnAudioSpeakVerbal.addEventListener('click', () => {
-      if ('speechSynthesis' in window) {
-        if (window.speechSynthesis.speaking && elBtnAudioSpeakVerbal.classList.contains('speaking')) {
-          window.speechSynthesis.cancel();
-          elBtnAudioSpeakVerbal.classList.remove('speaking');
-          return;
-        }
-        window.speechSynthesis.cancel();
-        document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
-
-        const elVerbal = document.getElementById('rubric-verbal-text');
-        const textToRead = getCleanSpeechText(elVerbal);
-        if (!textToRead) return;
-
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = 'de-DE';
-        if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
-        utterance.rate = state.speechRate || 0.95;
-
-        utterance.onstart = () => elBtnAudioSpeakVerbal.classList.add('speaking');
-        utterance.onend = () => elBtnAudioSpeakVerbal.classList.remove('speaking');
-        utterance.onerror = () => elBtnAudioSpeakVerbal.classList.remove('speaking');
-
-        window.speechSynthesis.speak(utterance);
-      }
+      const elVerbal = document.getElementById('rubric-verbal-text');
+      speakMedicalText(elVerbal, elBtnAudioSpeakVerbal);
     });
   }
 
@@ -3823,8 +4694,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <small style="color: var(--text-secondary);">SpO2: ${parsed.vitals.spo2} | RR: ${parsed.vitals.bp} | HF: ${parsed.vitals.hr} | etCO2: ${parsed.vitals.etco2} | Temp: ${parsed.vitals.temp}</small>
         </div>
 
-        <div style="background: rgba(192, 85, 68, 0.08); border-left: 3px solid var(--danger); padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem; font-size: 0.88rem;">
+        <div style="background: rgba(192, 85, 68, 0.08); border-left: 3px solid var(--danger); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem; font-size: 0.88rem;">
           <strong>⚠️ Prüfer-Intervention:</strong> ${renderDualLanguageText(parsed.examinerIntervention, parsed.examinerInterventionTR)}
+        </div>
+
+        <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem; font-size: 0.88rem;">
+          <strong>💡 Musterantwort zur Prüfer-Intervention:</strong><br>
+          <div style="margin-top: 0.35rem; line-height: 1.5; white-space: pre-line;">${renderDualLanguageText(highlightDosagesAndUnits(parsed.examinerAnswer), highlightDosagesAndUnits(parsed.examinerAnswerTR))}</div>
         </div>
 
         <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">

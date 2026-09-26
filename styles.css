@@ -3460,6 +3460,104 @@ footer {
   color: #fcd34d;
 }
 
+/* --- Inline Revealable Examiner Answer in Step 3 --- */
+.btn-examiner-ans-btn {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #b45309 !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+
+.btn-examiner-ans-btn:hover {
+  background: rgba(245, 158, 11, 0.25) !important;
+}
+
+[data-theme="dark"] .btn-examiner-ans-btn {
+  background: rgba(245, 158, 11, 0.22) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+}
+
+.examiner-inline-answer-box {
+  margin-top: 0.85rem;
+  padding: 1rem 1.15rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+  animation: slideReveal 0.3s ease forwards;
+}
+
+[data-theme="dark"] .examiner-inline-answer-box {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.examiner-inline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #b45309;
+}
+
+[data-theme="dark"] .examiner-inline-header {
+  color: #fbbf24;
+}
+
+.examiner-inline-answer-text {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-main);
+  white-space: pre-line;
+}
+
+/* --- Examiner Solution Card in Step 4 --- */
+.examiner-solution-card {
+  border: 1.5px solid #f59e0b !important;
+  background: linear-gradient(to bottom, rgba(254, 243, 199, 0.35), var(--card-bg)) !important;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12) !important;
+}
+
+[data-theme="dark"] .examiner-solution-card {
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  background: linear-gradient(to bottom, rgba(245, 158, 11, 0.15), var(--card-bg)) !important;
+}
+
+.rubric-tag-alert {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: #f59e0b;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.examiner-solution-prompt {
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #92400e;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px dashed rgba(245, 158, 11, 0.35);
+}
+
+[data-theme="dark"] .examiner-solution-prompt {
+  color: #fcd34d;
+}
+
+.examiner-solution-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  white-space: pre-line;
+}
+
 /* --- 7b. Examiner Profile Reveal Card (ÄKNO Düsseldorf Protocol Cases) --- */
 .examiner-reveal-box {
   margin-top: 1rem;
@@ -3744,6 +3842,269 @@ footer {
   background: rgba(216, 164, 127, 0.15);
   color: var(--primary);
   border-color: var(--primary);
+}
+
+/* --- Natural Neural Voice Selector --- */
+.voice-picker-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.audio-voice-pill {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+  max-width: 195px;
+}
+
+.audio-voice-pill:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.audio-voice-pill .voice-name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 125px;
+}
+
+.audio-voice-pill .voice-caret {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+.audio-voice-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 330px;
+  max-width: 90vw;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.16), 0 6px 12px -4px rgba(0, 0, 0, 0.08);
+  z-index: 1050;
+  padding: 0.85rem;
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.voice-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.voice-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0 0.3rem;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.voice-close-btn:hover {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.voice-options-list {
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-right: 0.2rem;
+}
+
+.voice-loading-notice {
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.voice-option-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--bg-primary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.15s ease;
+  text-align: left;
+  gap: 0.5rem;
+}
+
+.voice-option-item:hover {
+  background: var(--primary-light);
+  border-color: var(--border-color);
+}
+
+.voice-option-item.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  font-weight: 700;
+}
+
+.voice-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.voice-item-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.voice-badge-neural {
+  font-size: 0.66rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.voice-badge-siri {
+  font-size: 0.66rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.voice-badge-system {
+  font-size: 0.66rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.voice-dropdown-footer {
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btn-voice-preview {
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.btn-voice-preview:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.voice-mac-tip {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+}
+
+[data-theme="dark"] .audio-voice-pill {
+  background: var(--bg-tertiary);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .audio-voice-pill:hover {
+  background: rgba(216, 164, 127, 0.15);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .audio-voice-dropdown {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .voice-option-item {
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .voice-option-item:hover,
+[data-theme="dark"] .voice-option-item.active {
+  background: rgba(216, 164, 127, 0.18);
+  border-color: var(--primary);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .btn-voice-preview {
+  background: #0f172a;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .btn-voice-preview:hover {
+  background: rgba(216, 164, 127, 0.2);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .voice-mac-tip {
+  background: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
 }
 
 .examiner-audio-bar {

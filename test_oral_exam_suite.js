@@ -526,7 +526,120 @@ assert(cssCode.includes('.sim-ko-alert-box'), 'styles.css must style .sim-ko-ale
 assert(appCode.includes('is_dus_protocol'), 'app.js must filter for is_dus_protocol in simulation mode');
 console.log('[PASS] ÄKNO Düsseldorf Dynamic Live Simulation & K.O.-Criteria Radar Suite verified.');
 
-console.log('\n🎉 ALL 26 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 27. Test Comprehensive Examiner Intervention & Model Solution Engine
+assert(htmlContent.includes('btn-toggle-examiner-answer'), 'index.html must include #btn-toggle-examiner-answer');
+assert(htmlContent.includes('examiner-inline-answer-box'), 'index.html must include #examiner-inline-answer-box');
+assert(htmlContent.includes('examiner-inline-answer-text'), 'index.html must include #examiner-inline-answer-text');
+assert(htmlContent.includes('btn-audio-speak-examiner-ans'), 'index.html must include #btn-audio-speak-examiner-ans');
+assert(htmlContent.includes('rubric-block-examiner-solution'), 'index.html must include #rubric-block-examiner-solution');
+assert(htmlContent.includes('rubric-examiner-prompt-text'), 'index.html must include #rubric-examiner-prompt-text');
+assert(htmlContent.includes('rubric-examiner-solution-text'), 'index.html must include #rubric-examiner-solution-text');
+assert(htmlContent.includes('btn-audio-speak-solution'), 'index.html must include #btn-audio-speak-solution');
+
+assert(cssCode.includes('.btn-examiner-ans-btn'), 'styles.css must style .btn-examiner-ans-btn');
+assert(cssCode.includes('.examiner-inline-answer-box'), 'styles.css must style .examiner-inline-answer-box');
+assert(cssCode.includes('.examiner-solution-card'), 'styles.css must style .examiner-solution-card');
+
+assert(appCode.includes('getDynamicExaminerCase'), 'app.js must implement getDynamicExaminerCase');
+assert(appCode.includes('examinerAnswer'), 'app.js must return examinerAnswer');
+assert(appCode.includes('examinerAnswerTR'), 'app.js must return examinerAnswerTR');
+
+// Evaluate dynamic examiner complication and answer for Cardio category (the exact user-reported case)
+const getDynamicMatch = appCode.match(/function getDynamicExaminerCase\([\s\S]*?\n  \}/);
+assert(getDynamicMatch, 'getDynamicExaminerCase must be found in app.js');
+eval(getDynamicMatch[0].replace('function getDynamicExaminerCase', 'global.getDynamicExaminerCase = function'));
+
+const cardioCase = global.getDynamicExaminerCase('Herz-Kreislauf & Hämodynamik', '', {});
+assert(cardioCase.question_de.includes('70/40 mmHg'), 'Cardio examiner question must test 70/40 mmHg drop');
+assert(cardioCase.question_de.includes('14 mmHg'), 'Cardio examiner question must test etCO2 14 mmHg crash');
+assert(cardioCase.answer_de.includes('Lungenarterienembolie') || cardioCase.answer_de.includes('LAE'), 'Answer must include LAE / pulmonary embolism');
+assert(cardioCase.answer_de.includes('Spannungspneumothorax'), 'Answer must include tension pneumothorax');
+assert(cardioCase.answer_de.includes('Anaphylaxie'), 'Answer must include anaphylaxis/shock');
+assert(cardioCase.answer_de.includes('Nadeldekompression'), 'Answer must include emergency needle decompression');
+assert(cardioCase.answer_de.includes('Alteplase'), 'Answer must include thrombolysis dosage');
+assert(/adrenalin/i.test(cardioCase.answer_de), 'Answer must include adrenaline titration');
+assert(cardioCase.answer_tr.includes('Pulmoner Emboli'), 'Turkish answer must include Pulmoner Emboli');
+assert(cardioCase.answer_tr.includes('Tansiyon Pnömotoraks'), 'Turkish answer must include Tansiyon Pnömotoraks');
+assert(cardioCase.answer_tr.includes('Anafilaksi'), 'Turkish answer must include Anafilaksi');
+
+// Test that all 642 questions now produce a valid examiner intervention and solution
+questions.forEach(q => {
+  const dynamicEntry = global.getDynamicExaminerCase(q.category, q.stem_de || q.question_de || '', q);
+  assert(dynamicEntry.question_de && dynamicEntry.question_de.length > 20, `Question ${q.id} must have question_de`);
+  assert(dynamicEntry.question_tr && dynamicEntry.question_tr.length > 20, `Question ${q.id} must have question_tr`);
+  assert(dynamicEntry.answer_de && dynamicEntry.answer_de.length > 50, `Question ${q.id} must have detailed answer_de`);
+  assert(dynamicEntry.answer_tr && dynamicEntry.answer_tr.length > 50, `Question ${q.id} must have detailed answer_tr`);
+});
+
+console.log('[PASS] Comprehensive Examiner Intervention & Model Solution Engine verified across all 642 questions.');
+
+// 28. Test Natural Medical Speech Synthesis Engine & Neural Voice Picker Suite
+assert(htmlContent.includes('voice-picker-wrapper'), 'index.html must include .voice-picker-wrapper');
+assert(htmlContent.includes('btn-audio-voice'), 'index.html must include #btn-audio-voice');
+assert(htmlContent.includes('audio-voice-dropdown'), 'index.html must include #audio-voice-dropdown');
+assert(htmlContent.includes('voice-options-list'), 'index.html must include #voice-options-list');
+assert(htmlContent.includes('btn-test-voice-preview'), 'index.html must include #btn-test-voice-preview');
+
+assert(cssCode.includes('.voice-picker-wrapper'), 'styles.css must style .voice-picker-wrapper');
+assert(cssCode.includes('.audio-voice-pill'), 'styles.css must style .audio-voice-pill');
+assert(cssCode.includes('.audio-voice-dropdown'), 'styles.css must style .audio-voice-dropdown');
+assert(cssCode.includes('.voice-badge-neural'), 'styles.css must style .voice-badge-neural');
+assert(cssCode.includes('.voice-badge-siri'), 'styles.css must style .voice-badge-siri');
+
+assert(appCode.includes('prepareMedicalTextForSpeech'), 'app.js must implement prepareMedicalTextForSpeech');
+assert(appCode.includes('rankGermanVoices'), 'app.js must implement rankGermanVoices');
+assert(appCode.includes('speakMedicalText'), 'app.js must implement speakMedicalText');
+assert(appCode.includes('window.speakText = speakMedicalText'), 'app.js must expose window.speakText');
+
+// Extract and test prepareMedicalTextForSpeech directly
+const prepMatch = appCode.match(/function prepareMedicalTextForSpeech\([\s\S]*?\n  \}/);
+assert(prepMatch, 'prepareMedicalTextForSpeech function definition must exist');
+eval(prepMatch[0].replace('function prepareMedicalTextForSpeech', 'global.prepareMedicalTextForSpeech = function'));
+
+const rawMedicalTest = "**Patient:** 68 J, 82 kg, BMI 26,8 kg/m². Vitalwerte: RR 140/85 mmHg, HF 95/min, SpO2 92%, etCO2 42 mmHg. BGA: pH 7,31, pCO2 48 mmHg, BE -5 mmol/l. Medikation: 2 mg/kg KG Propofol i.v., 1:10.000 Noradrenalin. 🚨 Achtung!";
+const spokenResult = global.prepareMedicalTextForSpeech(rawMedicalTest);
+
+assert(!spokenResult.includes('**'), 'Markdown bold must be stripped');
+assert(!spokenResult.includes('🚨'), 'Emojis must be stripped');
+assert(spokenResult.includes('Blutdruck 140 zu 85 Millimeter Quecksilbersäule'), 'RR must be expanded phonetically');
+assert(spokenResult.includes('Herzfrequenz 95 pro Minute'), 'HF must be expanded phonetically');
+assert(spokenResult.includes('Sauerstoffsättigung 92 Prozent'), 'SpO2 must be expanded phonetically');
+assert(spokenResult.includes('endexspiratorisches CO2 42 Millimeter Quecksilbersäule'), 'etCO2 must be expanded phonetically');
+assert(spokenResult.includes('Blutgasanalyse:'), 'BGA: must be expanded phonetically');
+assert(spokenResult.includes('Base Excess minus 5 Millimol pro Liter'), 'Negative BE must be expanded phonetically');
+assert(spokenResult.includes('Milligramm pro Kilogramm Körpergewicht'), 'Dosage mg/kg KG must be expanded phonetically');
+assert(spokenResult.includes('intravenös'), 'i.v. must be expanded to intravenös');
+assert(spokenResult.includes('eins zu zehntausend'), '1:10.000 dilution must be expanded phonetically');
+
+// Extract and test voice ranking
+const rankMatch = appCode.match(/function scoreGermanVoice\([\s\S]*?\n  \}/);
+assert(rankMatch, 'scoreGermanVoice function definition must exist');
+eval(rankMatch[0].replace('function scoreGermanVoice', 'global.scoreGermanVoice = function'));
+
+const mockVoices = [
+  { name: 'Marlene Compact', lang: 'de-DE' },
+  { name: 'Google Deutsch', lang: 'de-DE' },
+  { name: 'Siri Stimme 1', lang: 'de-DE' },
+  { name: 'Microsoft Katja Online (Natural) - German (Germany)', lang: 'de-DE' },
+  { name: 'Anna (Enhanced)', lang: 'de-DE' },
+  { name: 'Alex', lang: 'en-US' }
+];
+
+const scored = mockVoices.map(v => ({ voice: v, score: global.scoreGermanVoice(v) }));
+const katjaScore = scored.find(s => s.voice.name.includes('Katja')).score;
+const siriScore = scored.find(s => s.voice.name.includes('Siri')).score;
+const compactScore = scored.find(s => s.voice.name.includes('Compact')).score;
+const englishScore = scored.find(s => s.voice.name.includes('Alex')).score;
+
+assert(katjaScore > 100, 'Microsoft Natural voices must receive top quality score (>100)');
+assert(siriScore > 90, 'Apple Siri voices must receive top quality score (>90)');
+assert(katjaScore > compactScore, 'Natural voices must score significantly higher than Compact');
+assert(englishScore < 0, 'Non-German voices must be rejected');
+
+console.log('[PASS] Natural Medical Speech Synthesis Engine & Neural Voice Picker Suite verified.');
+
+console.log('\n🎉 ALL 28 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

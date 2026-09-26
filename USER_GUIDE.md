@@ -67,16 +67,22 @@ In der mündlichen Prüfung am Tisch im Haus der Ärzteschaft erhalten Sie die I
 3. **Schritt 3: Prüfer-Nachfrage & Zwischenfrage**:
    - Klicken Sie auf *Schritt 3 einblenden* (oder Taste `3`).
    - Der Prüfer konfrontiert Sie mit einer akuten Verschlechterung (z. B. plötzlicher Blutdruckabfall, Hypoxämie, Rhythmusstörung).
+   - **Neu: 💡 Musterantwort zur Prüferfrage direkt einblenden**: Über den Button **`💡 Musterantwort anzeigen`** können Sie bereits in Schritt 3 die leitliniengerechte Notfall-Lösung der Prüferfrage einsehen und über **`🔊 Antwort vorlesen`** akustisch anhören!
    - Bei Düsseldorfer Fällen: Über das **🏛️ ÄKNO Düsseldorfer Prüfer-Profil** sehen Sie den Prüfernamen, dessen klinischen Schwerpunkt, Fallen und Signalwörter.
 4. **Schritt 4: Musterantwort & Bewertungsrubrik**:
    - Klicken Sie auf *Schritt 4 freischalten* (oder Taste `4` / `Space`).
-   - Überprüfen Sie Ihre eigene Antwort anhand der 3 High-Impact Antwortblöcke.
+   - Überprüfen Sie Ihre eigene Antwort anhand der High-Impact Antwortblöcke inklusive der neuen Notfall-Lösungskarte.
 
 ---
 
-## 3. Die 3 High-Impact Antwortblöcke
+## 3. Die High-Impact Antwortblöcke & Prüfer-Lösung
 
 Jede Frage enthält strukturierte Rubrik-Karten, die exakt auf die Notengebung der Prüfungskommission ausgerichtet sind:
+
+### 👨‍⚕️ Block 0: Lösung der Prüfer-Intervention (Klinische Wendung & Soforttherapie)
+- Liefert die exakte, leitliniengerechte Antwort auf die Zwischenfrage oder Notfall-Krise des Prüfers (z. B. *3 lebensbedrohliche Differenzialdiagnosen bei akutem RR- und etCO2-Absturz: LAE vs. Spannungspneumothorax vs. Anaphylaxie* inklusive Kausaltherapie und Dosierungen).
+- Enthält den Button **`🔊 Prüfer-Lösung vorlesen`** zur schnellen akustischen Repetition.
+- Vollständig zweisprachig (Deutsch & Türkisch) aufbereitet.
 
 ### 🗣️ Block 1: "Wie sage ich es?" (Strukturierte Formulierungshilfe & Redemittel)
 - Liefert Ihnen den optimalen Einstiegssatz und die verbale Struktur für Ihre Antwort.
@@ -92,21 +98,39 @@ Jede Frage enthält strukturierte Rubrik-Karten, die exakt auf die Notengebung d
 
 ---
 
-## 4. Aussprache-Trainer & Audio-Funktionen (Speech Synthesis)
+## 4. Natürliche Sprachausgabe & Aussprache-Trainer (Speech Synthesis)
 
-Für ausländische Kolleginnen und Kollegen sowie für maximale Sprachpräzision verfügt die Suite über eine integrierte Sprachausgabe mit deutscher Sprachintonation (`de-DE`):
+Für maximale Sprachpräzision und lebensechte Prüfungssimulation verfügt die Suite über eine hochmoderne deutsche Sprachausgabe (`de-DE`) mit phonetischer medizinischer Textaufbereitung:
 
-1. **🔊 Fragentext vorlesen** (Karten-Kopfzeile):
-   - Liest den Fall und die Ausgangsfrage vor.
-2. **🔊 Prüferfrage vorlesen** (Schritt 3):
-   - Simuliert die direkte Ansprache durch den Prüfungsvorsitzenden. Hören Sie sich die Frage an und antworten Sie laut!
-3. **🔊 Redemittel vorlesen** (Schritt 4):
-   - Liest die Modellantwort im idealen Prüfungsrhythmus vor. Nutzen Sie die "Shadowing"-Technik: Hören Sie den Satz und sprechen Sie ihn laut nach!
+1. **🗣️ Stimmenauswahl (Neural / Siri / KI-Stimmen)**:
+   - Direkt in der Werkzeugleiste neben dem Tempowahlschalter können Sie auf **`🗣️ Stimme`** klicken.
+   - Wählen Sie aus allen auf Ihrem System installierten Stimmen (z. B. **Apple Siri**, **Google Deutsch**, **Microsoft Katja Natural**).
+   - Klicken Sie auf **`▶️ Probe anhören`**, um die Stimme vorab mit einem realistischen Facharzt-Prüfungssatz zu testen.
+   - **Tipp für macOS & iOS (Menschliche Stimme ohne Roboter-Klang):**
+     - Öffnen Sie auf Ihrem Mac: *Systemeinstellungen > Bedienungshilfen > Gesprochene Inhalte > Systemstimme*.
+     - Wählen Sie unter *Deutsch* entweder **Siri** (Stimme 1 / 2) oder **Anna (Verbessert)** / **Markus (Verbessert)** und laden Sie diese kostenlos herunter. Die Suite erkennt diese sofort und spricht wie ein menschlicher Kollege.
+
+2. **🩺 Phonetische medizinische Textaufbereitung (Kein Roboter-Stottern mehr)**:
+   - Medizinische Abkürzungen werden vor der Ausgabe automatisch in flüssiges medizinisches Deutsch übersetzt:
+     - `RR 120/80 mmHg` &rarr; *"Blutdruck 120 zu 80 Millimeter Quecksilbersäule"*
+     - `HF 90/min, SpO2 98%` &rarr; *"Herzfrequenz 90 pro Minute, Sauerstoffsättigung 98 Prozent"*
+     - `etCO2 40 mmHg` &rarr; *"endexspiratorisches CO2 40 Millimeter Quecksilbersäule"*
+     - `BGA: pH 7,35, BE -4` &rarr; *"Blutgasanalyse: pH 7,35, Base Excess minus 4"*
+     - `2 mg/kg KG Propofol i.v.` &rarr; *"2 Milligramm pro Kilogramm Körpergewicht Propofol intravenös"*
+     - `1:10.000 Noradrenalin` &rarr; *"eins zu zehntausend Noradrenalin"*
+   - Markdown-Sonderzeichen (`**`, `###`) und Emojis werden gefiltert, damit die Stimme flüssig durchspricht.
+   - **Satzweises Atmen (Natural Prosody)**: Lange Texte werden in natürliche Satzblöcke unterteilt mit 50ms Mikro-Atempausen, was den typischen monotonen Roboterklang komplett beseitigt.
+
+3. **🔊 Vorlese-Funktionen**:
+   - **🔊 Fragentext vorlesen** (Karten-Kopfzeile): Liest den Fall und die Ausgangsfrage vor.
+   - **🔊 Prüferfrage vorlesen** (Schritt 3): Simuliert die direkte Ansprache durch den Prüfungsvorsitzenden.
+   - **🔊 Redemittel vorlesen** (Schritt 4): Liest die Modellantwort im idealen Prüfungsrhythmus vor.
+   - **Klick-Stopp (Toggle)**: Ein erneuter Klick auf den aktiven Vorlesebutton stoppt die Sprachausgabe sofort.
+
 4. **⚡ Tempowahlschalter (`0.8x / 0.95x / 1.15x`)**:
-   - Direkt in der Werkzeugleiste können Sie das Vorlesetempo mit einem Klick umschalten:
-     - `0.8x`: Verlangsamtes Lerntempo für schwierige Fachwörter und Artikulationstraining.
-     - `0.95x`: Natürliches, souveränes Prüfungstempo (Standard).
-     - `1.15x`: Schneller Stresstest für Fortgeschrittene.
+   - `0.8x`: Verlangsamtes Lerntempo für schwierige Fachwörter und Artikulationstraining.
+   - `0.95x`: Natürliches, souveränes Prüfungstempo (Standard).
+   - `1.15x`: Schneller Stresstest für Fortgeschrittene.
 
 ---
 
