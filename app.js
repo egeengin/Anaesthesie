@@ -4436,7 +4436,11 @@ Tedavi:
     // Use property assignment (not addEventListener) so there is always
     // exactly ONE handler — no accumulation possible.
     naturalAudioPlayer.onended = () => {
-      if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
+      console.log('[TTS-DEBUG] onended fired. capturedIndex:', capturedIndex, 'currentChunkIndex:', currentChunkIndex, 'capturedSession:', capturedSession, '_speakSessionId:', _speakSessionId);
+      if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) {
+        console.log('[TTS-DEBUG] onended IGNORED (stale).');
+        return;
+      }
       currentChunkIndex++;
       if (currentChunkIndex < naturalAudioQueue.length) {
         playCurrentAudioChunk();
@@ -4579,15 +4583,14 @@ Tedavi:
     onSpeechCompleteCallback = onEnd;
     if (triggerBtn) triggerBtn.classList.add('speaking');
 
-    // Default: Google Deutsch Neural Stream (Zero-configuration for Mac & iPhone)
     const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
 
     if (isOnline) {
       naturalAudioQueue = chunkTextForTTS(cleanText, 160);
       currentChunkIndex = 0;
+      console.log('[TTS-DEBUG] speakMedicalText called. Queue length:', naturalAudioQueue.length, 'Chunks:', naturalAudioQueue);
       playCurrentAudioChunk();
     } else {
-      // Offline fallback: Web Speech API (Google Deutsch)
       fallbackToWebSpeech(cleanText);
     }
   }
