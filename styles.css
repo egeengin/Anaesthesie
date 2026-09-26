@@ -4189,26 +4189,6 @@ footer {
   font-weight: 600;
 }
 
-/* Static Google Deutsch HD Badge */
-.google-voice-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.65rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #047857;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  border-radius: 999px;
-  user-select: none;
-}
-
-[data-theme="dark"] .google-voice-badge {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: #34d399;
-}
 
 [data-theme="dark"] .audio-speed-dropdown {
   background: #1e293b;

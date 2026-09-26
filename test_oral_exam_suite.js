@@ -580,12 +580,10 @@ assert(htmlContent.includes('audio-speed-dropdown'), 'index.html must include #a
 assert(htmlContent.includes('audio-speed-slider'), 'index.html must include #audio-speed-slider');
 assert(htmlContent.includes('speed-slider-val-badge'), 'index.html must include #speed-slider-val-badge');
 assert(htmlContent.includes('speed-presets-list'), 'index.html must include #speed-presets-list');
-assert(htmlContent.includes('google-voice-badge'), 'index.html must include #google-voice-badge');
 
 assert(cssCode.includes('.speed-control-wrapper'), 'styles.css must style .speed-control-wrapper');
 assert(cssCode.includes('.audio-speed-dropdown'), 'styles.css must style .audio-speed-dropdown');
 assert(cssCode.includes('.speed-range-slider'), 'styles.css must style .speed-range-slider');
-assert(cssCode.includes('.google-voice-badge'), 'styles.css must style .google-voice-badge');
 
 assert(appCode.includes('prepareMedicalTextForSpeech'), 'app.js must implement prepareMedicalTextForSpeech');
 assert(appCode.includes('setPlaybackSpeed'), 'app.js must implement setPlaybackSpeed');
