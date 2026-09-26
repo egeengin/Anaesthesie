@@ -574,6 +574,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- Hoisted Speech Handler (Eliminates TDZ / ReferenceErrors everywhere in app.js) ---
+  function speakText(textOrElement, triggerBtn = null, onEnd = null) {
+    if (typeof speakMedicalText === 'function') {
+      return speakMedicalText(textOrElement, triggerBtn, onEnd);
+    }
+  }
+
   function startStepTimer() {
     stopStepTimer();
     stepTimer.secondsLeft = 60;
@@ -949,8 +956,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (elSimCrisisBanner) {
       elSimCrisisBanner.style.display = 'block';
-      if (elSimCrisisTitle) elSimCrisisTitle.textContent = reg.crisis.title;
-      if (elSimCrisisPrompt) elSimCrisisPrompt.textContent = reg.crisis.prompt_de;
+      if (elSimCrisisTitle) {
+        elSimCrisisTitle.innerHTML = reg.crisis.title_tr 
+          ? `<span>${escapeHtml(reg.crisis.title)}</span> <span style="font-size:0.8rem; font-weight:normal; opacity:0.85; margin-left:8px;">🇹🇷 ${escapeHtml(reg.crisis.title_tr)}</span>`
+          : escapeHtml(reg.crisis.title);
+      }
+      if (elSimCrisisPrompt) {
+        elSimCrisisPrompt.innerHTML = renderDualLanguageText(reg.crisis.prompt_de, reg.crisis.prompt_tr);
+      }
     }
 
     // Update vital numbers to crisis state
@@ -1037,18 +1050,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (reg && reg.crisis) {
       examinerIntervention = reg.crisis.prompt_de;
-      examinerInterventionTR = reg.crisis.prompt_tr || reg.crisis.prompt_de;
+      examinerInterventionTR = reg.crisis.prompt_tr || (q.stem_tr ? `Jüri müdahale ediyor: ${q.stem_tr}` : 'Jüri vakaya aniden müdahale ediyor ve acil çözüm bekliyor.');
       examinerAnswer = reg.crisis.targetAction;
-      examinerAnswerTR = reg.crisis.targetAction_tr || reg.crisis.targetAction;
+      examinerAnswerTR = reg.crisis.targetAction_tr || (q.answer_tr || examinerAnswer);
       if (reg.koCriteria && reg.koCriteria.failureReason) {
         examinerAnswer += `\n\n⚠️ K.O.-Kriterium / Prüfungsfalle:\n${reg.koCriteria.failureReason}`;
-        examinerAnswerTR += `\n\n⚠️ K.O. Kriteri / Sınav Tuzağı:\n${reg.koCriteria.failureReason}`;
+        const koTR = reg.koCriteria.failureReason_tr || 'Bu ölümcül tuzağa düşülmemeli ve kılavuz basamakları sırasıyla uygulanmalıdır.';
+        examinerAnswerTR += `\n\n⚠️ K.O. Kriteri / Sınav Tuzağı:\n${koTR}`;
       }
     } else if (q.examiner_intervention && q.examiner_answer) {
       examinerIntervention = q.examiner_intervention;
-      examinerInterventionTR = q.examiner_intervention_tr || q.examiner_intervention;
+      examinerInterventionTR = q.examiner_intervention_tr || (q.stem_tr ? `Jüri müdahalesi: ${q.stem_tr}` : 'Jüri vaka seyrini acil bir komplikasyonla yönlendiriyor.');
       examinerAnswer = q.examiner_answer;
-      examinerAnswerTR = q.examiner_answer_tr || q.examiner_answer;
+      examinerAnswerTR = q.examiner_answer_tr || (q.answer_tr || examinerAnswer);
     } else {
       // Check 2: Clean subquestion from textbook answer if present
       const subqRegex = /(?:^|[.!?\n])\s*([A-ZÄÖÜ][^.!?\n•–—]{8,85}\?)\s*([\s\S]+)$/;
@@ -1062,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
           examinerAnswerTR = matchTR[2].trim();
         } else {
           examinerInterventionTR = `Jüri özellikle sorguluyor: "${match[1].trim()}"`;
-          examinerAnswerTR = examinerAnswer;
+          examinerAnswerTR = answerTr ? answerTr.trim() : examinerAnswer;
         }
       } else {
         // Check 3: Domain-specific dynamic clinical complication & model answer
@@ -1113,48 +1127,66 @@ document.addEventListener('DOMContentLoaded', () => {
         name: 'Prof. Dr. med. Thorsten Annecke',
         hospital: 'Direktor Klinikum Leverkusen / ehem. UK Köln · ÄKNO Prüfungsvorsitzender',
         focus: 'Aortenklappenstenose (keine SPA!), Einlungenventilation & 5-Stufen-Hypoxämie-Algorithmus, DGAI-Atemwegs-Stufen',
+        focus_tr: 'Aort kapak darlığı (kesinlikle SPA yok!), Tek akciğer ventilasyonu & 5 basamaklı hipoksemi algoritması, DGAI havayolu basamakları',
         trap: 'Vorschlag einer Spinalanästhesie bei Aortenklappenstenose oder Hektik ohne Fiberoptik bei DLT-Fehllage',
-        keywords: 'SVR hochhalten, Noradrenalin/Phenylephrin, Arterie VOR Einleitung, 100% FiO₂ → CPAP kollabierte Lunge'
+        trap_tr: 'Aort darlığında spinal anestezi önermek veya DLT tüp kaymasında fiberoptiksiz paniklemek',
+        keywords: 'SVR hochhalten, Noradrenalin/Phenylephrin, Arterie VOR Einleitung, 100% FiO₂ → CPAP kollabierte Lunge',
+        keywords_tr: "SVR'yi yüksek tut, Noradrenalin/Fenilefrin, İndüksiyondan ÖNCE arter, %100 FiO2 -> Kollabe akciğere CPAP"
       };
     } else if (text.includes('sugammadex') || text.includes('relaxometrie') || text.includes('tof') || text.includes('hohn') || text.includes('aufwachraum')) {
       return {
         name: 'Prof. Dr. med. Andreas Hohn',
         hospital: 'Chefarzt Ev. Krankenhaus Köln-Kalk / ehem. UK Köln · ÄKNO Fachprüfer',
         focus: 'Quantitative Relaxometrie (TOF-Ratio ≥ 0.9), Sugammadex-Dosierungen (2 vs. 4 vs. 16 mg/kg), ZAS vs. Überhang',
+        focus_tr: 'Kantitatif Relaksometri (TOF oranı >= 0.9), Sugammadeks dozları (2 vs 4 vs 16 mg/kg), ZAS vs Kas gevşetici kalıntısı',
         trap: 'Extubation ohne Relaxometrie-Nachweis oder Verwechslung von NPPE mit Muskelrelaxanzien-Überhang',
-        keywords: 'TOF-Ratio ≥ 0.9, Sugammadex 16 mg/kg Notfall-Rescue, Posttetanic Count (PTC), Physostigmin bei ZAS'
+        trap_tr: 'Relaksometri kanıtı olmadan ekstübe etmek veya NPPE ile gevşetici kalıntısını karıştırmak',
+        keywords: 'TOF-Ratio ≥ 0.9, Sugammadex 16 mg/kg Notfall-Rescue, Posttetanic Count (PTC), Physostigmin bei ZAS',
+        keywords_tr: 'TOF oranı >= 0.9, Sugammadeks 16 mg/kg acil kurtarma, Posttetanik sayım (PTC), ZAS\'ta Fizostigmin'
       };
     } else if (text.includes('kienbaum') || text.includes('polytrauma') || text.includes('rotem') || text.includes('schädel-hirn') || text.includes('massivtransfusion') || text.includes('tee')) {
       return {
         name: 'Prof. Dr. med. Peter Kienbaum',
         hospital: 'Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)',
         focus: 'Hämodynamik & PiCCO/TEE, Schockraum-Algorithmus, Ziel-CPP ≥ 60–70 mmHg bei SHT, ROTEM-gezielte Gerinnung',
+        focus_tr: 'Hemodinami & PiCCO/TEE, Şok odası algoritması, SHT\'de hedef CPP >= 60-70 mmHg, ROTEM kılavuzluğunda hemostaz',
         trap: 'Permissive Hypotonie bei Schädel-Hirn-Trauma (absolutes K.O.-Kriterium!) oder ungezielte FFP-Gabe ohne ROTEM',
-        keywords: 'CPP = MAP - ICP, kein PEEP-Überdruck bei Spannungspneu, Fibrinogen bei FIBTEM A10 < 10 mm, TXA vor 3h'
+        trap_tr: 'Kafa travmasında permissif hipotansiyon uygulamak (kesin K.O. kriteri!) veya ROTEM\'siz körlemesine FFP vermek',
+        keywords: 'CPP = MAP - ICP, kein PEEP-Überdruck bei Spannungspneu, Fibrinogen bei FIBTEM A10 < 10 mm, TXA vor 3h',
+        keywords_tr: 'CPP = MAP - ICP, Tansiyon pnömotoraksta PEEP\'ten kaçın, FIBTEM A10 < 10 mm ise Fibrinojen, İlk 3 saatte TXA'
       };
     } else if (text.includes('wappler') || text.includes('maligne hyperthermie') || text.includes('dantrolen') || text.includes('last') || text.includes('intralipid')) {
       return {
         name: 'Prof. Dr. med. Frank Wappler',
         hospital: 'Kliniken der Stadt Köln / Universität Witten/Herdecke · Nationales MH-Referenzzentrum',
         focus: 'Maligne Hyperthermie (EtCO₂-Anstieg, Dantrolen 2.5 mg/kg), Lokalanästhetika-Intoxikation (Intralipid 20%)',
+        focus_tr: 'Malign Hipertermi (EtCO2 fırlaması, Dantrolen 2.5 mg/kg), Lokal Anestezik Sistemik Toksisitesi (İntralipid %20)',
         trap: 'Kalziumantagonisten bei V.a. MH oder Vasopressin/Lidocain bei LAST (sofortiges Durchfallen!)',
-        keywords: 'Trigger STOP, 100% O₂ High Flow, Dantrolen 2.5 mg/kg i.v., Intralipid 1.5 ml/kg Bolus, Kühlung bis 38.5°C'
+        trap_tr: 'Malign hipertermide kalsiyum kanal blokeri veya LAST\'ta Vazopressin/Lidokain vermek (anında sınavdan kalma!)',
+        keywords: 'Trigger STOP, 100% O₂ High Flow, Dantrolen 2.5 mg/kg i.v., Intralipid 1.5 ml/kg Bolus, Kühlung bis 38.5°C',
+        keywords_tr: 'Tetikleyiciyi DERHAL KES, %100 O2 High Flow, Dantrolen 2.5 mg/kg i.v., İntralipid 1.5 ml/kg bolus, 38.5°C\'ye soğutma'
       };
     } else if (text.includes('sectio') || text.includes('eklampsie') || text.includes('hellp') || text.includes('schwanger') || text.includes('pädiatr') || text.includes('kind')) {
       return {
         name: 'ÄKNO Spezialkommission Geburtshilfe & Pädiatrie',
         hospital: 'Ärztekammer Nordrhein (Düsseldorf) · Fachprüfer für Notfallsektio & Pädiatrie',
         focus: 'Notsectio EEZ ≤ 20 min, Linksseitenkippung 15–30°, Magnesiumsulfat 4–6 g, Larson-Punkt bei Laryngospasmus',
+        focus_tr: 'Acil sezaryen EEZ <= 20 dk, Sol yan eğim 15-30°, Magnezyum sülfat 4-6 g, Laringospazmda Larson noktası',
         trap: 'Vergessen der Linksseitenkippung (Vena-cava-Kompression) oder Spinalanästhesie bei Thrombozytopenie < 50.000/µl',
-        keywords: '15–30° Linksseitenkippung, RSI mit Krikoiddruck (Sellick), Tubus mit Cuff (ID = Alter/4 + 3.5), Atropin 0.02 mg/kg'
+        trap_tr: 'Sol yan eğimi unutmak (Vena kava basısı) veya Trombosit < 50.000/µl iken spinal anestezi yapmak',
+        keywords: '15–30° Linksseitenkippung, RSI mit Krikoiddruck (Sellick), Tubus mit Cuff (ID = Alter/4 + 3.5), Atropin 0.02 mg/kg',
+        keywords_tr: '15-30° Sol yan eğim, Sellick manevrasıyla RSI, Kaf\'lı endotrakeal tüp (Çap = Yaş/4 + 3.5), Atropin 0.02 mg/kg'
       };
     } else if (q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'))) {
       return {
         name: 'ÄKNO Prüfungskommission Düsseldorf',
         hospital: 'Haus der Ärzteschaft, Tersteegenstr. 9, 40474 Düsseldorf',
         focus: 'Strukturierte Priorisierung nach ABCDE, Patientensicherheit vor Detailwissen, klare Ansagen',
+        focus_tr: 'ABCDE\'ye göre yapılandırılmış önceliklendirme, Ayrıntılı teoriden önce hasta güvenliği, Net komutlar',
         trap: 'Zögern bei Reanimation oder Atemwegsnotfall, unstrukturiertes Aufzählen von Medikamenten',
-        keywords: 'ABCDE-Schema, klare Team-Anweisungen, zeitnahe Kausaltherapie, Vermeidung von K.O.-Kriterien'
+        trap_tr: 'Resüsitasyon veya havayolu acilinde tereddüt etmek, ilaçları plansızca sıralamak',
+        keywords: 'ABCDE-Schema, klare Team-Anweisungen, zeitnahe Kausaltherapie, Vermeidung von K.O.-Kriterien',
+        keywords_tr: 'ABCDE algoritması, net ekip talimatları, zamanında nedensel tedavi, K.O. kriterlerinden kaçınma'
       };
     }
     return null;
@@ -2221,7 +2253,7 @@ Tedavi:
       elExaminerInlineAnswerBox.style.display = 'none';
     }
     if (elBtnToggleExaminerAnswer) {
-      elBtnToggleExaminerAnswer.innerHTML = '<span>💡</span> Musterantwort anzeigen';
+      elBtnToggleExaminerAnswer.innerHTML = '<span>💡</span> Musterantwort anzeigen / Cevabı Gör';
     }
 
     // Step 4: Populate Examiner Solution Card
@@ -2239,8 +2271,10 @@ Tedavi:
       if (elBadgeExaminerToggle) elBadgeExaminerToggle.setAttribute('aria-expanded', 'false');
       if (elExaminerBadgeTitle) {
         const shortName = examinerProfile.name.split('/')[0].trim();
-        elExaminerBadgeTitle.textContent = `🏛️ ÄKNO Düsseldorf: Prüfer-Profil (${shortName})`;
+        elExaminerBadgeTitle.textContent = `🏛️ ÄKNO Düsseldorf: Prüfer-Profil (${shortName}) / Jüri Profili`;
       }
+      const profKeywordsDE = examinerProfile.keywords || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '');
+      const profKeywordsTR = examinerProfile.keywords_tr || profKeywordsDE;
       elExaminerRevealCard.innerHTML = `
         <div class="examiner-reveal-header">
           <div class="examiner-reveal-name">👨‍⚕️ ${examinerProfile.name}</div>
@@ -2248,17 +2282,18 @@ Tedavi:
         </div>
         <div class="examiner-profile-grid">
           <div class="examiner-profile-item">
-            <strong>🎯 Prüfungsschwerpunkt</strong>
-            <span>${examinerProfile.focus}</span>
+            <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
+            <div>${renderDualLanguageText(examinerProfile.focus, examinerProfile.focus_tr)}</div>
           </div>
           <div class="examiner-profile-item alert-trap">
-            <strong>⚠️ Typische Prüfungsfalle</strong>
-            <span>${examinerProfile.trap}</span>
+            <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı</strong>
+            <div>${renderDualLanguageText(examinerProfile.trap, examinerProfile.trap_tr)}</div>
           </div>
+          ${profKeywordsDE ? `
           <div class="examiner-profile-item alert-pass">
-            <strong>⭐ Signalwörter für Bestnote</strong>
-            <span>${examinerProfile.keywords}</span>
-          </div>
+            <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
+            <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
+          </div>` : ''}
         </div>
       `;
     } else if (elExaminerRevealBox) {
@@ -4101,30 +4136,126 @@ Tedavi:
       .trim();
   }
 
+  // --- Natural Neural Stream Player (Zero-Configuration for Mac & iPhone) ---
+  let naturalAudioPlayer = null;
+  let naturalAudioQueue = [];
+  let currentChunkIndex = 0;
+  let isSpeakingMedical = false;
+  let activeMedicalTriggerBtn = null;
+  let onSpeechCompleteCallback = null;
+
+  function initNaturalAudioPlayer() {
+    if (naturalAudioPlayer) return;
+    try {
+      naturalAudioPlayer = new Audio();
+      naturalAudioPlayer.preload = 'auto';
+
+      naturalAudioPlayer.addEventListener('ended', () => {
+        if (!isSpeakingMedical) return;
+        currentChunkIndex++;
+        if (currentChunkIndex < naturalAudioQueue.length) {
+          playCurrentAudioChunk();
+        } else {
+          stopMedicalSpeech();
+        }
+      });
+
+      naturalAudioPlayer.addEventListener('error', (err) => {
+        console.warn('[NaturalAudio] Stream playback error, switching to Web Speech fallback:', err);
+        fallbackToWebSpeech();
+      });
+    } catch (e) {
+      console.warn('[NaturalAudio] Init error:', e);
+    }
+  }
+
+  function chunkTextForTTS(text, maxLen = 160) {
+    if (!text) return [];
+    const sentences = text.match(/[^.!?:]+[.!?:]+/g) || [text];
+    const chunks = [];
+
+    for (let s of sentences) {
+      s = s.trim();
+      if (!s) continue;
+      if (s.length <= maxLen) {
+        chunks.push(s);
+      } else {
+        const parts = s.split(/(?<=[,;])\s+/);
+        let cur = '';
+        for (const p of parts) {
+          if ((cur + ' ' + p).trim().length <= maxLen) {
+            cur = (cur + ' ' + p).trim();
+          } else {
+            if (cur) chunks.push(cur);
+            if (p.length <= maxLen) {
+              cur = p;
+            } else {
+              const words = p.split(/\s+/);
+              cur = '';
+              for (const w of words) {
+                if ((cur + ' ' + w).trim().length <= maxLen) {
+                  cur = (cur + ' ' + w).trim();
+                } else {
+                  if (cur) chunks.push(cur);
+                  cur = w;
+                }
+              }
+            }
+          }
+        }
+        if (cur) chunks.push(cur);
+      }
+    }
+    return chunks;
+  }
+
+  function playCurrentAudioChunk() {
+    if (!isSpeakingMedical || currentChunkIndex >= naturalAudioQueue.length) {
+      stopMedicalSpeech();
+      return;
+    }
+    const chunkText = naturalAudioQueue[currentChunkIndex];
+    if (!chunkText || !chunkText.trim()) {
+      currentChunkIndex++;
+      playCurrentAudioChunk();
+      return;
+    }
+
+    initNaturalAudioPlayer();
+    const encoded = encodeURIComponent(chunkText.trim());
+    naturalAudioPlayer.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
+    naturalAudioPlayer.playbackRate = state.speechRate || 0.95;
+
+    const playPromise = naturalAudioPlayer.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        // Autoplay or network block
+        console.warn('[NaturalAudio] Play interrupted or blocked, falling back to Web Speech:', err);
+        fallbackToWebSpeech();
+      });
+    }
+  }
+
   function updateGermanVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const allVoices = window.speechSynthesis.getVoices();
-    if (!allVoices || !allVoices.length) return;
-
+    const allVoices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
     availableGermanVoices = rankGermanVoices(allVoices);
-    if (!availableGermanVoices.length) return;
 
-    // Match saved voice from state or localStorage
-    const savedVoiceName = state.preferredVoiceName || localStorage.getItem('facharzt_preferred_voice') || '';
-    if (savedVoiceName) {
+    const savedVoiceName = state.preferredVoiceName || localStorage.getItem('facharzt_preferred_voice') || 'natural_neural';
+    if (savedVoiceName && savedVoiceName !== 'natural_neural') {
       preferredGermanVoice = availableGermanVoices.find(v => v.name === savedVoiceName) || null;
+    } else {
+      preferredGermanVoice = null; // null indicates automatic natural neural voice
     }
 
-    // Fallback to top-ranked natural voice
-    if (!preferredGermanVoice) {
-      preferredGermanVoice = availableGermanVoices[0];
-    }
-
-    // Update UI elements
     const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
-    if (elAudioVoiceDisplay && preferredGermanVoice) {
-      elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(preferredGermanVoice.name);
-      elAudioVoiceDisplay.title = `${preferredGermanVoice.name} (${preferredGermanVoice.lang})`;
+    if (elAudioVoiceDisplay) {
+      if (!preferredGermanVoice || savedVoiceName === 'natural_neural') {
+        elAudioVoiceDisplay.textContent = 'Natürliche Stimme';
+        elAudioVoiceDisplay.title = 'Automatische lebensechte HD-Stimme für Mac & iPhone';
+      } else {
+        elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(preferredGermanVoice.name);
+        elAudioVoiceDisplay.title = `${preferredGermanVoice.name} (${preferredGermanVoice.lang})`;
+      }
     }
 
     renderVoiceOptionsDropdown();
@@ -4134,48 +4265,69 @@ Tedavi:
     const container = document.getElementById('voice-options-list');
     if (!container) return;
 
-    if (!availableGermanVoices.length) {
-      container.innerHTML = '<div class="voice-loading-notice">Keine deutschen Stimmen erkannt.</div>';
-      return;
+    const isAutoNatural = !state.preferredVoiceName || state.preferredVoiceName === 'natural_neural';
+
+    let html = `
+      <button class="voice-option-item ${isAutoNatural ? 'active' : ''}" type="button" data-voice-name="natural_neural">
+        <div class="voice-item-left">
+          <span class="voice-status-icon">${isAutoNatural ? '✓' : '○'}</span>
+          <span class="voice-item-title">🌟 Natürliche HD-Stimme (Automatisch)</span>
+        </div>
+        <div class="voice-item-right"><span class="voice-badge-neural">Standard</span></div>
+      </button>
+    `;
+
+    if (availableGermanVoices.length) {
+      html += availableGermanVoices.map(v => {
+        const isCurrent = !isAutoNatural && preferredGermanVoice && preferredGermanVoice.name === v.name;
+        const cleanName = getCleanVoiceDisplayName(v.name);
+        const badge = getVoiceQualityBadge(v);
+        return `
+          <button class="voice-option-item ${isCurrent ? 'active' : ''}" type="button" data-voice-name="${v.name}">
+            <div class="voice-item-left">
+              <span class="voice-status-icon">${isCurrent ? '✓' : '○'}</span>
+              <span class="voice-item-title">${cleanName}</span>
+            </div>
+            <div class="voice-item-right">${badge}</div>
+          </button>
+        `;
+      }).join('');
     }
 
-    container.innerHTML = availableGermanVoices.map(v => {
-      const isCurrent = preferredGermanVoice && preferredGermanVoice.name === v.name;
-      const cleanName = getCleanVoiceDisplayName(v.name);
-      const badge = getVoiceQualityBadge(v);
-      return `
-        <button class="voice-option-item ${isCurrent ? 'active' : ''}" type="button" data-voice-name="${v.name}">
-          <div class="voice-item-left">
-            <span class="voice-status-icon">${isCurrent ? '✓' : '○'}</span>
-            <span class="voice-item-title">${cleanName}</span>
-          </div>
-          <div class="voice-item-right">${badge}</div>
-        </button>
-      `;
-    }).join('');
+    container.innerHTML = html;
 
-    // Attach click listeners to voice items
     container.querySelectorAll('.voice-option-item').forEach(btn => {
       btn.addEventListener('click', () => {
         const voiceName = btn.getAttribute('data-voice-name');
-        const chosen = availableGermanVoices.find(v => v.name === voiceName);
-        if (chosen) {
-          preferredGermanVoice = chosen;
-          state.preferredVoiceName = chosen.name;
-          try {
-            localStorage.setItem('facharzt_preferred_voice', chosen.name);
-          } catch (e) {}
-          saveState();
-
-          const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
-          if (elAudioVoiceDisplay) {
-            elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(chosen.name);
-            elAudioVoiceDisplay.title = `${chosen.name} (${chosen.lang})`;
+        if (voiceName === 'natural_neural') {
+          preferredGermanVoice = null;
+          state.preferredVoiceName = 'natural_neural';
+        } else {
+          const chosen = availableGermanVoices.find(v => v.name === voiceName);
+          if (chosen) {
+            preferredGermanVoice = chosen;
+            state.preferredVoiceName = chosen.name;
           }
-
-          renderVoiceOptionsDropdown();
-          if (typeof playAudioTone === 'function') playAudioTone(640, 'sine', 0.1);
         }
+
+        try {
+          localStorage.setItem('facharzt_preferred_voice', state.preferredVoiceName);
+        } catch (e) {}
+        saveState();
+
+        const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
+        if (elAudioVoiceDisplay) {
+          if (!preferredGermanVoice || state.preferredVoiceName === 'natural_neural') {
+            elAudioVoiceDisplay.textContent = 'Natürliche Stimme';
+            elAudioVoiceDisplay.title = 'Automatische lebensechte HD-Stimme für Mac & iPhone';
+          } else {
+            elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(preferredGermanVoice.name);
+            elAudioVoiceDisplay.title = `${preferredGermanVoice.name} (${preferredGermanVoice.lang})`;
+          }
+        }
+
+        renderVoiceOptionsDropdown();
+        if (typeof playAudioTone === 'function') playAudioTone(640, 'sine', 0.1);
       });
     });
   }
@@ -4185,26 +4337,86 @@ Tedavi:
     window.speechSynthesis.onvoiceschanged = updateGermanVoice;
   }
 
-  // --- Natural Sentence Chunking & Playback Controller ---
-  let isSpeakingMedical = false;
-  let activeMedicalTriggerBtn = null;
-
   function stopMedicalSpeech() {
     isSpeakingMedical = false;
+
+    // Stop HTML5 Audio stream
+    if (naturalAudioPlayer) {
+      try {
+        naturalAudioPlayer.pause();
+        naturalAudioPlayer.removeAttribute('src');
+        naturalAudioPlayer.load();
+      } catch (e) {}
+    }
+
+    // Stop Web Speech Synthesis
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
+
     document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
     activeMedicalTriggerBtn = null;
+    naturalAudioQueue = [];
+    currentChunkIndex = 0;
+
+    if (typeof onSpeechCompleteCallback === 'function') {
+      const cb = onSpeechCompleteCallback;
+      onSpeechCompleteCallback = null;
+      cb();
+    }
   }
 
-  function speakMedicalText(textOrElement, triggerBtn = null, onEnd = null) {
+  function fallbackToWebSpeech(remainingText = null) {
     if (!('speechSynthesis' in window)) {
-      showToast('🔊 Vorlesefunktion wird von Ihrem Browser leider nicht unterstützt.', 'warning', 4000);
+      stopMedicalSpeech();
       return;
     }
 
-    // Toggle stop if already speaking this exact button
+    const textToSpeak = remainingText || (naturalAudioQueue.slice(currentChunkIndex).join(' '));
+    if (!textToSpeak || !textToSpeak.trim()) {
+      stopMedicalSpeech();
+      return;
+    }
+
+    const rawChunks = textToSpeak.split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9])/g).filter(s => s.trim().length > 0);
+    const chunks = rawChunks.length ? rawChunks : [textToSpeak];
+    let chunkIdx = 0;
+
+    function speakNextFallbackChunk() {
+      if (!isSpeakingMedical || chunkIdx >= chunks.length) {
+        stopMedicalSpeech();
+        return;
+      }
+
+      const chunk = chunks[chunkIdx++].trim();
+      if (!chunk) {
+        speakNextFallbackChunk();
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(chunk);
+      utterance.lang = 'de-DE';
+      if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
+      utterance.rate = state.speechRate || 0.95;
+      utterance.pitch = state.speechPitch || 1.0;
+
+      utterance.onend = () => {
+        if (isSpeakingMedical) setTimeout(speakNextFallbackChunk, 50);
+      };
+
+      utterance.onerror = (e) => {
+        if (e.error === 'canceled' || e.error === 'interrupted') return;
+        if (isSpeakingMedical) speakNextFallbackChunk();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    speakNextFallbackChunk();
+  }
+
+  function speakMedicalText(textOrElement, triggerBtn = null, onEnd = null) {
+    // Toggle stop if user clicks the button currently speaking
     if (isSpeakingMedical && triggerBtn && triggerBtn === activeMedicalTriggerBtn) {
       stopMedicalSpeech();
       return;
@@ -4215,54 +4427,23 @@ Tedavi:
     const cleanText = getCleanSpeechText(textOrElement);
     if (!cleanText || !cleanText.trim()) return;
 
-    // Split text into natural sentence chunks (respecting German decimal commas and abbreviations)
-    const rawChunks = cleanText.split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9])/g).filter(s => s.trim().length > 0);
-    const chunks = rawChunks.length ? rawChunks : [cleanText];
-
     isSpeakingMedical = true;
     activeMedicalTriggerBtn = triggerBtn;
+    onSpeechCompleteCallback = onEnd;
     if (triggerBtn) triggerBtn.classList.add('speaking');
 
-    let chunkIndex = 0;
+    // Use zero-configuration Natural HD Neural voice if online and not set to manual local voice
+    const isNaturalPreferred = (!state.preferredVoiceName || state.preferredVoiceName === 'natural_neural');
+    const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
 
-    function speakNextChunk() {
-      if (!isSpeakingMedical || chunkIndex >= chunks.length) {
-        isSpeakingMedical = false;
-        if (triggerBtn) triggerBtn.classList.remove('speaking');
-        activeMedicalTriggerBtn = null;
-        if (typeof onEnd === 'function') onEnd();
-        return;
-      }
-
-      const chunkText = chunks[chunkIndex++].trim();
-      if (!chunkText) {
-        speakNextChunk();
-        return;
-      }
-
-      const utterance = new SpeechSynthesisUtterance(chunkText);
-      utterance.lang = 'de-DE';
-      if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
-      utterance.rate = state.speechRate || 0.95;
-      utterance.pitch = state.speechPitch || 1.0;
-
-      utterance.onend = () => {
-        if (isSpeakingMedical) {
-          // Human breathing pause (50ms) between sentences provides natural prosody
-          setTimeout(speakNextChunk, 50);
-        }
-      };
-
-      utterance.onerror = (e) => {
-        if (e.error === 'canceled' || e.error === 'interrupted') return;
-        console.warn('SpeechSynthesis error on chunk:', e);
-        if (isSpeakingMedical) speakNextChunk();
-      };
-
-      window.speechSynthesis.speak(utterance);
+    if (isNaturalPreferred && isOnline) {
+      naturalAudioQueue = chunkTextForTTS(cleanText, 160);
+      currentChunkIndex = 0;
+      playCurrentAudioChunk();
+    } else {
+      // Local system voice or offline
+      fallbackToWebSpeech(cleanText);
     }
-
-    speakNextChunk();
   }
 
   // Global alias so all cockpit / emergency / simulation calls use the natural medical engine
@@ -4354,8 +4535,8 @@ Tedavi:
       const isVisible = (elExaminerInlineAnswerBox.style.display !== 'none');
       elExaminerInlineAnswerBox.style.display = isVisible ? 'none' : 'block';
       elBtnToggleExaminerAnswer.innerHTML = isVisible
-        ? '<span>💡</span> Musterantwort anzeigen'
-        : '<span>💡</span> Musterantwort verbergen';
+        ? '<span>💡</span> Musterantwort anzeigen / Cevabı Gör'
+        : '<span>💡</span> Musterantwort verbergen / Cevabı Gizle';
     });
   }
 

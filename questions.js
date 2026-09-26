@@ -20371,7 +20371,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. SPİNAL ANESTEZİ KONTRENDİKASYONU: Ağır aort darlığında spinal anestezi kesinlikle kontrendikedir! Hızlı gelişen sempatik blokaj periferik vazodilatasyona ve SVR'de dramatik bir düşüşe yol açar. Sabit stenotik kapak alanı nedeniyle atım hacmi artırılamaz, diyastolik kan basıncı düşer ve hipertrofik sol ventrikülün koroner perfüzyonu çöker -> ölümcül miyokard iskemisi ve kardiyak arrest!\n\n2. HEMODİNAMİK HEDEF ÜÇLÜSÜ:\n• Art yük (SVR): Koroner perfüzyon için yüksek-normal tutulmalıdır (MAP >= 70–80 mmHg).\n• Ön yük (Preload): Sert sol ventrikülün dolumu için yüksek-normal (övolemi).\n• Kalp hızı: Kesinlikle 60–80/dk sinüs ritmi (taşikardi diyastolü ve dolumu kısaltır; bradikardi debiyi düşürür).\n\n3. ANESTEZİ YÖNETİMİ:\n• İnvaziv arteryel tansiyon takibi anestezi indüksiyonundan ÖNCE açılmalıdır.\n• Dengeli genel anestezi (Etomidat veya titre propofol + sufentanil + roküronyum).\n• İlk tercih vazopressör: Noradrenalin veya Fenilefrin (alfa-1 vazokonstriksiyon; taşikardi yapmadan SVR'yi yükseltir).\n• Laparoskopide düşük karın içi basınç (10–12 mmHg) ve yavaş insüflasyon istenmelidir.",
     "examiner_tip": "Düsseldorfer ÄKNO-Klassiker! Wer hier 'Spinalanästhesie' vorschlägt oder Tachykardie toleriert, fällt sofort durch. Arterieller Zugang vor Einleitung, Noradrenalin/Phenylephrin bereitstellen, Vorlast hoch halten, Sinusrhythmus 60–80 bpm!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Düsseldorf ÄKNO klasiği! Burada spinal anestezi öneren veya taşikardiye izin veren aday sınavdan anında kalır. İndüksiyondan önce mutlaka arter kanülasyonu, Noradrenalin/Fenilefrin masada hazır, ön yük yüksek-normal, sinüs ritmi 60-80/dk!"
   },
   {
     "id": "q_dus_02",
@@ -20385,7 +20386,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. OLV HİPOKSEMİSİNDE YAPILANDIRILMIŞ 5 BASAMAKLI KURTARMA PLANI:\n• Basamak 1: Havalandırılan (bağımlı) akciğerde FiO2 derhal 1.0 yapılır.\n• Basamak 2: Fiberoptik bronkoskopi ile DLT tüp pozisyonu doğrulanır, sekresyonlar aspire edilir, katlanma veya yerinden oynama dışlanır.\n• Basamak 3: Havalandırılmayan (ameliyat edilen) kollabe akciğere 2–5 cmH2O basınçla 100% O2 CPAP uygulanır (cerrahi görüşü bozmadan şantı belirgin azaltır).\n• Basamak 4: Havalandırılan akciğere PEEP optimizasyonu (5–8 cmH2O), alveolar rekrütman manevrası, lunge-protective sürüş basıncı (Delta P <= 14 cmH2O).\n• Basamak 5: Dirençli ise cerrah bilgilendirilir -> opere edilen taraf pulmoner arterinin geçici klemplenmesi (şantı sıfırlar) veya iki akciğer ventilasyonuna geri dönülmesi.\n\n2. SOL DLT FİBEROPTİK KONTROLÜ:\n• Trakeal lümen bakısı: Karina serbestçe görülmeli, sol bronşiyal tüpün mavi kafı karinanın hemen altında olmalı, trakeya taşmamalıdır.\n• Bronşiyal lümen bakısı: Sol üst ve alt lob bronş ayrımı net görülmeli, lümen tıkanmamış olmalıdır.",
     "examiner_tip": "Prüfungsrhetorik: Niemals hektisch werden! Die 5 Stufen der Reihe nach aufsagen: FiO2 1.0 -> Bronchoskopie -> CPAP nicht-ventilierte Lunge -> PEEP abhängige Lunge -> Chirurg informieren.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Sınav retoriği: Asla panik yapmayın! 5 basamağı sırayla sayın: FiO2 1.0 -> Bronkoskopi -> Kollabe akciğere CPAP -> Bağımlı akciğere PEEP -> Cerrahı bilgilendir (arteri klemple)."
   },
   {
     "id": "q_dus_03",
@@ -20399,7 +20401,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. PERMİSİF HİPOTANSİYON VS. KAFA TRAVMASI İKİLEMİ:\n• Ağır kafa travmasında (GCS <= 8, anizokori) permisif hipotansiyon (MAP 50–65 mmHg) KESİNLİKLE KONTRENDİKEDİR!\n• MAP düşüklüğü artmış kafa içi basınç varlığında serebral iskemiye ve sekonder beyin hasarına yol açar.\n• Hedef: CPP >= 60–70 mmHg sağlamak için MAP >= 80–90 mmHg (sistolik KB >= 100–110 mmHg) hedeflenir. Noradrenalin ve kristalloid ile resüsitasyon yapılır, derhal pelvik kemer takılır!\n\n2. TRANEKSAMİK ASİT (TXA) PROTOKOLÜ:\n• Travmadan sonraki ilk 3 saat içinde hemen 10 dakikada 1 g i.v. bolus, ardından 8 saatte 1 g i.v. infüzyon (CRASH-2/3).\n\n3. ROTEM TABANLI HEDEFE YÖNELİK KOAGÜLASYON YÖNETİMİ:\n• FIBTEM A10 < 10 mm: Fibrinojen eksikliği -> 3–4 g Fibrinojen konsantresi i.v.\n• EXTEM CT > 80 sn: Pıhtılaşma faktörü / trombin açığı -> Protrombin kompleksi (PCC / PPSB 20–30 IU/kg) veya TDP.\n• EXTEM ML > %15: Hiperfibrinoliz teyidi.\n• EXTEM A10 < 40 mm (FIBTEM normalken): Trombosit eksikliği -> Trombosit süspansiyonu.\n• İyonize Ca2+ > 1.1 mmol/l tutulmalı (CaCl2 10% 10 ml), normotermi (> 36°C) korunmalıdır.",
     "examiner_tip": "Düsseldorfer Schockraum-Falle: Permissive Hypotonie ist bei schwerem SHT verboten! Unbedingt CPP >= 60-70 mmHg und MAP >= 80-90 mmHg fordern!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum'un en sevdiği sınav sorusu: Politravmada kanama varsa permissif hipotansiyona izin verilir mi? Cevap: SHT yoksa EVET (MAP 50-60); SHT VARSA KESİNLİKLE HAYIR! Hedef CPP >= 60-70 mmHg, MAP >= 80-90 mmHg."
   },
   {
     "id": "q_dus_04",
@@ -20413,7 +20416,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. ÖN TANI: Malign Hipertermi (MH) – iskelet kasının hipermetabolik krizi.\n\n2. 8 BASAMAKLI ACİL PROTOKOL:\n• 1. Tetikleyicileri DURDUR: Sevofluran derhal kapatılır/sökülür, süksinilkolin kesilir.\n• 2. %100 O2 ile maksimum taze gaz akımında (>= 10–15 L/dk) hiperventilasyon.\n• 3. Solunum devresine aktif kömür filtreleri (Vapor-Clean) takılır.\n• 4. TIVA ile anestezi idamesi (Propofol + Opioid).\n• 5. DANTROLEN: 2.5 mg/kg i.v. hızlı bolus; klinik gerileyene dek 5–10 dakikada bir tekrarlanır (maksimum 10 mg/kg).\n• 6. Aktif soğutma: Soğuk salin infüzyonu (4°C), buz torbaları. KKT 38.5°C'ye inince soğutma DURDURULUR!\n• 7. Hiperkalemi ve asidoz tedavisi.\n• 8. Rabdomiyolize bağlı böbrek hasarını önlemek için zorlu diürez (> 1.5–2 ml/kg/saat).\n\n3. DANTROLEN HAZIRLANIŞI:\n• Klasik formülasyon: Her 20 mg flakon 60 ml steril enjeksiyonluk su (Aqua) ile çözülür.\n• Ryanodex: 250 mg flakon sadece 5 ml su ile saniyeler içinde çözülür.\n\n4. HİPERKALEMİ TEDAVİSİ:\n• Kardiyak membran stabilizasyonu için 10 ml Kalsiyum glukonat %10 i.v. yavaş.\n• Glukoz-İnsülin: %20 Glukoz 100 ml + 10-12 IU regüler insülin i.v.\n• Ağır metabolik asidozda (pH < 7.15) NaHCO3 8.4% 1-2 mmol/kg.",
     "examiner_tip": "Düsseldorfer KO-Frage von Prof. Wappler: EtCO2 ist das früheste Zeichen, Hyperthermie ein Spätzeichen! Dantrolen 2.5 mg/kg i.v. muss wie aus der Pistole geschossen genannt werden!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Wappler (Ulusal MH Danışma Merkezi başkanı): MH krizinde kalsiyum antagonisti veren aday sınav odasından doğrudan elenir. İlk adım: Tetikleyiciyi kes, %100 O2 >10 L/dk, Dantrolen 2.5 mg/kg i.v. bolus!"
   },
   {
     "id": "q_dus_05",
@@ -20427,7 +20431,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. SEPSİS-3 '1-SAAT PAKETİ' (SURVIVING SEPSIS):\n• 1. Serum laktatını hemen ölç (2-4 saatte bir tekrarla).\n• 2. Antibiyotikten ÖNCE en az 2 set (aerob/anaerob) kan kültürü al.\n• 3. İlk 60 dakika içinde geniş spektrumlu i.v. antibiyotik başla.\n• 4. Hipotansiyon veya laktat >= 4 ise 30 ml/kg dengeli kristalloid infüzyonu yap.\n• 5. İlk tercih vazopressör: Noradrenalin ile hedef MAP >= 65 mmHg sağla. Yüksek dozda vazopressin (0.03 IU/dk) ve hidrokortizon (200 mg/gün) ekle.\n\n2. ARDS BERLİN TANIMI:\n• Zaman: 1 hafta içinde akut başlangıç.\n• Radyoloji: Akciğer grafisinde/BT'de bilateral infiltratlar.\n• Ödem nedeni: Kardiyojenik ödem dışlanmalıdır.\n• Horovitz Oranı (PaO2/FiO2, PEEP >= 5 iken): Hafif (200-300), Orta (100-200), Ağır (<= 100 mmHg).\n\n3. AKCİĞER KORUYUCU VENTİLASYON VE PRON:\n• Tidal hacim: 6 ml/kg ideal vücut ağırlığı (PBW).\n• Plato basıncı: <= 30 cmH2O.\n• Sürüş basıncı (Driving Pressure Delta P = Pplat - PEEP): <= 14 cmH2O.\n• Pron Pozisyonu (Yüzüstü): PaO2/FiO2 < 150 mmHg ise günde en az 16 kesintisiz saat uygulanmalıdır (PROSEVA çalışması mortaliteyi yarıya indirmiştir).",
     "examiner_tip": "Düsseldorfer Intensiv-Prüfer lieben Zahlen: 30 ml/kg Kristalloide, MAP >= 65 mmHg, Vt 6 ml/kg PBW, Driving Pressure <= 14, Bauchlagerung >= 16h bei Horovitz < 150!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Düsseldorf'ta LAST algoritması ezbere bilinmelidir: Enjeksiyonu durdur -> Havayolu/Oksijenasyon -> Nöbet durdurma (Midazolam) -> Lipid %20 1.5 ml/kg bolus, ardından 0.25 ml/kg/dk infüzyon. Vazopressin YASAK!"
   },
   {
     "id": "q_dus_06",
@@ -20441,7 +20446,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. KARAR-DOĞUM SÜRESİ (EEZ):\n• Kategori 1 Acil Sezaryende karar ile bebeğin doğumu arasındaki süre maksimum 20 dakikadır.\n\n2. ANNE İÇİN ACİL SEZARYEN YÖNETİMİ:\n• Pozisyonlama: Vena cava inferior basısını önlemek için ameliyat masasına 15–30° sola eğim (sol yan tilt) verilmesi ZORUNLUDUR.\n• Hızlı Seri İndüksiyon (RSI): %100 O2 ile 3 dk preoksijenasyon. Maske ile havalandırma yapılmaz! Propofol 2–2.5 mg/kg + Roküronyum 1.2 mg/kg (veya Süksinilkolin 1–1.5 mg/kg). Ödem nedeniyle 6.5–7.0 mm kafllı tüp kullanılır. Kapnografi ile tüp doğrulanır -> cerraha 'Kesi serbest' denir.\n• Kordon klemplendikten sonra: Oksitosin 3–5 IU yavaş i.v. + Cefazolin 2 g + Sufentanil.\n\n3. AĞIR PREEKLAMPSİ / EKLAMPSİ TEDAVİSİ:\n• Nöbet profilaksisi ve tedavisinde İLK TERCİH Magnezyum Sülfattır (Benzodiazepin değil!):\n  - Yükleme: 15–20 dakikada 4–6 g MgSO4 i.v.\n  - İdame: 24 saat boyunca 1–2 g/saat infüzyon. Hedef serum düzeyi 2.0–3.5 mmol/l.\n  - Toksisite belirtisi: Derin tendon refleksi kaybı, solunum depresyonu.\n  - Antidotu: Kalsiyum Glukonat %10 (10 ml yavaş i.v.).\n• Antihipertansif tedavi: Urapidil titrasyonu ile hedef KB 140–150 / 90–100 mmHg.",
     "examiner_tip": "Düsseldorfer Geburtshilfe-Falle: Linksseitenkippung muss SOFORT genannt werden! EEZ <= 20 min. Mg-Sulfat ist Mittel der Wahl bei Eklampsie (NICHT Diazepam!).",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Hohn'un vazgeçilmez sorusu: 'Ekstübasyon için TOF oranı kaç olmalıdır?' Tek doğru cevap: Kantitatif ölçümde en az >= 0.90! Yüzeysel testler güvenilmezdir. Roküronyum bloğu Sugammadeks ile geri çevrilir."
   },
   {
     "id": "q_dus_07",
@@ -20455,7 +20461,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. ANTİKOAGÜLASYON BEKLEME SÜRELERİ (DGAI/ÖGARI KILAVUZU):\n• ASA 100 mg tek başına: Kesilmesine gerek yoktur, nöraksiyel blok uygulanabilir.\n• Rivaroksaban (Xarelto 20 mg/gün):\n  - Ponksiyon öncesi: En az 48 saat kesilmelidir (GFR 30-50 ise 72 saat!).\n  - Kateter çekilmesi öncesi: Son dozdan sonra en az 48 saat beklenmelidir.\n  - Kateter çekildikten sonra tekrar başlama: Kateter çekildikten EN ERKEN 6 saat sonra yeni doz verilebilir!\n• Proflaktik DDAH (Enoksaparin 40 mg): 12 saat; Terapötik DDAH: 24 saat bekleme süresi.\n\n2. LOKAL ANESTEZİK SİSTEMİK TOKSİSİTESİ (LAST) ACİL PROTOKOLÜ:\n• LA enjeksiyonunu DERHAL DURDUR, yardım çağır, Lipid Kurtarma Kitini iste, %100 O2 ve hiperventilasyon sağla.\n• Nöbet tedavisi: Midazolam 0.05-0.1 mg/kg i.v. (kardiyak depresyon riski nedeniyle propofol bolusundan kaçının).\n• LİPİD KURTARMA PROTOKOLÜ (%20 İNTRALİPİD):\n  - Bolus: 1.5 ml/kg i.v. %20 lipid emülsiyonu 1 dakikada verilir (70 kg için ~100 ml).\n  - İdame: Hemen ardından 0.25 ml/kg/dk sürekli infüzyon (~1000 ml/saat).\n  - İnstabilite sürerse: 5 dk arayla bolus 2 kez tekrarlanabilir, infüzyon 0.5 ml/kg/dk'ya çıkarılabilir. İlk 30 dakikada maksimum 12 ml/kg.\n• CPR Özellikleri: En az 60 dk uzatılmış CPR yapılmalıdır. Adrenalin dozu azaltılmalıdır (< 1 mcg/kg bolus). Vazopressin, lidokain, kalsiyum kanal blokeri ve beta blokerler KESİNLİKLE KONTRENDİKEDİR!",
     "examiner_tip": "Düsseldorfer Prüfungs-Schwerpunkt: Exakte Stundenwerte kennen (Rivaroxaban 48h vor Punktion, 6h nach Entfernung). Lipidtherapie 1.5 ml/kg Bolus + 0.25 ml/kg/min Infusion muss sekundenschnell abrufbar sein!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum & Annecke protokolü: Travmada ilk tükenen pıhtılaşma faktörü FİBRİNOJEN'dir! FIBTEM A10 < 10 mm ise derhal 2-4 g Fibrinojen verilir. İlk 3 saat içinde TXA 1 g verilmesi zorunludur."
   },
   {
     "id": "q_dus_08",
@@ -20469,7 +20476,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. ACİL TANI VE AYIRICI TANI:\n• Tanı: Hipoksik kardiyak arrest tehdidi oluşturan Akut Ağır Pediatrik Laringospazm.\n• Ayırıcı tanılar: Postoperatif kanama/pıhtı, subglottik ödem (krup), aspirasyon, laringeal ödem.\n\n2. PEDİATRİK HAVA YOLUNUN ANATOMİK FARKLILIKLARI:\n• Büyük oksiput (başın öne bükülmesini önlemek için omuz altı desteklenmelidir).\n• Ağız boşluğuna oranla büyük dil.\n• Yüksek larinks konumu (C3–C4 seviyesinde).\n• Uzun, gevşek, U biçimli epiglot.\n• Huni biçimli hava yolu: En dar yer vokal kordlar değil, krikoid kıkırdaktır (subglottik bölge).\n• Kısa trakea (~4-5 cm): Tek taraflı entübasyon riski yüksektir.\n\n3. TÜP BOYUTU HESAPLAMA (4 YAŞ):\n• Kaflı tüp: ID = Yaş/4 + 3.5 = 4/4 + 3.5 = 4.5 mm ID (Kaf basıncı <= 20 cmH2O).\n• Kafsız tüp: ID = Yaş/4 + 4.0 = 5.0 mm ID.\n• Giriş derinliği: Yaş/2 + 12 = 14 cm (veya 3 x Tüp ID = 13.5 cm).\n\n4. LARİNGOSPAZM BASAMAKLI TEDAVİ PLANI:\n• Basamak 1: %100 O2 ve sıkı oturan maske ile 10–15 cmH2O CPAP uygulanır. Cerrahi ve aspirasyon uyarısı durdurulur.\n• Basamak 2: Larson manevrası (mastoid ile çene köşesi arasındaki çentiğe iki taraflı güçlü baskı) ve Esmarch manevrası ile çenenin öne çekilmesi.\n• Basamak 3: Propofol 0.5–1 mg/kg i.v. (8–16 mg) ile spazmoliz.\n• Basamak 4: Ağır hipoksi veya bradikardide derhal Süksinilkolin 0.5–1 mg/kg i.v. + vagal arresti önlemek için MUTLAKA Atropin 0.02 mg/kg i.v. (min. 0.1 mg) birlikte verilir!\n• Basamak 5: Spazm çözüldükten sonra ventilasyon sürdürülür. Hasta negatif basınçlı akciğer ödemi (NPPE) açısından en az 2 saat izlenir.",
     "examiner_tip": "Düsseldorfer Pädiatrie-Klassiker: Succinylcholin beim Kleinkind IMMER mit Atropin kombinieren, um vagale Asystolie zu verhindern! Tubusformel gecufft: Alter/4 + 3.5!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Düsseldorf sınav kuralı: Yüksek spinal blokta hasta Trendelenburg'a ALINMAZ! Hipotansiyon ve bradikardinin nedeni T1-T4 sempatik kardiyak liflerin felcidir. Tedavi: Atropin 0.5-1 mg + Adrenalin/Noradrenalin titre!"
   },
   {
     "id": "q_dus_09",
@@ -20490,7 +20498,8 @@ const EXAM_QUESTIONS = [
       "focus": "Schockraum Polytrauma, Ziel-CPP ≥ 60–70 mmHg bei SHT, ROTEM-gezielte Gerinnung, Massivtransfusion",
       "trap": "Permissive Hypotonie bei Schädel-Hirn-Trauma (absolutes K.O.-Kriterium!) oder Zögern bei Beckenschlinge",
       "keywords": "CPP = MAP - ICP, Ziel-MAP ≥ 80–90 mmHg, Pelvic Binder, Tranexamsäure < 3h, Normokapnie PaCO₂ 35–38"
-    }
+    },
+    "examiner_tip_tr": "Prof. Wappler: Şiddetli bronkospazmda ventilatör ayarı: Frekansı düşür (8-10/dk), I:E oranını 1:3 - 1:4 yap, PEEP'i dikkatli ayarla. İlaç: Sevofluranı aç + Magnezyum 2 g i.v. + Salbutamol + gerekirse Adrenalin bolusları!"
   },
   {
     "id": "q_dus_10",
@@ -20511,7 +20520,8 @@ const EXAM_QUESTIONS = [
       "focus": "Karotis-TEA, Regionalanästhesie vs. Vollnarkose, Shunt-Indikation, Wundhämatom-Notfall",
       "trap": "Warten auf OP-Saal bei akutem Hals-Hämatom (sofort am Bett eröffnen!) oder Blutdruckabfall bei Karotisklemmung",
       "keywords": "Zervikoplexusblockade, NIRS rSO₂-Abfall > 20%, MAP +20% bei Klemmung, Nahtöffnung am Bett"
-    }
+    },
+    "examiner_tip_tr": "Annecke & Peters: TIVA'da taşikardi/hipertansiyon/terleme görülürse ilk yapılacak iş perfüzör hattını ve iğne girişini kontrol etmektir. Asla sadece kas gevşetici yapılmaz! Derhal hipnotik ajan bolusu verilir."
   },
   {
     "id": "q_dus_11",
@@ -20532,7 +20542,8 @@ const EXAM_QUESTIONS = [
       "focus": "Phäochromozytom, Alpha- vor Betablockade, hypertensive Krise intraoperativ, Katecholamin-Sturz nach Venenligatur",
       "trap": "Gabe von Betablockern vor Alphablockern (lebensbedrohliche hypertensive Krise!)",
       "keywords": "Phenoxybenzamin mind. 10–14d, Roizen-Kriterien, Urapidil/Phentolamin, Noradrenalin nach Ligatur"
-    }
+    },
+    "examiner_tip_tr": "Kienbaum ARDS sorularında şunları duymak ister: 1. Prone pozisyonu günde >= 16 saat (PROSEVA çalışması). 2. Vt 6 ml/kg İDEAL vücut ağırlığı. 3. Sürüş basıncı (Driving pressure = Pplat - PEEP) <= 14 cmH2O!"
   },
   {
     "id": "q_dus_12",
@@ -20553,7 +20564,8 @@ const EXAM_QUESTIONS = [
       "focus": "HELLP-Syndrom, Notsectio (EEZ ≤ 20 min), Magnesiumsulfat-Dosierung, postpartale Uterusatonie",
       "trap": "Spinalanästhesie bei Thrombozytopenie < 50.000/µl (Kardinalfehler!) oder Vergessen der Linksseitenkippung",
       "keywords": "Thrombozyten < 50.000 = SPA kontraindiziert, Magnesiumsulfat 4–6 g, Urapidil, Linksseitenkippung 15–30°"
-    }
+    },
+    "examiner_tip_tr": "Prof. Hohn: Hiperkalemide EKG bulgusu varsa tek doğru ilk hamle KALSİYUM vermektir! Kalsiyum potasyumu düşürmez ama kalbi arrestten korur (eşik potansiyelini normalize eder). Sonra İnsülin+Glukoz verilir."
   },
   {
     "id": "q_dus_13",
@@ -20574,7 +20586,8 @@ const EXAM_QUESTIONS = [
       "focus": "Transfusionsmedizin, TRALI vs. TACO, Hämotherapie, Schockraum",
       "trap": "Gabe von Furosemid bei TRALI (K.O.-Kriterium! Führt zum hypovolämischen Schock)",
       "keywords": "Transfusionsstopp, TRALI = Permeabilitätsödem (ZVD normal), TACO = Volumenüberladung (ZVD hoch, Furosemid)"
-    }
+    },
+    "examiner_tip_tr": "Kadın doğum anestezi komisyonu: Eklampside tek altın standart MAGNEZYUM SÜLFAT'tır (Magpie çalışması). Yükleme: 4-6 g i.v. 15-20 dakikada. Patella refleksi, solunum sayısı ve idrar çıkışı takip edilmelidir!"
   },
   {
     "id": "q_dus_14",
@@ -20595,7 +20608,8 @@ const EXAM_QUESTIONS = [
       "focus": "Fremdkörperaspiration, Inhalative Einleitung unter Spontanatmung, Atropin-Gabe, Tubuswahl",
       "trap": "Verabreichung von Muskelrelaxanzien bei tracheobronchialem Fremdkörper (sofortiger K.O.!)",
       "keywords": "Sevofluran unter Spontanatmung, kein Relaxans, starres Bronchoskop bereit, Atropin 0.02 mg/kg"
-    }
+    },
+    "examiner_tip_tr": "Kienbaum: Sepsiste ilk tercih vazopressör NORADRENALİN'dir. Yüksek doz Noradrenalin ihtiyacında ikinci ajan VAZOPRESSİN (0.03 IU/dk) eklenir. Dirençli şokta Hidrokortizon 200 mg/gün verilir. Hedef MAP >= 65 mmHg."
   },
   {
     "id": "q_dus_15",
@@ -20616,7 +20630,8 @@ const EXAM_QUESTIONS = [
       "focus": "Perioperatives Schrittmacher- und ICD-Management, elektromagnetische Interferenz (EMI), Magnetauflage",
       "trap": "Glaube, dass ein Magnet den ICD automatisch in den asynchronen Schrittmachermodus schaltet",
       "keywords": "Magnet deaktiviert Schockfunktion, externer Defi vor Schnitt bereit, bipolare Kauterisation bevorzugen"
-    }
+    },
+    "examiner_tip_tr": "Tüm ÄKNO sınav komisyonunun mutlak kırmızı çizgisi: 'Cannot Intubate, Cannot Oxygenate' durumunda tek doğru cevap CERRAHİ KONİOTOMİ'dir (Skalpel, Buji, 6.0 mm Tüp). Tekrar laringoskop takan aday anında kalır!"
   },
   {
     "id": "q_dus_16",
@@ -20637,7 +20652,8 @@ const EXAM_QUESTIONS = [
       "focus": "Niereninsuffizienz, Shunt-Schutz, Hyperkaliämie-Management, Kontraindikation Succinylcholin",
       "trap": "Gabe von Succinylcholin bei Hyperkaliämie/Dialyse (akuter Herzstillstand!) oder Blutdruckmessung am Shunt-Arm",
       "keywords": "Succinylcholin verboten, Rocuronium 1.2 mg/kg + Sugammadex, Shunt-Schutz, Glukose-Insulin, Kalziumglukonat"
-    }
+    },
+    "examiner_tip_tr": "Prof. Wappler: Feokromositomada temel kural: 'ÖNCE ALFA, SONRA BETA!' Alfa reseptörleri bloke edilmeden beta bloker verilirse beta-2 vazodilatasyonu kalkar ve alfa reseptörleri damarları yırtarcasına kasar -> ölüm!"
   },
   {
     "id": "q_dus_17",
@@ -20651,7 +20667,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. DURUM TESPİTİ: Mutlak CICO (Entübe Edilemez, Oksijenlenemez) acil durumu – akut hayati tehlike!\n2. CICO İLANI: Ameliyathane ekibine yüksek sesle duyurma: 'CICO durumu – Plan D cerrahi koniyotomiye geçiyoruz!'\n3. EKİPMAN: Skalpel No. 10/20, buji ve 6.0 mm kafli endotrakeal tüp derhal istenir.\n4. CERRAHİ KONİYOTOMİ (Skalpel-Buji-Tüp Tekniği):\n  - Boyun ekstansiyonu, krikotiroid membranın palpasyonu.\n  - Transvers kesi ile membran açılır, bistüri 90° döndürülür.\n  - Trakeal buji kaudale doğru yönlendirilir (trakea halkaları hissedilir).\n  - 6.0 mm tüp buji üzerinden trakeaya kaydırılır, kaf şişirilir ve %100 O2 ile havalandırılır. Kapnografi ile doğrulanır.\n5. HEMODİNAMİK DESTEK: Bradikardi için derhal Atropin 0.5-1 mg veya titre Adrenalin.\n6. K.O. KRİTERİ: 3'ten fazla başarısız entübasyon denemesi yapmak ve cerrahi hava yolunu geciktirmek sınavda doğrudan kalma sebebidir!",
     "examiner_tip": "Düsseldorfer ÄKNO-Leitmotiv: 'Wer bei CICO noch ein drittes Laryngoskop sucht statt das Skalpell anzusetzen, hat die Prüfung nicht bestanden!' Beherrschen Sie die Skalpell-Bougie-Tubus-Technik flüssig.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Annecke & Kienbaum: İntraoperatif STEMI nadir değildir. EKG derivasyonları (özellikle V5 ve II) sürekli izlenmelidir. Şüphede: 12 derivasyonlu EKG, Troponin, TEE ile duvar hareket kusuru bakısı, Kardiyolojiye acil çağrı!"
   },
   {
     "id": "q_dus_18",
@@ -20665,7 +20682,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Akut Malign Hipertermi (MH krizi, riyanodin reseptör RyR1 defekti).\n2. İLK MÜDAHALE:\n  - Triger ajanı DERHAL KES: Sevofluran kapatılır ve vaporizatör devreden çıkarılır!\n  - %100 O2 ve yüksek taze gaz akımı (> 10-15 l/dk) ile hiperventilasyon.\n  - Devreye aktif karbon filtreleri takılır. TIVA'ya (Propofol/Opioid) geçilir. Cerrah uyarılır.\n3. SPESİFİK ANTİDOT:\n  - DANTROLEN: Başlangıç dozu 2.5 mg/kg İ.V. hızlı bolus! Belirtiler gerileyene kadar her 5-10 dakikada bir tekrarlanır (maksimum 10 mg/kg).\n  - Hazırlanışı: Her 20 mg flakon 60 ml steril distile su (Aqua) ile çözülür (yardımcı ekip şarttır).\n4. DESTEK VE HOMEOSTAZ:\n  - Aktif soğutma: 4 °C soğuk SF infüzyonu, soğuk mesane lavajı, buz torbaları. 38.5 °C'de soğutma durdurulur.\n  - Hiperkalemi tedavisi: Kalsiyum glukonat %10 (10-20 ml), Glukoz-İnsülin solüsyonu, Sodyum bikarbonat.\n  - Ropdomiyolizden böbreği korumak için zorlu diürez (> 1.5-2 ml/kg/saat).\n5. K.O. KRİTERİ: Malign hipertermide Kalsiyum kanal blokörleri (Verapamil vb.) KESİNLİKLE KONTRENDİKEDİR! Dantrolen ile birlikte ölümcül hiperkalemik kardiyak arreste yol açar!",
     "examiner_tip": "Düsseldorfer ÄKNO-Schlüsselfrage: 'Wie viel Dantrolen geben Sie und womit lösen Sie es auf?' Antwort: 2,5 mg/kg i.v. mit Aqua ad iniectabilia! Nennen Sie sofort das absolute Verbot von Kalziumantagonisten.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Peters: Yaşlı hastada postoperatif ajitasyon varsa: 1. Hipoksi, ağrı, mesane distansiyonu kontrol edilir. 2. Antikolinerjik semptomlar varsa (midriyazis, kuru cilt, halüsinasyon) Fizostigmin 1-2 mg verilir."
   },
   {
     "id": "q_dus_19",
@@ -20679,7 +20697,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Ağır Lokal Anestezik Sistemik Toksisitesi (LAST) – nörotoksik konvülsiyon ve kardiyovasküler kollaps/asistoli.\n2. TEMEL YAKLAŞIM:\n  - Lokal anestezik enjeksiyonunu derhal durdur, yardım çağır ve 'Lipid Kurtarma Kiti'ni iste.\n  - ALS resüsitasyonu başlat: Kesintisiz göğüs basısı, %100 O2 ile entübasyon.\n  - Nöbet kontrolü için titre Midazolam (2-5 mg İ.V.).\n3. SPESİFİK ANTİDOT: İNTRALİPİD %20:\n  - Başlangıç bolusu: 1.5 ml/kg İ.V. 1 dakikada (70 kg için ~100 ml).\n  - İdame infüzyon: 0.25 ml/kg/dk (~1000 ml/saat).\n  - Düzelme olmazsa: Bolus 3-5 dk arayla 2 kez tekrarlanabilir, infüzyon dozu 0.5 ml/kg/dk'ya çıkarılır. Maksimum doz: 12 ml/kg.\n4. LAST REANİMASYONUNDA KRİTİK NOKTALAR:\n  - Adrenalin dozu DÜŞÜRÜLMELİDİR: < 1 µg/kg (10-50 µg titre boluslar; standart 1 mg verilmez!).\n  - KESİNLİKLE VERİLMEZ: Lidokain (toksisiteyi katlar!), Amiodaron, Vazopressin ve Kalsiyum kanal blokörleri.\n  - Uzamış KPR: Lokal anesteziklerin miyokarddan temizlenmesi 60 dakikadan uzun sürebilir; KPR sabırla sürdürülmeli, gerekirse ECMO düşünülmelidir.",
     "examiner_tip": "In Düsseldorf wird penibel abgefragt: 'Wie dosieren Sie Adrenalin bei LAST im Vergleich zur Standard-Reanimation?' Richtige Antwort: Streng titriert unter 1 µg/kg, NIEMALS 1 mg unverdünnt als Bolus!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum & Annecke: Oturur pozisyonun en büyük riski hava embolisidir. Şüphede: 1. Cerrah alanı serumla doldurur. 2. Boyun venlerine bası uygulanır (jugular kompresyon). 3. Durant pozisyonu verilir. 4. ZVK'dan hava çekilir."
   },
   {
     "id": "q_dus_20",
@@ -20693,7 +20712,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Septik Şok (Sepsis-3: OAB ≥ 65 için vazopressör ihtiyacı VE Laktat > 2 mmol/l) ve Orta Derece ARDS (PaO2/FiO2 100-200 mmHg).\n2. HEMODİNAMİK PROTOKOL:\n  - 1. Tercih Vazopressör: NORADRENALİN İ.V. infüzyon (Hedef OAB ≥ 65 mmHg).\n  - 2. Basamak: Erken dönemde VAZOPRESSİN (0.03 IU/dk sabit hız) eklenerek noradrenalin ihtiyacı azaltılır.\n  - İnotropik Destek: Miyokardiyal disfonksiyon ve düşük ScvO2 (< %65) varlığında DOBUTAMİN (2-10 µg/kg/dk).\n  - Steroid: Refrakter şokta (yüksek doz noradrenalin gereksinimi) HİDROKORTİZON 200 mg/gün.\n  - Sıvı yönetimi: Dinamik parametrelerle (SVV, bacak kaldırma testi) kişiselleştirilmiş kristaloid tedavisi.\n3. ARDS AKCİĞER KORUYUCU VENTİLASYON:\n  - Hedef tidal hacim: 6 ml/kg Tahmini Vücut Ağırlığı (PBW)!\n  - Plato basıncı sınırı: P_plat ≤ 30 mbar; Sürücü basınç (Driving pressure) ΔP ≤ 14 mbar.\n  - PRONE POZİSYONU (Yüzüstü yatırma): PaO2/FiO2 < 150 mmHg ise günde EN AZ 16 saat zorunludur!\n4. K.O. KRİTERİ: Gerçek kilo üzerinden yüksek tidal hacim vermek; HES (nişasta) infüzyonu uygulamak (sepsiste kesin kontrendikedir!).",
     "examiner_tip": "In Düsseldorf wird nach den 3 Säulen gefragt: 1. Noradrenalin Ziel-MAP ≥ 65 mmHg, 2. Vt 6 ml/kg PBW mit Driving Pressure < 14 cmH2O, 3. Frühe Bauchlagerung ≥ 16 h/d bei PaO2/FiO2 < 150!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Annecke & Hohn: DOAK (Faktör Xa inhibitörü) kanamasında spesifik antidot Andexanet alfa'dır. Yoksa hemen PPSB (PCC) 25-50 IU/kg verilir. Dabigatran içinse antidot İdarusizumab (Praxbind 5 g) kullanılır!"
   },
   {
     "id": "q_dus_21",
@@ -20707,7 +20727,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. SORUN TANIMI: Ağır Kafa Travması (GCS ≤ 8) ve akut tentoryal fıtıklaşma/beyin ödemi tablosu (anizokori, Cushing triadı).\n2. HAVA YOLU GÜVENLİĞİ (BOYUN KORUMALI RSI):\n  - Manuel aksiyel stabilizasyon (MILS) eşliğinde hızlı seri indüksiyon (RSI).\n  - Laringoskopi sırasında kafa içi basınç (KİB) artışını önlemek için yeterli opioid ve Roküronyum (1.0-1.2 mg/kg).\n3. HEMODİNAMİK HEDEFLER:\n  - Serebral Perfüzyon Basıncı (CPP): Hedef CPP = 60-70 mmHg.\n  - Ortalama Arter Basıncı (MAP): Hedef MAP ≥ 80-90 mmHg (Sistolik ≥ 100-110 mmHg).\n  - K.O. KRİTERİ: Kafa travmasında 'permissif hipotansiyon' KESİNLİKLE YASAKTIR! Tek bir sistolik < 90 mmHg atağı mortaliteyi ikiye katlar!\n4. AKUT KİB DÜŞÜRÜCÜ MÜDAHALELER:\n  - Baş-boyun 30° elevasyonu (boyun venöz drenajını rahatlat, servikal boyunluğu gevşet).\n  - Ozmoterapi: MANNİTOL %20 (0.5-1 g/kg) VEYA Hipertonik Salin (%3 NaCl).\n  - Ventilasyon: Normokapni hedeflenir (PaCO2 35-38 mmHg). Profilaktik derin hiperventilasyon serebral iskemi yapar, sadece ameliyathaneye giderken fıtıklaşma anında geçici uygulanır.\n  - Steroidler (Deksametazon) KONTRENDİKEDİR (CRASH çalışması: mortaliteyi artırır!).\n5. Birincil hedef: Acil Beyin BT ve acil dekompresif kraniyotomi.",
     "examiner_tip": "Düsseldorfer ÄKNO-Falle: 'Wann dürfen Sie permissive Hypotonie anwenden?' Antwort: Beim isolierten Trauma ja, aber NIEMALS bei gleichzeitigem Schädel-Hirn-Trauma (CPP-Zusammenbruch)!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Hohn: Kaf patlamasında asla panikleyip tüpü cart diye çekmeyin! Hasta zor havayolu olabilir. Bir tüp değiştirme kateteri (Airway Exchange Catheter) yerleştirilir, eski tüp çıkarılır ve yenisi kateter üzerinden kaydırılır."
   },
   {
     "id": "q_dus_22",
@@ -20721,7 +20742,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Postpartum Kanama (PPH) – Uterus atonisi (4T şeması: Tonus).\n2. İLK YAKLAŞIM:\n  - En az iki adet geniş damar yolu (14-16G), sıvı ısıtıcıları ve hızlı infüzyon sistemi.\n  - Bimanuel uterus kompresyonu, %100 O2 ve aktif ısıtma.\n3. BASAMAKLI UTEROTONİK İLAÇ PROTOKOLÜ:\n  - 1. Basamak: OKSİTOSİN: 3-5 IU çok yavaş İ.V. bolus (hızlı verilirse hipotansiyon ve kollaps yapar!) + 30-40 IU idame infüzyon.\n  - 2. Basamak: SULPROSTON (Nalador - PGE2 analoğu): 500 µg infüzyon şeklinde titre edilir (100-500 µg/saat). KESİNLİKLE HIZLI İ.V. BOLUS VERİLMEZ (ağır koroner vazospazm ve kalp durması riski!).\n  - 3. Basamak: METİLERGOMETRİN: 0.2 mg yavaş İ.V./İ.M. (Hipertansiyon ve preeklampside kontrendikedir!).\n  - Destek: Misoprostol rektal (800-1000 µg).\n4. KOAGÜLASYON VE KAN YÖNETİMİ:\n  - TRAN EKSAMİK ASİT: Doğumdan sonraki ilk 3 saatte 1 g İ.V. derhal verilmelidir (WOMAN çalışması).\n  - FİBRİNOJEN: < 2 g/l ise erken dönemde 2-4 g Fibrinojen konsantresi.\n  - Masif transfüzyon protokolü: 1:1:1 (ES:TDP:Trombosit).\n5. İnvaziv basamak: Bakri balonu, B-Lynch sütürü ve son çare acil histerektomi.",
     "examiner_tip": "Typische ÄKNO Düsseldorf K.O.-Frage: 'Wie verabreichen Sie Sulproston (Nalador)?' Antwort: Ausschließlich als verdünnte Infusion per Perfusor, NIEMALS als unverdünnten Bolus!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Wappler: Nalokson asla bolus yapılmaz! 1 ampul (0.4 mg) 10 ml'ye sulandırılır, 1-2 ml (0.04-0.08 mg) yavaşça verilir. Naloksonun yarı ömrü opioidden kısa olduğu için hasta 2 saat gözlemde tutulmalıdır (re-narkotizasyon!)."
   },
   {
     "id": "q_dus_23",
@@ -20735,7 +20757,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. PATOFİZYOLOJİ: Havalandırılmayan operasyon akciğerinin perfüzyona devam etmesi sonucu masif sağ-sol şantı gelişir. Hipoksik pulmoner vazokonstriksiyon (HPV) şantı azaltmaya çalışır ancak volatil anestezikler (> 1 MAC) ve vazodilatatörler HPV'yi baskılar.\n2. ADIM ADIM HİPOKSİ ALGORİTMASI:\n  - Adım 1: Ventile edilen akciğerde FiO2 derhal 1.0 yapılır.\n  - Adım 2: BRONKOSKOPİ İLE DLT TÜPÜNÜN YERİ KONTROL EDİLİR! Ani hipoksi ve basınç artışının 1 numaralı sebebi tüp dislokasyonudur.\n  - Adım 3: Ventile edilen alt akciğere PEEP (4-8 cmH2O) eklenir.\n  - Adım 4: Operasyon uygulanan üst akciğere düşük akımlı CPAP (1-3 cmH2O O2) verilir (şantı en iyi azaltan yöntemdir).\n  - Adım 5: Cerrah geçici olarak pulmoner arteri klempleyebilir (şantı sıfırlar).\n  - Adım 6: SpO2 düzelmezse cerrahi durdurulur ve derhal İKİ AKCİĞER BİRDEN HAVALANDIRILIR (%100 O2 ile iki akciğer ventilasyonu)!",
     "examiner_tip": "Düsseldorfer ÄKNO-Grundsatz: 'Was tun Sie als erstes bei Hypoxie unter DLT?' 1. FiO2 1,0, 2. SOFORT Bronchoskop rein und Lage kontrollieren! Blindes Manipulieren am Tubus ist verboten.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Peters & Annecke: Karotis cerrahisinde tansiyon fırlaması baroreseptör hasarına bağlıdır. İlaç: Urapidil 12.5-25 mg i.v. Sistolik tansiyon hemen < 140 mmHg yapılmalıdır; aksi halde boyun hematomu boğulmaya yol açar."
   },
   {
     "id": "q_dus_24",
@@ -20749,7 +20772,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Akut tam laringospazm ve hipoksiye bağlı kritik bradikardi.\n2. İLK MÜDAHALE (SANİYELER İÇİNDE):\n  - Çift el E-C tekniği ile tam oturan maske üzerinden %100 O2 ve yüksek CPAP (10-15 cmH2O).\n  - LARSON MANEVRASI: Çene köşesinin hemen arkasındaki 'laringospazm noktasına' derin bastırılır ve çene öne çekilir.\n  - Ağız içi sekresyonlar nazikçe aspire edilir.\n3. İLAÇ TEDAVİSİ:\n  - PROPOFOL: 0.5-1 mg/kg İ.V. (10-15 mg) spasmu çözer.\n  - Düzelmezse veya bradikardi derinleşirse: SÜKSİNİLKOLİN 0.5-1 mg/kg İ.V. (damar yolu yoksa 3-4 mg/kg İ.M.).\n  - ATROPİN: 0.02 mg/kg (min. 0.1 mg) bradikardiyi önlemek ve tedavi etmek için ZORUNLUDUR.\n4. TAKİP: Kapalı glottise karşı zorlu solunum nedeniyle gelişebilecek 'Negatif Basınçlı Akciğer Ödemi' (NPPE) açısından en az 2-4 saat izlenmelidir.",
     "examiner_tip": "In Düsseldorf gilt: 'Ein hypoxisches Kind wird immer primär bradykard!' Wer bei Laryngospasmus mit Bradykardie kein Atropin bereithält oder die Dosierung von Succinylcholin (0,5–1 mg/kg i.v.) nicht kennt, fällt durch.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Annecke RSI klasiği: Kusma olursa: 1. Baş aşağı (Trendelenburg) çevir. 2. Ağzı aspire et. 3. Entübe et ve kafı şişir. 4. Tüpün içini aspire et. Asla kaf şişmeden ambuyla solutmayın ve asla trakeaya bikarbonat sıkmayın!"
   },
   {
     "id": "q_dus_25",
@@ -20763,7 +20787,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. AMELİYAT ÖNCESİ:\n  - Cihaz kimlik kartı incelenir (pil durumu, endikasyon, pace bağımlılığı kardiolog tarafından sorgulanır).\n2. MIKNATIS ETKİSİ (EN KRİTİK SINAV SORUSU):\n  - ICD'YE MIKNATIS KONULDUĞUNDA: ŞOK VE TAŞİARİTMİ TEDAVİSİ DEVRE DIŞI KALIR (koter parazitine bağlı uygunsuz şokları önler). ANCAK ANTİBRADİkardik PACEMAKER FONKSİYONU ASENKRON SABİT MODA GEÇMEZ, programlandığı şekilde kalır!\n  - SAF KALP PİLİNE (PACEMAKER) MIKNATIS KONULDUĞUNDA: Cihaz asenkron SABİT FREKANS moduna geçer (VOO/DOO 85-100/dk) ve koter parazitinin pili susturması önlenir.\n  - ÖZET: Mıknatıs ICD'de sadece şoku kapatır! Hasta pace-bağımlı bir ICD hastası ise ameliyat öncesi kardiolog tarafından sabit frekansa programlanmalıdır.\n3. GÜVENLİK ÖNLEMLERİ:\n  - Eksternal defibrilatör pedleri ameliyat öncesi yapıştırılır ve cihaz hazır bekletilir.\n  - Bipolar koter tercih edilir; monopolar gerekirse nötr plak akım hattı kalbi kesmeyecek şekilde yerleştirilir.\n4. Ameliyat sonrası cihaz kardiolog tarafından yeniden aktiflenmeli ve test edilmelidir.",
     "examiner_tip": "In Düsseldorf eine der beliebtesten Fallen: 'Was passiert mit dem Schrittmacher, wenn Sie einen Magneten auf einen ICD legen?' Antwort: Nichts! Er schaltet NICHT auf Fixfrequenz (nur Schocks werden blockiert).",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Kienbaum: Rüptüre BAA'da kural 'Permissif Hipotansiyon'dur (Sistolik 80-90 mmHg). Fazla sıvı pıhtıyı söker ve kanamayı patlatır. Hasta uyutulur uyutulmaz cerrah hemen klempi koymalıdır!"
   },
   {
     "id": "q_dus_26",
@@ -20777,7 +20802,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. DGAI KILAVUZU BEKLEME SÜRELERİ (DOAK):\n  - Apiksaban ve Rivaroksaban için nöroaksiyel blok (spinal/epidural) öncesi normal böbrek fonksiyonunda EN AZ 48-72 SAAT bekleme süresi şarttır!\n  - Son dozun üzerinden sadece 6 saat geçmişken spinal anestezi KESİNLİKLE KONTRENDİKEDİR!\n2. RİSK: Spinal/epidural hematom, kord basısı ve kalıcı parapleji (tıbbi malpraktis sayılır).\n3. YÖNTEM:\n  - Spinal anestezi kesin bir dille reddedilir.\n  - TERCİH EDİLECEK YÖNTEM: Genel Anestezi (Entübasyon veya LMA).\n  - Rejyonel analjezi alternatifi: Nöroaksiyel olmayan, komprese edilebilir periferik bloklar: PENG bloğu veya Fascia Iliaca Bloğu (FICB).\n4. Ameliyat sonrası antikoagülan başlanması: Kanamasız seyirde en erken 24-48 saat sonra.",
     "examiner_tip": "In Düsseldorf muss wie aus der Pistole geschossen kommen: 'DOAK vor Spinalanästhesie? Mindestens 72 Stunden Pause! Nach 6 Stunden ist Spinalanästhesie ein Kunstfehler!'",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Hohn: DGAI kan sulandırıcı kılavuzu sınavın demirbaşıdır. Rivaroksaban/Apiksaban: Normal böbrek fonksiyonunda en az 48 saat, GFR < 50 ise en az 72 saat beklenmelidir! Aksi halde genel anestezi yapılır."
   },
   {
     "id": "q_dus_27",
@@ -20791,7 +20817,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. AMELİYAT ÖNCESİ ROIZEN KRİTERLERİ:\n  - Önce ALFA BLOKÖR, sonra BETA BLOKÖR! En az 10-14 gün Fenoksibenzamin veya Doksazosin verilir.\n  - K.O. KRİTERİ: Asla tek başına beta bloker verilmez! Beta-2 vazodilatasyonu bloke edilirse alfa-1 reseptörleri aracılığıyla kontrolsüz vazokonstriksiyon, ölümcül hipertansif kriz ve akciğer ödemi gelişir!\n2. KRİTİK FAZ 1 (Tümör manipülasyonu):\n  - Masif katekolamin deşarjı ve hipertansif kriz (RR > 250 mmHg).\n  - Tedavi: İnvaziv arter şarttır. Urapidil, Nitrogliserin, Nitroprussid veya Fentolamin bolusları. Taşiaritmi için Esmolol.\n3. KRİTİK FAZ 2 (Adrenal ven klemplenmesi sonrası):\n  - Katekolamin kaynağının aniden kesilmesi ile derin vazodilatasyon ve şok.\n  - Tedavi: Hızlı volüm yüklemesi ve yüksek doz Noradrenalin / Vazopressin infüzyonu.",
     "examiner_tip": "In Düsseldorf wird fast immer gefragt: 'Was passiert, wenn Sie einem Phäochromozytom-Patienten vor der OP Metoprolol geben?' Antwort: Fulminante hypertensive Krise durch unapponierte Alpha-Vasokonstriktion!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum feokromositoma vakası: Ven bağlanana kadar hipertansiyonla mücadele edilir; ven bağlandığı AN tansiyon sıfıra düşer! Ven klemplenmeden önce damar yolu açık olmalı ve Noradrenalin perfüzörü hazır bekletilmelidir."
   },
   {
     "id": "q_dus_28",
@@ -20805,7 +20832,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Akut TURP Sendromu (prostat venlerinden hipotonik glisin/sorbitol irrigasyon sıvısının masif intravasküler emilimi).\n2. PATOFİZYOLOJİ: Akut hipervolemi + ağır dilüsyonel hiponatremi (beyin ödemi) + glisin toksisitesi (görme kaybı).\n3. İLK MÜDAHALE:\n  - Cerrah derhal uyarılır: İrrigasyon DERHAL DURDURULUR ve operasyon hızla sonlandırılır.\n  - %100 O2 verilir; şuur kaybı veya konvülsiyon varsa hasta entübe edilir.\n4. HİPONATREMİ TEDAVİSİ:\n  - Furosemid 20-40 mg İ.V. (serbest su atılımı için).\n  - HİPERTONİK SALİN (%3 NaCl): Ağır nörolojik semptomlarda 100-150 ml %3 NaCl 20 dakikada verilerek Na düzeyi hızla 4-5 mmol/l yükseltilir (beyin ödemini geriletir).\n  - MAKSİMUM SINIR: İlk 24 saatte sodyum artışı 8-10 mmol/l'yi ASLA GEÇMEMELİDİR! Hızlı düzeltme pontin miyelinolizis (ODS) ve kalıcı kuadriplejiye yol açar!",
     "examiner_tip": "Düsseldorfer ÄKNO-Kernfrage: 'Wie schnell dürfen Sie Natrium anheben?' Antwort: Maximal 8–10 mmol/l pro 24 Stunden, sonst droht die fatale pontine Myelinolyse!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Peters: TURP sendromunda kural: 1. Ameliyatı HEMEN kestir. 2. Nöbet için Midazolam. 3. Semptomatik derin hiponatremide NaCl %3 verilir. 4. Asla 24 saatte 8-10 mmol/L'den fazla yükseltme (pons demiyelinizasyonu!)."
   },
   {
     "id": "q_dus_29",
@@ -20819,7 +20847,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. KLİNİK YAKLAŞIM:\n  - Pilor stenozu CERRAHİ BİR ACİL DEĞİLDİR, TIBBİ BİR HAZIRLIK ACİLİDİR!\n  - Ağır alkaloz ve hipokalemi düzeltilmeden ameliyata almak KESİNLİKLE YASAKTIR (kardiyak arrest ve uzamış apne riski)!\n2. ELEKTROLİT BOZUKLUĞU:\n  - Mide asidi (HCl) kaybına bağlı hipokloremik, hipokalemik metabolik alkaloz ve paradoksal asidüri.\n3. AMELİYAT ÖNCESİ DÜZELTME (12-24 saat sürer):\n  - %0.9 NaCl + %5 Dekstroz ve KCl infüzyonu.\n  - Ameliyata giriş kriterleri: Klor > 100 mmol/l, Potasyum > 3.5 mmol/l, Bikarbonat < 28 mmol/l, pH < 7.50.\n4. İNDÜKSİYON:\n  - Mide aç olsa bile DAİMA DOLU KABUL EDİLİR!\n  - İndüksiyondan önce nazogastrik sonda ile mide farklı pozisyonlarda aspire edilir.\n  - Hızlı Seri İndüksiyon (RSI) uygulanır.\n5. Ameliyat sonrası en az 24 saat monitörizasyon ve apne takibi yapılır.",
     "examiner_tip": "In Düsseldorf die Kardinalfrage: 'Der Chirurg will das Kind sofort nachts um 2 Uhr operieren – was sagen Sie?' Antwort: 'Nein, OP wird verschoben, bis Chlorid > 100 mmol/l und Alkalose korrigiert ist!'",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Annecke: Pediatri anestezi klasiği! Pilor stenozu ASLA acil cerrahi değildir! pH < 7.50, Klor > 100 mmol/L, Potasyum > 3.5 mmol/L olmadan çocuk masaya alınmaz. Ameliyata giren aday derhal kalır."
   },
   {
     "id": "q_dus_30",
@@ -20833,7 +20862,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. AMELİYAT ÖNCESİ DEĞERLENDİRME:\n  - Postoperatif mekanik ventilasyon riski (Leventhal skoru): Hastalık süresi > 6 yıl, Vital kapasite < %50, Piridostigmin dozu > 750 mg.\n  - Piridostigmin sabah dozu genellikle kesilir veya azaltılır.\n2. KAS GEVŞETİCİLERDE ÖZEL DURUMLAR (SINAVIN KİLİT NOKTASI):\n  - Non-depolarizan kas gevşeticilere (Roküronyum vb.) AŞIRI DUYARLILIK vardır! Reseptör azlığı nedeniyle normal dozun 1/4'ü (%25) bile derin blok yapar!\n  - Süksinilkoline rölatif DİRENÇ vardır.\n3. ANESTEZİ YÖNETİMİ:\n  - Mümkünse KAS GEVŞETİCİ KULLANMADAN TIVA (Propofol + Remifentanil) veya volatil anestezi ile entübasyon.\n  - Gevşetici şart ise: Çok düşük doz Roküronyum (0.15 mg/kg).\n  - Nicel TOF monitörizasyonu ZORUNLUDUR.\n  - Geri döndürme (Reversal): Neostigmin KULLANILMAZ (kolinerjik krizi tetikler!). Sadece SUGAMMADEX (2-4 mg/kg) tercih edilir.\n4. Ekstübasyon: TOF oranı ≥ 0.9 olmadan asla ekstübe edilmez. Yoğun bakımda miyastenik kriz vs kolinerjik kriz takibi yapılır.",
     "examiner_tip": "In Düsseldorf: 'Womit heben Sie Rocuronium bei Myasthenie auf?' Antwort: Nur mit Sugammadex, niemals mit Neostigmin (Gefahr der cholinergen Krise)!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum & Hohn: Miyasteni hastalarında Neostigmin aşırı duyarlılık ve kolinerjik kriz yapabilir. Günümüzde miyastenide Roküronyum kullanılır ve Sugammadeks ile geri çevrilir. Kolinerjik krizde panzehir Atropin'dir!"
   },
   {
     "id": "q_dus_31",
@@ -20847,7 +20877,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. REJYONEL ANESTEZİ (SERVİKAL PLEKSUS BLOĞU):\n  - Avantaj: Uyanık hasta serebral iskemi takibinde ALTIN STANDARTTIR (karşı eldeki ses çıkaran oyuncağı sıkması, konuşması test edilir). Şant ihtiyacı net belirlenir.\n  - Dezavantaj: Panik durumunda genel anesteziye geçiş zordur.\n2. GENEL ANESTEZİ:\n  - Avantaj: Hareketsiz cerrahi alan, konforlu hava yolu, anesteziklerle CMRO2 azalması.\n  - Dezavantaj: Cihazlı nöromonitörizasyon (NIRS, EEG, güdük basıncı > 40-50 mmHg) gerektirir.\n3. KAN BASINCI YÖNETİMİ (EN ÖNEMLİ NOKTA):\n  - KLEMPAJ SIRASINDA: Kontrollü yüksek tansiyon (MAP 90-110 mmHg, sistolik 150-170 mmHg)! Willis poligonu üzerinden karşıdan gelen kollateral kan akımını garantiye almak için Noradrenalin ile tansiyon yükseltilir.\n  - KLEMP AÇILDIKTAN SONRA: Sıkı tansiyon kontrolü (Sistolik < 140 mmHg)! Urapidil ile tansiyon derhal düşürülür.\n  - RİSK: Klemp açıldıktan sonra hipertansiyon sürerse 'Serebral Hiperperfüzyon Sendromu' ve ölümcül beyin kanaması gelişir!",
     "examiner_tip": "In Düsseldorf wird betont: 'Wie verändern Sie den Blutdruck vor und nach dem Klemmen?' Klemmen = Blutdruck hoch (MAP > 90); Freigabe = Blutdruck streng runter (systolisch < 140 mmHg) gegen Hyperperfusionssyndrom!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Annecke: Karotiste klempleme yapılınca NIRS bazal değerin %20'sinden fazla düşerse (veya rSO2 < %50 olursa) TARTIŞMASIZ GEÇİCİ ŞANT KONULUR! Cerrahın 'hızlıca bitiririm' demesine asla izin verilmez."
   },
   {
     "id": "q_dus_32",
@@ -20861,7 +20892,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Akut Hemolitik Transfüzyon Reaksiyonu (AHTR) – en sık AB0 uyuşmazlığına bağlı.\n  - Anestezi altındaki hastada triad: Hipotansiyon/şok, cerrahi alanda yaygın sızıntı kanama (DİK) ve hemoglobinüri (koyu renkli idrar).\n2. ACİL TEDAVİ:\n  - TRANSFÜZYONU DERHAL DURDUR: Set damar yolundan tamamen ayrılır (sadece klemplemek yetmez!).\n  - Şok tedavisi: Kristaloid sıvı ve Noradrenalin ile renal perfüzyon (OAB ≥ 65) sağlanır.\n  - Böbrek koruma: Serbest hemoglobinin tübülleri tıkamasını önlemek için Furosemid (20-40 mg) ile zorlu diürez (> 1.5-2 ml/kg/saat) ve idrarı alkali yapmak için Sodyum Bikarbonat %8.4.\n  - DİK tedavisi: Fibrinojen ve trombosit replasmanı.\n3. ADLİ VE LABORATUVAR PROTOKOLÜ:\n  - Kan torbası ve infüzyon seti derhal mühürlenip kan merkezine gönderilir (asla çöpe atılmaz!).\n  - Hastadan yeni kan örnekleri alınarak kan merkezine gönderilir, cross-match ve direkt Coombs testi tekrarlanır.\n  - Hasta başında AB0 Bedside testi yinelenir.\n  - Paul-Ehrlich Enstitüsüne (PEI) resmi bildirim yapılır.",
     "examiner_tip": "In Düsseldorf ein absolutes K.O.-Kriterium: 'Was machen Sie mit dem Blutbeutel?' Wer sagt 'in den Müll werfen', fällt sofort durch. Der Beutel samt Besteck muss steril asserviert und mit neuem Patientenblut zur Blutbank geschickt werden!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum & Annecke: Masif transfüzyonda her 2-4 ünite kandan sonra 1 g Kalsiyum verilmelidir! Kan torbalarındaki sitrat kalsiyumu bağlar. Kalsiyum olmadan ne kalp kasılır ne pıhtılaşma gerçekleşir."
   },
   {
     "id": "q_dus_33",
@@ -20875,7 +20907,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Sağ tansiyon pnömotoraks (obstrüktif şok, vena cava basısı ve kardiyak arrest tehdidi).\n2. KESİN KURAL: Bu KLİNİK BİR ACİL TANIDIR! Grafi veya BT çekilmesini beklemek KESİNLİKLE YASAKTIR ve hastayı öldürür!\n3. ACİL TEDAVİ:\n  - ENTÜBE HASTADA ALTIN STANDART: PARMAK TORAKOSTOMİ (Minitorakotomi):\n    - 4. veya 5. interkostal aralık ön/orta aksiller hatta cilt kesisi.\n    - Klemp ile plevra delinir, işaret parmağı ile plevral boşluğa girilerek hava boşaltılır ('fıslama' sesi duyulur ve hemodinami anında düzelir).\n  - Alternatif: 14G kalın anjiyokat ile iğne dekompresyonu.\n4. Kesin tedavi: Hemen ardından 28-32 Fr göğüs tüpü takılır ve su altı drenajına bağlanır.\n5. K.O. KRİTERİ: Tansiyon pnömotoraksta ventilatörde PEEP artırmak veya röntgen beklemek doğrudan sınavda kalma sebebidir!",
     "examiner_tip": "In Düsseldorf: 'Der junge Kollege will erst ein Röntgenbild anmelden – was sagen Sie?' Antwort: 'Auf gar keinen Fall! Sofortige Finger-Thorakostomie im 4./5. ICR vordere Axillarlinie!'",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Tüm ÄKNO komisyonu: Tansiyon pnömotoraksta 'grafi çektirelim' diyen aday sınav odasından dışarı atılır! Bu klinik bir acildir: Hemen büyük lümenli kanülle (14G) plevra delinir, hava fıslaması duyulur, sonra dren takılır."
   },
   {
     "id": "q_dus_34",
@@ -20889,7 +20922,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. ZAMAN YÖNETİMİ: Acil sezaryende (Kategori 1) Karar-Doğum Süresi (EEZ) MAKSİMUM 20 DAKİKADIR!\n2. HASTA POZİSYONU: Uterusun Vena cava inferior'a basısını önlemek için ameliyat masası 15-30° SOLA EĞİLİR (aortokaval kompresyon sendromunu önler).\n3. HIZLI SERİ İNDÜKSİYON (RSI):\n  - Gebeler tok mide kabul edilir (aspirasyon riski çok yüksek).\n  - %100 O2 ile etkin preoksijenasyon.\n  - Tiyopental (4-5 mg/kg) veya Propofol + SÜKSİNİLKOLİN (1.0-1.5 mg/kg) İ.V.\n  - Maske ile ara ventilasyon yapılmaz. 6.5-7.0 mm kafli tüp ile entübe edilir ve kapnografi ile doğrulanır.\n  - Cerrahın kesi yapmasına ancak tüpün yeri kesinleşince izin verilir!\n4. Göbek kordonu klemplendikten sonra Oksitosin (3-5 IU çok yavaş İ.V.) başlanır ve yenidoğan ekibine bebek teslim edilir.",
     "examiner_tip": "In Düsseldorf: 'Wann darf der Operateur schneiden?' Antwort: Ausschließlich NACH bestätigter Intubation und blockiertem Cuff! 'Wie muss die Schwangere gelagert werden?' Zwingend 15–30° Linksseitenkippung!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Kienbaum: Masanın patronu havayolu güvenliği sağlanana kadar anestezisttir! 'Kesi izni' (Schnittfreigabe) ancak tüp kordlardan geçip kaf şişirilince ve 4 tane kapnografi dalgası görülünce verilir. Öncesinde ASLA!"
   },
   {
     "id": "q_dus_35",
@@ -20903,7 +20937,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI: Akut İntraoperatif Anafilaksi (Evre III - Ring & Messmer) – bronkospazm ve vazodilatatör şok (en sık nedenler: kas gevşeticiler, antibiyotikler).\n2. 1. TERCİH İLAÇ (HAYAT KURTARICI): ADRENALİN İ.V.!\n  - Doz: 10-50 µg İ.V. titre boluslar (1 mg ampul 100 ml SF içine konursa 1 ml = 10 µg olur).\n  - Damar yolu yoksa: 0.5 mg İ.M. (uyluk dış yanına).\n3. DİĞER MÜDAHALELER:\n  - Olası alerjeni derhal kes! %100 O2 ver.\n  - Hızlı hacim infüzyonu: 20-30 ml/kg kristaloid.\n  - Bronkospazm için tüp içine Salbutamol sprey.\n  - İkinci basamak (Adrenalinden sonra): Antihistaminik (Klemastin 2 mg) ve Kortikosteroid (Prednizolon 250-500 mg).\n4. Doğrulama testi: SERUM TRİPTAZ düzeyi (1-2. saatte ve 24. saatte bazal değer).",
     "examiner_tip": "In Düsseldorf: 'Welches Medikament geben Sie als erstes bei Anaphylaxie?' Wer hier 'Cortison' sagt, fällt durch! Erstes und einziges lebensrettendes Akutmedikament ist ADRENALIN! Cortison wirkt erst nach Stunden.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Kienbaum & Annecke: Anafilakside tek hayat kurtarıcı ilaç ADRENALİN'dir! Kortizon ve antihistaminikler ikinci plandadır ve geç etki eder. Adrenalin vermeyen veya geciktiren aday anında kalır."
   },
   {
     "id": "q_dus_36",
@@ -20917,7 +20952,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. ŞOKLANABİLİR RİTİM (VF / Nabızsız VT) ALGORİTMASI:\n  - Defibrilatör gelene kadar kesintisiz KPR (100-120/dk, 5-6 cm derinlik).\n  - 1. ŞOK: 150-200 J bifazik → Nabız bakılmadan derhal 2 dakika KPR!\n  - 2. ŞOK: 150-360 J → Derhal 2 dakika KPR!\n  - 3. ŞOK: → Derhal 2 dakika KPR!\n2. İLAÇ ZAMANLAMALARI (EN KRİTİK NOKTA):\n  - ADRENALİN 1 mg: SADECE 3. ŞOKTAN SONRA verilir! (Her 3-5 dakikada bir tekrarlanır).\n  - AMİODARON: İlk doz 300 mg İ.V. 3. ŞOKTAN SONRA verilir. İkinci doz 150 mg ise 5. ŞOKTAN SONRA verilir.\n  - K.O. KRİTERİ: VF tablosunda 3. şoktan önce Adrenalin verilmesi sınavda doğrudan kalma sebebidir!\n3. GERİ DÖNDÜRÜLEBİLİR NEDENLER:\n  - 4 H: Hipoksi, Hipovolemi, Hipo/Hiperkalemi ve metabolik bozukluklar, Hipo/Hipertermi.\n  - 4 T: Tansiyon pnömotoraks, Tamponad (kardiyak), Toksinler/İlaçlar, Tromboz (pulmoner/koroner).",
     "examiner_tip": "In Düsseldorf: 'Wann geben Sie bei Kammerflimmern das erste Mal Adrenalin und Amiodaron?' Richtige Antwort: Erst NACH dem 3. Schock! Wer vor dem 3. Schock Adrenalin gibt, besteht den ALS-Teil nicht.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "ERC 2021/2025 kılavuz kuralı: VF/pVT'de Adrenalin ne zaman verilir? SADECE 3. ŞOKTAN SONRA (1 mg i.v.)! İlk 2 siklusta verilmez. 3. şoktan sonra ayrıca 300 mg Amiodaron verilir. Şok sonrası ritme bakılmaz, hemen göğüs basısı başlar!"
   },
   {
     "id": "q_dus_37",
@@ -20931,7 +20967,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. AYIRICI TANI:\n  - Akut Yara Hematomu (Postoperatif kanama): Tiroit lojunda arteriyel/venöz kanama ile trakea ve boyun venlerinin dıştan basısı (en sık ve en öldürücü neden!).\n  - İki taraflı N. laryngeus recurrens felci: Ses tellerinin paramedian pozisyonda kilitlenmesi ve tam glottik tıkanma.\n  - Larenks / Trakea Ödemi (entübasyon veya cerrahi manipülasyona bağlı).\n  - Trakeomalazi (uzun süreli guatr basısı sonrası trakea kıkırdaklarının yumuşaması ve ekstrübe olunca çökmesi).\n2. BASAMAK BASAMAK ACİL YAKLAŞIM:\n  - DERHAL ALARM: Cerrahı, KBB hekimini ve anestezi uzmanını hemen ayılma odasına çağır, acil revizyon ameliyathanesini açtır.\n  - OKSİJENASYON: Rezervuarlı maske ile %100 O2 ver, başı ve gövdeyi 30-45° yükselt (venöz göllenmeyi azaltır).\n  - ZOR HAVAYOLU HAZIRLIĞI: Zor havayolu arabasını yatak başına getir (Videolarengoskop, buji, küçük çaplı tüpler 6.0 ve 6.5 mm, fiberoptik). Koniotomi setini hazırla.\n3. YATAK BAŞI HAYAT KURTARICI MÜDAHALE (K.O. KRİTERİ):\n  - Hasta boğulma tehlikesindeyse (stridor, siyanoz, SpO2 < %80) ve trakea basısı nedeniyle entübasyon yapılamıyorsa: YATAK BAŞINDA DİKİŞLERİ / ZIMBALARI DERHAL AÇMAK!\n  - Cilt dikişleri yatak başında hemen kesilip açılır, pens veya parmakla derin fasya aralanarak hematom boşaltılır.\n  - Basıncın kalkması trakeayı rahatlatır ve entübasyonu mümkün kılar; hastanın boğulmasını önler.\n  - K.O. Kriteri: Boğulmakta olan hastada cerrahı beklemek veya hastayı tomografiye göndermek doğrudan sınavdan kalma sebebidir!",
     "examiner_tip": "In Düsseldorf (Prof. Annecke): \"Die Patientin droht zu ersticken, der Tubus lässt sich wegen massiver Verdrängung nicht vorschieben – was tun Sie JETZT am Bett?\" Richtige Antwort: Sofortige bettseitige Wund- und Faszienöffnung mit Spreizen zur Druckentlastung! Wer erst auf den Chirurgen wartet oder den Patienten ins CT schiebt, fällt durch.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Annecke klasiği: Tiroit ameliyatı sonrası hasta boğuluyor, tüp girmiyor - Ne yaparsınız? Tek doğru cevap: Yatak başında derhal dikişleri açıp hematomu parmakla boşaltmak! Cerrahı bekleyen aday kalır."
   },
   {
     "id": "q_dus_38",
@@ -20945,7 +20982,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TRANSMURAL BASINÇ VE TEKRAR KANAMA (RE-RUPTÜR) RİSKİ:\n  - Anevrizmanın transmural basıncı = Ortalama Arter Basıncı (OAB / MAP) eksi İntrakraniyal Basınç (ICP): P_tm = MAP - ICP.\n  - Kapatılmamış anevrizmada, entübasyon veya laringoskopi sırasında yetersiz anestezi derinliği nedeniyle oluşacak en ufak tansiyon fırlaması (hipertansiyon) transmural basıncı aniden artırarak ölümcül RE-RUPTÜRE yol açar (%80 mortalite!).\n  - Tansiyonun aşırı düşürülmesi ise Serebral Perfüzyon Basıncını (CPP = MAP - ICP) düşürüp beyin iskemisine yol açar.\n2. İNDÜKSİYON, MONİTÖRİZASYON VE VENTİLASYON:\n  - Monitörizasyon: İndüksiyondan önce mutlaka İnvaziv Arter Basıncı (veya radyoloğun kılıf bypass hattından). CVP, ısı, idrar.\n  - İndüksiyon: Çok iyi analjezik blokaj altında yumuşak ama derin RSI. Yüksek doz opioid (Süfentanil 0.5-1 µg/kg), Propofol titre, Roküronyum (1.0-1.2 mg/kg, öksürme/ıkınma kesinlikle engellenmeli!).\n  - İdame: TIVA (Propofol + Remifentanil) - ICP ve beyin metabolizmasını düşürür.\n  - Mekanik ventilasyon: Kesin Normoventilasyon (PaCO2 35-40 mmHg). Hiperkapni vazodilatasyon ve kafa içi basınç artışına neden olur. Aşırı hiperventilasyon ise serebral vazospazm ve iskemi yapar!\n3. TANSİYON HEDEFLERİ (ÖNCE VE SONRA):\n  - Kapatılmadan ÖNCE: Kesin Normotansiyon (Sistolik 120-140 mmHg, MAP 70-85 mmHg). Basınç yükselmeleri hemen Urapidil (10-25 mg) veya Esmolol ile kırılır.\n  - Kapatıldıktan SONRA: Beyin perfüzyonunu korumak ve vazospazm iskemisini önlemek için daha yüksek tansiyona izin verilir (MAP > 80-90 mmHg, sistolik 160 mmHg'ye kadar).\n4. VAZOSPAZM PROFİLAKSİSİ:\n  - NİMODİPİN (Kalsiyum kanal blokeri): 60 mg p.o. her 4 saatte bir (veya 1-2 mg/saat İ.V. infüzyon). En az 21 gün devam edilir.",
     "examiner_tip": "In Düsseldorf: \"Was ist der transmurale Druck eines Aneurysmas und wie führen Sie die Narkoseeinleitung?\" Wer bei unversorgtem Aneurysma eine hypertensive Entgleisung (z.B. durch unzureichende Narkosetiefe bei Laryngoskopie) zulässt, riskiert die fatale Re-Ruptur mit bis zu 80% Letalität.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Annecke & Schroeder: Anevrizma kapatılana kadar transmural basınç (MAP - ICP) düşük tutulmalıdır. Laringoskopi çok derin anesteziyle yapılmalı, hasta asla öksürmemelidir. Cushing yanıtındaki bradikardiye Atropin verilmez!"
   },
   {
     "id": "q_dus_39",
@@ -20959,7 +20997,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. ANATOMİK DÖRTLÜ VE ŞANT FİZYOLOJİSİ:\n  - 4 Bileşen: 1. Ventriküler Septal Defekt (VSD), 2. Aortun ata biner pozisyonda olması (dekstropozisyonu), 3. Pulmoner stenoz (özellikle infundibuler/subvalvüler daralma), 4. Sağ ventrikül hipertrofisi.\n  - Şant mekanizması: VSD üzerinden iki yönlü şant vardır. Sağdan sola şantın miktarı (ve dolayısıyla hipoksemi derinliği), Sağ Ventrikül Çıkım Yolu (RVOT / infundibulum) direnci ile Sistemik Vasküler Direnç (SVR) arasındaki dengeye bağlıdır!\n  - SVR düşerse (vazodilatasyon) veya infundibulum kasılırsa kirli kan akciğerlere uğramadan doğrudan aorta geçer -> derin siyanoz.\n2. İNDÜKSİYON İLKELERİ:\n  - SİSTEMİK DİRENCİ (SVR) YÜKSEK TUT: Tansiyon düşüşünden ve periferik vazodilatasyondan kesinlikle kaçın.\n  - Sakin ve stressiz indüksiyon (ağlama ve taşikardiyi önlemek için Sevofluran inhalasyonu veya Ketamin + Süfentanil).\n  - Yeterli ön yük (hidrasyon): Açlık süresini kısa tut, indüksiyondan önce kristaloid ver.\n3. AKUT HİPERZİYANOTİK ATAK (TET-SPELL) TEDAVİSİ:\n  - TANI: Pulmoner kapak infundibulum spazmına bağlı Akut Hiperziyanotik Atak (Tet-Spell) ve masif sağ-sol şant.\n  - 1. ADIM: %100 O2 ver (pulmoner damarları genişletir).\n  - 2. ADIM: DİZ-GÖĞÜS POZİSYONU (Knee-chest): Bebeğin bacaklarını karnına doğru bük. Femoral arterleri bükerek SVR'yi mekanik olarak artırır ve kanı akciğerlere yönlendirir.\n  - 3. ADIM: ANESTEZİYİ DERİNLEŞTİR: Süfentanil veya Sevofluran ile infundibulum spazmını çöz.\n  - 4. ADIM: SVR'Yİ SAF VAZOPRESSÖRLE ARTIR: Fenilefrin (5-10 µg/kg) veya Noradrenalin (1 µg/kg).\n  - 5. ADIM: SIVI BOLUSU: 10-20 ml/kg dengeli kristaloid.\n  - 6. ADIM: İnatçı taşikardi durumunda kısa etkili beta bloker (Esmolol titre edilir).\n4. ADRENALİN NEDEN KESİNLİKLE KONTRENDİKEDİR (K.O. KRİTERİ):\n  - Adrenalin güçlü inotrop etkisiyle infundibulum kaslarını daha da şiddetli kasar, çıkım yolunu tamamen kapatır ve sağ-sol şantı derinleştirerek asfiksiye ve ölüme yol açar!",
     "examiner_tip": "In Düsseldorf: \"Das Fallot-Kind wird tief zyanotisch, SpO2 30% – geben Sie Adrenalin?\" K.O.-Kriterium: NEIN! Adrenalin kontrahiert das Infundibulum noch stärker und verschlimmert den Shunt dramatisch! Mittel der Wahl zur SVR-Steigerung: Phenylephrin / Noradrenalin plus Knie-Brust-Lage und Narkosevertiefung.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Hohn & Becke pediatri kuralı: Fallot atağında Adrenalin KESİNLİKLE YASAKTIR! İlaç: Fenilefrin veya Noradrenalin (SVR'yi artırıp kanı akciğere iter). Manevra: Dizleri göğse bastır (knee-chest) + anesteziyi derinleştir!"
   },
   {
     "id": "q_dus_40",
@@ -20973,7 +21012,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. İNHALASYON TRAVMASINDA HAVAYOLU YÖNETİMİ:\n  - Yüz yanığı, burun/ağızda is, ses kısıklığı ve stridor varlığı ağır inhalasyon travmasını gösterir.\n  - Üst havayolu yumuşak doku ödemi ilk 12-24 saatte hızla ilerler ve havayolunu tamamen kapatır.\n  - ERKEN ENTÜBASYON: Anatomik yapılar ödem nedeniyle tanınmaz hale gelmeden önce şok odasında derhal entübe edilmelidir. Bronkoskopi ve is temizliğine imkan tanımak için tüp yeterince geniş seçilmelidir (en az 7.5-8.0 mm ID).\n2. PARKLAND-BAXTER SIVI HESABI:\n  - Formül: 4 ml x kg vücut ağırlığı x % yanık yüzdesi (TBSA) dengeli kristaloid (kaza anından itibaren ilk 24 saat için).\n  - Hesap: 4 ml x 80 kg x 27 = 8.640 ml dengeli kristaloid.\n  - Dağılım: İlk yarısı (4.320 ml) kaza anından itibaren ilk 8 saatte; kalan yarısı (4.320 ml) sonraki 16 saatte verilir.\n  - Hedef: İdrar çıkışı 0.5-1.0 ml/kg/saat olmalıdır.\n3. SÜKSİNİLKOLİN'İN ÖLÜMCÜL KONTRENDİKASYONU (K.O. KRİTERİ):\n  - ZAMAN ARALIĞI: Ağır yanıklarda 24-48 saatten sonra en az 1-2 yıl boyunca Süksinilkolin KESİNLİKLE KONTRENDİKEDİR!\n  - PATOFİZYOLOJİ: İskelet kası hücre zarı boyunca ekstrajunksiyonel nikotinik asetilkolin reseptörlerinde (alfa-7 ve gama alt birimleri) masif artış ve yukarı düzenlenme (up-regulation) gerçekleşir.\n  - SONUÇ: Süksinilkolin verildiğinde tüm bu reseptörler açılarak hücre içinden kana kontrolsüz potasyum fışkırmasına yol açar.\n  - KLİNİK FACİA: Dakikalar içinde serum potasyumu 8-10 mmol/L üzerine fırlar; dirençli ventriküler fibrilasyon ve asistoli gelişir!\n  - SEÇİLECEK İLAÇ: Hızlı seri indüksiyon (RSI) için yüksek doz Roküronyum (1.0-1.2 mg/kg). Sugammadeks masada hazır bulundurulmalıdır.",
     "examiner_tip": "In Düsseldorf (Prof. Hohn): \"Der Patient mit 27% Verbrennung muss an Tag 3 nachreseziert werden. Sie machen eine RSI mit Succinylcholin – was passiert?\" Wer hier Succinylcholin gibt, tötet den Patienten durch fulminante Hyperkaliämie mit Asystolie. Absolutes K.O.-Kriterium der Prüfungskommission!",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Hohn: Ağır yanıklarda 24-48 saatten sonra en az 1-2 yıl boyunca Süksinilkolin KESİNLİKLE KONTRENDİKEDİR! Ekstrajunksiyonel reseptörler nedeniyle potasyum anında 9-10 mmol/L'ye çıkar ve kalbi durdurur. RSI için Roküronyum seçilir!"
   },
   {
     "id": "q_dus_41",
@@ -20987,7 +21027,8 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. KARAR-DOĞUM SÜRESİ (E-E-ZEIT):\n  - Kategori 1 Acil Sezaryende (Cito-Sectio) anne ve bebeğin güvenliği için Karar-Doğum Süresi EN FAZLA 20 DAKİKA olmalıdır.\n2. GEBEDE ACİL HIZLI SERİ İNDÜKSİYON (RSI):\n  - POZİSYON: Kesin Sol Yan Eğim (sağ kalça altına 15-30° takoz) - Vena Cava İnferior basısını önlemek için şarttır.\n  - ASPİRASYON KORUMASI: 16. gebelik haftasından itibaren tüm gebeler tok kabul edilir.\n  - PREOKSİJENASYON: %100 O2 ile 3 dakika veya 4-8 derin soluk (gebede FRC azaldığı için desatürasyon saniyeler içinde gelişir).\n  - TÜP SEÇİMİ: Gebelerde havayolu ödemli ve kırılgandır; daha küçük çaplı tüp seçilir (6.5 - 7.0 mm ID).\n  - İLAÇLAR: Tiyopental (4-5 mg/kg) veya Propofol (2 mg/kg) + Süksinilkolin (1-1.5 mg/kg) veya yüksek doz Roküronyum (1.0-1.2 mg/kg). (Preeklampside Ketamin kontrendikedir!).\n  - Tüp cuff'ı şişirilip yeri doğrulanır doğrulanmaz cerraha KESİ İZNİ verilir. Opioid bebeğin kordonu klemplendikten SONRA yapılır!\n3. OKSİTOSİN DOZU (K.O. KRİTERİ):\n  - Bebek doğduktan sonra: OKSİTOSİN EN FAZLA 3-5 IU YAVAŞ İ.V. verilir (veya kısa infüzyonla). Ardından idame infüzyon başlanır.\n  - TEHLİKE: 5-10 IU'lik hızlı bolus verilmesi periferik damarları aniden felç eder; ağır hipotansiyon, koroner spazm ve kardiyak arreste neden olur!\n4. ENTÜBASYON BAŞARISIZ OLURSA (CANNOT INTUBATE):\n  - Yardım çağır.\n  - İKİNCİ KUŞAK LARİNGEAL MASKE (LMA) YERLEŞTİR (Drenaj kanallı supraglottik havayolu).\n  - LMA ile ventilasyon ve oksijenasyon sağlanıyorsa: Ameliyat LMA ile hızla tamamlanır! Asla tekrar tekrar entübasyon denenip havayolu kanatılmaz.\n  - Ventilasyon imkansızsa (CICO): Derhal cerrahi Koniotomi uygulanır.",
     "examiner_tip": "In Düsseldorf: \"Wie dosieren Sie Oxytocin nach der Kindsentwicklung?\" K.O.-Kriterium: Niemals 10 IE als schnellen Bolus spritzen! Führt zu akutem Blutdruckabsturz und kardialem Kollaps. Korrekt: 3-5 IE langsam i.v. oder als Kurzinfusion.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Prof. Annecke: Oksitosin nasıl verilir? ASLA 10 IU hızlı puşe yapılmaz! En fazla 3-5 IU yavaş i.v. (veya kısa infüzyon). Hızlı bolus koroner vazospazm ve tansiyon çöküşü yapar. Atonide Sulproston (Nalador) infüzyonu eklenir."
   },
   {
     "id": "q_dus_42",
@@ -21001,6 +21042,7 @@ const EXAM_QUESTIONS = [
     "answer_tr": "1. TANI VE NEGATİF BASINÇLI AKCİĞER ÖDEMİ (NPPE) PATOFİZYOLOJİSİ:\n  - TANI: Post-ekstübasyon Laringospazmı ve buna bağlı Negatif Basınçlı Akciğer Ödemi (Negative Pressure Pulmonary Edema / NPPE Tip 1).\n  - PATOFİZYOLOJİ:\n    - Kilitlenmiş ses tellerine karşı hastanın gösterdiği şiddetli inspirasyon çabası (Müller manevrası), göğüs kafesi içinde aşırı negatif basınç (-50 ila -100 cmH2O) oluşturur.\n    - Bu devasa negatif basınç, akciğer kapillerlerindeki hidrostatik basınç farkını aşırı artırarak kan plazmasını kapillerden alveollerin içine doğru emer.\n    - Alveolokapiller membran mekanik olarak zedelenir ve alveoller seröz/kanlı sıvıyla dolar -> tipik pembe köpüklü balgamla non-kardiyojenik akciğer ödemi tablosu ortaya çıkar!\n2. LARİNGOSPAZMIN SANİYE SANİYE BASAMAKLI TEDAVİSİ:\n  - 0-15. SANİYE: Rezervuarlı maskeyi yüze sıkıca oturt, %100 O2 ile pozitif basınçlı solutma (CPAP, APL valfi 15-20 cmH2O'ya ayarlı).\n  - 15-30. SANİYE: LARSON MANEVRASI: Çeneyi öne iterken (Esmarch), mandibula köşesinin arkasındaki çentiğe iki taraflı güçlü bası uygula. Oluşan ağrı refleksi glottisi açar.\n  - 30-60. SANİYE: ANESTEZİYİ DERİNLEŞTİR: Düşük doz Propofol (0.5 - 1.0 mg/kg İ.V.) vererek vokal kordların spazmını çöz.\n  - 60-90. SANİYE: KAS GEVŞETİCİ VE YENİDEN ENTÜBASYON: Sättigung %80 altına düşüyor ve ventilasyon sağlanamıyorsa hemen Süksinilkolin (0.5-1.0 mg/kg İ.V.) veya Roküronyum verip hastayı DERHAL RE-ENTÜBE ET.\n3. AKCİĞER ÖDEMİNİN VENTİLASYON TEDAVİSİ:\n  - ZORUNLU: YÜKSEK PEEP İLE POZİTİF BASINÇLI MEKANİK VENTİLASYON (PEEP 8-12 cmH2O)!\n  - PEEP, alveol içi basıncı artırarak sıvının damar içine ve lenfatiklere geri emilmesini sağlar ve çöken alveolleri açar.\n  - PEEP tedavisi altında NPPE genellikle 12-24 saat içinde tamamen geriler.",
     "examiner_tip": "In Düsseldorf: \"Der Patient hat nach Laryngospasmus rosafarbenen Schaum im Mund – warum und wie therapieren Sie?\" Wichtig ist die pathophysiologische Erklärung des Unterdrucklungenödems durch den massiv negativen intrathorakalen Druck und die sofortige PEEP-Therapie.",
     "is_high_yield": true,
-    "is_dus_protocol": true
+    "is_dus_protocol": true,
+    "examiner_tip_tr": "Hohn & Annecke: Laringospazm sonrası pembe köpük = Negatif Basınçlı Akciğer Ödemi (NPPE). Müller manevrasıyla oluşan devasa negatif intratorasik basınç sıvıyı alveole çeker. Tedavi: CPAP/Larson -> Propofol/Süksinilkolin ile re-entübasyon -> Yüksek PEEP (8-12 cmH2O)!"
   }
 ];

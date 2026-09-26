@@ -636,9 +636,34 @@ assert(siriScore > 90, 'Apple Siri voices must receive top quality score (>90)')
 assert(katjaScore > compactScore, 'Natural voices must score significantly higher than Compact');
 assert(englishScore < 0, 'Non-German voices must be rejected');
 
-console.log('[PASS] Natural Medical Speech Synthesis Engine & Neural Voice Picker Suite verified.');
+// 29. Test Complete Turkish Translations for All 42 Düsseldorf Simulation Cases & Protocols
+for (const [qid, data] of Object.entries(DUS_SIMULATION_REGISTRY)) {
+  assert(data.speechIntro_tr && data.speechIntro_tr.length > 30, `Registry ${qid} must have Turkish speechIntro_tr`);
+  assert(data.crisis && data.crisis.title_tr && data.crisis.title_tr.length > 5, `Registry ${qid} must have Turkish crisis.title_tr`);
+  assert(data.crisis && data.crisis.prompt_tr && data.crisis.prompt_tr.length > 25, `Registry ${qid} must have Turkish crisis.prompt_tr`);
+  assert(data.crisis && data.crisis.targetAction_tr && data.crisis.targetAction_tr.length > 25, `Registry ${qid} must have Turkish crisis.targetAction_tr`);
+  assert(data.koCriteria && data.koCriteria.failureReason_tr && data.koCriteria.failureReason_tr.length > 20, `Registry ${qid} must have Turkish koCriteria.failureReason_tr`);
+  assert(data.examiner && data.examiner.focus_tr && data.examiner.focus_tr.length > 10, `Registry ${qid} must have Turkish examiner.focus_tr`);
+  assert(data.examiner && data.examiner.trap_tr && data.examiner.trap_tr.length > 10, `Registry ${qid} must have Turkish examiner.trap_tr`);
+  
+  // Ensure Turkish is distinct from German (not a raw untranslated fallback)
+  assert.notStrictEqual(data.crisis.prompt_tr, data.crisis.prompt_de, `Registry ${qid} prompt_tr must not be identical to prompt_de`);
+  assert.notStrictEqual(data.crisis.targetAction_tr, data.crisis.targetAction, `Registry ${qid} targetAction_tr must not be identical to targetAction`);
+}
 
-console.log('\n🎉 ALL 28 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+dusQuestions.forEach(dq => {
+  assert(dq.examiner_tip_tr && dq.examiner_tip_tr.length > 15, `Question ${dq.id} must have Turkish examiner_tip_tr`);
+  assert.notStrictEqual(dq.examiner_tip_tr, dq.examiner_tip, `Question ${dq.id} examiner_tip_tr must not be identical to examiner_tip`);
+});
+
+assert(htmlContent.includes('Musterantwort anzeigen / Cevabı Gör'), 'index.html must include bilingual button text for examiner answer');
+assert(htmlContent.includes('Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü'), 'index.html must include bilingual solution card header');
+assert(htmlContent.includes('ÄKNO Notfall-Lösung / Acil Çözüm'), 'index.html must include bilingual emergency solution badge');
+
+console.log('[PASS] Complete Turkish Translations Suite verified for all 42 Düsseldorf Simulation Registry cases and questions.');
+
+console.log('\n🎉 ALL 29 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

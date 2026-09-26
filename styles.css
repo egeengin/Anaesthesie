@@ -4665,6 +4665,7 @@ footer {
 .translatable-box {
   position: relative;
   transition: border-color 0.2s ease;
+  cursor: pointer;
 }
 
 /* 3. Inline Smooth-Reveal Hover Preview Card */
@@ -4694,11 +4695,11 @@ footer {
 .translatable-box:hover .hover-tr-preview,
 .translatable-box:focus-within .hover-tr-preview,
 .hover-tr-preview.force-visible {
-  max-height: 400px;
+  max-height: 2500px;
   opacity: 1;
   margin-top: 0.55rem;
-  padding: 0.55rem 0.85rem;
-  box-shadow: 0 2px 10px rgba(141, 99, 70, 0.08);
+  padding: 0.65rem 0.95rem;
+  box-shadow: 0 4px 14px rgba(141, 99, 70, 0.12);
 }
 
 [data-theme="dark"] .hover-tr-preview {

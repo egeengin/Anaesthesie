@@ -294,17 +294,17 @@
           <span id="audio-speed-display">0.95x</span>
         </button>
 
-        <!-- Natural Neural Voice Selector (Apple Siri / Google / Edge Natural) -->
+        <!-- Natural Neural Voice Selector (Automatic HD Voice for Mac & iPhone) -->
         <div class="voice-picker-wrapper" id="voice-picker-wrapper">
-          <button id="btn-audio-voice" class="oral-tool-btn audio-voice-pill" type="button" title="Vorlesestimme auswählen (Siri, Google, Katja oder Systemstimmen)">
-            <span class="tool-icon">🗣️</span>
-            <span id="audio-voice-display" class="voice-name-text">Stimme</span>
+          <button id="btn-audio-voice" class="oral-tool-btn audio-voice-pill" type="button" title="Natürliche Stimme aktiv (Automatisch für Mac & iPhone)">
+            <span class="tool-icon">✨</span>
+            <span id="audio-voice-display" class="voice-name-text">Natürliche Stimme</span>
             <span class="voice-caret">▾</span>
           </button>
           
           <div id="audio-voice-dropdown" class="audio-voice-dropdown" style="display: none;" role="dialog" aria-label="Vorlesestimme auswählen">
             <div class="voice-dropdown-header">
-              <span class="voice-dropdown-title">🎙️ Vorlesestimme wählen</span>
+              <span class="voice-dropdown-title">🎙️ Vorlesestimme</span>
               <button id="btn-close-voice-dropdown" class="voice-close-btn" type="button" aria-label="Schließen">&times;</button>
             </div>
             <div id="voice-options-list" class="voice-options-list">
@@ -315,7 +315,7 @@
                 <span>▶️</span> Probe anhören
               </button>
               <div class="voice-mac-tip">
-                🍎 <strong>Tipp für Mac:</strong> Für maximale Natürlichkeit öffnen Sie <em>Systemeinstellungen &gt; Bedienungshilfen &gt; Gesprochene Inhalte &gt; Systemstimme</em> und wählen Sie <strong>Siri</strong> oder <strong>Anna (Verbessert)</strong>.
+                🍎 <strong>100% Automatisch für Mac &amp; iPhone:</strong> Die lebensechte Sprachausgabe ist standardmäßig aktiv. Sie müssen auf Ihrem Gerät nichts einstellen oder herunterladen.
               </div>
             </div>
           </div>
@@ -580,30 +580,31 @@
           <div class="examiner-dialogue-box">
             <div class="examiner-avatar-col">
               <div class="examiner-avatar">👨‍⚕️</div>
-              <span class="examiner-role">ÄKNO-Prüfer</span>
+              <span class="examiner-role">ÄKNO-Prüfer / Jüri</span>
             </div>
             <div class="examiner-speech-col">
               <div class="examiner-quote-bubble" id="examiner-quote-text">
                 "Der Prüfer hakt nach: Wie begründen Sie Ihr Vorgehen und welche Komplikation droht hier unmittelbar?"
               </div>
               <div class="examiner-audio-bar">
-                <button id="btn-audio-speak-examiner" class="btn-audio-action-sm" type="button" title="Prüfer-Frage laut vorlesen">
-                  <span>🔊 Prüferfrage vorlesen</span>
+                <button id="btn-audio-speak-examiner" class="btn-audio-action-sm" type="button" title="Prüfer-Frage laut vorlesen / Jüri sorusunu dinle">
+                  <span>🔊 Prüferfrage vorlesen / Soruyu Dinle</span>
                 </button>
-                <button id="btn-toggle-examiner-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zur Prüfer-Intervention anzeigen">
-                  <span>💡 Musterantwort anzeigen</span>
+                <button id="btn-toggle-examiner-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zur Prüfer-Intervention anzeigen / Model cevabı gör">
+                  <span>💡 Musterantwort anzeigen / Cevabı Gör</span>
                 </button>
               </div>
               <div class="candidate-directive">
-                👉 <strong>Ihre verbale Aufgabe:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die typischen Kardinalfehler & K.O.-Kriterien!
+                👉 <strong>Ihre verbale Aufgabe / Sözlü Göreviniz:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die typischen Kardinalfehler & K.O.-Kriterien!
+                <div style="font-size:0.83rem; color:var(--text-muted); margin-top:3px;">🇹🇷 Cevabınızı yüksek sesle yapılandırın, nedensel tedaviyi gerekçelendirin ve K.O. kriterlerini belirtin!</div>
               </div>
 
               <!-- Inline Revealable Examiner Answer inside Step 3 -->
               <div id="examiner-inline-answer-box" class="examiner-inline-answer-box" style="display: none;">
                 <div class="examiner-inline-header">
-                  <strong>💡 ÄKNO-Musterantwort zur Prüfer-Intervention:</strong>
-                  <button id="btn-audio-speak-examiner-ans" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen">
-                    <span>🔊 Antwort vorlesen</span>
+                  <strong>💡 ÄKNO-Musterantwort zur Prüfer-Intervention / Jüri Müdahalesi Model Cevabı:</strong>
+                  <button id="btn-audio-speak-examiner-ans" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen / Cevabı dinle">
+                    <span>🔊 Antwort vorlesen / Dinle</span>
                   </button>
                 </div>
                 <div id="examiner-inline-answer-text" class="examiner-inline-answer-text">
@@ -618,7 +619,7 @@
             <button id="badge-examiner-toggle" class="badge-examiner-toggle" type="button" aria-expanded="false">
               <div class="badge-examiner-left">
                 <span class="examiner-badge-icon">🏛️</span>
-                <span id="examiner-badge-title">ÄKNO Düsseldorfer Prüfer-Profil & Erwartungshorizont</span>
+                <span id="examiner-badge-title">ÄKNO Düsseldorfer Prüfer-Profil & Erwartungshorizont / Jüri Profili</span>
               </div>
               <span class="examiner-toggle-chevron">▾</span>
             </button>
@@ -656,13 +657,13 @@
             <div class="rubric-card-header">
               <div class="rubric-badge-title">
                 <span class="rubric-icon">👨‍⚕️</span>
-                <h3>Lösung der Prüfer-Intervention (Klinische Wendung & Soforttherapie)</h3>
+                <h3>Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü (Klinische Wendung & Soforttherapie)</h3>
               </div>
               <div class="rubric-header-actions">
-                <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen">
-                  <span>🔊 Prüfer-Lösung vorlesen</span>
+                <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen / Jüri çözümünü dinle">
+                  <span>🔊 Prüfer-Lösung vorlesen / Çözümü Dinle</span>
                 </button>
-                <span class="rubric-tag-alert">ÄKNO Notfall-Lösung</span>
+                <span class="rubric-tag-alert">ÄKNO Notfall-Lösung / Acil Çözüm</span>
               </div>
             </div>
             <div class="rubric-card-body">
