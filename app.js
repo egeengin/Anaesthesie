@@ -130,6 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const elSimCrisisTitle = document.getElementById('sim-crisis-title');
   const elSimCrisisPrompt = document.getElementById('sim-crisis-prompt');
   const elBtnSimSpeakCrisis = document.getElementById('btn-sim-speak-crisis');
+  const elBtnSimToggleCrisisSolution = document.getElementById('btn-sim-toggle-crisis-solution');
+  const elSimCrisisSolutionCard = document.getElementById('sim-crisis-solution-card');
+  const elSimCrisisSolutionText = document.getElementById('sim-crisis-solution-text');
+  const elSimCrisisKoText = document.getElementById('sim-crisis-ko-text');
+  const elBtnAudioSpeakCrisisSolution = document.getElementById('btn-audio-speak-crisis-solution');
   const elSimKoRadarDisplay = document.getElementById('sim-ko-radar-display');
   const elSimEvalGradeBadge = document.getElementById('sim-eval-grade-badge');
   const elSimKoAlertBox = document.getElementById('sim-ko-alert-box');
@@ -484,27 +489,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Dual-Language Hover Translation Helper ---
   function renderDualLanguageText(textDE, textTR) {
     if (!textDE) return '';
-    const formattedDE = formatAnswerText(textDE);
+    const formattedDE = formatAnswerText(textDE.trim());
     if (!textTR || textTR.trim() === textDE.trim()) {
       return `<div class="de-text-block">${formattedDE}</div>`;
     }
     
     const cleanTR = textTR.replace(/•/g, '<br>•').trim();
 
-    return `
-      <div class="translatable-box" data-tr="${escapeHtml(cleanTR)}" tabindex="0">
-        <div class="de-text-block">${formattedDE}</div>
-        <div class="hover-tr-preview" aria-hidden="true">
-          <span class="hover-tr-badge">🇹🇷</span>
-          <span class="hover-tr-content">${formatAnswerText(cleanTR)}</span>
-        </div>
-      </div>
-    `;
+    return `<div class="translatable-box" data-tr="${escapeHtml(cleanTR)}" tabindex="0"><div class="de-text-block">${formattedDE}</div><div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content">${formatAnswerText(cleanTR)}</span></div></div>`;
   }
 
   function formatAnswerText(text) {
     if (!text) return '';
     return text
+      .trim()
+      .replace(/\r\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
       .replace(/\n/g, '<br>')
       .replace(/•/g, '<br>•')
       .replace(/([✅❌])/g, '<strong>$1</strong>');
@@ -966,6 +966,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    if (elSimCrisisSolutionCard) {
+      elSimCrisisSolutionCard.style.display = 'none';
+    }
+    if (elBtnSimToggleCrisisSolution) {
+      elBtnSimToggleCrisisSolution.innerHTML = '<span>💡</span> Sofort-Lösung & Übersetzung anzeigen / Acil Çözümü Gör';
+    }
+    if (elSimCrisisSolutionText) {
+      elSimCrisisSolutionText.innerHTML = renderDualLanguageText(
+        highlightDosagesAndUnits(reg.crisis.targetAction),
+        highlightDosagesAndUnits(reg.crisis.targetAction_tr)
+      );
+    }
+    if (elSimCrisisKoText) {
+      const koDE = (reg.koCriteria && reg.koCriteria.failureReason) ? reg.koCriteria.failureReason : 'Vitale Kontraindikationen beachten!';
+      const koTR = (reg.koCriteria && reg.koCriteria.failureReason_tr) ? reg.koCriteria.failureReason_tr : 'Hayati kontrendikasyonlara dikkat edilmelidir!';
+      elSimCrisisKoText.innerHTML = renderDualLanguageText(koDE, koTR);
+    }
+
     // Update vital numbers to crisis state
     const v = reg.crisis.vitals;
     if (v) {
@@ -1002,6 +1020,33 @@ document.addEventListener('DOMContentLoaded', () => {
         ? MockExamSimulation.getRegistry(currentQ.id)
         : null;
       if (reg && reg.crisis) speakText(reg.crisis.prompt_de);
+    });
+  }
+
+  if (elBtnSimToggleCrisisSolution) {
+    elBtnSimToggleCrisisSolution.addEventListener('click', () => {
+      if (!elSimCrisisSolutionCard) return;
+      const isHidden = (elSimCrisisSolutionCard.style.display === 'none');
+      elSimCrisisSolutionCard.style.display = isHidden ? 'block' : 'none';
+      if (elBtnSimToggleCrisisSolution) {
+        elBtnSimToggleCrisisSolution.innerHTML = isHidden
+          ? '<span>✕</span> Sofort-Lösung verbergen / Çözümü Gizle'
+          : '<span>💡</span> Sofort-Lösung & Übersetzung anzeigen / Acil Çözümü Gör';
+      }
+    });
+  }
+
+  if (elBtnAudioSpeakCrisisSolution) {
+    elBtnAudioSpeakCrisisSolution.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
+      const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+        ? MockExamSimulation.getRegistry(currentQ.id)
+        : null;
+      if (reg && reg.crisis && reg.crisis.targetAction) {
+        speakText(getCleanSpeechText(reg.crisis.targetAction));
+      }
     });
   }
 
@@ -1202,7 +1247,8 @@ document.addEventListener('DOMContentLoaded', () => {
         etco2: '48 mmHg', vent: 'Pmax 32 mbar', temp: '36,8 °C',
         ph: '7,31', po2: '62 mmHg', pco2: '51 mmHg', hco3: '24 mmol/l', be: '-1,4 mmol/l', lactate: '1,6 mmol/l',
         k: '4,2 mmol/l', na: '140 mmol/l', ca: '1,18 mmol/l', hb: '13,2 g/dl',
-        notes: 'Auskultation: Beidseits vesikulär, verlängertes Exspirium, Mallampati IV, thyromentaler Abstand 5,5 cm.'
+        notes: 'Auskultation: Beidseits vesikulär, verlängertes Exspirium, Mallampati IV, thyromentaler Abstand 5,5 cm.',
+        notes_tr: 'Oskültasyon: İki taraflı veziküler solunum sesleri, uzamış ekspiryum, Mallampati IV, tiromental mesafe 5,5 cm.'
       };
     } else if (category.includes('Herz') || category.includes('Hämo')) {
       return {
@@ -1210,7 +1256,8 @@ document.addEventListener('DOMContentLoaded', () => {
         etco2: '24 mmHg', vent: 'Pmax 22 mbar', temp: '35,9 °C',
         ph: '7,21', po2: '78 mmHg', pco2: '34 mmHg', hco3: '14 mmol/l', be: '-10,2 mmol/l', lactate: '4,8 mmol/l',
         k: '4,8 mmol/l', na: '136 mmol/l', ca: '0,96 mmol/l', hb: '7,9 g/dl',
-        notes: 'FATE-Echokardiographie: Linker Ventrikel hyperdynam, VCI atemkollaptisch (< 1,2 cm), ScvO2 56%.'
+        notes: 'FATE-Echokardiographie: Linker Ventrikel hyperdynam, VCI atemkollaptisch (< 1,2 cm), ScvO2 56%.',
+        notes_tr: 'FATE Odaklı Ekokardiyografi: Sol ventrikül hiperdinamik, VCI solunumla kollabe (< 1,2 cm), ScvO2 %56.'
       };
     } else if (category.includes('Chemie') || category.includes('Elektrolyt') || category.includes('Säure')) {
       const isAlkalosis = text.includes('alkalose') || text.includes('hypokaliämie');
@@ -1220,7 +1267,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ph: isAlkalosis ? '7,49' : '7,19', po2: '88 mmHg', pco2: isAlkalosis ? '44 mmHg' : '32 mmHg',
         hco3: isAlkalosis ? '32 mmol/l' : '13 mmol/l', be: isAlkalosis ? '+7,8 mmol/l' : '-13,5 mmol/l',
         lactate: '2,8 mmol/l', k: isAlkalosis ? '2,9 mmol/l' : '6,4 mmol/l', na: '128 mmol/l', ca: '0,94 mmol/l', hb: '11,4 g/dl',
-        notes: isAlkalosis ? 'EKG: Abgeflachte T-Welle, U-Welle sichtbar; Tetanieneigung.' : 'EKG: Hohe zeltförmige T-Wellen, QRS-Verbreiterung (125 ms), AV-Block I°.'
+        notes: isAlkalosis ? 'EKG: Abgeflachte T-Welle, U-Welle sichtbar; Tetanieneigung.' : 'EKG: Hohe zeltförmige T-Wellen, QRS-Verbreiterung (125 ms), AV-Block I°.',
+        notes_tr: isAlkalosis ? 'EKG: Düzleşmiş T dalgası, belirgin U dalgası; tetani eğilimi.' : 'EKG: Sivri çadır T dalgaları, QRS genişlemesi (125 ms), 1. derece AV blok.'
       };
     } else if (category.includes('Pharmakologie') || category.includes('Notfall')) {
       return {
@@ -1228,7 +1276,8 @@ document.addEventListener('DOMContentLoaded', () => {
         etco2: '19 mmHg', vent: 'Pmax 30 mbar', temp: '38,8 °C',
         ph: '7,14', po2: '72 mmHg', pco2: '56 mmHg', hco3: '17 mmol/l', be: '-11,2 mmol/l', lactate: '5,6 mmol/l',
         k: '5,9 mmol/l', na: '141 mmol/l', ca: '1,02 mmol/l', hb: '12,0 g/dl',
-        notes: 'Monitoring: Rasch progrediente Hyperkapnie, Rigor und Temperaturanstieg (V.a. MH / LAST).'
+        notes: 'Monitoring: Rasch progrediente Hyperkapnie, Rigor und Temperaturanstieg (V.a. MH / LAST).',
+        notes_tr: 'Monitörizasyon: Hızla ilerleyen hiperkapni, kas rijiditesi ve vücut sıcaklığında artış (MH / LAST şüphesi).'
       };
     } else {
       return {
@@ -1236,7 +1285,8 @@ document.addEventListener('DOMContentLoaded', () => {
         etco2: '38 mmHg', vent: 'Pmax 21 mbar', temp: '36,7 °C',
         ph: '7,38', po2: '92 mmHg', pco2: '41 mmHg', hco3: '24 mmol/l', be: '-0,5 mmol/l', lactate: '1,4 mmol/l',
         k: '4,3 mmol/l', na: '139 mmol/l', ca: '1,20 mmol/l', hb: '12,8 g/dl',
-        notes: 'Vitalparameter und Monitoring im perioperativen Normbereich; Narkosetiefe adäquat.'
+        notes: 'Vitalparameter und Monitoring im perioperativen Normbereich; Narkosetiefe adäquat.',
+        notes_tr: 'Vital bulgular ve monitörizasyon perioperatif normal sınırlarda; anestezi derinliği yeterli.'
       };
     }
   }
@@ -2184,6 +2234,7 @@ Tedavi:
           if (elSimExaminerClinic) elSimExaminerClinic.textContent = prof.hospital;
         }
         if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
+        if (elSimCrisisSolutionCard) elSimCrisisSolutionCard.style.display = 'none';
         if (elSimKoRadarDisplay) elSimKoRadarDisplay.style.display = 'none';
         const elMonDashboard = document.getElementById('clinical-monitor-dashboard');
         if (elMonDashboard) elMonDashboard.classList.remove('vital-crisis-flash');
@@ -2247,7 +2298,7 @@ Tedavi:
     setElemText('bga-val-hb', v.hb);
 
     const elDiagNotes = document.getElementById('diagnostic-notes-box');
-    if (elDiagNotes) elDiagNotes.textContent = v.notes;
+    if (elDiagNotes) elDiagNotes.innerHTML = renderDualLanguageText(v.notes, v.notes_tr);
 
     // Step 3: Populate Examiner Steering Intervention, Inline Answer & Reveal Card
     if (elExaminerQuoteText) {
@@ -2321,14 +2372,14 @@ Tedavi:
           const stTR = opt.is_correct ? '✅ Doğru:' : '❌ Yanlış:';
           itemTR = `${stTR} ${opt.text_tr || opt.text_de}${opt.explanation_tr ? ' — ' + opt.explanation_tr.split('.')[0] : ''}`;
         } else if (parsedCase.fullTextTR) {
-          const trBullets = parsedCase.fullTextTR.split(/[•\n–-]/).map(s => s.trim()).filter(s => s.length > 15);
-          itemTR = trBullets[idx] || parsedCase.fullTextTR.substring(0, 140);
+          const trBullets = parsedCase.fullTextTR.split(/(?:^[0-9]+\.\s*|[•\n–-])/m).map(s => s.trim()).filter(s => s.length > 12);
+          itemTR = trBullets[idx] || (trBullets.length > 0 ? trBullets[idx % trBullets.length] : parsedCase.fullTextTR.substring(0, 140));
         }
 
         const row = document.createElement('div');
         row.className = 'checklist-item-row translatable-box';
         if (itemTR) row.setAttribute('data-tr', itemTR);
-        row.title = 'Antippen zum Abhaken';
+        row.title = 'Antippen zum Abhaken / Çeviri için dokunun';
         const formatted = (mode === 'flashcard') ? generateClozeMaskedHtml(itemText) : itemText;
         row.innerHTML = `
           <div class="checklist-item-main">
@@ -5112,7 +5163,7 @@ Tedavi:
 
         <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.88rem; border: 1px solid var(--border-color);">
           <strong style="display: block; margin-bottom: 0.25rem;">📊 Vitalparameter & Befunde:</strong>
-          <div style="color: var(--text-main); margin-bottom: 0.5rem; line-height: 1.4;">${parsed.vitals.notes}</div>
+          <div style="color: var(--text-main); margin-bottom: 0.5rem; line-height: 1.4;">${renderDualLanguageText(parsed.vitals.notes, parsed.vitals.notes_tr)}</div>
           <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
             <span class="vital-chip vital-chip-spo2">SpO₂: ${parsed.vitals.spo2}</span>
             <span class="vital-chip vital-chip-bp">RR: ${parsed.vitals.bp}</span>
@@ -5126,10 +5177,29 @@ Tedavi:
           <strong>⚠️ Prüfer-Intervention:</strong> ${renderDualLanguageText(parsed.examinerIntervention, parsed.examinerInterventionTR)}
         </div>
 
-        <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem; font-size: 0.88rem;">
+        <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.85rem; font-size: 0.88rem;">
           <strong>💡 Musterantwort zur Prüfer-Intervention:</strong><br>
           <div style="margin-top: 0.35rem; line-height: 1.5; white-space: pre-line;">${renderDualLanguageText(highlightDosagesAndUnits(parsed.examinerAnswer), highlightDosagesAndUnits(parsed.examinerAnswerTR))}</div>
         </div>
+
+        <!-- Comprehensive Dual-Language Case Model Answer & Verbal Framework -->
+        <details class="mock-case-full-solution" style="margin-bottom: 1.25rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.85rem;">
+          <summary style="font-weight: 700; cursor: pointer; color: var(--primary);">📖 Vollständige Fall-Musterantwort, Redemittel & Checkliste / Vaka Model Çözümü & İfadeler</summary>
+          <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color);">
+            <div style="margin-bottom: 0.75rem;">
+              <strong style="display: block; margin-bottom: 0.25rem; color: var(--accent-color);">🗣️ Formulierungshilfe & Redemittel (Wie sage ich es?):</strong>
+              <div>${renderDualLanguageText(parsed.verbalFramework, parsed.verbalFrameworkTR)}</div>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+              <strong style="display: block; margin-bottom: 0.25rem; color: var(--primary);">🎯 Vollständige Leitlinien-Musterantwort / Kılavuz Çözümü:</strong>
+              <div style="line-height: 1.5;">${renderDualLanguageText(highlightDosagesAndUnits(parsed.fullTextDE), highlightDosagesAndUnits(parsed.fullTextTR))}</div>
+            </div>
+            <div style="margin-bottom: 0.5rem;">
+              <strong style="display: block; margin-bottom: 0.25rem; color: var(--danger);">⚠️ Kritische Prüfungsfalle (K.O.-Kriterium):</strong>
+              <div>${renderDualLanguageText(parsed.pitfalls, parsed.pitfallsTR)}</div>
+            </div>
+          </div>
+        </details>
 
         <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
           <h4 style="margin-bottom: 0.5rem; font-size: 0.95rem;">🗣️ Prüfungs-Bewertung für Fall ${mockExamEngine.currentCaseIndex + 1}:</h4>

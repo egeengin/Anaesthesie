@@ -698,7 +698,7 @@ assert(appCode.includes('ANESTHESIA_ABBREVIATIONS'), 'app.js must reference ANES
 // SW checks
 const swContent = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
 assert(swContent.includes('./js/abbreviations_data.js'), 'sw.js must cache ./js/abbreviations_data.js');
-assert(/facharzt-cache-v4\.[6-9]/.test(swContent), 'sw.js must be updated to v4.6 or newer');
+assert(/facharzt-cache-v(?:4\.[6-9]|[5-9]\.[0-9])/.test(swContent), 'sw.js must be updated to v4.6 or newer');
 
 console.log(`[PASS] Suite 30 passed! Verified ${abbreviationsData.length} dual-language abbreviations with complete metadata, UI, and service worker caching.`);
 
@@ -738,7 +738,101 @@ assert(appCode.includes('vital-chip vital-chip-spo2'), 'app.js mock exam must in
 
 console.log('[PASS] Suite 31 passed! Verified theme-adaptive vitalparameter tokens and contrast-compliant colors in light and dark modes.');
 
-console.log('\n🎉 ALL 31 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// ============================================================================
+// 32. TEST SUITE: COMPLETE SIMULATION ANSWERS, TRANSLATIONS & ALL STEPS VERIFICATION
+// ============================================================================
+console.log('Testing Suite 32: Complete Simulation Answers, Turkish Translations & Step Verification...');
+
+// 1. Verify all 42 Düsseldorf Simulation Registry cases have complete answers, translations and all steps
+for (let i = 1; i <= 42; i++) {
+  const qid = 'q_dus_' + (i < 10 ? '0' + i : i);
+  const regCase = DUS_SIMULATION_REGISTRY[qid];
+  const qItem = questions.find(q => q.id === qid);
+
+  assert(regCase, `DUS_SIMULATION_REGISTRY must contain case ${qid}`);
+  assert(qItem, `questions.js must contain case ${qid}`);
+
+  // Step 1: Presentation & Baseline Question
+  assert(qItem.question_de && qItem.question_de.length >= 30, `${qid} Step 1: question_de must be >= 30 chars`);
+  assert(qItem.question_tr && qItem.question_tr.length >= 30, `${qid} Step 1: question_tr must be >= 30 chars`);
+  assert.notStrictEqual(qItem.question_de, qItem.question_tr, `${qid} Step 1: question_tr must not equal question_de`);
+
+  // Step 2: Vitals & Diagnostic Notes
+  assert(regCase.crisis && regCase.crisis.vitals, `${qid} Step 2: vitals must be defined`);
+  assert(regCase.crisis.vitals.spo2 && regCase.crisis.vitals.bp && regCase.crisis.vitals.hr, `${qid} Step 2: key vitals must be defined`);
+
+  // Step 3: Examiner Intervention / Crisis Prompt
+  assert(regCase.crisis.prompt_de && regCase.crisis.prompt_de.length >= 25, `${qid} Step 3: prompt_de must be >= 25 chars`);
+  assert(regCase.crisis.prompt_tr && regCase.crisis.prompt_tr.length >= 25, `${qid} Step 3: prompt_tr must be >= 25 chars`);
+  assert.notStrictEqual(regCase.crisis.prompt_de, regCase.crisis.prompt_tr, `${qid} Step 3: prompt_tr must not equal prompt_de`);
+
+  // Step 3 & Step 4: Crisis Action / Intervention Solution
+  assert(regCase.crisis.targetAction && regCase.crisis.targetAction.length >= 25, `${qid} Step 3/4: targetAction must be >= 25 chars`);
+  assert(regCase.crisis.targetAction_tr && regCase.crisis.targetAction_tr.length >= 25, `${qid} Step 3/4: targetAction_tr must be >= 25 chars`);
+  assert.notStrictEqual(regCase.crisis.targetAction, regCase.crisis.targetAction_tr, `${qid} Step 3/4: targetAction_tr must not equal targetAction`);
+
+  // Step 4: Complete Case Model Answer
+  assert(qItem.answer_de && qItem.answer_de.length >= 100, `${qid} Step 4: answer_de must be comprehensive (>= 100 chars)`);
+  assert(qItem.answer_tr && qItem.answer_tr.length >= 80, `${qid} Step 4: answer_tr must be comprehensive (>= 80 chars)`);
+  assert.notStrictEqual(qItem.answer_de, qItem.answer_tr, `${qid} Step 4: answer_tr must not equal answer_de`);
+
+  // K.O. Malpractice & Safety Trap
+  assert(regCase.koCriteria && regCase.koCriteria.failureReason && regCase.koCriteria.failureReason.length >= 25, `${qid}: failureReason must be >= 25 chars`);
+  assert(regCase.koCriteria.failureReason_tr && regCase.koCriteria.failureReason_tr.length >= 25, `${qid}: failureReason_tr must be >= 25 chars`);
+  assert.notStrictEqual(regCase.koCriteria.failureReason, regCase.koCriteria.failureReason_tr, `${qid}: failureReason_tr must not equal failureReason`);
+  assert(Array.isArray(regCase.koCriteria.forbiddenPatterns) && regCase.koCriteria.forbiddenPatterns.length >= 1, `${qid}: must have forbiddenPatterns`);
+  assert(Array.isArray(regCase.koCriteria.mandatoryKeywords) && regCase.koCriteria.mandatoryKeywords.length >= 2, `${qid}: must have mandatoryKeywords`);
+
+  // Examiner profile
+  assert(regCase.examiner && regCase.examiner.focus && regCase.examiner.focus_tr, `${qid}: must have examiner focus in DE and TR`);
+  assert(regCase.examiner.trap && regCase.examiner.trap_tr, `${qid}: must have examiner trap in DE and TR`);
+}
+
+// 2. Verify UI elements in index.html for instant crisis solution & translation
+assert(htmlContent.includes('id="btn-sim-toggle-crisis-solution"'), 'index.html must include #btn-sim-toggle-crisis-solution');
+assert(htmlContent.includes('id="sim-crisis-solution-card"'), 'index.html must include #sim-crisis-solution-card');
+assert(htmlContent.includes('id="sim-crisis-solution-text"'), 'index.html must include #sim-crisis-solution-text');
+assert(htmlContent.includes('id="sim-crisis-ko-text"'), 'index.html must include #sim-crisis-ko-text');
+assert(htmlContent.includes('id="btn-audio-speak-crisis-solution"'), 'index.html must include #btn-audio-speak-crisis-solution');
+
+// 3. Verify app.js integration
+assert(appCode.includes('elBtnSimToggleCrisisSolution'), 'app.js must bind elBtnSimToggleCrisisSolution');
+assert(appCode.includes('elSimCrisisSolutionCard'), 'app.js must manage elSimCrisisSolutionCard');
+assert(appCode.includes('mock-case-full-solution'), 'app.js must render mock-case-full-solution in 45-min mock exam');
+assert(appCode.includes('notes_tr'), 'app.js must define notes_tr for realistic vitals');
+
+// 4. Clinical Invariant Tests across Key Simulation Cases
+const q1 = DUS_SIMULATION_REGISTRY['q_dus_01'];
+assert(q1.koCriteria.forbiddenPatterns.some(p => p.test('spinal')), 'Aortic stenosis must forbid spinal anesthesia');
+assert(q1.koCriteria.mandatoryKeywords.includes('noradrenalin'), 'Aortic stenosis must require noradrenaline');
+
+const q2 = DUS_SIMULATION_REGISTRY['q_dus_02'];
+assert(q2.crisis.targetAction.toLowerCase().includes('cpap'), 'OLV crisis must include CPAP');
+
+const q3 = DUS_SIMULATION_REGISTRY['q_dus_03'];
+assert(q3.koCriteria.forbiddenPatterns.some(p => p.test('permissiv')), 'TBI/SHT must forbid permissive hypotension');
+
+const q4 = DUS_SIMULATION_REGISTRY['q_dus_04'];
+assert(q4.crisis.targetAction.toLowerCase().includes('dantrolen'), 'MH crisis must include Dantrolen');
+
+const q7 = DUS_SIMULATION_REGISTRY['q_dus_07'];
+assert(q7.crisis.targetAction.toLowerCase().includes('lipid') || q7.crisis.targetAction.toLowerCase().includes('intralipid'), 'LAST crisis must include Lipid rescue');
+
+const q39 = DUS_SIMULATION_REGISTRY['q_dus_39'];
+assert(q39.crisis.targetAction.toLowerCase().includes('knie-brust') || q39.crisis.targetAction.toLowerCase().includes('phenylephrin'), 'Tet-spell must include knee-chest or phenylephrine');
+
+const q40 = DUS_SIMULATION_REGISTRY['q_dus_40'];
+assert(q40.koCriteria.failureReason.toLowerCase().includes('succinylcholin'), 'Burn trauma must warn against succinylcholine');
+
+const q41 = DUS_SIMULATION_REGISTRY['q_dus_41'];
+assert(q41.koCriteria.failureReason.toLowerCase().includes('oxytocin'), 'Notsectio must warn against oxytocin boluses');
+
+const q42 = DUS_SIMULATION_REGISTRY['q_dus_42'];
+assert(q42.crisis.targetAction.toLowerCase().includes('larson') || q42.crisis.targetAction.toLowerCase().includes('cpap'), 'NPPE crisis must include Larson maneuver or CPAP');
+
+console.log('[PASS] Suite 32 passed! Verified complete answers, Turkish translations, all steps, and clinical accuracy across all simulations.');
+
+console.log('\n🎉 ALL 32 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 
