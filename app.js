@@ -119,12 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ÄKNO Live Simulation Cockpit Elements
   const elSimLiveCockpit = document.getElementById('sim-live-cockpit');
   const elSimExaminerAvatar = document.getElementById('sim-examiner-avatar');
+  const elSimExaminerAvatarBox = document.getElementById('sim-examiner-avatar-box');
   const elSimExaminerName = document.getElementById('sim-examiner-name');
   const elSimExaminerClinic = document.getElementById('sim-examiner-clinic');
   const elBtnSimSpeakStem = document.getElementById('btn-sim-speak-stem');
   const elBtnSimPeekStem = document.getElementById('btn-sim-peek-stem');
   const elSimPeekLabel = document.getElementById('sim-peek-label');
   const elBtnSimTriggerCrisis = document.getElementById('btn-sim-trigger-crisis');
+  const elBtnSimToggleExaminerProfile = document.getElementById('btn-sim-toggle-examiner-profile');
+  const elSimProfileBtnLabel = document.getElementById('sim-profile-btn-label');
+  const elSimExaminerDrawer = document.getElementById('sim-examiner-drawer');
+  const elSimExaminerDrawerContent = document.getElementById('sim-examiner-drawer-content');
   const elSimRhetoricPrompter = document.getElementById('sim-rhetoric-prompter');
   const elSimCrisisBanner = document.getElementById('sim-crisis-banner');
   const elSimCrisisTitle = document.getElementById('sim-crisis-title');
@@ -1168,7 +1173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (reg && reg.examiner) return reg.examiner;
     }
     if (q.examiner_profile) return q.examiner_profile;
-    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.source_book || '')).toLowerCase();
+    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.source_book || '') + ' ' + (q.category || '')).toLowerCase();
 
     if (text.includes('aortenklappen') || text.includes('einlungenventilation') || text.includes('dlt') || text.includes('annecke') || text.includes('doppellumentubus')) {
       return {
@@ -1181,7 +1186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         keywords: 'SVR hochhalten, Noradrenalin/Phenylephrin, Arterie VOR Einleitung, 100% FiO₂ → CPAP kollabierte Lunge',
         keywords_tr: "SVR'yi yüksek tut, Noradrenalin/Fenilefrin, İndüksiyondan ÖNCE arter, %100 FiO2 -> Kollabe akciğere CPAP"
       };
-    } else if (text.includes('sugammadex') || text.includes('relaxometrie') || text.includes('tof') || text.includes('hohn') || text.includes('aufwachraum')) {
+    } else if (text.includes('sugammadex') || text.includes('relaxometrie') || text.includes('tof') || text.includes('hohn') || text.includes('aufwachraum') || text.includes('rocuronium')) {
       return {
         name: 'Prof. Dr. med. Andreas Hohn',
         hospital: 'Chefarzt Ev. Krankenhaus Köln-Kalk / ehem. UK Köln · ÄKNO Fachprüfer',
@@ -1190,9 +1195,9 @@ document.addEventListener('DOMContentLoaded', () => {
         trap: 'Extubation ohne Relaxometrie-Nachweis oder Verwechslung von NPPE mit Muskelrelaxanzien-Überhang',
         trap_tr: 'Relaksometri kanıtı olmadan ekstübe etmek veya NPPE ile gevşetici kalıntısını karıştırmak',
         keywords: 'TOF-Ratio ≥ 0.9, Sugammadex 16 mg/kg Notfall-Rescue, Posttetanic Count (PTC), Physostigmin bei ZAS',
-        keywords_tr: 'TOF oranı >= 0.9, Sugammadeks 16 mg/kg acil kurtarma, Posttetanik sayım (PTC), ZAS\'ta Fizostigmin'
+        keywords_tr: "TOF oranı >= 0.9, Sugammadeks 16 mg/kg acil kurtarma, Posttetanik sayım (PTC), ZAS'ta Fizostigmin"
       };
-    } else if (text.includes('kienbaum') || text.includes('polytrauma') || text.includes('rotem') || text.includes('schädel-hirn') || text.includes('massivtransfusion') || text.includes('tee')) {
+    } else if (text.includes('kienbaum') || text.includes('polytrauma') || text.includes('rotem') || text.includes('schädel-hirn') || text.includes('massivtransfusion') || text.includes('tee') || text.includes('picco') || text.includes('blutung') || text.includes('gerinnung')) {
       return {
         name: 'Prof. Dr. med. Peter Kienbaum',
         hospital: 'Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)',
@@ -1201,9 +1206,9 @@ document.addEventListener('DOMContentLoaded', () => {
         trap: 'Permissive Hypotonie bei Schädel-Hirn-Trauma (absolutes K.O.-Kriterium!) oder ungezielte FFP-Gabe ohne ROTEM',
         trap_tr: 'Kafa travmasında permissif hipotansiyon uygulamak (kesin K.O. kriteri!) veya ROTEM\'siz körlemesine FFP vermek',
         keywords: 'CPP = MAP - ICP, kein PEEP-Überdruck bei Spannungspneu, Fibrinogen bei FIBTEM A10 < 10 mm, TXA vor 3h',
-        keywords_tr: 'CPP = MAP - ICP, Tansiyon pnömotoraksta PEEP\'ten kaçın, FIBTEM A10 < 10 mm ise Fibrinojen, İlk 3 saatte TXA'
+        keywords_tr: "CPP = MAP - ICP, Tansiyon pnömotoraksta PEEP'ten kaçın, FIBTEM A10 < 10 mm ise Fibrinojen, İlk 3 saatte TXA"
       };
-    } else if (text.includes('wappler') || text.includes('maligne hyperthermie') || text.includes('dantrolen') || text.includes('last') || text.includes('intralipid')) {
+    } else if (text.includes('wappler') || text.includes('maligne hyperthermie') || text.includes('dantrolen') || text.includes('last') || text.includes('intralipid') || text.includes('lokalanästhetika')) {
       return {
         name: 'Prof. Dr. med. Frank Wappler',
         hospital: 'Kliniken der Stadt Köln / Universität Witten/Herdecke · Nationales MH-Referenzzentrum',
@@ -1212,18 +1217,73 @@ document.addEventListener('DOMContentLoaded', () => {
         trap: 'Kalziumantagonisten bei V.a. MH oder Vasopressin/Lidocain bei LAST (sofortiges Durchfallen!)',
         trap_tr: 'Malign hipertermide kalsiyum kanal blokeri veya LAST\'ta Vazopressin/Lidokain vermek (anında sınavdan kalma!)',
         keywords: 'Trigger STOP, 100% O₂ High Flow, Dantrolen 2.5 mg/kg i.v., Intralipid 1.5 ml/kg Bolus, Kühlung bis 38.5°C',
-        keywords_tr: 'Tetikleyiciyi DERHAL KES, %100 O2 High Flow, Dantrolen 2.5 mg/kg i.v., İntralipid 1.5 ml/kg bolus, 38.5°C\'ye soğutma'
+        keywords_tr: "Tetikleyiciyi DERHAL KES, %100 O2 High Flow, Dantrolen 2.5 mg/kg i.v., İntralipid 1.5 ml/kg bolus, 38.5°C'ye soğutma"
       };
-    } else if (text.includes('sectio') || text.includes('eklampsie') || text.includes('hellp') || text.includes('schwanger') || text.includes('pädiatr') || text.includes('kind')) {
+    } else if (text.includes('sectio') || text.includes('eklampsie') || text.includes('hellp') || text.includes('schwanger') || text.includes('geburt') || text.includes('partus') || text.includes('pph')) {
       return {
-        name: 'ÄKNO Spezialkommission Geburtshilfe & Pädiatrie',
-        hospital: 'Ärztekammer Nordrhein (Düsseldorf) · Fachprüfer für Notfallsektio & Pädiatrie',
-        focus: 'Notsectio EEZ ≤ 20 min, Linksseitenkippung 15–30°, Magnesiumsulfat 4–6 g, Larson-Punkt bei Laryngospasmus',
-        focus_tr: 'Acil sezaryen EEZ <= 20 dk, Sol yan eğim 15-30°, Magnezyum sülfat 4-6 g, Laringospazmda Larson noktası',
+        name: 'ÄKNO Spezialkommission Geburtshilfe (Düsseldorf)',
+        hospital: 'Ärztekammer Nordrhein (Düsseldorf) · Fachprüfer für Notfallsektio & Risikoschwangerschaft',
+        focus: 'Notsectio EEZ ≤ 20 min, Linksseitenkippung 15–30°, Magnesiumsulfat 4–6 g, PPH-Stufenkonzept',
+        focus_tr: 'Acil sezaryen EEZ <= 20 dk, Sol yan eğim 15-30°, Magnezyum sülfat 4-6 g, Postpartum kanama basamakları',
         trap: 'Vergessen der Linksseitenkippung (Vena-cava-Kompression) oder Spinalanästhesie bei Thrombozytopenie < 50.000/µl',
         trap_tr: 'Sol yan eğimi unutmak (Vena kava basısı) veya Trombosit < 50.000/µl iken spinal anestezi yapmak',
-        keywords: '15–30° Linksseitenkippung, RSI mit Krikoiddruck (Sellick), Tubus mit Cuff (ID = Alter/4 + 3.5), Atropin 0.02 mg/kg',
-        keywords_tr: '15-30° Sol yan eğim, Sellick manevrasıyla RSI, Kaf\'lı endotrakeal tüp (Çap = Yaş/4 + 3.5), Atropin 0.02 mg/kg'
+        keywords: '15–30° Linksseitenkippung, RSI mit Krikoiddruck (Sellick), Oxytocin/Sulproston, Magnesiumsulfat',
+        keywords_tr: '15-30° Sol yan eğim, Sellick manevrasıyla RSI, Oksitosin/Sulproston, Magnezyum sülfat'
+      };
+    } else if (text.includes('pädiatr') || text.includes('kind') || text.includes('säugling') || text.includes('neonat') || text.includes('laryngospasmus')) {
+      return {
+        name: 'ÄKNO Pädiatrie- & Notfallkommission (Düsseldorf)',
+        hospital: 'Universitätsklinikum Düsseldorf (UKD) · Sektion Pädiatrische Anästhesiologie',
+        focus: 'Kindlicher Atemweg, Larson-Punkt bei Laryngospasmus, Tubusberechnung (Alter/4 + 3.5 mit Cuff), Bradykardie-Therapie',
+        focus_tr: 'Çocuk havayolu anatomisi, Laringospazmda Larson noktası, Kaf\'lı tüp hesabı (Yaş/4 + 3.5), Bradikardi tedavisi',
+        trap: 'Hypoxie-bedingte Bradykardie ignorieren oder blinde Überdruckbeatmung bei Fremdkörperaspiration',
+        trap_tr: 'Hipoksiye bağlı gelişen bradikardiyi görmezden gelmek veya yabancı cisim aspirasyonunda kör basınca zorlamak',
+        keywords: 'Tubus ID = Alter/4 + 3.5, Larson-Handgriff, 100% O₂ CPAP, Atropin 0.02 mg/kg, Hypoxie sofort beheben',
+        keywords_tr: 'Tüp ID = Yaş/4 + 3.5, Larson manevrası, %100 O2 CPAP, Atropin 0.02 mg/kg, Hipoksiyi derhal çöz'
+      };
+    } else if (text.includes('elektrolyt') || text.includes('hyponatriämie') || text.includes('hyperkaliämie') || text.includes('säure-basen') || text.includes('bga') || text.includes('blutgas') || text.includes('natrium') || text.includes('kalium') || text.includes('osmolar') || text.includes('kalzium') || text.includes('chemie')) {
+      return {
+        name: 'Prof. Dr. med. Thorsten Annecke',
+        hospital: 'Klinikum Leverkusen / ÄKNO Prüfungsvorsitzender · Intensiv- & Stoffwechselmonitoring',
+        focus: 'Hyponatriämie & ODS-Prävention (max. 8–10 mmol/l/24h), Hyperkaliämie-Notfallstufen (Kalzium, Glukose-Insulin, Dialyse), BGA-Interpretation',
+        focus_tr: 'Hiponatremi & Osmotik Demyelinizasyon önleme (maks. 8-10 mmol/l/24sa), Hiperkalemi acil basamakları (Kalsiyum, Glukoz-İnsülin, Diyaliz), BGA analizi',
+        trap: 'Zu rascher Natriumausgleich (> 10 mmol/l/24h -> Pontine Myelinolyse) oder Kalziumgabe bei Digitalis-Intoxikation',
+        trap_tr: 'Çok hızlı sodyum düzeltilmesi (> 10 mmol/l/24sa -> Santral Pontin Miyelinoliz) veya digital intoksikasyonunda kalsiyum vermek',
+        keywords: 'NaCl 3% hyperton, max. 8–10 mmol/l/24h, Kalziumglukonat 10%, Glukose 20% + Alt-Insulin, Salbutamol, Stewart-Konzept',
+        keywords_tr: 'Hipertonik %3 NaCl, maks. 8-10 mmol/l/24sa, %10 Kalsiyum glukonat, %20 Glukoz + Regüler İnsülin, Salbutamol, Stewart yaklaşımı'
+      };
+    } else if (text.includes('sepsis') || text.includes('intensiv') || text.includes('ards') || text.includes('schock') || text.includes('noradrenalin') || text.includes('vasopressor')) {
+      return {
+        name: 'ÄKNO Intensivkommission (DIVI / UK Düsseldorf)',
+        hospital: 'Universitätsklinikum Düsseldorf / Klinikum Leverkusen · Operative Intensivmedizin',
+        focus: 'Surviving Sepsis Campaign 1-Hour-Bundle, Laktat-Clearance, differenzierte Katecholamintherapie (MAP ≥ 65 mmHg), ARDS-Netzwerk',
+        focus_tr: 'Surviving Sepsis 1 Saat Paketi, Laktat klirensi, hedefe yönelik vazopressör titrasyonu (MAP >= 65 mmHg), ARDS koruyucu ventilasyon',
+        trap: 'Verzögerte Antibiosegabe (> 1h nach Sepsis-Erkennung) oder exzessive Hypervolämie bei septischer Kardiomyopathie',
+        trap_tr: 'Antibiyotik uygulamasının gecikmesi (> 1 saat) veya septik kardiyomiyopatide kontrolsüz aşırı sıvı yüklemesi',
+        keywords: '1-Hour-Bundle, Blutkulturen VOR Antibiotika, Noradrenalin Ziel-MAP ≥ 65, Vasopressin als Second-Line, Hydrocortison',
+        keywords_tr: '1 Saat Paketi, Antibiyotikten ÖNCE kan kültürü, Noradrenalin hedef MAP >= 65, İkinci basamak Vazopressin, Hidrokortizon'
+      };
+    } else if (text.includes('regional') || text.includes('spinal') || text.includes('peridural') || text.includes('pda') || text.includes('plexus') || text.includes('block') || text.includes('schmerz')) {
+      return {
+        name: 'DGAI / ÄKNO Kommission Regionalanästhesie',
+        hospital: 'Ärztekammer Nordrhein (Düsseldorf) · Sektion Regionalanästhesie & Akutschmerz',
+        focus: 'Ultraschallgezielte Regionalanästhesie, DGAI-Empfehlungen zur Rückenmarknahen Regionalanästhesie unter Antikoagulation, LAST-Rescue',
+        focus_tr: 'Ultrason kılavuzluğunda bölgesel anestezi, Antikoagülan kullanan hastada santral blok kılavuzları, LAST kurtarma protokolü',
+        trap: 'Rückenmarksnahe Punktion ohne Abwarten der gerinnungshemmenden Zeitintervalle oder fehlende Aspiration vor LA-Injektion',
+        trap_tr: 'Antikoagülan ilaçların güvenlik aralıkları beklenmeden santral blok yapmak veya enjeksiyondan önce aspirasyon yapmamak',
+        keywords: 'Ultraschall-Visualisierung, Fraktionierte Injektion mit Aspiration, Zeitabstände NMH/DOAK, Intralipid 20% griffbereit',
+        keywords_tr: 'Ultrason görselleştirmesi, Aspirasyon ile fraksiyone enjeksiyon, DMAH/DOAK bekleme süreleri, %20 İntralipid el altında'
+      };
+    } else if (text.includes('atemweg') || text.includes('intubation') || text.includes('cormack') || text.includes('koniotomie') || text.includes('videolaryngoskop') || text.includes('beatmung')) {
+      return {
+        name: 'Prof. Dr. med. Thorsten Annecke & Prof. Dr. med. Andreas Hohn',
+        hospital: 'DGAI Kommission Atemwegsmanagement / ÄKNO Düsseldorf',
+        focus: 'DGAI-Stufenplan schwieriger Atemweg, Videolaryngoskopie als Primärverfahren, eFONA / Skalpell-Koniotomie bei CICO',
+        focus_tr: 'DGAI zor havayolu basamaklı planı, Birinci seçenek olarak videolaringoskopi, CICO durumunda skalpel koniyotomi (eFONA)',
+        trap: 'Mehr als 3 Intubationsversuche ohne Planwechsel oder Zögern bei eFONA im Can-not-intubate-can-not-oxygenate-Szenario',
+        trap_tr: 'Plan değiştirmeden 3\'ten fazla başarısız entübasyon denemesi veya CICO durumunda koniyotomide tereddüt etmek',
+        keywords: 'DGAI-Stufenplan, Videolaryngoskopie, Larynxmaske Plan B, eFONA Skalpell-Bougie-Tubus Plan D, 100% O₂',
+        keywords_tr: 'DGAI basamaklı planı, Videolaringoskopi, Plan B Laringeal Maske, Plan D Skalpel-buji-tüp eFONA, %100 O2'
       };
     } else if (q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'))) {
       return {
@@ -1237,6 +1297,19 @@ document.addEventListener('DOMContentLoaded', () => {
         keywords_tr: 'ABCDE algoritması, net ekip talimatları, zamanında nedensel tedavi, K.O. kriterlerinden kaçınma'
       };
     }
+
+    // Universal Authentic ÄKNO Düsseldorf Board Profile Fallback
+    return {
+      name: 'Prof. Dr. med. Thorsten Annecke / Prof. Dr. med. Peter Kienbaum',
+      hospital: 'ÄKNO Prüfungskommission Düsseldorf · Haus der Ärzteschaft, Tersteegenstr. 9',
+      focus: 'Strukturierte Priorisierung nach ABCDE, Patientensicherheit vor Detailwissen, evidenzbasierte DGAI/ESAIC-Leitlinien & klare Team-Kommunikation',
+      focus_tr: 'ABCDE\'ye göre yapılandırılmış önceliklendirme, Teorik ayrıntıdan önce hasta güvenliği, Kanıta dayalı DGAI/ESAIC kılavuzları & net ekip komutları',
+      trap: 'Zögern bei vitaler Bedrohung, unstrukturiertes Aufzählen von Medikamenten ohne Indikation, Missachten von K.O.-Kriterien',
+      trap_tr: 'Hayati tehlikede tereddüt etmek, endikasyonsuz ilaç sıralamak, K.O. kriterlerine (kontrendikasyonlara) dikkat etmemek',
+      keywords: 'ABCDE-Schema, Vitalfunktionen sichern, zielgerichtete Kausaltherapie, K.O.-Kriterien vermeiden, Team-Ressource-Management (CRM)',
+      keywords_tr: 'ABCDE algoritması, Hayati fonksiyonları güvenceye alma, Hedefe yönelik nedensel tedavi, K.O. kriterlerinden kaçınma, CRM iletişimi'
+    };
+  }
     return null;
   }
 
@@ -4947,7 +5020,6 @@ Tedavi:
 
   if (elBtnCheck) elBtnCheck.addEventListener('click', checkAnswer);
   if (elBtnReview) elBtnReview.addEventListener('click', toggleFlagForReview);
-  if (elBtnReveal) elBtnReveal.addEventListener('click', revealAnswer);
   if (elBtnKnewIt) elBtnKnewIt.addEventListener('click', () => selfAssess(true));
   if (elBtnDidntKnow) elBtnDidntKnow.addEventListener('click', () => selfAssess(false));
 
