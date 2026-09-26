@@ -102,13 +102,10 @@ Jede Frage enthält strukturierte Rubrik-Karten, die exakt auf die Notengebung d
 
 Für maximale Sprachpräzision und lebensechte Prüfungssimulation verfügt die Suite über eine hochmoderne deutsche Sprachausgabe (`de-DE`) mit phonetischer medizinischer Textaufbereitung:
 
-1. **🗣️ Stimmenauswahl (Neural / Siri / KI-Stimmen)**:
-   - Direkt in der Werkzeugleiste neben dem Tempowahlschalter können Sie auf **`🗣️ Stimme`** klicken.
-   - Wählen Sie aus allen auf Ihrem System installierten Stimmen (z. B. **Apple Siri**, **Google Deutsch**, **Microsoft Katja Natural**).
-   - Klicken Sie auf **`▶️ Probe anhören`**, um die Stimme vorab mit einem realistischen Facharzt-Prüfungssatz zu testen.
-   - **Tipp für macOS & iOS (Menschliche Stimme ohne Roboter-Klang):**
-     - Öffnen Sie auf Ihrem Mac: *Systemeinstellungen > Bedienungshilfen > Gesprochene Inhalte > Systemstimme*.
-     - Wählen Sie unter *Deutsch* entweder **Siri** (Stimme 1 / 2) oder **Anna (Verbessert)** / **Markus (Verbessert)** und laden Sie diese kostenlos herunter. Die Suite erkennt diese sofort und spricht wie ein menschlicher Kollege.
+1. **🌟 Google Deutsch HD (Permanente, natürliche KI-Stimme)**:
+   - Fest integriert und dauerhaft als Standardstimme aktiv: **Google Deutsch HD** (`de-DE`).
+   - Keine manuelle Menü-Konfiguration oder mühsames Suchen in langen Listen nötig – funktioniert sofort auf **Mac, iPhone, iPad und PC**.
+   - Bietet sauberen, natürlichen Klang ohne den typischen blechernen Roboterklang alter Synthesizer.
 
 2. **🩺 Phonetische medizinische Textaufbereitung (Kein Roboter-Stottern mehr)**:
    - Medizinische Abkürzungen werden vor der Ausgabe automatisch in flüssiges medizinisches Deutsch übersetzt:
@@ -119,18 +116,19 @@ Für maximale Sprachpräzision und lebensechte Prüfungssimulation verfügt die 
      - `2 mg/kg KG Propofol i.v.` &rarr; *"2 Milligramm pro Kilogramm Körpergewicht Propofol intravenös"*
      - `1:10.000 Noradrenalin` &rarr; *"eins zu zehntausend Noradrenalin"*
    - Markdown-Sonderzeichen (`**`, `###`) und Emojis werden gefiltert, damit die Stimme flüssig durchspricht.
-   - **Satzweises Atmen (Natural Prosody)**: Lange Texte werden in natürliche Satzblöcke unterteilt mit 50ms Mikro-Atempausen, was den typischen monotonen Roboterklang komplett beseitigt.
+   - **Satzweises Atmen (Natural Prosody)**: Lange Texte werden in natürliche Satzblöcke unterteilt mit feinen Pausen für lebensechte Sprachmelodie.
 
-3. **🔊 Vorlese-Funktionen**:
+3. **⚡ YouTube-Style Geschwindigkeits-Regler (Schieberegler & Presets)**:
+   - Klick auf **`⚡ 0.95x ▾`** öffnet das Geschwindigkeitsmenü genau wie bei YouTube:
+     - **Interaktiver Schieberegler (Slider-Bar)**: Stufenlos von `0.5x` bis `1.5x` in 0.05x-Schritten einstellbar.
+     - **Direkt-Presets**: `0.75x`, `0.85x`, `0.95x (Optimal)`, `1.0x (Normal)`, `1.15x`, `1.25x`, `1.5x`.
+     - **Echtzeit-Anpassung**: Das Tempo ändert sich sogar während des Sprechens live, ohne Unterbrechung.
+
+4. **🔊 Vorlese-Funktionen**:
    - **🔊 Fragentext vorlesen** (Karten-Kopfzeile): Liest den Fall und die Ausgangsfrage vor.
    - **🔊 Prüferfrage vorlesen** (Schritt 3): Simuliert die direkte Ansprache durch den Prüfungsvorsitzenden.
    - **🔊 Redemittel vorlesen** (Schritt 4): Liest die Modellantwort im idealen Prüfungsrhythmus vor.
    - **Klick-Stopp (Toggle)**: Ein erneuter Klick auf den aktiven Vorlesebutton stoppt die Sprachausgabe sofort.
-
-4. **⚡ Tempowahlschalter (`0.8x / 0.95x / 1.15x`)**:
-   - `0.8x`: Verlangsamtes Lerntempo für schwierige Fachwörter und Artikulationstraining.
-   - `0.95x`: Natürliches, souveränes Prüfungstempo (Standard).
-   - `1.15x`: Schneller Stresstest für Fortgeschrittene.
 
 ---
 

@@ -81,6 +81,9 @@
           <button id="grid-trigger" class="pill-btn" title="Fragenübersicht & Navigation">
             <span>📑</span> <span class="pill-btn-text">Übersicht</span>
           </button>
+          <button id="abbrev-trigger" class="pill-btn" title="Kürzel- & Fachwortlexikon (Abkürzungen / Kısaltmalar Kılavuzu)">
+            <span>🔤</span> <span class="pill-btn-text">Kürzel (TR/DE)</span>
+          </button>
           <button id="user-guide-trigger" class="pill-btn" title="Offizieller Benutzerleitfaden & Prüfungsanleitung">
             <span>📖</span> <span class="pill-btn-text">Leitfaden</span>
           </button>
@@ -289,36 +292,44 @@
           <span>🔊 Vorlesen</span>
         </button>
 
-        <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" title="Aussprache-Tempo anpassen (0.8x / 1.0x / 1.2x)">
-          <span class="tool-icon">⚡</span>
-          <span id="audio-speed-display">0.95x</span>
-        </button>
-
-        <!-- Natural Neural Voice Selector (Automatic HD Voice for Mac & iPhone) -->
-        <div class="voice-picker-wrapper" id="voice-picker-wrapper">
-          <button id="btn-audio-voice" class="oral-tool-btn audio-voice-pill" type="button" title="Natürliche Stimme aktiv (Automatisch für Mac & iPhone)">
-            <span class="tool-icon">✨</span>
-            <span id="audio-voice-display" class="voice-name-text">Natürliche Stimme</span>
-            <span class="voice-caret">▾</span>
+        <!-- YouTube-Style Playback Speed Menu & Range Slider -->
+        <div class="speed-control-wrapper" id="speed-control-wrapper">
+          <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" type="button" title="Wiedergabegeschwindigkeit anpassen (0.5x – 1.5x)">
+            <span class="tool-icon">⚡</span>
+            <span id="audio-speed-display">0.95x</span>
+            <span class="speed-caret">▾</span>
           </button>
-          
-          <div id="audio-voice-dropdown" class="audio-voice-dropdown" style="display: none;" role="dialog" aria-label="Vorlesestimme auswählen">
-            <div class="voice-dropdown-header">
-              <span class="voice-dropdown-title">🎙️ Vorlesestimme</span>
-              <button id="btn-close-voice-dropdown" class="voice-close-btn" type="button" aria-label="Schließen">&times;</button>
+
+          <div id="audio-speed-dropdown" class="audio-speed-dropdown" style="display: none;" role="dialog" aria-label="Wiedergabegeschwindigkeit">
+            <div class="speed-dropdown-header">
+              <span class="speed-header-title">⚡ Geschwindigkeit</span>
+              <span id="speed-slider-val-badge" class="speed-val-badge">0.95x</span>
             </div>
-            <div id="voice-options-list" class="voice-options-list">
-              <div class="voice-loading-notice">Lade Stimmen...</div>
+            
+            <!-- Interactive Slider Bar -->
+            <div class="speed-slider-container">
+              <span class="slider-limit-label">0.5x</span>
+              <input type="range" id="audio-speed-slider" class="speed-range-slider" min="0.5" max="1.5" step="0.05" value="0.95" aria-label="Geschwindigkeit Regler">
+              <span class="slider-limit-label">1.5x</span>
             </div>
-            <div class="voice-dropdown-footer">
-              <button id="btn-test-voice-preview" class="btn-voice-preview" type="button">
-                <span>▶️</span> Probe anhören
-              </button>
-              <div class="voice-mac-tip">
-                🍎 <strong>100% Automatisch für Mac &amp; iPhone:</strong> Die lebensechte Sprachausgabe ist standardmäßig aktiv. Sie müssen auf Ihrem Gerät nichts einstellen oder herunterladen.
-              </div>
+
+            <!-- YouTube-Style Presets -->
+            <div class="speed-presets-list" id="speed-presets-list">
+              <button class="speed-preset-item" type="button" data-rate="0.75">0.75x</button>
+              <button class="speed-preset-item" type="button" data-rate="0.85">0.85x</button>
+              <button class="speed-preset-item active" type="button" data-rate="0.95">0.95x <span class="speed-preset-tag">(Optimal)</span></button>
+              <button class="speed-preset-item" type="button" data-rate="1.0">1.0x <span class="speed-preset-tag">(Normal)</span></button>
+              <button class="speed-preset-item" type="button" data-rate="1.15">1.15x</button>
+              <button class="speed-preset-item" type="button" data-rate="1.25">1.25x</button>
+              <button class="speed-preset-item" type="button" data-rate="1.5">1.5x</button>
             </div>
           </div>
+        </div>
+
+        <!-- Google Deutsch HD Badge (Permanent Natural Voice) -->
+        <div class="google-voice-badge" id="google-voice-badge" title="Dauerhaft aktiv: Google Deutsch Neural HD für Mac &amp; iPhone (Kein Einrichten nötig)">
+          <span class="tool-icon">🌟</span>
+          <span>Google Deutsch HD</span>
         </div>
       </div>
 
@@ -1794,6 +1805,54 @@
     </div>
   </div>
 
+  <!-- Abbreviations & Acronyms Guide Modal (Kürzel- & Fachwortlexikon / Kısaltmalar Kılavuzu) -->
+  <div id="abbrev-modal" class="modal-backdrop">
+    <div class="modal-content abbrev-modal-dialog">
+      <div class="modal-header">
+        <div class="abbrev-header-title">
+          <h2>🔤 Anästhesie Fachwort- & Kürzel-Lexikon</h2>
+          <span class="abbrev-header-sub">Klinisches Facharzt-Abkürzungsverzeichnis & Kısaltmalar Kılavuzu (DE / TR)</span>
+        </div>
+        <button id="abbrev-modal-close" class="btn-icon" title="Schließen (Esc)">✕</button>
+      </div>
+      <div class="modal-body abbrev-modal-body">
+        <!-- Live Search & Category Filter Controls -->
+        <div class="abbrev-controls-wrap">
+          <div class="abbrev-search-bar">
+            <span class="abbrev-search-icon">🔍</span>
+            <input type="text" id="abbrev-search-input" class="abbrev-search-input" placeholder="Kürzel oder Begriff suchen (z. B. DLT, LAST, ROTEM, ECMO, ARDS, Horovitz, RSI)..." autocomplete="off" />
+            <button id="abbrev-search-clear" class="abbrev-search-clear" title="Suche leeren" style="display: none;">✕</button>
+          </div>
+
+          <div class="abbrev-filter-bar" id="abbrev-filter-bar">
+            <button class="abbrev-filter-btn active" data-cat="all">Alle (<span id="abbrev-count-all">0</span>)</button>
+            <button class="abbrev-filter-btn" data-cat="airway">🫁 Atemweg & Beatmung</button>
+            <button class="abbrev-filter-btn" data-cat="hemodynamics">💓 Hämodynamik</button>
+            <button class="abbrev-filter-btn" data-cat="pharma">💊 Pharmakologie</button>
+            <button class="abbrev-filter-btn" data-cat="resuscitation">🚨 Notfall & Hämostase</button>
+            <button class="abbrev-filter-btn" data-cat="neuro_reg">🧠 Neuro & Regional</button>
+            <button class="abbrev-filter-btn" data-cat="peds_obs">👶 Pädiatrie & ICU</button>
+          </div>
+
+          <div class="abbrev-status-row">
+            <div id="abbrev-status-text" class="abbrev-status-text">Zeigt 0 von 0 Abkürzungen</div>
+            <div class="abbrev-view-toggle">
+              <label class="abbrev-toggle-label" title="Türkçe çevirileri aç/kapat">
+                <input type="checkbox" id="abbrev-toggle-tr" checked />
+                <span>🇹🇷 Türkçe Açıklamaları Göster</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards Grid Container -->
+        <div id="abbrev-cards-grid" class="abbrev-cards-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -1805,6 +1864,7 @@
   <script src="js/storage_idb.js"></script>
   <script src="js/sm2.js"></script>
   <script src="js/voice.js"></script>
+  <script src="js/abbreviations_data.js"></script>
   <script src="js/exam_simulation.js"></script>
   <script src="questions.js"></script>
   <script src="app.js"></script>

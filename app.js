@@ -3905,6 +3905,221 @@ Tedavi:
   }
 
   // ==========================================================================
+  // ANESTHESIA ABBREVIATIONS & ACRONYMS GUIDE (KÜRZEL-LEXIKON / KISALTMALAR KILAVUZU)
+  // ==========================================================================
+  const elAbbrevTrigger = document.getElementById('abbrev-trigger');
+  const elAbbrevModal = document.getElementById('abbrev-modal');
+  const elAbbrevModalClose = document.getElementById('abbrev-modal-close');
+  const elAbbrevSearchInput = document.getElementById('abbrev-search-input');
+  const elAbbrevSearchClear = document.getElementById('abbrev-search-clear');
+  const elAbbrevFilterBar = document.getElementById('abbrev-filter-bar');
+  const elAbbrevCardsGrid = document.getElementById('abbrev-cards-grid');
+  const elAbbrevStatusText = document.getElementById('abbrev-status-text');
+  const elAbbrevCountAll = document.getElementById('abbrev-count-all');
+  const elAbbrevToggleTr = document.getElementById('abbrev-toggle-tr');
+
+  let abbrevCurrentCat = 'all';
+  let abbrevSearchQuery = '';
+  let abbrevShowTurkish = true;
+
+  function initAbbreviationsGuide() {
+    const list = (typeof ANESTHESIA_ABBREVIATIONS !== 'undefined' ? ANESTHESIA_ABBREVIATIONS : (window.ANESTHESIA_ABBREVIATIONS || []));
+    if (elAbbrevCountAll) {
+      elAbbrevCountAll.textContent = list.length;
+    }
+
+    if (elAbbrevTrigger && elAbbrevModal) {
+      elAbbrevTrigger.addEventListener('click', () => {
+        elAbbrevModal.classList.add('active');
+        renderAbbreviations();
+        if (elAbbrevSearchInput) {
+          setTimeout(() => elAbbrevSearchInput.focus(), 80);
+        }
+      });
+    }
+
+    if (elAbbrevModalClose && elAbbrevModal) {
+      elAbbrevModalClose.addEventListener('click', () => closeModal(elAbbrevModal));
+    }
+
+    if (elAbbrevModal) {
+      elAbbrevModal.addEventListener('click', (e) => {
+        if (e.target === elAbbrevModal) closeModal(elAbbrevModal);
+      });
+    }
+
+    if (elAbbrevSearchInput) {
+      elAbbrevSearchInput.addEventListener('input', (e) => {
+        abbrevSearchQuery = e.target.value;
+        if (elAbbrevSearchClear) {
+          elAbbrevSearchClear.style.display = abbrevSearchQuery ? 'block' : 'none';
+        }
+        renderAbbreviations();
+      });
+    }
+
+    if (elAbbrevSearchClear && elAbbrevSearchInput) {
+      elAbbrevSearchClear.addEventListener('click', () => {
+        elAbbrevSearchInput.value = '';
+        abbrevSearchQuery = '';
+        elAbbrevSearchClear.style.display = 'none';
+        renderAbbreviations();
+        elAbbrevSearchInput.focus();
+      });
+    }
+
+    if (elAbbrevFilterBar) {
+      const filterBtns = elAbbrevFilterBar.querySelectorAll('.abbrev-filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          abbrevCurrentCat = btn.getAttribute('data-cat') || 'all';
+          renderAbbreviations();
+        });
+      });
+    }
+
+    if (elAbbrevToggleTr) {
+      elAbbrevToggleTr.addEventListener('change', (e) => {
+        abbrevShowTurkish = e.target.checked;
+        const trElements = elAbbrevCardsGrid ? elAbbrevCardsGrid.querySelectorAll('.abbrev-tr-content') : [];
+        trElements.forEach(el => {
+          el.style.display = abbrevShowTurkish ? (el.classList.contains('abbrev-term-tr') ? 'flex' : 'block') : 'none';
+        });
+      });
+    }
+
+    // Keyboard shortcuts (Alt+A to open/toggle, Escape to close)
+    document.addEventListener('keydown', (e) => {
+      if (e.altKey && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        if (elAbbrevModal) {
+          if (elAbbrevModal.classList.contains('active')) {
+            closeModal(elAbbrevModal);
+          } else {
+            elAbbrevModal.classList.add('active');
+            renderAbbreviations();
+            if (elAbbrevSearchInput) setTimeout(() => elAbbrevSearchInput.focus(), 80);
+          }
+        }
+      }
+      if (e.key === 'Escape' && elAbbrevModal && elAbbrevModal.classList.contains('active')) {
+        closeModal(elAbbrevModal);
+      }
+    });
+
+    renderAbbreviations();
+  }
+
+  function renderAbbreviations() {
+    if (!elAbbrevCardsGrid) return;
+    const allItems = (typeof ANESTHESIA_ABBREVIATIONS !== 'undefined' ? ANESTHESIA_ABBREVIATIONS : (window.ANESTHESIA_ABBREVIATIONS || []));
+    const query = abbrevSearchQuery.trim().toLowerCase();
+
+    const filtered = allItems.filter(item => {
+      // 1. Category filter
+      if (abbrevCurrentCat !== 'all' && item.category !== abbrevCurrentCat) {
+        return false;
+      }
+      // 2. Search query filter
+      if (query) {
+        const matchAbbr = item.abbr && item.abbr.toLowerCase().includes(query);
+        const matchDeFull = item.de_full && item.de_full.toLowerCase().includes(query);
+        const matchTrFull = item.tr_full && item.tr_full.toLowerCase().includes(query);
+        const matchDeDesc = item.de_desc && item.de_desc.toLowerCase().includes(query);
+        const matchTrDesc = item.tr_desc && item.tr_desc.toLowerCase().includes(query);
+        const matchPearl = (item.exam_pearl && item.exam_pearl.toLowerCase().includes(query)) ||
+                           (item.exam_pearl_tr && item.exam_pearl_tr.toLowerCase().includes(query));
+        return matchAbbr || matchDeFull || matchTrFull || matchDeDesc || matchTrDesc || matchPearl;
+      }
+      return true;
+    });
+
+    if (elAbbrevStatusText) {
+      elAbbrevStatusText.textContent = `Zeigt ${filtered.length} von ${allItems.length} Abkürzungen`;
+    }
+
+    if (filtered.length === 0) {
+      elAbbrevCardsGrid.innerHTML = `
+        <div class="abbrev-empty-state">
+          <div class="empty-icon">🔍</div>
+          <h3>Keine Abkürzung gefunden</h3>
+          <p>Für die Suche nach "<strong>${escapeHtml(abbrevSearchQuery)}</strong>" liegt kein Eintrag vor.</p>
+        </div>
+      `;
+      return;
+    }
+
+    elAbbrevCardsGrid.innerHTML = filtered.map(item => {
+      const escapedAbbr = escapeHtml(item.abbr);
+      const escapedCatDe = escapeHtml(item.category_de);
+      const escapedDeFull = escapeHtml(item.de_full);
+      const escapedTrFull = escapeHtml(item.tr_full);
+      const escapedDeDesc = escapeHtml(item.de_desc);
+      const escapedTrDesc = escapeHtml(item.tr_desc);
+      const escapedPearl = item.exam_pearl ? escapeHtml(item.exam_pearl) : '';
+      const escapedPearlTr = item.exam_pearl_tr ? escapeHtml(item.exam_pearl_tr) : '';
+
+      return `
+        <div class="abbrev-card" data-cat="${item.category}">
+          <div class="abbrev-card-top">
+            <div class="abbrev-badge-group">
+              <span class="abbrev-badge">${escapedAbbr}</span>
+              <span class="abbrev-cat-tag">${escapedCatDe}</span>
+            </div>
+            <button class="abbrev-audio-btn" data-speech="${escapeHtml(item.abbr + ': ' + item.de_full + '. ' + item.de_desc)}" title="Aussprache & Begriff auf Deutsch anhören">
+              🔊
+            </button>
+          </div>
+
+          <div class="abbrev-full-terms">
+            <div class="abbrev-term-de">
+              <span class="abbrev-flag">🇩🇪</span>
+              <span>${escapedDeFull}</span>
+            </div>
+            <div class="abbrev-term-tr abbrev-tr-content" style="display: ${abbrevShowTurkish ? 'flex' : 'none'};">
+              <span class="abbrev-flag">🇹🇷</span>
+              <span>${escapedTrFull}</span>
+            </div>
+          </div>
+
+          <div class="abbrev-desc-block">
+            <div class="abbrev-desc-de">${escapedDeDesc}</div>
+            <div class="abbrev-desc-tr abbrev-tr-content" style="display: ${abbrevShowTurkish ? 'block' : 'none'};">
+              ${escapedTrDesc}
+            </div>
+          </div>
+
+          ${escapedPearl ? `
+            <div class="abbrev-pearl-box">
+              <div class="abbrev-pearl-de">${escapedPearl}</div>
+              ${escapedPearlTr ? `<div class="abbrev-pearl-tr abbrev-tr-content" style="display: ${abbrevShowTurkish ? 'block' : 'none'};">${escapedPearlTr}</div>` : ''}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+
+    // Attach speech buttons to speakMedicalText
+    const audioBtns = elAbbrevCardsGrid.querySelectorAll('.abbrev-audio-btn');
+    audioBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const textToSpeak = btn.getAttribute('data-speech');
+        if (typeof speakMedicalText === 'function') {
+          speakMedicalText(textToSpeak, btn);
+        } else if (typeof window.speakText === 'function') {
+          window.speakText(textToSpeak, btn);
+        }
+      });
+    });
+  }
+
+  // Initialize guide
+  initAbbreviationsGuide();
+
+  // ==========================================================================
   // NATURAL MEDICAL SPEECH SYNTHESIS ENGINE (Profi-Sprachausgabe & Stimmenwahl)
   // ==========================================================================
 
@@ -4236,100 +4451,16 @@ Tedavi:
     }
   }
 
+  // --- Voice Engine: Permanent Google Deutsch (HD Natural) ---
   function updateGermanVoice() {
-    const allVoices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
-    availableGermanVoices = rankGermanVoices(allVoices);
-
-    const savedVoiceName = state.preferredVoiceName || localStorage.getItem('facharzt_preferred_voice') || 'natural_neural';
-    if (savedVoiceName && savedVoiceName !== 'natural_neural') {
-      preferredGermanVoice = availableGermanVoices.find(v => v.name === savedVoiceName) || null;
-    } else {
-      preferredGermanVoice = null; // null indicates automatic natural neural voice
-    }
-
-    const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
-    if (elAudioVoiceDisplay) {
-      if (!preferredGermanVoice || savedVoiceName === 'natural_neural') {
-        elAudioVoiceDisplay.textContent = 'Natürliche Stimme';
-        elAudioVoiceDisplay.title = 'Automatische lebensechte HD-Stimme für Mac & iPhone';
-      } else {
-        elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(preferredGermanVoice.name);
-        elAudioVoiceDisplay.title = `${preferredGermanVoice.name} (${preferredGermanVoice.lang})`;
-      }
-    }
-
-    renderVoiceOptionsDropdown();
-  }
-
-  function renderVoiceOptionsDropdown() {
-    const container = document.getElementById('voice-options-list');
-    if (!container) return;
-
-    const isAutoNatural = !state.preferredVoiceName || state.preferredVoiceName === 'natural_neural';
-
-    let html = `
-      <button class="voice-option-item ${isAutoNatural ? 'active' : ''}" type="button" data-voice-name="natural_neural">
-        <div class="voice-item-left">
-          <span class="voice-status-icon">${isAutoNatural ? '✓' : '○'}</span>
-          <span class="voice-item-title">🌟 Natürliche HD-Stimme (Automatisch)</span>
-        </div>
-        <div class="voice-item-right"><span class="voice-badge-neural">Standard</span></div>
-      </button>
-    `;
-
-    if (availableGermanVoices.length) {
-      html += availableGermanVoices.map(v => {
-        const isCurrent = !isAutoNatural && preferredGermanVoice && preferredGermanVoice.name === v.name;
-        const cleanName = getCleanVoiceDisplayName(v.name);
-        const badge = getVoiceQualityBadge(v);
-        return `
-          <button class="voice-option-item ${isCurrent ? 'active' : ''}" type="button" data-voice-name="${v.name}">
-            <div class="voice-item-left">
-              <span class="voice-status-icon">${isCurrent ? '✓' : '○'}</span>
-              <span class="voice-item-title">${cleanName}</span>
-            </div>
-            <div class="voice-item-right">${badge}</div>
-          </button>
-        `;
-      }).join('');
-    }
-
-    container.innerHTML = html;
-
-    container.querySelectorAll('.voice-option-item').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const voiceName = btn.getAttribute('data-voice-name');
-        if (voiceName === 'natural_neural') {
-          preferredGermanVoice = null;
-          state.preferredVoiceName = 'natural_neural';
-        } else {
-          const chosen = availableGermanVoices.find(v => v.name === voiceName);
-          if (chosen) {
-            preferredGermanVoice = chosen;
-            state.preferredVoiceName = chosen.name;
-          }
-        }
-
-        try {
-          localStorage.setItem('facharzt_preferred_voice', state.preferredVoiceName);
-        } catch (e) {}
-        saveState();
-
-        const elAudioVoiceDisplay = document.getElementById('audio-voice-display');
-        if (elAudioVoiceDisplay) {
-          if (!preferredGermanVoice || state.preferredVoiceName === 'natural_neural') {
-            elAudioVoiceDisplay.textContent = 'Natürliche Stimme';
-            elAudioVoiceDisplay.title = 'Automatische lebensechte HD-Stimme für Mac & iPhone';
-          } else {
-            elAudioVoiceDisplay.textContent = getCleanVoiceDisplayName(preferredGermanVoice.name);
-            elAudioVoiceDisplay.title = `${preferredGermanVoice.name} (${preferredGermanVoice.lang})`;
-          }
-        }
-
-        renderVoiceOptionsDropdown();
-        if (typeof playAudioTone === 'function') playAudioTone(640, 'sine', 0.1);
-      });
-    });
+    if (!('speechSynthesis' in window)) return;
+    const allVoices = window.speechSynthesis.getVoices();
+    if (!allVoices || !allVoices.length) return;
+    // Specifically lock to Google Deutsch or highest quality German neural voice
+    preferredGermanVoice = allVoices.find(v => v.lang.startsWith('de') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Online')))
+      || allVoices.find(v => v.lang.startsWith('de') && !v.name.includes('Compact'))
+      || allVoices.find(v => v.lang.startsWith('de'))
+      || null;
   }
 
   if ('speechSynthesis' in window) {
@@ -4432,16 +4563,15 @@ Tedavi:
     onSpeechCompleteCallback = onEnd;
     if (triggerBtn) triggerBtn.classList.add('speaking');
 
-    // Use zero-configuration Natural HD Neural voice if online and not set to manual local voice
-    const isNaturalPreferred = (!state.preferredVoiceName || state.preferredVoiceName === 'natural_neural');
+    // Default: Google Deutsch Neural Stream (Zero-configuration for Mac & iPhone)
     const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
 
-    if (isNaturalPreferred && isOnline) {
+    if (isOnline) {
       naturalAudioQueue = chunkTextForTTS(cleanText, 160);
       currentChunkIndex = 0;
       playCurrentAudioChunk();
     } else {
-      // Local system voice or offline
+      // Offline fallback: Web Speech API (Google Deutsch)
       fallbackToWebSpeech(cleanText);
     }
   }
@@ -4449,61 +4579,82 @@ Tedavi:
   // Global alias so all cockpit / emergency / simulation calls use the natural medical engine
   window.speakText = speakMedicalText;
 
-  // --- Voice Selector Dropdown UI Handlers ---
-  const elBtnAudioVoice = document.getElementById('btn-audio-voice');
-  const elAudioVoiceDropdown = document.getElementById('audio-voice-dropdown');
-  const elBtnCloseVoiceDropdown = document.getElementById('btn-close-voice-dropdown');
-  const elBtnTestVoicePreview = document.getElementById('btn-test-voice-preview');
-
-  if (elBtnAudioVoice && elAudioVoiceDropdown) {
-    elBtnAudioVoice.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isVisible = (elAudioVoiceDropdown.style.display !== 'none');
-      elAudioVoiceDropdown.style.display = isVisible ? 'none' : 'block';
-      if (!isVisible) {
-        updateGermanVoice();
-      }
-    });
-
-    if (elBtnCloseVoiceDropdown) {
-      elBtnCloseVoiceDropdown.addEventListener('click', (e) => {
-        e.stopPropagation();
-        elAudioVoiceDropdown.style.display = 'none';
-      });
-    }
-
-    if (elBtnTestVoicePreview) {
-      elBtnTestVoicePreview.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const testSentence = "Guten Tag, Herr Kollege. Wir beginnen mit der Facharztprüfung Anästhesiologie. Bitte schildern Sie Ihr strukturiertes Vorgehen.";
-        speakMedicalText(testSentence, elBtnTestVoicePreview);
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (elAudioVoiceDropdown.style.display !== 'none') {
-        const wrapper = document.getElementById('voice-picker-wrapper');
-        if (wrapper && !wrapper.contains(e.target)) {
-          elAudioVoiceDropdown.style.display = 'none';
-        }
-      }
-    });
-  }
-
-  // --- Audio Speed Toggle (0.8x / 0.95x / 1.15x) ---
+  // --- YouTube-Style Playback Speed Menu & Range Slider Controller ---
   const elBtnAudioSpeed = document.getElementById('btn-audio-speed');
   const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
+  const elAudioSpeedDropdown = document.getElementById('audio-speed-dropdown');
+  const elAudioSpeedSlider = document.getElementById('audio-speed-slider');
+  const elSpeedSliderValBadge = document.getElementById('speed-slider-val-badge');
+  const elSpeedControlWrapper = document.getElementById('speed-control-wrapper');
+  const elSpeedPresetsList = document.getElementById('speed-presets-list');
 
-  if (elBtnAudioSpeed) {
-    elBtnAudioSpeed.addEventListener('click', () => {
-      const rates = [0.8, 0.95, 1.15];
-      let cur = state.speechRate || 0.95;
-      let idx = rates.findIndex(r => Math.abs(r - cur) < 0.05);
-      let nextIdx = (idx + 1) % rates.length;
-      state.speechRate = rates[nextIdx];
-      saveState();
-      if (elAudioSpeedDisplay) elAudioSpeedDisplay.textContent = `${state.speechRate}x`;
-      if (typeof playAudioTone === 'function') playAudioTone(520, 'sine', 0.08);
+  function setPlaybackSpeed(rate, updateSlider = true) {
+    const clampedRate = Math.min(1.5, Math.max(0.5, parseFloat(rate.toFixed(2))));
+    state.speechRate = clampedRate;
+    saveState();
+
+    if (elAudioSpeedDisplay) elAudioSpeedDisplay.textContent = `${clampedRate}x`;
+    if (elSpeedSliderValBadge) elSpeedSliderValBadge.textContent = `${clampedRate}x`;
+    if (updateSlider && elAudioSpeedSlider) elAudioSpeedSlider.value = clampedRate;
+
+    // Live update active stream playback rate (just like YouTube!)
+    if (naturalAudioPlayer) {
+      try { naturalAudioPlayer.playbackRate = clampedRate; } catch (e) {}
+    }
+
+    // Highlight matching preset button
+    if (elSpeedPresetsList) {
+      elSpeedPresetsList.querySelectorAll('.speed-preset-item').forEach(btn => {
+        const btnRate = parseFloat(btn.getAttribute('data-rate'));
+        btn.classList.toggle('active', Math.abs(btnRate - clampedRate) < 0.02);
+      });
+    }
+  }
+
+  // Initialize UI with saved speechRate
+  if (state.speechRate) {
+    setPlaybackSpeed(state.speechRate, true);
+  }
+
+  if (elBtnAudioSpeed && elAudioSpeedDropdown) {
+    elBtnAudioSpeed.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = (elAudioSpeedDropdown.style.display !== 'none');
+      elAudioSpeedDropdown.style.display = isVisible ? 'none' : 'block';
+      if (elSpeedControlWrapper) elSpeedControlWrapper.classList.toggle('open', !isVisible);
+      if (!isVisible && elAudioSpeedSlider) {
+        elAudioSpeedSlider.value = state.speechRate || 0.95;
+        if (elSpeedSliderValBadge) elSpeedSliderValBadge.textContent = `${state.speechRate || 0.95}x`;
+      }
+    });
+
+    if (elAudioSpeedSlider) {
+      elAudioSpeedSlider.addEventListener('input', (e) => {
+        setPlaybackSpeed(parseFloat(e.target.value), false);
+      });
+    }
+
+    if (elSpeedPresetsList) {
+      elSpeedPresetsList.querySelectorAll('.speed-preset-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const targetRate = parseFloat(btn.getAttribute('data-rate'));
+          setPlaybackSpeed(targetRate, true);
+          if (typeof playAudioTone === 'function') playAudioTone(520, 'sine', 0.08);
+          elAudioSpeedDropdown.style.display = 'none';
+          if (elSpeedControlWrapper) elSpeedControlWrapper.classList.remove('open');
+        });
+      });
+    }
+
+    // Click outside to dismiss speed menu
+    document.addEventListener('click', (e) => {
+      if (elAudioSpeedDropdown.style.display !== 'none') {
+        if (elSpeedControlWrapper && !elSpeedControlWrapper.contains(e.target)) {
+          elAudioSpeedDropdown.style.display = 'none';
+          elSpeedControlWrapper.classList.remove('open');
+        }
+      }
     });
   }
 
@@ -4870,9 +5021,16 @@ Tedavi:
 
         <div style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.5;">${renderDualLanguageText(parsed.stem, activeQ.stem_tr || activeQ.question_tr)}</div>
 
-        <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.88rem;">
-          <strong>📊 Vitalparameter & Befunde:</strong> ${parsed.vitals.notes} <br>
-          <small style="color: var(--text-secondary);">SpO2: ${parsed.vitals.spo2} | RR: ${parsed.vitals.bp} | HF: ${parsed.vitals.hr} | etCO2: ${parsed.vitals.etco2} | Temp: ${parsed.vitals.temp}</small>
+        <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.88rem; border: 1px solid var(--border-color);">
+          <strong style="display: block; margin-bottom: 0.25rem;">📊 Vitalparameter & Befunde:</strong>
+          <div style="color: var(--text-main); margin-bottom: 0.5rem; line-height: 1.4;">${parsed.vitals.notes}</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+            <span class="vital-chip vital-chip-spo2">SpO₂: ${parsed.vitals.spo2}</span>
+            <span class="vital-chip vital-chip-bp">RR: ${parsed.vitals.bp}</span>
+            <span class="vital-chip vital-chip-hr">HF: ${parsed.vitals.hr}</span>
+            <span class="vital-chip vital-chip-etco2">etCO₂: ${parsed.vitals.etco2}</span>
+            <span class="vital-chip vital-chip-temp">Temp: ${parsed.vitals.temp}</span>
+          </div>
         </div>
 
         <div style="background: rgba(192, 85, 68, 0.08); border-left: 3px solid var(--danger); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem; font-size: 0.88rem;">

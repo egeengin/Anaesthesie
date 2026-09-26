@@ -573,21 +573,22 @@ questions.forEach(q => {
 
 console.log('[PASS] Comprehensive Examiner Intervention & Model Solution Engine verified across all 642 questions.');
 
-// 28. Test Natural Medical Speech Synthesis Engine & Neural Voice Picker Suite
-assert(htmlContent.includes('voice-picker-wrapper'), 'index.html must include .voice-picker-wrapper');
-assert(htmlContent.includes('btn-audio-voice'), 'index.html must include #btn-audio-voice');
-assert(htmlContent.includes('audio-voice-dropdown'), 'index.html must include #audio-voice-dropdown');
-assert(htmlContent.includes('voice-options-list'), 'index.html must include #voice-options-list');
-assert(htmlContent.includes('btn-test-voice-preview'), 'index.html must include #btn-test-voice-preview');
+// 28. Test Natural Medical Speech Synthesis Engine, Permanent Google Deutsch & YouTube-Style Speed Controller
+assert(htmlContent.includes('speed-control-wrapper'), 'index.html must include .speed-control-wrapper');
+assert(htmlContent.includes('btn-audio-speed'), 'index.html must include #btn-audio-speed');
+assert(htmlContent.includes('audio-speed-dropdown'), 'index.html must include #audio-speed-dropdown');
+assert(htmlContent.includes('audio-speed-slider'), 'index.html must include #audio-speed-slider');
+assert(htmlContent.includes('speed-slider-val-badge'), 'index.html must include #speed-slider-val-badge');
+assert(htmlContent.includes('speed-presets-list'), 'index.html must include #speed-presets-list');
+assert(htmlContent.includes('google-voice-badge'), 'index.html must include #google-voice-badge');
 
-assert(cssCode.includes('.voice-picker-wrapper'), 'styles.css must style .voice-picker-wrapper');
-assert(cssCode.includes('.audio-voice-pill'), 'styles.css must style .audio-voice-pill');
-assert(cssCode.includes('.audio-voice-dropdown'), 'styles.css must style .audio-voice-dropdown');
-assert(cssCode.includes('.voice-badge-neural'), 'styles.css must style .voice-badge-neural');
-assert(cssCode.includes('.voice-badge-siri'), 'styles.css must style .voice-badge-siri');
+assert(cssCode.includes('.speed-control-wrapper'), 'styles.css must style .speed-control-wrapper');
+assert(cssCode.includes('.audio-speed-dropdown'), 'styles.css must style .audio-speed-dropdown');
+assert(cssCode.includes('.speed-range-slider'), 'styles.css must style .speed-range-slider');
+assert(cssCode.includes('.google-voice-badge'), 'styles.css must style .google-voice-badge');
 
 assert(appCode.includes('prepareMedicalTextForSpeech'), 'app.js must implement prepareMedicalTextForSpeech');
-assert(appCode.includes('rankGermanVoices'), 'app.js must implement rankGermanVoices');
+assert(appCode.includes('setPlaybackSpeed'), 'app.js must implement setPlaybackSpeed');
 assert(appCode.includes('speakMedicalText'), 'app.js must implement speakMedicalText');
 assert(appCode.includes('window.speakText = speakMedicalText'), 'app.js must expose window.speakText');
 
@@ -611,30 +612,8 @@ assert(spokenResult.includes('Milligramm pro Kilogramm Körpergewicht'), 'Dosage
 assert(spokenResult.includes('intravenös'), 'i.v. must be expanded to intravenös');
 assert(spokenResult.includes('eins zu zehntausend'), '1:10.000 dilution must be expanded phonetically');
 
-// Extract and test voice ranking
-const rankMatch = appCode.match(/function scoreGermanVoice\([\s\S]*?\n  \}/);
-assert(rankMatch, 'scoreGermanVoice function definition must exist');
-eval(rankMatch[0].replace('function scoreGermanVoice', 'global.scoreGermanVoice = function'));
-
-const mockVoices = [
-  { name: 'Marlene Compact', lang: 'de-DE' },
-  { name: 'Google Deutsch', lang: 'de-DE' },
-  { name: 'Siri Stimme 1', lang: 'de-DE' },
-  { name: 'Microsoft Katja Online (Natural) - German (Germany)', lang: 'de-DE' },
-  { name: 'Anna (Enhanced)', lang: 'de-DE' },
-  { name: 'Alex', lang: 'en-US' }
-];
-
-const scored = mockVoices.map(v => ({ voice: v, score: global.scoreGermanVoice(v) }));
-const katjaScore = scored.find(s => s.voice.name.includes('Katja')).score;
-const siriScore = scored.find(s => s.voice.name.includes('Siri')).score;
-const compactScore = scored.find(s => s.voice.name.includes('Compact')).score;
-const englishScore = scored.find(s => s.voice.name.includes('Alex')).score;
-
-assert(katjaScore > 100, 'Microsoft Natural voices must receive top quality score (>100)');
-assert(siriScore > 90, 'Apple Siri voices must receive top quality score (>90)');
-assert(katjaScore > compactScore, 'Natural voices must score significantly higher than Compact');
-assert(englishScore < 0, 'Non-German voices must be rejected');
+// Verify Google Deutsch TTS URL generation pattern exists
+assert(appCode.includes('translate.google.com/translate_tts'), 'app.js must use Google natural TTS stream for zero-configuration audio');
 
 // 29. Test Complete Turkish Translations for All 42 Düsseldorf Simulation Cases & Protocols
 for (const [qid, data] of Object.entries(DUS_SIMULATION_REGISTRY)) {
@@ -662,7 +641,99 @@ assert(htmlContent.includes('ÄKNO Notfall-Lösung / Acil Çözüm'), 'index.htm
 
 console.log('[PASS] Complete Turkish Translations Suite verified for all 42 Düsseldorf Simulation Registry cases and questions.');
 
-console.log('\n🎉 ALL 29 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// ============================================================================
+// 30. TEST SUITE: ANESTHESIA ABBREVIATIONS & ACRONYMS GUIDE (KÜRZEL-LEXIKON)
+// ============================================================================
+console.log('Testing Suite 30: Anesthesia Abbreviations & Acronyms Guide (DE/TR)...');
+
+const abbreviationsData = require('./js/abbreviations_data.js');
+assert(Array.isArray(abbreviationsData), 'ANESTHESIA_ABBREVIATIONS must be an array');
+assert(abbreviationsData.length >= 65, `Must have at least 65 abbreviations, found: ${abbreviationsData.length}`);
+
+const requiredCategories = ['airway', 'hemodynamics', 'pharma', 'resuscitation', 'neuro_reg', 'peds_obs'];
+const foundCategories = new Set();
+
+const seenAbbrs = new Set();
+abbreviationsData.forEach((item, idx) => {
+  assert(item.abbr && item.abbr.trim().length > 0, `Item ${idx} must have non-empty abbr`);
+  assert(!seenAbbrs.has(item.abbr), `Duplicate abbreviation found: ${item.abbr}`);
+  seenAbbrs.add(item.abbr);
+
+  assert(item.category && requiredCategories.includes(item.category), `Item ${item.abbr} has invalid category: ${item.category}`);
+  foundCategories.add(item.category);
+
+  assert(item.category_de && item.category_de.length > 3, `Item ${item.abbr} must have category_de`);
+  assert(item.category_tr && item.category_tr.length > 3, `Item ${item.abbr} must have category_tr`);
+  assert(item.de_full && item.de_full.length > 3, `Item ${item.abbr} must have de_full`);
+  assert(item.tr_full && item.tr_full.length > 3, `Item ${item.abbr} must have tr_full`);
+  assert(item.de_desc && item.de_desc.length > 15, `Item ${item.abbr} must have de_desc`);
+  assert(item.tr_desc && item.tr_desc.length > 15, `Item ${item.abbr} must have tr_desc`);
+  assert(item.exam_pearl && item.exam_pearl.length > 15, `Item ${item.abbr} must have exam_pearl`);
+  assert(item.exam_pearl_tr && item.exam_pearl_tr.length > 15, `Item ${item.abbr} must have exam_pearl_tr`);
+});
+
+requiredCategories.forEach(cat => {
+  assert(foundCategories.has(cat), `Category ${cat} must be represented in abbreviations dataset`);
+});
+
+// HTML checks
+assert(htmlContent.includes('id="abbrev-trigger"'), 'index.html must include #abbrev-trigger');
+assert(htmlContent.includes('id="abbrev-modal"'), 'index.html must include #abbrev-modal');
+assert(htmlContent.includes('id="abbrev-search-input"'), 'index.html must include #abbrev-search-input');
+assert(htmlContent.includes('id="abbrev-filter-bar"'), 'index.html must include #abbrev-filter-bar');
+assert(htmlContent.includes('id="abbrev-cards-grid"'), 'index.html must include #abbrev-cards-grid');
+assert(htmlContent.includes('src="js/abbreviations_data.js"'), 'index.html must load js/abbreviations_data.js');
+
+// App.js checks
+assert(appCode.includes('initAbbreviationsGuide'), 'app.js must implement initAbbreviationsGuide');
+assert(appCode.includes('renderAbbreviations'), 'app.js must implement renderAbbreviations');
+assert(appCode.includes('ANESTHESIA_ABBREVIATIONS'), 'app.js must reference ANESTHESIA_ABBREVIATIONS');
+
+// SW checks
+const swContent = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
+assert(swContent.includes('./js/abbreviations_data.js'), 'sw.js must cache ./js/abbreviations_data.js');
+assert(/facharzt-cache-v4\.[6-9]/.test(swContent), 'sw.js must be updated to v4.6 or newer');
+
+console.log(`[PASS] Suite 30 passed! Verified ${abbreviationsData.length} dual-language abbreviations with complete metadata, UI, and service worker caching.`);
+
+// ============================================================================
+// 31. TEST SUITE: THEME-ADAPTIVE VITALPARAMETER VISUALS (LIGHT & DARK MODES)
+// ============================================================================
+console.log('Testing Suite 31: Theme-Adaptive Vitalparameter Visuals (Light & Dark Modes)...');
+
+// Verify :root light theme vital tokens
+assert(cssCode.includes('--vital-mon-bg: #F8FAFC;'), 'styles.css must define light theme --vital-mon-bg in :root');
+assert(cssCode.includes('--vital-spo2-color: #047857;'), 'styles.css must define high-contrast SpO2 for light theme');
+assert(cssCode.includes('--vital-bp-color: #0284C7;'), 'styles.css must define clinical sapphire blue BP for light theme');
+assert(cssCode.includes('--vital-hr-color: #DC2626;'), 'styles.css must define arterial red HR for light theme');
+assert(cssCode.includes('--vital-etco2-color: #B45309;'), 'styles.css must define high-contrast amber etCO2 for light theme');
+assert(cssCode.includes('--vital-temp-color: #6D28D9;'), 'styles.css must define amethyst/purple Temp for light theme');
+
+// Verify [data-theme="dark"] dark theme vital tokens
+assert(cssCode.includes('--vital-mon-bg: #090E17;'), 'styles.css must define dark theme --vital-mon-bg in [data-theme="dark"]');
+assert(cssCode.includes('--vital-spo2-color: #34D399;'), 'styles.css must define fluorescent SpO2 for dark theme');
+assert(cssCode.includes('--vital-bp-color: #38BDF8;'), 'styles.css must define glowing sky blue BP for dark theme');
+assert(cssCode.includes('--vital-hr-color: #F87171;'), 'styles.css must define coral red HR for dark theme');
+assert(cssCode.includes('--vital-etco2-color: #FBBF24;'), 'styles.css must define neon amber etCO2 for dark theme');
+assert(cssCode.includes('--vital-temp-color: #C4B5FD;'), 'styles.css must define glowing lilac Temp for dark theme');
+
+// Verify clinical monitor classes use variables
+assert(cssCode.includes('background: var(--vital-mon-bg);'), '.clinical-monitor-dashboard must use var(--vital-mon-bg)');
+assert(cssCode.includes('background: var(--vital-tile-bg);'), '.vital-tile must use var(--vital-tile-bg)');
+assert(cssCode.includes('color: var(--vital-spo2-color);'), '.vital-spo2 must use var(--vital-spo2-color)');
+assert(cssCode.includes('color: var(--vital-bp-color);'), '.vital-bp must use var(--vital-bp-color)');
+assert(cssCode.includes('color: var(--vital-hr-color);'), '.vital-hr must use var(--vital-hr-color)');
+assert(cssCode.includes('color: var(--vital-etco2-color);'), '.vital-etco2 must use var(--vital-etco2-color)');
+assert(cssCode.includes('color: var(--vital-temp-color);'), '.vital-temp must use var(--vital-temp-color)');
+
+// Verify vital chips styling exists and app.js integrates them
+assert(cssCode.includes('.vital-chip-spo2'), 'styles.css must include .vital-chip-spo2');
+assert(appCode.includes('vital-chip vital-chip-spo2'), 'app.js mock exam must integrate vital-chip classes');
+
+console.log('[PASS] Suite 31 passed! Verified theme-adaptive vitalparameter tokens and contrast-compliant colors in light and dark modes.');
+
+console.log('\n🎉 ALL 31 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

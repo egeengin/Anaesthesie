@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v4.4';
+const CACHE_NAME = 'facharzt-cache-v4.7';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ const CORE_ASSETS = [
   './js/storage_idb.js',
   './js/sm2.js',
   './js/voice.js',
+  './js/abbreviations_data.js',
   './js/exam_simulation.js',
   './manifest.json',
   './favicon.svg'
