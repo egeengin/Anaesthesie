@@ -489,12 +489,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Dual-Language Hover Translation Helper ---
   function renderDualLanguageText(textDE, textTR) {
     if (!textDE) return '';
-    const formattedDE = formatAnswerText(textDE.trim());
+    const formattedDE = formatAnswerText(textDE);
     if (!textTR || textTR.trim() === textDE.trim()) {
       return `<div class="de-text-block">${formattedDE}</div>`;
     }
     
-    const cleanTR = textTR.replace(/•/g, '<br>•').trim();
+    const cleanTR = textTR.trim();
 
     return `<div class="translatable-box" data-tr="${escapeHtml(cleanTR)}" tabindex="0"><div class="de-text-block">${formattedDE}</div><div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content">${formatAnswerText(cleanTR)}</span></div></div>`;
   }
@@ -504,9 +504,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return text
       .trim()
       .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/(?:\n|^)\s*•\s*/g, '\n• ')
       .replace(/\n{3,}/g, '\n\n')
+      .replace(/\n\n/g, '<br><br>')
       .replace(/\n/g, '<br>')
-      .replace(/•/g, '<br>•')
+      .replace(/(?:<br>\s*){3,}/g, '<br><br>')
       .replace(/([✅❌])/g, '<strong>$1</strong>');
   }
 
