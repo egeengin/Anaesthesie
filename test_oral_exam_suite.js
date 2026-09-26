@@ -613,6 +613,14 @@ assert(spokenResult.includes('eins zu zehntausend'), '1:10.000 dilution must be 
 // Verify Google Deutsch TTS URL generation pattern exists
 assert(appCode.includes('translate.google.com/translate_tts'), 'app.js must use Google natural TTS stream for zero-configuration audio');
 
+// Verify Speech Interrupter / Stop Button and Anti-Double-Read Mutex
+assert(htmlContent.includes('btn-audio-stop'), 'index.html must include #btn-audio-stop');
+assert(appCode.includes('btn-audio-stop'), 'app.js must bind #btn-audio-stop');
+assert(cssCode.includes('.audio-stop-pill'), 'styles.css must style .audio-stop-pill');
+assert(cssCode.includes('.audio-listen-pill'), 'styles.css must style .audio-listen-pill');
+assert(appCode.includes('isFallbackSpeaking'), 'app.js must guard against concurrent fallback speech loops');
+assert(appCode.includes('fallbackTriggered'), 'app.js must implement fallbackTriggered single-flight guard');
+
 // 29. Test Complete Turkish Translations for All 42 Düsseldorf Simulation Cases & Protocols
 for (const [qid, data] of Object.entries(DUS_SIMULATION_REGISTRY)) {
   assert(data.speechIntro_tr && data.speechIntro_tr.length > 30, `Registry ${qid} must have Turkish speechIntro_tr`);

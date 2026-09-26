@@ -2105,6 +2105,109 @@ footer {
   border-color: rgba(239, 68, 68, 0.35);
 }
 
+.sim-crisis-actions-bar {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn-crisis-solution-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--surface);
+  color: #b91c1c;
+  border: 1.5px solid #ef4444;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+}
+
+.btn-crisis-solution-toggle:hover {
+  background: rgba(239, 68, 68, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+[data-theme="dark"] .btn-crisis-solution-toggle {
+  color: #fca5a5;
+  border-color: #f87171;
+  background: rgba(45, 36, 30, 0.6);
+}
+
+.sim-crisis-solution-card {
+  margin-top: 0.85rem;
+  padding: 1rem 1.15rem;
+  background: var(--surface);
+  border: 1.5px solid rgba(220, 38, 38, 0.35);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.1);
+  animation: slideDownCrisis 0.25s ease-out;
+}
+
+@keyframes slideDownCrisis {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.crisis-solution-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.crisis-sol-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #b91c1c;
+}
+
+[data-theme="dark"] .crisis-sol-title {
+  color: #f87171;
+}
+
+.crisis-sol-body {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.crisis-ko-trap-card {
+  background: rgba(220, 38, 38, 0.08);
+  border-left: 3px solid #dc2626;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+}
+
+.crisis-ko-title {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .crisis-ko-title {
+  color: #fca5a5;
+}
+
+.crisis-ko-body {
+  line-height: 1.45;
+  color: var(--text-main);
+}
+
 .vital-crisis-flash {
   border: 2px solid #ef4444 !important;
   box-shadow: 0 0 16px rgba(239, 68, 68, 0.45) !important;
@@ -2586,13 +2689,16 @@ footer {
   background: var(--primary-light);
   border: 1px solid rgba(141, 99, 70, 0.22);
   border-radius: var(--radius-full);
-  width: 40px;
-  height: 40px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all var(--transition-fast);
+}
+
+.btn-icon.btn-audio {
+  width: 40px;
+  height: 40px;
 }
 
 .btn-audio:hover {
@@ -3114,39 +3220,42 @@ footer {
   background: var(--primary);
 }
 
-/* --- 3. Oral Exam Tools Bar (60s Timer & Voice Prompt) --- */
+/* --- 3. Oral Exam Tools Bar (60s Timer, Mic & Audio Speech Controls) --- */
 .oral-tools-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   margin-bottom: 1.25rem;
   padding: 0.65rem 1rem;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
-.timer-pill-container, .voice-pill-container {
+.timer-pill-container, .voice-pill-container, .audio-speak-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .oral-tool-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.9rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
   border-radius: var(--radius-full);
   border: 1px solid var(--card-border);
   background: var(--bg-tertiary);
   color: var(--text-main);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .oral-tool-btn:hover {
@@ -3154,6 +3263,7 @@ footer {
   border-color: var(--primary);
   color: var(--primary);
   transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .oral-tool-btn.active {
@@ -3163,10 +3273,89 @@ footer {
   box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
 }
 
+/* Listening Button (Vorlesen / Dinleme Butonu) - Premium Pill Aesthetic */
+.audio-listen-pill {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(14, 165, 233, 0.14) 100%);
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  color: #0369a1;
+}
+
+[data-theme="dark"] .audio-listen-pill {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.20) 0%, rgba(14, 165, 233, 0.28) 100%);
+  border-color: rgba(56, 189, 248, 0.38);
+  color: #7dd3fc;
+}
+
+.audio-listen-pill:hover {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.16) 0%, rgba(14, 165, 233, 0.24) 100%);
+  border-color: #0284c7;
+  color: #0284c7;
+  box-shadow: 0 3px 12px rgba(2, 132, 199, 0.22);
+}
+
+.audio-listen-pill.speaking {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border-color: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.3), 0 4px 12px rgba(2, 132, 199, 0.4);
+  animation: pulseSpeech 1.5s infinite;
+}
+
+@keyframes pulseSpeech {
+  0% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(2, 132, 199, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+}
+
+/* Dedicated Stop / Interrupt Button (Durdur Butonu) */
+.audio-stop-pill {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: 1px solid #b91c1c;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+  animation: fadeInStop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.audio-stop-pill:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-color: #991b1b;
+  color: #ffffff;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.45);
+}
+
+@keyframes fadeInStop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Microphone Button (Einsprechen / Mikrofon) */
+.voice-mic-btn {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.07) 0%, rgba(99, 102, 241, 0.11) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.26);
+  color: #6d28d9;
+}
+
+[data-theme="dark"] .voice-mic-btn {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.18) 0%, rgba(99, 102, 241, 0.24) 100%);
+  border-color: rgba(167, 139, 250, 0.38);
+  color: #c4b5fd;
+}
+
+.voice-mic-btn:hover {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.14) 0%, rgba(99, 102, 241, 0.20) 100%);
+  border-color: #7c3aed;
+  color: #7c3aed;
+  box-shadow: 0 3px 12px rgba(124, 58, 237, 0.2);
+}
+
+.voice-mic-btn.recording,
 .oral-tool-btn.recording {
-  background: #ef4444 !important;
-  border-color: #dc2626 !important;
-  color: white !important;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  border-color: #b91c1c !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
   animation: pulseRecording 1.5s infinite;
 }
 

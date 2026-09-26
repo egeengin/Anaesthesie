@@ -1914,6 +1914,13 @@ Tedavi:
       return;
     }
 
+    // Escape: Interrupt and stop speech playback immediately
+    if (e.key === 'Escape' && isSpeakingMedical) {
+      e.preventDefault();
+      stopMedicalSpeech();
+      return;
+    }
+
     const key = e.key.toLowerCase();
 
     // Space: Advance Stepper / Reveal / Unmask Cloze / Check answers
@@ -4359,6 +4366,8 @@ Tedavi:
   let activeMedicalTriggerBtn = null;
   let onSpeechCompleteCallback = null;
   let _speakSessionId = 0;
+  let isFallbackSpeaking = false;
+  let activeFallbackSession = 0;
 
   function initNaturalAudioPlayer() {
     // No-op: each chunk now gets its own fresh Audio() instance in playCurrentAudioChunk().
@@ -4421,24 +4430,40 @@ Tedavi:
     const capturedSession = _speakSessionId;
     const capturedIndex   = currentChunkIndex;
 
-    // Completely silence the previous player before creating a new one.
-    // A FRESH Audio() per chunk is the only reliable way to prevent spurious
-    // 'ended' events that some browsers fire when .src changes on a reused element.
+    // Completely silence previous player before creating a fresh one
     if (naturalAudioPlayer) {
       try {
         naturalAudioPlayer.onended = null;
         naturalAudioPlayer.onerror = null;
         naturalAudioPlayer.pause();
       } catch (e) {}
+      naturalAudioPlayer = null;
     }
-    naturalAudioPlayer = new Audio();
 
-    // Use property assignment (not addEventListener) so there is always
-    // exactly ONE handler — no accumulation possible.
+    // Atomic fallback guard: ensure fallbackToWebSpeech is triggered AT MOST ONCE per chunk
+    let fallbackTriggered = false;
+    function triggerFallback() {
+      if (fallbackTriggered) return;
+      fallbackTriggered = true;
+      if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
+      if (naturalAudioPlayer) {
+        try {
+          naturalAudioPlayer.onended = null;
+          naturalAudioPlayer.onerror = null;
+          naturalAudioPlayer.pause();
+        } catch (e) {}
+        naturalAudioPlayer = null;
+      }
+      fallbackToWebSpeech();
+    }
+
+    naturalAudioPlayer = new Audio();
+    try {
+      naturalAudioPlayer.referrerPolicy = 'no-referrer';
+    } catch (e) {}
+
     naturalAudioPlayer.onended = () => {
-      console.log('[TTS-DEBUG] onended fired. capturedIndex:', capturedIndex, 'currentChunkIndex:', currentChunkIndex, 'capturedSession:', capturedSession, '_speakSessionId:', _speakSessionId);
       if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) {
-        console.log('[TTS-DEBUG] onended IGNORED (stale).');
         return;
       }
       currentChunkIndex++;
@@ -4450,9 +4475,7 @@ Tedavi:
     };
 
     naturalAudioPlayer.onerror = () => {
-      if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
-      console.warn('[NaturalAudio] Stream error, falling back to Web Speech.');
-      fallbackToWebSpeech();
+      triggerFallback();
     };
 
     const encoded = encodeURIComponent(chunkText.trim());
@@ -4462,9 +4485,7 @@ Tedavi:
     const playPromise = naturalAudioPlayer.play();
     if (playPromise !== undefined) {
       playPromise.catch(err => {
-        if (!isSpeakingMedical || _speakSessionId !== capturedSession) return;
-        console.warn('[NaturalAudio] Play blocked, falling back to Web Speech:', err);
-        fallbackToWebSpeech();
+        triggerFallback();
       });
     }
   }
@@ -4489,6 +4510,7 @@ Tedavi:
   function stopMedicalSpeech() {
     isSpeakingMedical = false;
     _speakSessionId++; // Invalidate any pending 'ended' events from the old session
+    isFallbackSpeaking = false;
 
     // Stop HTML5 Audio stream — null out handlers FIRST so no callback fires.
     if (naturalAudioPlayer) {
@@ -4502,13 +4524,25 @@ Tedavi:
 
     // Stop Web Speech Synthesis
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {}
     }
 
     document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
     activeMedicalTriggerBtn = null;
     naturalAudioQueue = [];
     currentChunkIndex = 0;
+
+    // Reset Stop Button and Vorlesen text
+    const elBtnAudioStop = document.getElementById('btn-audio-stop');
+    if (elBtnAudioStop) {
+      elBtnAudioStop.style.display = 'none';
+    }
+    const elAudioSpeakText = document.getElementById('audio-speak-text');
+    if (elAudioSpeakText) {
+      elAudioSpeakText.textContent = 'Vorlesen';
+    }
 
     if (typeof onSpeechCompleteCallback === 'function') {
       const cb = onSpeechCompleteCallback;
@@ -4523,6 +4557,18 @@ Tedavi:
       return;
     }
 
+    // STRICT MUTEX: If a fallback loop is ALREADY active for this session, never start another one!
+    if (isFallbackSpeaking && activeFallbackSession === _speakSessionId) {
+      return;
+    }
+    isFallbackSpeaking = true;
+    activeFallbackSession = _speakSessionId;
+    const capturedSession = _speakSessionId;
+
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
+
     const textToSpeak = remainingText || (naturalAudioQueue.slice(currentChunkIndex).join(' '));
     if (!textToSpeak || !textToSpeak.trim()) {
       stopMedicalSpeech();
@@ -4534,8 +4580,10 @@ Tedavi:
     let chunkIdx = 0;
 
     function speakNextFallbackChunk() {
-      if (!isSpeakingMedical || chunkIdx >= chunks.length) {
-        stopMedicalSpeech();
+      if (!isSpeakingMedical || _speakSessionId !== capturedSession || chunkIdx >= chunks.length) {
+        if (_speakSessionId === capturedSession) {
+          stopMedicalSpeech();
+        }
         return;
       }
 
@@ -4552,12 +4600,16 @@ Tedavi:
       utterance.pitch = state.speechPitch || 1.0;
 
       utterance.onend = () => {
-        if (isSpeakingMedical) setTimeout(speakNextFallbackChunk, 50);
+        if (isSpeakingMedical && _speakSessionId === capturedSession) {
+          setTimeout(speakNextFallbackChunk, 40);
+        }
       };
 
       utterance.onerror = (e) => {
         if (e.error === 'canceled' || e.error === 'interrupted') return;
-        if (isSpeakingMedical) speakNextFallbackChunk();
+        if (isSpeakingMedical && _speakSessionId === capturedSession) {
+          speakNextFallbackChunk();
+        }
       };
 
       window.speechSynthesis.speak(utterance);
@@ -4583,12 +4635,21 @@ Tedavi:
     onSpeechCompleteCallback = onEnd;
     if (triggerBtn) triggerBtn.classList.add('speaking');
 
+    // Show dedicated stop button whenever speech begins
+    const elBtnAudioStop = document.getElementById('btn-audio-stop');
+    if (elBtnAudioStop) {
+      elBtnAudioStop.style.display = 'inline-flex';
+    }
+    const elAudioSpeakText = document.getElementById('audio-speak-text');
+    if (elAudioSpeakText && triggerBtn && triggerBtn.id === 'btn-audio-speak') {
+      elAudioSpeakText.textContent = 'Stoppen';
+    }
+
     const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
 
     if (isOnline) {
       naturalAudioQueue = chunkTextForTTS(cleanText, 160);
       currentChunkIndex = 0;
-      console.log('[TTS-DEBUG] speakMedicalText called. Queue length:', naturalAudioQueue.length, 'Chunks:', naturalAudioQueue);
       playCurrentAudioChunk();
     } else {
       fallbackToWebSpeech(cleanText);
@@ -4686,6 +4747,15 @@ Tedavi:
       const currentQ = filteredQuestions[state.currentIndex];
       const textToRead = currentQ.stem_de || currentQ.question_de || '';
       speakMedicalText(textToRead, elBtnAudioSpeak);
+    });
+  }
+
+  // --- Audio Pronunciation Interrupter / Stop Button ---
+  const elBtnAudioStop = document.getElementById('btn-audio-stop');
+  if (elBtnAudioStop) {
+    elBtnAudioStop.addEventListener('click', (e) => {
+      e.stopPropagation();
+      stopMedicalSpeech();
     });
   }
 

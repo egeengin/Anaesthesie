@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
   <title>Facharztprüfung Anästhesiologie - Smart Study System (NRW)</title>
   <meta name="description" content="Interaktive Prüfungsvorbereitung für die Facharztprüfung Anästhesiologie NRW mit verknüpften zweisprachigen Übersetzungen (DE/TR), Spaced Repetition und detaillierten Erklärungen.">
   
@@ -273,7 +274,7 @@
         </div>
 
         <div class="voice-pill-container">
-          <button id="btn-toggle-mic" class="oral-tool-btn" title="Antwort laut einsprechen (Spracherkennung) (Taste V)">
+          <button id="btn-toggle-mic" class="oral-tool-btn voice-mic-btn" title="Antwort laut einsprechen (Spracherkennung) (Taste V)">
             <span class="tool-icon">🎙️</span>
             <span id="mic-status-text">Antwort einsprechen <kbd class="kbd-hint">V</kbd></span>
           </button>
@@ -288,9 +289,19 @@
           <span class="wave-bar"></span>
         </div>
 
-        <button id="btn-audio-speak" class="btn-icon btn-audio" title="Fall & Fragetext laut vorlesen (Sprachausgabe)">
-          <span>🔊 Vorlesen</span>
-        </button>
+        <!-- Audio Speech & Dedicated Stop / Interrupt Controls -->
+        <div class="audio-speak-group" id="audio-speak-group">
+          <button id="btn-audio-speak" class="oral-tool-btn audio-listen-pill btn-audio" title="Fall & Fragetext laut vorlesen (Taste P)">
+            <span class="tool-icon audio-speaker-icon">🔊</span>
+            <span id="audio-speak-text">Vorlesen</span>
+            <kbd class="kbd-hint">P</kbd>
+          </button>
+          <button id="btn-audio-stop" class="oral-tool-btn audio-stop-pill" style="display: none;" title="Vorlesen sofort stoppen (Taste Esc)" aria-label="Vorlesen stoppen">
+            <span class="tool-icon">⏹️</span>
+            <span>Stopp</span>
+            <kbd class="kbd-hint">Esc</kbd>
+          </button>
+        </div>
 
         <!-- YouTube-Style Playback Speed Menu & Range Slider -->
         <div class="speed-control-wrapper" id="speed-control-wrapper">
@@ -454,6 +465,33 @@
           </div>
           <div class="sim-crisis-vitals-callout">
             <span>🚨 <strong>Alarmzustand am Monitor:</strong> Vitalparameter und BGA in Schritt 2 sind akut dekompensiert! Was tun Sie in den nächsten 30 Sekunden?!</span>
+          </div>
+
+          <!-- Interactive Crisis Solution Toggle & Dual-Language Card -->
+          <div class="sim-crisis-actions-bar">
+            <button id="btn-sim-toggle-crisis-solution" class="btn-crisis-solution-toggle" type="button" title="Sofort-Lösung & Übersetzung zur Prüfer-Intervention anzeigen / Acil çözümü ve çeviriyi gör">
+              <span>💡</span> Sofort-Lösung & Übersetzung anzeigen / Acil Çözümü Gör
+            </button>
+          </div>
+
+          <div id="sim-crisis-solution-card" class="sim-crisis-solution-card" style="display: none;">
+            <div class="crisis-solution-header">
+              <div class="crisis-sol-title">
+                <span>🎯</span> <strong>ÄKNO Sofort-Lösung / Acil Müdahale Algoritması:</strong>
+              </div>
+              <button id="btn-audio-speak-crisis-solution" class="btn-xs btn-text" type="button" title="Lösung laut vorlesen / Çözümü dinle">
+                🔊 Vorlesen / Dinle
+              </button>
+            </div>
+            <div id="sim-crisis-solution-text" class="crisis-sol-body">
+              <!-- Dynamically populated target action in DE + TR -->
+            </div>
+            <div id="sim-crisis-ko-card" class="crisis-ko-trap-card">
+              <strong class="crisis-ko-title">⚠️ K.O.-Kriterium & Prüfungsfalle / Sınav Tuzağı:</strong>
+              <div id="sim-crisis-ko-text" class="crisis-ko-body">
+                <!-- Dynamically populated failureReason in DE + TR -->
+              </div>
+            </div>
           </div>
         </div>
 
