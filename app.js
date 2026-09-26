@@ -4358,19 +4358,11 @@ Tedavi:
   let isSpeakingMedical = false;
   let activeMedicalTriggerBtn = null;
   let onSpeechCompleteCallback = null;
-  let _speakSessionId = 0; // Guard against stale 'ended' events causing double-reads
+  let _speakSessionId = 0;
 
   function initNaturalAudioPlayer() {
-    if (naturalAudioPlayer) return;
-    try {
-      naturalAudioPlayer = new Audio();
-      naturalAudioPlayer.preload = 'auto';
-      // NOTE: 'ended' and 'error' listeners are attached per-chunk in
-      // playCurrentAudioChunk() so that stale events from a previous chunk
-      // can never accidentally advance the wrong index.
-    } catch (e) {
-      console.warn('[NaturalAudio] Init error:', e);
-    }
+    // No-op: each chunk now gets its own fresh Audio() instance in playCurrentAudioChunk().
+    // Kept for backwards compatibility in case it's referenced elsewhere.
   }
 
   function chunkTextForTTS(text, maxLen = 160) {
@@ -4425,25 +4417,25 @@ Tedavi:
       return;
     }
 
-    initNaturalAudioPlayer();
-
-    // Capture the exact chunk index and session this play-call is for.
-    // By closing over these values we guarantee that even if a stale 'ended'
-    // event fires after stopMedicalSpeech() + a new playCurrentAudioChunk(),
-    // it will see a different capturedIndex / capturedSession and bail out.
-    const capturedIndex   = currentChunkIndex;
+    // Capture session and index at the exact moment this chunk begins.
     const capturedSession = _speakSessionId;
+    const capturedIndex   = currentChunkIndex;
 
-    // Remove the previous per-chunk listeners before adding new ones.
-    if (naturalAudioPlayer._endedHandler) {
-      naturalAudioPlayer.removeEventListener('ended', naturalAudioPlayer._endedHandler);
+    // Completely silence the previous player before creating a new one.
+    // A FRESH Audio() per chunk is the only reliable way to prevent spurious
+    // 'ended' events that some browsers fire when .src changes on a reused element.
+    if (naturalAudioPlayer) {
+      try {
+        naturalAudioPlayer.onended = null;
+        naturalAudioPlayer.onerror = null;
+        naturalAudioPlayer.pause();
+      } catch (e) {}
     }
-    if (naturalAudioPlayer._errorHandler) {
-      naturalAudioPlayer.removeEventListener('error', naturalAudioPlayer._errorHandler);
-    }
+    naturalAudioPlayer = new Audio();
 
-    naturalAudioPlayer._endedHandler = () => {
-      // Only proceed if we're still in the same session and on the same chunk.
+    // Use property assignment (not addEventListener) so there is always
+    // exactly ONE handler — no accumulation possible.
+    naturalAudioPlayer.onended = () => {
       if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
       currentChunkIndex++;
       if (currentChunkIndex < naturalAudioQueue.length) {
@@ -4453,14 +4445,11 @@ Tedavi:
       }
     };
 
-    naturalAudioPlayer._errorHandler = (err) => {
+    naturalAudioPlayer.onerror = () => {
       if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
-      console.warn('[NaturalAudio] Stream error, falling back to Web Speech:', err);
+      console.warn('[NaturalAudio] Stream error, falling back to Web Speech.');
       fallbackToWebSpeech();
     };
-
-    naturalAudioPlayer.addEventListener('ended', naturalAudioPlayer._endedHandler);
-    naturalAudioPlayer.addEventListener('error', naturalAudioPlayer._errorHandler);
 
     const encoded = encodeURIComponent(chunkText.trim());
     naturalAudioPlayer.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
@@ -4497,14 +4486,14 @@ Tedavi:
     isSpeakingMedical = false;
     _speakSessionId++; // Invalidate any pending 'ended' events from the old session
 
-    // Stop HTML5 Audio stream
+    // Stop HTML5 Audio stream — null out handlers FIRST so no callback fires.
     if (naturalAudioPlayer) {
       try {
+        naturalAudioPlayer.onended = null;
+        naturalAudioPlayer.onerror = null;
         naturalAudioPlayer.pause();
-        naturalAudioPlayer.removeAttribute('src');
-        // NOTE: Do NOT call .load() here — it can fire a spurious 'ended' event
-        // that causes the next speak session to advance the chunk index incorrectly.
       } catch (e) {}
+      naturalAudioPlayer = null; // drop reference; next chunk gets a fresh instance
     }
 
     // Stop Web Speech Synthesis
