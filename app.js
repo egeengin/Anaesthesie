@@ -1932,7 +1932,15 @@ document.addEventListener('DOMContentLoaded', () => {
         elOptionsContainer.innerHTML = '';
         elOptionsContainer.style.display = 'none';
       }
-      if (elBtnCheck) elBtnCheck.style.display = 'none';
+      if (elBtnCheck) {
+        if (!qState.revealed && !qState.submitted) {
+          elBtnCheck.style.display = 'inline-flex';
+          elBtnCheck.innerHTML = `<span>👁️</span> Musterantwort freischalten <kbd class="kbd-hint">Space</kbd>`;
+          elBtnCheck.className = 'btn btn-primary';
+        } else {
+          elBtnCheck.style.display = 'none';
+        }
+      }
     }
 
     // ──────────────────────── MODE SPECIFIC DISPLAY STATES ────────────────────────
@@ -1986,18 +1994,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Self-assessment status buttons
+    // Self-assessment status buttons & Dock sync
+    const elDockSelfAssess = document.getElementById('dock-self-assess');
+    const elBtnDockKnewIt = document.getElementById('btn-dock-knew-it');
+    const elBtnDockDidntKnow = document.getElementById('btn-dock-didnt-know');
+
+    const isOpenCase = (!currentQ.options || !currentQ.options.length);
+    const isAnswerRevealed = qState.revealed || qState.submitted;
+
+    if (elDockSelfAssess) {
+      elDockSelfAssess.style.display = (isOpenCase && isAnswerRevealed) ? 'flex' : 'none';
+    }
+
     if (qState.submitted) {
       if (qState.isCorrect) {
         if (elBtnKnewIt) elBtnKnewIt.classList.add('selected');
         if (elBtnDidntKnow) elBtnDidntKnow.classList.remove('selected');
+        if (elBtnDockKnewIt) elBtnDockKnewIt.classList.add('selected');
+        if (elBtnDockDidntKnow) elBtnDockDidntKnow.classList.remove('selected');
       } else {
         if (elBtnKnewIt) elBtnKnewIt.classList.remove('selected');
         if (elBtnDidntKnow) elBtnDidntKnow.classList.add('selected');
+        if (elBtnDockKnewIt) elBtnDockKnewIt.classList.remove('selected');
+        if (elBtnDockDidntKnow) elBtnDockDidntKnow.classList.add('selected');
       }
     } else {
       if (elBtnKnewIt) elBtnKnewIt.classList.remove('selected');
       if (elBtnDidntKnow) elBtnDidntKnow.classList.remove('selected');
+      if (elBtnDockKnewIt) elBtnDockKnewIt.classList.remove('selected');
+      if (elBtnDockDidntKnow) elBtnDockDidntKnow.classList.remove('selected');
     }
 
     updateStepperIndicator();
@@ -2066,6 +2091,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!filteredQuestions.length) return;
 
     const currentQ = filteredQuestions[state.currentIndex];
+    if (!currentQ.options || !currentQ.options.length) {
+      revealAnswer();
+      return;
+    }
     let qState = state.answers[currentQ.id] || { userChoices: {}, submitted: false };
 
     if (qState.submitted) {
@@ -2157,6 +2186,161 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCurrentQuestion();
   }
 
+  // --- ÄKNO Düsseldorf Exam Readiness Index Engine ---
+  function calculateExamReadiness() {
+    const total = EXAM_QUESTIONS.length;
+    
+    // Pillar 1: High-Yield & Düsseldorfer Protokoll-Fälle (35 pts max)
+    const hyQuestions = EXAM_QUESTIONS.filter(q => q.is_high_yield || q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
+    const hyAnsweredPassed = hyQuestions.filter(q => state.answers[q.id] && state.answers[q.id].submitted && state.answers[q.id].isCorrect).length;
+    const hyScore = hyQuestions.length > 0 ? (hyAnsweredPassed / hyQuestions.length) * 35 : 0;
+
+    // Pillar 2: Patient Safety & K.O.-Kriterien Radar (30 pts max)
+    const criticalQuestions = EXAM_QUESTIONS.filter(q => {
+      const p = parseOralExamCase(q);
+      return (p.pitfalls && p.pitfalls.length > 15) || (q.examiner_tip && q.examiner_tip.toLowerCase().includes('k.o.'));
+    });
+    const criticalFailed = criticalQuestions.filter(q => state.answers[q.id] && state.answers[q.id].submitted && !state.answers[q.id].isCorrect).length;
+    const safetyScore = Math.max(0, Math.round(30 - (criticalFailed * 5)));
+
+    // Pillar 3: SM-2 Long-Term Retention & Dosierungs-Mastery (20 pts max)
+    let sm2Mastered = 0;
+    if (state.sm2Data) {
+      Object.values(state.sm2Data).forEach(item => {
+        if (item && item.interval >= 6 && item.repetition >= 2) {
+          sm2Mastered++;
+        }
+      });
+    }
+    const sm2Score = Math.min(20, Math.round((sm2Mastered / Math.max(1, Math.min(total, 60))) * 20));
+
+    // Pillar 4: Oral Fluency & Spoken Simulation (15 pts max)
+    const oralQuestions = EXAM_QUESTIONS.filter(q => !q.options || !q.options.length);
+    const oralPassed = oralQuestions.filter(q => state.answers[q.id] && state.answers[q.id].submitted && state.answers[q.id].isCorrect).length;
+    const oralScore = Math.min(15, Math.round((oralPassed / Math.max(1, Math.min(oralQuestions.length, 50))) * 15));
+
+    const totalScore = Math.min(100, Math.round(hyScore + safetyScore + sm2Score + oralScore));
+
+    return {
+      totalScore,
+      hyScore: Math.round(hyScore),
+      hyAnsweredPassed,
+      hyTotal: hyQuestions.length,
+      safetyScore,
+      criticalFailed,
+      criticalTotal: criticalQuestions.length,
+      sm2Score,
+      sm2Mastered,
+      oralScore,
+      oralPassed,
+      oralTotal: oralQuestions.length
+    };
+  }
+
+  function renderReadinessModal() {
+    const r = calculateExamReadiness();
+
+    const elHeroCard = document.getElementById('readiness-hero-card');
+    const elScoreVal = document.getElementById('readiness-score-val');
+    const elVerdictBadge = document.getElementById('readiness-verdict-badge');
+    const elVerdictTitle = document.getElementById('readiness-verdict-title');
+    const elVerdictDesc = document.getElementById('readiness-verdict-desc');
+
+    if (elScoreVal) elScoreVal.textContent = `${r.totalScore}%`;
+    if (elHeroCard) {
+      const deg = Math.round((r.totalScore / 100) * 360);
+      elHeroCard.style.setProperty('--readiness-deg', `${deg}deg`);
+    }
+
+    if (elVerdictBadge && elVerdictTitle && elVerdictDesc) {
+      if (r.criticalFailed > 0) {
+        elVerdictBadge.className = 'readiness-verdict-badge status-unprepared';
+        elVerdictBadge.textContent = '🚨 K.O.-Kriterium Verletzt';
+        elVerdictTitle.textContent = 'Akutes Durchfall-Risiko bei ÄKNO Düsseldorf';
+        elVerdictDesc.textContent = `In ${r.criticalFailed} kritischen Notfallfällen wurde ein potenziell tödlicher Kardinalfehler registriert. Bei der Facharztprüfung vor Prof. Annecke oder Prof. Hohn führt das Verkennen vitaler K.O.-Kriterien (z.B. MH, LAST, CICO, Notfall-Sectio) zum sofortigen Abbruch der Prüfung!`;
+      } else if (r.totalScore >= 80) {
+        elVerdictBadge.className = 'readiness-verdict-badge status-ready';
+        elVerdictBadge.textContent = '🟢 Prüfungsreif (ÄKNO Düsseldorf)';
+        elVerdictTitle.textContent = 'Exzellente Vorbereitung auf das Facharzt-Kolloquium';
+        elVerdictDesc.textContent = 'Patientensicherheit und Notfall-Algorithmen (MH, LAST, CICO, Anaphylaxie, Massentransfusion) sind verlässlich abrufbar. Die 4-Stufen-Prüfungsrhetorik wird beherrscht. Beste Voraussetzungen für das Bestehen!';
+      } else if (r.totalScore >= 55) {
+        elVerdictBadge.className = 'readiness-verdict-badge status-conditional';
+        elVerdictBadge.textContent = '🟡 Bedingt Prüfungsreif (Aufbautraining nötig)';
+        elVerdictTitle.textContent = 'Gute Grundlagen – Fokus auf Düsseldorfer Protokolle';
+        elVerdictDesc.textContent = 'Das theoretische Grundgerüst steht, jedoch fehlen noch Routine in den spezifischen Düsseldorfer Prüferfällen und die Festigung wichtiger Notfalldosierungen im Langzeitgedächtnis.';
+      } else {
+        elVerdictBadge.className = 'readiness-verdict-badge status-unprepared';
+        elVerdictBadge.textContent = '🔴 Noch nicht prüfungsreif';
+        elVerdictTitle.textContent = 'Umfassendes systematisches Training erforderlich';
+        elVerdictDesc.textContent = 'Derzeit sind noch zu wenige Original-Protokollfälle und Notfallalgorithmen abgeschlossen. Es besteht ein hohes Risiko für Wissenslücken in unvorhergesehenen Prüfungssituationen.';
+      }
+    }
+
+    // Update 4 Pillars
+    const setPillar = (scoreId, fillId, textId, score, maxScore, text) => {
+      const elS = document.getElementById(scoreId);
+      const elF = document.getElementById(fillId);
+      const elT = document.getElementById(textId);
+      if (elS) elS.textContent = `${score} / ${maxScore} Pkt`;
+      if (elF) elF.style.width = `${Math.min(100, Math.round((score / maxScore) * 100))}%`;
+      if (elT) elT.textContent = text;
+    };
+
+    setPillar('pillar-hy-score', 'pillar-hy-fill', 'pillar-hy-text', r.hyScore, 35, `${r.hyAnsweredPassed} von ${r.hyTotal} ÄKNO Top-Fragen gelöst`);
+    setPillar('pillar-safety-score', 'pillar-safety-fill', 'pillar-safety-text', r.safetyScore, 30, r.criticalFailed === 0 ? '🛡️ 100% Patientensicherheit – keine Kardinalfehler' : `⚠️ ${r.criticalFailed} Kardinalfehler registriert`);
+    setPillar('pillar-sm2-score', 'pillar-sm2-fill', 'pillar-sm2-text', r.sm2Score, 20, `${r.sm2Mastered} Fakten im festen Langzeitgedächtnis (≥ 6 Tage)`);
+    setPillar('pillar-oral-score', 'pillar-oral-fill', 'pillar-oral-text', r.oralScore, 15, `${r.oralPassed} mündliche Prüfungsfälle sicher strukturiert`);
+
+    // Dynamic Recommendations
+    const elRecList = document.getElementById('readiness-recommendations-list');
+    if (elRecList) {
+      elRecList.innerHTML = '';
+      const recs = [];
+
+      if (r.criticalFailed > 0) {
+        recs.push({
+          isCrit: true,
+          txt: `🚨 <strong>Kardinalfehler sofort eliminieren:</strong> Wiederholen Sie dringend die ${r.criticalFailed} falsch beantworteten Notfallfragen (Maligne Hyperthermie, LAST, Notfallintubation).`
+        });
+      }
+
+      if (r.hyAnsweredPassed < 50) {
+        recs.push({
+          isCrit: false,
+          txt: '🏛️ <strong>Düsseldorfer Protokollfälle:</strong> Trainieren Sie prioritär die echten Prüfungsprotokolle von Prof. Annecke & Prof. Hohn (Leverkusen / ÄKNO).'
+        });
+      }
+
+      if (r.sm2Mastered < 20) {
+        recs.push({
+          isCrit: false,
+          txt: '🧠 <strong>Dosierungssicherheit im Langzeitgedächtnis:</strong> Nutzen Sie den SM-2 Modus für exakte Notfalldosierungen (Dantrolen, Intralipid, Adrenalin, Sugammadex).'
+        });
+      }
+
+      if (r.oralPassed < 15) {
+        recs.push({
+          isCrit: false,
+          txt: '🗣️ <strong>60-Sekunden Mündliche Rhetorik:</strong> Sprechen Sie Ihre Antworten mit Taste [V] laut ein, um Prüfungshemmungen abzubauen.'
+        });
+      }
+
+      if (!recs.length) {
+        recs.push({
+          isCrit: false,
+          txt: '⭐ <strong>Höchste Prüfungsreife:</strong> Halten Sie Ihre Tagesziele aufrecht und absolvieren Sie 1–2 vollständige 45-Minuten Prüfungssimulationen vor dem Examen.'
+        });
+      }
+
+      recs.forEach(rec => {
+        const item = document.createElement('div');
+        item.className = 'readiness-rec-item' + (rec.isCrit ? ' rec-critical' : '');
+        item.innerHTML = rec.txt;
+        elRecList.appendChild(item);
+      });
+    }
+  }
+
   // --- Update Analytics & Dashboard ---
   function updateAnalytics() {
     const total = EXAM_QUESTIONS.length;
@@ -2177,6 +2361,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const elStatProgressText = document.getElementById('stat-progress-text');
     if (elStatProgressText) {
       elStatProgressText.textContent = `${answeredCount} / ${total} (${progressPct}%)`;
+    }
+
+    // Dynamic ÄKNO Exam Readiness Score
+    const readiness = calculateExamReadiness();
+    const elStatReadiness = document.getElementById('stat-readiness-score');
+    const elBadgeReadiness = document.getElementById('badge-readiness-trigger');
+    if (elStatReadiness) {
+      elStatReadiness.textContent = `${readiness.totalScore}%`;
+    }
+    if (elBadgeReadiness) {
+      if (readiness.criticalFailed > 0) {
+        elBadgeReadiness.style.borderColor = 'var(--danger)';
+        elBadgeReadiness.style.background = 'var(--danger-bg)';
+        if (elStatReadiness) elStatReadiness.style.color = 'var(--danger)';
+      } else if (readiness.totalScore >= 80) {
+        elBadgeReadiness.style.borderColor = 'var(--success)';
+        elBadgeReadiness.style.background = 'var(--success-bg)';
+        if (elStatReadiness) elStatReadiness.style.color = 'var(--success)';
+      } else {
+        elBadgeReadiness.style.borderColor = 'rgba(13, 148, 136, 0.35)';
+        elBadgeReadiness.style.background = '';
+        if (elStatReadiness) elStatReadiness.style.color = '';
+      }
     }
 
     // Streak calculations
@@ -2818,6 +3025,77 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mockBtn) mockBtn.click();
       });
     }
+  }
+
+  // --- ÄKNO Düsseldorf Prüfungs-Reife & Readiness Radar Modal Engine ---
+  const elReadinessTrigger = document.getElementById('readiness-trigger');
+  const elBadgeReadinessTrigger = document.getElementById('badge-readiness-trigger');
+  const elReadinessModal = document.getElementById('readiness-modal');
+  const elReadinessModalClose = document.getElementById('readiness-modal-close');
+
+  function openReadinessModal() {
+    if (!elReadinessModal) return;
+    renderReadinessModal();
+    elReadinessModal.classList.add('active');
+  }
+
+  if (elReadinessTrigger) elReadinessTrigger.addEventListener('click', openReadinessModal);
+  if (elBadgeReadinessTrigger) elBadgeReadinessTrigger.addEventListener('click', openReadinessModal);
+  if (elReadinessModalClose && elReadinessModal) {
+    elReadinessModalClose.addEventListener('click', () => closeModal(elReadinessModal));
+  }
+  if (elReadinessModal) {
+    elReadinessModal.addEventListener('click', (e) => {
+      if (e.target === elReadinessModal) closeModal(elReadinessModal);
+    });
+  }
+
+  // Readiness Action Buttons
+  const btnTrainWeakness = document.getElementById('btn-train-weakness');
+  const btnTrainDusProtocol = document.getElementById('btn-train-dus-protocol');
+  const btnTrainSm2Due = document.getElementById('btn-train-sm2-due');
+
+  if (btnTrainWeakness) {
+    btnTrainWeakness.addEventListener('click', () => {
+      closeModal(elReadinessModal);
+      const chip = document.querySelector('.filter-chip[data-filter="weakness"]');
+      if (chip) chip.click();
+      showToast('🎯 Schwachstellen-Fokus aktiviert. Eliminieren Sie vorrangig Ihre Fehler!', 'warning', 4000);
+    });
+  }
+
+  if (btnTrainDusProtocol) {
+    btnTrainDusProtocol.addEventListener('click', () => {
+      closeModal(elReadinessModal);
+      const chip = document.querySelector('.filter-chip[data-filter="dus_examiners"]');
+      if (chip) chip.click();
+      showToast('🏛️ Düsseldorfer Original-Protokollfälle von Prof. Annecke & Prof. Hohn aktiviert!', 'info', 4000);
+    });
+  }
+
+  if (btnTrainSm2Due) {
+    btnTrainSm2Due.addEventListener('click', () => {
+      closeModal(elReadinessModal);
+      const chip = document.querySelector('.filter-chip[data-filter="sm2_due"]');
+      if (chip) chip.click();
+      showToast('🧠 Fällige Spaced-Repetition Fragen für dauerhafte Dosierungssicherheit aktiviert!', 'info', 4000);
+    });
+  }
+
+  // --- Quick Dock Self-Assessment Listeners ---
+  const elBtnDockKnewIt = document.getElementById('btn-dock-knew-it');
+  const elBtnDockDidntKnow = document.getElementById('btn-dock-didnt-know');
+  if (elBtnDockKnewIt) {
+    elBtnDockKnewIt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selfAssess(true);
+    });
+  }
+  if (elBtnDockDidntKnow) {
+    elBtnDockDidntKnow.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selfAssess(false);
+    });
   }
 
   // --- Clinical Anesthesia Calculator Modal ---

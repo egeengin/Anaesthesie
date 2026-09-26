@@ -63,6 +63,9 @@
         </div>
 
         <div class="nav-action-pill">
+          <button id="readiness-trigger" class="pill-btn highlight-pill" title="ÄKNO Düsseldorf Prüfungsreife-Radar: Sind Sie wirklich bereit für die Facharztprüfung?">
+            <span>🎓</span> <span class="pill-btn-text">Prüfungsreife</span>
+          </button>
           <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & K.O.-Kriterien">
             <span>🏛️</span> <span class="pill-btn-text">Düsseldorf-Kompass</span>
           </button>
@@ -108,6 +111,9 @@
       </div>
 
       <div class="dash-compact-right">
+        <div id="badge-readiness-trigger" class="dash-badge-item dash-badge-readiness clickable" title="Klicken für ÄKNO Düsseldorf Prüfungsreife-Radar">
+          <span>🎓 Reife:</span> <strong id="stat-readiness-score">0%</strong>
+        </div>
         <div class="dash-badge-item">
           <span>🎯 Quote:</span> <strong id="stat-accuracy">0%</strong>
         </div>
@@ -694,10 +700,20 @@
       </div>
 
       <!-- Action Control Bar -->
-      <div class="action-bar">
+      <div class="action-bar" id="main-action-bar">
         <button id="btn-review" class="btn btn-warning">
           <span>☆</span> Wiederholen <kbd class="kbd-hint">M</kbd>
         </button>
+
+        <!-- Quick Dock Assessment Buttons (Displayed on mobile / dock when answer revealed) -->
+        <div id="dock-self-assess" class="dock-self-assess" style="display: none;">
+          <button id="btn-dock-knew-it" class="btn btn-knew-it" type="button" title="Wusste ich (1 / R)">
+            <span>✅</span> Wusste ich
+          </button>
+          <button id="btn-dock-didnt-know" class="btn btn-didnt-know" type="button" title="Wusste ich nicht (2 / F)">
+            <span>❌</span> Nicht gewusst
+          </button>
+        </div>
 
         <div class="btn-group">
           <button id="btn-prev" class="btn btn-secondary">
@@ -1142,6 +1158,131 @@
           </div>
 
         </div>
+      </div>
+    </div>
+  <!-- ==================== ÄKNO DÜSSELDORF PRÜFUNGS-REIFE & READINESS RADAR MODAL ==================== -->
+  <div id="readiness-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 880px;">
+      <div class="modal-header">
+        <div>
+          <h2 style="margin: 0; font-size: 1.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🎓</span> <span>ÄKNO Düsseldorf Prüfungsreife-Radar</span>
+          </h2>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">
+            Wissenschaftliche & klinische Readiness-Analyse: Sind Sie wirklich bereit für die Facharztprüfung vor der ÄKNO?
+          </span>
+        </div>
+        <button id="readiness-modal-close" class="btn-icon">✕</button>
+      </div>
+
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto; padding: 1.25rem;">
+        <!-- Hero Gauge Banner -->
+        <div class="readiness-hero-card" id="readiness-hero-card">
+          <div class="readiness-hero-left">
+            <div class="readiness-score-ring">
+              <span id="readiness-score-val" class="readiness-score-val">0%</span>
+              <span class="readiness-score-sub">Reife-Index</span>
+            </div>
+          </div>
+          <div class="readiness-hero-right">
+            <div id="readiness-verdict-badge" class="readiness-verdict-badge status-unprepared">
+              Noch nicht prüfungsreif
+            </div>
+            <h3 id="readiness-verdict-title" class="readiness-verdict-title">Prüfungskommission ÄKNO Düsseldorf Urteil</h3>
+            <p id="readiness-verdict-desc" class="readiness-verdict-desc">
+              Berechnung läuft...
+            </p>
+          </div>
+        </div>
+
+        <!-- 4 Pillars of Exam Readiness -->
+        <div class="readiness-pillars-grid">
+          <!-- Pillar 1: High-Yield & Protocol Cases -->
+          <div class="readiness-pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-title">
+                <span>🏛️</span> <strong>ÄKNO Protokolle & Top-Fälle</strong>
+              </div>
+              <span id="pillar-hy-score" class="pillar-score">0 / 35 Pkt</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="pillar-hy-fill" class="pillar-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="pillar-meta">
+              <span id="pillar-hy-text">0 von 497 Top-Fragen bestanden</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Patient Safety & K.O.-Kriterien Radar -->
+          <div class="readiness-pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-title">
+                <span>🚨</span> <strong>K.O.-Kriterien & Patientensicherheit</strong>
+              </div>
+              <span id="pillar-safety-score" class="pillar-score">30 / 30 Pkt</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="pillar-safety-fill" class="pillar-progress-fill" style="width: 100%;"></div>
+            </div>
+            <div class="pillar-meta">
+              <span id="pillar-safety-text">0 tödliche Kardinalfehler erfasst</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3: SM-2 Long-Term Retention -->
+          <div class="readiness-pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-title">
+                <span>🧠</span> <strong>SM-2 Langzeit-Gedächtnis</strong>
+              </div>
+              <span id="pillar-sm2-score" class="pillar-score">0 / 20 Pkt</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="pillar-sm2-fill" class="pillar-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="pillar-meta">
+              <span id="pillar-sm2-text">0 Fragen im Langzeitintervall (≥ 6 Tage)</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4: Oral Fluency & Simulation -->
+          <div class="readiness-pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-title">
+                <span>🗣️</span> <strong>Mündliche Falldialoge & Rhetorik</strong>
+              </div>
+              <span id="pillar-oral-score" class="pillar-score">0 / 15 Pkt</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="pillar-oral-fill" class="pillar-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="pillar-meta">
+              <span id="pillar-oral-text">0 mündliche Prüfungen absolviert</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clinical Recommendation & Action Plan -->
+        <div class="readiness-action-box">
+          <div class="readiness-action-header">
+            <span>🎯</span> <strong>Empfohlene nächste Trainingsschritte für Düsseldorf:</strong>
+          </div>
+          <div id="readiness-recommendations-list" class="readiness-recommendations-list">
+            <!-- Dynamically populated recommendations -->
+          </div>
+          <div class="readiness-action-btns">
+            <button id="btn-train-weakness" class="btn btn-warning" type="button">
+              <span>🎯</span> Schwachstellen gezielt trainieren
+            </button>
+            <button id="btn-train-dus-protocol" class="btn btn-primary" type="button">
+              <span>🏛️</span> Düsseldorfer Original-Fälle üben
+            </button>
+            <button id="btn-train-sm2-due" class="btn btn-secondary" type="button">
+              <span>🧠</span> Fällige Wiederholungen (SM-2)
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

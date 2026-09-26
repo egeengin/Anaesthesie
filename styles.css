@@ -4802,3 +4802,282 @@ body.mode-simulation-active #step3-container {
   color: var(--success);
 }
 
+/* ==========================================================================
+   ÄKNO DÜSSELDORF PRÜFUNGSREIFE-RADAR & EXAM READINESS DASHBOARD
+   ========================================================================== */
+.dash-badge-readiness {
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(141, 99, 70, 0.12), rgba(13, 148, 136, 0.12));
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.dash-badge-readiness:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+  border-color: var(--clinical-teal);
+}
+
+.highlight-pill {
+  border: 1px solid var(--clinical-teal) !important;
+  color: var(--clinical-teal) !important;
+  background: var(--clinical-teal-light) !important;
+}
+
+.readiness-hero-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-tertiary) 100%);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.readiness-score-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: conic-gradient(var(--clinical-teal) calc(var(--readiness-deg, 0deg)), var(--card-border) 0deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+  flex-shrink: 0;
+}
+
+.readiness-score-ring::before {
+  content: '';
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: var(--card-bg);
+}
+
+.readiness-score-val {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.readiness-score-sub {
+  position: relative;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.readiness-hero-right {
+  flex: 1;
+}
+
+.readiness-verdict-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.readiness-verdict-badge.status-ready {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.readiness-verdict-badge.status-conditional {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+
+.readiness-verdict-badge.status-unprepared {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+.readiness-verdict-title {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.15rem;
+  color: var(--text-main);
+}
+
+.readiness-verdict-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* 4 Pillars of Readiness */
+.readiness-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.readiness-pillar-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pillar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pillar-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+}
+
+.pillar-score {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.pillar-progress-track {
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.pillar-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--clinical-teal), var(--primary));
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pillar-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Action Recommendation Box */
+.readiness-action-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.readiness-action-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.readiness-recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.readiness-rec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--card-bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary);
+}
+
+.readiness-rec-item.rec-critical {
+  border-left-color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.readiness-action-btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* --- Quick Dock Self-Assessment Buttons in Action Bar --- */
+.dock-self-assess {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .readiness-hero-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .readiness-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-action-pill {
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-action-pill::-webkit-scrollbar {
+    display: none;
+  }
+
+  .action-bar {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .action-bar .btn-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.35rem;
+  }
+
+  .dock-self-assess {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 0.35rem;
+  }
+}
+
+
