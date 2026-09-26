@@ -4365,24 +4365,9 @@ Tedavi:
     try {
       naturalAudioPlayer = new Audio();
       naturalAudioPlayer.preload = 'auto';
-
-      naturalAudioPlayer.addEventListener('ended', () => {
-        // Guard: ignore stale events from a previous speak session
-        const sessionAtEvent = naturalAudioPlayer._currentSession;
-        if (!isSpeakingMedical || sessionAtEvent !== _speakSessionId) return;
-        currentChunkIndex++;
-        if (currentChunkIndex < naturalAudioQueue.length) {
-          playCurrentAudioChunk();
-        } else {
-          stopMedicalSpeech();
-        }
-      });
-
-      naturalAudioPlayer.addEventListener('error', (err) => {
-        if (!isSpeakingMedical || naturalAudioPlayer._currentSession !== _speakSessionId) return;
-        console.warn('[NaturalAudio] Stream playback error, switching to Web Speech fallback:', err);
-        fallbackToWebSpeech();
-      });
+      // NOTE: 'ended' and 'error' listeners are attached per-chunk in
+      // playCurrentAudioChunk() so that stale events from a previous chunk
+      // can never accidentally advance the wrong index.
     } catch (e) {
       console.warn('[NaturalAudio] Init error:', e);
     }
@@ -4441,19 +4426,51 @@ Tedavi:
     }
 
     initNaturalAudioPlayer();
+
+    // Capture the exact chunk index and session this play-call is for.
+    // By closing over these values we guarantee that even if a stale 'ended'
+    // event fires after stopMedicalSpeech() + a new playCurrentAudioChunk(),
+    // it will see a different capturedIndex / capturedSession and bail out.
+    const capturedIndex   = currentChunkIndex;
+    const capturedSession = _speakSessionId;
+
+    // Remove the previous per-chunk listeners before adding new ones.
+    if (naturalAudioPlayer._endedHandler) {
+      naturalAudioPlayer.removeEventListener('ended', naturalAudioPlayer._endedHandler);
+    }
+    if (naturalAudioPlayer._errorHandler) {
+      naturalAudioPlayer.removeEventListener('error', naturalAudioPlayer._errorHandler);
+    }
+
+    naturalAudioPlayer._endedHandler = () => {
+      // Only proceed if we're still in the same session and on the same chunk.
+      if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
+      currentChunkIndex++;
+      if (currentChunkIndex < naturalAudioQueue.length) {
+        playCurrentAudioChunk();
+      } else {
+        stopMedicalSpeech();
+      }
+    };
+
+    naturalAudioPlayer._errorHandler = (err) => {
+      if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) return;
+      console.warn('[NaturalAudio] Stream error, falling back to Web Speech:', err);
+      fallbackToWebSpeech();
+    };
+
+    naturalAudioPlayer.addEventListener('ended', naturalAudioPlayer._endedHandler);
+    naturalAudioPlayer.addEventListener('error', naturalAudioPlayer._errorHandler);
+
     const encoded = encodeURIComponent(chunkText.trim());
-    // Stamp the current session on the player so the 'ended' handler can
-    // detect and ignore events from a previous (now-stopped) session.
-    naturalAudioPlayer._currentSession = _speakSessionId;
     naturalAudioPlayer.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
     naturalAudioPlayer.playbackRate = state.speechRate || 0.95;
 
     const playPromise = naturalAudioPlayer.play();
     if (playPromise !== undefined) {
       playPromise.catch(err => {
-        if (!isSpeakingMedical || naturalAudioPlayer._currentSession !== _speakSessionId) return;
-        // Autoplay or network block
-        console.warn('[NaturalAudio] Play interrupted or blocked, falling back to Web Speech:', err);
+        if (!isSpeakingMedical || _speakSessionId !== capturedSession) return;
+        console.warn('[NaturalAudio] Play blocked, falling back to Web Speech:', err);
         fallbackToWebSpeech();
       });
     }
