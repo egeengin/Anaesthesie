@@ -395,7 +395,7 @@
       <div id="sim-live-cockpit" class="sim-live-cockpit" style="display: none;">
         <!-- Examiner Commission Stage Bar -->
         <div class="sim-examiner-stage-card">
-          <div class="sim-examiner-avatar-box">
+          <div class="sim-examiner-avatar-box" id="sim-examiner-avatar-box" title="Prüfer-Profil anzeigen / Jüri profilini gör">
             <div class="sim-examiner-avatar" id="sim-examiner-avatar">👨‍⚕️</div>
             <div class="sim-examiner-meta">
               <div class="sim-examiner-badge-row">
@@ -420,6 +420,17 @@
               <span class="sim-btn-icon">⚡</span>
               <span>Prüfer unterbricht: Akut-Zwischenfall!</span>
             </button>
+            <button id="btn-sim-toggle-examiner-profile" class="btn-sim-action btn-sim-profile" type="button" title="ÄKNO Prüfer-Profil &amp; Erwartungshorizont anzeigen / Jüri profilini gör">
+              <span class="sim-btn-icon">🏛️</span>
+              <span id="sim-profile-btn-label">Jüri Profili / Prüfer-Profil</span>
+            </button>
+          </div>
+
+          <!-- Interactive Quick-View Examiner Profile Drawer inside Cockpit -->
+          <div id="sim-examiner-drawer" class="sim-examiner-drawer" style="display: none;">
+            <div class="sim-drawer-content" id="sim-examiner-drawer-content">
+              <!-- Dynamically populated from examinerProfile -->
+            </div>
           </div>
         </div>
 
