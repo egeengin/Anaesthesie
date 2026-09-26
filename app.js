@@ -4358,6 +4358,7 @@ Tedavi:
   let isSpeakingMedical = false;
   let activeMedicalTriggerBtn = null;
   let onSpeechCompleteCallback = null;
+  let _speakSessionId = 0; // Guard against stale 'ended' events causing double-reads
 
   function initNaturalAudioPlayer() {
     if (naturalAudioPlayer) return;
@@ -4366,7 +4367,9 @@ Tedavi:
       naturalAudioPlayer.preload = 'auto';
 
       naturalAudioPlayer.addEventListener('ended', () => {
-        if (!isSpeakingMedical) return;
+        // Guard: ignore stale events from a previous speak session
+        const sessionAtEvent = naturalAudioPlayer._currentSession;
+        if (!isSpeakingMedical || sessionAtEvent !== _speakSessionId) return;
         currentChunkIndex++;
         if (currentChunkIndex < naturalAudioQueue.length) {
           playCurrentAudioChunk();
@@ -4376,6 +4379,7 @@ Tedavi:
       });
 
       naturalAudioPlayer.addEventListener('error', (err) => {
+        if (!isSpeakingMedical || naturalAudioPlayer._currentSession !== _speakSessionId) return;
         console.warn('[NaturalAudio] Stream playback error, switching to Web Speech fallback:', err);
         fallbackToWebSpeech();
       });
@@ -4438,12 +4442,16 @@ Tedavi:
 
     initNaturalAudioPlayer();
     const encoded = encodeURIComponent(chunkText.trim());
+    // Stamp the current session on the player so the 'ended' handler can
+    // detect and ignore events from a previous (now-stopped) session.
+    naturalAudioPlayer._currentSession = _speakSessionId;
     naturalAudioPlayer.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
     naturalAudioPlayer.playbackRate = state.speechRate || 0.95;
 
     const playPromise = naturalAudioPlayer.play();
     if (playPromise !== undefined) {
       playPromise.catch(err => {
+        if (!isSpeakingMedical || naturalAudioPlayer._currentSession !== _speakSessionId) return;
         // Autoplay or network block
         console.warn('[NaturalAudio] Play interrupted or blocked, falling back to Web Speech:', err);
         fallbackToWebSpeech();
@@ -4470,13 +4478,15 @@ Tedavi:
 
   function stopMedicalSpeech() {
     isSpeakingMedical = false;
+    _speakSessionId++; // Invalidate any pending 'ended' events from the old session
 
     // Stop HTML5 Audio stream
     if (naturalAudioPlayer) {
       try {
         naturalAudioPlayer.pause();
         naturalAudioPlayer.removeAttribute('src');
-        naturalAudioPlayer.load();
+        // NOTE: Do NOT call .load() here — it can fire a spurious 'ended' event
+        // that causes the next speak session to advance the chunk index incorrectly.
       } catch (e) {}
     }
 
