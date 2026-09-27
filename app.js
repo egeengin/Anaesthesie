@@ -149,9 +149,20 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Step Containers & Accordions
   const elStep1Container = document.getElementById('step1-container');
+  const elBtnToggleStep1Answer = document.getElementById('btn-toggle-step1-answer');
+  const elStep1InlineAnswerBox = document.getElementById('step1-inline-answer-box');
+  const elStep1InlineAnswerText = document.getElementById('step1-inline-answer-text');
+  const elBtnAudioSpeakStep1Ans = document.getElementById('btn-audio-speak-step1-ans');
+  const elBtnAudioSpeakStep1Box = document.getElementById('btn-audio-speak-step1-box');
+
   const elStep2Container = document.getElementById('step2-container');
   const elBtnStep2Toggle = document.getElementById('btn-step2-toggle');
   const elPanelVitals = document.getElementById('panel-vitals');
+  const elBtnToggleStep2Answer = document.getElementById('btn-toggle-step2-answer');
+  const elStep2InlineAnswerBox = document.getElementById('step2-inline-answer-box');
+  const elStep2InlineAnswerText = document.getElementById('step2-inline-answer-text');
+  const elBtnAudioSpeakStep2Ans = document.getElementById('btn-audio-speak-step2-ans');
+  const elBtnAudioSpeakStep2Box = document.getElementById('btn-audio-speak-step2-box');
 
   const elStep3Container = document.getElementById('step3-container');
   const elBtnStep3Toggle = document.getElementById('btn-step3-toggle');
@@ -1164,10 +1175,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const pitfalls = generatePitfalls(category, stem, answer);
     const pitfallsTR = generatePitfallsTR(category, stem, answer);
 
+    // 5. Clinical Findings & Vitals Interpretation (Schritt 2)
+    const vitalsInterpretation = generateVitalsInterpretation(category, stem, answer, vitals, q);
+
     return {
       clinicalContext,
       stem,
       vitals,
+      vitalsInterpretationDE: vitalsInterpretation.de,
+      vitalsInterpretationTR: vitalsInterpretation.tr,
       examinerIntervention,
       examinerInterventionTR,
       examinerAnswer,
@@ -1379,6 +1395,242 @@ document.addEventListener('DOMContentLoaded', () => {
         notes_tr: 'Vital bulgular ve monitörizasyon perioperatif normal sınırlarda; anestezi derinliği yeterli.'
       };
     }
+  }
+
+  function generateVitalsInterpretation(category, stem, answer, vitals, q) {
+    const text = ((stem || '') + ' ' + (answer || '') + ' ' + (category || '')).toLowerCase();
+    const qId = q ? q.id : '';
+
+    // Check 1: Authentic ÄKNO Düsseldorf Protocol Registry specific cases
+    if (qId === 'q_dus_01' || text.includes('aortenklappen') || text.includes('stenose')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Hämodynamik: Fragile Ausgangslage bei schwerer Aortenklappenstenose. Fester Stenosequerschnitt begrenzt das maximale Schlagvolumen (RR ${vitals.bp}, MAP ${vitals.map}, HF ${vitals.hr}); die Koronarperfusion ist strikt abhängig von einem hohen systemvaskulären Widerstand (SVR) und ausreichend langer Diastole.
+• BGA & Stoffwechsel: Aktuell kompensiert (pH ${vitals.ph}, Laktat ${vitals.lactate}, BE ${vitals.be}), jedoch droht unter Narkoseeinleitung ein schlagartiger Perfusionszusammenbruch.
+• Diagnostik: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & SOFORTMASSNAHMEN:
+• ARTERIELLE BLUTDRUCKMESSUNG ZWINGEND VOR NARKOSEEINLEITUNG etablieren!
+• Hämodynamische Zieltriade: 1. Sinusrhythmus 60–80/min streng wahren (keine Tachykardie!), 2. Vorlast sichern (kein Volumenmangel), 3. SVR hochhalten mit Noradrenalin / Phenylephrin.
+• K.O.-KRITERIUM: Spinalanästhesie ist absolut kontraindiziert (akuter SVR-Abfall führt zum irreversiblen Kreislaufstillstand)!`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Hemodinamik: Ağır aort darlığında son derece kırılgan başlangıç durumu. Sabit kapak alanı atım hacmini sınırlar (Tansiyon ${vitals.bp}, MAP ${vitals.map}, Nabız ${vitals.hr}); koroner perfüzyon yüksek sistemik vasküler dirence (SVR) ve yeterli diyastol süresine bağımlıdır.
+• Kan Gazı & Metabolizma: Şu an kompanse (pH ${vitals.ph}, Laktat ${vitals.lactate}, BE ${vitals.be}), ancak anestezi indüksiyonunda ani perfüzyon çöküşü riski mevcuttur.
+• Tanısal Not: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & ACİL ÖNLEMLER:
+• İNDÜKSİYONDAN ÖNCE İNVAZİV ARTERİYEL TANSİYON HATTI ZORUNLUDUR!
+• Hemodinamik Hedef Triadı: 1. 60-80/dk sinüs ritmini koru (taşikardi yasak!), 2. Ön yükü garantiye al (hipovolemi yok), 3. Noradrenalin/Fenilefrin ile SVR'yi yüksek tut.
+• K.O. KRİTERİ: Spinal anestezi kesinlikle kontrendikedir (ani SVR düşüşü geri dönüşümsüz kardiyak arreste yol açar)!`
+      };
+    }
+
+    if (qId === 'q_dus_02' || text.includes('einlungenventilation') || text.includes('dlt') || text.includes('doppellumentubus')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Oxygenierung & Ventilation: Abfall der SpO2 (${vitals.spo2}) und pO2 (${vitals.po2}) unter Einlungenventilation (OLV) als Folge eines großen intrapulmonalen Rechts-Links-Shunts (nicht-ventilierte Lunge wird weiter perfundiert).
+• Beatmungsmechanik: Pmax ${vitals.vent}, etCO2 ${vitals.etco2}; Gefahr der Tubusdislokation oder Sekretverlegung des DLT.
+• Diagnostik: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & STRUKTURIERTER 5-STUFEN-ALGORITHMUS:
+• Stufe 1: FiO2 sofort auf 1,0 an der abhängigen, ventilierten Lunge erhöhen.
+• Stufe 2: BRONCHOSKOPISCHE DLT-LAGEKONTROLLE! Ausschluss von Verrutschen, Abknicken oder Sekretobstruktion.
+• Stufe 3: PEEP (4–8 cmH2O) an der ventilierten Lunge optimieren (Atelektasenprophylaxe).
+• Stufe 4: CPAP (2–5 cmH2O mit O2-Flow) an die kollabierte OP-Lunge applizieren (stärkste Shuntreduktion).
+• Stufe 5: Bei refraktärer Hypoxie: OP unterbrechen und sofortige Re-Ventilation beider Lungen mit 100% O2!`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Oksijenasyon: Tek akciğer ventilasyonunda (OLV) SpO2 (${vitals.spo2}) ve pO2 (${vitals.po2}) düşüşü; havalandırılmayan akciğerin perfüzyonuna bağlı masif intrapulmoner sağ-sol şantını gösterir.
+• Havayolu Basıncı: Pmax ${vitals.vent}, etCO2 ${vitals.etco2}; çift lümenli tüpün (DLT) yerinden oynaması veya sekresyon tıkacı riski.
+• Klinik Not: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & 5 BASAMAKLI KURTARMA ALGORİTMASI:
+• Basamak 1: Havalandırılan akciğere derhal %100 FiO2 verin.
+• Basamak 2: BRONKOSKOP İLE DLT TÜPÜNÜN YERİNİ KONTROL EDİN! Tüp kaymasını dışlayın.
+• Basamak 3: Bağımlı akciğerde PEEP'i (4-8 cmH2O) optimize edin (atelektazi önleme).
+• Basamak 4: Kollabe akciğere 2-5 cmH2O CPAP uygulayın (%100 O2 akımıyla).
+• Basamak 5: Dirençli hipoksemide ameliyatı durdurup her iki akciğeri %100 O2 ile yeniden havalandırın!`
+      };
+    }
+
+    if (qId === 'q_dus_03' || text.includes('schädel-hirn') || text.includes('sht') || text.includes('polytrauma')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Hämodynamik: Hämorrhagischer Schock (RR ${vitals.bp}, MAP ${vitals.map}, HF ${vitals.hr} ${vitals.rhythm}) bei instabilem Becken und Blutverlust.
+• BGA: Schwere metabolische Azidose (pH ${vitals.ph}, BE ${vitals.be}, Laktat ${vitals.lactate}) mit Anämie (Hb ${vitals.hb}) und drohender Gerinnungsentgleisung.
+• Neurologie: GCS 6, Anisokorie -> Akute intrakranielle Druckerhöhung mit Einklemmungsgefahr!
+2. THERAPEUTISCHE KONSEQUENZ & LEBENSRETTENDE MASSNAHMEN:
+• KONTRAINDIKATION PERMISSIVE HYPOTONIE: Bei begleitendem schwerem SHT ist permissive Hypotonie streng verboten!
+• Ziel-Hämodynamik: MAP sofort auf ≥ 80–90 mmHg mittels Noradrenalin anheben, um einen zerebralen Perfusionsdruck (CPP = MAP - ICP) von ≥ 60–70 mmHg zu sichern!
+• Mechanische Blutstillung: Beckenschlinge ('Pelvic Binder') sofort anlegen.
+• Gerinnung: Tranexamsäure 1 g i.v. Bolus; ROTEM-gesteuertes Fibrinogenkonzentrat und Massivtransfusion.`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Hemodinamik: İnstabil pelvis ve kanamaya bağlı hemorajik şok (Tansiyon ${vitals.bp}, MAP ${vitals.map}, Nabız ${vitals.hr} ${vitals.rhythm}).
+• Kan Gazı: Ağır metabolik asidoz (pH ${vitals.ph}, BE ${vitals.be}, Laktat ${vitals.lactate}, Hb ${vitals.hb}) ve koagülopati tehdidi.
+• Nöroloji: GKS 6, anizokori -> Akut intrakraniyal basınç artışı ve herniasyon riski!
+2. TERAPÖTİK YAKLAŞIM & HAYAT KURTARICI MÜDAHALELER:
+• PERMİSSİF HİPOTANSİYON KESİNLİKLE YASAKTIR: Ağır kafa travmasında permissif hipotansiyon ölümcüldür!
+• Hedef Hemodinamik: Noradrenalin ile MAP derhal ≥ 80-90 mmHg'ye yükseltilerek Serebral Perfüzyon Basıncı (CPP = MAP - ICP) ≥ 60-70 mmHg sağlanmalıdır.
+• Mekanik Kanama Kontrolü: Pelvik korse (Pelvic Binder) anında takılmalıdır.
+• Pıhtılaşma: 1 g Traneksamik asit i.v. bolus; ROTEM kılavuzluğunda fibrinojen ve masif transfüzyon.`
+      };
+    }
+
+    // Check 2: Domain-specific clinical interpretation
+    if (category.includes('Atemweg')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Ventilation & Oxygenierung: SpO2 ${vitals.spo2}, pO2 ${vitals.po2}, etCO2 ${vitals.etco2}, Pmax ${vitals.vent}. Respiratorische Partial- oder Globalinsuffizienz mit kompensatorischer Sinustachykardie (HF ${vitals.hr}).
+• BGA & Säure-Basen-Status: pH ${vitals.ph}, pCO2 ${vitals.pco2}, BE ${vitals.be}, Laktat ${vitals.lactate}. Akute respiratorische Azidose infolge alveolärer Hypoventilation oder Obstruktion.
+• Klinischer Befund: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & SOFORTMASSNAHMEN:
+• Präoxygenierung: Sofortige 100% O2-Gabe über dichte Maske mit Reservoir (High-Flow, Ziel-etO2 ≥ 90%).
+• DGAI-Stufenplan schwieriger Atemweg: Videolaryngoskopie als Primärverfahren; Larynxmaske (Plan B) und Skalpell-Koniotomieset / eFONA (Plan D) unmittelbar bereitstellen.
+• Beatmungsoptimierung: Druckkontrollierte Beatmung, PEEP vorsichtig titrieren, kontinuierliche Kapnographie (etCO2) zwingend zur Lagebestätigung.`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Ventilasyon & Oksijenasyon: SpO2 ${vitals.spo2}, pO2 ${vitals.po2}, etCO2 ${vitals.etco2}, Pmax ${vitals.vent}. Kompansatuar sinüs taşikardisi (Nabız ${vitals.hr}) ile birlikte solunum yetmezliği tablosu.
+• Kan Gazı & Asit-Baz: pH ${vitals.ph}, pCO2 ${vitals.pco2}, BE ${vitals.be}, Laktat ${vitals.lactate}. Alveoler hipoventilasyona veya hava yolu obstrüksiyonuna bağlı akut respiratuar asidoz.
+• Muayene / Bulgular: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & ACİL ÖNLEMLER:
+• Preoksijenasyon: Rezervuarlı maske ile %100 O2 preoksijenasyonu (High-flow, hedef etO2 ≥ %90).
+• Zor Havayolu Kılavuzu: DGAI basamaklı planı devreye sokulur; 1. tercih olarak videolaringoskopi, Plan B (LMA) ve Plan D (skalpel koniyotomi) hazır bulundurulmalıdır.
+• Ventilasyon Desteği: Basınç kontrollü ventilasyon, PEEP titrasyonu, tüp yerleşimi için sürekli kapnografi takibi.`
+      };
+    }
+
+    if (category.includes('Herz') || category.includes('Hämo')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Hämodynamik: Schwere hämodynamische Instabilität / Schock (RR ${vitals.bp}, MAP ${vitals.map}, HF ${vitals.hr} ${vitals.rhythm}).
+• Perfusion & Sauerstofftransport: Schwere metabolische Laktatazidose (pH ${vitals.ph}, BE ${vitals.be}, Laktat ${vitals.lactate}, Hb ${vitals.hb}) zeigt eine kritische Sauerstoffschuld und Organdysfunktion an.
+• Echokardiographie & Monitoring: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & SOFORTMASSNAHMEN:
+• Hämodynamisches Primärziel: Rasche MAP-Anhebung auf ≥ 65 mmHg mittels titrierter Noradrenalin-Gabe (2–10 µg/min bzw. 0,05–0,3 µg/kg/min).
+• Gezielte Volumentherapie: Balancierte Vollelektrolytlösung (20–30 ml/kg Bolus) unter dynamischem Vorlastmonitoring (VCI-Kollapsibilität / SVV).
+• Myokardschutz & Inotropie: Bei kardialer Pumpfunktionsstörung zusätzlich Dobutamin (2,5–10 µg/kg/min) titrieren; frühzeitige arterielle Kanülierung und ZVK-Anlage.`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Hemodinamik: Ciddi hemodinamik instabilite / şok tablosu (Tansiyon ${vitals.bp}, MAP ${vitals.map}, Nabız ${vitals.hr} ${vitals.rhythm}).
+• Perfüzyon & Oksijen Taşınması: Ağır metabolik laktik asidoz (pH ${vitals.ph}, BE ${vitals.be}, Laktat ${vitals.lactate}, Hb ${vitals.hb}) kritik doku hipoksisini ve organ yetmezliğini yansıtır.
+• Ekokardiyografi & Monitörizasyon: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & ACİL ÖNLEMLER:
+• Primer Hemodinamik Hedef: Noradrenalin titrasyonu ile derhal hedef MAP ≥ 65 mmHg sağlanmalıdır.
+• Hacim Replasmanı: Dinamik ön yük takibi altında balanse kristaloid (20-30 ml/kg bolus).
+• İnotropi & İnvaziv Hat: Pompa yetmezliğinde Dobutamin (2.5-10 µg/kg/dk) eklenmesi, invaziv arter ve CVP hattı açılması.`
+      };
+    }
+
+    if (category.includes('Chemie') || category.includes('Elektrolyt') || category.includes('Säure') || category.includes('Blutgas')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Säure-Basen-Status: pH ${vitals.ph}, pCO2 ${vitals.pco2}, HCO3- ${vitals.hco3}, BE ${vitals.be}, Laktat ${vitals.lactate}. Ausgeprägte Störung der Säure-Basen-Homöostase.
+• Elektrolyte: K+ ${vitals.k}, Na+ ${vitals.na}, Ca2+ ${vitals.ca}. Arrhythmogene Verschiebung mit kardialer Gefährdung.
+• Diagnostik & EKG: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & STUFENPLAN:
+• Stufe 1 (Kardiale Membranstabilisierung): Bei Hyperkaliämie oder EKG-Auffälligkeiten sofort Kalziumglukonat 10% (10 ml i.v. über 2–3 Min) applizieren.
+• Stufe 2 (Shift nach intrazellulär): Glukose-Insulin-Infusion (500 ml G20% + 10 IE Normalinsulin) und Salbutamol inhalativ/i.v.
+• Stufe 3 (Elimination & Kausaltherapie): Forcierte Diurese mit Furosemid, Kationenaustauscher, bei refraktärem Verlauf sofortige Notfall-Hämodialyse.`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Asit-Baz Dengesi: pH ${vitals.ph}, pCO2 ${vitals.pco2}, HCO3- ${vitals.hco3}, BE ${vitals.be}, Laktat ${vitals.lactate}. Belirgin asit-baz dengesizliği.
+• Elektrolitler: K+ ${vitals.k}, Na+ ${vitals.na}, Ca2+ ${vitals.ca}. Ciddi aritmi riski taşıyan elektrolit dengesizliği.
+• EKG & Monitörizasyon: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & BASAMAKLI TEDAVİ:
+• Basamak 1 (Membran Stabilizasyonu): Aritmi ve arresti önlemek için derhal %10 Kalsiyum glukonat (10 ml i.v. 2-3 dakikada).
+• Basamak 2 (Hücre İçine Kaydırma): Glukoz-İnsülin infüzyonu (%20 500 ml dekstroz + 10 Ü insülin) ve Salbutamol uygulaması.
+• Basamak 3 (Eliminasyon): Furosemid ile zorlu diürez, reçineler veya dirençli olgularda acil hemodiyaliz.`
+      };
+    }
+
+    if (category.includes('Pharmakologie') || category.includes('Notfall') || category.includes('Reanimation')) {
+      return {
+        de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Vitalzeichen & Monitoring: RR ${vitals.bp}, HF ${vitals.hr} ${vitals.rhythm}, etCO2 ${vitals.etco2}, Temperatur ${vitals.temp}. Akuter anästhesiologischer Zwischenfall mit vitaler Gefährdung.
+• BGA & Laktat: pH ${vitals.ph}, pCO2 ${vitals.pco2}, Laktat ${vitals.lactate}. Schwere metabolisch-respiratorische Azidose.
+• Alarmbefund: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & PROTOKOLLMASSNAHMEN:
+• Zufuhr aller potenziellen Trigger unverzüglich stoppen (Volatila, Relaxanzien, Lokalanästhetika, Antibiotika)!
+• 100% Sauerstoff mit maximalem Flow, Notfallalarm im Saal auslösen.
+• Spezifische Antidottherapie abrufen: Dantrolen bei MH, Intralipid 20% bei LAST, Adrenalin bei Anaphylaxie/CPR, Sugammadex bei Muskelrelaxanz-Überhang.`,
+        tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Hayati Bulgular: Tansiyon ${vitals.bp}, Nabız ${vitals.hr} ${vitals.rhythm}, etCO2 ${vitals.etco2}, Sıcaklık ${vitals.temp}. Hayatı tehdit eden akut anesteziyolojik kriz.
+• Kan Gazı: pH ${vitals.ph}, pCO2 ${vitals.pco2}, Laktat ${vitals.lactate}. Ağır asidoz ve doku hipoksisi.
+• Kritik İpucu: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & PROTOKOL ADIMLARI:
+• Olası tüm tetikleyicileri derhal durdurun (Gazlar, kas gevşeticiler, lokal anestezikler, antibiyotikler)!
+• %100 Oksijen yüksek akım ile verilir, ameliyathanede acil ekip alarmı verilir.
+• Spesifik antidot uygulanır: MH'de Dantrolen, LAST'ta %20 İntralipid, Anafilakside Adrenalin, Relaksan bloğunda Sugammadeks.`
+      };
+    }
+
+    // Default Fallback
+    return {
+      de: `1. BEFUNDANALYSE (VITALPARAMETER & BGA):
+• Hämodynamik: RR ${vitals.bp} (MAP ${vitals.map}), Herzfrequenz ${vitals.hr} (${vitals.rhythm}).
+• Respiration & Gasaustausch: SpO2 ${vitals.spo2}, etCO2 ${vitals.etco2}, Pmax ${vitals.vent}.
+• BGA & Labor: pH ${vitals.ph}, pO2 ${vitals.po2}, pCO2 ${vitals.pco2}, BE ${vitals.be}, Laktat ${vitals.lactate}, Hb ${vitals.hb}.
+• Monitoring & Befunde: ${vitals.notes}
+2. THERAPEUTISCHE KONSEQUENZ & PRIORITÄTEN:
+• Sicherung der Vitalfunktionen nach dem ABCDE-Schema (Atemwegskontrolle, adäquate Oxygenierung, Ziel-MAP ≥ 65 mmHg).
+• Engmaschige Verlaufsbeurteilung von BGA und Hämodynamik; frühzeitige Kausaltherapie zur Vermeidung perioperativer Komplikationen.`,
+      tr: `1. BULGULARIN ANALİZİ (VİTALLER & KAN GAZI):
+• Hemodinamik: Tansiyon ${vitals.bp} (MAP ${vitals.map}), Kalp Hızı ${vitals.hr} (${vitals.rhythm}).
+• Solunum & Gaz Değişimi: SpO2 ${vitals.spo2}, etCO2 ${vitals.etco2}, Pmax ${vitals.vent}.
+• Kan Gazı & Laboratuvar: pH ${vitals.ph}, pO2 ${vitals.po2}, pCO2 ${vitals.pco2}, BE ${vitals.be}, Laktat ${vitals.lactate}, Hb ${vitals.hb}.
+• Klinik Notlar: ${vitals.notes_tr}
+2. TERAPÖTİK YAKLAŞIM & ÖNCELİKLER:
+• ABCDE şemasına göre hayati fonksiyonların güvenceye alınması (havayolu, yeterli oksijenasyon, hedef MAP ≥ 65 mmHg).
+• Kan gazı ve hemodinaminin yakın takibi; perioperatif komplikasyonları önlemek için zamanında nedensel tedavi.`
+    };
+  }
+
+  function renderStep1InlineAnswer(parsedCase, currentQ) {
+    if (!parsedCase) return '';
+    let html = '';
+
+    // 1. Structured Verbal Framework
+    if (parsedCase.verbalFramework) {
+      html += `
+        <div class="inline-ans-section">
+          <div class="inline-ans-title">🗣️ Strukturierte Erstbeurteilung / Yapılandırılmış Giriş & İlk Yaklaşım:</div>
+          <div class="inline-ans-quote">${renderDualLanguageText(parsedCase.verbalFramework, parsedCase.verbalFrameworkTR)}</div>
+        </div>
+      `;
+    }
+
+    // 2. Full Model Solution
+    html += `
+      <div class="inline-ans-section" style="margin-top: 0.85rem;">
+        <div class="inline-ans-title">📋 Ausführliche Facharzt-Musterantwort / Ayrıntılı Uzmanlık Model Cevabı:</div>
+        <div class="inline-ans-body">${renderDualLanguageText(highlightDosagesAndUnits(parsedCase.fullTextDE), highlightDosagesAndUnits(parsedCase.fullTextTR))}</div>
+      </div>
+    `;
+
+    // 3. If MCQ options exist, show option evaluation
+    if (currentQ && currentQ.options && currentQ.options.length > 0) {
+      html += `
+        <div class="inline-ans-section" style="margin-top: 0.85rem;">
+          <div class="inline-ans-title">🎯 Antwortbewertung der Aussagen / Şıkların Değerlendirmesi:</div>
+          <div class="inline-ans-options-list">
+      `;
+      currentQ.options.forEach(opt => {
+        const isCor = opt.is_correct;
+        const badge = isCor ? '<span style="color:#10b981;font-weight:700;">✅ Richtig / Doğru:</span>' : '<span style="color:#ef4444;font-weight:700;">❌ Falsch / Yanlış:</span>';
+        const explDE = opt.explanation_de || opt.text_de;
+        const explTR = opt.explanation_tr || opt.text_tr || '';
+        html += `
+          <div class="inline-ans-opt-row" style="margin: 0.35rem 0; padding: 0.4rem 0.6rem; border-left: 3px solid ${isCor ? '#10b981' : '#ef4444'}; background: ${isCor ? 'rgba(16,185,129,0.06)' : 'rgba(239,68,68,0.06)'}; border-radius: 4px;">
+            <strong>(${opt.key.toUpperCase()})</strong> ${badge} ${renderDualLanguageText(explDE, explTR)}
+          </div>
+        `;
+      });
+      html += `</div></div>`;
+    }
+
+    return html;
+  }
+
+  function renderStep2InlineAnswer(parsedCase) {
+    if (!parsedCase) return '';
+    return `
+      <div class="inline-ans-section">
+        <div class="inline-ans-title">📊 Klinische Befund- & BGA-Interpretation / Bulguların ve Kan Gazının Analizi:</div>
+        <div class="inline-ans-body">${renderDualLanguageText(highlightDosagesAndUnits(parsedCase.vitalsInterpretationDE), highlightDosagesAndUnits(parsedCase.vitalsInterpretationTR))}</div>
+      </div>
+    `;
   }
 
   function getDynamicExaminerCase(category, stem, q) {
@@ -2420,6 +2672,17 @@ Tedavi:
       elQuestionText.innerHTML = renderDualLanguageText(stemDe, stemTr);
     }
 
+    // Step 1: Populate Inline Answer & Reset Toggle
+    if (elStep1InlineAnswerBox) {
+      elStep1InlineAnswerBox.style.display = 'none';
+    }
+    if (elBtnToggleStep1Answer) {
+      elBtnToggleStep1Answer.innerHTML = '<span>💡</span> Musterantwort anzeigen / Cevabı Gör';
+    }
+    if (elStep1InlineAnswerText) {
+      elStep1InlineAnswerText.innerHTML = renderStep1InlineAnswer(parsedCase, currentQ);
+    }
+
     // Personal Medical Note
     const elUserNoteText = document.getElementById('user-note-text');
     if (elUserNoteText) {
@@ -2465,6 +2728,17 @@ Tedavi:
 
     const elDiagNotes = document.getElementById('diagnostic-notes-box');
     if (elDiagNotes) elDiagNotes.innerHTML = renderDualLanguageText(v.notes, v.notes_tr);
+
+    // Step 2: Populate Inline Answer & Reset Toggle
+    if (elStep2InlineAnswerBox) {
+      elStep2InlineAnswerBox.style.display = 'none';
+    }
+    if (elBtnToggleStep2Answer) {
+      elBtnToggleStep2Answer.innerHTML = '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen anzeigen / Bulguları & Tedaviyi Gör';
+    }
+    if (elStep2InlineAnswerText) {
+      elStep2InlineAnswerText.innerHTML = renderStep2InlineAnswer(parsedCase);
+    }
 
     // Step 3: Populate Examiner Steering Intervention, Inline Answer & Reveal Card
     if (elExaminerQuoteText) {
@@ -4962,6 +5236,58 @@ Tedavi:
       speakMedicalText(elQuote, elBtnAudioSpeakExaminer);
     });
   }
+
+  // --- Inline Step 1 Answer Toggle ---
+  if (elBtnToggleStep1Answer) {
+    elBtnToggleStep1Answer.addEventListener('click', () => {
+      if (!elStep1InlineAnswerBox) return;
+      const isVisible = (elStep1InlineAnswerBox.style.display !== 'none');
+      elStep1InlineAnswerBox.style.display = isVisible ? 'none' : 'block';
+      elBtnToggleStep1Answer.innerHTML = isVisible
+        ? '<span>💡</span> Musterantwort anzeigen / Cevabı Gör'
+        : '<span>💡</span> Musterantwort verbergen / Cevabı Gizle';
+    });
+  }
+
+  // --- Audio Pronunciation: Step 1 Model Answer ---
+  const speakStep1 = () => {
+    filteredQuestions = getFilteredQuestions();
+    const currentQ = filteredQuestions[state.currentIndex];
+    if (!currentQ) return;
+    const parsedCase = parseOralExamCase(currentQ);
+    const textToSpeak = parsedCase.fullTextDE || parsedCase.verbalFramework;
+    if (textToSpeak) {
+      speakMedicalText(textToSpeak, elBtnAudioSpeakStep1Ans);
+    }
+  };
+  if (elBtnAudioSpeakStep1Ans) elBtnAudioSpeakStep1Ans.addEventListener('click', speakStep1);
+  if (elBtnAudioSpeakStep1Box) elBtnAudioSpeakStep1Box.addEventListener('click', speakStep1);
+
+  // --- Inline Step 2 Answer Toggle ---
+  if (elBtnToggleStep2Answer) {
+    elBtnToggleStep2Answer.addEventListener('click', () => {
+      if (!elStep2InlineAnswerBox) return;
+      toggleStep2(true);
+      const isVisible = (elStep2InlineAnswerBox.style.display !== 'none');
+      elStep2InlineAnswerBox.style.display = isVisible ? 'none' : 'block';
+      elBtnToggleStep2Answer.innerHTML = isVisible
+        ? '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen anzeigen / Bulguları & Tedaviyi Gör'
+        : '<span>💡</span> Befund-Auswertung verbergen / Analizi Gizle';
+    });
+  }
+
+  // --- Audio Pronunciation: Step 2 Findings & Measures ---
+  const speakStep2 = () => {
+    filteredQuestions = getFilteredQuestions();
+    const currentQ = filteredQuestions[state.currentIndex];
+    if (!currentQ) return;
+    const parsedCase = parseOralExamCase(currentQ);
+    if (parsedCase && parsedCase.vitalsInterpretationDE) {
+      speakMedicalText(parsedCase.vitalsInterpretationDE, elBtnAudioSpeakStep2Ans);
+    }
+  };
+  if (elBtnAudioSpeakStep2Ans) elBtnAudioSpeakStep2Ans.addEventListener('click', speakStep2);
+  if (elBtnAudioSpeakStep2Box) elBtnAudioSpeakStep2Box.addEventListener('click', speakStep2);
 
   // --- Inline Examiner Answer Toggle ---
   if (elBtnToggleExaminerAnswer) {

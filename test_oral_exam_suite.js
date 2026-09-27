@@ -880,7 +880,56 @@ assert(!appCode.includes("elExaminerBadgeTitle.textContent = `🏛️ ÄKNO"), '
 
 console.log('[PASS] Suite 33 passed! Verified 100% universal examiner profile coverage (642/642), cockpit quick-view drawer, Step 3 profile integration, and non-empty robust card rendering.');
 
-console.log('\n🎉 ALL 33 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// ============================================================================
+// 34. Test Direct Inline Revealable Answers for Step 1 & Step 2
+// ============================================================================
+console.log('Testing Suite 34: Direct Inline Revealable Answers for Step 1 & Step 2 (DE/TR)...');
+
+// 1. Verify HTML DOM elements
+assert(htmlContent.includes('id="btn-toggle-step1-answer"'), 'index.html must include #btn-toggle-step1-answer');
+assert(htmlContent.includes('id="step1-inline-answer-box"'), 'index.html must include #step1-inline-answer-box');
+assert(htmlContent.includes('id="step1-inline-answer-text"'), 'index.html must include #step1-inline-answer-text');
+assert(htmlContent.includes('id="btn-audio-speak-step1-ans"'), 'index.html must include #btn-audio-speak-step1-ans');
+
+assert(htmlContent.includes('id="btn-toggle-step2-answer"'), 'index.html must include #btn-toggle-step2-answer');
+assert(htmlContent.includes('id="step2-inline-answer-box"'), 'index.html must include #step2-inline-answer-box');
+assert(htmlContent.includes('id="step2-inline-answer-text"'), 'index.html must include #step2-inline-answer-text');
+assert(htmlContent.includes('id="btn-audio-speak-step2-ans"'), 'index.html must include #btn-audio-speak-step2-ans');
+
+// 2. Verify CSS styling
+assert(cssCode.includes('.step1-answer-box'), 'styles.css must style .step1-answer-box');
+assert(cssCode.includes('.step2-answer-box'), 'styles.css must style .step2-answer-box');
+assert(cssCode.includes('.step-inline-action-bar'), 'styles.css must style .step-inline-action-bar');
+assert(cssCode.includes('.inline-ans-title'), 'styles.css must style .inline-ans-title');
+
+// 3. Verify JS functions in app.js
+assert(appCode.includes('generateVitalsInterpretation'), 'app.js must define generateVitalsInterpretation');
+assert(appCode.includes('renderStep1InlineAnswer'), 'app.js must define renderStep1InlineAnswer');
+assert(appCode.includes('renderStep2InlineAnswer'), 'app.js must define renderStep2InlineAnswer');
+assert(appCode.includes('elBtnToggleStep1Answer'), 'app.js must handle elBtnToggleStep1Answer');
+assert(appCode.includes('elBtnToggleStep2Answer'), 'app.js must handle elBtnToggleStep2Answer');
+
+// Extract and test generateVitalsInterpretation
+const vitalsInterpMatch = appCode.match(/function generateVitalsInterpretation\(category, stem, answer, vitals, q\) \{[\s\S]*?\n  \}/);
+assert(vitalsInterpMatch, 'generateVitalsInterpretation must be found in app.js');
+eval(vitalsInterpMatch[0].replace('function generateVitalsInterpretation', 'global.generateVitalsInterpretation = function'));
+
+// Test that all 642 questions produce valid, non-empty, bilingual findings evaluations
+const getVitalsMatch = appCode.match(/function getRealisticVitalsForCase\(category, stem, answer\) \{[\s\S]*?\n  \}/);
+eval(getVitalsMatch[0].replace('function getRealisticVitalsForCase', 'global.getRealisticVitalsForCase = function'));
+
+questions.forEach(q => {
+  const vitals = global.getRealisticVitalsForCase(q.category, q.stem_de || q.question_de || '', q.answer_de || '');
+  const interp = global.generateVitalsInterpretation(q.category, q.stem_de || q.question_de || '', q.answer_de || '', vitals, q);
+  assert(interp && interp.de && interp.de.length > 50, `Question ${q.id} must have German vitals interpretation`);
+  assert(interp && interp.tr && interp.tr.length > 50, `Question ${q.id} must have Turkish vitals interpretation`);
+  assert(interp.de.includes('BEFUNDANALYSE') || interp.de.includes('Vitalparameter'), `Question ${q.id} German interpretation format`);
+  assert(interp.tr.includes('ANALİZİ') || interp.tr.includes('BULGULARIN'), `Question ${q.id} Turkish interpretation format`);
+});
+
+console.log('[PASS] Suite 34 passed! Verified direct inline revealable answers, audio, and bilingual findings evaluation for Step 1 & Step 2 across all 642 questions.');
+
+console.log('\n🎉 ALL 34 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

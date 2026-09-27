@@ -550,6 +550,29 @@
         <div id="question-text" class="question-body">
           Fragetext wird geladen...
         </div>
+
+        <!-- Step 1 Inline Action Bar & Revealable Answer -->
+        <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 0.85rem;">
+          <button id="btn-toggle-step1-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zu Schritt 1 anzeigen / 1. Adım model cevabını gör">
+            <span>💡 Musterantwort anzeigen / Cevabı Gör</span>
+          </button>
+          <button id="btn-audio-speak-step1-ans" class="btn-audio-action-sm" type="button" title="Musterantwort zu Schritt 1 vorlesen / 1. Adım cevabını dinle">
+            <span>🔊 Antwort vorlesen / Dinle</span>
+          </button>
+        </div>
+
+        <!-- Inline Revealable Step 1 Answer Box -->
+        <div id="step1-inline-answer-box" class="examiner-inline-answer-box step1-answer-box" style="display: none;">
+          <div class="examiner-inline-header">
+            <strong>💡 ÄKNO-Musterantwort zur klinischen Fallpräsentation (Schritt 1) / Vaka Sunumu Model Cevabı:</strong>
+            <button id="btn-audio-speak-step1-box" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen / Cevabı dinle">
+              <span>🔊 Vorlesen / Dinle</span>
+            </button>
+          </div>
+          <div id="step1-inline-answer-text" class="examiner-inline-answer-text">
+            <!-- Dynamically populated answer -->
+          </div>
+        </div>
       </div>
 
       <!-- Options Container (for multi-choice questions) -->
@@ -616,6 +639,29 @@
               </div>
               <div class="diagnostic-notes" id="diagnostic-notes-box">
                 <!-- Additional clinical notes extracted or synthesized -->
+              </div>
+            </div>
+
+            <!-- Step 2 Inline Action Bar & Revealable Answer -->
+            <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 1rem;">
+              <button id="btn-toggle-step2-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Befund-Auswertung & therapeutische Konsequenz anzeigen / 2. Adım bulguları ve tedaviyi gör">
+                <span>💡 Befund-Auswertung & Sofortmaßnahmen anzeigen / Bulguları & Tedaviyi Gör</span>
+              </button>
+              <button id="btn-audio-speak-step2-ans" class="btn-audio-action-sm" type="button" title="Befund-Auswertung vorlesen / Analizi dinle">
+                <span>🔊 Auswertung vorlesen / Dinle</span>
+              </button>
+            </div>
+
+            <!-- Inline Revealable Step 2 Answer Box -->
+            <div id="step2-inline-answer-box" class="examiner-inline-answer-box step2-answer-box" style="display: none;">
+              <div class="examiner-inline-header">
+                <strong>💡 ÄKNO-Befundauswertung & therapeutische Sofortmaßnahmen (Schritt 2) / 2. Adım Bulguların Analizi ve Tedavi:</strong>
+                <button id="btn-audio-speak-step2-box" class="btn-audio-action-sm" type="button" title="Auswertung vorlesen / Dinle">
+                  <span>🔊 Vorlesen / Dinle</span>
+                </button>
+              </div>
+              <div id="step2-inline-answer-text" class="examiner-inline-answer-text">
+                <!-- Dynamically populated answer -->
               </div>
             </div>
           </div>
