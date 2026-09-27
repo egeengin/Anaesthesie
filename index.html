@@ -348,10 +348,19 @@
             <strong id="transcript-badge-title">Ihre mündliche Antwort (Echtzeit-Spracherkennung):</strong>
           </div>
           <div class="transcript-controls">
+            <div class="voice-lang-switch" id="voice-lang-switch" title="Sprache für Spracherkennung">
+              <button id="btn-voice-lang-de" class="btn-xs voice-lang-btn active" type="button" title="Deutsch (de-DE)">🇩🇪 DE</button>
+              <button id="btn-voice-lang-tr" class="btn-xs voice-lang-btn" type="button" title="Türkçe (tr-TR)">🇹🇷 TR</button>
+            </div>
             <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
           </div>
         </div>
         
+        <div id="voice-mic-indicator" class="voice-mic-indicator" style="display: none;">
+          <span class="mic-dot"></span>
+          <span id="voice-mic-hint">Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...</span>
+        </div>
+
         <textarea id="speech-transcript-input" class="transcript-textarea" placeholder="Sprechen Sie Ihre Antwort jetzt laut ein... (Ihre Worte erscheinen hier automatisch in Echtzeit oder Sie können Stichpunkte direkt tippen)"></textarea>
 
         <div class="transcript-action-row">

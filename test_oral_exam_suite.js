@@ -463,8 +463,17 @@ console.log('[PASS] Audio Pronunciation & Multi-Device Cloud Sync Hardening Suit
 // 24. Test ÄKNO Live Simulation Cockpit & Voice Rubric Evaluation Suite
 assert(htmlContent.includes('exam-simulation-bar'), 'index.html must include #exam-simulation-bar');
 assert(htmlContent.includes('btn-sim-answer-timer'), 'index.html must include #btn-sim-answer-timer');
+assert(htmlContent.includes('voice-lang-switch'), 'index.html must include .voice-lang-switch');
+assert(htmlContent.includes('btn-voice-lang-de'), 'index.html must include #btn-voice-lang-de');
+assert(htmlContent.includes('btn-voice-lang-tr'), 'index.html must include #btn-voice-lang-tr');
+assert(htmlContent.includes('voice-mic-indicator'), 'index.html must include #voice-mic-indicator');
 assert(cssCode.includes('.audio-wave-visualizer'), 'styles.css must style .audio-wave-visualizer');
+assert(cssCode.includes('.voice-lang-switch'), 'styles.css must style .voice-lang-switch');
+assert(cssCode.includes('.voice-mic-indicator'), 'styles.css must style .voice-mic-indicator');
 assert(cssCode.includes('.voice-eval-card'), 'styles.css must style .voice-eval-card');
+assert(appCode.includes('setupAudioVisualizer'), 'app.js must implement setupAudioVisualizer');
+assert(appCode.includes('createSpeechRecognizerInstance'), 'app.js must implement createSpeechRecognizerInstance');
+assert(appCode.includes('setSpeechLanguage'), 'app.js must implement setSpeechLanguage');
 assert(appCode.includes('evaluateVoiceAnswer'), 'app.js must implement evaluateVoiceAnswer');
 assert(appCode.includes('toggleStepTimer'), 'app.js must implement toggleStepTimer');
 console.log('[PASS] ÄKNO Live Simulation Cockpit & Voice Rubric Evaluation Suite verified.');

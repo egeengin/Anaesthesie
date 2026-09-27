@@ -5644,21 +5644,87 @@ body.mode-simulation-active #step3-container {
   height: 6px;
   background: #ef4444;
   border-radius: 2px;
-  transition: height 0.08s ease;
+  transition: height 0.08s ease, background 0.15s ease;
 }
 
+.audio-wave-visualizer.pulsing .wave-bar,
 .audio-wave-visualizer .wave-bar.pulsing {
   animation: wavePulse 0.8s infinite alternate ease-in-out;
 }
 
+.audio-wave-visualizer.pulsing .wave-bar:nth-child(2),
 .audio-wave-visualizer .wave-bar:nth-child(2).pulsing { animation-delay: 0.15s; }
+.audio-wave-visualizer.pulsing .wave-bar:nth-child(3),
 .audio-wave-visualizer .wave-bar:nth-child(3).pulsing { animation-delay: 0.3s; }
+.audio-wave-visualizer.pulsing .wave-bar:nth-child(4),
 .audio-wave-visualizer .wave-bar:nth-child(4).pulsing { animation-delay: 0.45s; }
+.audio-wave-visualizer.pulsing .wave-bar:nth-child(5),
 .audio-wave-visualizer .wave-bar:nth-child(5).pulsing { animation-delay: 0.6s; }
 
 @keyframes wavePulse {
   0% { height: 6px; }
   100% { height: 22px; }
+}
+
+.voice-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 2px;
+  margin-right: 0.5rem;
+}
+
+.voice-lang-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.voice-lang-btn:hover {
+  background: rgba(180, 83, 9, 0.15);
+}
+
+.voice-lang-btn.active {
+  background: #b45309;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .voice-lang-btn.active {
+  background: #f59e0b;
+  color: #1e293b;
+}
+
+.voice-mic-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: #059669;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .voice-mic-indicator {
+  color: #34d399;
+}
+
+.voice-mic-indicator .mic-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  display: inline-block;
+  box-shadow: 0 0 6px #10b981;
+  animation: pulseDot 1s infinite alternate;
 }
 
 /* 5. Live Speech Transcript Textarea & Action Row */

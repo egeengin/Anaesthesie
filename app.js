@@ -48,6 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let speechRecognizer = null;
   let isRecordingVoice = false;
   let finalSpokenTranscript = '';
+  let speechRecognitionLang = 'de-DE';
+  let micMediaStream = null;
+  let micAudioContext = null;
+  let micAnalyser = null;
+  let micAnimFrame = null;
+  let speechRestartTimer = null;
 
   // --- DOM Elements ---
   const elAuthModal = document.getElementById('auth-modal');
@@ -115,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const elEvalStatusMsg = document.getElementById('eval-status-msg');
   const elEvalMatchedTags = document.getElementById('eval-matched-tags');
   const elEvalMissedTags = document.getElementById('eval-missed-tags');
+  const elBtnVoiceLangDe = document.getElementById('btn-voice-lang-de');
+  const elBtnVoiceLangTr = document.getElementById('btn-voice-lang-tr');
+  const elVoiceMicIndicator = document.getElementById('voice-mic-indicator');
+  const elVoiceMicHint = document.getElementById('voice-mic-hint');
   
   // ÄKNO Live Simulation Cockpit Elements
   const elSimLiveCockpit = document.getElementById('sim-live-cockpit');
@@ -677,25 +687,90 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Voice Dictation, Speech Recognition & Clinical Evaluation Engine ---
-  function initSpeechEngine() {
+
+  function setupAudioVisualizer(stream) {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+
+      if (!micAudioContext || micAudioContext.state === 'closed') {
+        micAudioContext = new AudioCtx();
+      }
+      if (micAudioContext.state === 'suspended') {
+        micAudioContext.resume();
+      }
+
+      micAnalyser = micAudioContext.createAnalyser();
+      micAnalyser.fftSize = 64;
+      micAnalyser.smoothingTimeConstant = 0.4;
+
+      const source = micAudioContext.createMediaStreamSource(stream);
+      source.connect(micAnalyser);
+
+      const bufferLength = micAnalyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      const waveBars = elAudioWaveVisualizer ? elAudioWaveVisualizer.querySelectorAll('.wave-bar') : [];
+
+      function updateVolumeWave() {
+        if (!isRecordingVoice) return;
+
+        micAnalyser.getByteFrequencyData(dataArray);
+        let sum = 0;
+        for (let i = 0; i < bufferLength; i++) {
+          sum += dataArray[i];
+        }
+        const avg = sum / bufferLength;
+
+        if (waveBars && waveBars.length > 0) {
+          waveBars.forEach((bar, idx) => {
+            const binIdx = Math.min(bufferLength - 1, idx * 3 + 1);
+            const val = dataArray[binIdx] || avg;
+            const barHeight = Math.max(6, Math.min(22, Math.round(6 + (val / 255) * 16)));
+            bar.style.height = `${barHeight}px`;
+            if (val > 15) {
+              bar.style.background = '#10b981';
+            } else {
+              bar.style.background = '#ef4444';
+            }
+          });
+        }
+
+        if (elVoiceMicHint) {
+          if (avg > 15) {
+            elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
+              ? '🎙️ Ses algılandı – Dinleniyor...'
+              : '🎙️ Stimme erkannt – Aufnahme läuft...';
+          } else {
+            elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
+              ? '🎙️ Mikrofon aktif – Cevabınızı konuşun veya yazın...'
+              : '🎙️ Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...';
+          }
+        }
+
+        micAnimFrame = requestAnimationFrame(updateVolumeWave);
+      }
+
+      if (micAnimFrame) cancelAnimationFrame(micAnimFrame);
+      micAnimFrame = requestAnimationFrame(updateVolumeWave);
+    } catch (e) {
+      console.warn('AudioContext visualizer setup error:', e);
+    }
+  }
+
+  function createSpeechRecognizerInstance() {
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechAPI) return null;
 
     try {
       const rec = new SpeechAPI();
-      rec.lang = 'de-DE';
+      rec.lang = speechRecognitionLang;
       rec.continuous = true;
       rec.interimResults = true;
+      rec.maxAlternatives = 1;
 
       rec.onstart = () => {
         isRecordingVoice = true;
-        if (elBtnToggleMic) elBtnToggleMic.classList.add('recording');
-        if (elMicStatusText) elMicStatusText.innerHTML = '🔴 Aufnahme läuft... <kbd class="kbd-hint">V</kbd>';
-        if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
-        if (elAudioWaveVisualizer) {
-          elAudioWaveVisualizer.style.display = 'inline-flex';
-          elAudioWaveVisualizer.classList.add('pulsing');
-        }
+        updateRecordingUIState(true);
       };
 
       rec.onresult = (event) => {
@@ -710,6 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fullSpoken = (finalSpokenTranscript + interim).trim();
         if (elSpeechTranscriptInput) {
           elSpeechTranscriptInput.value = fullSpoken;
+          elSpeechTranscriptInput.scrollTop = elSpeechTranscriptInput.scrollHeight;
         }
         if (elSpeechTranscriptText) {
           elSpeechTranscriptText.textContent = fullSpoken || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
@@ -719,81 +795,170 @@ document.addEventListener('DOMContentLoaded', () => {
       rec.onerror = (e) => {
         console.warn('Speech API Error:', e.error);
         if (e.error === 'not-allowed') {
-          showToast('🎙️ Mikrofonzugriff wurde verweigert. Bitte in den Browsereinstellungen erlauben.', 'warning', 5000);
+          showToast('🎙️ Mikrofonzugriff verweigert. Bitte in den Browsereinstellungen erlauben.', 'warning', 5000);
+          stopVoiceRecording();
+        } else if (e.error === 'network') {
+          showToast('⚠️ Google-Spracherkennungsdienst nicht erreichbar (Offline oder blockiert). Sie können Ihre Stichpunkte tippen!', 'warning', 6000);
+          stopVoiceRecording();
+        } else if (e.error === 'audio-capture') {
+          showToast('🎙️ Kein Audiosignal erfasst. Bitte Systemeinstellungen / Standardmikrofon prüfen.', 'warning', 5000);
           stopVoiceRecording();
         } else if (e.error === 'no-speech') {
-          // Keep listening during natural candidate thinking pauses
-        } else {
-          stopVoiceRecording();
+          // Keep listening during candidate thinking pauses
         }
       };
 
       rec.onend = () => {
         if (isRecordingVoice) {
-          // Browser paused speech stream; safely resume
-          setTimeout(() => {
+          // Re-create a clean instance to prevent Chrome InvalidStateError
+          if (speechRestartTimer) clearTimeout(speechRestartTimer);
+          speechRestartTimer = setTimeout(() => {
             if (isRecordingVoice) {
-              try { rec.start(); } catch (err) {}
+              startSpeechRecognizerLoop();
             }
-          }, 150);
+          }, 200);
         } else {
-          if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
-          if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
-          if (elAudioWaveVisualizer) {
-            elAudioWaveVisualizer.classList.remove('pulsing');
-            elAudioWaveVisualizer.style.display = 'none';
-          }
+          updateRecordingUIState(false);
         }
       };
 
       return rec;
     } catch (e) {
-      console.warn('Speech API init error:', e);
+      console.warn('Speech API creation error:', e);
       return null;
     }
   }
 
-  function startVoiceRecording() {
-    if (!speechRecognizer) {
-      speechRecognizer = initSpeechEngine();
-    }
-    if (!speechRecognizer) {
-      showToast('🎙️ Spracherkennung wird in diesem Browser nicht unterstützt. Sie können Stichpunkte direkt tippen!', 'info', 5000);
-      if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
-      if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
-      return;
+  function startSpeechRecognizerLoop() {
+    if (!isRecordingVoice) return;
+    if (speechRecognizer) {
+      try {
+        speechRecognizer.onstart = null;
+        speechRecognizer.onresult = null;
+        speechRecognizer.onerror = null;
+        speechRecognizer.onend = null;
+        speechRecognizer.abort();
+      } catch (err) {}
+      speechRecognizer = null;
     }
 
+    const rec = createSpeechRecognizerInstance();
+    if (!rec) return;
+
+    speechRecognizer = rec;
     try {
-      isRecordingVoice = true;
-      finalSpokenTranscript = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
-      if (finalSpokenTranscript && !finalSpokenTranscript.endsWith(' ')) {
-        finalSpokenTranscript += ' ';
-      }
       speechRecognizer.start();
+    } catch (startErr) {
+      console.warn('Speech recognition start error:', startErr);
+    }
+  }
+
+  function updateRecordingUIState(isRec) {
+    if (isRec) {
       if (elBtnToggleMic) elBtnToggleMic.classList.add('recording');
       if (elMicStatusText) elMicStatusText.innerHTML = '🔴 Aufnahme läuft... <kbd class="kbd-hint">V</kbd>';
       if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+      if (elVoiceMicIndicator) elVoiceMicIndicator.style.display = 'flex';
       if (elAudioWaveVisualizer) {
         elAudioWaveVisualizer.style.display = 'inline-flex';
         elAudioWaveVisualizer.classList.add('pulsing');
       }
-    } catch (err) {
-      console.warn('Start voice recording error:', err);
+    } else {
+      if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
+      if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
+      if (elVoiceMicIndicator) elVoiceMicIndicator.style.display = 'none';
+      if (elAudioWaveVisualizer) {
+        elAudioWaveVisualizer.classList.remove('pulsing');
+        elAudioWaveVisualizer.style.display = 'none';
+        const waveBars = elAudioWaveVisualizer.querySelectorAll('.wave-bar');
+        waveBars.forEach(bar => {
+          bar.style.height = '6px';
+          bar.style.background = '#ef4444';
+        });
+      }
     }
+  }
+
+  async function startVoiceRecording() {
+    isRecordingVoice = true;
+
+    // 1. Request microphone via getUserMedia to unlock hardware & initialize real Audio visualizer
+    try {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        micMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        setupAudioVisualizer(micMediaStream);
+      }
+    } catch (mediaErr) {
+      console.warn('Microphone getUserMedia error:', mediaErr);
+      if (mediaErr.name === 'NotAllowedError' || mediaErr.name === 'PermissionDeniedError') {
+        showToast('🎙️ Mikrofonzugriff wurde verweigert. Bitte in den Browsereinstellungen erlauben.', 'warning', 5000);
+        stopVoiceRecording();
+        return;
+      } else if (mediaErr.name === 'NotFoundError' || mediaErr.name === 'DevicesNotFoundError') {
+        showToast('🎙️ Kein Mikrofon gefunden. Bitte Headset anschließen.', 'warning', 5000);
+        stopVoiceRecording();
+        return;
+      }
+    }
+
+    // 2. Check Web Speech API
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechAPI) {
+      showToast('🎙️ Spracherkennung wird in diesem Browser nicht unterstützt. Sie können Stichpunkte direkt tippen!', 'info', 5000);
+      if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
+      if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
+      updateRecordingUIState(false);
+      return;
+    }
+
+    finalSpokenTranscript = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
+    if (finalSpokenTranscript && !finalSpokenTranscript.endsWith(' ')) {
+      finalSpokenTranscript += ' ';
+    }
+
+    updateRecordingUIState(true);
+    startSpeechRecognizerLoop();
+    if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
   }
 
   function stopVoiceRecording() {
     isRecordingVoice = false;
+    if (speechRestartTimer) {
+      clearTimeout(speechRestartTimer);
+      speechRestartTimer = null;
+    }
+
     if (speechRecognizer) {
-      try { speechRecognizer.stop(); } catch (err) {}
+      try {
+        speechRecognizer.onstart = null;
+        speechRecognizer.onresult = null;
+        speechRecognizer.onerror = null;
+        speechRecognizer.onend = null;
+        speechRecognizer.stop();
+      } catch (err) {}
+      speechRecognizer = null;
     }
-    if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
-    if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
-    if (elAudioWaveVisualizer) {
-      elAudioWaveVisualizer.classList.remove('pulsing');
-      elAudioWaveVisualizer.style.display = 'none';
+
+    if (micAnimFrame) {
+      cancelAnimationFrame(micAnimFrame);
+      micAnimFrame = null;
     }
+
+    if (micMediaStream) {
+      try {
+        micMediaStream.getTracks().forEach(track => track.stop());
+      } catch (e) {}
+      micMediaStream = null;
+    }
+
+    if (micAudioContext && micAudioContext.state !== 'closed') {
+      try {
+        micAudioContext.close();
+      } catch (e) {}
+      micAudioContext = null;
+    }
+
+    updateRecordingUIState(false);
   }
 
   function toggleVoiceRecording() {
@@ -801,6 +966,24 @@ document.addEventListener('DOMContentLoaded', () => {
       stopVoiceRecording();
     } else {
       startVoiceRecording();
+    }
+  }
+
+  function setSpeechLanguage(lang) {
+    speechRecognitionLang = lang;
+    if (elBtnVoiceLangDe && elBtnVoiceLangTr) {
+      if (lang.startsWith('de')) {
+        elBtnVoiceLangDe.classList.add('active');
+        elBtnVoiceLangTr.classList.remove('active');
+        showToast('🇩🇪 Spracherkennung: Deutsch (de-DE) aktiv', 'info', 3000);
+      } else {
+        elBtnVoiceLangTr.classList.add('active');
+        elBtnVoiceLangDe.classList.remove('active');
+        showToast('🇹🇷 Ses tanıma: Türkçe (tr-TR) aktif', 'info', 3000);
+      }
+    }
+    if (isRecordingVoice) {
+      startSpeechRecognizerLoop();
     }
   }
 
@@ -826,6 +1009,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let evalResult = { matchedIndices: [], matchRatio: 0, keywordsMatched: [] };
     if (typeof VoiceExamEngine !== 'undefined' && VoiceExamEngine.evaluateSpokenAnswer) {
       evalResult = VoiceExamEngine.evaluateSpokenAnswer(spokenText, targetRubric);
+      if (evalResult.matchRatio < 0.4 && parsedCase.checklistTR && parsedCase.checklistTR.length) {
+        const evalTr = VoiceExamEngine.evaluateSpokenAnswer(spokenText, parsedCase.checklistTR);
+        if (evalTr.matchRatio > evalResult.matchRatio) {
+          evalResult = evalTr;
+        }
+      }
     }
 
     const pct = Math.round(evalResult.matchRatio * 100);
@@ -937,6 +1126,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
       if (elSimKoRadarDisplay) elSimKoRadarDisplay.style.display = 'none';
     });
+  }
+
+  if (elBtnVoiceLangDe) {
+    elBtnVoiceLangDe.addEventListener('click', () => setSpeechLanguage('de-DE'));
+  }
+  if (elBtnVoiceLangTr) {
+    elBtnVoiceLangTr.addEventListener('click', () => setSpeechLanguage('tr-TR'));
   }
 
   // --- Dynamic ÄKNO Düsseldorf Live Cockpit Event Listeners ---
