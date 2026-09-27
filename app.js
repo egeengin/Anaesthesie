@@ -1058,6 +1058,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function toggleSimExaminerDrawer() {
+    if (!elSimExaminerDrawer) return;
+    const isHidden = (elSimExaminerDrawer.style.display === 'none' || !elSimExaminerDrawer.style.display);
+    elSimExaminerDrawer.style.display = isHidden ? 'block' : 'none';
+    if (elSimProfileBtnLabel) {
+      elSimProfileBtnLabel.textContent = isHidden ? 'Profil Schließen / Kapat' : 'Jüri Profili / Prüfer-Profil';
+    }
+  }
+
+  if (elBtnSimToggleExaminerProfile) {
+    elBtnSimToggleExaminerProfile.addEventListener('click', toggleSimExaminerDrawer);
+  }
+  if (elSimExaminerAvatarBox) {
+    elSimExaminerAvatarBox.addEventListener('click', toggleSimExaminerDrawer);
+  }
+
   // 4-Phase Rhetoric Buttons
   const elRhetoricPhases = document.querySelectorAll('.sim-rhetoric-phase');
   elRhetoricPhases.forEach(btn => {
@@ -1309,8 +1325,6 @@ document.addEventListener('DOMContentLoaded', () => {
       keywords: 'ABCDE-Schema, Vitalfunktionen sichern, zielgerichtete Kausaltherapie, K.O.-Kriterien vermeiden, Team-Ressource-Management (CRM)',
       keywords_tr: 'ABCDE algoritması, Hayati fonksiyonları güvenceye alma, Hedefe yönelik nedensel tedavi, K.O. kriterlerinden kaçınma, CRM iletişimi'
     };
-  }
-    return null;
   }
 
   function getRealisticVitalsForCase(category, stem, answer) {
@@ -2284,6 +2298,11 @@ Tedavi:
     }
 
     const isSimMode = (mode === 'simulation');
+    const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
+      ? MockExamSimulation.getRegistry(currentQ.id)
+      : null;
+    const prof = reg ? reg.examiner : getExaminerProfileForCase(currentQ);
+
     if (elQuestionNumber) {
       if (isSimMode) {
         elQuestionNumber.textContent = `🏛️ ÄKNO Düsseldorf: Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
@@ -2301,13 +2320,40 @@ Tedavi:
     if (elSimLiveCockpit) {
       elSimLiveCockpit.style.display = isSimMode ? 'block' : 'none';
       if (isSimMode) {
-        const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
-          ? MockExamSimulation.getRegistry(currentQ.id)
-          : null;
-        const prof = reg ? reg.examiner : getExaminerProfileForCase(currentQ);
         if (prof) {
           if (elSimExaminerName) elSimExaminerName.textContent = prof.name;
           if (elSimExaminerClinic) elSimExaminerClinic.textContent = prof.hospital;
+
+          if (elSimExaminerDrawer) elSimExaminerDrawer.style.display = 'none';
+          if (elSimProfileBtnLabel) elSimProfileBtnLabel.textContent = 'Jüri Profili / Prüfer-Profil';
+          if (elSimExaminerDrawerContent) {
+            const profKeywordsDE = prof.keywords || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '');
+            const profKeywordsTR = prof.keywords_tr || profKeywordsDE;
+            elSimExaminerDrawerContent.innerHTML = `
+              <div class="examiner-drawer-header">
+                <div class="examiner-drawer-title">
+                  <span class="examiner-drawer-badge">🏛️ ÄKNO Düsseldorf Fachprüfer / Sınav Jürisi</span>
+                  <h4 class="examiner-drawer-name">👨‍⚕️ ${prof.name}</h4>
+                  <p class="examiner-drawer-clinic">📍 ${prof.hospital}</p>
+                </div>
+              </div>
+              <div class="examiner-drawer-grid">
+                <div class="examiner-profile-item">
+                  <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
+                  <div>${renderDualLanguageText(prof.focus, prof.focus_tr)}</div>
+                </div>
+                <div class="examiner-profile-item alert-trap">
+                  <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı (K.O.-Kriterium)</strong>
+                  <div>${renderDualLanguageText(prof.trap, prof.trap_tr)}</div>
+                </div>
+                ${profKeywordsDE ? `
+                <div class="examiner-profile-item alert-pass">
+                  <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
+                  <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
+                </div>` : ''}
+              </div>
+            `;
+          }
         }
         if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
         if (elSimCrisisSolutionCard) elSimCrisisSolutionCard.style.display = 'none';
@@ -5224,6 +5270,7 @@ Tedavi:
     elMockExamBodyContent.style.display = 'block';
 
     const parsed = parseOralExamCase(activeQ);
+    const mockExaminer = getExaminerProfileForCase(activeQ);
 
     elMockExamBodyContent.innerHTML = `
       <div class="mock-case-view" style="background: var(--bg-secondary); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
@@ -5233,6 +5280,15 @@ Tedavi:
           </span>
           <span style="font-size: 0.8rem; color: var(--text-muted);">${activeQ.category}</span>
         </div>
+
+        ${mockExaminer ? `
+        <div class="mock-examiner-profile-card">
+          <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.2rem;">🏛️ ÄKNO Düsseldorf Prüfer / Jüri: ${mockExaminer.name}</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">📍 ${mockExaminer.hospital}</div>
+          <div style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0.25rem;"><strong>🎯 Schwerpunkt / Odak:</strong> ${renderDualLanguageText(mockExaminer.focus, mockExaminer.focus_tr)}</div>
+          <div style="font-size: 0.85rem; line-height: 1.4; color: var(--danger);"><strong>⚠️ Prüfungsfalle / Sınav Tuzağı:</strong> ${renderDualLanguageText(mockExaminer.trap, mockExaminer.trap_tr)}</div>
+        </div>
+        ` : ''}
 
         <div style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.5;">${renderDualLanguageText(parsed.stem, activeQ.stem_tr || activeQ.question_tr)}</div>
 

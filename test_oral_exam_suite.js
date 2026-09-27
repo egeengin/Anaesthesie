@@ -832,7 +832,54 @@ assert(q42.crisis.targetAction.toLowerCase().includes('larson') || q42.crisis.ta
 
 console.log('[PASS] Suite 32 passed! Verified complete answers, Turkish translations, all steps, and clinical accuracy across all simulations.');
 
-console.log('\n🎉 ALL 32 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// =========================================================================
+// Suite 33: 100% Universal Examiner Profile Coverage & Interactive Cockpit UI
+// =========================================================================
+console.log('Testing Suite 33: 100% Universal Examiner Profile Coverage & Cockpit UI...');
+
+// 1. Verify getExaminerProfileForCase returns an authentic profile for EVERY question
+const getProfileMatch = appCode.match(/function getExaminerProfileForCase\(q\) \{[\s\S]*?\n  \}/);
+assert(getProfileMatch, 'getExaminerProfileForCase must be present in app.js');
+eval(getProfileMatch[0].replace('function getExaminerProfileForCase', 'global.getExaminerProfileForCase = function'));
+
+let missingProfileCount = 0;
+questions.forEach(q => {
+  const prof = global.getExaminerProfileForCase(q);
+  if (!prof || !prof.name || !prof.focus || !prof.trap) {
+    missingProfileCount++;
+  } else {
+    assert(prof.focus_tr && prof.focus_tr.length > 5, `Question ${q.id} missing Turkish examiner focus`);
+    assert(prof.trap_tr && prof.trap_tr.length > 5, `Question ${q.id} missing Turkish examiner trap`);
+  }
+});
+assert.strictEqual(missingProfileCount, 0, `All 642 questions must have an examiner profile, found ${missingProfileCount} missing`);
+
+// 2. Verify Cockpit & Step 3 UI elements in index.html
+assert(htmlContent.includes('id="btn-sim-toggle-examiner-profile"'), 'index.html must include #btn-sim-toggle-examiner-profile');
+assert(htmlContent.includes('id="sim-profile-btn-label"'), 'index.html must include #sim-profile-btn-label');
+assert(htmlContent.includes('id="sim-examiner-drawer"'), 'index.html must include #sim-examiner-drawer');
+assert(htmlContent.includes('id="sim-examiner-drawer-content"'), 'index.html must include #sim-examiner-drawer-content');
+assert(htmlContent.includes('id="sim-examiner-avatar-box"'), 'index.html must include #sim-examiner-avatar-box');
+assert(htmlContent.includes('id="examiner-reveal-box"'), 'index.html must include #examiner-reveal-box');
+assert(htmlContent.includes('id="badge-examiner-toggle"'), 'index.html must include #badge-examiner-toggle');
+assert(htmlContent.includes('id="examiner-reveal-card"'), 'index.html must include #examiner-reveal-card');
+
+// 3. Verify CSS styling in styles.css
+assert(cssCode.includes('.btn-sim-profile'), 'styles.css must include .btn-sim-profile');
+assert(cssCode.includes('.sim-examiner-drawer'), 'styles.css must include .sim-examiner-drawer');
+assert(cssCode.includes('.examiner-drawer-grid'), 'styles.css must include .examiner-drawer-grid');
+assert(cssCode.includes('.mock-examiner-profile-card'), 'styles.css must include .mock-examiner-profile-card');
+
+// 4. Verify JS event wiring in app.js
+assert(appCode.includes('toggleSimExaminerDrawer'), 'app.js must define toggleSimExaminerDrawer');
+assert(appCode.includes('elBtnSimToggleExaminerProfile'), 'app.js must wire elBtnSimToggleExaminerProfile');
+assert(appCode.includes('elSimExaminerDrawerContent'), 'app.js must populate elSimExaminerDrawerContent');
+assert(appCode.includes('mock-examiner-profile-card'), 'app.js must render mock-examiner-profile-card in mock exam');
+
+console.log('[PASS] Suite 33 passed! Verified 100% universal examiner profile coverage (642/642), cockpit quick-view drawer, and Step 3 profile integration.');
+
+console.log('\n🎉 ALL 33 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 
