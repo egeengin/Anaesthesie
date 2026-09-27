@@ -5666,6 +5666,17 @@ body.mode-simulation-active #step3-container {
   100% { height: 22px; }
 }
 
+.audio-wave-visualizer.audio-detected .wave-bar {
+  background: #10b981 !important;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.7);
+  animation: wavePulseFast 0.4s infinite alternate ease-in-out !important;
+}
+
+@keyframes wavePulseFast {
+  0% { height: 8px; }
+  100% { height: 22px; }
+}
+
 .voice-lang-switch {
   display: inline-flex;
   align-items: center;

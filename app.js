@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elEvalMissedTags = document.getElementById('eval-missed-tags');
   const elBtnVoiceLangDe = document.getElementById('btn-voice-lang-de');
   const elBtnVoiceLangTr = document.getElementById('btn-voice-lang-tr');
+  const elBtnSampleVoice = document.getElementById('btn-sample-voice');
   const elVoiceMicIndicator = document.getElementById('voice-mic-indicator');
   const elVoiceMicHint = document.getElementById('voice-mic-hint');
   
@@ -688,73 +689,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Voice Dictation, Speech Recognition & Clinical Evaluation Engine ---
 
+  let baseRecordedText = '';
+
   function setupAudioVisualizer(stream) {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-
-      if (!micAudioContext || micAudioContext.state === 'closed') {
-        micAudioContext = new AudioCtx();
-      }
-      if (micAudioContext.state === 'suspended') {
-        micAudioContext.resume();
-      }
-
-      micAnalyser = micAudioContext.createAnalyser();
-      micAnalyser.fftSize = 64;
-      micAnalyser.smoothingTimeConstant = 0.4;
-
-      const source = micAudioContext.createMediaStreamSource(stream);
-      source.connect(micAnalyser);
-
-      const bufferLength = micAnalyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-      const waveBars = elAudioWaveVisualizer ? elAudioWaveVisualizer.querySelectorAll('.wave-bar') : [];
-
-      function updateVolumeWave() {
-        if (!isRecordingVoice) return;
-
-        micAnalyser.getByteFrequencyData(dataArray);
-        let sum = 0;
-        for (let i = 0; i < bufferLength; i++) {
-          sum += dataArray[i];
-        }
-        const avg = sum / bufferLength;
-
-        if (waveBars && waveBars.length > 0) {
-          waveBars.forEach((bar, idx) => {
-            const binIdx = Math.min(bufferLength - 1, idx * 3 + 1);
-            const val = dataArray[binIdx] || avg;
-            const barHeight = Math.max(6, Math.min(22, Math.round(6 + (val / 255) * 16)));
-            bar.style.height = `${barHeight}px`;
-            if (val > 15) {
-              bar.style.background = '#10b981';
-            } else {
-              bar.style.background = '#ef4444';
-            }
-          });
-        }
-
-        if (elVoiceMicHint) {
-          if (avg > 15) {
-            elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
-              ? '🎙️ Ses algılandı – Dinleniyor...'
-              : '🎙️ Stimme erkannt – Aufnahme läuft...';
-          } else {
-            elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
-              ? '🎙️ Mikrofon aktif – Cevabınızı konuşun veya yazın...'
-              : '🎙️ Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...';
-          }
-        }
-
-        micAnimFrame = requestAnimationFrame(updateVolumeWave);
-      }
-
-      if (micAnimFrame) cancelAnimationFrame(micAnimFrame);
-      micAnimFrame = requestAnimationFrame(updateVolumeWave);
-    } catch (e) {
-      console.warn('AudioContext visualizer setup error:', e);
-    }
+    return true;
   }
 
   function createSpeechRecognizerInstance() {
@@ -771,18 +709,51 @@ document.addEventListener('DOMContentLoaded', () => {
       rec.onstart = () => {
         isRecordingVoice = true;
         updateRecordingUIState(true);
+        if (elVoiceMicHint) {
+          elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
+            ? '🎙️ Dinleniyor... (Lütfen konuşun veya yazın)'
+            : '🎙️ Höre zu... (Sprechen Sie laut oder tippen Sie)';
+        }
+      };
+
+      rec.onaudiostart = () => {
+        if (elAudioWaveVisualizer) {
+          elAudioWaveVisualizer.style.display = 'inline-flex';
+          elAudioWaveVisualizer.classList.add('pulsing');
+        }
+      };
+
+      rec.onspeechstart = () => {
+        if (elAudioWaveVisualizer) {
+          elAudioWaveVisualizer.classList.add('audio-detected');
+        }
+        if (elVoiceMicHint) {
+          elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
+            ? '🗣️ Ses algılandı – Yazıya dönüştürülüyor...'
+            : '🗣️ Sprache erkannt – Transkription läuft...';
+        }
+      };
+
+      rec.onspeechend = () => {
+        if (elAudioWaveVisualizer) {
+          elAudioWaveVisualizer.classList.remove('audio-detected');
+        }
       };
 
       rec.onresult = (event) => {
         let interim = '';
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          if (event.results[i].isFinal) {
-            finalSpokenTranscript += event.results[i][0].transcript + ' ';
-          } else {
-            interim += event.results[i][0].transcript;
+        let final = '';
+        for (let i = 0; i < event.results.length; ++i) {
+          const res = event.results[i];
+          if (res && res[0]) {
+            if (res.isFinal) {
+              final += res[0].transcript + ' ';
+            } else {
+              interim += res[0].transcript;
+            }
           }
         }
-        const fullSpoken = (finalSpokenTranscript + interim).trim();
+        const fullSpoken = (baseRecordedText + final + interim).trim();
         if (elSpeechTranscriptInput) {
           elSpeechTranscriptInput.value = fullSpoken;
           elSpeechTranscriptInput.scrollTop = elSpeechTranscriptInput.scrollHeight;
@@ -790,33 +761,49 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elSpeechTranscriptText) {
           elSpeechTranscriptText.textContent = fullSpoken || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
         }
+        if (elVoiceMicHint) {
+          const preview = (final + interim).trim();
+          if (preview) {
+            elVoiceMicHint.textContent = `✍️ "${preview.length > 35 ? '...' + preview.slice(-35) : preview}"`;
+          }
+        }
       };
 
       rec.onerror = (e) => {
-        console.warn('Speech API Error:', e.error);
-        if (e.error === 'not-allowed') {
-          showToast('🎙️ Mikrofonzugriff verweigert. Bitte in den Browsereinstellungen erlauben.', 'warning', 5000);
+        console.warn('[Speech Recognition] Error:', e.error, e.message);
+        if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+          showToast('🎙️ Mikrofonzugriff verweigert. Bitte in den Browsereinstellungen (Schloss-Symbol) freigeben.', 'warning', 6000);
+          if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (Schloss-Symbol in Adressleiste prüfen)';
           stopVoiceRecording();
         } else if (e.error === 'network') {
-          showToast('⚠️ Google-Spracherkennungsdienst nicht erreichbar (Offline oder blockiert). Sie können Ihre Stichpunkte tippen!', 'warning', 6000);
+          showToast('⚠️ Google-Sprachdienst nicht erreichbar (Offline, VPN oder Werbeblocker aktiv). Sie können Stichpunkte tippen!', 'warning', 6000);
+          if (elVoiceMicHint) elVoiceMicHint.textContent = '⚠️ Google-Sprachdienst nicht erreichbar (Offline / VPN / Blocker)';
           stopVoiceRecording();
         } else if (e.error === 'audio-capture') {
-          showToast('🎙️ Kein Audiosignal erfasst. Bitte Systemeinstellungen / Standardmikrofon prüfen.', 'warning', 5000);
+          showToast('🎙️ Kein Audiosignal erfasst. Bitte Systemeinstellungen / Standardmikrofon prüfen.', 'warning', 6000);
+          if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Kein Audiosignal (Mikrofon prüfen)';
           stopVoiceRecording();
         } else if (e.error === 'no-speech') {
-          // Keep listening during candidate thinking pauses
+          if (elVoiceMicHint) {
+            elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
+              ? '⏳ Ses bekleniyor... (Lütfen konuşun veya yazın)'
+              : '⏳ Höre zu... (Sprechen Sie frei oder tippen Sie)';
+          }
         }
       };
 
       rec.onend = () => {
         if (isRecordingVoice) {
-          // Re-create a clean instance to prevent Chrome InvalidStateError
+          baseRecordedText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
+          if (baseRecordedText && !baseRecordedText.endsWith(' ')) {
+            baseRecordedText += ' ';
+          }
           if (speechRestartTimer) clearTimeout(speechRestartTimer);
           speechRestartTimer = setTimeout(() => {
             if (isRecordingVoice) {
               startSpeechRecognizerLoop();
             }
-          }, 200);
+          }, 250);
         } else {
           updateRecordingUIState(false);
         }
@@ -831,21 +818,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startSpeechRecognizerLoop() {
     if (!isRecordingVoice) return;
-    if (speechRecognizer) {
-      try {
-        speechRecognizer.onstart = null;
-        speechRecognizer.onresult = null;
-        speechRecognizer.onerror = null;
-        speechRecognizer.onend = null;
-        speechRecognizer.abort();
-      } catch (err) {}
-      speechRecognizer = null;
-    }
+    speechRecognizer = createSpeechRecognizerInstance();
+    if (!speechRecognizer) return;
 
-    const rec = createSpeechRecognizerInstance();
-    if (!rec) return;
-
-    speechRecognizer = rec;
     try {
       speechRecognizer.start();
     } catch (startErr) {
@@ -869,6 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (elVoiceMicIndicator) elVoiceMicIndicator.style.display = 'none';
       if (elAudioWaveVisualizer) {
         elAudioWaveVisualizer.classList.remove('pulsing');
+        elAudioWaveVisualizer.classList.remove('audio-detected');
         elAudioWaveVisualizer.style.display = 'none';
         const waveBars = elAudioWaveVisualizer.querySelectorAll('.wave-bar');
         waveBars.forEach(bar => {
@@ -880,28 +856,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function startVoiceRecording() {
-    isRecordingVoice = true;
-
-    // 1. Request microphone via getUserMedia to unlock hardware & initialize real Audio visualizer
-    try {
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        micMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        setupAudioVisualizer(micMediaStream);
-      }
-    } catch (mediaErr) {
-      console.warn('Microphone getUserMedia error:', mediaErr);
-      if (mediaErr.name === 'NotAllowedError' || mediaErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff wurde verweigert. Bitte in den Browsereinstellungen erlauben.', 'warning', 5000);
-        stopVoiceRecording();
-        return;
-      } else if (mediaErr.name === 'NotFoundError' || mediaErr.name === 'DevicesNotFoundError') {
-        showToast('🎙️ Kein Mikrofon gefunden. Bitte Headset anschließen.', 'warning', 5000);
-        stopVoiceRecording();
-        return;
-      }
-    }
-
-    // 2. Check Web Speech API
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechAPI) {
       showToast('🎙️ Spracherkennung wird in diesem Browser nicht unterstützt. Sie können Stichpunkte direkt tippen!', 'info', 5000);
@@ -911,9 +865,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    finalSpokenTranscript = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
-    if (finalSpokenTranscript && !finalSpokenTranscript.endsWith(' ')) {
-      finalSpokenTranscript += ' ';
+    isRecordingVoice = true;
+    baseRecordedText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
+    if (baseRecordedText && !baseRecordedText.endsWith(' ')) {
+      baseRecordedText += ' ';
     }
 
     updateRecordingUIState(true);
@@ -931,31 +886,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (speechRecognizer) {
       try {
         speechRecognizer.onstart = null;
+        speechRecognizer.onaudiostart = null;
+        speechRecognizer.onsoundstart = null;
+        speechRecognizer.onspeechstart = null;
+        speechRecognizer.onspeechend = null;
         speechRecognizer.onresult = null;
         speechRecognizer.onerror = null;
         speechRecognizer.onend = null;
         speechRecognizer.stop();
       } catch (err) {}
       speechRecognizer = null;
-    }
-
-    if (micAnimFrame) {
-      cancelAnimationFrame(micAnimFrame);
-      micAnimFrame = null;
-    }
-
-    if (micMediaStream) {
-      try {
-        micMediaStream.getTracks().forEach(track => track.stop());
-      } catch (e) {}
-      micMediaStream = null;
-    }
-
-    if (micAudioContext && micAudioContext.state !== 'closed') {
-      try {
-        micAudioContext.close();
-      } catch (e) {}
-      micAudioContext = null;
     }
 
     updateRecordingUIState(false);
@@ -983,6 +923,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     if (isRecordingVoice) {
+      if (speechRecognizer) {
+        try { speechRecognizer.stop(); } catch (e) {}
+      }
       startSpeechRecognizerLoop();
     }
   }
@@ -1133,6 +1076,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (elBtnVoiceLangTr) {
     elBtnVoiceLangTr.addEventListener('click', () => setSpeechLanguage('tr-TR'));
+  }
+
+  if (elBtnSampleVoice) {
+    elBtnSampleVoice.addEventListener('click', () => {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
+      const parsedCase = parseOralExamCase(currentQ);
+      
+      let sampleText = '';
+      if (speechRecognitionLang.startsWith('tr')) {
+        if (parsedCase.checklistTR && parsedCase.checklistTR.length) {
+          sampleText = parsedCase.checklistTR.slice(0, 3).join('. ') + '.';
+        } else {
+          sampleText = currentQ.answer_tr ? currentQ.answer_tr.slice(0, 150) + '...' : '';
+        }
+      } else {
+        if (parsedCase.checklist && parsedCase.checklist.length) {
+          sampleText = parsedCase.checklist.slice(0, 3).join('. ') + '.';
+        } else if (parsedCase.verbalFramework) {
+          sampleText = parsedCase.verbalFramework;
+        } else {
+          sampleText = currentQ.answer_de ? currentQ.answer_de.slice(0, 150) + '...' : '';
+        }
+      }
+      
+      if (elSpeechTranscriptInput && sampleText) {
+        const existing = elSpeechTranscriptInput.value.trim();
+        elSpeechTranscriptInput.value = existing ? `${existing} ${sampleText}` : sampleText;
+        elSpeechTranscriptInput.focus();
+        showToast('💡 Beispiel-Stichpunkte eingefügt!', 'info', 3000);
+      }
+    });
   }
 
   // --- Dynamic ÄKNO Düsseldorf Live Cockpit Event Listeners ---
