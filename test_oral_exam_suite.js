@@ -875,8 +875,10 @@ assert(appCode.includes('toggleSimExaminerDrawer'), 'app.js must define toggleSi
 assert(appCode.includes('elBtnSimToggleExaminerProfile'), 'app.js must wire elBtnSimToggleExaminerProfile');
 assert(appCode.includes('elSimExaminerDrawerContent'), 'app.js must populate elSimExaminerDrawerContent');
 assert(appCode.includes('mock-examiner-profile-card'), 'app.js must render mock-examiner-profile-card in mock exam');
+assert(appCode.includes('renderExaminerCardContent'), 'app.js must define renderExaminerCardContent');
+assert(!appCode.includes("elExaminerBadgeTitle.textContent = `🏛️ ÄKNO"), 'elExaminerBadgeTitle must not prepend duplicate 🏛️ icon');
 
-console.log('[PASS] Suite 33 passed! Verified 100% universal examiner profile coverage (642/642), cockpit quick-view drawer, and Step 3 profile integration.');
+console.log('[PASS] Suite 33 passed! Verified 100% universal examiner profile coverage (642/642), cockpit quick-view drawer, Step 3 profile integration, and non-empty robust card rendering.');
 
 console.log('\n🎉 ALL 33 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 

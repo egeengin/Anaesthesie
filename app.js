@@ -2007,9 +2007,53 @@ Tedavi:
   if (elBtnStep3Toggle) elBtnStep3Toggle.addEventListener('click', () => toggleStep3());
   if (elBtnReveal) elBtnReveal.addEventListener('click', () => revealStep4());
 
+  function renderExaminerCardContent(examinerProfile, q) {
+    if (!examinerProfile || !elExaminerRevealCard) return;
+    const targetQ = q || (filteredQuestions && filteredQuestions[state.currentIndex]);
+    const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry && targetQ)
+      ? MockExamSimulation.getRegistry(targetQ.id)
+      : null;
+
+    const profKeywordsDE = examinerProfile.keywords 
+      || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '') 
+      || '';
+    const profKeywordsTR = examinerProfile.keywords_tr 
+      || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords_tr ? reg.koCriteria.mandatoryKeywords_tr.join(', ') : profKeywordsDE) 
+      || '';
+
+    elExaminerRevealCard.innerHTML = `
+      <div class="examiner-reveal-header">
+        <div class="examiner-reveal-name">👨‍⚕️ ${examinerProfile.name || 'ÄKNO Prüfer'}</div>
+        <div class="examiner-reveal-clinic">📍 ${examinerProfile.hospital || 'Ärztekammer Nordrhein (Düsseldorf)'}</div>
+      </div>
+      <div class="examiner-profile-grid">
+        <div class="examiner-profile-item">
+          <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
+          <div>${renderDualLanguageText(examinerProfile.focus || 'Klinische Entscheidungsfindung und Leitlinienkompetenz', examinerProfile.focus_tr || 'Klinik karar verme ve kılavuz yetkinliği')}</div>
+        </div>
+        <div class="examiner-profile-item alert-trap">
+          <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı</strong>
+          <div>${renderDualLanguageText(examinerProfile.trap || 'Unsicherheit bei Dosierungen oder mangelhafte Priorisierung', examinerProfile.trap_tr || 'Dozlarda kararsızlık veya yetersiz önceliklendirme')}</div>
+        </div>
+        ${profKeywordsDE ? `
+        <div class="examiner-profile-item alert-pass">
+          <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
+          <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
+        </div>` : ''}
+      </div>
+    `;
+  }
+
   if (elBadgeExaminerToggle && elExaminerRevealCard) {
     elBadgeExaminerToggle.addEventListener('click', () => {
       const isExpanded = elExaminerRevealCard.style.display !== 'none';
+      if (!isExpanded && (!elExaminerRevealCard.innerHTML || elExaminerRevealCard.innerHTML.trim() === '')) {
+        const curQ = filteredQuestions && filteredQuestions[state.currentIndex];
+        const prof = getExaminerProfileForCase(curQ);
+        if (prof) {
+          renderExaminerCardContent(prof, curQ);
+        }
+      }
       elExaminerRevealCard.style.display = isExpanded ? 'none' : 'block';
       elBadgeExaminerToggle.setAttribute('aria-expanded', (!isExpanded).toString());
     });
@@ -2451,31 +2495,9 @@ Tedavi:
       if (elBadgeExaminerToggle) elBadgeExaminerToggle.setAttribute('aria-expanded', 'false');
       if (elExaminerBadgeTitle) {
         const shortName = examinerProfile.name.split('/')[0].trim();
-        elExaminerBadgeTitle.textContent = `🏛️ ÄKNO Düsseldorf: Prüfer-Profil (${shortName}) / Jüri Profili`;
+        elExaminerBadgeTitle.textContent = `ÄKNO Düsseldorf: Prüfer-Profil (${shortName}) / Jüri Profili`;
       }
-      const profKeywordsDE = examinerProfile.keywords || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '');
-      const profKeywordsTR = examinerProfile.keywords_tr || profKeywordsDE;
-      elExaminerRevealCard.innerHTML = `
-        <div class="examiner-reveal-header">
-          <div class="examiner-reveal-name">👨‍⚕️ ${examinerProfile.name}</div>
-          <div class="examiner-reveal-clinic">📍 ${examinerProfile.hospital}</div>
-        </div>
-        <div class="examiner-profile-grid">
-          <div class="examiner-profile-item">
-            <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
-            <div>${renderDualLanguageText(examinerProfile.focus, examinerProfile.focus_tr)}</div>
-          </div>
-          <div class="examiner-profile-item alert-trap">
-            <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı</strong>
-            <div>${renderDualLanguageText(examinerProfile.trap, examinerProfile.trap_tr)}</div>
-          </div>
-          ${profKeywordsDE ? `
-          <div class="examiner-profile-item alert-pass">
-            <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
-            <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
-          </div>` : ''}
-        </div>
-      `;
+      renderExaminerCardContent(examinerProfile, currentQ);
     } else if (elExaminerRevealBox) {
       elExaminerRevealBox.style.display = 'none';
     }
