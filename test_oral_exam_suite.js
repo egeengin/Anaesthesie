@@ -929,7 +929,77 @@ questions.forEach(q => {
 
 console.log('[PASS] Suite 34 passed! Verified direct inline revealable answers, audio, and bilingual findings evaluation for Step 1 & Step 2 across all 642 questions.');
 
-console.log('\n🎉 ALL 34 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// -------------------------------------------------------------
+// Suite 35: HTML Semantic Tag Balance & Modal Hierarchy Integrity
+// -------------------------------------------------------------
+console.log('Testing Suite 35: HTML Semantic Tag Balance & Modal Hierarchy Integrity...');
+const indexPath = path.join(__dirname, 'index.html');
+assert(fs.existsSync(indexPath), 'index.html must exist');
+const indexHtml = fs.readFileSync(indexPath, 'utf8');
+
+// Check global div tag balance
+const openDivsCount = (indexHtml.match(/<div(\s|>)/gi) || []).length;
+const closeDivsCount = (indexHtml.match(/<\/div>/gi) || []).length;
+assert.strictEqual(openDivsCount, closeDivsCount, `index.html must have perfectly balanced <div> tags (${openDivsCount} open vs ${closeDivsCount} close)`);
+
+// Check that all top-level modals are siblings, not nested inside each other
+const expectedModals = [
+  'jump-modal',
+  'user-guide-modal',
+  'settings-modal',
+  'pocket-cards-modal',
+  'readiness-modal',
+  'aekno-guide-modal',
+  'calc-modal',
+  'mock-exam-modal',
+  'shortcut-modal',
+  'abbrev-modal'
+];
+
+expectedModals.forEach(mId => {
+  assert(indexHtml.includes(`id="${mId}"`), `Modal #${mId} must exist in index.html`);
+});
+
+// Verify no modal is accidentally nested inside another modal
+expectedModals.forEach(mId => {
+  const mStart = indexHtml.indexOf(`id="${mId}"`);
+  const mDivStart = indexHtml.lastIndexOf('<div', mStart);
+  
+  // Find closing div using tag counting
+  let depth = 0;
+  let mDivEnd = -1;
+  const regex = /<\/?div(\s[^>]*)?>/gi;
+  regex.lastIndex = mDivStart;
+  let match;
+  while ((match = regex.exec(indexHtml)) !== null) {
+    if (match[0].startsWith('</')) {
+      depth--;
+      if (depth === 0) {
+        mDivEnd = regex.lastIndex;
+        break;
+      }
+    } else {
+      depth++;
+    }
+  }
+  assert(mDivEnd !== -1, `Could not find balanced close for #${mId}`);
+  const innerModalContent = indexHtml.substring(mStart, mDivEnd);
+  
+  // Ensure no other modal ID is nested inside this modal
+  expectedModals.forEach(otherId => {
+    if (otherId !== mId) {
+      assert(
+        !innerModalContent.includes(`id="${otherId}"`),
+        `Modal #${otherId} must NOT be nested inside #${mId}`
+      );
+    }
+  });
+});
+
+console.log('[PASS] Suite 35 passed! Verified perfect <div> balance (0 difference) and un-nested modal hierarchy across all 10 application modals.');
+
+console.log('\n🎉 ALL 35 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

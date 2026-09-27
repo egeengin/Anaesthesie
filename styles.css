@@ -1476,7 +1476,8 @@ body {
 }
 
 /* Jump & Settings Modal */
-.modal-backdrop {
+.modal-backdrop,
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1493,12 +1494,14 @@ body {
   transition: all var(--transition-normal);
 }
 
-.modal-backdrop.active {
+.modal-backdrop.active,
+.modal-overlay.active {
   opacity: 1;
   visibility: visible;
 }
 
-.modal-content {
+.modal-content,
+.modal-card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
