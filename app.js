@@ -1302,30 +1302,34 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. Start hardware audio stream first (fixes macOS Chrome mic conflict)
-    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-      if (stream && isRecordingVoice) {
-        setupAudioVisualizer(stream);
-        setupMediaRecorder(stream);
-      }
-      
-      // 3. Start Speech Recognition AFTER hardware is ready
-      const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (SpeechAPI) {
-        startSpeechRecognizerLoop();
-      } else {
-        showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
-        if (elVoiceMicHint) {
-          elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
+    // 2. CRITICAL FIX FOR MACOS CHROME: Release any open hardware getUserMedia stream (e.g. from VU meter probe).
+    // On macOS, having getUserMedia + AudioContext capturing the mic locks CoreAudio AUHAL and starves webkitSpeechRecognition,
+    // resulting in flatline silent audio to Google Speech servers and 'Kelime çözülemedi' errors.
+    stopMicrophoneHardware();
+
+    // 3. Start Native Speech Recognition with 100% exclusive microphone access
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechAPI) {
+      startSpeechRecognizerLoop();
+    } else {
+      // Fallback for browsers without Web Speech API (e.g. Firefox)
+      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+        if (stream && isRecordingVoice) {
+          setupAudioVisualizer(stream);
+          setupMediaRecorder(stream);
         }
+      }).catch((micErr) => {
+        console.warn('Hardware microphone error:', micErr);
+        if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+          showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+          stopVoiceRecording();
+        }
+      });
+      showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
+      if (elVoiceMicHint) {
+        elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
       }
-    }).catch((micErr) => {
-      console.warn('Hardware microphone error:', micErr);
-      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
-        stopVoiceRecording();
-      }
-    });
+    }
 
     // Duration timer for recording
     recordingStartTime = Date.now();
@@ -1520,6 +1524,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecordingVoice) {
       stopVoiceRecording();
     }
+    // CRITICAL: On macOS Chrome, any active getUserMedia / AudioContext stream locks CoreAudio and starves SpeechRecognition.
+    // Releasing the hardware probe ensures Google Speech receives full, unmuted audio!
+    stopMicrophoneHardware();
 
     const startTest = () => {
       const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
@@ -1530,7 +1537,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const rec = new SpeechAPI();
         diagSpeechTestRecognizer = rec;
         rec.lang = speechRecognitionLang || 'de-DE';
-        rec.continuous = true;
+        rec.continuous = false; // Fast single-utterance mode: instant finalization upon word completion
         rec.interimResults = true;
         rec.maxAlternatives = 1;
 
@@ -1543,14 +1550,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         rec.onaudiostart = () => {
-          if (elDiagTestRes && elDiagTestRes.textContent.includes('dinliyor')) {
+          if (elDiagTestRes && !hasDetectedResult) {
             elDiagTestRes.style.color = '#10b981';
             elDiagTestRes.innerHTML = `👂 Ses sinyali alınıyor... Lütfen şimdi konuşun: ${promptWord}`;
           }
         };
 
         rec.onspeechstart = () => {
-          if (elDiagTestRes) {
+          if (elDiagTestRes && !hasDetectedResult) {
             elDiagTestRes.style.color = '#10b981';
             elDiagTestRes.innerHTML = '🗣️ Konuşma algılandı, çözümleniyor...';
           }
@@ -1574,7 +1581,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hasDetectedResult = true;
             if (elDiagTestRes) {
               elDiagTestRes.style.color = '#10b981';
-              elDiagTestRes.innerHTML = `✅ <strong>Algılandı:</strong> "${escapeHtml(text)}" (Ses tanıma başarıyla çalışıyor!)`;
+              elDiagTestRes.innerHTML = `✅ <strong>Algılandı:</strong> "${escapeHtml(text)}" (Ses tanıma macOS Chrome'da başarıyla çalışıyor!)`;
             }
             if (elSpeechTranscriptInput && !elSpeechTranscriptInput.value.trim()) {
               elSpeechTranscriptInput.value = text;
@@ -1587,7 +1594,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 try { diagSpeechTestRecognizer.stop(); } catch (e) {}
                 diagSpeechTestRecognizer = null;
               }
-            }, 1500);
+            }, 1200);
           }
         };
 
@@ -1598,11 +1605,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (elDiagTestRes) {
             elDiagTestRes.style.color = '#ef4444';
             if (err.error === 'not-allowed') {
-              elDiagTestRes.innerHTML = '❌ <strong>İzin Verilmedi:</strong> Chrome bu adres için mikrofonu engelledi.';
+              elDiagTestRes.innerHTML = '❌ <strong>İzin Verilmedi:</strong> Chrome bu adres için mikrofonu engelledi. Adres çubuğundaki kilit simgesinden mikrofon iznini verin.';
             } else if (err.error === 'no-speech') {
               elDiagTestRes.innerHTML = `⏳ <strong>Ses çevrilemedi:</strong> Mikrofona biraz daha yakın ve net ${promptWord} deyin.`;
             } else if (err.error === 'network') {
               elDiagTestRes.innerHTML = '🌐 <strong>Ağ Hatası:</strong> Google konuşma sunucusuna erişilemedi.';
+            } else if (err.error === 'audio-capture') {
+              elDiagTestRes.innerHTML = '⚠️ <strong>Donanım Hatası:</strong> Ses girişi yakalanamadı. Mac sistem ayarlarından mikrofonu kontrol edin.';
             } else {
               elDiagTestRes.innerHTML = `⚠️ <strong>Hata (${escapeHtml(err.error)}):</strong> Lütfen tekrar deneyin.`;
             }
@@ -1619,7 +1628,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!hasDetectedResult) {
             if (elDiagTestRes && !elDiagTestRes.textContent.includes('❌') && !elDiagTestRes.textContent.includes('✅')) {
               elDiagTestRes.style.color = '#f59e0b';
-              elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin.`;
+              elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin. (macOS Teams sanal mikrofonu kuruluysa, Chrome varsayılan mikrofonunu "MacBook Air Mikrofonu" yapın).`;
             }
           }
         };
@@ -1637,16 +1646,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    if (!audioStream) {
-      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-        if (stream) setupAudioVisualizer(stream);
-        startTest();
-      }).catch(() => {
-        startTest();
-      });
-    } else {
-      startTest();
-    }
+    startTest();
   }
 
   function evaluateVoiceAnswer() {
