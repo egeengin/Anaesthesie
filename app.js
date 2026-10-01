@@ -1086,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const rec = new SpeechAPI();
       rec.lang = speechRecognitionLang;
-      rec.continuous = true;
+      rec.continuous = false;
       rec.interimResults = true;
       rec.maxAlternatives = 1;
 
@@ -4570,17 +4570,16 @@ Tedavi:
   async function syncFromCloud() {
     try {
       updateCloudSyncBadge('syncing');
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
-      const response = await fetch(CLOUD_SYNC_ENDPOINT, { signal: controller.signal });
-      clearTimeout(timeoutId);
+      const cloudState = (typeof StorageSync !== 'undefined' && typeof StorageSync.fetchFromCloud === 'function')
+        ? await StorageSync.fetchFromCloud(CLOUD_SYNC_ENDPOINT)
+        : null;
 
-      if (response.ok) {
-        const json = await response.json();
-        if (json && json.data && json.data.state) {
-          const cloudState = json.data.state;
-
-          // Field-by-field union merge: prevent overwriting newer bookmarks, notes, or answers
+      if (cloudState) {
+        // Field-by-field union merge: prevent overwriting newer bookmarks, notes, or answers
+        if (typeof StorageSync !== 'undefined' && typeof StorageSync.mergeCloudState === 'function') {
+          state = StorageSync.mergeCloudState(state, cloudState);
+        } else {
+          // Fallback robustAnswers & robustSm2 union merge
           const cloudAnswers = cloudState.answers || {};
           const localAnswers = state.answers || {};
           const allQIds = new Set([...Object.keys(cloudAnswers), ...Object.keys(localAnswers)]);
@@ -4588,30 +4587,8 @@ Tedavi:
           allQIds.forEach(id => {
             const cAns = cloudAnswers[id];
             const lAns = localAnswers[id];
-            if (cAns && lAns) {
-              robustAnswers[id] = (lAns.submitted || lAns.revealed) ? lAns : cAns;
-            } else {
-              robustAnswers[id] = lAns || cAns;
-            }
+            robustAnswers[id] = (cAns && lAns) ? ((lAns.submitted || lAns.revealed) ? lAns : cAns) : (lAns || cAns);
           });
-
-          // Flags union: if flagged on either device, keep flagged
-          const robustFlagged = { ...(cloudState.flagged || {}) };
-          Object.keys(state.flagged || {}).forEach(id => {
-            if (state.flagged[id]) robustFlagged[id] = true;
-          });
-
-          // Notes union: preserve whichever note is present or longer
-          const robustNotes = { ...(cloudState.notes || {}) };
-          Object.keys(state.notes || {}).forEach(id => {
-            const lNote = state.notes[id];
-            const cNote = robustNotes[id];
-            if (!cNote || (lNote && lNote.length >= cNote.length)) {
-              robustNotes[id] = lNote;
-            }
-          });
-
-          // SM-2 Spaced Repetition cards: preserve latest review timestamp
           const cloudSm2 = cloudState.sm2Cards || {};
           const localSm2 = state.sm2Cards || {};
           const allSm2Ids = new Set([...Object.keys(cloudSm2), ...Object.keys(localSm2)]);
@@ -4619,33 +4596,16 @@ Tedavi:
           allSm2Ids.forEach(id => {
             const cCard = cloudSm2[id];
             const lCard = localSm2[id];
-            if (cCard && lCard) {
-              const cTime = new Date(cCard.lastReviewed || 0).getTime();
-              const lTime = new Date(lCard.lastReviewed || 0).getTime();
-              robustSm2[id] = (lTime >= cTime) ? lCard : cCard;
-            } else {
-              robustSm2[id] = lCard || cCard;
-            }
+            robustSm2[id] = (cCard && lCard) ? ((new Date(lCard.lastReviewed || 0).getTime() >= new Date(cCard.lastReviewed || 0).getTime()) ? lCard : cCard) : (lCard || cCard);
           });
-
-          // Daily reviews union
-          const robustDaily = { ...(cloudState.dailyReviews || {}) };
-          Object.keys(state.dailyReviews || {}).forEach(dateStr => {
-            robustDaily[dateStr] = Math.max(robustDaily[dateStr] || 0, state.dailyReviews[dateStr] || 0);
-          });
-
           state.answers = robustAnswers;
-          state.flagged = robustFlagged;
-          state.notes = robustNotes;
           state.sm2Cards = robustSm2;
-          state.dailyReviews = robustDaily;
-          state.streak = Math.max(cloudState.streak || 0, state.streak || 0);
-
-          saveStateLocalOnly();
-          updateAnalytics();
-          renderCurrentQuestion();
-          pushToCloudDebounced();
         }
+
+        saveStateLocalOnly();
+        updateAnalytics();
+        renderCurrentQuestion();
+        pushToCloudDebounced();
         updateCloudSyncBadge('synced');
       } else {
         updateCloudSyncBadge('offline');
@@ -4666,39 +4626,23 @@ Tedavi:
 
   async function pushToCloud() {
     try {
-      const payload = {
-        name: 'facharzt_sync_egemelis',
-        data: {
-          version: '2.0',
-          updatedAt: new Date().toISOString(),
-          state: state
-        }
-      };
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
-      const res = await fetch(CLOUD_SYNC_ENDPOINT, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      if (res.ok) {
-        updateCloudSyncBadge('synced');
-      } else {
-        updateCloudSyncBadge('offline');
-      }
+      const ok = (typeof StorageSync !== 'undefined' && typeof StorageSync.pushToCloud === 'function')
+        ? await StorageSync.pushToCloud(state, CLOUD_SYNC_ENDPOINT)
+        : false;
+      updateCloudSyncBadge(ok ? 'synced' : 'offline');
     } catch (e) {
       updateCloudSyncBadge('offline');
     }
   }
 
   function saveStateLocalOnly() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) {}
+    if (typeof StorageSync !== 'undefined' && typeof StorageSync.saveLocal === 'function') {
+      StorageSync.saveLocal(state, STORAGE_KEY);
+    } else {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
   }
 
   // --- LocalStorage & Device Synchronization Engine ---
@@ -5020,293 +4964,11 @@ Tedavi:
     });
   }
 
-  // --- Clinical Anesthesia Calculator Modal ---
-  const elCalcTrigger = document.getElementById('calc-trigger');
-  const elCalcModal = document.getElementById('calc-modal');
-  const elCalcModalClose = document.getElementById('calc-modal-close');
-
-  if (elCalcTrigger && elCalcModal) {
-    elCalcTrigger.addEventListener('click', () => {
-      elCalcModal.classList.add('active');
-      recalculateAllMedicalCalculators();
-    });
-  }
-  if (elCalcModalClose && elCalcModal) {
-    elCalcModalClose.addEventListener('click', () => closeModal(elCalcModal));
+  // --- Clinical Anesthesia Calculator Modal (Modularized in js/calculators.js) ---
+  if (typeof ClinicalCalculators !== 'undefined' && typeof ClinicalCalculators.init === 'function') {
+    ClinicalCalculators.init(closeModal);
   }
 
-  // Calculator Tabs
-  const elCalcTabBar = document.getElementById('calc-tab-bar');
-  if (elCalcTabBar && elCalcModal) {
-    const tabBtns = elCalcTabBar.querySelectorAll('.calc-tab-btn');
-    const panels = {
-      peds: document.getElementById('calc-panel-peds'),
-      ards: document.getElementById('calc-panel-ards'),
-      la: document.getElementById('calc-panel-la'),
-      na: document.getElementById('calc-panel-na')
-    };
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const tab = btn.getAttribute('data-tab');
-
-        Object.keys(panels).forEach(key => {
-          if (panels[key]) {
-            panels[key].style.display = (key === tab) ? 'block' : 'none';
-          }
-        });
-      });
-    });
-  }
-
-  // Pediatric Calc Inputs
-  const elPedsAge = document.getElementById('peds-age-input');
-  const elPedsWeight = document.getElementById('peds-weight-input');
-  const elPedsResults = document.getElementById('peds-calc-results');
-
-  if (elPedsAge && elPedsWeight) {
-    elPedsAge.addEventListener('input', () => {
-      const age = parseFloat(elPedsAge.value) || 0;
-      if (age > 0) {
-        elPedsWeight.value = Math.round((age + 4) * 2);
-      }
-      calcPediatrics();
-    });
-    elPedsWeight.addEventListener('input', calcPediatrics);
-  }
-
-  // Global helper for calculator copy-to-clipboard
-  window.copyCalcValues = function(text, btn) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        const orig = btn.innerHTML;
-        btn.innerHTML = '✓ In Zwischenablage kopiert!';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.innerHTML = orig;
-          btn.classList.remove('copied');
-        }, 2200);
-      });
-    }
-  };
-
-  function calcPediatrics() {
-    if (!elPedsResults) return;
-    const age = parseFloat(elPedsAge ? elPedsAge.value : 4) || 4;
-    const wt = parseFloat(elPedsWeight ? elPedsWeight.value : 16) || 16;
-
-    const uncuffed = (age / 4) + 4.0;
-    const cuffed = (age / 4) + 3.5;
-    const depth = (age / 2) + 12;
-    const adrMg = (wt * 0.01).toFixed(2);
-    const adrMl = (wt * 0.1).toFixed(1);
-    const atropin = Math.max(0.1, wt * 0.02).toFixed(2);
-    const rocuronium = (wt * 0.6).toFixed(1);
-    const rocuroniumRSI = (wt * 1.0).toFixed(1);
-    const defib = Math.round(wt * 4);
-    const fluidsMin = Math.round(wt * 10);
-    const fluidsMax = Math.round(wt * 20);
-
-    elPedsResults.innerHTML = `
-      <div class="calc-card-metric highlight-safe">
-        <div class="calc-metric-title">🫁 Tubus gecufft / unblockt</div>
-        <div class="calc-metric-value">${cuffed.toFixed(1)} mm <small style="font-size: 0.8rem; font-weight: normal;">(uncuffed: ${uncuffed.toFixed(1)})</small></div>
-        <div class="calc-metric-note">Einführtiefe Zähne: <strong>ca. ${depth.toFixed(1)} cm</strong> (Formel: ID × 3)</div>
-      </div>
-      <div class="calc-card-metric highlight-alert">
-        <div class="calc-metric-title">🚨 Adrenalin Notfall (ALS)</div>
-        <div class="calc-metric-value">${adrMg} mg <small style="font-size: 0.8rem; font-weight: normal;">(= ${adrMl} ml 1:10.000)</small></div>
-        <div class="calc-metric-note">10 µg/kg i.v. alle 3–5 Min bei Kreislaufstillstand</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">❤️ Atropin (Bradykardie)</div>
-        <div class="calc-metric-value">${atropin} mg</div>
-        <div class="calc-metric-note">20 µg/kg i.v. (Mindestdosis: 0.1 mg gegen paradoxe Bradykardie)</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">⚡ Defibrillation (VF/pVT)</div>
-        <div class="calc-metric-value">${defib} Joule</div>
-        <div class="calc-metric-note">4 J/kg biphasisch ab 1. Schock</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">💊 Rocuronium</div>
-        <div class="calc-metric-value">${rocuronium} mg <small style="font-size: 0.8rem; font-weight: normal;">(RSI: ${rocuroniumRSI} mg)</small></div>
-        <div class="calc-metric-note">0.6 mg/kg elektiv, 1.0 mg/kg für RSI (Sugammadex bereit!)</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">💧 Flüssigkeitsbolus</div>
-        <div class="calc-metric-value">${fluidsMin} – ${fluidsMax} ml</div>
-        <div class="calc-metric-note">10–20 ml/kg kristalloide Vollelektrolytlösung</div>
-      </div>
-      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
-        <button class="btn-calc-copy" onclick="copyCalcValues('Pädiatrie (${age} Jahre, ${wt} kg): Tubus ${cuffed.toFixed(1)} mm (Tiefe ${depth.toFixed(1)} cm) | Adrenalin ${adrMg} mg | Atropin ${atropin} mg | Defib ${defib} J | Rocuronium ${rocuronium} mg (RSI: ${rocuroniumRSI} mg)', this)">
-          📋 Pädiatrie-Werte kopieren
-        </button>
-      </div>
-    `;
-  }
-
-  // ARDS Calc Inputs
-  const elArdsGender = document.getElementById('ards-gender-input');
-  const elArdsHeight = document.getElementById('ards-height-input');
-  const elArdsResults = document.getElementById('ards-calc-results');
-
-  if (elArdsGender && elArdsHeight) {
-    elArdsGender.addEventListener('change', calcArds);
-    elArdsHeight.addEventListener('input', calcArds);
-  }
-
-  function calcArds() {
-    if (!elArdsResults) return;
-    const gender = elArdsGender ? elArdsGender.value : 'male';
-    const height = parseFloat(elArdsHeight ? elArdsHeight.value : 175) || 175;
-
-    const base = (gender === 'male') ? 50.0 : 45.5;
-    const pbw = Math.max(30, base + 0.91 * (height - 152.4));
-    const vt6 = Math.round(pbw * 6);
-    const vt8 = Math.round(pbw * 8);
-
-    elArdsResults.innerHTML = `
-      <div class="calc-card-metric highlight-safe">
-        <div class="calc-metric-title">⚖️ Predicted Body Weight (PBW)</div>
-        <div class="calc-metric-value">${pbw.toFixed(1)} kg</div>
-        <div class="calc-metric-note">Devine-Formel basierend auf Körpergröße ${height} cm</div>
-      </div>
-      <div class="calc-card-metric highlight-safe">
-        <div class="calc-metric-title">🫁 Lungenprotektives VT (6 ml/kg)</div>
-        <div class="calc-metric-value">${vt6} ml</div>
-        <div class="calc-metric-note"><strong>Goldstandard:</strong> Striktes ARDSNet-Zielvolumen</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">🫁 Moderates VT (8 ml/kg)</div>
-        <div class="calc-metric-value">${vt8} ml</div>
-        <div class="calc-metric-note">Obergrenze bei nicht-geschädigter Lunge</div>
-      </div>
-      <div class="calc-card-metric highlight-alert">
-        <div class="calc-metric-title">⚠️ Driving Pressure Limit</div>
-        <div class="calc-metric-value">ΔP ≤ 14 cmH₂O</div>
-        <div class="calc-metric-note">ΔP = P_plat – PEEP. Bei Überschreitung: Mortalität ↑</div>
-      </div>
-      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
-        <button class="btn-calc-copy" onclick="copyCalcValues('ARDS Beatmung (${height} cm): PBW ${pbw.toFixed(1)} kg | Vt (6 ml/kg): ${vt6} ml (Goldstandard) | Vt (8 ml/kg): ${vt8} ml | Max. Driving Pressure: ΔP ≤ 14 cmH₂O', this)">
-          📋 Beatmungswerte kopieren
-        </button>
-      </div>
-    `;
-  }
-
-  // LA Calc Inputs
-  const elLaWeight = document.getElementById('la-weight-input');
-  const elLaResults = document.getElementById('la-calc-results');
-
-  if (elLaWeight) {
-    elLaWeight.addEventListener('input', calcLA);
-  }
-
-  function calcLA() {
-    if (!elLaResults) return;
-    const wt = parseFloat(elLaWeight ? elLaWeight.value : 70) || 70;
-
-    const ropi = Math.min(300, Math.round(wt * 3.0));
-    const bupi = Math.min(150, Math.round(wt * 2.0));
-    const lidoPur = Math.min(300, Math.round(wt * 4.0));
-    const lidoAdr = Math.min(500, Math.round(wt * 7.0));
-    const prilo = Math.min(500, Math.round(wt * 6.0));
-    const lipidBolus = Math.round(wt * 1.5);
-
-    elLaResults.innerHTML = `
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">💉 Ropivacain (max. 3 mg/kg)</div>
-        <div class="calc-metric-value">${ropi} mg</div>
-        <div class="calc-metric-note">Max. Höchstdosis für ${wt} kg (absolute Obergrenze 225–300 mg)</div>
-      </div>
-      <div class="calc-card-metric highlight-alert">
-        <div class="calc-metric-title">💉 Bupivacain (max. 2 mg/kg)</div>
-        <div class="calc-metric-value">${bupi} mg</div>
-        <div class="calc-metric-note">Kardiotoxisch! Absolute Obergrenze 150 mg beachten!</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">💉 Lidocain (pur vs. Adrenalin)</div>
-        <div class="calc-metric-value">${lidoPur} mg <small style="font-size: 0.8rem; font-weight: normal;">(+Adr: ${lidoAdr} mg)</small></div>
-        <div class="calc-metric-note">4 mg/kg pur, 7 mg/kg mit Vasokonstriktor-Zusatz</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">💉 Prilocain (max. 6 mg/kg)</div>
-        <div class="calc-metric-value">${prilo} mg</div>
-        <div class="calc-metric-note">Cave: Methämoglobinämie! (Antidot: Toluidinblau 2–4 mg/kg)</div>
-      </div>
-      <div class="calc-card-metric highlight-alert">
-        <div class="calc-metric-title">🧴 Intralipid 20% Rescue-Bolus</div>
-        <div class="calc-metric-value">${lipidBolus} ml i.v.</div>
-        <div class="calc-metric-note">1.5 ml/kg über 1 Min bei LAST, danach 0.25 ml/kg/min</div>
-      </div>
-      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
-        <button class="btn-calc-copy" onclick="copyCalcValues('LA Höchstdosen (${wt} kg): Ropivacain ${ropi} mg | Bupivacain ${bupi} mg | Lidocain pur ${lidoPur} mg (mit Adr: ${lidoAdr} mg) | Prilocain ${prilo} mg | Intralipid 20% Bolus: ${lipidBolus} ml', this)">
-          📋 LA-Dosen kopieren
-        </button>
-      </div>
-    `;
-  }
-
-  // Sodium Calc Inputs
-  const elNaDemog = document.getElementById('na-demog-input');
-  const elNaWeight = document.getElementById('na-weight-input');
-  const elNaCurrent = document.getElementById('na-current-input');
-  const elNaResults = document.getElementById('na-calc-results');
-
-  if (elNaDemog && elNaWeight && elNaCurrent) {
-    elNaDemog.addEventListener('change', calcSodium);
-    elNaWeight.addEventListener('input', calcSodium);
-    elNaCurrent.addEventListener('input', calcSodium);
-  }
-
-  function calcSodium() {
-    if (!elNaResults) return;
-    const demog = elNaDemog ? elNaDemog.value : 'male';
-    const wt = parseFloat(elNaWeight ? elNaWeight.value : 70) || 70;
-    const naCur = parseFloat(elNaCurrent ? elNaCurrent.value : 118) || 118;
-
-    let factor = 0.6;
-    if (demog === 'female') factor = 0.5;
-    else if (demog === 'elderly_male') factor = 0.5;
-    else if (demog === 'elderly_female') factor = 0.45;
-
-    const tbw = wt * factor;
-    const deficit = Math.max(0, Math.round(tbw * (140 - naCur)));
-    const maxDayNa = (naCur + 8).toFixed(0);
-
-    elNaResults.innerHTML = `
-      <div class="calc-card-metric highlight-safe">
-        <div class="calc-metric-title">💧 Gesamtkörperwasser (TBW)</div>
-        <div class="calc-metric-value">${tbw.toFixed(1)} Liter</div>
-        <div class="calc-metric-note">${(factor * 100).toFixed(0)}% des Körpergewichts (${wt} kg)</div>
-      </div>
-      <div class="calc-card-metric">
-        <div class="calc-metric-title">🧪 Berechnetes Na⁺-Defizit</div>
-        <div class="calc-metric-value">${deficit} mmol</div>
-        <div class="calc-metric-note">Bis zur Norm (140 mmol/l). Formel: TBW × (140 – Na_ist)</div>
-      </div>
-      <div class="calc-card-metric highlight-alert">
-        <div class="calc-metric-title">🛑 Max. 24h-Zielgrenze</div>
-        <div class="calc-metric-value">≤ ${maxDayNa} mmol/l</div>
-        <div class="calc-metric-note"><strong>Max. +8 bis 10 mmol/l pro 24h!</strong> Gefahr der pontinen Myelinolyse (ODS) bei zu raschem Ausgleich!</div>
-      </div>
-      <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
-        <button class="btn-calc-copy" onclick="copyCalcValues('Natrium-Defizit (${wt} kg, Na_ist: ${naCur} mmol/l): TBW ${tbw.toFixed(1)} L | Defizit bis 140: ${deficit} mmol | Max. 24h-Grenze: ≤ ${maxDayNa} mmol/l (+8 mmol/l max/Tag)', this)">
-          📋 Natrium-Werte kopieren
-        </button>
-      </div>
-    `;
-  }
-
-  function recalculateAllMedicalCalculators() {
-    calcPediatrics();
-    calcArds();
-    calcLA();
-    calcSodium();
-  }
 
   // ==========================================================================
   // ANESTHESIA ABBREVIATIONS & ACRONYMS GUIDE (KÜRZEL-LEXIKON / KISALTMALAR KILAVUZU)
@@ -5529,163 +5191,20 @@ Tedavi:
 
   // --- Medical Text Speech Preprocessor (Expands abbreviations into phonetic natural German) ---
   function prepareMedicalTextForSpeech(rawText) {
-    if (!rawText) return '';
-
-    let text = String(rawText);
-
-    // 1. Strip HTML tags
-    text = text.replace(/<[^>]*>/g, ' ');
-
-    // 2. Strip Markdown formatting
-    text = text.replace(/\*\*([^*]+)\*\*/g, '$1'); // bold **text**
-    text = text.replace(/\*([^*]+)\*/g, '$1');     // italic *text*
-    text = text.replace(/__([^_]+)__/g, '$1');     // bold __text__
-    text = text.replace(/_([^_]+)_/g, '$1');       // italic _text_
-    text = text.replace(/^#+\s+/gm, '');           // headers #
-    text = text.replace(/^[\*\-•]\s+/gm, '');      // bullet points
-    text = text.replace(/`([^`]+)`/g, '$1');       // code blocks
-
-    // 3. Remove Emojis & Graphic Symbols that TTS reads awkwardly
-    text = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E0}-\u{1F1FF}🚨⚠️💉🩺🩸⏱️📋💡🧠🎯★☆✓✗]/gu, ' ');
-
-    // 4. Clean brackets and test markers
-    text = text.replace(/\[\s*x\s*\]/gi, 'richtig');
-    text = text.replace(/\[\s* \s*\]/gi, '');
-    text = text.replace(/[\[\]]/g, ', ');
-
-    // 5. Medical Ratios & Ranges
-    text = text.replace(/\b1\s*:\s*10\.?000\b/g, 'eins zu zehntausend');
-    text = text.replace(/\b1\s*:\s*100\.?000\b/g, 'eins zu einhunderttausend');
-    text = text.replace(/\b1\s*:\s*200\.?000\b/g, 'eins zu zweihunderttausend');
-    text = text.replace(/\b1\s*:\s*1\b/g, 'eins zu eins');
-    text = text.replace(/(\d+)\s*[-–—]\s*(\d+)\s*([a-zA-Z%]+)/g, '$1 bis $2 $3');
-
-    // 6. Blood Pressure & Hemodynamics
-    text = text.replace(/\b(?:RR|Blutdruck)?\s*(\d{2,3})\s*[\/\\]\s*(\d{2,3})\s*(?:mmHg)?\b/gi, 'Blutdruck $1 zu $2 Millimeter Quecksilbersäule');
-    text = text.replace(/\bRR\s*[:=]?\s*(\d{2,3})\b/gi, 'Blutdruck $1');
-    text = text.replace(/\b(\d{2,3})\s*[\/\\]\s*(\d{2,3})\b/g, '$1 zu $2');
-
-    // Heart Rate & Frequency
-    text = text.replace(/\b(?:HF|Herzfrequenz)\s*[:=]?\s*(\d{2,3})\s*(?:\/\s*min|bpm|min[-⁻]¹)?\b/gi, 'Herzfrequenz $1 pro Minute');
-    text = text.replace(/\b(\d+)\s*[\/\\]\s*min\b/gi, '$1 pro Minute');
-    text = text.replace(/\b(\d+)\s*min[-⁻]¹\b/gi, '$1 pro Minute');
-
-    // Saturation & Ventilation
-    text = text.replace(/\b(?:SpO2|sO2|SaO2)\s*[:=]?\s*(\d{1,3})\s*%/gi, 'Sauerstoffsättigung $1 Prozent');
-    text = text.replace(/\bSpO2\b/gi, 'Sauerstoffsättigung');
-    text = text.replace(/\betCO2\s*[:=]?\s*(\d{1,3})\s*(?:mmHg)?\b/gi, 'endexspiratorisches CO2 $1 Millimeter Quecksilbersäule');
-    text = text.replace(/\betCO2\b/gi, 'endexspiratorisches C O zwei');
-    text = text.replace(/\bFiO2\s*[:=]?\s*([0-1][,\.]\d+|\d{1,3}\s*%)\b/gi, 'F i O zwei $1');
-    text = text.replace(/\bPEEP\s*[:=]?\s*(\d+)\s*(?:cmH2O|mbar)?\b/gi, 'Peep $1 Zentimeter Wassersäule');
-    text = text.replace(/\bVT\s*[:=]?\s*(\d+)\s*ml\b/gi, 'Atemzugvolumen $1 Milliliter');
-    text = text.replace(/\bAF\s*[:=]?\s*(\d+)\b/gi, 'Atemfrequenz $1 pro Minute');
-
-    // 7. BGA & Labs
-    text = text.replace(/\bBGA\s*:/gi, 'Blutgasanalyse:');
-    text = text.replace(/\bBGA\b/gi, 'Blutgasanalyse');
-    text = text.replace(/\bpH\s*[:=]?\s*(\d+[,.]\d+)\b/gi, 'p H $1');
-    text = text.replace(/\bpCO2\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmHg)?\b/gi, 'p C O zwei $1 Millimeter Quecksilbersäule');
-    text = text.replace(/\bpO2\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmHg)?\b/gi, 'p O zwei $1 Millimeter Quecksilbersäule');
-    text = text.replace(/\bBE\s*[:=]?\s*([+-]?\d+[,.]?\d*)\s*(?:mmol\/l)?\b/gi, 'Base Excess $1 Millimol pro Liter');
-    text = text.replace(/\bBase Excess\s*-\s*(\d+)/gi, 'Base Excess minus $1');
-    text = text.replace(/\bLaktat\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmol\/l)?\b/gi, 'Laktat $1 Millimol pro Liter');
-
-    // 8. Dosages & Body Weight
-    text = text.replace(/\b(\d+[,.]?\d*)\s*mg\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Milligramm pro Kilogramm Körpergewicht ');
-    text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg\s*[\/\\]\s*min\b/gi, '$1 Mikrogramm pro Kilogramm pro Minute ');
-    text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Mikrogramm pro Kilogramm Körpergewicht ');
-    text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\b/gi, '$1 Mikrogramm ');
-    text = text.replace(/\b(\d+[,.]?\d*)\s*mg\b/gi, '$1 Milligramm ');
-    text = text.replace(/\b(\d+[,.]?\d*)\s*ml\b/gi, '$1 Milliliter ');
-    text = text.replace(/\bkg\/m²\b/gi, 'Kilogramm pro Quadratmeter');
-    text = text.replace(/\bkg\s+KG\b/gi, 'Kilogramm Körpergewicht');
-    text = text.replace(/\b(\d+)\s*kg\b/gi, '$1 Kilogramm');
-
-    // Standalone Units
-    text = text.replace(/\bmmol\/[lL]\b/g, 'Millimol pro Liter');
-    text = text.replace(/\bmg\/dl\b/gi, 'Milligramm pro Deziliter');
-    text = text.replace(/\bg\/dl\b/gi, 'Gramm pro Deziliter');
-    text = text.replace(/\bcmH2O\b/gi, 'Zentimeter Wassersäule');
-    text = text.replace(/\bmmHg\b/gi, 'Millimeter Quecksilbersäule');
-    text = text.replace(/\bmbar\b/gi, 'Millibar');
-
-    // Medication timing
-    text = text.replace(/\b1-0-0\b/g, 'morgens eins');
-    text = text.replace(/\b1-0-1\b/g, 'morgens und abends eins');
-    text = text.replace(/\b1-1-1\b/g, 'dreimal täglich eins');
-
-    // 9. Clinical Routes & Abbreviations
-    text = text.replace(/\bi\.v\./gi, 'intravenös');
-    text = text.replace(/\bs\.c\./gi, 'subkutan');
-    text = text.replace(/\bi\.m\./gi, 'intramuskulär');
-    text = text.replace(/\bp\.o\./gi, 'per os');
-    text = text.replace(/\bi\.a\./gi, 'intraarteriell');
-    text = text.replace(/\bp\.i\./gi, 'per inhalationem');
-
-    text = text.replace(/\bz\.B\./gi, 'zum Beispiel');
-    text = text.replace(/\bu\.a\./gi, 'unter anderem');
-    text = text.replace(/\bd\.h\./gi, 'das heißt');
-    text = text.replace(/\bbzw\./gi, 'beziehungsweise');
-    text = text.replace(/\bggf\./gi, 'gegebenenfalls');
-    text = text.replace(/\bca\./gi, 'circa');
-    text = text.replace(/\bevtl\./gi, 'eventuell');
-    text = text.replace(/\bV\.a\./gi, 'Verdacht auf');
-    text = text.replace(/\bZ\.n\./gi, 'Zustand nach');
-    text = text.replace(/\bPat\./gi, 'Patient');
-
-    // Specific Medical Terms & Acronyms
-    text = text.replace(/\bOP\b/g, 'Operation');
-    text = text.replace(/\bZVK\b/g, 'Zentraler Venenkatheter');
-    text = text.replace(/\bPDK\b/g, 'Periduralkatheter');
-    text = text.replace(/\bEDA\b/g, 'Epiduralanästhesie');
-    text = text.replace(/\bSPA\b/g, 'Spinalanästhesie');
-    text = text.replace(/\bEKG\b/g, 'E K G');
-    text = text.replace(/\bEKs\b/g, 'Erythrozytenkonzentrate');
-    text = text.replace(/\bEK\b/g, 'Erythrozytenkonzentrat');
-    text = text.replace(/\bFFPs\b/g, 'Fresh Frozen Plasmas');
-    text = text.replace(/\bFFP\b/g, 'Fresh Frozen Plasma');
-    text = text.replace(/\bTKs\b/g, 'Thrombozytenkonzentrate');
-    text = text.replace(/\bTK\b/g, 'Thrombozytenkonzentrat');
-    text = text.replace(/\bLAST\b/g, 'Lokalanästhetika-Intoxikation');
-    text = text.replace(/\bMH\b/g, 'Maligne Hyperthermie');
-    text = text.replace(/\bCICO\b/g, 'Cannot Intubate Cannot Oxygenate');
-    text = text.replace(/\bALS\b/g, 'Advanced Life Support');
-    text = text.replace(/\bCPR\b/g, 'Reanimation');
-    text = text.replace(/\bROSC\b/g, 'Return of Spontaneous Circulation');
-    text = text.replace(/\bARDS\b/g, 'A R D S');
-    text = text.replace(/\bKHK\b/g, 'koronare Herzkrankheit');
-    text = text.replace(/\bCOPD\b/g, 'C O P D');
-    text = text.replace(/\bpAVK\b/g, 'periphere arterielle Verschlusskrankheit');
-    text = text.replace(/\bOSAS\b/g, 'obstruktives Schlafapnoe-Syndrom');
-    text = text.replace(/\bBMI\b/g, 'Body-Mass-Index');
-
-    // 10. Clean whitespace & punctuation (protecting German decimal numbers like 7,28 or 0,6)
-    text = text.replace(/\s+/g, ' ');
-    text = text.replace(/(?<!\d),/g, ', ');
-    text = text.replace(/,(?!\d|\s)/g, ', ');
-    text = text.replace(/\s*([;:.!?])\s*/g, '$1 ');
-
-    return text.trim();
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    if (engine && typeof engine.prepareMedicalTextForSpeech === 'function') {
+      return engine.prepareMedicalTextForSpeech(rawText);
+    }
+    return String(rawText || '');
   }
 
   // --- Clean German Speech Text Extractor (Filters out Turkish collapsibles & buttons) ---
   function getCleanSpeechText(elementOrText) {
-    if (!elementOrText) return '';
-    if (typeof elementOrText === 'string') {
-      return prepareMedicalTextForSpeech(elementOrText);
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    if (engine && typeof engine.getCleanSpeechText === 'function') {
+      return engine.getCleanSpeechText(elementOrText);
     }
-    const deEl = elementOrText.querySelector ? elementOrText.querySelector('.de-text-block') : null;
-    let raw = '';
-    if (deEl) {
-      raw = deEl.textContent.trim();
-    } else if (elementOrText.cloneNode) {
-      const clone = elementOrText.cloneNode(true);
-      clone.querySelectorAll('.tr-sub-container, .tr-subtitle-collapsible, .badge, script, button').forEach(n => n.remove());
-      raw = clone.textContent.trim();
-    } else {
-      raw = String(elementOrText);
-    }
-    return prepareMedicalTextForSpeech(raw);
+    return prepareMedicalTextForSpeech(elementOrText);
   }
 
   // --- Smart German Voice Ranking & Selection Engine ---
@@ -5693,66 +5212,23 @@ Tedavi:
   let availableGermanVoices = [];
 
   function scoreGermanVoice(v) {
-    let score = 0;
-    const name = (v.name || '').toLowerCase();
-    const lang = (v.lang || '').toLowerCase();
-
-    // Must be German language
-    if (!lang.startsWith('de')) return -100;
-
-    // Region boost: Germany (de-DE), Austria (de-AT), Switzerland (de-CH)
-    if (lang === 'de-de') score += 10;
-    else if (lang.startsWith('de')) score += 5;
-
-    // Tier 1: Natural / Neural / Online / Siri
-    if (name.includes('natural') || name.includes('neural') || name.includes('online')) score += 100;
-    if (name.includes('siri')) score += 95;
-    if (name.includes('enhanced') || name.includes('premium') || name.includes('verbessert')) score += 85;
-    if (name.includes('google')) score += 60;
-
-    // Tier 2: Specific high-fidelity voices
-    if (name.includes('katja') || name.includes('conrad') || name.includes('amala') || name.includes('killian')) score += 45;
-    if (name.includes('helena') || name.includes('markus') || name.includes('petra') || name.includes('viktor') || name.includes('yannick')) score += 35;
-
-    // Penalize legacy robotic/compact voices
-    if (name.includes('compact') || name.includes('kompakt')) score -= 60;
-    if (name.includes('espeak')) score -= 70;
-
-    return score;
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    return engine ? engine.scoreGermanVoice(v) : 0;
   }
 
   function rankGermanVoices(voices) {
-    if (!voices || !voices.length) return [];
-    const deVoices = voices.filter(v => (v.lang || '').toLowerCase().startsWith('de'));
-    if (!deVoices.length) return voices;
-    return deVoices.sort((a, b) => scoreGermanVoice(b) - scoreGermanVoice(a));
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    return engine ? engine.rankGermanVoices(voices) : (voices || []);
   }
 
   function getVoiceQualityBadge(v) {
-    const name = (v.name || '').toLowerCase();
-    if (name.includes('natural') || name.includes('neural') || name.includes('online')) {
-      return '<span class="voice-badge-neural">🌟 KI Natural</span>';
-    }
-    if (name.includes('siri')) {
-      return '<span class="voice-badge-siri">🍎 Siri</span>';
-    }
-    if (name.includes('enhanced') || name.includes('premium') || name.includes('verbessert')) {
-      return '<span class="voice-badge-neural">✨ Verbessert</span>';
-    }
-    if (name.includes('google')) {
-      return '<span class="voice-badge-siri">Google</span>';
-    }
-    return '<span class="voice-badge-system">System</span>';
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    return engine ? engine.getVoiceQualityBadge(v) : '<span class="voice-badge-system">System</span>';
   }
 
   function getCleanVoiceDisplayName(name) {
-    if (!name) return 'Stimme';
-    return name
-      .replace(/\s*\(German\s*\(Germany\)\)/gi, '')
-      .replace(/\s*\(Deutsch\s*\(Deutschland\)\)/gi, '')
-      .replace(/\s*\(de-DE\)/gi, '')
-      .replace(/\s*-\s*German\s*\(Germany\)/gi, '')
-      .trim();
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    return engine ? engine.getCleanVoiceDisplayName(name) : (name || 'Stimme');
   }
 
   // --- Natural Neural Stream Player (Zero-Configuration for Mac & iPhone) ---
@@ -5772,43 +5248,11 @@ Tedavi:
   }
 
   function chunkTextForTTS(text, maxLen = 160) {
-    if (!text) return [];
-    const sentences = text.match(/[^.!?:]+[.!?:]+/g) || [text];
-    const chunks = [];
-
-    for (let s of sentences) {
-      s = s.trim();
-      if (!s) continue;
-      if (s.length <= maxLen) {
-        chunks.push(s);
-      } else {
-        const parts = s.split(/(?<=[,;])\s+/);
-        let cur = '';
-        for (const p of parts) {
-          if ((cur + ' ' + p).trim().length <= maxLen) {
-            cur = (cur + ' ' + p).trim();
-          } else {
-            if (cur) chunks.push(cur);
-            if (p.length <= maxLen) {
-              cur = p;
-            } else {
-              const words = p.split(/\s+/);
-              cur = '';
-              for (const w of words) {
-                if ((cur + ' ' + w).trim().length <= maxLen) {
-                  cur = (cur + ' ' + w).trim();
-                } else {
-                  if (cur) chunks.push(cur);
-                  cur = w;
-                }
-              }
-            }
-          }
-        }
-        if (cur) chunks.push(cur);
-      }
+    const engine = (typeof MedicalSpeechEngine !== 'undefined') ? MedicalSpeechEngine : (typeof require !== 'undefined' ? require('./js/speech_engine.js') : null);
+    if (engine && typeof engine.chunkTextForTTS === 'function') {
+      return engine.chunkTextForTTS(text, maxLen);
     }
-    return chunks;
+    return [text];
   }
 
   function playCurrentAudioChunk() {
