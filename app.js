@@ -1482,43 +1482,37 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 1. Stop any ongoing voice recording session to avoid recognition collision
+    // 1. If test is currently active, clicking again gracefully finalizes / stops it
+    if (diagSpeechTestRecognizer) {
+      try { diagSpeechTestRecognizer.stop(); } catch (e) {}
+      diagSpeechTestRecognizer = null;
+      if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+      return;
+    }
+
+    // 2. Stop any ongoing voice recording session to avoid recognition collision
     if (isRecordingVoice) {
       stopVoiceRecording();
     }
 
-    // 2. Stop hardware probe immediately so the microphone is free
+    // 3. Stop hardware probe immediately so the microphone is free
     stopMicrophoneHardware();
-
-    // 3. Cleanly detach previous test instance without triggering aborted error in UI
-    if (diagSpeechTestRecognizer) {
-      const oldRec = diagSpeechTestRecognizer;
-      diagSpeechTestRecognizer = null;
-      oldRec.onstart = null;
-      oldRec.onaudiostart = null;
-      oldRec.onsoundstart = null;
-      oldRec.onspeechstart = null;
-      oldRec.onspeechend = null;
-      oldRec.onsoundend = null;
-      oldRec.onresult = null;
-      oldRec.onerror = null;
-      oldRec.onend = null;
-      try { oldRec.abort(); } catch (e) {}
-    }
 
     const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
     const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
+    let hasDetectedResult = false;
+    let autoStopTimer = null;
 
     try {
       const rec = new SpeechAPI();
       diagSpeechTestRecognizer = rec;
       rec.lang = speechRecognitionLang || 'de-DE';
-      rec.continuous = false;
+      rec.continuous = true;
       rec.interimResults = true;
-      rec.maxAlternatives = 3;
+      rec.maxAlternatives = 1;
 
       rec.onstart = () => {
-        if (elDiagTestBtn) elDiagTestBtn.textContent = '🔴 Dinleniyor...';
+        if (elDiagTestBtn) elDiagTestBtn.textContent = '🔴 Dinleniyor... (Durdurmak için tıkla)';
         if (elDiagTestRes) {
           elDiagTestRes.style.color = '#38bdf8';
           elDiagTestRes.innerHTML = `🎙️ <strong>Mikrofon dinliyor!</strong> Lütfen şimdi sesli olarak ${promptWord} deyin...`;
@@ -1537,6 +1531,21 @@ document.addEventListener('DOMContentLoaded', () => {
           elDiagTestRes.style.color = '#10b981';
           elDiagTestRes.innerHTML = '🗣️ Konuşma algılandı, yazıya dönüştürülüyor...';
         }
+        // Auto-finalize after 2.2s so Chrome does not hang waiting for silence in noisy environments
+        if (autoStopTimer) clearTimeout(autoStopTimer);
+        autoStopTimer = setTimeout(() => {
+          if (diagSpeechTestRecognizer) {
+            try { diagSpeechTestRecognizer.stop(); } catch (e) {}
+          }
+        }, 2200);
+      };
+
+      rec.onspeechend = () => {
+        if (elDiagTestRes && !hasDetectedResult) {
+          elDiagTestRes.innerHTML = '⏳ Ses tamamlandı, metin oluşturuluyor...';
+        }
+        if (autoStopTimer) clearTimeout(autoStopTimer);
+        try { rec.stop(); } catch (e) {}
       };
 
       rec.onresult = (evt) => {
@@ -1546,7 +1555,10 @@ document.addEventListener('DOMContentLoaded', () => {
             text += evt.results[i][0].transcript;
           }
         }
+        text = text.trim();
         if (text) {
+          hasDetectedResult = true;
+          if (autoStopTimer) clearTimeout(autoStopTimer);
           if (elDiagTestRes) {
             elDiagTestRes.style.color = '#10b981';
             elDiagTestRes.innerHTML = `✅ <strong>Algılandı:</strong> "${escapeHtml(text)}" (Ses tanıma başarıyla çalışıyor!)`;
@@ -1555,13 +1567,14 @@ document.addEventListener('DOMContentLoaded', () => {
             elSpeechTranscriptInput.value = text;
           }
           if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+          try { rec.stop(); } catch (e) {}
         }
       };
 
       rec.onerror = (err) => {
         console.warn('Diag speech test error:', err.error);
+        if (autoStopTimer) clearTimeout(autoStopTimer);
         if (err.error === 'aborted') {
-          // Handled or clean stop - do not alarm user
           return;
         }
         if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
@@ -1570,19 +1583,26 @@ document.addEventListener('DOMContentLoaded', () => {
           if (err.error === 'not-allowed') {
             elDiagTestRes.innerHTML = '❌ <strong>İzin Verilmedi:</strong> Chrome bu adres için mikrofonu engelledi. Lütfen adres çubuğundaki kilit / ayar simgesine tıklayıp Mikrofon\'a <strong>İzin Ver</strong> (Zulassen) seçin ve sayfayı yenileyin.';
           } else if (err.error === 'no-speech') {
-            elDiagTestRes.textContent = `⏳ Ses kelimeye çevrilemedi (Lütfen mikrofona daha yakın ve net ${promptWord} deyin).`;
+            elDiagTestRes.innerHTML = `⏳ <strong>Ses çevrilemedi:</strong> Mikrofona biraz daha yakın ve net ${promptWord} deyin.`;
           } else if (err.error === 'network') {
-            elDiagTestRes.textContent = '🌐 Ağ Hatası: Google konuşma sunucusuna erişilemedi (İnternet / VPN kontrol edin).';
+            elDiagTestRes.innerHTML = '🌐 <strong>Ağ Hatası:</strong> Google konuşma sunucusuna erişilemedi (İnternet / VPN kontrol edin).';
           } else {
-            elDiagTestRes.textContent = `⚠️ Hata (${err.error}): Lütfen tekrar deneyin.`;
+            elDiagTestRes.innerHTML = `⚠️ <strong>Hata (${escapeHtml(err.error)}):</strong> Lütfen tekrar deneyin.`;
           }
         }
       };
 
       rec.onend = () => {
         diagSpeechTestRecognizer = null;
-        if (elDiagTestBtn && elDiagTestBtn.textContent.includes('Dinleniyor')) {
+        if (autoStopTimer) clearTimeout(autoStopTimer);
+        if (elDiagTestBtn) {
           elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+        }
+        if (!hasDetectedResult) {
+          if (elDiagTestRes && !elDiagTestRes.textContent.includes('❌') && !elDiagTestRes.textContent.includes('✅')) {
+            elDiagTestRes.style.color = '#f59e0b';
+            elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin veya doğrudan yukarıdaki <strong>Antwort einsprechen (V)</strong> butonunu kullanın.`;
+          }
         }
       };
 
