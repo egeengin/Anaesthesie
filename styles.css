@@ -5972,6 +5972,25 @@ body.mode-simulation-active #step3-container {
   text-align: right;
 }
 
+.diag-speech-test-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.65rem;
+  margin-bottom: 0.65rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--bg-primary);
+  border: 1px dashed var(--border-color);
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.diag-speech-test-result {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 .diag-help-text {
   font-size: 0.78rem;
   line-height: 1.45;

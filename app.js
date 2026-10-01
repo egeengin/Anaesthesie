@@ -983,6 +983,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function stopMicrophoneHardware() {
+    if (audioAnimFrame) {
+      cancelAnimationFrame(audioAnimFrame);
+      audioAnimFrame = null;
+    }
+    if (audioSource) {
+      try { audioSource.disconnect(); } catch (e) {}
+      audioSource = null;
+    }
+    if (audioAnalyser) {
+      try { audioAnalyser.disconnect(); } catch (e) {}
+      audioAnalyser = null;
+    }
+    if (audioContext && audioContext.state !== 'closed') {
+      try { audioContext.close(); } catch (e) {}
+      audioContext = null;
+    }
+    if (audioStream) {
+      try {
+        audioStream.getTracks().forEach(t => t.stop());
+      } catch (e) {}
+      audioStream = null;
+    }
+  }
+
   function setupMediaRecorder(stream) {
     if (typeof MediaRecorder === 'undefined' || !stream) return;
     try {
@@ -1242,38 +1267,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRecordingUIState(true);
     if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
 
-    // 1. Hardware Microphone Access via getUserMedia
-    try {
-      await initMicrophoneHardware(selectedAudioDeviceId);
-      if (audioStream) {
-        setupAudioVisualizer(audioStream);
-        setupMediaRecorder(audioStream);
-      }
-    } catch (micErr) {
-      console.warn('Hardware microphone error:', micErr);
-      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff verweigert. Bitte in macOS Systemeinstellungen oder Adressleiste freigeben.', 'warning', 7000);
-        if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (macOS / Browser-Freigabe erforderlich)';
-        showMicWarning(
-          '🎙️ MacBook Mikrofon-Zugriff verweigert (macOS İzni Gerekli)',
-          '<div style="margin-top: 0.35rem; line-height: 1.55;">' +
-            'Windows\'ta çalışırken MacBook\'ta bu uyarının çıkması macOS\'in çift katmanlı güvenlik sisteminden kaynaklanır:<br>' +
-            '<strong>1. 🍏 macOS Sistem İzni:</strong>  Apple Menüsü &gt; <em>Sistem Ayarları (System Settings)</em> &gt; <em>Gizlilik ve Güvenlik (Privacy &amp; Security)</em> &gt; <em>Mikrofon (Microphone)</em> bölümüne gidin ve <strong>Google Chrome</strong>\'un yanındaki anahtarı <strong>AÇIK (Mavi)</strong> yapın.<br>' +
-            '<strong>2. 🔒 Tarayıcı İzni:</strong> Chrome adres çubuğundaki (URL\'nin solundaki) kilit/ayar simgesine tıklayıp <em>Mikrofon: İzin Ver (Allow)</em> seçin.<br>' +
-            '<strong>3. 🔄 Sayfayı Yenileyin:</strong> Sayfayı yenileyip (Cmd+R) tekrar 🎙️ butonuna tıklayın.<br>' +
-            '<small style="opacity: 0.85;">(Terminal komutu ile onay sıfırlanmıştır; açtığınızda sistem onay penceresi gelecektir.)</small>' +
-          '</div>'
-        );
-        stopVoiceRecording();
-        return;
-      }
-    }
+    // 1. Crucial for macOS Chrome: Stop any previous hardware probe or AudioContext
+    // so CoreAudio does not lock the microphone and starve SpeechRecognition!
+    stopMicrophoneHardware();
 
     // 2. Start Speech Recognition (if available)
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechAPI) {
       startSpeechRecognizerLoop();
     } else {
+      // Fallback for browsers without Web Speech API (Firefox, etc.): use MediaRecorder for pure audio recording
+      try {
+        await initMicrophoneHardware(selectedAudioDeviceId);
+        if (audioStream) {
+          setupAudioVisualizer(audioStream);
+          setupMediaRecorder(audioStream);
+        }
+      } catch (micErr) {
+        console.warn('Hardware microphone error:', micErr);
+        if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+          showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+          stopVoiceRecording();
+          return;
+        }
+      }
       showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
       if (elVoiceMicHint) {
         elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
@@ -1314,6 +1331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         speechRecognizer.onsoundstart = null;
         speechRecognizer.onspeechstart = null;
         speechRecognizer.onspeechend = null;
+        speechRecognizer.onsoundend = null;
         speechRecognizer.onresult = null;
         speechRecognizer.onerror = null;
         speechRecognizer.onend = null;
@@ -1332,21 +1350,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {
         console.warn('MediaRecorder stop error:', e);
       }
-    } else {
-      // If MediaRecorder was not active, clean up tracks immediately
-      if (audioStream) {
-        try {
-          audioStream.getTracks().forEach(t => t.stop());
-        } catch (e) {}
-        audioStream = null;
-      }
     }
 
-    if (audioSource) {
-      try { audioSource.disconnect(); } catch (e) {}
-      audioSource = null;
-    }
-
+    stopMicrophoneHardware();
     updateRecordingUIState(false);
   }
 
@@ -1383,6 +1389,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!elMicDiagPanel) return;
     const isVisible = (elMicDiagPanel.style.display !== 'none');
     if (isVisible) {
+      stopMicrophoneHardware();
+      if (diagSpeechTestRecognizer) {
+        try { diagSpeechTestRecognizer.abort(); } catch (e) {}
+        diagSpeechTestRecognizer = null;
+      }
       elMicDiagPanel.style.display = 'none';
       return;
     }
@@ -1428,7 +1439,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Audio Device Check & Real VU Meter Live Probe
     try {
-      const probeStream = audioStream || await initMicrophoneHardware(selectedAudioDeviceId);
+      const probeStream = await initMicrophoneHardware(selectedAudioDeviceId);
       if (probeStream) {
         const track = probeStream.getAudioTracks()[0];
         if (track && elDiagDeviceName) {
@@ -1443,6 +1454,84 @@ document.addEventListener('DOMContentLoaded', () => {
         elDiagPermStatus.textContent = '❌ Fehler: ' + probeErr.message;
         elDiagPermStatus.className = 'diag-val error';
       }
+    }
+  }
+
+  let diagSpeechTestRecognizer = null;
+  function runDiagSpeechTest() {
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const elDiagTestBtn = document.getElementById('btn-diag-speech-test');
+    const elDiagTestRes = document.getElementById('diag-speech-test-result');
+    if (!SpeechAPI) {
+      if (elDiagTestRes) elDiagTestRes.textContent = '⚠️ Web Speech API bu tarayıcıda desteklenmiyor.';
+      return;
+    }
+
+    // Crucial for macOS: Stop hardware probe so CoreAudio releases the mic for SpeechRecognition
+    stopMicrophoneHardware();
+
+    if (diagSpeechTestRecognizer) {
+      try { diagSpeechTestRecognizer.abort(); } catch (e) {}
+      diagSpeechTestRecognizer = null;
+    }
+
+    if (elDiagTestBtn) elDiagTestBtn.textContent = '⏳ Dinleniyor... (Lütfen "Hallo" deyin)';
+    if (elDiagTestRes) {
+      elDiagTestRes.style.color = '#38bdf8';
+      elDiagTestRes.textContent = '🎙️ Mikrofon hazır, lütfen şimdi sesli olarak "Hallo" deyin...';
+    }
+
+    try {
+      const rec = new SpeechAPI();
+      diagSpeechTestRecognizer = rec;
+      rec.lang = speechRecognitionLang || 'de-DE';
+      rec.continuous = false;
+      rec.interimResults = true;
+
+      rec.onresult = (evt) => {
+        let text = '';
+        for (let i = 0; i < evt.results.length; i++) {
+          if (evt.results[i] && evt.results[i][0]) {
+            text += evt.results[i][0].transcript;
+          }
+        }
+        if (text) {
+          if (elDiagTestRes) {
+            elDiagTestRes.style.color = '#10b981';
+            elDiagTestRes.innerHTML = `✅ <strong>Algılandı:</strong> "${escapeHtml(text)}" (Yazıya dönüştürme çalışıyor!)`;
+          }
+          if (elSpeechTranscriptInput && !elSpeechTranscriptInput.value.trim()) {
+            elSpeechTranscriptInput.value = text;
+          }
+          if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+        }
+      };
+
+      rec.onerror = (err) => {
+        console.warn('Diag speech test error:', err.error);
+        if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+        if (elDiagTestRes) {
+          elDiagTestRes.style.color = '#ef4444';
+          if (err.error === 'not-allowed') {
+            elDiagTestRes.textContent = '❌ İzin Verilmedi: macOS Sistem Ayarları > Gizlilik > Konuşma Tanıma kontrol edin.';
+          } else if (err.error === 'no-speech') {
+            elDiagTestRes.textContent = '⏳ Ses algılanamadı (Lütfen daha yakından konuşun veya tekrar deneyin).';
+          } else {
+            elDiagTestRes.textContent = `⚠️ Hata: ${err.error}`;
+          }
+        }
+      };
+
+      rec.onend = () => {
+        diagSpeechTestRecognizer = null;
+        if (elDiagTestBtn && elDiagTestBtn.textContent.includes('Dinleniyor')) {
+          elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+        }
+      };
+
+      rec.start();
+    } catch (e) {
+      if (elDiagTestRes) elDiagTestRes.textContent = 'Başlatma hatası: ' + e.message;
     }
   }
 
@@ -1599,8 +1688,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (elBtnCloseMicDiag) {
     elBtnCloseMicDiag.addEventListener('click', () => {
+      stopMicrophoneHardware();
+      if (diagSpeechTestRecognizer) {
+        try { diagSpeechTestRecognizer.abort(); } catch (e) {}
+        diagSpeechTestRecognizer = null;
+      }
       if (elMicDiagPanel) elMicDiagPanel.style.display = 'none';
     });
+  }
+  const elBtnDiagSpeechTest = document.getElementById('btn-diag-speech-test');
+  if (elBtnDiagSpeechTest) {
+    elBtnDiagSpeechTest.addEventListener('click', runDiagSpeechTest);
   }
   if (elBtnCloseMicWarning) {
     elBtnCloseMicWarning.addEventListener('click', hideMicWarning);
