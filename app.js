@@ -739,6 +739,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function isVirtualMic(label) {
+    const l = (label || '').toLowerCase();
+    return l.includes('teams') || l.includes('virtual') || l.includes('loopback') ||
+           l.includes('blackhole') || l.includes('soundflower') || l.includes('zoom audio') ||
+           l.includes('aggregate');
+  }
+
+  function isBuiltInHardwareMic(label) {
+    const l = (label || '').toLowerCase();
+    return l.includes('macbook') || l.includes('built-in') || l.includes('dahili') ||
+           l.includes('internal') || l.includes('integriert') || l.includes('air mikrofonu') ||
+           l.includes('pro mikrofonu') || l.includes('apple');
+  }
+
   async function refreshAudioDevicesList() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices || !elMicDeviceSelect) {
       return;
@@ -746,15 +760,58 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const audioInputs = devices.filter(d => d.kind === 'audioinput');
-      if (audioInputs.length <= 1) {
+      if (audioInputs.length === 0) {
         if (elMicDeviceWrapper) elMicDeviceWrapper.style.display = 'none';
         return;
       }
 
-      elMicDeviceSelect.innerHTML = audioInputs.map(dev => {
-        const label = dev.label || `Mikrofon (${dev.deviceId.slice(0, 6)}...)`;
+      // If browser privacy hides labels before permission, immediately pre-populate MacBook Air hardware mic
+      const hasLabels = audioInputs.some(d => d.label && d.label.trim().length > 0);
+      if (!hasLabels) {
+        const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+        const defaultLabel = isMac ? '⭐ MacBook Air Mikrofonu (Dahili - Varsayılan)' : '⭐ Standard-Mikrofon (Dahili Donanım)';
+        elMicDeviceSelect.innerHTML = `<option value="default" selected>${escapeHtml(defaultLabel)}</option>`;
+        if (elMicDeviceWrapper) elMicDeviceWrapper.style.display = 'inline-flex';
+        return;
+      }
+
+      // Categorize: 1. Built-in physical hardware (MacBook Air), 2. Other hardware (AirPods, USB), 3. Virtual (Teams)
+      const builtInList = audioInputs.filter(d => isBuiltInHardwareMic(d.label));
+      const otherList = audioInputs.filter(d => !isBuiltInHardwareMic(d.label) && !isVirtualMic(d.label));
+      const virtualList = audioInputs.filter(d => isVirtualMic(d.label));
+
+      const sortedInputs = [...builtInList, ...otherList, ...virtualList];
+
+      // Auto-prioritize physical hardware mic: NEVER stay on virtual driver (Teams)
+      const savedPref = localStorage.getItem('preferred_audio_device_id');
+      const isCurrentVirtual = virtualList.some(v => v.deviceId === selectedAudioDeviceId);
+
+      if (!selectedAudioDeviceId || isCurrentVirtual) {
+        let bestMic = null;
+        if (savedPref && !virtualList.some(v => v.deviceId === savedPref)) {
+          bestMic = sortedInputs.find(d => d.deviceId === savedPref);
+        }
+        if (!bestMic) {
+          bestMic = builtInList[0] || otherList[0] || audioInputs[0];
+        }
+        if (bestMic) {
+          selectedAudioDeviceId = bestMic.deviceId;
+          currentMicDeviceName = bestMic.label || 'MacBook Air Mikrofonu';
+          localStorage.setItem('preferred_audio_device_id', selectedAudioDeviceId);
+        }
+      }
+
+      elMicDeviceSelect.innerHTML = sortedInputs.map(dev => {
+        const isBuiltIn = isBuiltInHardwareMic(dev.label);
+        const isVirt = isVirtualMic(dev.label);
+        let badge = '';
+        if (isBuiltIn) badge = '⭐ (MacBook Dahili - Varsayılan)';
+        else if (isVirt) badge = '⚠️ (Teams Sanal - Ses Almaz)';
+
+        const rawLabel = dev.label || `Mikrofon (${dev.deviceId.slice(0, 6)}...)`;
+        const displayLabel = `${rawLabel} ${badge}`.trim();
         const selected = (selectedAudioDeviceId === dev.deviceId) ? 'selected' : '';
-        return `<option value="${escapeHtml(dev.deviceId)}" ${selected}>${escapeHtml(label)}</option>`;
+        return `<option value="${escapeHtml(dev.deviceId)}" ${selected} ${isVirt ? 'style="color:#9ca3af;"' : ''}>${escapeHtml(displayLabel)}</option>`;
       }).join('');
 
       if (elMicDeviceWrapper) elMicDeviceWrapper.style.display = 'inline-flex';
@@ -768,12 +825,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return null;
     }
 
+    // Always prioritize the selected physical hardware mic over Teams virtual
+    let targetDeviceId = preferredDeviceId || selectedAudioDeviceId;
+    if (!targetDeviceId) {
+      const savedPref = localStorage.getItem('preferred_audio_device_id');
+      if (savedPref) targetDeviceId = savedPref;
+    }
+
     const constraints = {
       audio: {
         echoCancellation: true,
         noiseSuppression: true,
         autoGainControl: true,
-        ...(preferredDeviceId ? { deviceId: { exact: preferredDeviceId } } : {})
+        ...(targetDeviceId ? { deviceId: { exact: targetDeviceId } } : {})
       }
     };
 
@@ -781,17 +845,14 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         audioStream = await navigator.mediaDevices.getUserMedia(constraints);
       } catch (firstErr) {
-        if (preferredDeviceId || constraints.audio.echoCancellation) {
-          console.warn('Advanced audio constraints failed, retrying basic:', firstErr);
-          audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        } else {
-          throw firstErr;
-        }
+        console.warn('Advanced audio constraints failed, retrying basic:', firstErr);
+        audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       }
+
       const tracks = audioStream.getAudioTracks();
       if (tracks && tracks.length > 0) {
         const t = tracks[0];
-        currentMicDeviceName = t.label || 'Mikrofon';
+        currentMicDeviceName = t.label || 'MacBook Air Mikrofonu';
         if (elVoiceMicHint && isRecordingVoice) {
           elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
             ? `🎙️ ${currentMicDeviceName}: Dinleniyor...`
@@ -950,17 +1011,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
       mediaRecorder.onstop = () => {
         if (recordedAudioChunks.length > 0) {
-          recordedAudioBlob = new Blob(recordedAudioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-          if (recordedAudioUrl) {
-            URL.revokeObjectURL(recordedAudioUrl);
+          try {
+            recordedAudioBlob = new Blob(recordedAudioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+            if (recordedAudioUrl) {
+              URL.revokeObjectURL(recordedAudioUrl);
+            }
+            recordedAudioUrl = URL.createObjectURL(recordedAudioBlob);
+            if (elVoiceRecordedAudio) {
+              elVoiceRecordedAudio.src = recordedAudioUrl;
+              elVoiceRecordedAudio.load();
+            }
+            if (elVoicePlaybackBox) {
+              elVoicePlaybackBox.style.display = 'flex';
+            }
+          } catch (blobErr) {
+            console.warn('Error creating audio blob:', blobErr);
           }
-          recordedAudioUrl = URL.createObjectURL(recordedAudioBlob);
-          if (elVoiceRecordedAudio) {
-            elVoiceRecordedAudio.src = recordedAudioUrl;
-          }
-          if (elVoicePlaybackBox) {
-            elVoicePlaybackBox.style.display = 'flex';
-          }
+        }
+        // Safely close audio stream tracks only after MediaRecorder has completely flushed data
+        if (audioStream) {
+          try {
+            audioStream.getTracks().forEach(t => t.stop());
+          } catch (e) {}
+          audioStream = null;
         }
       };
 
@@ -1249,25 +1322,24 @@ document.addEventListener('DOMContentLoaded', () => {
       speechRecognizer = null;
     }
 
-    // Stop MediaRecorder
+    // Stop MediaRecorder and flush final buffer
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       try {
+        if (typeof mediaRecorder.requestData === 'function') {
+          mediaRecorder.requestData();
+        }
         mediaRecorder.stop();
-      } catch (e) {}
-    }
-
-    // Stop visualizer animation frame
-    if (audioAnimFrame) {
-      cancelAnimationFrame(audioAnimFrame);
-      audioAnimFrame = null;
-    }
-
-    // Stop hardware audio tracks
-    if (audioStream) {
-      try {
-        audioStream.getTracks().forEach(t => t.stop());
-      } catch (e) {}
-      audioStream = null;
+      } catch (e) {
+        console.warn('MediaRecorder stop error:', e);
+      }
+    } else {
+      // If MediaRecorder was not active, clean up tracks immediately
+      if (audioStream) {
+        try {
+          audioStream.getTracks().forEach(t => t.stop());
+        } catch (e) {}
+        audioStream = null;
+      }
     }
 
     if (audioSource) {
@@ -1356,11 +1428,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Audio Device Check & Real VU Meter Live Probe
     try {
-      const probeStream = audioStream || await navigator.mediaDevices.getUserMedia({ audio: true });
+      const probeStream = audioStream || await initMicrophoneHardware(selectedAudioDeviceId);
       if (probeStream) {
         const track = probeStream.getAudioTracks()[0];
         if (track && elDiagDeviceName) {
-          currentMicDeviceName = track.label || 'Mikrofon';
+          currentMicDeviceName = track.label || 'MacBook Air Mikrofonu';
           elDiagDeviceName.textContent = currentMicDeviceName;
         }
         setupAudioVisualizer(probeStream);
@@ -6494,6 +6566,7 @@ Tedavi:
   initHoverTranslationHUD();
   updateAnalytics();
   renderCurrentQuestion();
+  refreshAudioDevicesList();
 });
 
 
