@@ -1255,7 +1255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  async function startVoiceRecording() {
+  function startVoiceRecording() {
     isRecordingVoice = true;
     hasDetectedSoundInSession = false;
     silenceFrameCounter = 0;
@@ -1269,8 +1269,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRecordingUIState(true);
     if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
 
-    // 1. Crucial for macOS Chrome: Stop any previous hardware probe or test instance
-    // so CoreAudio does not lock the microphone and starve SpeechRecognition!
+    // 1. Crucial for macOS Chrome: Stop any previous hardware probe or test instance immediately
+    // so the microphone is completely free for SpeechRecognition
     stopMicrophoneHardware();
     if (diagSpeechTestRecognizer) {
       const oldRec = diagSpeechTestRecognizer;
@@ -1287,30 +1287,25 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // Wait 200ms to allow macOS CoreAudio to fully release the microphone device
-    await new Promise(r => setTimeout(r, 200));
-    if (!isRecordingVoice) return;
-
-    // 2. Start Speech Recognition (if available)
+    // 2. Start Speech Recognition IMMEDIATELY and SYNCHRONOUSLY within the user gesture!
+    // Never use await or setTimeout here, as Chrome expires transient user activation!
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechAPI) {
       startSpeechRecognizerLoop();
     } else {
       // Fallback for browsers without Web Speech API (Firefox, etc.): use MediaRecorder for pure audio recording
-      try {
-        await initMicrophoneHardware(selectedAudioDeviceId);
-        if (audioStream) {
-          setupAudioVisualizer(audioStream);
-          setupMediaRecorder(audioStream);
+      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+        if (stream && isRecordingVoice) {
+          setupAudioVisualizer(stream);
+          setupMediaRecorder(stream);
         }
-      } catch (micErr) {
+      }).catch((micErr) => {
         console.warn('Hardware microphone error:', micErr);
         if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
           showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
           stopVoiceRecording();
-          return;
         }
-      }
+      });
       showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
       if (elVoiceMicHint) {
         elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
@@ -1478,7 +1473,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let diagSpeechTestRecognizer = null;
-  async function runDiagSpeechTest() {
+  function runDiagSpeechTest() {
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     const elDiagTestBtn = document.getElementById('btn-diag-speech-test');
     const elDiagTestRes = document.getElementById('diag-speech-test-result');
@@ -1492,7 +1487,7 @@ document.addEventListener('DOMContentLoaded', () => {
       stopVoiceRecording();
     }
 
-    // 2. Stop hardware probe so CoreAudio releases the mic for SpeechRecognition
+    // 2. Stop hardware probe immediately so the microphone is free
     stopMicrophoneHardware();
 
     // 3. Cleanly detach previous test instance without triggering aborted error in UI
@@ -1510,15 +1505,6 @@ document.addEventListener('DOMContentLoaded', () => {
       oldRec.onend = null;
       try { oldRec.abort(); } catch (e) {}
     }
-
-    if (elDiagTestBtn) elDiagTestBtn.textContent = '⏳ Hazırlanıyor...';
-    if (elDiagTestRes) {
-      elDiagTestRes.style.color = '#38bdf8';
-      elDiagTestRes.textContent = '⏳ Mikrofon serbest bırakılıyor, lütfen bekleyin...';
-    }
-
-    // Crucial: Wait 250ms for macOS CoreAudio to fully release the microphone device
-    await new Promise(r => setTimeout(r, 250));
 
     const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
     const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
@@ -1582,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elDiagTestRes) {
           elDiagTestRes.style.color = '#ef4444';
           if (err.error === 'not-allowed') {
-            elDiagTestRes.textContent = '❌ İzin Verilmedi: macOS Sistem Ayarları > Gizlilik > Konuşma Tanıma kontrol edin.';
+            elDiagTestRes.innerHTML = '❌ <strong>İzin Verilmedi:</strong> Chrome bu adres için mikrofonu engelledi. Lütfen adres çubuğundaki kilit / ayar simgesine tıklayıp Mikrofon\'a <strong>İzin Ver</strong> (Zulassen) seçin ve sayfayı yenileyin.';
           } else if (err.error === 'no-speech') {
             elDiagTestRes.textContent = `⏳ Ses kelimeye çevrilemedi (Lütfen mikrofona daha yakın ve net ${promptWord} deyin).`;
           } else if (err.error === 'network') {
@@ -1600,6 +1586,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
 
+      // Crucial: Call start synchronously within the user click gesture
       rec.start();
     } catch (e) {
       if (elDiagTestRes) elDiagTestRes.textContent = 'Başlatma hatası: ' + e.message;
