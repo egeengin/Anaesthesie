@@ -727,8 +727,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showMicWarning(title, desc) {
     if (elMicWarningBanner) {
-      if (elMicWarningTitle) elMicWarningTitle.textContent = title;
-      if (elMicWarningDesc) elMicWarningDesc.textContent = desc;
+      if (elMicWarningTitle) elMicWarningTitle.innerHTML = title;
+      if (elMicWarningDesc) elMicWarningDesc.innerHTML = desc;
       elMicWarningBanner.style.display = 'flex';
     }
   }
@@ -778,7 +778,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      audioStream = await navigator.mediaDevices.getUserMedia(constraints);
+      try {
+        audioStream = await navigator.mediaDevices.getUserMedia(constraints);
+      } catch (firstErr) {
+        if (preferredDeviceId || constraints.audio.echoCancellation) {
+          console.warn('Advanced audio constraints failed, retrying basic:', firstErr);
+          audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } else {
+          throw firstErr;
+        }
+      }
       const tracks = audioStream.getAudioTracks();
       if (tracks && tracks.length > 0) {
         const t = tracks[0];
@@ -1170,11 +1179,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (micErr) {
       console.warn('Hardware microphone error:', micErr);
       if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff verweigert. Bitte Schloss-Symbol oben anklicken und Mikrofon freigeben.', 'warning', 7000);
-        if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (Schloss-Symbol oben)';
+        showToast('🎙️ Mikrofonzugriff verweigert. Bitte in macOS Systemeinstellungen oder Adressleiste freigeben.', 'warning', 7000);
+        if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (macOS / Browser-Freigabe erforderlich)';
         showMicWarning(
-          'Mikrofonzugriff verweigert',
-          'Der Browser oder macOS hat den Zugriff auf das Mikrofon gesperrt. Bitte Schloss-Symbol in der Adressleiste anklicken und unter macOS Systemeinstellungen > Datenschutz > Mikrofon freigeben.'
+          '🎙️ MacBook Mikrofon-Zugriff verweigert (macOS İzni Gerekli)',
+          '<div style="margin-top: 0.35rem; line-height: 1.55;">' +
+            'Windows\'ta çalışırken MacBook\'ta bu uyarının çıkması macOS\'in çift katmanlı güvenlik sisteminden kaynaklanır:<br>' +
+            '<strong>1. 🍏 macOS Sistem İzni:</strong>  Apple Menüsü &gt; <em>Sistem Ayarları (System Settings)</em> &gt; <em>Gizlilik ve Güvenlik (Privacy &amp; Security)</em> &gt; <em>Mikrofon (Microphone)</em> bölümüne gidin ve <strong>Google Chrome</strong>\'un yanındaki anahtarı <strong>AÇIK (Mavi)</strong> yapın.<br>' +
+            '<strong>2. 🔒 Tarayıcı İzni:</strong> Chrome adres çubuğundaki (URL\'nin solundaki) kilit/ayar simgesine tıklayıp <em>Mikrofon: İzin Ver (Allow)</em> seçin.<br>' +
+            '<strong>3. 🔄 Sayfayı Yenileyin:</strong> Sayfayı yenileyip (Cmd+R) tekrar 🎙️ butonuna tıklayın.<br>' +
+            '<small style="opacity: 0.85;">(Terminal komutu ile onay sıfırlanmıştır; açtığınızda sistem onay penceresi gelecektir.)</small>' +
+          '</div>'
         );
         stopVoiceRecording();
         return;
