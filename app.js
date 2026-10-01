@@ -1533,6 +1533,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
       let hasDetectedResult = false;
 
+      function appendDiagLog(msg, color = '#94a3b8') {
+        const elLog = document.getElementById('diag-live-log');
+        if (!elLog) return;
+        elLog.style.display = 'block';
+        const now = new Date().toLocaleTimeString();
+        const line = document.createElement('div');
+        line.style.color = color;
+        line.textContent = `[${now}] ${msg}`;
+        elLog.appendChild(line);
+        elLog.scrollTop = elLog.scrollHeight;
+      }
+
+      appendDiagLog(`▶️ Test başlatılıyor (Dil: ${speechRecognitionLang || 'de-DE'}, Beklenen: ${promptWord})...`, '#38bdf8');
+
       try {
         const rec = new SpeechAPI();
         diagSpeechTestRecognizer = rec;
@@ -1542,6 +1556,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rec.maxAlternatives = 1;
 
         rec.onstart = () => {
+          appendDiagLog('🟢 onstart: Web Speech API oturumu açıldı, mikrofon dinliyor', '#10b981');
           if (elDiagTestBtn) elDiagTestBtn.textContent = '🔴 Dinleniyor... (Durdurmak için tıkla)';
           if (elDiagTestRes) {
             elDiagTestRes.style.color = '#38bdf8';
@@ -1550,13 +1565,19 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         rec.onaudiostart = () => {
+          appendDiagLog('👂 onaudiostart: macOS ses kartı akışı bağlandı', '#10b981');
           if (elDiagTestRes && !hasDetectedResult) {
             elDiagTestRes.style.color = '#10b981';
             elDiagTestRes.innerHTML = `👂 Ses sinyali alınıyor... Lütfen şimdi konuşun: ${promptWord}`;
           }
         };
 
+        rec.onsoundstart = () => {
+          appendDiagLog('🔊 onsoundstart: Ses enerjisi / dalga algılandı', '#38bdf8');
+        };
+
         rec.onspeechstart = () => {
+          appendDiagLog('🗣️ onspeechstart: İnsan konuşması tespit edildi, Google sunucusuna iletiliyor...', '#38bdf8');
           if (elDiagTestRes && !hasDetectedResult) {
             elDiagTestRes.style.color = '#10b981';
             elDiagTestRes.innerHTML = '🗣️ Konuşma algılandı, çözümleniyor...';
@@ -1564,6 +1585,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         rec.onspeechend = () => {
+          appendDiagLog('⏳ onspeechend: Konuşma durakladı, transkript bekleniyor...', '#f59e0b');
           if (elDiagTestRes && !hasDetectedResult) {
             elDiagTestRes.innerHTML = '⏳ Ses tamamlandı, metin oluşturuluyor...';
           }
@@ -1579,6 +1601,7 @@ document.addEventListener('DOMContentLoaded', () => {
           text = text.trim();
           if (text) {
             hasDetectedResult = true;
+            appendDiagLog(`🎉 onresult: Başarıyla algılandı -> "${text}"`, '#10b981');
             if (elDiagTestRes) {
               elDiagTestRes.style.color = '#10b981';
               elDiagTestRes.innerHTML = `✅ <strong>Algılandı:</strong> "${escapeHtml(text)}" (Ses tanıma macOS Chrome'da başarıyla çalışıyor!)`;
@@ -1600,6 +1623,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         rec.onerror = (err) => {
           console.warn('Diag speech test error:', err.error);
+          appendDiagLog(`❌ onerror: ${err.error}${err.error === 'no-speech' ? ' (Ses duyulmadı / mikrofon sessiz)' : ''}`, '#ef4444');
           if (err.error === 'aborted') return;
           if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
           if (elDiagTestRes) {
@@ -1607,9 +1631,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (err.error === 'not-allowed') {
               elDiagTestRes.innerHTML = '❌ <strong>İzin Verilmedi:</strong> Chrome bu adres için mikrofonu engelledi. Adres çubuğundaki kilit simgesinden mikrofon iznini verin.';
             } else if (err.error === 'no-speech') {
-              elDiagTestRes.innerHTML = `⏳ <strong>Ses çevrilemedi:</strong> Mikrofona biraz daha yakın ve net ${promptWord} deyin.`;
+              elDiagTestRes.innerHTML = `⏳ <strong>Ses çevrilemedi:</strong> Mikrofona biraz daha yakın ve net ${promptWord} deyin. (Mikrofon Teams sanal sürücüsünde kalmış olabilir).`;
             } else if (err.error === 'network') {
-              elDiagTestRes.innerHTML = '🌐 <strong>Ağ Hatası:</strong> Google konuşma sunucusuna erişilemedi.';
+              elDiagTestRes.innerHTML = '🌐 <strong>Ağ Hatası:</strong> Google konuşma sunucusuna erişilemedi. VPN / AdBlocker varsa kapatıp tekrar deneyin.';
             } else if (err.error === 'audio-capture') {
               elDiagTestRes.innerHTML = '⚠️ <strong>Donanım Hatası:</strong> Ses girişi yakalanamadı. Mac sistem ayarlarından mikrofonu kontrol edin.';
             } else {
@@ -1619,6 +1643,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         rec.onend = () => {
+          appendDiagLog('⏹️ onend: Oturum kapandı', '#94a3b8');
           diagSpeechTestRecognizer = null;
           if (diagSpeechTestTimer) {
             clearTimeout(diagSpeechTestTimer);
@@ -1628,7 +1653,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!hasDetectedResult) {
             if (elDiagTestRes && !elDiagTestRes.textContent.includes('❌') && !elDiagTestRes.textContent.includes('✅')) {
               elDiagTestRes.style.color = '#f59e0b';
-              elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin. (macOS Teams sanal mikrofonu kuruluysa, Chrome varsayılan mikrofonunu "MacBook Air Mikrofonu" yapın).`;
+              elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın sesli ${promptWord} deyin veya aşağıdaki "Google Resmi Test" linkini deneyin.`;
             }
           }
         };
@@ -1641,6 +1666,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         rec.start();
       } catch (e) {
+        appendDiagLog(`❌ Başlatma hatası: ${e.message}`, '#ef4444');
         if (elDiagTestRes) elDiagTestRes.textContent = 'Başlatma hatası: ' + e.message;
         if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
       }
@@ -1813,6 +1839,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnDiagSpeechTest = document.getElementById('btn-diag-speech-test');
   if (elBtnDiagSpeechTest) {
     elBtnDiagSpeechTest.addEventListener('click', runDiagSpeechTest);
+  }
+  const elBtnForceCacheClear = document.getElementById('btn-force-cache-clear');
+  if (elBtnForceCacheClear) {
+    elBtnForceCacheClear.addEventListener('click', async () => {
+      showToast('🔄 Tüm önbellek temizleniyor ve uygulama en güncel haliyle yeniden yükleniyor...', 'info', 4000);
+      try {
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+        if (navigator.serviceWorker) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (let r of regs) await r.unregister();
+        }
+      } catch (e) {}
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 600);
+    });
   }
   if (elBtnCloseMicWarning) {
     elBtnCloseMicWarning.addEventListener('click', hideMicWarning);
