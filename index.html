@@ -352,14 +352,76 @@
               <button id="btn-voice-lang-de" class="btn-xs voice-lang-btn active" type="button" title="Deutsch (de-DE)">🇩🇪 DE</button>
               <button id="btn-voice-lang-tr" class="btn-xs voice-lang-btn" type="button" title="Türkçe (tr-TR)">🇹🇷 TR</button>
             </div>
+            <button id="btn-mic-diagnosis" class="btn-xs btn-outline-mic" type="button" title="Mikrofon-Test &amp; Pegel-Diagnose ausführen">🩺 Mikrofon-Test</button>
             <button id="btn-sample-voice" class="btn-xs btn-text" type="button" title="Muster-Stichpunkte dieser Frage zum Testen einfügen">💡 Beispiel einfügen</button>
             <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
           </div>
         </div>
-        
-        <div id="voice-mic-indicator" class="voice-mic-indicator" style="display: none;">
-          <span class="mic-dot"></span>
-          <span id="voice-mic-hint">Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...</span>
+
+        <!-- Hardware Microphone & Real-Time Status Row -->
+        <div class="mic-meta-row" id="mic-meta-row">
+          <div id="voice-mic-indicator" class="voice-mic-indicator" style="display: none;">
+            <span class="mic-dot"></span>
+            <span id="voice-mic-hint">Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...</span>
+          </div>
+          <div class="mic-device-wrapper" id="mic-device-wrapper" style="display: none;">
+            <span class="mic-device-icon" title="Eingabegerät">🎙️</span>
+            <select id="mic-device-select" class="mic-device-select" title="Mikrofon auswählen"></select>
+          </div>
+        </div>
+
+        <!-- Real-Time Hardware Warning Banner (Muted / No Sound / Network) -->
+        <div id="mic-warning-banner" class="mic-warning-banner" style="display: none;">
+          <div class="mic-warning-icon">⚠️</div>
+          <div class="mic-warning-content">
+            <strong id="mic-warning-title">Kein Audiosignal erfasst</strong>
+            <p id="mic-warning-desc">Ihr Mikrofon liefert derzeit keinen Ton (Lautstärke 0). Bitte überprüfen Sie die Mikrofon-Eingangslautstärke in den Systemeinstellungen oder wählen Sie ein anderes Gerät.</p>
+          </div>
+          <button id="btn-close-mic-warning" class="btn-xs btn-close-warning" type="button" title="Hinweis schließen">✕</button>
+        </div>
+
+        <!-- Real-Time Voice Recording Playback Card -->
+        <div id="voice-playback-box" class="voice-playback-box" style="display: none;">
+          <div class="playback-header">
+            <span class="playback-title">🎙️ Ihre Aufnahme:</span>
+            <span id="voice-recording-duration" class="playback-duration">0:00</span>
+          </div>
+          <div class="playback-controls">
+            <audio id="voice-recorded-audio" controls class="voice-audio-element" preload="metadata"></audio>
+            <button id="btn-re-record-voice" class="btn-xs btn-re-record" type="button" title="Neu aufnehmen">🔄 Neu aufnehmen</button>
+          </div>
+        </div>
+
+        <!-- Interactive Microphone & Speech Diagnostic Drawer -->
+        <div id="mic-diag-panel" class="mic-diag-panel" style="display: none;">
+          <div class="diag-header">
+            <span class="diag-title">🩺 Mikrofon- &amp; Spracherkennungs-Diagnose</span>
+            <button id="btn-close-mic-diag" class="btn-xs btn-close-diag" type="button" title="Diagnose schließen">✕</button>
+          </div>
+          <div class="diag-grid">
+            <div class="diag-item">
+              <span class="diag-label">Spracherkennung (Web Speech):</span>
+              <span id="diag-speech-status" class="diag-val">Prüfe...</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-label">Mikrofon-Berechtigung:</span>
+              <span id="diag-perm-status" class="diag-val">Prüfe...</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-label">Aktives Eingabegerät:</span>
+              <span id="diag-device-name" class="diag-val">Standard</span>
+            </div>
+            <div class="diag-item diag-meter-item">
+              <span class="diag-label">Live-Eingangspegel:</span>
+              <div class="diag-vu-meter-bar">
+                <div id="diag-vu-fill" class="diag-vu-fill" style="width: 0%;"></div>
+              </div>
+              <span id="diag-vu-label" class="diag-vu-label">0%</span>
+            </div>
+          </div>
+          <div class="diag-help-text" id="diag-help-text">
+            💡 <strong>Tipp bei Problemen:</strong> Wenn Sie sprechen, aber kein Text erscheint: Prüfen Sie in macOS unter <em>Systemeinstellungen &gt; Datenschutz &amp; Sicherheit &gt; Mikrofon</em>, ob Google Chrome / Ihr Browser aktiviert ist. In Brave aktivieren Sie <em>"Google-Dienste für Spracherkennung"</em> in den Einstellungen.
+          </div>
         </div>
 
         <textarea id="speech-transcript-input" class="transcript-textarea" placeholder="Sprechen Sie Ihre Antwort jetzt laut ein... (Ihre Worte erscheinen hier automatisch in Echtzeit oder Sie können Stichpunkte direkt tippen)"></textarea>

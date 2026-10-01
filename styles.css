@@ -5714,13 +5714,280 @@ body.mode-simulation-active #step3-container {
   color: #1e293b;
 }
 
+.btn-outline-mic {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-outline-mic:hover {
+  background: var(--bg-tertiary);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.mic-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mic-device-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.mic-device-select {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-family: inherit;
+  cursor: pointer;
+  max-width: 220px;
+  outline: none;
+}
+
+/* Mic Warning Banner */
+.mic-warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--text-primary);
+  animation: fadeInDown 0.2s ease;
+}
+
+.mic-warning-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.mic-warning-content {
+  flex: 1;
+}
+
+.mic-warning-content strong {
+  display: block;
+  color: #d97706;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .mic-warning-content strong {
+  color: #fbbf24;
+}
+
+.mic-warning-content p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.btn-close-warning {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0 0.2rem;
+}
+
+/* Voice Recording Playback Card */
+.voice-playback-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  animation: fadeInDown 0.2s ease;
+}
+
+.playback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.playback-duration {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.playback-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.voice-audio-element {
+  flex: 1;
+  height: 32px;
+  outline: none;
+}
+
+.btn-re-record {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.btn-re-record:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Microphone & Speech Diagnostic Drawer */
+.mic-diag-panel {
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  animation: fadeInDown 0.25s ease;
+}
+
+.diag-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.diag-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.btn-close-diag {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.diag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem 0.85rem;
+  margin-bottom: 0.65rem;
+}
+
+.diag-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+}
+
+.diag-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.diag-val {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.diag-val.success { color: #10b981; }
+.diag-val.warning { color: #f59e0b; }
+.diag-val.error { color: #ef4444; }
+
+.diag-meter-item {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.diag-vu-meter-bar {
+  flex: 1;
+  height: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.diag-vu-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+  transition: width 0.05s ease;
+  border-radius: 4px;
+}
+
+.diag-vu-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 38px;
+  text-align: right;
+}
+
+.diag-help-text {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  border-left: 3px solid var(--primary);
+}
+
 .voice-mic-indicator {
   display: flex;
   align-items: center;
   gap: 0.45rem;
   font-size: 0.82rem;
   color: #059669;
-  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 

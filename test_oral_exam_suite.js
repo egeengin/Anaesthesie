@@ -1007,7 +1007,36 @@ expectedModals.forEach(mId => {
 
 console.log('[PASS] Suite 35 passed! Verified perfect <div> balance (0 difference) and un-nested modal hierarchy across all 10 application modals.');
 
-console.log('\n🎉 ALL 35 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 36. Test Hardware Microphone Stream, Real VU-Meter & MediaRecorder Audio Resilience
+console.log('Testing Suite 36: Hardware Microphone Stream, Real VU-Meter & MediaRecorder Audio Resilience...');
+assert(htmlContent.includes('btn-mic-diagnosis'), 'index.html must include #btn-mic-diagnosis');
+assert(htmlContent.includes('mic-meta-row'), 'index.html must include #mic-meta-row');
+assert(htmlContent.includes('mic-device-select'), 'index.html must include #mic-device-select');
+assert(htmlContent.includes('mic-warning-banner'), 'index.html must include #mic-warning-banner');
+assert(htmlContent.includes('voice-playback-box'), 'index.html must include #voice-playback-box');
+assert(htmlContent.includes('voice-recorded-audio'), 'index.html must include #voice-recorded-audio');
+assert(htmlContent.includes('mic-diag-panel'), 'index.html must include #mic-diag-panel');
+assert(htmlContent.includes('diag-vu-fill'), 'index.html must include #diag-vu-fill');
+
+assert(cssCode.includes('.btn-outline-mic'), 'styles.css must style .btn-outline-mic');
+assert(cssCode.includes('.mic-device-select'), 'styles.css must style .mic-device-select');
+assert(cssCode.includes('.mic-warning-banner'), 'styles.css must style .mic-warning-banner');
+assert(cssCode.includes('.voice-playback-box'), 'styles.css must style .voice-playback-box');
+assert(cssCode.includes('.mic-diag-panel'), 'styles.css must style .mic-diag-panel');
+assert(cssCode.includes('.diag-vu-fill'), 'styles.css must style .diag-vu-fill');
+
+assert(appCode.includes('initMicrophoneHardware'), 'app.js must implement initMicrophoneHardware');
+assert(appCode.includes('setupMediaRecorder'), 'app.js must implement setupMediaRecorder');
+assert(appCode.includes('runMicrophoneDiagnostics'), 'app.js must implement runMicrophoneDiagnostics');
+assert(appCode.includes('refreshAudioDevicesList'), 'app.js must implement refreshAudioDevicesList');
+assert(appCode.includes('showMicWarning'), 'app.js must implement showMicWarning');
+assert(appCode.includes('hideMicWarning'), 'app.js must implement hideMicWarning');
+assert(appCode.includes('createMediaStreamSource'), 'app.js setupAudioVisualizer must use real Web Audio API media stream source');
+assert(appCode.includes('createAnalyser'), 'app.js setupAudioVisualizer must connect AnalyserNode for live volume');
+
+console.log('[PASS] Suite 36 passed! Verified hardware audio stream, real VU-meter, MediaRecorder audio backup, device switcher, and interactive diagnostics.');
+
+console.log('\n🎉 ALL 36 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

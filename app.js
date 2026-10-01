@@ -126,6 +126,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const elBtnSampleVoice = document.getElementById('btn-sample-voice');
   const elVoiceMicIndicator = document.getElementById('voice-mic-indicator');
   const elVoiceMicHint = document.getElementById('voice-mic-hint');
+  const elBtnMicDiagnosis = document.getElementById('btn-mic-diagnosis');
+  const elMicMetaRow = document.getElementById('mic-meta-row');
+  const elMicDeviceWrapper = document.getElementById('mic-device-wrapper');
+  const elMicDeviceSelect = document.getElementById('mic-device-select');
+  const elMicWarningBanner = document.getElementById('mic-warning-banner');
+  const elMicWarningTitle = document.getElementById('mic-warning-title');
+  const elMicWarningDesc = document.getElementById('mic-warning-desc');
+  const elBtnCloseMicWarning = document.getElementById('btn-close-mic-warning');
+  const elVoicePlaybackBox = document.getElementById('voice-playback-box');
+  const elVoiceRecordedAudio = document.getElementById('voice-recorded-audio');
+  const elVoiceRecordingDuration = document.getElementById('voice-recording-duration');
+  const elBtnReRecordVoice = document.getElementById('btn-re-record-voice');
+  const elMicDiagPanel = document.getElementById('mic-diag-panel');
+  const elBtnCloseMicDiag = document.getElementById('btn-close-mic-diag');
+  const elDiagSpeechStatus = document.getElementById('diag-speech-status');
+  const elDiagPermStatus = document.getElementById('diag-perm-status');
+  const elDiagDeviceName = document.getElementById('diag-device-name');
+  const elDiagVuFill = document.getElementById('diag-vu-fill');
+  const elDiagVuLabel = document.getElementById('diag-vu-label');
   
   // ÄKNO Live Simulation Cockpit Elements
   const elSimLiveCockpit = document.getElementById('sim-live-cockpit');
@@ -690,9 +709,256 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Voice Dictation, Speech Recognition & Clinical Evaluation Engine ---
 
   let baseRecordedText = '';
+  let audioStream = null;
+  let audioContext = null;
+  let audioAnalyser = null;
+  let audioSource = null;
+  let audioAnimFrame = null;
+  let mediaRecorder = null;
+  let recordedAudioChunks = [];
+  let recordedAudioBlob = null;
+  let recordedAudioUrl = null;
+  let recordingStartTime = 0;
+  let recordingDurationInterval = null;
+  let hasDetectedSoundInSession = false;
+  let silenceFrameCounter = 0;
+  let selectedAudioDeviceId = null;
+  let currentMicDeviceName = 'Standard-Mikrofon';
+
+  function showMicWarning(title, desc) {
+    if (elMicWarningBanner) {
+      if (elMicWarningTitle) elMicWarningTitle.textContent = title;
+      if (elMicWarningDesc) elMicWarningDesc.textContent = desc;
+      elMicWarningBanner.style.display = 'flex';
+    }
+  }
+
+  function hideMicWarning() {
+    if (elMicWarningBanner) {
+      elMicWarningBanner.style.display = 'none';
+    }
+  }
+
+  async function refreshAudioDevicesList() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices || !elMicDeviceSelect) {
+      return;
+    }
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const audioInputs = devices.filter(d => d.kind === 'audioinput');
+      if (audioInputs.length <= 1) {
+        if (elMicDeviceWrapper) elMicDeviceWrapper.style.display = 'none';
+        return;
+      }
+
+      elMicDeviceSelect.innerHTML = audioInputs.map(dev => {
+        const label = dev.label || `Mikrofon (${dev.deviceId.slice(0, 6)}...)`;
+        const selected = (selectedAudioDeviceId === dev.deviceId) ? 'selected' : '';
+        return `<option value="${escapeHtml(dev.deviceId)}" ${selected}>${escapeHtml(label)}</option>`;
+      }).join('');
+
+      if (elMicDeviceWrapper) elMicDeviceWrapper.style.display = 'inline-flex';
+    } catch (e) {
+      console.warn('Device enumeration error:', e);
+    }
+  }
+
+  async function initMicrophoneHardware(preferredDeviceId = null) {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      return null;
+    }
+
+    const constraints = {
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+        ...(preferredDeviceId ? { deviceId: { exact: preferredDeviceId } } : {})
+      }
+    };
+
+    try {
+      audioStream = await navigator.mediaDevices.getUserMedia(constraints);
+      const tracks = audioStream.getAudioTracks();
+      if (tracks && tracks.length > 0) {
+        const t = tracks[0];
+        currentMicDeviceName = t.label || 'Mikrofon';
+        if (elVoiceMicHint && isRecordingVoice) {
+          elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
+            ? `🎙️ ${currentMicDeviceName}: Dinleniyor...`
+            : `🎙️ ${currentMicDeviceName}: Höre zu...`;
+        }
+
+        t.onended = () => {
+          console.warn('Microphone hardware track ended');
+          if (isRecordingVoice) {
+            showMicWarning(
+              'Mikrofon getrennt',
+              'Die Verbindung zum Mikrofon wurde unterbrochen. Bitte überprüfen Sie das Audiogerät.'
+            );
+          }
+        };
+
+        t.onmute = () => {
+          showMicWarning(
+            'Mikrofon stummgeschaltet',
+            'Ihr Mikrofon ist stummgeschaltet (Hardware-Schalter oder Systemeinstellungen).'
+          );
+        };
+
+        t.onunmute = () => {
+          hideMicWarning();
+        };
+      }
+
+      refreshAudioDevicesList();
+      return audioStream;
+    } catch (err) {
+      console.warn('Hardware getUserMedia error:', err);
+      throw err;
+    }
+  }
 
   function setupAudioVisualizer(stream) {
-    return true;
+    if (!stream) return false;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return false;
+
+      if (!audioContext || audioContext.state === 'closed') {
+        audioContext = new AudioCtx();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume().catch(() => {});
+      }
+
+      if (audioSource) {
+        try { audioSource.disconnect(); } catch (e) {}
+      }
+
+      audioSource = audioContext.createMediaStreamSource(stream);
+      audioAnalyser = audioContext.createAnalyser();
+      audioAnalyser.fftSize = 64;
+      audioAnalyser.smoothingTimeConstant = 0.4;
+      audioSource.connect(audioAnalyser);
+
+      const bufferLength = audioAnalyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      const waveBars = elAudioWaveVisualizer ? elAudioWaveVisualizer.querySelectorAll('.wave-bar') : [];
+
+      function drawWave() {
+        if (!isRecordingVoice && (!elMicDiagPanel || elMicDiagPanel.style.display === 'none')) {
+          return;
+        }
+        audioAnimFrame = requestAnimationFrame(drawWave);
+        audioAnalyser.getByteFrequencyData(dataArray);
+
+        let sum = 0;
+        for (let i = 0; i < bufferLength; i++) {
+          sum += dataArray[i];
+        }
+        const avgVol = sum / bufferLength; // 0..255
+        const normalizedVol = Math.min(100, Math.round((avgVol / 120) * 100));
+
+        // Update live VU meter in diagnostic panel if active
+        if (elDiagVuFill) {
+          elDiagVuFill.style.width = `${normalizedVol}%`;
+        }
+        if (elDiagVuLabel) {
+          elDiagVuLabel.textContent = `${normalizedVol}%`;
+        }
+
+        if (avgVol > 6) {
+          hasDetectedSoundInSession = true;
+          silenceFrameCounter = 0;
+          hideMicWarning();
+          if (elAudioWaveVisualizer) {
+            elAudioWaveVisualizer.classList.add('audio-detected');
+            elAudioWaveVisualizer.classList.remove('pulsing');
+          }
+        } else {
+          silenceFrameCounter++;
+          // ~3.5 seconds of silence
+          if (silenceFrameCounter > 210 && !hasDetectedSoundInSession && isRecordingVoice) {
+            showMicWarning(
+              'Kein Tonsignal erfasst (Eingangslautstärke 0)',
+              'Das Mikrofon liefert keine Töne. Bitte prüfen Sie in den Systemeinstellungen die Mikrofon-Lautstärke oder wählen Sie oben das aktive Eingabegerät aus.'
+            );
+          }
+        }
+
+        if (waveBars && waveBars.length) {
+          for (let i = 0; i < waveBars.length; i++) {
+            const freqIdx = Math.floor((i / waveBars.length) * bufferLength);
+            const val = dataArray[freqIdx] || avgVol;
+            const h = Math.max(5, Math.min(26, Math.round(5 + (val / 255) * 21)));
+            waveBars[i].style.height = `${h}px`;
+            if (avgVol > 6) {
+              waveBars[i].style.background = '#10b981';
+              waveBars[i].style.boxShadow = '0 0 6px rgba(16, 185, 129, 0.7)';
+            } else {
+              waveBars[i].style.height = '6px';
+              waveBars[i].style.background = '#ef4444';
+              waveBars[i].style.boxShadow = 'none';
+            }
+          }
+        }
+      }
+
+      drawWave();
+      return true;
+    } catch (err) {
+      console.warn('Audio visualizer setup error:', err);
+      return false;
+    }
+  }
+
+  function setupMediaRecorder(stream) {
+    if (typeof MediaRecorder === 'undefined' || !stream) return;
+    try {
+      let mimeType = '';
+      const preferredMimes = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/mp4',
+        'audio/ogg'
+      ];
+      for (const m of preferredMimes) {
+        if (MediaRecorder.isTypeSupported(m)) {
+          mimeType = m;
+          break;
+        }
+      }
+
+      mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
+      recordedAudioChunks = [];
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) {
+          recordedAudioChunks.push(e.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        if (recordedAudioChunks.length > 0) {
+          recordedAudioBlob = new Blob(recordedAudioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+          if (recordedAudioUrl) {
+            URL.revokeObjectURL(recordedAudioUrl);
+          }
+          recordedAudioUrl = URL.createObjectURL(recordedAudioBlob);
+          if (elVoiceRecordedAudio) {
+            elVoiceRecordedAudio.src = recordedAudioUrl;
+          }
+          if (elVoicePlaybackBox) {
+            elVoicePlaybackBox.style.display = 'flex';
+          }
+        }
+      };
+
+      mediaRecorder.start(250);
+    } catch (e) {
+      console.warn('MediaRecorder setup error:', e);
+    }
   }
 
   function createSpeechRecognizerInstance() {
@@ -711,19 +977,20 @@ document.addEventListener('DOMContentLoaded', () => {
         updateRecordingUIState(true);
         if (elVoiceMicHint) {
           elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
-            ? '🎙️ Dinleniyor... (Lütfen konuşun veya yazın)'
-            : '🎙️ Höre zu... (Sprechen Sie laut oder tippen Sie)';
+            ? `🎙️ ${currentMicDeviceName}: Dinleniyor... (Lütfen konuşun veya yazın)`
+            : `🎙️ ${currentMicDeviceName}: Höre zu... (Sprechen Sie frei oder tippen Sie)`;
         }
       };
 
       rec.onaudiostart = () => {
         if (elAudioWaveVisualizer) {
           elAudioWaveVisualizer.style.display = 'inline-flex';
-          elAudioWaveVisualizer.classList.add('pulsing');
         }
       };
 
       rec.onspeechstart = () => {
+        hasDetectedSoundInSession = true;
+        hideMicWarning();
         if (elAudioWaveVisualizer) {
           elAudioWaveVisualizer.classList.add('audio-detected');
         }
@@ -741,19 +1008,22 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       rec.onresult = (event) => {
+        hasDetectedSoundInSession = true;
+        hideMicWarning();
+
         let interim = '';
-        let final = '';
-        for (let i = 0; i < event.results.length; ++i) {
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
           const res = event.results[i];
           if (res && res[0]) {
             if (res.isFinal) {
-              final += res[0].transcript + ' ';
+              baseRecordedText += res[0].transcript + ' ';
             } else {
               interim += res[0].transcript;
             }
           }
         }
-        const fullSpoken = (baseRecordedText + final + interim).trim();
+
+        const fullSpoken = (baseRecordedText + interim).trim();
         if (elSpeechTranscriptInput) {
           elSpeechTranscriptInput.value = fullSpoken;
           elSpeechTranscriptInput.scrollTop = elSpeechTranscriptInput.scrollHeight;
@@ -762,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
           elSpeechTranscriptText.textContent = fullSpoken || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
         }
         if (elVoiceMicHint) {
-          const preview = (final + interim).trim();
+          const preview = (interim || baseRecordedText).trim();
           if (preview) {
             elVoiceMicHint.textContent = `✍️ "${preview.length > 35 ? '...' + preview.slice(-35) : preview}"`;
           }
@@ -774,17 +1044,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
           showToast('🎙️ Mikrofonzugriff verweigert. Bitte in den Browsereinstellungen (Schloss-Symbol) freigeben.', 'warning', 6000);
           if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (Schloss-Symbol in Adressleiste prüfen)';
+          showMicWarning(
+            'Mikrofonzugriff verweigert',
+            'Der Browser hat den Zugriff auf das Mikrofon verweigert. Bitte Schloss-Symbol in der Adressleiste anklicken und freigeben.'
+          );
           stopVoiceRecording();
         } else if (e.error === 'network') {
-          showToast('⚠️ Google-Sprachdienst nicht erreichbar (Offline, VPN oder Werbeblocker aktiv). Sie können Stichpunkte tippen!', 'warning', 6000);
-          if (elVoiceMicHint) elVoiceMicHint.textContent = '⚠️ Google-Sprachdienst nicht erreichbar (Offline / VPN / Blocker)';
-          stopVoiceRecording();
+          showMicWarning(
+            'Google-Sprachdienst nicht erreichbar (VPN / AdBlocker / Brave)',
+            'Der Cloud-Sprachdienst antwortet nicht. Ihre lokale Audioaufnahme läuft weiter! Sie können Stichpunkte auch direkt tippen.'
+          );
         } else if (e.error === 'audio-capture') {
           showToast('🎙️ Kein Audiosignal erfasst. Bitte Systemeinstellungen / Standardmikrofon prüfen.', 'warning', 6000);
           if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Kein Audiosignal (Mikrofon prüfen)';
+          showMicWarning(
+            'Kein Audiosignal erfasst',
+            'Es konnte kein Audiosignal empfangen werden. Bitte prüfen Sie Ihr Standardmikrofon in den Systemeinstellungen.'
+          );
           stopVoiceRecording();
         } else if (e.error === 'no-speech') {
-          if (elVoiceMicHint) {
+          if (elVoiceMicHint && !hasDetectedSoundInSession) {
             elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
               ? '⏳ Ses bekleniyor... (Lütfen konuşun veya yazın)'
               : '⏳ Höre zu... (Sprechen Sie frei oder tippen Sie)';
@@ -794,16 +1073,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       rec.onend = () => {
         if (isRecordingVoice) {
-          baseRecordedText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
-          if (baseRecordedText && !baseRecordedText.endsWith(' ')) {
-            baseRecordedText += ' ';
-          }
           if (speechRestartTimer) clearTimeout(speechRestartTimer);
           speechRestartTimer = setTimeout(() => {
             if (isRecordingVoice) {
               startSpeechRecognizerLoop();
             }
-          }, 250);
+          }, 300);
         } else {
           updateRecordingUIState(false);
         }
@@ -818,6 +1093,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startSpeechRecognizerLoop() {
     if (!isRecordingVoice) return;
+    if (speechRecognizer) {
+      try {
+        speechRecognizer.onend = null;
+        speechRecognizer.onerror = null;
+        speechRecognizer.stop();
+      } catch (e) {}
+      speechRecognizer = null;
+    }
+
     speechRecognizer = createSpeechRecognizerInstance();
     if (!speechRecognizer) return;
 
@@ -825,6 +1109,12 @@ document.addEventListener('DOMContentLoaded', () => {
       speechRecognizer.start();
     } catch (startErr) {
       console.warn('Speech recognition start error:', startErr);
+      if (speechRestartTimer) clearTimeout(speechRestartTimer);
+      speechRestartTimer = setTimeout(() => {
+        if (isRecordingVoice) {
+          startSpeechRecognizerLoop();
+        }
+      }, 500);
     }
   }
 
@@ -850,30 +1140,71 @@ document.addEventListener('DOMContentLoaded', () => {
         waveBars.forEach(bar => {
           bar.style.height = '6px';
           bar.style.background = '#ef4444';
+          bar.style.boxShadow = 'none';
         });
       }
     }
   }
 
   async function startVoiceRecording() {
-    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechAPI) {
-      showToast('🎙️ Spracherkennung wird in diesem Browser nicht unterstützt. Sie können Stichpunkte direkt tippen!', 'info', 5000);
-      if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
-      if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
-      updateRecordingUIState(false);
-      return;
-    }
-
     isRecordingVoice = true;
+    hasDetectedSoundInSession = false;
+    silenceFrameCounter = 0;
+    hideMicWarning();
+
     baseRecordedText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
     if (baseRecordedText && !baseRecordedText.endsWith(' ')) {
       baseRecordedText += ' ';
     }
 
     updateRecordingUIState(true);
-    startSpeechRecognizerLoop();
     if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
+
+    // 1. Hardware Microphone Access via getUserMedia
+    try {
+      await initMicrophoneHardware(selectedAudioDeviceId);
+      if (audioStream) {
+        setupAudioVisualizer(audioStream);
+        setupMediaRecorder(audioStream);
+      }
+    } catch (micErr) {
+      console.warn('Hardware microphone error:', micErr);
+      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+        showToast('🎙️ Mikrofonzugriff verweigert. Bitte Schloss-Symbol oben anklicken und Mikrofon freigeben.', 'warning', 7000);
+        if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (Schloss-Symbol oben)';
+        showMicWarning(
+          'Mikrofonzugriff verweigert',
+          'Der Browser oder macOS hat den Zugriff auf das Mikrofon gesperrt. Bitte Schloss-Symbol in der Adressleiste anklicken und unter macOS Systemeinstellungen > Datenschutz > Mikrofon freigeben.'
+        );
+        stopVoiceRecording();
+        return;
+      }
+    }
+
+    // 2. Start Speech Recognition (if available)
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechAPI) {
+      startSpeechRecognizerLoop();
+    } else {
+      showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
+      if (elVoiceMicHint) {
+        elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
+      }
+    }
+
+    // Duration timer for recording
+    recordingStartTime = Date.now();
+    if (recordingDurationInterval) clearInterval(recordingDurationInterval);
+    recordingDurationInterval = setInterval(() => {
+      if (!isRecordingVoice) {
+        clearInterval(recordingDurationInterval);
+        return;
+      }
+      const elapsedSec = Math.floor((Date.now() - recordingStartTime) / 1000);
+      const m = Math.floor(elapsedSec / 60);
+      const s = String(elapsedSec % 60).padStart(2, '0');
+      if (elVoiceRecordingDuration) elVoiceRecordingDuration.textContent = `${m}:${s}`;
+    }, 1000);
   }
 
   function stopVoiceRecording() {
@@ -881,6 +1212,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (speechRestartTimer) {
       clearTimeout(speechRestartTimer);
       speechRestartTimer = null;
+    }
+
+    if (recordingDurationInterval) {
+      clearInterval(recordingDurationInterval);
+      recordingDurationInterval = null;
     }
 
     if (speechRecognizer) {
@@ -896,6 +1232,32 @@ document.addEventListener('DOMContentLoaded', () => {
         speechRecognizer.stop();
       } catch (err) {}
       speechRecognizer = null;
+    }
+
+    // Stop MediaRecorder
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      try {
+        mediaRecorder.stop();
+      } catch (e) {}
+    }
+
+    // Stop visualizer animation frame
+    if (audioAnimFrame) {
+      cancelAnimationFrame(audioAnimFrame);
+      audioAnimFrame = null;
+    }
+
+    // Stop hardware audio tracks
+    if (audioStream) {
+      try {
+        audioStream.getTracks().forEach(t => t.stop());
+      } catch (e) {}
+      audioStream = null;
+    }
+
+    if (audioSource) {
+      try { audioSource.disconnect(); } catch (e) {}
+      audioSource = null;
     }
 
     updateRecordingUIState(false);
@@ -927,6 +1289,73 @@ document.addEventListener('DOMContentLoaded', () => {
         try { speechRecognizer.stop(); } catch (e) {}
       }
       startSpeechRecognizerLoop();
+    }
+  }
+
+  async function runMicrophoneDiagnostics() {
+    if (!elMicDiagPanel) return;
+    const isVisible = (elMicDiagPanel.style.display !== 'none');
+    if (isVisible) {
+      elMicDiagPanel.style.display = 'none';
+      return;
+    }
+
+    elMicDiagPanel.style.display = 'block';
+
+    // 1. Web Speech API
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (elDiagSpeechStatus) {
+      if (SpeechAPI) {
+        elDiagSpeechStatus.textContent = '✅ Verfügbar (Web Speech API)';
+        elDiagSpeechStatus.className = 'diag-val success';
+      } else {
+        elDiagSpeechStatus.textContent = '⚠️ Nicht nativ verfügbar (Nur lokale Audioaufnahme)';
+        elDiagSpeechStatus.className = 'diag-val warning';
+      }
+    }
+
+    // 2. Microphone Permissions API
+    if (elDiagPermStatus) {
+      if (navigator.permissions && navigator.permissions.query) {
+        try {
+          const p = await navigator.permissions.query({ name: 'microphone' });
+          if (p.state === 'granted') {
+            elDiagPermStatus.textContent = '✅ Erteilt (Mikrofonzugriff aktiv)';
+            elDiagPermStatus.className = 'diag-val success';
+          } else if (p.state === 'prompt') {
+            elDiagPermStatus.textContent = '⏳ Wird abgefragt (Klicken Sie auf Zulassen)';
+            elDiagPermStatus.className = 'diag-val warning';
+          } else {
+            elDiagPermStatus.textContent = '❌ Verweigert (In Browsereinstellungen gesperrt)';
+            elDiagPermStatus.className = 'diag-val error';
+          }
+        } catch (e) {
+          elDiagPermStatus.textContent = '✅ Standard (Bereit)';
+          elDiagPermStatus.className = 'diag-val';
+        }
+      } else {
+        elDiagPermStatus.textContent = '✅ Standard (Bereit)';
+        elDiagPermStatus.className = 'diag-val';
+      }
+    }
+
+    // 3. Audio Device Check & Real VU Meter Live Probe
+    try {
+      const probeStream = audioStream || await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (probeStream) {
+        const track = probeStream.getAudioTracks()[0];
+        if (track && elDiagDeviceName) {
+          currentMicDeviceName = track.label || 'Mikrofon';
+          elDiagDeviceName.textContent = currentMicDeviceName;
+        }
+        setupAudioVisualizer(probeStream);
+        refreshAudioDevicesList();
+      }
+    } catch (probeErr) {
+      if (elDiagPermStatus) {
+        elDiagPermStatus.textContent = '❌ Fehler: ' + probeErr.message;
+        elDiagPermStatus.className = 'diag-val error';
+      }
     }
   }
 
@@ -1076,6 +1505,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (elBtnVoiceLangTr) {
     elBtnVoiceLangTr.addEventListener('click', () => setSpeechLanguage('tr-TR'));
+  }
+
+  if (elBtnMicDiagnosis) {
+    elBtnMicDiagnosis.addEventListener('click', runMicrophoneDiagnostics);
+  }
+  if (elBtnCloseMicDiag) {
+    elBtnCloseMicDiag.addEventListener('click', () => {
+      if (elMicDiagPanel) elMicDiagPanel.style.display = 'none';
+    });
+  }
+  if (elBtnCloseMicWarning) {
+    elBtnCloseMicWarning.addEventListener('click', hideMicWarning);
+  }
+  if (elMicDeviceSelect) {
+    elMicDeviceSelect.addEventListener('change', async (e) => {
+      selectedAudioDeviceId = e.target.value;
+      if (isRecordingVoice) {
+        stopVoiceRecording();
+        startVoiceRecording();
+      }
+    });
+  }
+  if (elBtnReRecordVoice) {
+    elBtnReRecordVoice.addEventListener('click', () => {
+      if (elVoicePlaybackBox) elVoicePlaybackBox.style.display = 'none';
+      if (elSpeechTranscriptInput) elSpeechTranscriptInput.value = '';
+      startVoiceRecording();
+    });
   }
 
   if (elBtnSampleVoice) {
