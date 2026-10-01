@@ -1269,7 +1269,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRecordingUIState(true);
     if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
 
-    // 1. Clean up any previous test recognizer instance
+    // 1. Release any active hardware probe (from mic diagnostics) so CoreAudio does not starve SpeechRecognition
+    stopMicrophoneHardware();
     if (diagSpeechTestRecognizer) {
       const oldRec = diagSpeechTestRecognizer;
       diagSpeechTestRecognizer = null;
@@ -1285,30 +1286,24 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. Start Hardware Microphone Stream for real Web Audio VU visualizer & MediaRecorder
-    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-      if (stream && isRecordingVoice) {
-        setupAudioVisualizer(stream);
-        setupMediaRecorder(stream);
-      }
-    }).catch((micErr) => {
-      console.warn('Hardware microphone error:', micErr);
-      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff verweigert. Bitte Schloss-Symbol oben anklicken und Mikrofon freigeben.', 'warning', 7000);
-        if (elVoiceMicHint) elVoiceMicHint.textContent = '❌ Mikrofonzugriff verweigert (Schloss-Symbol oben)';
-        showMicWarning(
-          'Mikrofonzugriff verweigert',
-          'Der Browser oder macOS hat den Zugriff auf das Mikrofon gesperrt. Bitte Schloss-Symbol in der Adressleiste anklicken und unter macOS Systemeinstellungen > Datenschutz > Mikrofon freigeben.'
-        );
-        stopVoiceRecording();
-      }
-    });
-
-    // 3. Start Speech Recognition for real-time text transcription
+    // 2. Start Speech Recognition IMMEDIATELY and synchronously for live transcription
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechAPI) {
       startSpeechRecognizerLoop();
     } else {
+      // Fallback for browsers without Web Speech API (Firefox, etc.): capture pure audio via MediaRecorder
+      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+        if (stream && isRecordingVoice) {
+          setupAudioVisualizer(stream);
+          setupMediaRecorder(stream);
+        }
+      }).catch((micErr) => {
+        console.warn('Hardware microphone error:', micErr);
+        if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+          showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+          stopVoiceRecording();
+        }
+      });
       showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
       if (elVoiceMicHint) {
         elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
@@ -1498,23 +1493,18 @@ document.addEventListener('DOMContentLoaded', () => {
       stopVoiceRecording();
     }
 
-    // 3. Keep hardware stream alive so live VU-meter bar continues moving dynamically
-    if (!audioStream) {
-      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-        if (stream) setupAudioVisualizer(stream);
-      }).catch(() => {});
-    }
+    // 3. Crucial for macOS Chrome: Stop hardware probe so CoreAudio microphone is 100% free for Web Speech API!
+    stopMicrophoneHardware();
 
     const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
     const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
     let hasDetectedResult = false;
-    let autoStopTimer = null;
 
     try {
       const rec = new SpeechAPI();
       diagSpeechTestRecognizer = rec;
       rec.lang = speechRecognitionLang || 'de-DE';
-      rec.continuous = true;
+      rec.continuous = false; // Single utterance test: clean, automatic finalization by Chrome
       rec.interimResults = true;
       rec.maxAlternatives = 1;
 
@@ -1529,30 +1519,21 @@ document.addEventListener('DOMContentLoaded', () => {
       rec.onaudiostart = () => {
         if (elDiagTestRes && elDiagTestRes.textContent.includes('dinliyor')) {
           elDiagTestRes.style.color = '#10b981';
-          elDiagTestRes.innerHTML = `👂 Ses sinyali alınıyor... Lütfen konuşun: ${promptWord}`;
+          elDiagTestRes.innerHTML = `👂 Ses sinyali alınıyor... Lütfen şimdi konuşun: ${promptWord}`;
         }
       };
 
       rec.onspeechstart = () => {
         if (elDiagTestRes) {
           elDiagTestRes.style.color = '#10b981';
-          elDiagTestRes.innerHTML = '🗣️ Konuşma algılandı, yazıya dönüştürülüyor...';
+          elDiagTestRes.innerHTML = '🗣️ Konuşma algılandı, çözümleniyor...';
         }
-        // Auto-finalize after 2.2s so Chrome does not hang waiting for silence in noisy environments
-        if (autoStopTimer) clearTimeout(autoStopTimer);
-        autoStopTimer = setTimeout(() => {
-          if (diagSpeechTestRecognizer) {
-            try { diagSpeechTestRecognizer.stop(); } catch (e) {}
-          }
-        }, 2200);
       };
 
       rec.onspeechend = () => {
         if (elDiagTestRes && !hasDetectedResult) {
           elDiagTestRes.innerHTML = '⏳ Ses tamamlandı, metin oluşturuluyor...';
         }
-        if (autoStopTimer) clearTimeout(autoStopTimer);
-        try { rec.stop(); } catch (e) {}
       };
 
       rec.onresult = (evt) => {
@@ -1565,7 +1546,6 @@ document.addEventListener('DOMContentLoaded', () => {
         text = text.trim();
         if (text) {
           hasDetectedResult = true;
-          if (autoStopTimer) clearTimeout(autoStopTimer);
           if (elDiagTestRes) {
             elDiagTestRes.style.color = '#10b981';
             elDiagTestRes.innerHTML = `✅ <strong>Algılandı:</strong> "${escapeHtml(text)}" (Ses tanıma başarıyla çalışıyor!)`;
@@ -1574,13 +1554,11 @@ document.addEventListener('DOMContentLoaded', () => {
             elSpeechTranscriptInput.value = text;
           }
           if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
-          try { rec.stop(); } catch (e) {}
         }
       };
 
       rec.onerror = (err) => {
         console.warn('Diag speech test error:', err.error);
-        if (autoStopTimer) clearTimeout(autoStopTimer);
         if (err.error === 'aborted') {
           return;
         }
@@ -1601,7 +1579,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       rec.onend = () => {
         diagSpeechTestRecognizer = null;
-        if (autoStopTimer) clearTimeout(autoStopTimer);
         if (elDiagTestBtn) {
           elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
         }
@@ -1610,6 +1587,12 @@ document.addEventListener('DOMContentLoaded', () => {
             elDiagTestRes.style.color = '#f59e0b';
             elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin veya doğrudan yukarıdaki <strong>Antwort einsprechen (V)</strong> butonunu kullanın.`;
           }
+        }
+        // Restore live VU meter probe if diagnosis panel is still open
+        if (elMicDiagPanel && elMicDiagPanel.style.display !== 'none' && !isRecordingVoice) {
+          initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+            if (stream) setupAudioVisualizer(stream);
+          }).catch(() => {});
         }
       };
 
