@@ -832,11 +832,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (savedPref) targetDeviceId = savedPref;
     }
 
+    // macOS CoreAudio optimization: on macOS, echoCancellation: true switches CoreAudio to AUVoiceProcessingIO,
+    // which can starve Chrome's internal webkitSpeechRecognition capture pipeline. Using AUHAL (echoCancellation: false)
+    // on macOS allows shared mic access so both getUserMedia and SpeechRecognition receive audio simultaneously.
+    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
     const constraints = {
       audio: {
-        echoCancellation: true,
-        noiseSuppression: true,
-        autoGainControl: true,
+        echoCancellation: !isMac,
+        noiseSuppression: !isMac,
+        autoGainControl: !isMac,
         ...(targetDeviceId ? { deviceId: { exact: targetDeviceId } } : {})
       }
     };
@@ -1006,6 +1010,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {}
       audioStream = null;
     }
+    // Prevent UI freeze: always reset VU meter bar to 0% so it never looks stuck
+    if (elDiagVuFill) {
+      elDiagVuFill.style.width = '0%';
+    }
+    if (elDiagVuLabel) {
+      elDiagVuLabel.textContent = '0%';
+    }
   }
 
   function setupMediaRecorder(stream) {
@@ -1119,18 +1130,19 @@ document.addEventListener('DOMContentLoaded', () => {
         hideMicWarning();
 
         let interim = '';
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
+        let finalInSession = '';
+        for (let i = 0; i < event.results.length; ++i) {
           const res = event.results[i];
           if (res && res[0]) {
             if (res.isFinal) {
-              baseRecordedText += res[0].transcript + ' ';
+              finalInSession += res[0].transcript + ' ';
             } else {
               interim += res[0].transcript;
             }
           }
         }
 
-        const fullSpoken = (baseRecordedText + interim).trim();
+        const fullSpoken = (baseRecordedText + finalInSession + interim).trim();
         if (elSpeechTranscriptInput) {
           elSpeechTranscriptInput.value = fullSpoken;
           elSpeechTranscriptInput.scrollTop = elSpeechTranscriptInput.scrollHeight;
@@ -1139,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
           elSpeechTranscriptText.textContent = fullSpoken || 'Sprechen Sie jetzt frei Ihre Antwort ein...';
         }
         if (elVoiceMicHint) {
-          const preview = (interim || baseRecordedText).trim();
+          const preview = (interim || finalInSession).trim();
           if (preview) {
             elVoiceMicHint.textContent = `✍️ "${preview.length > 35 ? '...' + preview.slice(-35) : preview}"`;
           }
@@ -1185,6 +1197,11 @@ document.addEventListener('DOMContentLoaded', () => {
       rec.onend = () => {
         speechRecognizer = null;
         if (isRecordingVoice) {
+          // Commit current text in input so recognizer restart does not lose or duplicate words
+          if (elSpeechTranscriptInput) {
+            const currentVal = elSpeechTranscriptInput.value.trim();
+            baseRecordedText = currentVal ? currentVal + ' ' : '';
+          }
           if (speechRestartTimer) clearTimeout(speechRestartTimer);
           speechRestartTimer = setTimeout(() => {
             if (isRecordingVoice) {
@@ -1269,8 +1286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRecordingUIState(true);
     if (elSpeechTranscriptInput) elSpeechTranscriptInput.focus();
 
-    // 1. Release any active hardware probe (from mic diagnostics) so CoreAudio does not starve SpeechRecognition
-    stopMicrophoneHardware();
+    // 1. Release any test recognizer instance
     if (diagSpeechTestRecognizer) {
       const oldRec = diagSpeechTestRecognizer;
       diagSpeechTestRecognizer = null;
@@ -1291,24 +1307,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (SpeechAPI) {
       startSpeechRecognizerLoop();
     } else {
-      // Fallback for browsers without Web Speech API (Firefox, etc.): capture pure audio via MediaRecorder
-      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-        if (stream && isRecordingVoice) {
-          setupAudioVisualizer(stream);
-          setupMediaRecorder(stream);
-        }
-      }).catch((micErr) => {
-        console.warn('Hardware microphone error:', micErr);
-        if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-          showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
-          stopVoiceRecording();
-        }
-      });
       showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
       if (elVoiceMicHint) {
         elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
       }
     }
+
+    // 3. Start hardware audio stream simultaneously for real-time wave visualizer & MediaRecorder backup
+    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+      if (stream && isRecordingVoice) {
+        setupAudioVisualizer(stream);
+        setupMediaRecorder(stream);
+      }
+    }).catch((micErr) => {
+      console.warn('Hardware microphone error:', micErr);
+      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+        showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+        stopVoiceRecording();
+      }
+    });
 
     // Duration timer for recording
     recordingStartTime = Date.now();
@@ -1471,6 +1488,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let diagSpeechTestRecognizer = null;
+  let diagSpeechTestTimer = null;
   function runDiagSpeechTest() {
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     const elDiagTestBtn = document.getElementById('btn-diag-speech-test');
@@ -1480,11 +1498,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    if (diagSpeechTestTimer) {
+      clearTimeout(diagSpeechTestTimer);
+      diagSpeechTestTimer = null;
+    }
+
     // 1. If test is currently active, clicking again gracefully finalizes / stops it
     if (diagSpeechTestRecognizer) {
       try { diagSpeechTestRecognizer.stop(); } catch (e) {}
       diagSpeechTestRecognizer = null;
       if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+      if (elDiagTestRes && elDiagTestRes.textContent.includes('Dinleniyor')) {
+        elDiagTestRes.innerHTML = '⏹️ Test durduruldu.';
+      }
       return;
     }
 
@@ -1493,8 +1519,12 @@ document.addEventListener('DOMContentLoaded', () => {
       stopVoiceRecording();
     }
 
-    // 3. Crucial for macOS Chrome: Stop hardware probe so CoreAudio microphone is 100% free for Web Speech API!
-    stopMicrophoneHardware();
+    // 3. Keep live VU meter active so user sees input level respond to their voice in real-time
+    if (!audioStream) {
+      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+        if (stream) setupAudioVisualizer(stream);
+      }).catch(() => {});
+    }
 
     const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
     const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
@@ -1504,7 +1534,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rec = new SpeechAPI();
       diagSpeechTestRecognizer = rec;
       rec.lang = speechRecognitionLang || 'de-DE';
-      rec.continuous = false; // Single utterance test: clean, automatic finalization by Chrome
+      rec.continuous = true; // Use continuous so Chrome on macOS does not terminate prematurely on short pauses
       rec.interimResults = true;
       rec.maxAlternatives = 1;
 
@@ -1554,6 +1584,15 @@ document.addEventListener('DOMContentLoaded', () => {
             elSpeechTranscriptInput.value = text;
           }
           if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
+
+          // Auto-finalize successfully recognized test after 1.5s
+          if (diagSpeechTestTimer) clearTimeout(diagSpeechTestTimer);
+          diagSpeechTestTimer = setTimeout(() => {
+            if (diagSpeechTestRecognizer) {
+              try { diagSpeechTestRecognizer.stop(); } catch (e) {}
+              diagSpeechTestRecognizer = null;
+            }
+          }, 1500);
         }
       };
 
@@ -1579,22 +1618,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       rec.onend = () => {
         diagSpeechTestRecognizer = null;
+        if (diagSpeechTestTimer) {
+          clearTimeout(diagSpeechTestTimer);
+          diagSpeechTestTimer = null;
+        }
         if (elDiagTestBtn) {
           elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
         }
         if (!hasDetectedResult) {
           if (elDiagTestRes && !elDiagTestRes.textContent.includes('❌') && !elDiagTestRes.textContent.includes('✅')) {
             elDiagTestRes.style.color = '#f59e0b';
-            elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin veya doğrudan yukarıdaki <strong>Antwort einsprechen (V)</strong> butonunu kullanın.`;
+            elDiagTestRes.innerHTML = `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın ve net şekilde ${promptWord} deyin veya macOS Sistem Ayarları > Ses > Giriş seviyesini kontrol edin.`;
           }
         }
-        // Restore live VU meter probe if diagnosis panel is still open
-        if (elMicDiagPanel && elMicDiagPanel.style.display !== 'none' && !isRecordingVoice) {
-          initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-            if (stream) setupAudioVisualizer(stream);
-          }).catch(() => {});
-        }
       };
+
+      // Set safety timeout for 8.5s if no speech detected
+      diagSpeechTestTimer = setTimeout(() => {
+        if (diagSpeechTestRecognizer && !hasDetectedResult) {
+          try { diagSpeechTestRecognizer.stop(); } catch (e) {}
+        }
+      }, 8500);
 
       // Crucial: Call start synchronously within the user click gesture
       rec.start();
