@@ -1302,34 +1302,43 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. Start hardware microphone (getUserMedia) for VU meter and MediaRecorder backup.
-    // Thanks to echoCancellation: false on macOS, this will safely share the CoreAudio stream
-    // with webkitSpeechRecognition without locking it out.
+    // 2. CRITICAL FIX FOR MACOS CHROME: Release any open hardware getUserMedia stream (e.g. from VU meter probe).
+    // On macOS, having getUserMedia + AudioContext capturing the mic locks CoreAudio AUHAL and starves webkitSpeechRecognition.
+    // We MUST stop it and WAIT for CoreAudio to fully release the lock before starting the Speech API!
+    stopMicrophoneHardware();
+
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-      if (stream && isRecordingVoice) {
-        setupAudioVisualizer(stream);
-        setupMediaRecorder(stream);
-      }
-      
-      // 3. Start Native Speech Recognition concurrently
+    const bootSpeech = () => {
       if (SpeechAPI) {
         startSpeechRecognizerLoop();
       } else {
         // Fallback for browsers without Web Speech API (e.g. Firefox)
+        initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+          if (stream && isRecordingVoice) {
+            setupAudioVisualizer(stream);
+            setupMediaRecorder(stream);
+          }
+        }).catch((micErr) => {
+          console.warn('Hardware microphone error:', micErr);
+          if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+            showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+            stopVoiceRecording();
+          }
+        });
         showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
         if (elVoiceMicHint) {
           elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
         }
       }
-    }).catch((micErr) => {
-      console.warn('Hardware microphone error:', micErr);
-      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
-        stopVoiceRecording();
-      }
-    });
+    };
+
+    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+    if (isMac) {
+      setTimeout(bootSpeech, 600); // 600ms delay to allow CoreAudio to flush
+    } else {
+      bootSpeech();
+    }
 
     // Duration timer for recording
     recordingStartTime = Date.now();
@@ -1524,9 +1533,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecordingVoice) {
       stopVoiceRecording();
     }
-    // We now KEEP the hardware microphone running (getUserMedia) during the test,
-    // because with echoCancellation: false on macOS, they share the CoreAudio stream safely.
-
+    // CRITICAL: On macOS Chrome, any active getUserMedia / AudioContext stream locks CoreAudio and starves SpeechRecognition.
+    // Releasing the hardware probe ensures Google Speech receives full, unmuted audio!
+    stopMicrophoneHardware();
 
     const startTest = () => {
       const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
@@ -1550,6 +1559,8 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const rec = new SpeechAPI();
         diagSpeechTestRecognizer = rec;
+
+
         rec.lang = speechRecognitionLang || 'de-DE';
         rec.continuous = false; // Fast single-utterance mode: instant finalization upon word completion
         rec.interimResults = true;
@@ -1671,8 +1682,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elDiagTestBtn) elDiagTestBtn.textContent = '🗣️ Yeniden Test Et';
       }
     };
-
-    startTest();
+    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+    if (isMac) {
+      setTimeout(startTest, 600); // Wait for CoreAudio to flush before starting
+    } else {
+      startTest();
+    }
   }
 
   function evaluateVoiceAnswer() {
