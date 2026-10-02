@@ -1187,9 +1187,18 @@ document.addEventListener('DOMContentLoaded', () => {
           stopVoiceRecording();
         } else if (e.error === 'no-speech') {
           if (elVoiceMicHint && !hasDetectedSoundInSession) {
-            elVoiceMicHint.textContent = speechRecognitionLang.startsWith('tr')
-              ? '⏳ Ses bekleniyor... (Lütfen konuşun veya yazın)'
-              : '⏳ Höre zu... (Sprechen Sie frei oder tippen Sie)';
+            const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+            const isChrome = /chrome|crios/i.test(navigator.userAgent || '') && !/edg|opr|brave/i.test(navigator.userAgent || '');
+            const isTr = (navigator.language && navigator.language.startsWith('tr')) || (speechRecognitionLang && speechRecognitionLang.startsWith('tr'));
+            if (isMac && isChrome) {
+              elVoiceMicHint.textContent = isTr
+                ? '💡 macOS Chrome ses algılamadı: Safari önerilir veya metin kutusuna tıklayıp 2× Fn (Siri) ile dikte edebilirsiniz.'
+                : '💡 macOS Chrome hat kein Audiosignal erkannt: Safari nutzen oder Textfeld anklicken und 2× Fn (Siri-Diktat) drücken.';
+            } else {
+              elVoiceMicHint.textContent = isTr
+                ? '⏳ Ses bekleniyor... (Lütfen konuşun veya yazın)'
+                : '⏳ Höre zu... (Sprechen Sie frei oder tippen Sie)';
+            }
           }
         }
       };
@@ -1302,41 +1311,29 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. Release hardware mic to prevent CoreAudio lock.
-    stopMicrophoneHardware();
+    // 2. Hardware microphone stream for real VU-meter and MediaRecorder backup
+    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+      if (stream && isRecordingVoice) {
+        setupAudioVisualizer(stream);
+        setupMediaRecorder(stream);
+      }
+    }).catch((micErr) => {
+      console.warn('Hardware microphone error:', micErr);
+    });
 
-    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
-    const isChrome = /chrome|crios/i.test(navigator.userAgent || '') && !/edg|opr|brave/i.test(navigator.userAgent || '');
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    const bootSpeech = () => {
-      if (SpeechAPI) {
-        if (isMac && isChrome) {
-          if (speechRecognitionLang && speechRecognitionLang.startsWith('tr')) {
-            showToast('⚠️ macOS Chrome ses tanımada sistem hatası verebilir. Kesintisiz kullanım için Safari önerilir.', 'warning', 6000);
-          } else {
-            showToast('⚠️ macOS Chrome kann Audio-Konflikte verursachen. Für eine zuverlässige Spracherkennung wird Safari empfohlen.', 'warning', 6000);
-          }
-        }
-        startSpeechRecognizerLoop();
-      } else {
-        // Fallback for browsers without Web Speech API (e.g. Firefox)
-        initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-          if (stream && isRecordingVoice) {
-            setupAudioVisualizer(stream);
-            setupMediaRecorder(stream);
-          }
-        }).catch((micErr) => {
-          console.warn('Hardware microphone error:', micErr);
-        });
-        showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
-      }
-    };
-
-    if (isMac) {
-      setTimeout(bootSpeech, 400); // allow CoreAudio flush
+    if (SpeechAPI) {
+      startSpeechRecognizerLoop();
     } else {
-      bootSpeech();
+      const isTr = (navigator.language && navigator.language.startsWith('tr')) || (speechRecognitionLang && speechRecognitionLang.startsWith('tr'));
+      showToast(
+        isTr
+          ? 'ℹ️ Bu tarayıcıda doğrudan ses tanıma desteklenmiyor. Ses kaydınız alınıyor; cevabınızı doğrudan da yazabilirsiniz.'
+          : 'ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!',
+        'info',
+        5000
+      );
     }
 
     // Duration timer for recording
