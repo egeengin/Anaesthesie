@@ -1302,43 +1302,34 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. CRITICAL FIX FOR MACOS CHROME: Release any open hardware getUserMedia stream (e.g. from VU meter probe).
-    // On macOS, having getUserMedia + AudioContext capturing the mic locks CoreAudio AUHAL and starves webkitSpeechRecognition.
-    // We MUST stop it and WAIT for CoreAudio to fully release the lock before starting the Speech API!
-    stopMicrophoneHardware();
-
+    // 2. KEEP the hardware microphone ALIVE (getUserMedia).
+    // On macOS Chrome, completely stopping getUserMedia can power down the mic hardware 
+    // or silence CoreAudio, leading to 'no-speech' errors in webkitSpeechRecognition.
+    // By keeping it alive (with echoCancellation: false), we bypass the starvation.
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    const bootSpeech = () => {
-      if (SpeechAPI) {
-        startSpeechRecognizerLoop();
-      } else {
-        // Fallback for browsers without Web Speech API (e.g. Firefox)
-        initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-          if (stream && isRecordingVoice) {
-            setupAudioVisualizer(stream);
-            setupMediaRecorder(stream);
-          }
-        }).catch((micErr) => {
-          console.warn('Hardware microphone error:', micErr);
-          if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-            showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
-            stopVoiceRecording();
-          }
-        });
-        showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
-        if (elVoiceMicHint) {
-          elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
-        }
-      }
-    };
-
-    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
-    if (isMac) {
-      setTimeout(bootSpeech, 600); // 600ms delay to allow CoreAudio to flush
+    if (SpeechAPI) {
+      startSpeechRecognizerLoop();
     } else {
-      bootSpeech();
+      showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
+      if (elVoiceMicHint) {
+        elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
+      }
     }
+
+    // ALWAYS ensure MediaRecorder / VU meter is running alongside to keep hardware awake
+    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+      if (stream && isRecordingVoice) {
+        setupAudioVisualizer(stream);
+        setupMediaRecorder(stream);
+      }
+    }).catch((micErr) => {
+      console.warn('Hardware microphone error:', micErr);
+      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+        showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+        stopVoiceRecording();
+      }
+    });
 
     // Duration timer for recording
     recordingStartTime = Date.now();
@@ -1533,14 +1524,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecordingVoice) {
       stopVoiceRecording();
     }
-    // CRITICAL: On macOS Chrome, any active getUserMedia / AudioContext stream locks CoreAudio and starves SpeechRecognition.
-    // Releasing the hardware probe ensures Google Speech receives full, unmuted audio!
-    stopMicrophoneHardware();
+    // 3. Do NOT call stopMicrophoneHardware()!
+    // Keeping the VU meter / getUserMedia active prevents Chrome on macOS from 
+    // silencing the CoreAudio pipeline, avoiding the 'no-speech' error.
 
     const startTest = () => {
       const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
       const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
       let hasDetectedResult = false;
+
 
       function appendDiagLog(msg, color = '#94a3b8') {
         const elLog = document.getElementById('diag-live-log');
