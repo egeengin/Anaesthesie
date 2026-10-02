@@ -1302,34 +1302,34 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. CRITICAL FIX FOR MACOS CHROME: Release any open hardware getUserMedia stream (e.g. from VU meter probe).
-    // On macOS, having getUserMedia + AudioContext capturing the mic locks CoreAudio AUHAL and starves webkitSpeechRecognition,
-    // resulting in flatline silent audio to Google Speech servers and 'Kelime çözülemedi' errors.
-    stopMicrophoneHardware();
-
-    // 3. Start Native Speech Recognition with 100% exclusive microphone access
+    // 2. Start hardware microphone (getUserMedia) for VU meter and MediaRecorder backup.
+    // Thanks to echoCancellation: false on macOS, this will safely share the CoreAudio stream
+    // with webkitSpeechRecognition without locking it out.
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechAPI) {
-      startSpeechRecognizerLoop();
-    } else {
-      // Fallback for browsers without Web Speech API (e.g. Firefox)
-      initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-        if (stream && isRecordingVoice) {
-          setupAudioVisualizer(stream);
-          setupMediaRecorder(stream);
-        }
-      }).catch((micErr) => {
-        console.warn('Hardware microphone error:', micErr);
-        if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-          showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
-          stopVoiceRecording();
-        }
-      });
-      showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
-      if (elVoiceMicHint) {
-        elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
+
+    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+      if (stream && isRecordingVoice) {
+        setupAudioVisualizer(stream);
+        setupMediaRecorder(stream);
       }
-    }
+      
+      // 3. Start Native Speech Recognition concurrently
+      if (SpeechAPI) {
+        startSpeechRecognizerLoop();
+      } else {
+        // Fallback for browsers without Web Speech API (e.g. Firefox)
+        showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
+        if (elVoiceMicHint) {
+          elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
+        }
+      }
+    }).catch((micErr) => {
+      console.warn('Hardware microphone error:', micErr);
+      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
+        showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
+        stopVoiceRecording();
+      }
+    });
 
     // Duration timer for recording
     recordingStartTime = Date.now();
