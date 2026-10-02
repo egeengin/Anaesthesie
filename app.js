@@ -1918,6 +1918,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const elBtnForceCacheClear = document.getElementById('btn-force-cache-clear');
   if (elBtnForceCacheClear) {
+    elBtnForceCacheClear.addEventListener('click', async () => {
       const isTr = speechRecognitionLang && speechRecognitionLang.startsWith('tr');
       showToast(
         isTr

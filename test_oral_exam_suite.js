@@ -1036,7 +1036,21 @@ assert(appCode.includes('createAnalyser'), 'app.js setupAudioVisualizer must con
 
 console.log('[PASS] Suite 36 passed! Verified hardware audio stream, real VU-meter, MediaRecorder audio backup, device switcher, and interactive diagnostics.');
 
-console.log('\n🎉 ALL 36 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 37. Test JavaScript Syntax Integrity (app.js, sw.js, questions.js)
+console.log('Testing Suite 37: Complete JavaScript Syntax Integrity Validation...');
+const { execSync } = require('child_process');
+execSync('node -c app.js', { cwd: __dirname });
+execSync('node -c sw.js', { cwd: __dirname });
+execSync('node -c questions.js', { cwd: __dirname });
+const jsDir = path.join(__dirname, 'js');
+if (fs.existsSync(jsDir)) {
+  fs.readdirSync(jsDir).filter(f => f.endsWith('.js')).forEach(file => {
+    execSync(`node -c js/${file}`, { cwd: __dirname });
+  });
+}
+console.log('[PASS] Suite 37 passed! Verified zero syntax errors across all application JavaScript files.');
+
+console.log('\n🎉 ALL 37 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 
