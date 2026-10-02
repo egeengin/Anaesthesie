@@ -1524,9 +1524,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecordingVoice) {
       stopVoiceRecording();
     }
-    // CRITICAL: On macOS Chrome, any active getUserMedia / AudioContext stream locks CoreAudio and starves SpeechRecognition.
-    // Releasing the hardware probe ensures Google Speech receives full, unmuted audio!
-    stopMicrophoneHardware();
+    // We now KEEP the hardware microphone running (getUserMedia) during the test,
+    // because with echoCancellation: false on macOS, they share the CoreAudio stream safely.
+
 
     const startTest = () => {
       const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
