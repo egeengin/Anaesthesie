@@ -1302,34 +1302,38 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. KEEP the hardware microphone ALIVE (getUserMedia).
-    // On macOS Chrome, completely stopping getUserMedia can power down the mic hardware 
-    // or silence CoreAudio, leading to 'no-speech' errors in webkitSpeechRecognition.
-    // By keeping it alive (with echoCancellation: false), we bypass the starvation.
+    // 2. Release hardware mic to prevent CoreAudio lock.
+    stopMicrophoneHardware();
+
+    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+    const isChrome = /chrome|crios/i.test(navigator.userAgent || '') && !/edg|opr|brave/i.test(navigator.userAgent || '');
     const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (SpeechAPI) {
-      startSpeechRecognizerLoop();
-    } else {
-      showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
-      if (elVoiceMicHint) {
-        elVoiceMicHint.textContent = '🎙️ Lokale Audioaufnahme aktiv (Stichworte können direkt getippt werden)';
+    const bootSpeech = () => {
+      if (SpeechAPI) {
+        if (isMac && isChrome) {
+          showToast('⚠️ macOS Chrome\'da ses tanıma CoreAudio hatası verebilir. Kesintisiz deneyim için Safari kullanmanız önerilir.', 'warning', 6000);
+        }
+        startSpeechRecognizerLoop();
+      } else {
+        // Fallback for browsers without Web Speech API (e.g. Firefox)
+        initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
+          if (stream && isRecordingVoice) {
+            setupAudioVisualizer(stream);
+            setupMediaRecorder(stream);
+          }
+        }).catch((micErr) => {
+          console.warn('Hardware microphone error:', micErr);
+        });
+        showToast('ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!', 'info', 5000);
       }
-    }
+    };
 
-    // ALWAYS ensure MediaRecorder / VU meter is running alongside to keep hardware awake
-    initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
-      if (stream && isRecordingVoice) {
-        setupAudioVisualizer(stream);
-        setupMediaRecorder(stream);
-      }
-    }).catch((micErr) => {
-      console.warn('Hardware microphone error:', micErr);
-      if (micErr.name === 'NotAllowedError' || micErr.name === 'PermissionDeniedError') {
-        showToast('🎙️ Mikrofonzugriff verweigert.', 'warning', 7000);
-        stopVoiceRecording();
-      }
-    });
+    if (isMac) {
+      setTimeout(bootSpeech, 400); // allow CoreAudio flush
+    } else {
+      bootSpeech();
+    }
 
     // Duration timer for recording
     recordingStartTime = Date.now();
@@ -1524,14 +1528,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecordingVoice) {
       stopVoiceRecording();
     }
-    // 3. Do NOT call stopMicrophoneHardware()!
-    // Keeping the VU meter / getUserMedia active prevents Chrome on macOS from 
-    // silencing the CoreAudio pipeline, avoiding the 'no-speech' error.
+    // CRITICAL: On macOS Chrome, any active getUserMedia / AudioContext stream locks CoreAudio and starves SpeechRecognition.
+    stopMicrophoneHardware();
 
     const startTest = () => {
       const isGerman = !speechRecognitionLang || speechRecognitionLang.startsWith('de');
       const promptWord = isGerman ? '"Hallo"' : '"Merhaba"';
       let hasDetectedResult = false;
+
 
 
       function appendDiagLog(msg, color = '#94a3b8') {
