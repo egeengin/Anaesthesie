@@ -1073,7 +1073,79 @@ if (fs.existsSync(jsDir)) {
 }
 console.log('[PASS] Suite 37 passed! Verified zero syntax errors across all application JavaScript files.');
 
-console.log('\n🎉 ALL 37 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 38. Test DGAI/AMBOSS 5-Pillars Curriculum Mapping & High-Yield Cases
+console.log('Testing Suite 38: DGAI/AMBOSS 5-Pillars Curriculum Mapping & High-Yield Cases...');
+assert.strictEqual(questions.length, 664, `Expected exactly 664 questions in dataset, got ${questions.length}`);
+
+// Verify UI elements in index.html
+assert(htmlContent.includes('id="amboss-pillar-filter"'), 'index.html must include #amboss-pillar-filter');
+assert(htmlContent.includes('badge-amboss-pillar'), 'index.html must include .badge-amboss-pillar');
+assert(htmlContent.includes('filter-chip-amboss'), 'index.html must include .filter-chip-amboss');
+assert(htmlContent.includes('data-filter="amboss_plan"'), 'index.html must include filter chip with data-filter="amboss_plan"');
+
+// Verify CSS styles
+assert(cssCode.includes('.badge-amboss-pillar'), 'styles.css must include .badge-amboss-pillar styles');
+assert(cssCode.includes('#amboss-pillar-filter'), 'styles.css must include #amboss-pillar-filter styles');
+assert(cssCode.includes('.filter-chip-amboss'), 'styles.css must include .filter-chip-amboss styles');
+
+// Verify app.js implementation
+assert(appCode.includes('AMBOSS_PILLARS'), 'app.js must define AMBOSS_PILLARS object');
+assert(appCode.includes('getAmbossPillar'), 'app.js must implement getAmbossPillar function');
+assert(appCode.includes('elAmbossPillarFilter'), 'app.js must cache and listen to elAmbossPillarFilter');
+
+// Verify the 10 new AMBOSS cases q_amboss_01 through q_amboss_10
+const expectedAmbossIds = [
+  'q_amboss_01', 'q_amboss_02', 'q_amboss_03', 'q_amboss_04', 'q_amboss_05',
+  'q_amboss_06', 'q_amboss_07', 'q_amboss_08', 'q_amboss_09', 'q_amboss_10'
+];
+
+expectedAmbossIds.forEach(id => {
+  const q = questions.find(item => item.id === id);
+  assert(q, `Question ${id} must exist in questions.js`);
+  assert.strictEqual(q.question_type, 'open', `${id} must be an open oral case question`);
+  assert(q.is_amboss_curriculum === true, `${id} must have is_amboss_curriculum: true`);
+  assert(q.is_high_yield === true, `${id} must have is_high_yield: true`);
+  assert(q.question_de && q.question_de.length > 50, `${id} must have detailed question_de`);
+  assert(q.question_tr && q.question_tr.length > 50, `${id} must have detailed question_tr`);
+  assert(q.answer_de && q.answer_de.length > 100, `${id} must have comprehensive answer_de`);
+  assert(q.answer_tr && q.answer_tr.length > 100, `${id} must have comprehensive answer_tr`);
+  assert(q.examiner_tip && q.examiner_tip.length > 20, `${id} must have examiner_tip`);
+  assert(q.examiner_tip_tr && q.examiner_tip_tr.length > 20, `${id} must have examiner_tip_tr`);
+  assert(['anaesthesie', 'intensiv', 'notfall', 'schmerz', 'pharmakologie'].includes(q.amboss_pillar), `${id} must have valid amboss_pillar`);
+});
+
+// Test universal pillar mapping across ALL 664 questions
+const pillarCounts = { anaesthesie: 0, intensiv: 0, notfall: 0, schmerz: 0, pharmakologie: 0 };
+const validPillars = ['anaesthesie', 'intensiv', 'notfall', 'schmerz', 'pharmakologie'];
+
+// Extract getAmbossPillar from app.js to test runtime mapping logic
+const pillarFuncMatch = appCode.match(/function getAmbossPillar\(q\)\s*\{([\s\S]*?)\n  \}/);
+assert(pillarFuncMatch, 'app.js must contain getAmbossPillar implementation');
+
+const AMBOSS_PILLARS = {
+  anaesthesie: { id: 'anaesthesie', name: '1. Anästhesie' },
+  intensiv: { id: 'intensiv', name: '2. Intensiv' },
+  notfall: { id: 'notfall', name: '3. Notfall' },
+  schmerz: { id: 'schmerz', name: '4. Schmerz' },
+  pharmakologie: { id: 'pharmakologie', name: '5. Pharmakologie' }
+};
+
+const evalPillar = new Function('q', 'AMBOSS_PILLARS', pillarFuncMatch[1]);
+
+questions.forEach(q => {
+  const p = evalPillar(q, AMBOSS_PILLARS);
+  assert(p && p.id && validPillars.includes(p.id), `Question ${q.id} must map to a valid pillar`);
+  pillarCounts[p.id]++;
+});
+
+// Every pillar must have at least 10 questions mapped
+validPillars.forEach(pId => {
+  assert(pillarCounts[pId] >= 10, `Pillar ${pId} must have at least 10 questions mapped, found ${pillarCounts[pId]}`);
+});
+
+console.log(`[PASS] Suite 38 passed! Verified 5 Säulen mapping across all 664 questions:`, pillarCounts);
+
+console.log('\n🎉 ALL 38 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

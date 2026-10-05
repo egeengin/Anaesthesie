@@ -107,7 +107,7 @@
       <div class="dash-compact-left">
         <div class="dash-stat-item">
           <span class="dash-label">Lernfortschritt:</span>
-          <span id="stat-progress-text" class="dash-val">0 / 654 (0%)</span>
+          <span id="stat-progress-text" class="dash-val">0 / 664 (0%)</span>
         </div>
         <div class="dash-progress-bar-wrap">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
@@ -169,6 +169,7 @@
         <button class="filter-chip" data-filter="sm2_due">🧠 Intervall-Wiederholung (SM-2)</button>
         <button class="filter-chip" data-filter="high_yield">⭐ ÄKNO NRW Top-Fragen</button>
         <button class="filter-chip" data-filter="dus_examiners">🏛️ Düsseldorf Prüfer-Fälle</button>
+        <button class="filter-chip filter-chip-amboss" data-filter="amboss_plan">📚 DGAI/AMBOSS Lernplan</button>
         <button class="filter-chip" data-filter="weakness">🎯 Schwachstellen-Fokus</button>
         <button class="filter-chip" data-filter="unanswered">Offen (Unbeantwortet)</button>
         <button class="filter-chip" data-filter="incorrect">Falsch beantwortet</button>
@@ -177,10 +178,19 @@
 
       <div class="mode-selector">
         <select id="type-filter">
-          <option value="all">Alle Formate (654)</option>
+          <option value="all">Alle Formate (664)</option>
           <option value="options">✅ Aussagenbewertung (332)</option>
-          <option value="open">📋 Fallbasierte Prüfung (304)</option>
+          <option value="open">📋 Fallbasierte Prüfung (314)</option>
           <option value="image">🖼️ Befund- & Bilddiagnostik (33)</option>
+        </select>
+
+        <select id="amboss-pillar-filter" title="AMBOSS & DGAI / BDA Lernplan nach den 5 Hauptsäulen">
+          <option value="all">📚 Alle DGAI/AMBOSS Säulen (664)</option>
+          <option value="anaesthesie">💉 1. Anästhesie & Spezielle Verfahren</option>
+          <option value="intensiv">🫁 2. Intensivmedizin & Sepsis</option>
+          <option value="notfall">🚨 3. Notfallmedizin & Reanimation</option>
+          <option value="schmerz">🕊️ 4. Schmerztherapie & Palliativmedizin</option>
+          <option value="pharmakologie">💊 5. Pharmakologie & Grundlagen</option>
         </select>
 
         <select id="category-filter">
@@ -229,12 +239,13 @@
         <div class="quiz-meta">
           <span id="badge-hy" class="badge badge-hy" style="display: none;">⭐ ÄKNO Top-Frage</span>
           <span id="badge-type" class="badge badge-type">Prüfungsformat</span>
+          <span id="badge-amboss-pillar" class="badge badge-amboss-pillar" title="DGAI & BDA / AMBOSS Säule">📚 DGAI Säule</span>
           <span id="badge-category" class="badge badge-category">Kategorie</span>
           <span id="badge-source" class="badge badge-source">Quelle</span>
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
         </div>
         <div class="quiz-header-right">
-          <div id="question-number" class="question-number">Frage 1 von 654</div>
+          <div id="question-number" class="question-number">Frage 1 von 664</div>
         </div>
       </div>
 
@@ -1004,9 +1015,9 @@
       </div>
       <div class="modal-body">
         <div class="jump-modal-controls" style="margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-          <input type="text" id="jump-search-input" class="search-input" placeholder="🔍 In 654 Fragen suchen (z.B. Maligne Hyperthermie, LAST, Aortenstenose, DLT)..." style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 0.9rem;" />
+          <input type="text" id="jump-search-input" class="search-input" placeholder="🔍 In 664 Fragen suchen (z.B. Maligne Hyperthermie, LAST, Aortenstenose, DLT)..." style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 0.9rem;" />
           <div class="jump-filter-chips" style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
-            <button class="filter-chip active jump-chip" data-jump-filter="all">Alle (654)</button>
+            <button class="filter-chip active jump-chip" data-jump-filter="all">Alle (664)</button>
             <button class="filter-chip jump-chip" data-jump-filter="dus">🏛️ Düsseldorf</button>
             <button class="filter-chip jump-chip" data-jump-filter="high_yield">⭐ Top-Fragen</button>
             <button class="filter-chip jump-chip" data-jump-filter="unanswered">Offen</button>
@@ -1033,7 +1044,7 @@
         
         <div class="settings-box highlight-box" style="margin-bottom: 1.25rem;">
           <h3 style="margin-top: 0;">🎯 Speziell für die ÄKNO Düsseldorf (Haus der Ärzteschaft)</h3>
-          <p>Dieses High-Yield Lernsystem wurde gezielt für Melis und die mündliche Facharztprüfung an der <strong>Ärztekammer Nordrhein</strong> entwickelt. Es umfasst <strong>654 klinisch geprüfte Fragen</strong> (322 komplexe Kasuistiken & <strong>54 authentische Düsseldorfer Prüfungsprotokolle</strong>) und bildet das reale Prüfungsgespräch 1:1 nach.</p>
+          <p>Dieses High-Yield Lernsystem wurde gezielt für Melis und die mündliche Facharztprüfung an der <strong>Ärztekammer Nordrhein</strong> entwickelt. Es umfasst <strong>664 klinisch geprüfte Fragen</strong> (332 komplexe Kasuistiken & <strong>54 authentische Düsseldorfer Prüfungsprotokolle</strong>) und bildet das reale Prüfungsgespräch 1:1 nach.</p>
         </div>
 
         <div class="guide-section" style="margin-bottom: 1.5rem;">

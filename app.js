@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     subtitleMode: false, // Default collapsed so page is clean & uncluttered; user can click small button directly below or press U
     filterMode: 'all',  // 'all', 'unanswered', 'incorrect', 'review'
     typeFilter: 'all',    // 'all', 'options', 'open', 'image'
+    ambossPillarFilter: 'all', // 'all', 'anaesthesie', 'intensiv', 'notfall', 'schmerz', 'pharmakologie'
     categoryFilter: 'all',
     randomOrder: false,
     studyMode: 'simulation', // 'simulation' (Mode A), 'guideline' (Mode B), 'flashcard' (Mode C)
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elProgressBar = document.getElementById('progress-bar-fill');
   
   const elTypeFilter = document.getElementById('type-filter');
+  const elAmbossPillarFilter = document.getElementById('amboss-pillar-filter');
   const elCategoryFilter = document.getElementById('category-filter');
   const elSearchInput = document.getElementById('search-input');
   const elFilterChips = document.querySelectorAll('.filter-chip');
@@ -87,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elModeTabCloze = document.getElementById('mode-tab-cloze');
   
   const elBadgeType = document.getElementById('badge-type');
+  const elBadgeAmbossPillar = document.getElementById('badge-amboss-pillar');
   const elBadgeCategory = document.getElementById('badge-category');
   const elBadgeSource = document.getElementById('badge-source');
   const elBadgeReview = document.getElementById('badge-review');
@@ -419,6 +422,91 @@ document.addEventListener('DOMContentLoaded', () => {
     return q.question_type === 'open' || !q.options || q.options.length === 0;
   }
 
+  // --- DGAI & BDA / AMBOSS 5 Hauptsäulen Curriculum Mapping ---
+  const AMBOSS_PILLARS = {
+    anaesthesie: {
+      id: 'anaesthesie',
+      label_de: '1️⃣ Säule 1: Anästhesie & Spezielle Verfahren',
+      label_tr: '1️⃣ Sütun 1: Anestezi ve Özel Yöntemler',
+      short_de: '1. Anästhesie & OP',
+      short_tr: '1. Anestezi & Cerrahi',
+      icon: '💉',
+      color: '#3b82f6'
+    },
+    intensiv: {
+      id: 'intensiv',
+      label_de: '2️⃣ Säule 2: Intensivmedizin & Sepsis',
+      label_tr: '2️⃣ Sütun 2: Yoğun Bakım ve Sepsis',
+      short_de: '2. Intensiv & Sepsis',
+      short_tr: '2. Yoğun Bakım',
+      icon: '🫁',
+      color: '#10b981'
+    },
+    notfall: {
+      id: 'notfall',
+      label_de: '3️⃣ Säule 3: Notfallmedizin & Reanimation',
+      label_tr: '3️⃣ Sütun 3: Acil Tıp ve Resüsitasyon',
+      short_de: '3. Notfall & Reanimation',
+      short_tr: '3. Acil & CPR',
+      icon: '🚨',
+      color: '#ef4444'
+    },
+    schmerz: {
+      id: 'schmerz',
+      label_de: '4️⃣ Säule 4: Schmerztherapie & Palliativmedizin',
+      label_tr: '4️⃣ Sütun 4: Ağrı Tedavisi ve Palyatif Tıp',
+      short_de: '4. Schmerz & Palliativ',
+      short_tr: '4. Ağrı & Palyatif',
+      icon: '🕊️',
+      color: '#8b5cf6'
+    },
+    pharmakologie: {
+      id: 'pharmakologie',
+      label_de: '5️⃣ Säule 5: Pharmakologie & Grundlagen',
+      label_tr: '5️⃣ Sütun 5: Farmakoloji ve Temel Bilgiler',
+      short_de: '5. Pharmakologie',
+      short_tr: '5. Farmakoloji',
+      icon: '💊',
+      color: '#f59e0b'
+    }
+  };
+
+  function getAmbossPillar(q) {
+    if (!q) return AMBOSS_PILLARS.anaesthesie;
+    if (q.amboss_pillar && AMBOSS_PILLARS[q.amboss_pillar]) {
+      return AMBOSS_PILLARS[q.amboss_pillar];
+    }
+    const cat = (q.category || '').toLowerCase();
+    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '')).toLowerCase();
+
+    if (cat.includes('schmerz') || cat.includes('palliativ') || cat.includes('crps') || 
+        text.includes('palliativ') || text.includes('who-stufenschema') || text.includes('neuropathisch') ||
+        text.includes('tumorschmerz') || text.includes('patientenverfügung') || text.includes('therapieziel')) {
+      return AMBOSS_PILLARS.schmerz;
+    }
+
+    if (cat.includes('notfall') || cat.includes('reanimation') || cat.includes('schockraum') || 
+        cat.includes('verbrennung') || cat.includes('anaphylaxie') || text.includes('reanimation') || 
+        text.includes('koniotomie') || text.includes('als-algorithmus')) {
+      return AMBOSS_PILLARS.notfall;
+    }
+
+    if (cat.includes('intensiv') || cat.includes('sepsis') || cat.includes('blutgase') || 
+        cat.includes('elektrolyt') || cat.includes('weaning') || cat.includes('chemie') || 
+        cat.includes('delir') || cat.includes('hirntod') || text.includes('bga') || 
+        text.includes('sepsis-3') || text.includes('ards') || text.includes('cam-icu')) {
+      return AMBOSS_PILLARS.intensiv;
+    }
+
+    if (cat.includes('pharmakol') || cat.includes('toxikol') || cat.includes('transfusion') || 
+        cat.includes('hämostase') || cat.includes('monitoring') || cat.includes('blut') || 
+        text.includes('muskelrelaxanz') || text.includes('lokalanästhetik') || text.includes('sugammadex')) {
+      return AMBOSS_PILLARS.pharmakologie;
+    }
+
+    return AMBOSS_PILLARS.anaesthesie;
+  }
+
   // --- Filtering Question Bank ---
   function getFilteredQuestions() {
     let list = EXAM_QUESTIONS.filter(q => {
@@ -458,6 +546,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      if (state.ambossPillarFilter && state.ambossPillarFilter !== 'all') {
+        const p = getAmbossPillar(q);
+        if (p.id !== state.ambossPillarFilter) return false;
+      }
+
       if (state.categoryFilter !== 'all' && q.category !== state.categoryFilter) {
         return false;
       }
@@ -469,6 +562,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sm2Item = state.sm2Data ? state.sm2Data[q.id] : null;
         if (!sm2Item) return false;
         return Date.now() >= (sm2Item.dueDate || 0);
+      }
+      if (state.filterMode === 'amboss_plan') {
+        return !!q.is_amboss_curriculum || (q.source_book && q.source_book.includes('AMBOSS')) || (q.amboss_pillar !== undefined);
       }
       if (state.filterMode === 'high_yield') {
         return !!q.is_high_yield;
@@ -2166,6 +2262,13 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (category.includes('Notfall') || category.includes('Reanimation')) clinicalContext = 'Erweiterte Reanimation (ALS / ERC)';
     else if (category.includes('Intensiv') || category.includes('Sepsis')) clinicalContext = 'Intensivmedizin & Schocktherapie';
     else if (category.includes('Transfusion') || category.includes('Hämostase')) clinicalContext = 'Massivtransfusion & Gerinnungsmanagement';
+    else if (category.includes('Palliativ') || category.includes('Ethik')) clinicalContext = 'Palliativmedizin & Ethische Entscheidungen';
+    else if (category.includes('Geriatrie') || category.includes('Delir')) clinicalContext = 'Geriatrische Anästhesie & Delirmanagement';
+    else if (category.includes('Bariatrie') || category.includes('Adipositas')) clinicalContext = 'Bariatrische Anästhesie & Adipositas';
+    else if (category.includes('Schrittmacher') || category.includes('ICD')) clinicalContext = 'Kardiale Implantate (Schrittmacher / ICD)';
+    else if (category.includes('Weaning')) clinicalContext = 'Respiratorentwöhnung (Weaning) & Tracheotomie';
+    else if (category.includes('Schmerz') || category.includes('CRPS')) clinicalContext = 'Spezielle Schmerztherapie & Chronischer Schmerz';
+    else if (category.includes('Hirntod')) clinicalContext = 'Irreversibler Hirnfunktionsausfall (IHA)';
 
     // 2. Realistic Vitals & BGA Panel tailored to topic
     const vitals = getRealisticVitalsForCase(category, stem, answer);
@@ -2369,6 +2472,83 @@ document.addEventListener('DOMContentLoaded', () => {
         trap_tr: 'Plan değiştirmeden 3\'ten fazla başarısız entübasyon denemesi veya CICO durumunda koniyotomide tereddüt etmek',
         keywords: 'DGAI-Stufenplan, Videolaryngoskopie, Larynxmaske Plan B, eFONA Skalpell-Bougie-Tubus Plan D, 100% O₂',
         keywords_tr: 'DGAI basamaklı planı, Videolaringoskopi, Plan B Laringeal Maske, Plan D Skalpel-buji-tüp eFONA, %100 O2'
+      };
+    } else if (text.includes('palliativ') || text.includes('therapiebegrenz') || text.includes('patientenverfügung') || text.includes('rasselatmung') || text.includes('sterbeprozess')) {
+      return {
+        name: 'DGAI / BDA Kommission Palliativmedizin & Ethik',
+        hospital: 'Ärztekammer Nordrhein (Düsseldorf) · Sektion Ethik & Therapiezieländerung',
+        focus: 'Therapiezieländerung nach BÄK-Grundsätzen, Patientenverfügung (§ 1901a BGB), Symptomkontrolle mit Morphin & Midazolam, Verbot aktiver Sterbehilfe',
+        focus_tr: 'BÄK ilkelerine göre tedavi hedefi değişimi, Hasta vasiyeti (§ 1901a BGB), Morfin ve Midazolam ile semptom kontrolü, Aktif ötenazi yasağı',
+        trap: 'Verwechslung von passiver Sterbehilfe mit aktiver Tötung (§ 216 StGB) oder Vorenthaltung von Opioiden bei Erstickungsnot',
+        trap_tr: 'Pasif ötenazi/tedaviyi kesme ile aktif öldürmeyi karıştırmak veya boğulan hastaya solunumu baskılar diye morfin vermemek',
+        keywords: 'BÄK-Grundsätze, Therapiezieländerung, Morphin Perfusor, Midazolam, Butylscopolamin bei Rasselatmung, § 1901a BGB',
+        keywords_tr: 'BÄK ilkeleri, Tedavi hedefi değişimi, Morfin perfüzörü, Midazolam, Hırıltıda Butilskopolamin, § 1901a BGB'
+      };
+    } else if (text.includes('delir') || text.includes('geriatri') || text.includes('cam-icu') || text.includes('frailty') || text.includes('schenkelhals')) {
+      return {
+        name: 'DGAI / DGG Sektion Geriatrische Anästhesie & Delir',
+        hospital: 'Klinikum Leverkusen / UK Düsseldorf · Altersmedizinische Kommission',
+        focus: 'Postoperatives Delir (CAM/CAM-ICU), Hypoaktives Delir (hohe Letalität!), Vermeidung von Benzodiazepinen, PENG-Block bei Schenkelhalsfraktur',
+        focus_tr: 'Postoperatif deliryum (CAM/CAM-ICU), Hipoaktif deliryum (yüksek mortalite!), Benzodiyazepinlerden kaçınma, Kalça kırığında PENG bloğu',
+        trap: 'Verabreichung von Benzodiazepinen beim Delir (K.O.-Kriterium!) oder Übersehen des hypoaktiven Delirs',
+        trap_tr: 'Deliryumda benzodiyazepin vermek (kesin K.O. kriteri!) veya sessiz hipoaktif deliryumu gözden kaçırmak',
+        keywords: 'CAM-ICU, Hypoaktives Delir, Benzodiazepin-Verbot, Haloperidol/Dexmedetomidin, PENG-Block, MAP ≥ 65 mmHg',
+        keywords_tr: 'CAM-ICU, Hipoaktif deliryum, Benzodiyazepin yasağı, Haloperidol/Deksmedetomidin, PENG bloğu, MAP >= 65 mmHg'
+      };
+    } else if (text.includes('schrittmacher') || text.includes('icd') || text.includes('magnetauflage') || text.includes('kauter')) {
+      return {
+        name: 'DGAI / DGK Arbeitsgruppe Perioperative Schrittmacher- & ICD-Therapie',
+        hospital: 'Universitätsklinikum Düsseldorf (UKD) · Rhythmologie & Kardiotechnik',
+        focus: 'Elektromagnetische Interferenz (EMI), Magnetauflage (PM: VOO/DOO vs. ICD: Schock-Deaktivierung), externe Defibrillator-Pads vor Einleitung',
+        focus_tr: 'Elektromanyetik girişim (EMI), Mıknatıs etkisi (PM: VOO/DOO asenkron vs. ICD: Şok iptali), indüksiyondan önce harici defibrilatör pedleri',
+        trap: 'Annahme, eine Magnetauflage schalte einen ICD in den VOO-Modus (K.O.-Fehler!) oder Fehlen externer Defi-Pads',
+        trap_tr: 'Mıknatısın ICD\'yi VOO moduna geçirdiğini sanmak (K.O. hatası!) veya masada harici defibrilatör pedlerinin olmaması',
+        keywords: 'Magnetauflage ICD (nur Schock AUS!), VOO-Reprogrammierung bei Abhängigkeit, externe Defi-Pads VOR Einleitung, bipolare Diathermie',
+        keywords_tr: 'ICD mıknatıs (sadece şok KAPALI!), Pace bağımlısında VOO ayarı, İndüksiyondan ÖNCE harici pedler, bipolar koter'
+      };
+    } else if (text.includes('bariatr') || text.includes('adipositas') || text.includes('ramped') || text.includes('magergewicht') || text.includes('idealgewicht')) {
+      return {
+        name: 'DGAI / CAAD Arbeitskreis Bariatrische Anästhesie',
+        hospital: 'Adipositas-Zentrum NRW · Klinikum Leverkusen / UK Köln',
+        focus: 'Ramped Position (Ear-to-Sternal-Notch), Rocuronium nach IBW, Sugammadex nach TBW, Lungenprotektive Beatmung nach IBW mit PEEP 10–14 cmH2O',
+        focus_tr: 'Ramped pozisyonu (Kulak-sternum hattı), İdeal kiloya göre Roküronyum, Gerçek kiloya göre Sugammadeks, İdeal kiloya göre koruyucu ventilasyon ve yüksek PEEP',
+        trap: 'Rocuronium oder Tidalvolumen nach Ist-Gewicht dosieren (massive Überdosierung & Barotrauma!)',
+        trap_tr: 'Roküronyum veya tidal volümü gerçek kiloya göre hesaplamak (ağır aşırı doz & barotravma!)',
+        keywords: 'Ramped Position, TBW vs. IBW vs. LBW, Rocuronium nach IBW, Sugammadex nach TBW, Vt 6–8 ml/kg IBW, PEEP 10–14',
+        keywords_tr: 'Ramped pozisyonu, TBW vs IBW vs LBW, İdeal kiloya Roküronyum, Gerçek kiloya Sugammadeks, Vt 6-8 ml/kg IBW, PEEP 10-14'
+      };
+    } else if (text.includes('weaning') || text.includes('tracheotomie') || text.includes('sbt') || text.includes('rsbi') || text.includes('yang-tobin')) {
+      return {
+        name: 'DGAI / DIVI Sektion Respiratorisches Versagen & Weaning',
+        hospital: 'Universitätsklinikum Düsseldorf · Operative Intensivmedizin',
+        focus: 'Spontaneous Breathing Trial (SBT), Yang-Tobin-Index (RSBI < 105), Perkutane Dilatationstracheotomie (PDT nach Ciaglia), Kriterien & Kontraindikationen',
+        focus_tr: 'Spontan solunum denemesi (SBT), Yang-Tobin indeksi (RSBI < 105), Perkütan dilatasyonel trakeostomi (Ciaglia), Kriterler ve kontrendikasyonlar',
+        trap: 'Extubation trotz RSBI > 105 oder PDT bei Thrombozytopenie < 50.000/µl ohne Abklärung',
+        trap_tr: 'RSBI > 105 iken hastayı ekstübe etmek veya Trombosit < 50.000/µL iken perkütan trakeostomiye girişmek',
+        keywords: 'SBT 30 min, RSBI = f / Vt (Ziel < 105), Abbruchkriterien, PDT nach Ciaglia, Tracheotomie nach 10–14 Tagen',
+        keywords_tr: 'SBT 30 dk, RSBI = solunum sayısı / Vt (Hedef < 105), Sonlandırma kriterleri, Ciaglia PDT, 10-14 günde trakeostomi'
+      };
+    } else if (text.includes('crps') || text.includes('tumorschmerz') || text.includes('allodynie') || text.includes('budapest') || text.includes('hyperalgesie')) {
+      return {
+        name: 'DGAI / DGS Sektion Spezielle Schmerztherapie & Palliativmedizin',
+        hospital: 'Schmerzklinik Düsseldorf · ÄKNO Weiterbildungskommission',
+        focus: 'CRPS-Diagnostik nach Budapest-Kriterien, Allodynie vs. Hyperalgesie, WHO-Stufenschema Stufe III bei Tumorschmerz, obligate Laxantien-Prophylaxe ab Tag 1',
+        focus_tr: 'Budapeşte kriterlerine göre CRPS tanısı, Allodini vs Hiperaljezi, Kanser ağrısında doğrudan WHO 3. basamak, 1. günden itibaren zorunlu laksatif profilaksisi',
+        trap: 'Erneute Gipsruhigstellung bei CRPS (K.O.-Kriterium!) oder Verordnung von Opioiden ohne Laxans (Ileusgefahr!)',
+        trap_tr: 'CRPS hastasını tekrar alçıya almak (kesin K.O. kriteri!) veya opioid verirken laksatif yazmamak (ileus riski!)',
+        keywords: 'Budapest-Kriterien, Allodynie, keine Ruhigstellung!, Pregabalin, Stellatumblockade, WHO Stufe III, Macrogol ab Tag 1, transmukosales Fentanyl',
+        keywords_tr: 'Budapeşte kriterleri, Allodini, immobilizasyon yasak!, Pregabalin, Stellat blokajı, WHO 3. basamak, 1. günden Makrogol, transmukozal Fentanil'
+      };
+    } else if (text.includes('hirntod') || text.includes('hirnfunktionsausfall') || text.includes('apnoe-test') || text.includes('bäk-richtlinie')) {
+      return {
+        name: 'BÄK / DGAI Kommission Irreversibler Hirnfunktionsausfall (IHA)',
+        hospital: 'Neurologisch-Neurochirurgische Intensivmedizin · UK Düsseldorf',
+        focus: 'BÄK-Richtlinie zum Nachweis des IHA, Ausschluss reversibler Ursachen (Hypothermie < 35°C, Sedativa, Schock), Apnoe-Test (pCO2 ≥ 60 mmHg), 2 unabhängige Fachärzte',
+        focus_tr: 'BÄK beyin ölümü kılavuzu, Geri döndürülebilir nedenlerin dışlanması (Hipotermi < 35°C, sedatifler, şok), Apne testi (PaCO2 >= 60 mmHg), 2 bağımsız uzman hekim',
+        trap: 'Apnoe-Test ohne Voroxygenierung oder bei Hypothermie < 35°C, Durchführung durch Transplantationsmediziner',
+        trap_tr: 'Preoksijenizasyonsuz veya vücut sıcaklığı < 35°C iken apne testi yapmak, nakil ekibindeki hekime muayene yaptırmak',
+        keywords: 'BÄK-Richtlinie, Hirnstammreflexe, Apnoe-Test pCO2 ≥ 60 mmHg, Kerntemperatur ≥ 35°C, 2 unabhängige Fachärzte (1 Neurologe/Neurochirurg)',
+        keywords_tr: 'BÄK kılavuzu, Beyin sapı refleksleri, Apne testi PaCO2 >= 60 mmHg, İç sıcaklık >= 35°C, 2 bağımsız uzman hekim (1 nörolog/beyin cerrahı)'
       };
     } else if (q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'))) {
       return {
@@ -3104,7 +3284,208 @@ Tedavi:
       };
     }
 
-    // 15. Default / Allgemeine Anästhesie
+    // 15. Palliativmedizin & Ethik
+    if (category.includes('Palliativ') || category.includes('Ethik')) {
+      return {
+        question_de: 'Der Prüfer fragt vertiefend: "Ein Patient im Sterbeprozess leidet trotz Sauerstoffgabe unter quälender Erstickungsangst. Dürfen Sie Morphin und Midazolam zur Symptomkontrolle titrieren, auch wenn dies möglicherweise den Atemantrieb dämpft? Wie begründen Sie dies ethisch und juristisch?"',
+        question_tr: 'Jüri derinleştiriyor: "Ölüm sürecindeki hasta oksijene rağmen boğulma korkusu yaşıyor. Solunum dürtüsünü baskılayabileceğini bilseniz dahi morfin ve midazolam titre eder misiniz? Bunu etik ve hukuki olarak nasıl gerekçelendirirsiniz?"',
+        answer_de: `Ethisch-juristische Begründung nach BÄK & BGB:
+1. Prinzip der Doppelwirkung (Erlaubte palliative Symptomlinderung):
+   • Das primäre, intendierte Behandlungsziel ist die Linderung des unerträglichen Erstickungsleidens und der Todesangst.
+   • Eine eventuelle Lebensverkürzung wird als unbeabsichtigte, aber unvermeidbare Nebenwirkung in Kauf genommen (keine strafbare Tötung auf Verlangen nach § 216 StGB).
+2. Rechtliche Pflicht zur Leidenslinderung (§ 1901a BGB):
+   • Das Vorenthalten von Opioiden aus Furcht vor Atemdepression bei Sterbenden ist ein schwerwiegender Behandlungsfehler und Verstoß gegen das Gebot der Schmerzlinderung!
+3. Praktische Durchführung:
+   • Morphin i.v. titriert (z.B. 2–5 mg i.v., gefolgt von Perfusor 1–3 mg/h).
+   • Midazolam i.v. (1–3 mg/h) zur Anxiolyse.
+   • Bei Rasselatmung Butylscopolamin (20 mg s.c./i.v.), kein tiefes tracheales Absaugen!`,
+        answer_tr: `BÄK ve Medeni Kanun Çerçevesinde Gerekçelendirme:
+1. Çift Etki İlkesi (Palyatif Semptom Kontrolü):
+   • Asıl ve hedeflenen amaç boğulma ıstırabı ve ölüm korkusunu dindirmektir.
+   • Yaşam süresinin kısalma ihtimali istenmeyen ikincil bir etki olarak kabul edilir (aktif ötenazi değildir, suç teşkil etmez).
+2. Ağrıyı Dindirme Zorunluluğu:
+   • Solunum baskılanır korkusuyla terminal dönemde morfin vermemek ağır bir hekimlik hatasıdır!
+3. Uygulama:
+   • Morfin i.v. titrasyonu (2-5 mg bolus, 1-3 mg/saat perfüzör).
+   • Anksiyete için Midazolam (1-3 mg/saat).
+   • Ölüm hırıltısında Butilskopolamin (20 mg), asla derin aspirasyon yapılmaz!`
+      };
+    }
+
+    // 16. Geriatrie & Delirmanagement
+    if (category.includes('Geriatrie') || category.includes('Delir')) {
+      return {
+        question_de: 'Der Prüfer fragt: "Auf Station wird ein hochbetagter Patient nach Schenkelhalsfraktur zunehmend apathisch und desorientiert. Die Pflegekraft schlägt Lorazepam zur Nacht vor. Wie bewerten Sie diesen Vorschlag und wie handeln Sie leitliniengerecht?"',
+        question_tr: 'Jüri soruyor: "Serviste kalça kırığı ameliyatı geçiren yaşlı hasta giderek apatikleşiyor ve desoryente oluyor. Hemşire gece uyuması için Lorazepam öneriyor. Bu öneriyi nasıl değerlendirir ve kılavuza göre nasıl hareket edersiniz?"',
+        answer_de: `Leitliniengerechte Delirtherapie (AWMF / DGAI):
+1. K.O.-Kriterium Benzodiazepine:
+   • Der Vorschlag, Lorazepam zu geben, ist STRENG KONTRAINDIZIERT (außer bei Alkoholentzug)!
+   • Benzodiazepine triggern paradoxe Reaktionen, vertiefen das Delir, erhöhen das Sturzrisiko und steigern die Mortalität!
+2. Erkennung des hypoaktiven Delirs:
+   • Apathie und Rückzug sind typisch für das letale hypoaktive Delir (CAM / CAM-ICU Score erheben).
+3. Sofortiges multimodales Delir-Management:
+   • Somatische Trigger behandeln: Harnverhalt sonographieren, Schmerztherapie optimieren (PENG-Block/Nicht-Opioide), Dehydratation und Elektrolyte ausgleichen, Anticholinergika absetzen.
+   • Nicht-medikamentös: Brille/Hörgeräte anpassen, Tag-Nacht-Rhythmus, Reorientierung.
+   • Medikamentös nur bei Eigengefährdung: Haloperidol 0,5–1 mg oral/i.v. oder Pipamperon.`,
+        answer_tr: `Kılavuza Uygun Deliryum Yönetimi:
+1. K.O. Kriteri - Benzodiyazepin Yasağı:
+   • Lorazepam önerisi KESİNLİKLE YANLIŞTIR (alkol yoksunluğu hariç kontrendikedir)!
+   • Benzodiyazepinler paradoksal reaksiyon yapar, deliryumu azdırır ve ölümü artırır!
+2. Hipoaktif Deliryum Tanısı:
+   • Apatik ve sessiz kalma en tehlikeli hipoaktif deliryum formudur (CAM testi yapın).
+3. Çok Yönlü Tedavi:
+   • Tetikleyicileri tara: İdrar sondası tak/kontrol et, ağrıyı kes (PENG bloğu), susuzluğu gider, antikolinerjikleri kes.
+   • İlaç dışı: Gözlük ve işitme cihazını taktır, gece-gündüz ışık düzeni.
+   • İlaç: Gerekirse düşük doz Haloperidol (0,5-1 mg) veya Pipamperon.`
+      };
+    }
+
+    // 17. Herzschrittmacher & ICD
+    if (category.includes('Schrittmacher') || category.includes('ICD')) {
+      return {
+        question_de: 'Der Prüfer interveniert: "Während des Kautereinsatzes bei einem Patienten mit implantiertem ICD schlägt der Operateur vor, einfach einen Ringmagneten auf das Aggregat zu legen und ohne Rücksprache weiterzuoperieren. Schützt dies einen schrittmacherabhängigen Patienten vollständig?"',
+        question_tr: 'Jüri araya giriyor: "ICD\'li bir hastada koter kullanılırken cerrah agregat üzerine bir halka mıknatıs koyup devam etmeyi öneriyor. Bu önlem pace-bağımlı bir hastayı tamamen korur mu?"',
+        answer_de: `Sicherheitsmanagement bei ICD & Diathermie (DGAI/DGK):
+1. Das K.O.-Kriterium der Magnetauflage beim ICD:
+   • NEIN! Beim ICD deaktiviert die Magnetauflage NUR DIE SCHOCKABGABE (Tachyarrhythmie-Erkennung)!
+   • Sie schaltet die Schrittmacherfunktion in der Regel NICHT in den asynchronen VOO-Modus!
+   • Ein schrittmacherabhängiger Patient erleidet bei Diathermie-Interferenz (Oversensing) weiterhin eine Inhibierung der Stimulation und ASYSTOLIE!
+2. Zwingendes Vorgehen bei Schrittmacherabhängigkeit:
+   • Vorab-Umprogrammierung durch den Kardiologen per Programmiergerät auf den asynchronen Modus (VOO/DOO).
+3. Unverzichtbare Sicherheitsstandards:
+   • EXTERNE DEFIBRILLATOR-PADS VOR EINLEITUNG anterior-posterior aufkleben!
+   • Bipolaren Kauter bevorzugen, Neutralelektrode am Oberschenkel (Strompfad kreuzt nicht das Aggregat), kurze Kauterstöße (< 5 s).`,
+        answer_tr: `ICD ve Koter Güvenlik Standartları:
+1. Mıknatıs K.O. Hatası:
+   • HAYIR! Mıknatıs ICD'de SADECE ŞOK ÖZELLİĞİNİ kapatır!
+   • Cihazı asenkron VOO moduna GEÇİRMEZ! Pace-bağımlı hastada koter paraziti pilden uyarı çıkmasını engelleyerek ASİSTOLİYE yol açar!
+2. Pace-Bağımlı Hastada Doğru Yaklaşım:
+   • Ameliyattan önce kardiyolog tarafından programlayıcı cihazla asenkron moda (VOO/DOO) ayarlanmalıdır.
+3. Zorunlu Güvenlik Önlemleri:
+   • İndüksiyondan ÖNCE harici defibrilatör pedleri yapıştırılmalıdır!
+   • Mümkünse bipolar koter, nötr plak uyluğa, kısa koter vuruşları (< 5 sn).`
+      };
+    }
+
+    // 18. Bariatrie & Adipositas permagna
+    if (category.includes('Bariatrie') || category.includes('Adipositas')) {
+      return {
+        question_de: 'Der Prüfer rechnet nach: "Bei einer Patientin mit 150 kg Körpergewicht (Idealgewicht 60 kg) dosieren Sie Rocuronium und Sugammadex sowie das Tidalvolumen. Nach welchen Gewichtsmaßen richten Sie sich jeweils und warum?"',
+        question_tr: 'Jüri hesaplatıyor: "150 kg ağırlığındaki bir hastada (ideal kilo 60 kg) Roküronyum, Sugammadeks ve tidal volüm dozlarını hesaplıyorsunuz. Hangi ağırlık ölçüsüne göre hesaplarsınız ve neden?"',
+        answer_de: `Pharmakologische Dosierung & Beatmung bei Adipositas permagna:
+1. ROCURONIUM: STRIKT NACH IDEALGEWICHT (IBW)!
+   • 0,6 mg/kg IBW (bei 60 kg = ~36 mg; RSI: 1,0 mg/kg IBW = ~60 mg).
+   • Dosierung nach Ist-Gewicht (150 mg) führt zu massiver Intoxikation und stundenlanger Blockade (K.O.-Kriterium!).
+2. SUGAMMADEX: NACH REALEM KÖRPERGEWICHT (TBW)!
+   • 2–4 mg/kg TBW (bei 150 kg = 300–600 mg).
+   • Sugammadex verteilt sich im gesamten Extrazellulärvolumen und bindet freies Rocuronium 1:1; Unterdosierung nach IBW führt zu Curarisierungs-Rezidiv!
+3. TIDALVOLUMEN (Vt): STRIKT NACH IDEALGEWICHT (IBW)!
+   • 6–8 ml/kg IBW (~360–480 ml), niemals nach Ist-Gewicht (150 kg x 7 ml = 1.050 ml -> tödliches Barotrauma!).
+   • Ausgleich des erhöhten Pmax durch PEEP (10–14 cmH2O) und Rekrutierung.`,
+        answer_tr: `Morbid Obezitede Dozlama ve Ventilasyon İlkeleri:
+1. ROKÜRONYUM: KESİNLİKLE İDEAL KİLOYA (IBW) GÖRE!
+   • 0,6-1,0 mg/kg IBW (60 kg için ~36-60 mg). Gerçek kiloya göre (150 mg) verilirse hasta felç kalır ve uyanamaz!
+2. SUGAMMADEKS: GERÇEK VÜCUT AĞIRLIĞINA (TBW) GÖRE!
+   • 2-4 mg/kg TBW (150 kg için 300-600 mg). Sugammadeks molekülleri 1:1 bağladığından ideal kiloya göre verilirse yetersiz kalır (blok geri döner!).
+3. TİDAL HACİM: KESİNLİKLE İDEAL KİLOYA (IBW) GÖRE!
+   • 6-8 ml/kg IBW (~360-480 ml). 150 kg'a göre 1000 ml solutmak barotravma ile akciğeri patlatır!
+   • Atelektaziler yüksek PEEP (10-14 cmH2O) ile açılır.`
+      };
+    }
+
+    // 19. Respirator-Weaning & Tracheotomie
+    if (category.includes('Weaning') || category.includes('Tracheotomie')) {
+      return {
+        question_de: 'Der Prüfer fragt: "Auf der Intensivstation führen Sie einen 30-minütigen SBT durch. Die Atemfrequenz beträgt 36/min, das Tidalvolumen 300 ml. Extubieren Sie diesen Patienten? Wie lautet der RSBI und wann ist eine Dilatationstracheotomie indiziert?"',
+        question_tr: 'Jüri soruyor: "Yoğun bakımda 30 dakikalık SBT yapıyorsunuz. Solunum sayısı 36/dk, tidal volüm 300 ml. Bu hastayı ekstübe eder misiniz? RSBI nedir ve ne zaman dilatasyonel trakeostomi endikedir?"',
+        answer_de: `Weaning-Evaluation & Tracheotomie-Leitlinie:
+1. RSBI-Berechnung (Yang & Tobin):
+   • Formel: RSBI = Atemfrequenz (f in 1/min) / Tidalvolumen (Vt in Litern).
+   • Rechnung: RSBI = 36 / 0,30 l = 120!
+   • Konsequenz: Ein RSBI > 105 belegt eine ineffektive flache Tachypnoe und sagt Weaning-Versagen voraus!
+   • Der Patient DARF NICHT EXTUBIERT WERDEN (K.O.-Kriterium)! Beatmungsunterstützung sofort wieder erhöhen.
+2. Indikation zur Perkutanen Dilatationstracheotomie (PDT nach Ciaglia):
+   • Bei absehbar prolongiertem Weaning (> 10–14 Tage Intubation) oder rezidivierendem Extubationsversagen.
+   • Vorteile: Senkung des Atemwegswiderstands/Totraums, Schonung der Stimmlippen, orale Kost, verbesserte Bronchialtoilette.
+   • Kontraindikationen beachten: Thrombozytopenie < 50.000/µl, Quick < 50%, lokale Infektion, schwere Hypoxie (PEEP > 10 cmH2O).`,
+        answer_tr: `Weaning Değerlendirmesi ve Trakeostomi Kılavuzu:
+1. RSBI Hesabı (Yang & Tobin):
+   • Formül: RSBI = Solunum Sayısı / Tidal Hacim (Litre).
+   • Hesap: RSBI = 36 / 0,30 = 120!
+   • Karar: RSBI > 105 ise ekstübasyon başarısızlığı kesindir!
+   • HASTA KESİNLİKLE EKSTÜBE EDİLMEZ (K.O. Kriteri)! Ventilasyon desteği derhal artırılır.
+2. Perkütan Trakeostomi (PDT Ciaglia) Endikasyonu:
+   • 10-14 günü aşan uzamış mekanik ventilasyonda uygulanır.
+   • Avantajları: Solunum işini ve ölü boşluğu azaltır, ses tellerini korur, sekresyon temizliğini kolaylaştırır.
+   • Kontrendikasyonlar: Trombosit < 50.000/µL, Quick < %50, boyun enfeksiyonu, ağır hipoksi.`
+      };
+    }
+
+    // 20. Spezielle Schmerztherapie & CRPS
+    if (category.includes('CRPS') || category.includes('Schmerz')) {
+      return {
+        question_de: 'Der Prüfer stellt die Weichen: "Eine Patientin mit Verdacht auf CRPS nach Radiusfraktur klagt über Hyperalgesie und Allodynie. Der Assistenzarzt empfiehlt eine erneute Gipsruhigstellung für 4 Wochen und NSAR. Wie beurteilen Sie diesen Behandlungsplan?"',
+        question_tr: 'Jüri vakayı kuruyor: "Kırık sonrası CRPS şüphesi olan hastada hiperaljezi ve allodini var. Asistan hekim 4 hafta tekrar alçıya almayı ve NSAİİ vermeyi öneriyor. Bu tedavi planını nasıl değerlendirirsiniz?"',
+        answer_de: `Leitliniengerechte Schmerztherapie & CRPS:
+1. Das K.O.-Kriterium der Gipsruhigstellung:
+   • Eine erneute Gipsruhigstellung ist STRENGSTENS KONTRAINDIZIERT und ein gravierender Behandlungsfehler!
+   • Ruhigstellung aggraviert den Teufelskreis aus sympathischer Fehlregulation, Dystrophie und Gelenkeinsteifung!
+2. Begriffliche Differenzierung:
+   • Allodynie: Schmerz durch normalerweise schmerzlose Reize (z. B. Wattebausch).
+   • Hyperalgesie: Übersteigerte Schmerzreaktion auf normalerweise schmerzhafte Reize (z. B. Nadelstich).
+3. Multimodale Stufentherapie:
+   • Physiotherapie & Ergotherapie aktiv im schmerzfreien Bereich (Spiegeltherapie).
+   • Medikamentös: Pregabalin/Gabapentin gegen neuropathische Schmerzen, Glukokortikoidstoß (Prednisolon 100 mg/Tag ausschleichend) im Frühstadium, Bisphosphonate.
+   • Interventionell: Stellatum-Blockade (Ganglion stellatum) zur Sympathikolyse.`,
+        answer_tr: `Kılavuza Göre CRPS Ağrı Tedavisi:
+1. Alçı K.O. Kriteri:
+   • Tekrar alçıya veya atele almak KESİNLİKLE YASAKTIR ve vahim bir hekimlik hatasıdır!
+   • Hareketsizlik sempatik distrofiyi alevlendirir ve kalıcı eklem sertliği yapar!
+2. Kavramlar:
+   • Allodini: Normalde ağrısız uyarana (pamuk dokunması) ağrı yanıtı.
+   • Hiperaljezi: Normalde hafif ağrıya abartılı aşırı ağrı yanıtı.
+3. Tedavi Basamakları:
+   • Ağrısız sınırlar içinde erken fizyoterapi ve ayna tedavisi.
+   • İlaç: Pregabalin/Gabapentin, erken dönemde yüksek doz Prednizolon (azaltılarak kesilen), Bifosfonat.
+   • Girişimsel: Sempatik blokaj (Stellat gangliyon bloğu).`
+      };
+    }
+
+    // 21. Hirntoddiagnostik (IHA)
+    if (category.includes('Hirntod')) {
+      return {
+        question_de: 'Der Prüfer fragt: "Auf der Intensivstation soll bei einer Patientin der irreversible Hirnfunktionsausfall (IHA) festgestellt werden. Welche Temperatur, welche Voraussetzungen für den Apnoe-Test und welche ärztlichen Qualifikationen fordert die Richtlinie der Bundesärztekammer (BÄK)?"',
+        question_tr: 'Jüri soruyor: "Yoğun bakımda bir hastada beyin ölümü (IHA) tespiti yapılacaktır. BÄK kılavuzuna göre vücut sıcaklığı, apne testi şartları ve hekimlerin nitelikleri neler olmalıdır?"',
+        answer_de: `BÄK-Richtlinie zum Nachweis des IHA (Hirntod):
+1. Zwingende Voraussetzungen vor der Reflexprüfung:
+   • Körperkerntemperatur STRIKT ≥ 35,0 °C (Hypothermie imitiert Hirnstammausfall!).
+   • Ausschluss von Sedativa, Opioiden und Muskelrelaxanzien (Relaxometrie TOF zwingend 4/4!).
+   • Kreislaufstabilität (systolischer RR ≥ 90 mmHg, MAP ≥ 60 mmHg).
+2. Durchführung des Apnoe-Tests:
+   • Mindestens 10–15 Minuten 100% O2-Voroxygenierung.
+   • Diskonnektion mit trachealer O2-Insufflation (6–8 l/min auf Carinaniveau).
+   • Bestätigung des PaCO2-Anstiegs auf mindestens ≥ 60 mmHg (bzw. ΔPaCO2 ≥ 20 mmHg) in der BGA ohne Spontanatmungsbemühungen.
+3. Qualifikation der Untersucher (Transplantationsgesetz):
+   • ZWEI unabhängige Fachärzte müssen die Untersuchung getrennt durchführen und protokollieren.
+   • Mindestens EIN Untersucher MUSS Facharzt für Neurologie oder Neurochirurgie sein!
+   • Beide Ärzte dürfen WEDER an der Organentnahme NOCH an der Transplantation beteiligt sein (strikte personelle Trennung)!`,
+        answer_tr: `BÄK Beyin Ölümü Kılavuzu:
+1. Muayene Öncesi Zorunlu Şartlar:
+   • Vücut iç sıcaklığı KESİNLİKLE ≥ 35,0 °C olmalıdır!
+   • Sedatif ve kas gevşetici etkisi dışlanmalıdır (TOF testi 4/4 olmalıdır).
+   • Tansiyon stabil olmalıdır (sistolik ≥ 90 mmHg, MAP ≥ 60 mmHg).
+2. Apne Testi:
+   • %100 O2 ile 10-15 dk preoksijenizasyon.
+   • Ventilatörden ayırıp trakea içine 6-8 L/dk O2 verilir.
+   • Solunum çabası olmadan PaCO2 ≥ 60 mmHg'ye ulaştığı kan gazı ile kanıtlanır.
+3. Hekimlerin Nitelikleri:
+   • İKİ bağımsız uzman hekim ayrı ayrı muayene edip imzalar.
+   • En az bir hekim NÖROLOJİ veya BEYİN CERRAHİSİ uzmanı olmalıdır!
+   • İki hekim de organ nakli ve organ alım sürecinde YER ALAMAZ!`
+      };
+    }
+
+    // 22. Default / Allgemeine Anästhesie
     return {
       question_de: 'Der Prüfer fragt weiter: "Welche pathophysiologischen Mechanismen begründen Ihre Therapiestrategie und welche gravierenden Fehler dürfen Ihnen hier unter keinen Umständen unterlaufen?"',
       question_tr: 'Jüri sormaya devam ediyor: "Tedavi stratejinizi hangi patofizyolojik mekanizmalar gerekçelendirir ve burada hiçbir koşulda yapmamanız gereken vahim hatalar nelerdir?"',
@@ -3628,6 +4009,14 @@ Tedavi:
       } else {
         elBadgeType.textContent = '📋 Mündlicher Falldialog';
       }
+    }
+    if (elBadgeAmbossPillar) {
+      const pillar = getAmbossPillar(currentQ);
+      elBadgeAmbossPillar.textContent = `${pillar.icon} ${pillar.short_de}`;
+      elBadgeAmbossPillar.title = `DGAI & BDA / AMBOSS: ${pillar.label_de}`;
+      elBadgeAmbossPillar.style.background = pillar.color + '22';
+      elBadgeAmbossPillar.style.color = pillar.color;
+      elBadgeAmbossPillar.style.border = `1px solid ${pillar.color}55`;
     }
     if (elBadgeCategory) elBadgeCategory.textContent = currentQ.category;
     if (elBadgeSource) elBadgeSource.textContent = currentQ.source_book ? currentQ.source_book.split(' - ')[0] : 'Facharzt';
@@ -4818,6 +5207,13 @@ Tedavi:
     const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
     if (elAudioSpeedDisplay && state.speechRate) {
       elAudioSpeedDisplay.textContent = `${state.speechRate}x`;
+    }
+
+    if (elAmbossPillarFilter && state.ambossPillarFilter) {
+      elAmbossPillarFilter.value = state.ambossPillarFilter;
+    }
+    if (elTypeFilter && state.typeFilter) {
+      elTypeFilter.value = state.typeFilter;
     }
 
     // Trigger cloud auto-sync asynchronously
@@ -6042,6 +6438,16 @@ Tedavi:
   if (elTypeFilter) {
     elTypeFilter.addEventListener('change', (e) => {
       state.typeFilter = e.target.value;
+      state.currentIndex = 0;
+      saveState();
+      renderCurrentQuestion();
+    });
+  }
+
+  // AMBOSS 5 Säulen Pillar Filter Dropdown
+  if (elAmbossPillarFilter) {
+    elAmbossPillarFilter.addEventListener('change', (e) => {
+      state.ambossPillarFilter = e.target.value;
       state.currentIndex = 0;
       saveState();
       renderCurrentQuestion();
