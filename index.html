@@ -1191,19 +1191,18 @@
         <h2>📇 Anästhesie Notfall- & Medikamenten-Taschenkarte</h2>
         <button id="pocket-modal-close" class="btn-icon">✕</button>
       </div>
+      <!-- Quick Category Filter Bar for Emergency Cards -->
+      <div class="pocket-filter-bar" id="pocket-filter-bar">
+        <button class="pocket-filter-btn active" data-filter="all">Alle (16)</button>
+        <button class="pocket-filter-btn" data-filter="mnemonics">🧠 Merkformeln</button>
+        <button class="pocket-filter-btn" data-filter="dus">🏛️ ÄKNO Düsseldorf</button>
+        <button class="pocket-filter-btn" data-filter="tox">⚠️ MH & LAST</button>
+        <button class="pocket-filter-btn" data-filter="airway">🫁 Atemweg & CICO</button>
+        <button class="pocket-filter-btn" data-filter="cpr">❤️‍🔥 Notfall & CPR</button>
+        <button class="pocket-filter-btn" data-filter="bleed">🩸 Blutung & PPH</button>
+        <button class="pocket-filter-btn" data-filter="drugs">💊 Dosierungen</button>
+      </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
-        <!-- Quick Category Filter Bar for Emergency Cards -->
-        <div class="pocket-filter-bar" id="pocket-filter-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; position: sticky; top: 0; background: var(--bg-secondary); padding: 0.5rem 0; z-index: 10; border-bottom: 1px solid var(--border-color);">
-          <button class="pocket-filter-btn active" data-filter="all">Alle (16)</button>
-          <button class="pocket-filter-btn" data-filter="mnemonics">🧠 Merkformeln</button>
-          <button class="pocket-filter-btn" data-filter="dus">🏛️ ÄKNO Düsseldorf</button>
-          <button class="pocket-filter-btn" data-filter="tox">⚠️ MH & LAST</button>
-          <button class="pocket-filter-btn" data-filter="airway">🫁 Atemweg & CICO</button>
-          <button class="pocket-filter-btn" data-filter="cpr">❤️‍🔥 Notfall & CPR</button>
-          <button class="pocket-filter-btn" data-filter="bleed">🩸 Blutung & PPH</button>
-          <button class="pocket-filter-btn" data-filter="drugs">💊 Dosierungen</button>
-        </div>
-
         <div class="pocket-grid" style="display: grid; gap: 1rem;">
           
           <!-- 1. Maligne Hyperthermie -->
@@ -1577,16 +1576,16 @@
         <button id="aekno-guide-modal-close" class="btn-icon">✕</button>
       </div>
 
-      <div class="modal-body" style="max-height: 80vh; overflow-y: auto; padding: 1.25rem;">
-        <!-- Guide Tab Bar -->
-        <div class="aekno-tab-bar" id="aekno-tab-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
-          <button class="aekno-tab-btn active" data-tab="setting">🏛️ Prüfungsablauf & Setting</button>
-          <button class="aekno-tab-btn" data-tab="examiners">👨‍⚕️ Prüfer-Profile & Lieblingsthemen</button>
-          <button class="aekno-tab-btn" data-tab="ko">⚠️ Die 7 Düsseldorfer KO-Fallen</button>
-          <button class="aekno-tab-btn" data-tab="rhetoric">💬 ÄKNO-Prüfungsrhetorik</button>
-          <button class="aekno-tab-btn" data-tab="launch">🚀 Schnellstart Düsseldorf</button>
-        </div>
+      <!-- Guide Tab Bar -->
+      <div class="aekno-tab-bar" id="aekno-tab-bar">
+        <button class="aekno-tab-btn active" data-tab="setting">🏛️ Prüfungsablauf & Setting</button>
+        <button class="aekno-tab-btn" data-tab="examiners">👨‍⚕️ Prüfer-Profile & Lieblingsthemen</button>
+        <button class="aekno-tab-btn" data-tab="ko">⚠️ Die 7 Düsseldorfer KO-Fallen</button>
+        <button class="aekno-tab-btn" data-tab="rhetoric">💬 ÄKNO-Prüfungsrhetorik</button>
+        <button class="aekno-tab-btn" data-tab="launch">🚀 Schnellstart Düsseldorf</button>
+      </div>
 
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto; padding: 1.25rem;">
         <!-- Tab 1: Setting & Ablauf -->
         <div id="aekno-panel-setting" class="aekno-panel active">
           <div style="background: var(--bg-tertiary); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-bottom: 1rem;">
@@ -1805,15 +1804,14 @@
         <h2>🧮 Klinik- & Facharzt-Rechner</h2>
         <button id="calc-modal-close" class="btn-icon">✕</button>
       </div>
+      <!-- Calculator Tab Switcher -->
+      <div class="calc-tab-bar" id="calc-tab-bar">
+        <button class="calc-tab-btn active" data-tab="peds">👶 Kinder-Notfall & Tubus</button>
+        <button class="calc-tab-btn" data-tab="ards">🫁 ARDS & Beatmung (PBW)</button>
+        <button class="calc-tab-btn" data-tab="la">💉 Lokalanästhetika (LAST)</button>
+        <button class="calc-tab-btn" data-tab="na">🧪 Natrium-Korrektur (ODS)</button>
+      </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
-        <!-- Calculator Tab Switcher -->
-        <div class="calc-tab-bar" id="calc-tab-bar" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
-          <button class="calc-tab-btn active" data-tab="peds">👶 Kinder-Notfall & Tubus</button>
-          <button class="calc-tab-btn" data-tab="ards">🫁 ARDS & Beatmung (PBW)</button>
-          <button class="calc-tab-btn" data-tab="la">💉 Lokalanästhetika (LAST)</button>
-          <button class="calc-tab-btn" data-tab="na">🧪 Natrium-Korrektur (ODS)</button>
-        </div>
-
         <!-- 1. Pediatric Emergency & Airway Calculator -->
         <div id="calc-panel-peds" class="calc-panel active">
           <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
@@ -2011,36 +2009,35 @@
         </div>
         <button id="abbrev-modal-close" class="btn-icon" title="Schließen (Esc)">✕</button>
       </div>
-      <div class="modal-body abbrev-modal-body">
-        <!-- Live Search & Category Filter Controls -->
-        <div class="abbrev-controls-wrap">
-          <div class="abbrev-search-bar">
-            <span class="abbrev-search-icon">🔍</span>
-            <input type="text" id="abbrev-search-input" class="abbrev-search-input" placeholder="Kürzel oder Begriff suchen (z. B. DLT, LAST, ROTEM, ECMO, ARDS, Horovitz, RSI)..." autocomplete="off" />
-            <button id="abbrev-search-clear" class="abbrev-search-clear" title="Suche leeren" style="display: none;">✕</button>
-          </div>
-
-          <div class="abbrev-filter-bar" id="abbrev-filter-bar">
-            <button class="abbrev-filter-btn active" data-cat="all">Alle (<span id="abbrev-count-all">0</span>)</button>
-            <button class="abbrev-filter-btn" data-cat="airway">🫁 Atemweg & Beatmung</button>
-            <button class="abbrev-filter-btn" data-cat="hemodynamics">💓 Hämodynamik</button>
-            <button class="abbrev-filter-btn" data-cat="pharma">💊 Pharmakologie</button>
-            <button class="abbrev-filter-btn" data-cat="resuscitation">🚨 Notfall & Hämostase</button>
-            <button class="abbrev-filter-btn" data-cat="neuro_reg">🧠 Neuro & Regional</button>
-            <button class="abbrev-filter-btn" data-cat="peds_obs">👶 Pädiatrie & ICU</button>
-          </div>
-
-          <div class="abbrev-status-row">
-            <div id="abbrev-status-text" class="abbrev-status-text">Zeigt 0 von 0 Abkürzungen</div>
-            <div class="abbrev-view-toggle">
-              <label class="abbrev-toggle-label" title="Türkçe çevirileri aç/kapat">
-                <input type="checkbox" id="abbrev-toggle-tr" checked />
-                <span>🇹🇷 Türkçe Açıklamaları Göster</span>
-              </label>
-            </div>
-          </div>
+      <!-- Live Search & Category Filter Controls -->
+      <div class="abbrev-controls-wrap">
+        <div class="abbrev-search-bar">
+          <span class="abbrev-search-icon">🔍</span>
+          <input type="text" id="abbrev-search-input" class="abbrev-search-input" placeholder="Kürzel oder Begriff suchen (z. B. DLT, LAST, ROTEM, ECMO, ARDS, Horovitz, RSI)..." autocomplete="off" />
+          <button id="abbrev-search-clear" class="abbrev-search-clear" title="Suche leeren" style="display: none;">✕</button>
         </div>
 
+        <div class="abbrev-filter-bar" id="abbrev-filter-bar">
+          <button class="abbrev-filter-btn active" data-cat="all">Alle (<span id="abbrev-count-all">0</span>)</button>
+          <button class="abbrev-filter-btn" data-cat="airway">🫁 Atemweg & Beatmung</button>
+          <button class="abbrev-filter-btn" data-cat="hemodynamics">💓 Hämodynamik</button>
+          <button class="abbrev-filter-btn" data-cat="pharma">💊 Pharmakologie</button>
+          <button class="abbrev-filter-btn" data-cat="resuscitation">🚨 Notfall & Hämostase</button>
+          <button class="abbrev-filter-btn" data-cat="neuro_reg">🧠 Neuro & Regional</button>
+          <button class="abbrev-filter-btn" data-cat="peds_obs">👶 Pädiatrie & ICU</button>
+        </div>
+
+        <div class="abbrev-status-row">
+          <div id="abbrev-status-text" class="abbrev-status-text">Zeigt 0 von 0 Abkürzungen</div>
+          <div class="abbrev-view-toggle">
+            <label class="abbrev-toggle-label" title="Türkçe çevirileri aç/kapat">
+              <input type="checkbox" id="abbrev-toggle-tr" checked />
+              <span>🇹🇷 Türkçe Açıklamaları Göster</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body abbrev-modal-body">
         <!-- Cards Grid Container -->
         <div id="abbrev-cards-grid" class="abbrev-cards-grid">
           <!-- Dynamically populated by app.js -->

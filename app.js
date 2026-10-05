@@ -5313,6 +5313,7 @@ Tedavi:
   if (elPocketFilterBar && elPocketCardsModal) {
     const filterBtns = elPocketFilterBar.querySelectorAll('.pocket-filter-btn');
     const cardItems = elPocketCardsModal.querySelectorAll('.pocket-card-item');
+    const modalBody = elPocketCardsModal.querySelector('.modal-body');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -5332,6 +5333,9 @@ Tedavi:
             }
           }
         });
+        if (modalBody) {
+          modalBody.scrollTop = 0;
+        }
       });
     });
   }
