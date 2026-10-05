@@ -428,7 +428,7 @@ console.log('[PASS] Seamless Hover Turkish Translation (Clean Box Level, No Sent
 
 // 22. Test ÄKNO Düsseldorf Examiners, Protocols & KO-Kriterien Integration
 const dusQuestions = questions.filter(q => q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf')));
-assert.strictEqual(dusQuestions.length, 42, `Expected exactly 42 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
+assert.strictEqual(dusQuestions.length, 54, `Expected exactly 54 dedicated Düsseldorf protocol cases, found ${dusQuestions.length}`);
 assert(htmlContent.includes('examiner-reveal-box'), 'index.html must include #examiner-reveal-box');
 assert(htmlContent.includes('badge-examiner-toggle'), 'index.html must include #badge-examiner-toggle');
 assert(htmlContent.includes('examiner-reveal-card'), 'index.html must include #examiner-reveal-card');
@@ -489,7 +489,7 @@ console.log('[PASS] Audio Speed Controller & Pocket Card 16 Mnemonics Hub Suite 
 
 // 26. Test ÄKNO Düsseldorf Dynamic Live Simulation & K.O.-Criteria Radar Suite
 const { DUS_SIMULATION_REGISTRY } = MockExamSimulation;
-assert(DUS_SIMULATION_REGISTRY && Object.keys(DUS_SIMULATION_REGISTRY).length === 42, 'All 42 authentic Düsseldorf protocol questions must be registered in DUS_SIMULATION_REGISTRY');
+assert(DUS_SIMULATION_REGISTRY && Object.keys(DUS_SIMULATION_REGISTRY).length === 54, 'All 54 authentic Düsseldorf protocol questions must be registered in DUS_SIMULATION_REGISTRY');
 
 // Verify examiner profile, crisis complication and KO criteria structure
 const q1Reg = DUS_SIMULATION_REGISTRY['q_dus_01'];
@@ -571,7 +571,7 @@ assert(cardioCase.answer_tr.includes('Pulmoner Emboli'), 'Turkish answer must in
 assert(cardioCase.answer_tr.includes('Tansiyon Pnömotoraks'), 'Turkish answer must include Tansiyon Pnömotoraks');
 assert(cardioCase.answer_tr.includes('Anafilaksi'), 'Turkish answer must include Anafilaksi');
 
-// Test that all 642 questions now produce a valid examiner intervention and solution
+// Test that all 654 questions now produce a valid examiner intervention and solution
 questions.forEach(q => {
   const dynamicEntry = global.getDynamicExaminerCase(q.category, q.stem_de || q.question_de || '', q);
   assert(dynamicEntry.question_de && dynamicEntry.question_de.length > 20, `Question ${q.id} must have question_de`);
@@ -580,7 +580,7 @@ questions.forEach(q => {
   assert(dynamicEntry.answer_tr && dynamicEntry.answer_tr.length > 50, `Question ${q.id} must have detailed answer_tr`);
 });
 
-console.log('[PASS] Comprehensive Examiner Intervention & Model Solution Engine verified across all 642 questions.');
+console.log('[PASS] Comprehensive Examiner Intervention & Model Solution Engine verified across all 654 questions.');
 
 // 28. Test Natural Medical Speech Synthesis Engine, Permanent Google Deutsch & YouTube-Style Speed Controller
 assert(htmlContent.includes('speed-control-wrapper'), 'index.html must include .speed-control-wrapper');
@@ -630,7 +630,7 @@ assert(cssCode.includes('.audio-listen-pill'), 'styles.css must style .audio-lis
 assert(appCode.includes('isFallbackSpeaking'), 'app.js must guard against concurrent fallback speech loops');
 assert(appCode.includes('fallbackTriggered'), 'app.js must implement fallbackTriggered single-flight guard');
 
-// 29. Test Complete Turkish Translations for All 42 Düsseldorf Simulation Cases & Protocols
+// 29. Test Complete Turkish Translations for All 54 Düsseldorf Simulation Cases & Protocols
 for (const [qid, data] of Object.entries(DUS_SIMULATION_REGISTRY)) {
   assert(data.speechIntro_tr && data.speechIntro_tr.length > 30, `Registry ${qid} must have Turkish speechIntro_tr`);
   assert(data.crisis && data.crisis.title_tr && data.crisis.title_tr.length > 5, `Registry ${qid} must have Turkish crisis.title_tr`);
@@ -654,7 +654,7 @@ assert(htmlContent.includes('Musterantwort anzeigen / Cevabı Gör'), 'index.htm
 assert(htmlContent.includes('Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü'), 'index.html must include bilingual solution card header');
 assert(htmlContent.includes('ÄKNO Notfall-Lösung / Acil Çözüm'), 'index.html must include bilingual emergency solution badge');
 
-console.log('[PASS] Complete Turkish Translations Suite verified for all 42 Düsseldorf Simulation Registry cases and questions.');
+console.log('[PASS] Complete Turkish Translations Suite verified for all 54 Düsseldorf Simulation Registry cases and questions.');
 
 // ============================================================================
 // 30. TEST SUITE: ANESTHESIA ABBREVIATIONS & ACRONYMS GUIDE (KÜRZEL-LEXIKON)
@@ -752,8 +752,8 @@ console.log('[PASS] Suite 31 passed! Verified theme-adaptive vitalparameter toke
 // ============================================================================
 console.log('Testing Suite 32: Complete Simulation Answers, Turkish Translations & Step Verification...');
 
-// 1. Verify all 42 Düsseldorf Simulation Registry cases have complete answers, translations and all steps
-for (let i = 1; i <= 42; i++) {
+// 1. Verify all 54 Düsseldorf Simulation Registry cases have complete answers, translations and all steps
+for (let i = 1; i <= 54; i++) {
   const qid = 'q_dus_' + (i < 10 ? '0' + i : i);
   const regCase = DUS_SIMULATION_REGISTRY[qid];
   const qItem = questions.find(q => q.id === qid);
@@ -839,6 +839,29 @@ assert(q41.koCriteria.failureReason.toLowerCase().includes('oxytocin'), 'Notsect
 const q42 = DUS_SIMULATION_REGISTRY['q_dus_42'];
 assert(q42.crisis.targetAction.toLowerCase().includes('larson') || q42.crisis.targetAction.toLowerCase().includes('cpap'), 'NPPE crisis must include Larson maneuver or CPAP');
 
+const q43 = DUS_SIMULATION_REGISTRY['q_dus_43'];
+assert(q43.crisis.targetAction.toLowerCase().includes('shunt'), 'Carotid crisis must require shunt insertion');
+assert(q43.examiner.name.includes('Kienbaum'), 'q_dus_43 linked to Prof. Kienbaum');
+
+const q44 = DUS_SIMULATION_REGISTRY['q_dus_44'];
+assert(q44.crisis.targetAction.toLowerCase().includes('flachlagerung') || q44.crisis.targetAction.toLowerCase().includes('atropin'), 'Beach chair crisis must include supine positioning / atropine');
+
+const q45 = DUS_SIMULATION_REGISTRY['q_dus_45'];
+assert(q45.koCriteria.forbiddenPatterns.length > 0, 'ICD diathermia must define KO criteria');
+assert(q45.examiner.name.includes('Hohn'), 'q_dus_45 linked to Prof. Hohn');
+
+const q46 = DUS_SIMULATION_REGISTRY['q_dus_46'];
+assert(q46.koCriteria.failureReason.toLowerCase().includes('medizinischer'), 'Pyloric stenosis must be identified as medical emergency');
+
+const q47 = DUS_SIMULATION_REGISTRY['q_dus_47'];
+assert(q47.koCriteria.failureReason.toLowerCase().includes('trali'), 'TRALI must warn against diuretic use');
+
+const q50 = DUS_SIMULATION_REGISTRY['q_dus_50'];
+assert(q50.crisis.targetAction.toLowerCase().includes('calcium'), 'Hyperkalemia crisis must require immediate calcium');
+
+const q52 = DUS_SIMULATION_REGISTRY['q_dus_52'];
+assert(q52.koCriteria.failureReason.toLowerCase().includes('betablocker vor dem alphablocker'), 'Pheochromocytoma must forbid beta-blocker before alpha-blocker');
+
 console.log('[PASS] Suite 32 passed! Verified complete answers, Turkish translations, all steps, and clinical accuracy across all simulations.');
 
 // =========================================================================
@@ -861,7 +884,7 @@ questions.forEach(q => {
     assert(prof.trap_tr && prof.trap_tr.length > 5, `Question ${q.id} missing Turkish examiner trap`);
   }
 });
-assert.strictEqual(missingProfileCount, 0, `All 642 questions must have an examiner profile, found ${missingProfileCount} missing`);
+assert.strictEqual(missingProfileCount, 0, `All 654 questions must have an examiner profile, found ${missingProfileCount} missing`);
 
 // 2. Verify Cockpit & Step 3 UI elements in index.html
 assert(htmlContent.includes('id="btn-sim-toggle-examiner-profile"'), 'index.html must include #btn-sim-toggle-examiner-profile');
@@ -887,7 +910,7 @@ assert(appCode.includes('mock-examiner-profile-card'), 'app.js must render mock-
 assert(appCode.includes('renderExaminerCardContent'), 'app.js must define renderExaminerCardContent');
 assert(!appCode.includes("elExaminerBadgeTitle.textContent = `🏛️ ÄKNO"), 'elExaminerBadgeTitle must not prepend duplicate 🏛️ icon');
 
-console.log('[PASS] Suite 33 passed! Verified 100% universal examiner profile coverage (642/642), cockpit quick-view drawer, Step 3 profile integration, and non-empty robust card rendering.');
+console.log('[PASS] Suite 33 passed! Verified 100% universal examiner profile coverage (654/654), cockpit quick-view drawer, Step 3 profile integration, and non-empty robust card rendering.');
 
 // ============================================================================
 // 34. Test Direct Inline Revealable Answers for Step 1 & Step 2
@@ -923,7 +946,7 @@ const vitalsInterpMatch = appCode.match(/function generateVitalsInterpretation\(
 assert(vitalsInterpMatch, 'generateVitalsInterpretation must be found in app.js');
 eval(vitalsInterpMatch[0].replace('function generateVitalsInterpretation', 'global.generateVitalsInterpretation = function'));
 
-// Test that all 642 questions produce valid, non-empty, bilingual findings evaluations
+// Test that all 654 questions produce valid, non-empty, bilingual findings evaluations
 const getVitalsMatch = appCode.match(/function getRealisticVitalsForCase\(category, stem, answer\) \{[\s\S]*?\n  \}/);
 eval(getVitalsMatch[0].replace('function getRealisticVitalsForCase', 'global.getRealisticVitalsForCase = function'));
 
@@ -936,7 +959,7 @@ questions.forEach(q => {
   assert(interp.tr.includes('ANALİZİ') || interp.tr.includes('BULGULARIN'), `Question ${q.id} Turkish interpretation format`);
 });
 
-console.log('[PASS] Suite 34 passed! Verified direct inline revealable answers, audio, and bilingual findings evaluation for Step 1 & Step 2 across all 642 questions.');
+console.log('[PASS] Suite 34 passed! Verified direct inline revealable answers, audio, and bilingual findings evaluation for Step 1 & Step 2 across all 654 questions.');
 
 // -------------------------------------------------------------
 // Suite 35: HTML Semantic Tag Balance & Modal Hierarchy Integrity

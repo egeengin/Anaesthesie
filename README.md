@@ -8,10 +8,10 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
 
 ## 🌟 Hauptfunktionen & Features
 
-1. **Vollständiger, klinisch validierter Fragenkatalog (636 Prüfungsfragen)**:
+1. **Vollständiger, klinisch validierter Fragenkatalog (654 Prüfungsfragen)**:
    - **332 strukturierte MCQs / Mehrfachaussagen** (*Kehl & Wilke*).
-   - **304 komplexe klinische Kasuistiken** (*Annecke & Hohn, Winterhalter*).
-   - **36 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_36`) mit detaillierten Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler*).
+   - **322 komplexe klinische Kasuistiken** (*Annecke & Hohn, Winterhalter*).
+   - **54 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_54`) mit detaillierten Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler, Prof. Kindgen-Milles*).
    - **0 Datenanomalien**: Alle OCR-Silbentrennungen, Formelartefakte und abgeschnittenen Zeilenenden vollständig bereinigt.
 
 2. **Die 4-Schritte-Prüfungsmethode (Progressive Disclosure)**:

@@ -1151,6 +1151,330 @@
         failureReason_tr: "Kilitli glottise karşı yapılan aşırı inspirasyon çabası intratorasik negatif basıncı (-50 ila -100 cmH2O) fırlatarak alveollere sıvı çeker (NPPE); PEEP uygulamamak ve spazmı çözmemek fatal hipoksiye yol açar.",
         mandatoryKeywords: ["laryngospasmus", "unterdrucklungenödem", "larson", "cpap", "propofol", "peep", "succinylcholin"]
       }
+    },
+    q_dus_43: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Karotis-TEA, oberflächlicher vs. intermediärer Zervikalplexus-Block, zerebrales Wachmonitoring, Shunt-Indikation, Blutdruckziel vor/nach Cross-Clamping",
+        focus_tr: "Karotis TEA, yüzeyel vs derin servikal pleksus bloğu, uyanık nörolojik takip, intraluminal şant, kros klemp öncesi/sonrası tansiyon hedefleri",
+        trap: "Tiefer Zervikalplexus-Block (A. vertebralis / Epiduralpunktion) oder hypertensive Entgleisung nach Entklemmen (Hyperperfusionssyndrom)",
+        trap_tr: "Derin servikal blok uygulamak (Vertebral arter / epidural injeksiyon) veya klemp kalktıktan sonra hipertansiyona izin vermek (Hiperperfüzyon sendromu)",
+      },
+      speechIntro: "Guten Tag, Herr Kollege. Ein 72-jähriger Patient mit 85% symptomatischer ACI-Stenose soll sich einer Karotis-TEA unterziehen. Warum favorisieren Sie eine Regionalanästhesie, welche Plexusblockade führen Sie durch, wie überwachen Sie die zerebrale Perfusion beim Cross-Clamping und wie steuern Sie den Blutdruck vor und nach Klemmenöffnung?",
+      speechIntro_tr: "İyi günler meslektaşım. 72 yaşında semptomatik %85 ACI darlığı olan bir hasta Karotis TEA ameliyatına alınacaktır. Neden rejyonal anesteziyi tercih edersiniz, hangi bloğu yaparsınız, kros klempte uyanık takibi nasıl yaparsınız ve klemp öncesi/sonrası tansiyon hedefleriniz nelerdir?",
+      crisis: {
+        title: "⚡ Neurologischer Ausfall beim Cross-Clamping!",
+        title_tr: "⚡ Karotis Kros-Klempi Sırasında Nörolojik Kayıp!",
+        prompt_de: "Achtung, Herr Kollege! 45 Sekunden nach Abklemmen der A. carotis interna lässt der Patient das Quietscheentchen fallen, entwickelt eine motorische Aphasie und die kontralaterale Hand wird paretisch! Was ist Ihre unverzügliche Ansage an den Operateur und wie manipulieren Sie den Blutdruck?!",
+        prompt_tr: "Dikkat meslektaşım! A. carotis interna klemplendikten 45 saniye sonra hasta elindeki sesli oyuncağı düşürüyor, motor afazi gelişiyor ve karşı kolda felç başlıyor! Cerraha derhal yapacağınız çağrı nedir ve tansiyonu nasıl yönetirsiniz?!",
+        vitals: { spo2: "98%", bp: "155/85", map: "108 mmHg", hr: "88 /min", etco2: "36 mmHg", temp: "36.7 °C", rhythm: "Sinusrhythmus", alert: true },
+        targetAction: "Sofortige Aufforderung an den Operateur zur Shunt-Einlage (Pruitt-Inahara-Shunt), MAP sofort um 20% über Ausgangswert anheben (Noradrenalin) zur Steigerung der Kollateralperfusion über den Circulus Willisii, 100% O2!",
+        targetAction_tr: "Cerraha derhal intraluminal şant (Pruitt-Inahara) yerleştirmesi talimatı, Willis poligonu kollateral akımını artırmak için MAP'ı derhal %20 yükseltmek (Noradrenalin), %100 O2!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/abwarten/i, /sofortige vollnarkose ohne shunt/i, /blutdruck senken beim klemmen/i],
+        failureReason: "Beim akuten neurologischen Defizit unter Karotis-Klemmen muss sofort ein intraluminaler Shunt gefordert und der MAP angehoben werden; ein Zuwarten oder Senken des Blutdrucks führt zum irreversiblen ischämischen Schlaganfall!",
+        failureReason_tr: "Karotis klemplenmesinde nörolojik defisit geliştiğinde derhal cerrahi şant konulmalı ve tansiyon yükseltilmelidir; beklemek veya tansiyonu düşürmek kalıcı inmeye yol açar.",
+        mandatoryKeywords: ["shunt", "zervikalplexus", "cross-clamping", "circulus willisii", "hyperperfusionssyndrom", "noradrenalin"]
+      }
+    },
+    q_dus_44: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Beach-Chair-Lagerung, hydrostatischer Druckgradient zum Gehirn (0,75 mmHg/cm), Bezold-Jarisch-Reflex, Interscalenusblockade (Phrenikusparese)",
+        focus_tr: "Beach-Chair pozisyonu, beyne giden hidrostatik basınç gradyanı (0.75 mmHg/cm), Bezold-Jarisch refleksi, İnterskalen blok (Frenik sinir felci)",
+        trap: "Blutdruck am Arm als Hirndruck fehlinterpretieren (zerebrale Ischämie) oder Bezold-Jarisch mit Tachykardie-Schema behandeln",
+        trap_tr: "Koldaki tansiyonu beyin perfüzyon basıncı sanmak veya Bezold-Jarisch çöküşünde hastayı oturtmaya devam etmek",
+      },
+      speechIntro: "Frau Kollegin, wir lagern eine Patientin zur Schulterarthroskopie in die Beach-Chair-Position um. Was müssen Sie bezüglich des zerebralen Perfusionsdrucks und der Blutdruckmanschette am Oberarm berechnen, wie entsteht der gefürchtete Bezold-Jarisch-Reflex und welche kardiopulmonale Kontraindikation hat der Interscalenusblock?",
+      speechIntro_tr: "Meslektaşım, omuz artroskopisi için hastayı Beach-Chair pozisyonuna alıyoruz. Koldaki manşon ile beyin tabanı arasındaki basınç farkını nasıl hesaplarsınız, Bezold-Jarisch refleksi nasıl oluşur ve interskalen bloğun kesin kontrendikasyonu nedir?",
+      crisis: {
+        title: "⚡ Bezold-Jarisch-Kollaps im Beach-Chair!",
+        title_tr: "⚡ Beach-Chair Pozisyonunda Bezold-Jarisch Çöküşü!",
+        prompt_de: "Kaum ist der Beach-Chair aufgerichtet, alarmiert das EKG: Die Herzfrequenz bricht schlagartig von 82 auf 32/min ein, der Blutdruck stürzt von 120/75 auf 55/25 mmHg ab, die Patientin wird aschgrau! Was ist die Pathophysiologie und wie retten Sie den Kreislauf in den nächsten 20 Sekunden?!",
+        prompt_tr: "Hasta oturur pozisyona getirilir getirilmez monitör alarm veriyor: Nabız aniden 82'den 32/dk'ya çakılıyor, tansiyon 120/75'ten 55/25 mmHg'ye düşüyor, hasta kül rengi oluyor! Patofizyoloji nedir ve önümüzdeki 20 saniyede dolaşımı nasıl kurtarırsınız?!",
+        vitals: { spo2: "88%", bp: "55/25", map: "35 mmHg", hr: "32 /min", etco2: "18 mmHg", temp: "36.6 °C", rhythm: "Sinusbradykardie / Knotenrhythmus", alert: true },
+        targetAction: "Sofortige Flachlagerung / Beintiefstellung beenden (Autotransfusion), 100% O2, Atropin 0,5–1,0 mg i.v. zur Vagusblockade, Ephedrin / Noradrenalin-Bolus, forcierte Volumengabe!",
+        targetAction_tr: "Derhal hastayı düz yatırmak / Trendelenburg (bacakları kaldırmak), %100 O2, vagal blokaj için Atropin 0.5-1.0 mg İ.V., Ephedrin / Noradrenalin bolusu, hızlı kristalloid sıvı infüzyonu!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/in sitzender position belassen/i, /betablocker geben/i, /nur abwarten/i],
+        failureReason: "Der Bezold-Jarisch-Reflex entsteht durch kardiale Mechanorezeptoren bei ventrikulärer Unterfüllung; wer den Patienten im Beach-Chair sitzen lässt und keine Vagolyse/Volumen gibt, riskiert die fatale Asystolie und zerebrale Ischämie!",
+        failureReason_tr: "Bezold-Jarisch refleksi ventrikül boşalmasıyla tetiklenen vagal bir reflekstir; hastayı oturtmaya devam etmek fatal asistoli ve beyin ölümüne yol açar.",
+        mandatoryKeywords: ["beach-chair", "bezold-jarisch", "atropin", "flachlagerung", "phrenikusparese", "hydrostatischer druck"]
+      }
+    },
+    q_dus_45: {
+      examiner: {
+        name: "Prof. Dr. med. Andreas Hohn",
+        hospital: "Chefarzt Ev. Krankenhaus Köln-Kalk / ehem. UK Köln · ÄKNO Fachprüfer",
+        focus: "Schrittmacher vs. ICD, Magnetauflage (Schockdeaktivierung vs. Pacing-Modus), elektromagnetische Interferenz (EMI), Notfall-Pacing",
+        focus_tr: "Kalp pili (SM) vs İCD, Mıknatıs uygulaması (Şok kapatma vs pacing modu), Elektromanyetik parazit (EMI), Acil harici pacing",
+        trap: "Glauben, ein Magnet schalte beim ICD auf asynchrones Pacing um (schrittmacherabhängiger Patient stirbt durch Asystolie!)",
+        trap_tr: "İCD'ye mıknatıs koymanın pili VOO/DOO moduna geçireceğini sanmak (pile bağımlı hastada asistoli gelişir!)",
+      },
+      speechIntro: "Herr Kollege, unser 74-jähriger Patient hat einen biventrikulären ICD und soll einer laparoskopischen Rektumresektion mit Monopolardiathermie unterzogen werden. Erläutern Sie das fundamentale K.O.-Kriterium der Magnetauflage bei Schrittmacher vs. ICD und wie Sie den Patienten perioperativ absichern.",
+      speechIntro_tr: "Meslektaşım, biventriküler İCD'si olan bir hasta monopolar diatermi kullanılacak cerrahiye giriyor. Kalp pili ile İCD arasındaki mıknatıs farkını ve hastayı nasıl koruyacağınızı anlatınız.",
+      crisis: {
+        title: "⚡ Asystolie durch Diathermie-Inhibition!",
+        title_tr: "⚡ Koter Parazitine Bağlı Pacing İnhibisyonu ve Asistoli!",
+        prompt_de: "Im OP wurde lediglich ein Ringmagnet auf den ICD gelegt. Sobald der Chirurg mit dem Monopolarkauter schneidet, zeigt das EKG eine Nulllinie / Asystolie! Der Patient ist schrittmacherabhängig! Was ist der verhängnisvolle Fehler und was tun Sie SOFORT?!",
+        prompt_tr: "Ameliyathanede İCD üzerine sadece halka mıknatıs konmuştur. Cerrah monopolar koterle kesmeye başlar başlamaz EKG düz çizgi (asistoli) gösteriyor! Hasta pile bağımlıdır! Yapılan ölümcül hata nedir ve DERHAL ne yaparsınız?!",
+        vitals: { spo2: "91%", bp: "--/--", map: "15 mmHg", hr: "0 /min", etco2: "12 mmHg", temp: "36.8 °C", rhythm: "Asystolie unter Diathermie", alert: true },
+        targetAction: "SOFORT 'STOPP DIATHERMIE!' rufen, Notfall-Thoraxkompression beginnen, externen transkutanen Pacer über vorbereitete Defi-Pads aktivieren, ICD präoperativ/umgehend mit Programmiergerät auf asynchronen Modus (DOO/VOO) umprogrammieren!",
+        targetAction_tr: "DERHAL 'KOTERİ DURDUR!' diye bağırmak, göğüs basısına başlamak, yapışık harici pedler üzerinden transkütan pacing'i açmak, cihaz programlayıcısıyla İCD'yi asenkron moda (DOO/VOO) programlamak!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/magnet schaltet icd auf voo/i, /magnet reicht immer/i, /weiterschneiden/i],
+        failureReason: "Ein Magnet deaktiviert beim ICD AUSSCHLIESSLICH die Tachyarrhythmie-Therapie/Schockabgabe, er schaltet ihn NICHT in den asynchronen Pacing-Modus! Schrittmacherabhängige ICD-Patienten müssen mit dem Programmiergerät umprogrammiert werden!",
+        failureReason_tr: "İCD üzerine konan mıknatıs SADECE şok fonksiyonunu kapatır, asenkron pacing'e geçirmez! Pile bağımlı hasta koter parazitiyle asistoliye girer; cihaz programlayıcı ile DOO/VOO moduna alınmalıdır.",
+        mandatoryKeywords: ["magnet", "icd", "schrittmacher", "asynchron", "voo", "doo", "diathermie", "transkutaner pacer"]
+      }
+    },
+    q_dus_46: {
+      examiner: {
+        name: "Prof. Dr. med. Thorsten Annecke",
+        hospital: "Direktor Klinikum Leverkusen / ehem. UK Köln · ÄKNO Prüfungsvorsitzender",
+        focus: "Pylorusstenose, hypochlorämische hypokaliämische metabolische Alkalose, paradoxe Azidurie, Magensonde, Narkosefreigabe",
+        focus_tr: "Pilor stenozu, hipokloremik hipokalemik metabolik alkaloz, paradoksal asidüri, mide sondası, anestezi onayı ilkeleri",
+        trap: "Sofortige Schnittfreigabe ohne Elektrolyt- und Säure-Basen-Korrektur (letale Apnoen und Arrhythmien)",
+        trap_tr: "Alkaloz ve dehidrasyonu düzeltmeden hemen ameliyata onay vermek (fatal apne ve kardiyak aritmiler)",
+      },
+      speechIntro: "Guten Tag, Herr Kollege. Ein 5 Wochen alter Säugling mit Pylorusstenose erbricht seit Tagen schwallartig. Der Chirurg meldet die Pyloromyotomie für die nächste halbe Stunde an. Geben Sie die Narkose sofort frei, welches BGA-Muster erwarten Sie und wie lauten Ihre strikten OP-Freigabekriterien?",
+      speechIntro_tr: "İyi günler meslektaşım. 5 haftalık pilor stenozlu bir bebek getirildi, cerrah yarım saat içinde ameliyat istiyor. Hemen onay verir misiniz, kan gazı tablosu nedir ve ameliyat onayı için kesin kriterleriniz nelerdir?",
+      crisis: {
+        title: "⚡ Apnoe und Bradykardie nach Narkoseeinleitung!",
+        title_tr: "⚡ İndüksiyon Sonrası Şiddetli Apne ve Bradikardi!",
+        prompt_de: "Ein Kollege hat das Kind voreilig mit einem pH von 7,58 und Chlorid von 82 mmol/l eingeleitet. Nach Relaxierung und Intubation zeigt das Kind schwere ventrikuläre Extrasystolen, HF fällt auf 65/min, kein Spontanatemantrieb! Was ist die fatale Ursache und wie intervenieren Sie?!",
+        prompt_tr: "Bir meslektaşınız çocuğu pH 7.58 ve klor 82 mmol/L iken aceleyle uyutmuş. Entübasyon sonrası ağır ventriküler aritmiler başlıyor, nabız 65/dk'ya düşüyor, spontan solunum dürtüsü sıfır! Yapılan ölümcül hata nedir ve nasıl müdahale edersiniz?!",
+        vitals: { spo2: "92%", bp: "50/28", map: "35 mmHg", hr: "65 /min", etco2: "58 mmHg", temp: "36.2 °C", rhythm: "Bradykardie mit ventrikulären Extrasystolen", alert: true },
+        targetAction: "Beatmung sichern, Atropin 0,02 mg/kg bei symptomatischer Bradykardie, Vollelektrolytlösung mit NaCl 0,9% und Kaliumchlorid infundieren, K.O.-Erkenntnis: Pylorusstenose ist ein medizinischer Notfall, KEIN chirurgischer Sofortnotfall!",
+        targetAction_tr: "Ventilasyonu sürdür, bradikardide Atropin 0.02 mg/kg ver, dengeli kristalloid + %0.9 NaCl ve Potasyum infüzyonu yap. K.O. kuralı: Pilor stenozu cerrahi değil TIBBİ bir acildir, alkaloz düzelmeden ameliyat yapılamaz!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/sofortige freigabe/i, /chirurgischer sofortnotfall/i, /keine elektrolytkorrektur/i],
+        failureReason: "Die Pylorusstenose ist ein medizinischer und kein chirurgischer Sofortnotfall! Eine Narkoseeinleitung vor Korrektur von Dehydratation, Hypochlorämie und Alkalose führt zu zentralen Apnoen und tödlichen Arrhythmien!",
+        failureReason_tr: "Pilor stenozu tıbbi bir acildir! Dehidrasyon ve hipokloremik alkaloz (Cl > 100, K > 3.5, pH < 7.50) düzeltilmeden anesteziye başlamak doğrudan sınavdan kalma sebebidir.",
+        mandatoryKeywords: ["pylorusstenose", "hypochlorämisch", "metabolische alkalose", "paradoxe azidurie", "medizinischer notfall", "magensonde"]
+      }
+    },
+    q_dus_47: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Transfusionszwischenfälle, TRALI vs. TACO, hämolytische Transfusionsreaktion, PEI-Meldepflicht, Transfusionsgesetz",
+        focus_tr: "Transfüzyon komplikasyonları, TRALI vs TACO, akut hemolitik transfüzyon reaksiyonu, yasal bildirim zorunluluğu",
+        trap: "Gabe von Furosemid bei TRALI (Exsikkose-Schock) oder Versäumnis, die Transfusion sofort zu stoppen und zu asservieren",
+        trap_tr: "TRALI tablosunda Furosemid vermek (şoku derinleştirir!) veya transfüzyonu durdurmayıp torbayı saklamamak",
+      },
+      speechIntro: "Herr Kollege, im Saal erhält eine Tumorpatientin ihr 2. EK und 2 FFPs. 45 Minuten später stürzt die SpO2 auf 78% ab, der Beatmungsdruck schießt auf 35 mbar, über beiden Lungen brodelt es, RR 80/45 mmHg, Temperatur 38,9°C. Differenzieren Sie TRALI von TACO und nennen Sie die zwingenden Sofortmaßnahmen.",
+      speechIntro_tr: "Meslektaşım, 2 ES ve 2 TDP transfüzyonundan 45 dakika sonra hastada SpO2 %78'e düşüyor, hava yolu basıncı 35 mbar'a çıkıyor, raller, tansiyon 80/45 ve ateş 38.9°C oluyor. TRALI ile TACO'yu ayırt ediniz ve acil yapılması gerekenleri sayınız.",
+      crisis: {
+        title: "⚡ Transfusionsassoziiertes Lungenversagen (TRALI)!",
+        title_tr: "⚡ Transfüzyon İlişkili Akut Akciğer Hasarı (TRALI)!",
+        prompt_de: "Der Weiterbildungsassistent ruft: 'Lungenödem! Ich gebe sofort 40 mg Furosemid i.v. und lasse das EK rasch durchlaufen!' Was ist Ihre sofortige Intervention und warum ist Furosemid hier potenziell tödlich?!",
+        prompt_tr: "Asistan hekim bağırıyor: 'Akciğer ödemi! Hemen 40 mg Lasix yapıyorum ve kanı hızlıca bitiriyorum!' Hemen müdahaleniz nedir ve bu hastada Furosemid verilmesi neden öldürücüdür?!",
+        vitals: { spo2: "76%", bp: "78/42", map: "54 mmHg", hr: "128 /min", etco2: "26 mmHg", temp: "39.1 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "TRANSFUSION SOFORT STOPPEN! Furosemid streng verbieten (TRALI ist ein Permeabilitätsödem, Diuretika verschlimmern den hypovolämen Schock!), lungenprotektive Beatmung mit PEEP, Blutprodukt asservieren, Blutbank & PEI informieren!",
+        targetAction_tr: "TRANSFÜZYONU DERHAL DURDUR! Furosemid'i kesinlikle engelle (TRALI kapiller geçirgenlik ödemidir, diüretik hipovolemik şoku derinleştirir!), PEEP ile mekanik ventilasyon, torbayı ve seti sakla, kan merkezine ve PEI'ye bildir!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/transfusion weiterlaufen lassen/i, /furosemid bei trali/i, /keine meldung/i],
+        failureReason: "Bei TRALI handelt es sich um ein leukozytär vermitteltes Permeabilitätsödem; Diuretika sind wirkungslos und führen im Verbund mit dem Kapillarleck zum letalen Kreislaufschock!",
+        failureReason_tr: "TRALI antikor aracılı non-kardiyojenik bir kapiller geçirgenlik ödemidir; Furosemid vermek şoku ağırlaştırır ve K.O. sebebidir. Transfüzyon derhal durdurulup torba mühürlenmelidir.",
+        mandatoryKeywords: ["trali", "taco", "transfusion stoppen", "asservieren", "diuretika kontraindiziert", "paul-ehrlich-institut"]
+      }
+    },
+    q_dus_48: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Myasthenia gravis, Nicht-depolarisierende Relaxanzien (extreme Überempfindlichkeit), Succinylcholin-Resistenz, Sugammadex, TOF-Monitoring",
+        focus_tr: "Miyastenia Gravis, Non-depolarizan gevşeticilere aşırı duyarlılık, Süksinilkolin direnci, Sugammadeks, TOF takibi",
+        trap: "Standarddosis Rocuronium ohne Relaxometrie oder Extubation ohne quantitative TOF-Ratio >= 0.90",
+        trap_tr: "Normal doz kas gevşetici vermek veya TOF oranı >= %90 olmadan hastayı ekstübe edip solunum felcine sokmak",
+      },
+      speechIntro: "Frau Kollegin, eine 38-jährige Myasthenie-Patientin soll sich einer Thymektomie unterziehen. Wie verhalten sich depolarisierende vs. nicht-depolarisierende Muskelrelaxanzien, wie steuern Sie die Narkose und welche Rolle spielt Sugammadex?",
+      speechIntro_tr: "Meslektaşım, 38 yaşında miyasteni hastası timektomiye alınıyor. Depolarizan ve non-depolarizan gevşeticilerin davranışı nasıldır, anesteziyi nasıl yönetirsiniz ve Sugammadeks'in rolü nedir?",
+      crisis: {
+        title: "⚡ Postoperative Ateminsuffizienz bei Myasthenie!",
+        title_tr: "⚡ Miyastenide Postoperatif Solunum Yetersizliği!",
+        prompt_de: "Im Aufwachraum wird die Patientin 20 Minuten nach Extubation zunehmend somnolent, atmet flach mit Paradoxatmung, SpO2 82%, ptosisartig herabfallende Augenlider. Sie kann den Kopf nicht von der Unterlage anheben! Was liegt vor und wie retten Sie die Patientin?",
+        prompt_tr: "Derlenme odasında ekstübasyondan 20 dakika sonra hasta somnolansa giriyor, yüzeyel ve paradoksal soluyor, SpO2 %82, göz kapakları düşüyor, başını yastıktan kaldıramıyor! Tablo nedir ve hastayı nasıl kurtarırsınız?",
+        vitals: { spo2: "82%", bp: "145/90", map: "108 mmHg", hr: "115 /min", etco2: "62 mmHg", temp: "36.5 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "Atemweg sichern mit Masken-Beutel-Beatmung/CPAP, quantitative Relaxometrie (Ausschluss Relaxanzüberhang), Sugammadex (2-4 mg/kg) i.v. wenn Restblockade vorliegt, Differenzierung myasthene vs. cholinerge Krise, Re-Intubation bei Erschöpfung!",
+        targetAction_tr: "Maske-balon/CPAP ile derhal oksijenasyon ve ventilasyon, kantitatif TOF ölçümü, rezidüel blok varsa Sugammadeks (2-4 mg/kg İ.V.), miyastenik vs kolinerjik kriz ayrımı, gerekirse erken re-entübasyon!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/kein tof-monitoring/i, /volle rocuronium dosis ohne monitor/i, /einfach abwarten/i],
+        failureReason: "Myasthenie-Patienten weisen eine extreme Sensitivität gegenüber nicht-depolarisierenden Relaxanzien auf; eine Extubation ohne quantitativen TOF-Nachweis >= 0,90 führt zur postoperativen Asphyxie!",
+        failureReason_tr: "Miyasteni hastaları non-depolarizan kas gevşeticilere aşırı duyarlıdır; kantitatif TOF >= %90 olmadan ekstübasyon asfiksi ve ölüme yol açar.",
+        mandatoryKeywords: ["myasthenia gravis", "überempfindlichkeit", "rocuronium", "sugammadex", "tof-ratio 0.9", "pyridostigmin"]
+      }
+    },
+    q_dus_49: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Aortendissektion Typ A, Scherkraftsenkung (dp/dt mit Esmolol), Blutdruckmessort A. radialis dextra, antegrade zerebrale Perfusion (ASCP), TEE",
+        focus_tr: "Stanford Tip A aort diseksiyonu, dp/dt kesme kuvvetlerinin düşürülmesi (Esmolol), Sağ radial arter tansiyon takibi, Antegrad serebral perfüzyon, TEE",
+        trap: "Blutdruckmessung nur am linken Arm oder alleinige Vasodilatatoren ohne Betablocker (Dissektionsruptur!)",
+        trap_tr: "Tansiyonu sadece sol koldan takip etmek veya beta blokersiz saf vazodilatatör verip taşikardiyle aortu patlatmak",
+      },
+      speechIntro: "Herr Kollege, Notfall im UKD Düsseldorf: Ein 62-jähriger Patient mit akuter Stanford-Typ-A-Dissektion wird zur Not-OP gebracht. Wo legen Sie zwingend die arterielle Druckmessung an, welche hämodynamischen Ziele verfolgen Sie vor HLM und warum ist Esmolol unverzichtbar?",
+      speechIntro_tr: "Meslektaşım, UKD Düsseldorf'ta acil Tip A aort diseksiyonu vakası var. İnvaziv arteri kesinlikle nereden açarsınız, KKB öncesi hemodinamik hedefleriniz nelerdir ve Esmolol neden vazgeçilmezdir?",
+      crisis: {
+        title: "⚡ Hypertensive Krise bei Narkoseeinleitung!",
+        title_tr: "⚡ İndüksiyonda Hipertansif Kriz ve Rüptür Tehlikesi!",
+        prompt_de: "Während der Laryngoskopie schießt der Blutdruck am rechten Arm plötzlich auf 210/115 mmHg, HF 118/min! Die Aortenwand droht zu perforieren! Was spritzen Sie in den nächsten 15 Sekunden zur Senkung von Blutdruck und myokardialem dp/dt?!",
+        prompt_tr: "Laringoskopi sırasında sağ koldan ölçülen tansiyon aniden 210/115 mmHg'ye, nabız 118/dk'ya fırlıyor! Aort duvarı yırtılmak üzere! Hem tansiyonu hem de dp/dt kesme kuvvetini düşürmek için 15 saniyede ne verirsiniz?!"
+        ,vitals: { spo2: "97%", bp: "210/115", map: "146 mmHg", hr: "118 /min", etco2: "35 mmHg", temp: "36.4 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "Sofortige Gabe von Esmolol (0,5 mg/kg Bolus) zur Senkung der myokardialen Auswurfbeschleunigung (dp/dt) kombiniert mit Urapidil (12,5–25 mg i.v.), Narkosetiefe vertiefen (Sufentanil / Propofol), Ziel-Systole 100–120 mmHg!",
+        targetAction_tr: "Aort yırtılmasını önlemek için derhal Esmolol bolusu (0.5 mg/kg) ile dp/dt kesme kuvvetini kır, Urapidil (12.5-25 mg İ.V.) ile tansiyonu düşür, anesteziyi derinleştir, hedef sistolik tansiyon 100-120 mmHg!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/arterielle kanüle nur links/i, /nur nitroprussid ohne betablocker/i, /blutdruck tolerieren/i],
+        failureReason: "Isolierte Vasodilatatoren ohne Betablocker erzeugen eine Reflextachykardie mit fatalem Anstieg der Scherkraft (dp/dt) und führen zur Perforation der Dissektion ins Perikard!",
+        failureReason_tr: "Beta bloker olmadan sadece vazodilatatör verilmesi refleks taşikardi ve dp/dt artışı yaparak diseksiyonun serbest rüptürüne ve perikardiyal tamponada yol açar.",
+        mandatoryKeywords: ["aortendissektion", "a. radialis dextra", "esmolol", "urapidil", "dp/dt", "antegrade zerebrale perfusion", "tee"]
+      }
+    },
+    q_dus_50: {
+      examiner: {
+        name: "Prof. Dr. med. Thorsten Annecke",
+        hospital: "Direktor Klinikum Leverkusen / ehem. UK Köln · ÄKNO Prüfungsvorsitzender",
+        focus: "Schwere Hyperkaliämie, 3-Säulen-Therapie, Calciumgluconat (Membranstabilisierung), Glukose-Insulin, Succinylcholin-Kontraindikation",
+        focus_tr: "Ağır hiperkalemi, 3 basamaklı acil tedavi, Kalsiyum glukonat (membran stabilizasyonu), Glukoz-İnsülin, Süksinilkolin kontrendikasyonu",
+        trap: "Gabe von Succinylcholin bei Hyperkaliämie (tödliches Kammerflimmern) oder Vergessen von Calcium bei breitem QRS",
+        trap_tr: "Hiperkalemide Süksinilkolin vermek (fatal asistoli) veya geniş QRS varlığında ilk adımda Kalsiyum vermeyi unutmak",
+      },
+      speechIntro: "Guten Tag, Herr Kollege. Ein 69-jähriger Dialysepatient mit akutem Abdomen hat ein Serumkalium von 7,8 mmol/l und im EKG spitze T-Wellen mit verbreitertem QRS. Nennen Sie die 3 Säulen der Notfalltherapie, welches Relaxans ist absolut verboten und welches wählen Sie?",
+      speechIntro_tr: "İyi günler meslektaşım. Potasyumu 7.8 mmol/L ve EKG'de sivri T dalgaları ile genişlemiş QRS'i olan diyaliz hastası ameliyata giriyor. 3 basamaklı acil tedaviyi sayınız, hangi kas gevşetici kesinlikle yasaktır ve ne seçersiniz?",
+      crisis: {
+        title: "⚡ Sinuswellen-EKG und Kammerflattern!",
+        title_tr: "⚡ Sinüs Dalgası EKG ve Ventriküler Flatır Tehdidi!",
+        prompt_de: "Der Monitor zeigt plötzlich ein zeltförmiges Sinuswellenmuster, QRS verbreitert sich auf 200 ms, HF sinkt auf 42/min! Das Kammerflimmern steht unmittelbar bevor! Welches Medikament spritzen Sie in den nächsten 10 Sekunden ZUERST zur Membranstabilisierung?!",
+        prompt_tr: "Monitörde aniden ölümcül sinüs dalgası paterni oluşuyor, QRS 200 ms'ye genişliyor, nabız 42/dk'ya çöküyor! Ventriküler fibrilasyon an meselesi! Miyokardı stabilize etmek için İLK 10 SANİYEDE hangi ilacı puşe edersiniz?!",
+        vitals: { spo2: "93%", bp: "70/35", map: "46 mmHg", hr: "42 /min", etco2: "30 mmHg", temp: "36.8 °C", rhythm: "Sinuswelle / extreme QRS-Verbreiterung", alert: true },
+        targetAction: "SOFORT Calciumgluconat 10% (10–20 ml i.v. über 2–3 min) oder Calciumchlorid zur Membranstabilisierung (normalisiert Schwellenpotenzial!), gefolgt von 25 g Glukose + 10 IE Insulin i.v. und Salbutamol-Verneblung, Notfalldialyse organisieren!",
+        targetAction_tr: "DERHAL Kalsiyum Glukonat %10 (10-20 ml İ.V.) veya Kalsiyum Klorür puşe et (membranı saniyeler içinde stabilize eder!), ardından 25 g Glukoz + 10 IU İnsülin İ.V. ve Salbutamol nebül başla, acil diyaliz planla!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/succinylcholin geben/i, /suxamethonium/i, /kein calcium/i],
+        failureReason: "Succinylcholin ist bei Hyperkaliämie strengstens kontraindiziert, da es das Serumkalium um weitere 0,5–1,0 mmol/l anhebt und zum irreversiblen Herzstillstand führt; Calcium zur Membranstabilisierung ist der lebensrettende 1. Schritt!",
+        failureReason_tr: "Hiperkalemide Süksinilkolin verilmesi potasyumu anında 1 mmol/L daha artırarak kalbi durdurur, kesin K.O. sebebidir. İlk basamak Kalsiyum ile miyokardı stabilize etmektir.",
+        mandatoryKeywords: ["hyperkaliämie", "calciumgluconat", "membranstabilisierung", "glukose-insulin", "salbutamol", "succinylcholin verboten", "rocuronium"]
+      }
+    },
+    q_dus_51: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Intraoperative Anaphylaxie Grad IV, Adrenalin (Boli 20-50 µg i.v. vs. ALS 1 mg), aggressive Volumentherapie, Serumtryptase",
+        focus_tr: "İntraoperatif Evre 4 Anafilaksi, Adrenalin dozları (20-50 µg bolus vs 1 mg ALS), masif kristalloid hacim replasmanı, Triptaz takibi",
+        trap: "Zögern mit Adrenalin; Versuch, Schock mit Cortison oder Antihistaminika zu behandeln (Patient stirbt an Asphyxie/Kollaps)",
+        trap_tr: "Adrenalin vermekte tereddüt etmek; anafilaktik şoku kortizon veya antihistaminikle çözmeye çalışmak",
+      },
+      speechIntro: "Frau Kollegin, 90 Sekunden nach Einleitung mit Propofol, Rocuronium und Cefazolin schießt der Beatmungsdruck auf 48 mbar, der Blutdruck ist nicht mehr messbar, Karotispuls flau mit 145/min. Wie lautet Ihr Notfallalgorithmus und wie dosieren Sie Adrenalin?",
+      speechIntro_tr: "Meslektaşım, indüksiyon ve Sefazolin sonrası havayolu basıncı 48 mbar'a çıkıyor, tansiyon ölçülemiyor, nabız 145/dk filiform. Acil algoritmanız nedir ve Adrenalin dozunuzu nasıl belirlersiniz?",
+      crisis: {
+        title: "⚡ Kardiopulmonaler Kollaps bei Anaphylaxie!",
+        title_tr: "⚡ Anafilakside Kardiyopulmoner Çöküş!",
+        prompt_de: "Trotz 100% O2 fällt die SpO2 auf 70%, etCO2 nur noch 6 mmHg (Perfusionsausfall!), Karotispuls verschwindet! Was ist Ihre unverzügliche Maßnahme und Adrenalindosis?!",
+        prompt_tr: "%100 O2 verilmesine rağmen SpO2 %70'e düşüyor, etCO2 6 mmHg'ye çakılıyor (perfüzyon durdu!), nabız kayboluyor! Derhal yapacağınız müdahale ve Adrenalin dozunuz nedir?!",
+        vitals: { spo2: "70%", bp: "--/--", map: "18 mmHg", hr: "155 /min", etco2: "6 mmHg", temp: "36.9 °C", rhythm: "Pulslose elektrische Aktivität / feine VT", alert: true },
+        targetAction: "Allergenzufuhr STOPPEN, CPR beginnen, 1 mg Adrenalin i.v. gemäß ALS alle 3–5 min, Druckinfusion kristalloide Vollelektrolytlösung (20–30 ml/kg), Beatmung mit 100% O2!",
+        targetAction_tr: "Tüm antibiyotik/ilaç infüzyonlarını DERHAL DURDUR, KPR başlat, ALS kılavuzuna göre 1 mg İ.V. Adrenalin ver, basınçlı torbayla 20-30 ml/kg dengeli kristalloid yükle, %100 O2 ile solut!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/erst cortison geben/i, /kein adrenalin/i, /nur dimetinden/i],
+        failureReason: "Adrenalin ist das einzige lebensrettende Pharmakon bei schwerer Anaphylaxie; wer zuerst Antihistaminika oder Glukokortikoide gibt und Adrenalin verzögert, begeht einen tödlichen Behandlungsfehler!",
+        failureReason_tr: "Anafilakside hayat kurtaran tek ilaç Adrenalindir; Adrenalin yerine antihistaminik veya kortizonla vakit kaybetmek fatal sonuçlanır.",
+        mandatoryKeywords: ["anaphylaxie", "adrenalin", "volumentherapie", "allergen stoppen", "serumtryptase", "bronchospasmus"]
+      }
+    },
+    q_dus_52: {
+      examiner: {
+        name: "Prof. Dr. med. Frank Wappler",
+        hospital: "MH-Zentrum Köln-Merheim / Universität Witten-Herdecke · ÄKNO Prüfer",
+        focus: "Phäochromozytom, Alpha-Blockade VOR Beta-Blockade (Phenoxybenzamin), Tumormanipulation vs. Venenabklemmung, Urapidil/Noradrenalin",
+        focus_tr: "Feokromositoma, Beta blokajdan ÖNCE Alfa blokaj kuralı (Fenoksibenzamin), Tümör manipülasyonu vs Ven klempajı, Urapidil/Noradrenalin",
+        trap: "Beta-Blocker VOR Alpha-Blocker geben (hypertensive Massivkrise durch ungehemmte Alpha-1-Rezeptor-Stimulation!)",
+        trap_tr: "Alfa bloker vermeden önce Beta bloker vermek (engellenemeyen alfa-1 uyarısıyla öldürücü hipertansif kriz ve beyin kanaması!)",
+      },
+      speechIntro: "Guten Tag, Herr Kollege. Ein 48-jähriger Patient soll wegen eines Phäochromozytoms operiert werden. Warum lautet das eiserne Gesetz 'Erst Alpha-, dann Beta-Blockade', wie führen Sie die Narkose und welche zwei extremen hämodynamischen Phasen erwarten Sie intraoperativ?",
+      speechIntro_tr: "İyi günler meslektaşım. Feokromositoma ameliyatında neden 'Önce Alfa sonra Beta Blokaj' kuralı geçerlidir, anesteziyi nasıl yönetirsiniz ve operasyondaki iki zıt dönemi nasıl idare edersiniz?",
+      crisis: {
+        title: "⚡ Hypertensive Krise bei Tumormanipulation!",
+        title_tr: "⚡ Tümör Manipülasyonunda Hipertansif Kriz!",
+        prompt_de: "Der Chirurg berührt den Nebennierentumor: Schlagartig explodiert der arterielle Blutdruck auf 260/140 mmHg, HF 130/min! Was spritzen Sie in dieser Sekunde und was bereiten Sie für den Moment nach Abklemmen der Tumorvene vor?!",
+        prompt_tr: "Cerrah sürrenal tümörüne dokunduğu anda tansiyon 260/140 mmHg'ye, nabız 130/dk'ya fırlıyor! Bu saniyede tansiyonu kırmak için ne puşe edersiniz ve tümör veni klemplendiğinde neye hazır olmalısınız?!",
+        vitals: { spo2: "96%", bp: "260/140", map: "180 mmHg", hr: "130 /min", etco2: "38 mmHg", temp: "37.2 °C", rhythm: "Sinustachykardie mit ventrikulären Extrasystolen", alert: true },
+        targetAction: "Sofortige Titration von Urapidil (12,5–25 mg i.v.) oder Phentolamin / Esmolol zur Blutdrucksenkung; für das Abklemmen der V. suprarenalis sofort Noradrenalin-Perfusor und Druckbeutel-Volumen bereithalten (schlagartige Vasoplegie)!",
+        targetAction_tr: "Tansiyonu kırmak için derhal Urapidil (12.5-25 mg İ.V.) veya Fentolamin / Esmolol titre et; sürrenal ven klemplendiğinde gelişecek ani vazopleji ve tansiyon çöküşü için masada hazır Noradrenalin ve kristalloid yükle!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/betablocker vor alphablocker/i, /keine arterie vor einleitung/i, /einfach abwarten/i],
+        failureReason: "Wird ein Betablocker vor dem Alphablocker verabreicht, fallen die vasodilatierenden Beta-2-Rezeptoren weg; die Katecholamine stimulieren ungebremst Alpha-1-Rezeptoren -> tödliche hypertensive Krise mit Aortendissektion oder Apoplex!",
+        failureReason_tr: "Alfa blokaj yapılmadan Beta bloker verilmesi vazodilatatör beta-2 reseptörlerini bloke ederek dolaşımdaki katekolaminlerin ölümcül hipertansif krize yol açmasına neden olur; kesin K.O. kriteridir.",
+        mandatoryKeywords: ["phäochromozytom", "erst alpha dann beta", "phenoxybenzamin", "urapidil", "noradrenalin", "v. suprarenalis"]
+      }
+    },
+    q_dus_53: {
+      examiner: {
+        name: "Prof. Dr. med. Kindgen-Milles",
+        hospital: "Leitender Oberarzt Operative Intensivmedizin, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Septischer Schock, SSC 1-Hour-Bundle, Noradrenalin als 1. Wahl, Vasopressin (Argipressin), Hydrocortison-Indikation, lungenprotektive Beatmung",
+        focus_tr: "Septik Şok, SSC 1 saatlik kurtarma paketi, İlk tercih Noradrenalin, İkinci basamak Vazopressin, Hidrokortizon endikasyonu, ARDS ventilasyonu",
+        trap: "Antibiotikagabe VOR Blutkulturen oder Gabe von Dopamin als primärer Vasopressor",
+        trap_tr: "Kan kültürü almadan körlemesine antibiyotik başlamak veya Noradrenalin yerine Dopamin kullanmak",
+      },
+      speechIntro: "Herr Kollege, wir übernehmen auf der Intensivstation einen 65-jährigen Patienten mit septischem Schock bei Peritonitis. Was beinhaltet das 'Surviving Sepsis Campaign 1-Hour-Bundle', welcher Vasopressor ist 1. Wahl und wann ist Hydrocortison indiziert?",
+      speechIntro_tr: "Meslektaşım, peritonite bağlı septik şoktaki bir hastayı yoğun bakıma alıyoruz. Surviving Sepsis 1 saatlik paketinde ne vardır, 1. tercih vazopressör nedir ve hidrokortizon ne zaman verilir?",
+      crisis: {
+        title: "⚡ Refraktäre Vasoplegie im septischen Schock!",
+        title_tr: "⚡ Septik Şokta Dirençli Vazopleji!",
+        prompt_de: "Trotz 30 ml/kg balancierten Kristalloiden und 0,3 µg/kg/min Noradrenalin dümpelt der MAP bei 50 mmHg, Laktat steigt auf 6,5 mmol/l! Welche zwei medikamentösen Eskalationsschritte leiten Sie unverzüglich ein?!",
+        prompt_tr: "30 ml/kg dengeli sıvıya ve 0.3 µg/kg/dk Noradrenalin infüzyonuna rağmen MAP 50 mmHg'de sürükleniyor, laktat 6.5 mmol/L'ye fırladı! Hangi iki acil basamak tedaviyi derhal devreye sokarsınız?!",
+        vitals: { spo2: "90%", bp: "72/38", map: "49 mmHg", hr: "128 /min", etco2: "32 mmHg", temp: "39.5 °C", rhythm: "Sinustachykardie", alert: true },
+        targetAction: "1. Additive Gabe von Vasopressin (Argipressin 0,03 IE/min als Reinsubstanz fest dosiert), 2. Hydrocortison 200 mg/d i.v. bei vasopressor-refraktärem Schock, Dobutamin bei myokardialer Dysfunktion addieren, operative Fokusssanierung sofort erzwingen!",
+        targetAction_tr: "1. İkinci vazopressör olarak Vazopressin (Argipressin 0.03 IU/dk sabit infüzyon) ekle, 2. Dirençli şokta Hidrokortizon 200 mg/gün İ.V. başla, kardiyak yetmezlikte Dobutamin ekle, cerrahi odak kontrolünü derhal sağlat!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/keine blutkulturen vor antibiose/i, /dopamin als vasopressor/i, /stärkelösungen infundieren/i],
+        failureReason: "Die Surviving Sepsis Campaign fordert zwingend Blutkulturen VOR Antibiotikagabe; Stärkelösungen (HES) sind wegen akutem Nierenversagen strikt kontraindiziert und Dopamin ist Noradrenalin unterlegen!",
+        failureReason_tr: "Kan kültürü alınmadan antibiyotik başlanması ve septik şokta HES (kolloid) verilmesi böbrek yetmezliğini ve mortaliteyi artırır, K.O. sebebidir.",
+        mandatoryKeywords: ["septischer schock", "surviving sepsis", "blutkulturen", "noradrenalin", "vasopressin", "hydrocortison", "laktat"]
+      }
+    },
+    q_dus_54: {
+      examiner: {
+        name: "Prof. Dr. med. Peter Kienbaum",
+        hospital: "Direktor der Klinik für Anästhesiologie, Universitätsklinikum Düsseldorf (UKD)",
+        focus: "Leberzirrhose Child C, ROTEM-gesteuerte Hämostase (Fibrinogen/Thrombozyten), Citrattoxizität & Hypokalzämie, Terlipressin, Atracurium",
+        focus_tr: "Karaciğer Sirozu Child C, ROTEM kılavuzluğunda hemostaz, Sitrat toksisitesi ve hipokalsemi, Terlipressin, Atraküryum",
+        trap: "Prophylaktische FFP-Transfusion nach Quick-Wert (Ösophagusvarizenruptur!) oder Übersehen des Calciumabfalls",
+        trap_tr: "Quick düşüklüğünü düzeltmek için körlemesine FFP torbaları dayamak (portal hipertansiyon ve varis kanaması patlatır!) veya kalsiyumu takip etmemek",
+      },
+      speechIntro: "Herr Kollege, ein Patient mit Leberzirrhose Child C und Quick 28% muss notfallmäßig am perforierten Ulkus operiert werden. Warum sind prophylaktische FFP-Transfusionen obsolet, wie steuern Sie die Gerinnung mit ROTEM und wie verhindern Sie die fatale Citrattoxizität?",
+      speechIntro_tr: "Meslektaşım, Quick %28 olan Child C sirozlu bir hasta perfore ülser nedeniyle acil ameliyata alınıyor. Neden profilaktik TDP verilmez, ROTEM'i nasıl kullanırsınız ve sitrat toksisitesini nasıl önlersiniz?",
+      crisis: {
+        title: "⚡ Citrat-induzierter kardiogener Schock!",
+        title_tr: "⚡ Sitrat Toksisitesine Bağlı Hipokalsemik Kardiyak Çöküş!",
+        prompt_de: "Nach Transfusion von 3 EKs bricht der Blutdruck auf 60/30 mmHg ein, das EKG zeigt eine massive QT-Verlängerung mit breiten Kammerkomplexen, die BGA enthüllt ein ionisiertes Calcium von 0,62 mmol/l! Was ist die Ursache und wie retten Sie den Patienten?!",
+        prompt_tr: "3 ünite eritrosit süspansiyonundan sonra tansiyon 60/30 mmHg'ye çöküyor, EKG'de aşırı QT uzaması ve geniş kompleksler görülüyor, kan gazında iyonize kalsiyum 0.62 mmol/L! Sebep nedir ve hastayı nasıl kurtarırsınız?!",
+        vitals: { spo2: "92%", bp: "60/30", map: "40 mmHg", hr: "122 /min", etco2: "22 mmHg", temp: "35.8 °C", rhythm: "QT-Verlängerung / drohende Torsade de pointes", alert: true },
+        targetAction: "SOFORT Calciumchlorid 10% (10–20 ml i.v. über ZVK) oder Calciumgluconat zur Normalisierung des Ca2+ > 1,1 mmol/l substituieren, Massivtransfusion drosseln, Wärmemanagement aktivieren, Terlipressin / Noradrenalin zur SVR-Hebung!",
+        targetAction_tr: "DERHAL Kalsiyum Klorür %10 (10-20 ml CVC'den) vererek iyonize kalsiyumu > 1.1 mmol/L düzeyine çıkar, transfüzyon hızını ayarla, hastayı ısıt, splanknik vazodilatasyon için Terlipressin ve Noradrenalin başla!",
+      },
+      koCriteria: {
+        forbiddenPatterns: [/prophylaktisch ffps geben/i, /keine calciumbestimmung/i, /nur volumen geben/i],
+        failureReason: "Die Zirrhoseleber kann Citrat aus Blutprodukten nicht abbauen; der Sturz des ionisierten Calciums erzeugt eine therapierefraktäre myokardiale Kontraktionsschwäche und Arrhythmien; FFP-Gaben zur Quick-Korrektur sind kontraindiziert!",
+        failureReason_tr: "Sirotik karaciğer sitratı metabolize edemez; iyonize kalsiyum çöküşü miyokard yetmezliği ve fatal aritmiler yapar. Profilaktik FFP verilmesi ise portal basıncı artırıp varis kanaması patlatır, K.O. sebebidir.",
+        mandatoryKeywords: ["leberzirrhose", "child c", "citrattoxizität", "calciumchlorid", "rotem", "fibtem", "terlipressin", "ffp kontraindiziert"]
+      }
     }
   };
 
