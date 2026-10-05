@@ -4,17 +4,19 @@ import pypdf
 
 print("Loading PDFs into memory...")
 r_annecke = pypdf.PdfReader('Books/Thorsten Annecke (Autor), Andreas Hohn (Autor) - Facharztprüfung Anästhesiologie_ in Fällen, Fragen und Antworten (2019, Elsevier).pdf')
-annecke_pages = [p.extract_text() for p in r_annecke.pages]
+annecke_pages_raw = [p.extract_text() for p in r_annecke.pages]
+annecke_pages_clean = [' '.join(text.split()).lower() for text in annecke_pages_raw]
 
 r_kehl = pypdf.PdfReader('Books/Anästhesie. Fragen und Antworten_ 1670 Fakten für die Facharztprüfung und das Europäische Diplom (DESA).pdf')
-kehl_pages = [p.extract_text() for p in r_kehl.pages]
+kehl_pages_raw = [p.extract_text() for p in r_kehl.pages]
+kehl_pages_clean = [' '.join(text.split()).lower() for text in kehl_pages_raw]
 
 print("Indexing Annecke chapters...")
 page_to_annecke_ch = {}
 current_ch = "Kap. 1.1 (Prüfungspsychologie)"
-for p_idx, text in enumerate(annecke_pages):
+for p_idx, text in enumerate(annecke_pages_raw):
     lines = [l.strip() for l in text.split('\n') if l.strip()]
-    for l in lines[:4]:
+    for l in lines[:10]:
         m = re.match(r'^(?:[0-9IVX\s]+)?([1-7]\.[0-9]+(?:\.[0-9]+)?)\s+([A-Za-zÄÖÜäöüß\s,/–-]+)', l)
         if m:
             ch_num = m.group(1)
@@ -56,14 +58,14 @@ kehl_markers = [
 ]
 page_to_kehl_ch = {}
 current_kehl_ch = "Kap. 1.1 (Klinische Chemie & Elektrolyte)"
-for p_idx in range(len(kehl_pages)):
+for p_idx in range(len(kehl_pages_raw)):
     p_num = p_idx + 1
     for m_page, m_title in kehl_markers:
         if p_num >= m_page:
             current_kehl_ch = m_title
     page_to_kehl_ch[p_num] = current_kehl_ch
 
-# Granular, specific clinical guideline lookup without substring false positives
+# Specific clinical guideline resolution
 def resolve_clinical_guideline(ch_title, full_text):
     t = full_text.lower()
     ch = ch_title.lower()
@@ -88,11 +90,19 @@ def resolve_clinical_guideline(ch_title, full_text):
     if re.search(r'\b(schock)\b', t) or "schock" in ch:
         return "DIVI / DGAI Definition & Klassifikation des Schocks (Hinshaw & Cox); S3-Leitlinie Polytrauma"
 
-    # Priority 2: Subspecialties
+    # Priority 2: Pediatric Specifics
+    if re.search(r'\b(nüchtern|nüchternheit|flüssigkeit.*1 stunde|muttermilch)\b', t) and ("kinder" in t or "kind" in t or "kinder" in ch):
+        return "ESAIC Guidelines on Perioperative Fasting in Children (1h klare Flüssigkeit, 4h Muttermilch, 6h feste Nahrung)"
+    if re.search(r'\b(propofol.*(3–5|3-5)|verteilungsvolumen.*kind|pharmakolog.*kind)\b', t):
+        return "DGAI / ESPA Handlungsempfehlungen zur pädiatrischen Pharmakotherapie & Dosierung (Propofol 3–5 mg/kg)"
+    if re.search(r'\b(laryngospasmus)\b', t) and ("kind" in t or "kinder" in ch):
+        return "DGAI / Arbeitskreis Kinderanästhesie Leitlinie Laryngospasmus-Therapie & Larson-Manöver"
     if re.search(r'\b(fontan|fallot|tetralogie|cyanotic spell|infundibulum|trikuspidalklappenatresie)\b', t):
         return "DGAI / DGPK Leitlinien Anästhesie bei angeborenen Herzfehlern (Fontan & Fallot-Tetralogie)"
-    if re.search(r'\b(frühgeborene|neugeborene|pylorusstenose|laryngospasmus)\b', t) or "kinder" in ch:
+    if re.search(r'\b(frühgeborene|neugeborene|pylorusstenose)\b', t) or "kinder" in ch:
         return "DGAI / Arbeitskreis Kinderanästhesie Leitlinien & European Society for Paediatric Anaesthesiology (ESPA)"
+
+    # Priority 3: Clinical Specializations
     if re.search(r'\b(ambulant|entlassungskriterien|postoperative betreuung)\b', t) or "ambulant" in ch:
         return "Gemeinsame Empfehlung von BDA, DGAI, BDC und BAO zu Qualitätskriterien für ambulante Operationen"
     if re.search(r'\b(phäochromozytom|doxazosin|phenoxybenzamin)\b', t) or "phäochromozytom" in ch:
@@ -129,14 +139,18 @@ start_idx = q_content.find('[')
 end_idx = q_content.rfind(']') + 1
 questions = json.loads(q_content[start_idx:end_idx])
 
-print("Processing all 654 questions with multi-pass matching...")
+print("Processing all 654 questions with consecutive-words PDF matching...")
 records = []
 for q in questions:
     qid = q['id']
     src_book = q.get('source_book') or ''
     cat = q.get('category') or 'Allgemein'
     q_type = "MCQ (5er)" if q.get('question_type') == 'options' else "Oraler Fall"
-    prompt = q.get('stem_de') or q.get('question_de') or ''
+    q_text = q.get('question_de') or ''
+    stem_text = q.get('stem_de') or ''
+    ans_text = q.get('answer_de') or q.get('examiner_answer') or ''
+
+    prompt = stem_text if stem_text else q_text
     ans = ""
     if q.get('question_type') == 'options':
         correct_opts = [o for o in q.get('options', []) if o.get('is_correct')]
@@ -144,40 +158,33 @@ for q in questions:
         expl = correct_opts[0].get('explanation_de') if correct_opts and correct_opts[0].get('explanation_de') else (q.get('explanation_de') or '')
         ans = f"**Richtig: [{keys}]** - {expl}"
     else:
-        ans = q.get('answer_de') or q.get('examiner_answer') or ''
+        ans = ans_text
 
-    full_text = f"{prompt} {ans} {q.get('explanation_de') or ''}"
+    full_text = f"{stem_text} {q_text} {ans} {q.get('explanation_de') or ''}"
     exact_ref = ""
 
     if "Annecke" in src_book:
-        # Multi-pass search in Annecke: prompt words -> answer words
         found_page = None
-        # Pass 1: prompt distinctive words
-        p_words = [w for w in re.findall(r'\b[A-Za-zÄÖÜäöüß]{5,}\b', prompt) if w.lower() not in ['welche', 'welcher', 'welches', 'können', 'sollte', 'patient', 'patientin', 'haben', 'wurde', 'wird', 'durch']]
-        if len(p_words) >= 2:
-            phrase = f"{p_words[0]} {p_words[1]}".lower()
-            for p_idx, text in enumerate(annecke_pages):
-                if phrase in text.lower():
-                    found_page = p_idx + 1
-                    break
-        # Pass 2: answer distinctive words
-        if not found_page:
-            a_words = [w for w in re.findall(r'\b[A-Za-zÄÖÜäöüß]{6,}\b', ans) if w.lower() not in ['folgende', 'patient', 'sollte', 'können', 'werden', 'hierbei', 'müssen']]
-            if len(a_words) >= 2:
-                phrase = f"{a_words[0]} {a_words[1]}".lower()
-                for p_idx, text in enumerate(annecke_pages):
-                    if phrase in text.lower():
-                        found_page = p_idx + 1
-                        break
-        # Pass 3: single rare clinical word
-        if not found_page:
-            for w in (p_words + a_words):
-                if len(w) >= 8 and w.lower() in ['appendizitis', 'fontan', 'fallot', 'tetralogie', 'laryngospasmus', 'aspiration', 'mendelson', 'physostigmin', 'shivering', 'koniotomie', 'dantrolen']:
-                    for p_idx, text in enumerate(annecke_pages):
-                        if w.lower() in text.lower():
-                            found_page = p_idx + 1
-                            break
-                    if found_page: break
+        # Pass 1: Try exact 4 consecutive words from question_de
+        if q_text:
+            words = re.findall(r'[A-Za-zÄÖÜäöüß0-9-]+', q_text)[:4]
+            if len(words) >= 3:
+                snippet = ' '.join(words).lower()
+                found_page = next((idx + 1 for idx, p in enumerate(annecke_pages_clean) if snippet in p), None)
+
+        # Pass 2: Try exact 4 consecutive words from stem_de
+        if not found_page and stem_text:
+            words = re.findall(r'[A-Za-zÄÖÜäöüß0-9-]+', stem_text)[:4]
+            if len(words) >= 3:
+                snippet = ' '.join(words).lower()
+                found_page = next((idx + 1 for idx, p in enumerate(annecke_pages_clean) if snippet in p), None)
+
+        # Pass 3: Try exact 4 consecutive words from answer_de
+        if not found_page and ans_text:
+            words = re.findall(r'[A-Za-zÄÖÜäöüß0-9-]+', ans_text)[:4]
+            if len(words) >= 3:
+                snippet = ' '.join(words).lower()
+                found_page = next((idx + 1 for idx, p in enumerate(annecke_pages_clean) if snippet in p), None)
 
         if not found_page:
             found_page = 16
@@ -188,15 +195,11 @@ for q in questions:
         exact_ref = f"**Annecke & Hohn (Elsevier 2019)**: {ch_title}, S. {printed_page}  \n_Leitlinie:_ {guideline}"
 
     elif "Kehl" in src_book:
-        # Multi-pass search in Kehl
         found_page = None
-        words = [w for w in re.findall(r'\b[A-Za-zÄÖÜäöüß]{5,}\b', prompt) if w.lower() not in ['folgende', 'aussagen', 'richtig', 'beurteilen', 'überprüfen', 'treffen', 'hinsichtlich', 'bezüglich']]
+        words = re.findall(r'[A-Za-zÄÖÜäöüß0-9-]+', prompt)[:4]
         if len(words) >= 2:
-            phrase = f"{words[0]} {words[1]}".lower()
-            for p_idx, text in enumerate(kehl_pages):
-                if phrase in text.lower():
-                    found_page = p_idx + 1
-                    break
+            snippet = ' '.join(words).lower()
+            found_page = next((idx + 1 for idx, p in enumerate(kehl_pages_clean) if snippet in p), None)
         if not found_page:
             found_page = 15
 
