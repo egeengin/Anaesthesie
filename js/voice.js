@@ -89,6 +89,61 @@
     }
 
     /**
+     * Normalizes medical speech-to-text acoustic artifacts and clinical synonyms
+     * Tolerates typical Web Speech API recognition errors (e.g., "Vier auf 100%" -> "FiO2 100%")
+     * @param {string} text
+     * @returns {string}
+     */
+    static normalizeMedicalSpeech(text) {
+      if (!text) return '';
+      let s = ' ' + text.toLowerCase() + ' ';
+
+      const normalizations = [
+        // FiO2 and Oxygenation
+        [/\bvier\s+(?:auf\s+)?100\s*%|\bfier\s+100|\bfi\s*o\s*2\b|\bfi\s*o\s*zwei\b/g, ' fio2 sauerstoff o2 100% 1,0 '],
+        [/\bfio2\b/g, ' fio2 sauerstoff o2 '],
+        [/\b100\s*%/g, ' 100% 1,0 sauerstoff '],
+
+        // Airway & DLT
+        [/\bfieberoptik\b|\bfieber\s+optik\b|\bfieberoptisch\b/g, ' fiberoptik fiberoptische bronchoskop bronchoskopie lagekontrolle '],
+        [/\bfiberoptik\b/g, ' fiberoptik fiberoptische bronchoskop lagekontrolle '],
+        [/\bdoppelposition\b|\bdoppel\s+position\b|\bdoppellumen\b|\bdoppellumentubus\b/g, ' dlt doppellumentubus tubus lagekontrolle '],
+        [/\bdlt\b/g, ' dlt doppellumentubus tubus '],
+
+        // Ventilation & Surgery communication
+        [/\bop\s+unterbrechen\b|\boperation\s+unterbrechen\b|\bchirurg\s+unterbrechen\b|\bop\s+stopp\b/g, ' unterbrechung einlungenventilation zwei-lungen-ventilation operateur operateur informieren '],
+        [/\bchirurg\b/g, ' operateur chirurg '],
+        [/\bunterbrechen\b/g, ' unterbrechung wiederaufnahme zwei-lungen-ventilation operateur '],
+        [/\bc\s*pop\b|\bsee\s*pap\b|\bzeepap\b|\bcpap\b/g, ' cpap kontinuierlicher beatmungsdruck '],
+        [/\bpiep\b|\bpiepe\b|\bpeep\b/g, ' peep positiv endexspiratorischer druck '],
+
+        // Emergency drugs & resuscitation
+        [/\bzucker\s+madex\b|\bsuga\s*madex\b|\bsugammadex\b/g, ' sugammadex rocuronium reversierung '],
+        [/\bdan\s*trowlen\b|\bdantrolen\b/g, ' dantrolen maligne hyperthermie '],
+        [/\blipidemulsion\b|\bintralipid\b/g, ' intralipid lipidemulsion last lokalanästhetika '],
+        [/\bkiko\b|\bciko\b|\bkoniotomie\b/g, ' cico koniotomie front-of-neck '],
+        [/\brote\s*m\b|\brotem\b/g, ' rotem thromboelastometrie gerinnung '],
+        [/\btxa\b|\btranexam\b/g, ' tranexamsäure txa gerinnung '],
+        [/\bnora\b|\barkamin\b|\barternol\b/g, ' noradrenalin vasopressor svr '],
+        [/\bsupra\b|\bsuprarenin\b/g, ' adrenalin suprarenin reanimation '],
+        [/\bbga\b|\bblutgas\b/g, ' blutgasanalyse bga säure-basen '],
+
+        // Turkish terms (when spoken in bilingual study sessions)
+        [/\boksijen\b/g, ' sauerstoff o2 fio2 100% '],
+        [/\bcerrah\b|\bcerraha\b/g, ' operateur chirurg '],
+        [/\bdurdur\b|\bdurdurmak\b/g, ' unterbrechen unterbrechung stopp '],
+        [/\bçift\s+lümenli\b/g, ' dlt doppellumentubus '],
+        [/\biki\s+akciğer\b/g, ' zwei-lungen-ventilation '],
+        [/\btansiyon\b/g, ' blutdruck rr map ']
+      ];
+
+      for (const [pattern, repl] of normalizations) {
+        s = s.replace(pattern, repl);
+      }
+      return s.trim();
+    }
+
+    /**
      * Extracts key medical terms from text for matching
      * @param {string} text 
      * @returns {Array<string>} Array of normalized keywords
@@ -127,7 +182,8 @@
         return { matchedIndices: [], matchRatio: 0, keywordsMatched: [] };
       }
 
-      const spokenKeywords = VoiceExamEngine.extractKeywords(spokenText);
+      const normalizedSpoken = VoiceExamEngine.normalizeMedicalSpeech(spokenText);
+      const spokenKeywords = VoiceExamEngine.extractKeywords(normalizedSpoken);
       const matchedIndices = [];
       const keywordsMatched = [];
 

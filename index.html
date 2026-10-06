@@ -458,20 +458,31 @@
         <textarea id="speech-transcript-input" class="transcript-textarea" placeholder="Sprechen Sie Ihre Antwort jetzt laut ein... (Ihre Worte erscheinen hier automatisch in Echtzeit oder Sie können Stichpunkte direkt tippen)"></textarea>
 
         <div class="transcript-action-row">
-          <button id="btn-evaluate-voice" class="btn btn-primary" type="button" title="Antwort beenden und gegen ÄKNO-Schlüsselbegriffe auswerten">
-            <span>🎯</span> Antwort beenden & Auswerten
+          <button id="btn-evaluate-voice" class="btn btn-primary" type="button" title="Antwort beenden und mit KI (Gemini) bewerten">
+            <span>🤖</span> Antwort mit KI auswerten (Gemini)
           </button>
           <button id="btn-quick-reveal" class="btn btn-secondary" type="button" title="Musterantwort und Redemittel sofort aufdecken">
             <span>👁️</span> Musterantwort freischalten
           </button>
         </div>
 
-        <!-- Real-Time Clinical Keyword Evaluation Card -->
+        <!-- Real-Time Clinical Keyword & AI Evaluation Card -->
         <div id="voice-eval-card" class="voice-eval-card" style="display: none;">
           <div class="eval-card-header">
             <div class="eval-score-badge" id="eval-score-badge">🎯 0% Treffer</div>
             <div class="eval-status-msg" id="eval-status-msg">Auswertung Ihrer mündlichen Antwort</div>
           </div>
+
+          <!-- AI Examiner Dialogue Box -->
+          <div id="ai-examiner-comment-box" class="ai-examiner-comment-box" style="display: none;">
+            <div class="ai-examiner-header">
+              <span class="ai-examiner-badge">🤖 ÄKNO Facharzt-Prüfer Urteil</span>
+              <span id="ai-examiner-name" class="ai-examiner-name">Prof. Dr. med. Andreas Hohn</span>
+            </div>
+            <div id="ai-examiner-feedback-de" class="ai-examiner-text de"></div>
+            <div id="ai-examiner-feedback-tr" class="ai-examiner-text tr" style="margin-top: 8px; font-style: italic; color: var(--text-muted);"></div>
+          </div>
+
           <div class="eval-keywords-grid">
             <div class="eval-column eval-matched">
               <div class="eval-column-title">🟢 Genannte Signalwörter & Kriterien:</div>
@@ -1132,6 +1143,33 @@
       <div class="modal-body">
         <div class="settings-section">
           
+          <div class="settings-box highlight-box gemini-settings-box" id="gemini-settings-box" style="border-color: #8b5cf6; background: rgba(139, 92, 246, 0.05);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <h3 style="margin: 0; color: #7c3aed;">🤖 Google Gemini AI Facharzt-Prüfer</h3>
+              <span id="gemini-status-pill" class="badge" style="background: rgba(139, 92, 246, 0.15); color: #7c3aed; font-weight: 700; font-size: 0.75rem; padding: 3px 8px; border-radius: 12px;">Gemini 2.5 Flash</span>
+            </div>
+            <p style="margin-top: 6px;">Bewertet mündliche Antworten wie ein echter Düsseldorfer ÄKNO-Facharztprüfer. Erkennt den klinischen Sinn, toleriert Tippfehler der Spracherkennung (z.B. <em>"Vier auf 100%"</em> als FiO2 100%) und vergibt Facharztnoten samt ausführlichem Feedback.</p>
+            
+            <div style="margin: 0.85rem 0;">
+              <label for="gemini-api-key-input" style="font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.9rem;">
+                Google Gemini API-Key (Kostenlos):
+              </label>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <input type="password" id="gemini-api-key-input" class="form-control" placeholder="AIzaSy..." style="flex: 1; min-width: 200px; padding: 0.5rem 0.75rem; border-radius: 6px; border: 1.5px solid var(--border-color); font-family: monospace; font-size: 0.9rem;" />
+                <button type="button" id="btn-save-gemini-key" class="btn btn-primary" style="padding: 0.5rem 1rem; background: #7c3aed; border-color: #7c3aed;">
+                  <span>💾</span> Speichern
+                </button>
+                <button type="button" id="btn-test-gemini-key" class="btn btn-secondary" style="padding: 0.5rem 0.85rem;">
+                  <span>⚡</span> Testen
+                </button>
+              </div>
+              <div id="gemini-key-msg" style="margin-top: 6px; font-size: 0.85rem; display: none;"></div>
+              <small style="display: block; margin-top: 6px; color: var(--text-muted); font-size: 0.82rem; line-height: 1.4;">
+                🔑 <strong>Kostenlos:</strong> Erstellen Sie in 30 Sekunden einen eigenen Gratis-Key bei <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #7c3aed; text-decoration: underline; font-weight: 600;">Google AI Studio</a> (keine Kreditkarte erforderlich). Der Schlüssel bleibt 100% privat in Ihrem Browser gespeichert.
+              </small>
+            </div>
+          </div>
+
           <div class="settings-box highlight-box">
             <h3>☁️ Automatische Wolken-Synchronisation (Cloud-Synchronisation)</h3>
             <p>Ihr Lernfortschritt wird <strong>automatisch in Echtzeit in der Cloud gespeichert</strong>. Öffnen Sie die App auf Ihrem Smartphone, Tablet oder Laptop – Ihre Antworten und Statistiken sind sofort auf allen Geräten synchronisiert!</p>
@@ -2057,13 +2095,14 @@
   <script src="js/storage_idb.js"></script>
   <script src="js/sm2.js"></script>
   <script src="js/voice.js"></script>
+  <script src="js/gemini_evaluator.js"></script>
   <script src="js/abbreviations_data.js"></script>
   <script src="js/exam_simulation.js"></script>
   <script src="js/calculators.js"></script>
   <script src="js/storage_sync.js"></script>
   <script src="js/speech_engine.js"></script>
   <script src="questions.js"></script>
-  <script src="app.js?v=6.1"></script>
+  <script src="app.js?v=6.2"></script>
 
   <!-- Service Worker Registration for Offline PWA Mode -->
   <script>

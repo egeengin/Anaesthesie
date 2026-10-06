@@ -189,25 +189,31 @@ console.log('[PASS] Stepper state machine and progressive disclosure validated.'
 function generateChecklist(category, stem, answer, options) {
   const items = [];
   if (options && options.length > 0) {
-    options.slice(0, 4).forEach(opt => {
+    options.slice(0, 6).forEach(opt => {
       const status = opt.is_correct ? '✅ Richtig:' : '❌ Falsch:';
       const expl = opt.explanation_de ? opt.explanation_de.split('.')[0] : opt.text_de;
       items.push(`<strong>${status}</strong> ${opt.text_de} <br><small>${expl}</small>`);
     });
   } else {
-    const bullets = answer.split(/[•\n–-]/).map(s => s.trim()).filter(s => s.length > 15);
-    if (bullets.length >= 3) {
-      bullets.slice(0, 4).forEach(b => items.push(highlightDosagesAndUnits(b)));
-    } else {
-      const sentences = answer.split(/[.!?]/).map(s => s.trim()).filter(s => s.length > 15);
+    const rawLines = (answer || '').split(/(?:\r?\n|•)/).map(s => s.trim()).filter(Boolean);
+    for (const line of rawLines) {
+      if (/^[0-9]+\.\s+[A-ZÄÖÜ\s\-_0-9/]+:?$/.test(line) && line.length < 85) continue;
+      if (line.endsWith(':') && line.length < 50 && !line.includes(',') && !line.toLowerCase().includes('stufe')) continue;
+      const clean = line.replace(/^[•\-\–\—\*\s]+/, '').trim();
+      if (clean.length >= 15) {
+        items.push(highlightDosagesAndUnits(clean));
+      }
+    }
+    if (items.length < 2) {
+      const sentences = (answer || '').split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 15);
       if (sentences.length > 0) {
-        sentences.slice(0, 4).forEach(s => items.push(highlightDosagesAndUnits(s)));
-      } else {
+        sentences.slice(0, 6).forEach(s => items.push(highlightDosagesAndUnits(s)));
+      } else if (answer) {
         items.push(highlightDosagesAndUnits(answer.substring(0, 180)));
       }
     }
   }
-  return items;
+  return items.slice(0, 7);
 }
 
 const sampleMCQ = questions.find(q => q.question_type === 'options' && q.options && q.options.length >= 4);
@@ -1145,7 +1151,59 @@ validPillars.forEach(pId => {
 
 console.log(`[PASS] Suite 38 passed! Verified 5 Säulen mapping across all 664 questions:`, pillarCounts);
 
-console.log('\n🎉 ALL 38 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// ─────────────────────────────────────────────────────────────────────────────
+// Suite 39: Google Gemini AI Facharzt-Examiner & Medical STT Resilience
+// ─────────────────────────────────────────────────────────────────────────────
+console.log('Testing Suite 39: Google Gemini AI Facharzt-Examiner & Medical STT Resilience...');
+
+const GeminiAIEvaluator = require('./js/gemini_evaluator.js');
+const geminiInstance = new GeminiAIEvaluator();
+
+// 1. Verify key management
+assert(typeof geminiInstance.getApiKey === 'function', 'getApiKey must be a function');
+assert(typeof geminiInstance.setApiKey === 'function', 'setApiKey must be a function');
+assert(typeof geminiInstance.hasApiKey === 'function', 'hasApiKey must be a function');
+assert.strictEqual(geminiInstance.hasApiKey(), false, 'Should be false when no key is set');
+
+// 2. Verify Speech Normalization on user's exact reported sentence
+const userRawTranscript = "Hallo Kollegen Ich steigere Vier Auf 100 % Ich erhöhe Adäquat Und ich bespreche Mit dem Chirurg ob er Kurzzeitig OP unterbrechen kann oder Die Lunge Wand leeren kann Wenn es vorherige Lösungen nicht Geld Und natürlich ich kontrolliere mit dem Fieberoptik und Doppelposition";
+const normalizedText = VoiceExamEngine.normalizeMedicalSpeech(userRawTranscript);
+
+assert(normalizedText.includes('fio2') || normalizedText.includes('100%'), 'Normalized text must recognize Vier auf 100% as FiO2 100%');
+assert(normalizedText.includes('fiberoptik') || normalizedText.includes('bronchoskop'), 'Normalized text must recognize Fieberoptik as Fiberoptik');
+assert(normalizedText.includes('dlt') || normalizedText.includes('doppellumentubus'), 'Normalized text must recognize Doppelposition as DLT');
+assert(normalizedText.includes('unterbrechung') || normalizedText.includes('operateur'), 'Normalized text must recognize OP unterbrechen as Unterbrechung');
+
+// 3. Verify Evaluation of q_dus_02 with improved checklist & speech normalizer
+const qDus02 = questions.find(q => q.id === 'q_dus_02');
+assert(qDus02, 'q_dus_02 must exist in dataset');
+const openChecklistQ02 = generateChecklist(qDus02.category, qDus02.question_de, qDus02.answer_de, null);
+
+// Must contain all 5 Stufen and not be fragmented on hyphens
+assert(openChecklistQ02.length >= 5, `q_dus_02 checklist must have at least 5 items, found ${openChecklistQ02.length}`);
+assert(openChecklistQ02.some(item => item.includes('FiO2 auf 1,0')), 'Checklist must include Stufe 1 FiO2');
+assert(openChecklistQ02.some(item => item.includes('Lagekontrolle des DLT')), 'Checklist must include Stufe 2 DLT');
+assert(openChecklistQ02.some(item => item.includes('CPAP')), 'Checklist must include Stufe 3 CPAP');
+assert(openChecklistQ02.some(item => item.includes('PEEP')), 'Checklist must include Stufe 4 PEEP');
+assert(openChecklistQ02.some(item => item.includes('Operateur') || item.includes('Zwei-Lungen')), 'Checklist must include Stufe 5');
+
+// Evaluate candidate's answer against the checklist
+const testEval = VoiceExamEngine.evaluateSpokenAnswer(userRawTranscript, openChecklistQ02);
+assert(testEval.matchedIndices.length >= 3, `Candidate must match at least 3 clinical criteria (Stufe 1, 2, 5), matched ${testEval.matchedIndices.length}`);
+assert(testEval.matchRatio >= 0.40, `Candidate match ratio must be >= 40%, got ${testEval.matchRatio * 100}%`);
+
+// 4. Verify UI & Service Worker Integration
+assert(htmlContent.includes('gemini-settings-box'), 'index.html must include #gemini-settings-box');
+assert(htmlContent.includes('gemini-api-key-input'), 'index.html must include #gemini-api-key-input');
+assert(htmlContent.includes('ai-examiner-comment-box'), 'index.html must include #ai-examiner-comment-box');
+assert(htmlContent.includes('gemini_evaluator.js'), 'index.html must include script tag for gemini_evaluator.js');
+assert(cssCode.includes('.ai-examiner-comment-box'), 'styles.css must style .ai-examiner-comment-box');
+assert(swCode.includes('gemini_evaluator.js'), 'sw.js must include gemini_evaluator.js in CORE_ASSETS');
+
+console.log('[PASS] Suite 39 passed! Verified Google Gemini AI integration, medical STT error tolerance, and clinical scoring resilience.');
+
+console.log('\n🎉 ALL 39 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

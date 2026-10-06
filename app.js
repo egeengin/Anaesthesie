@@ -124,6 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const elEvalStatusMsg = document.getElementById('eval-status-msg');
   const elEvalMatchedTags = document.getElementById('eval-matched-tags');
   const elEvalMissedTags = document.getElementById('eval-missed-tags');
+  const elAiExaminerCommentBox = document.getElementById('ai-examiner-comment-box');
+  const elAiExaminerName = document.getElementById('ai-examiner-name');
+  const elAiExaminerFeedbackDE = document.getElementById('ai-examiner-feedback-de');
+  const elAiExaminerFeedbackTR = document.getElementById('ai-examiner-feedback-tr');
+  const elGeminiApiKeyInput = document.getElementById('gemini-api-key-input');
+  const elBtnSaveGeminiKey = document.getElementById('btn-save-gemini-key');
+  const elBtnTestGeminiKey = document.getElementById('btn-test-gemini-key');
+  const elGeminiKeyMsg = document.getElementById('gemini-key-msg');
+  const geminiEvaluator = (typeof GeminiAIEvaluator !== 'undefined') ? new GeminiAIEvaluator() : null;
   const elBtnVoiceLangDe = document.getElementById('btn-voice-lang-de');
   const elBtnVoiceLangTr = document.getElementById('btn-voice-lang-tr');
   const elBtnSampleVoice = document.getElementById('btn-sample-voice');
@@ -1844,7 +1853,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function evaluateVoiceAnswer() {
+  async function evaluateVoiceAnswer() {
     stopVoiceRecording();
 
     const spokenText = elSpeechTranscriptInput ? elSpeechTranscriptInput.value.trim() : '';
@@ -1858,11 +1867,104 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentQ = filteredQuestions[state.currentIndex];
     if (!currentQ) return;
     const parsedCase = parseOralExamCase(currentQ);
+    const examinerProfile = getExaminerProfileForCase(currentQ) || {
+      name: 'Prof. Dr. med. Andreas Hohn',
+      hospital: 'Kliniken der Stadt Köln / Universität zu Köln · Leitender Thoraxanästhesist',
+      focus: 'Thoraxanästhesie, DLT, Einlungenventilation, 5-Stufen-Hypoxämieschema',
+      trap: 'Hektisches Reagieren ohne strukturiertes 5-Stufen-Rettungskonzept'
+    };
 
     const targetRubric = (parsedCase.checklist && parsedCase.checklist.length)
       ? parsedCase.checklist
       : [currentQ.answer_de || ''];
 
+    // 1. Check if Gemini AI Evaluator is available and has user key
+    const hasGeminiKey = Boolean(geminiEvaluator && geminiEvaluator.hasApiKey());
+
+    if (hasGeminiKey) {
+      if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'block';
+      if (elEvalScoreBadge) {
+        elEvalScoreBadge.textContent = '🤖 KI-Prüfung läuft...';
+        elEvalScoreBadge.className = 'eval-score-badge ai-loading';
+      }
+      if (elEvalStatusMsg) {
+        elEvalStatusMsg.textContent = `${examinerProfile.name} analysiert die klinische Logik Ihrer Antwort...`;
+      }
+      if (elAiExaminerCommentBox) elAiExaminerCommentBox.style.display = 'none';
+
+      try {
+        const aiRes = await geminiEvaluator.evaluateAnswer({
+          questionId: currentQ.id,
+          category: currentQ.category,
+          questionText: currentQ.question_de || currentQ.stem_de,
+          officialAnswer: currentQ.answer_de,
+          rubricList: targetRubric,
+          spokenTranscript: spokenText,
+          examinerName: examinerProfile.name,
+          examinerHospital: examinerProfile.hospital,
+          examinerFocus: examinerProfile.focus,
+          examinerTrap: examinerProfile.trap
+        });
+
+        // Render AI Results
+        if (elEvalScoreBadge) {
+          elEvalScoreBadge.textContent = `🎯 ${aiRes.score}% Treffer · ${aiRes.grade}`;
+          elEvalScoreBadge.className = 'eval-score-badge ' + (aiRes.score >= 70 ? '' : (aiRes.score >= 40 ? 'mid' : 'low'));
+        }
+
+        if (elEvalStatusMsg) {
+          elEvalStatusMsg.textContent = aiRes.passed
+            ? `🎉 ÄKNO-Urteil: ${aiRes.grade}!`
+            : `⚠️ Nachbesserung erforderlich: ${aiRes.grade}`;
+        }
+
+        if (elAiExaminerCommentBox) {
+          elAiExaminerCommentBox.style.display = 'block';
+          if (elAiExaminerName) elAiExaminerName.textContent = examinerProfile.name;
+          if (elAiExaminerFeedbackDE) {
+            elAiExaminerFeedbackDE.innerHTML = escapeHtml(aiRes.verdictDE || '');
+          }
+          if (elAiExaminerFeedbackTR) {
+            elAiExaminerFeedbackTR.innerHTML = aiRes.verdictTR
+              ? `🇹🇷 <strong>Klinik Özet:</strong> ${escapeHtml(aiRes.verdictTR)}`
+              : '';
+          }
+        }
+
+        if (elEvalMatchedTags) {
+          const matchedList = (aiRes.matchedCriteria && aiRes.matchedCriteria.length)
+            ? aiRes.matchedCriteria
+            : ['Klinischer Lösungsansatz erkannt'];
+          elEvalMatchedTags.innerHTML = matchedList.map(kw => `<span class="keyword-tag matched">✓ ${escapeHtml(kw)}</span>`).join('');
+        }
+
+        if (elEvalMissedTags) {
+          const missedList = (aiRes.missedCriteria && aiRes.missedCriteria.length)
+            ? aiRes.missedCriteria
+            : [];
+          if (missedList.length > 0) {
+            elEvalMissedTags.innerHTML = missedList.map(item => `<span class="keyword-tag missed">○ ${escapeHtml(item)}</span>`).join('');
+          } else {
+            elEvalMissedTags.innerHTML = '<span class="eval-empty-hint">Alle Kernkriterien abgedeckt! 🌟</span>';
+          }
+        }
+
+        if (aiRes.koViolated) {
+          playAudioTone(330, 'sawtooth', 0.6);
+        } else {
+          playAudioTone(587.33, 'triangle', 0.35);
+        }
+
+        // Automatically reveal model answer
+        revealAnswer();
+        return;
+      } catch (aiErr) {
+        console.warn('[GeminiAI] Evaluation call failed, gracefully falling back to local engine:', aiErr);
+        showToast('⚠️ KI-Auswertung vorübergehend nicht erreichbar. Lokale Facharzt-Auswertung wird angewendet.', 'warning', 4500);
+      }
+    }
+
+    // 2. Local Fallback / Heuristic Engine (Enhanced with speech normalization & full checklist)
     let evalResult = { matchedIndices: [], matchRatio: 0, keywordsMatched: [] };
     if (typeof VoiceExamEngine !== 'undefined' && VoiceExamEngine.evaluateSpokenAnswer) {
       evalResult = VoiceExamEngine.evaluateSpokenAnswer(spokenText, targetRubric);
@@ -1885,12 +1987,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (elEvalStatusMsg) {
-        if (pct >= 75) {
+        if (pct >= 70) {
           elEvalStatusMsg.textContent = '🎉 Ausgezeichnet! Sie haben die entscheidenden ÄKNO-Leitlinienkriterien genannt.';
-        } else if (pct >= 45) {
+        } else if (pct >= 40) {
           elEvalStatusMsg.textContent = '👍 Solide Struktur! Einige wichtige Signalbegriffe fehlen noch (siehe unten).';
         } else {
           elEvalStatusMsg.textContent = '⚠️ Wichtige K.O.-Kriterien oder Leitlinienpunkte ausgelassen. Vergleichen Sie mit der Musterantwort.';
+        }
+      }
+
+      // Friendly AI activation hint if user doesn't have an API key yet
+      if (elAiExaminerCommentBox && !hasGeminiKey) {
+        elAiExaminerCommentBox.style.display = 'block';
+        if (elAiExaminerName) elAiExaminerName.textContent = examinerProfile.name;
+        if (elAiExaminerFeedbackDE) {
+          elAiExaminerFeedbackDE.innerHTML = `💡 <strong>Tipp für KI-Facharztprüfer Noten:</strong> Hinterlegen Sie Ihren kostenlosen <em>Google Gemini API-Key</em> in den Einstellungen (dauert 30 Sek. bei Google AI Studio). Damit bewertet die KI Ihre klinische Logik direkt und unabhängig von Spracherkennungs-Tippfehlern!`;
+        }
+        if (elAiExaminerFeedbackTR) {
+          elAiExaminerFeedbackTR.innerHTML = `🇹🇷 <strong>İpucu:</strong> Ayarlar menüsünden ücretsiz Gemini API anahtarınızı girerek jürinin Türkçe/Almanca detaylı klinik yorum ve notunu anında alabilirsiniz.`;
         }
       }
 
@@ -1906,8 +2020,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const missed = targetRubric.filter((_, idx) => !evalResult.matchedIndices.includes(idx));
         if (missed.length > 0) {
           elEvalMissedTags.innerHTML = missed.map(item => {
-            const cleanItem = item.replace(/<[^>]*>/g, '').substring(0, 75);
-            return `<span class="keyword-tag missed">○ ${escapeHtml(cleanItem)}${item.length > 75 ? '...' : ''}</span>`;
+            const cleanItem = item.replace(/<[^>]*>/g, '').substring(0, 85);
+            return `<span class="keyword-tag missed">○ ${escapeHtml(cleanItem)}${item.length > 85 ? '...' : ''}</span>`;
           }).join('');
         } else {
           elEvalMissedTags.innerHTML = '<span class="eval-empty-hint">Alle Kernkriterien abgedeckt! 🌟</span>';
@@ -2328,6 +2442,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const verbalFramework = generateVerbalFramework(category, stem, answer);
     const verbalFrameworkTR = generateVerbalFrameworkTR(category, stem, answer);
     const checklist = generateChecklist(category, stem, answer, q.options);
+    const checklistTR = generateChecklist(category, stem, answerTr, q.options);
     const pitfalls = generatePitfalls(category, stem, answer);
     const pitfallsTR = generatePitfallsTR(category, stem, answer);
 
@@ -2347,6 +2462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       verbalFramework,
       verbalFrameworkTR,
       checklist,
+      checklistTR,
       pitfalls,
       pitfallsTR,
       fullTextDE: answer,
@@ -3550,30 +3666,38 @@ Tedavi:
 
     // If multi-choice options exist, generate high-yield points from options
     if (options && options.length > 0) {
-      options.slice(0, 4).forEach(opt => {
+      options.slice(0, 6).forEach(opt => {
         const status = opt.is_correct ? '✅ Richtig:' : '❌ Falsch:';
         const expl = opt.explanation_de ? opt.explanation_de.split('.')[0] : opt.text_de;
         items.push(`<strong>${status}</strong> ${opt.text_de} <br><small style="color: var(--text-muted);">${expl}</small>`);
       });
     } else {
-      // Split paragraphs or bullet points in open questions
-      const bullets = answer.split(/[•\n–-]/).map(s => s.trim()).filter(s => s.length > 15);
-      if (bullets.length >= 3) {
-        bullets.slice(0, 4).forEach(b => {
-          items.push(highlightDosagesAndUnits(b));
-        });
-      } else {
-        // Synthesize high-yield items from sentences
-        const sentences = answer.split(/[.!?]/).map(s => s.trim()).filter(s => s.length > 15);
+      // Split on actual bullets (•), numbered points, or newlines (NEVER on hyphens '-' inside compound words!)
+      const rawLines = (answer || '').split(/(?:\r?\n|•)/).map(s => s.trim()).filter(Boolean);
+      for (const line of rawLines) {
+        // Skip uppercase headers / section titles (e.g. "1. STRUKTURIERTES 5-STUFEN-RETTUNGSSCHEMA BEI OLV-HYPOXÄMIE:")
+        if (/^[0-9]+\.\s+[A-ZÄÖÜ\s\-_0-9/]+:?$/.test(line) && line.length < 85) continue;
+        if (line.endsWith(':') && line.length < 50 && !line.includes(',') && !line.toLowerCase().includes('stufe')) continue;
+
+        // Clean leading dashes, bullets or step bullets
+        const clean = line.replace(/^[•\-\–\—\*\s]+/, '').trim();
+        if (clean.length >= 15) {
+          items.push(highlightDosagesAndUnits(clean));
+        }
+      }
+
+      // If bullet extraction produced fewer than 2 items, fallback to sentences
+      if (items.length < 2) {
+        const sentences = (answer || '').split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 15);
         if (sentences.length > 0) {
-          sentences.slice(0, 4).forEach(s => items.push(highlightDosagesAndUnits(s)));
-        } else {
+          sentences.slice(0, 6).forEach(s => items.push(highlightDosagesAndUnits(s)));
+        } else if (answer) {
           items.push(highlightDosagesAndUnits(answer.substring(0, 180)));
         }
       }
     }
 
-    return items;
+    return items.slice(0, 7);
   }
 
   function generatePitfalls(category, stem, answer) {
@@ -6385,7 +6509,96 @@ Tedavi:
     });
   }
 
-  if (elSettingsTrigger && elSettingsModal) elSettingsTrigger.addEventListener('click', () => elSettingsModal.classList.add('active'));
+  function updateGeminiSettingsUI() {
+    if (geminiEvaluator && elGeminiApiKeyInput) {
+      const key = geminiEvaluator.getApiKey();
+      elGeminiApiKeyInput.value = key ? key : '';
+      if (elGeminiKeyMsg) {
+        if (key && key.length >= 20) {
+          elGeminiKeyMsg.style.display = 'block';
+          elGeminiKeyMsg.style.color = '#10b981';
+          elGeminiKeyMsg.innerHTML = '✅ <strong>Gemini AI ist aktiv!</strong> Ihre mündlichen Antworten werden direkt von Google Gemini analysiert.';
+        } else {
+          elGeminiKeyMsg.style.display = 'none';
+        }
+      }
+    }
+  }
+
+  if (elBtnSaveGeminiKey && elGeminiApiKeyInput && geminiEvaluator) {
+    elBtnSaveGeminiKey.addEventListener('click', () => {
+      const raw = elGeminiApiKeyInput.value.trim();
+      if (!raw) {
+        geminiEvaluator.setApiKey('');
+        if (elGeminiKeyMsg) {
+          elGeminiKeyMsg.style.display = 'block';
+          elGeminiKeyMsg.style.color = '#f59e0b';
+          elGeminiKeyMsg.textContent = 'Key entfernt. Lokaler Prüfungsmodus ist aktiv.';
+        }
+        showToast('Gemini API-Key entfernt. Lokaler Modus aktiv.', 'info');
+        return;
+      }
+      geminiEvaluator.setApiKey(raw);
+      if (elGeminiKeyMsg) {
+        elGeminiKeyMsg.style.display = 'block';
+        elGeminiKeyMsg.style.color = '#10b981';
+        elGeminiKeyMsg.innerHTML = '✅ <strong>API-Key gespeichert!</strong> Gemini AI Facharzt-Prüfer ist einsatzbereit.';
+      }
+      showToast('✅ Gemini API-Key erfolgreich gespeichert!', 'success');
+    });
+  }
+
+  if (elBtnTestGeminiKey && elGeminiApiKeyInput && geminiEvaluator) {
+    elBtnTestGeminiKey.addEventListener('click', async () => {
+      const key = elGeminiApiKeyInput.value.trim() || geminiEvaluator.getApiKey();
+      if (!key) {
+        showToast('⚠️ Bitte geben Sie zuerst einen API-Key ein.', 'warning');
+        return;
+      }
+      if (elGeminiKeyMsg) {
+        elGeminiKeyMsg.style.display = 'block';
+        elGeminiKeyMsg.style.color = '#7c3aed';
+        elGeminiKeyMsg.innerHTML = '⚡ Verbindung zu Google Gemini wird getestet...';
+      }
+      try {
+        const testRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: 'Antworte mit: {"status": "ok"}' }] }],
+            generationConfig: { responseMimeType: 'application/json' }
+          })
+        });
+        if (testRes.ok) {
+          geminiEvaluator.setApiKey(key);
+          if (elGeminiKeyMsg) {
+            elGeminiKeyMsg.style.color = '#10b981';
+            elGeminiKeyMsg.innerHTML = '🎉 <strong>Verbindungstest erfolgreich!</strong> Gemini 2.5 Flash antwortet optimal.';
+          }
+          showToast('🎉 Gemini Verbindung erfolgreich getestet!', 'success');
+        } else {
+          if (elGeminiKeyMsg) {
+            elGeminiKeyMsg.style.color = '#ef4444';
+            elGeminiKeyMsg.innerHTML = `❌ <strong>Fehler (${testRes.status}):</strong> Ungültiger Key oder API-Fehler.`;
+          }
+          showToast(`❌ Fehler beim Key-Test (${testRes.status})`, 'error');
+        }
+      } catch (err) {
+        if (elGeminiKeyMsg) {
+          elGeminiKeyMsg.style.color = '#ef4444';
+          elGeminiKeyMsg.innerHTML = `❌ <strong>Netzwerkfehler:</strong> ${err.message}`;
+        }
+        showToast(`❌ Netzwerkfehler beim Testen: ${err.message}`, 'error');
+      }
+    });
+  }
+
+  if (elSettingsTrigger && elSettingsModal) {
+    elSettingsTrigger.addEventListener('click', () => {
+      elSettingsModal.classList.add('active');
+      updateGeminiSettingsUI();
+    });
+  }
   if (elSettingsModalClose && elSettingsModal) elSettingsModalClose.addEventListener('click', () => closeModal(elSettingsModal));
   if (elSettingsModal) {
     elSettingsModal.addEventListener('click', (e) => {
