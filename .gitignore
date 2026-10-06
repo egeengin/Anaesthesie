@@ -30,3 +30,8 @@ Thumbs.db
 # AI agent skills & config
 .agents/
 .gemini/
+
+# Local private configs & keys
+config.local.js
+*.local.js
+.env*

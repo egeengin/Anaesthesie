@@ -9,17 +9,21 @@
   class GeminiAIEvaluator {
     constructor() {
       this.storageKey = 'gemini_api_key';
-      this.model = 'gemini-2.5-flash';
-      this.fallbackModel = 'gemini-1.5-flash';
+      this.model = 'gemini-3.5-flash';
+      this.fallbackModel = 'gemini-3.1-flash-lite';
     }
 
     getApiKey() {
       try {
-        if (typeof localStorage !== 'undefined') {
-          return (localStorage.getItem(this.storageKey) || '').trim();
+        if (typeof window !== 'undefined' && window.localStorage) {
+          const stored = (window.localStorage.getItem(this.storageKey) || '').trim();
+          if (stored) return stored;
         }
       } catch (e) {
         console.warn('[GeminiAI] Error reading localStorage:', e);
+      }
+      if (typeof globalThis !== 'undefined' && globalThis.GEMINI_LOCAL_KEY) {
+        return globalThis.GEMINI_LOCAL_KEY;
       }
       return '';
     }
@@ -155,8 +159,13 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!rawText) throw new Error('EMPTY_GEMINI_RESPONSE');
 
-      const cleaned = rawText.replace(/```json/gi, '').replace(/```/gi, '').trim();
-      return JSON.parse(cleaned);
+      let jsonString = rawText.replace(/```json/gi, '').replace(/```/gi, '').trim();
+      const firstBrace = jsonString.indexOf('{');
+      const lastBrace = jsonString.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+        jsonString = jsonString.substring(firstBrace, lastBrace + 1);
+      }
+      return JSON.parse(jsonString);
     }
   }
 
