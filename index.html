@@ -439,7 +439,7 @@
           <div id="diag-live-log" class="diag-live-log" style="display:none; margin-top:0.4rem; padding:0.5rem; background:rgba(0,0,0,0.35); border:1px solid var(--border-color); border-radius:6px; font-family:monospace; font-size:0.75rem; color:#94a3b8; max-height:120px; overflow-y:auto; white-space:pre-wrap;"></div>
           <div class="diag-help-text" id="diag-help-text">
             💡 <strong>Tipps zur Fehlerbehebung (macOS / Safari / Chrome):</strong> Wenn kein Text erkannt wird oder der Pegel zu leise ist:
-            <br>• <strong>Empfehlung für macOS:</strong> Bitte nutzen Sie vorzugsweise <strong>Safari</strong> (verwendet die native Apple-Spracherkennung und funktioniert ohne Google-Server-Konflikte).
+            <br>• <strong>Chrome auf macOS:</strong> Ist die Google-Spracherkennung blockiert (auch die offizielle Google-Testseite bleibt stumm), schaltet die App <strong>automatisch auf Gemini-Transkription</strong> um: Aufnahme starten → sprechen → stoppen, der Text erscheint nach ca. 2 s. Ein erfolgreicher Sprachtest hier schaltet wieder auf Live-Erkennung zurück. Safari nutzt die native Apple-Erkennung (live).
             <br>• <strong>Browser-Berechtigung:</strong> Links in der Adresszeile auf das <strong>Schloss- / Website-Einstellungen-Symbol 🎚️</strong> klicken und <strong>Mikrofon: Zulassen</strong> wählen.
             <br>• <strong>macOS-Toneinstellungen:</strong> Unter <strong>Systemeinstellungen > Ton > Eingang</strong> sicherstellen, dass das <em>MacBook-Mikrofon</em> aktiv und die <strong>Eingangslautstärke</strong> aufgedreht ist.
             <br>• <strong>Mikrofon-Modus:</strong> Im macOS-Kontrollzentrum (oben rechts in der Menüleiste) den <strong>Mikrofonmodus</strong> auf <em>Standard</em> setzen (nicht auf „Stimmisolation“).
@@ -2096,14 +2096,14 @@
   <script src="js/sm2.js"></script>
   <script src="js/voice.js"></script>
   <script src="config.local.js" onerror="void 0;"></script>
-  <script src="js/gemini_evaluator.js"></script>
+  <script src="js/gemini_evaluator.js?v=7.0"></script>
   <script src="js/abbreviations_data.js"></script>
   <script src="js/exam_simulation.js"></script>
   <script src="js/calculators.js"></script>
   <script src="js/storage_sync.js"></script>
   <script src="js/speech_engine.js"></script>
   <script src="questions.js"></script>
-  <script src="app.js?v=6.2"></script>
+  <script src="app.js?v=7.0"></script>
 
   <!-- Service Worker Registration for Offline PWA Mode -->
   <script>

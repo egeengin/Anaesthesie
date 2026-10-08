@@ -1199,15 +1199,24 @@ const testEval = VoiceExamEngine.evaluateSpokenAnswer(userRawTranscript, openChe
 assert(testEval.matchedIndices.length >= 3, `Candidate must match at least 3 clinical criteria (Stufe 1, 2, 5), matched ${testEval.matchedIndices.length}`);
 assert(testEval.matchRatio >= 0.40, `Candidate match ratio must be >= 40%, got ${testEval.matchRatio * 100}%`);
 
-// 4. Verify UI & Service Worker Integration
+// 4. Verify Gemini Audio STT methods & cleanTranscript
+assert.strictEqual(typeof geminiInstance.transcribeAudio, 'function', 'geminiEvaluator must implement transcribeAudio');
+assert.strictEqual(typeof GeminiAIEvaluator.cleanTranscript, 'function', 'GeminiAIEvaluator must implement cleanTranscript');
+assert.strictEqual(GeminiAIEvaluator.cleanTranscript('"Ich gebe Sugammadex"'), 'Ich gebe Sugammadex', 'cleanTranscript must strip quotes');
+assert.strictEqual(GeminiAIEvaluator.cleanTranscript('[Keine Sprache]'), '', 'cleanTranscript must return empty string for no speech marker');
+assert.strictEqual(typeof GeminiAIEvaluator.audioBlobToWav16k, 'function', 'GeminiAIEvaluator must implement audioBlobToWav16k');
+
+// 5. Verify UI & Service Worker Integration
 assert(htmlContent.includes('gemini-settings-box'), 'index.html must include #gemini-settings-box');
 assert(htmlContent.includes('gemini-api-key-input'), 'index.html must include #gemini-api-key-input');
 assert(htmlContent.includes('ai-examiner-comment-box'), 'index.html must include #ai-examiner-comment-box');
 assert(htmlContent.includes('gemini_evaluator.js'), 'index.html must include script tag for gemini_evaluator.js');
 assert(cssCode.includes('.ai-examiner-comment-box'), 'styles.css must style .ai-examiner-comment-box');
 assert(swCode.includes('gemini_evaluator.js'), 'sw.js must include gemini_evaluator.js in CORE_ASSETS');
+assert(appCode.includes('transcribeRecordingWithGemini'), 'app.js must implement transcribeRecordingWithGemini');
+assert(appCode.includes('STT_ENGINE_KEY'), 'app.js must define STT_ENGINE_KEY');
 
-console.log('[PASS] Suite 39 passed! Verified Google Gemini AI integration, medical STT error tolerance, and clinical scoring resilience.');
+console.log('[PASS] Suite 39 passed! Verified Google Gemini AI integration, audio STT cloud fallback, medical STT error tolerance, and clinical scoring resilience.');
 
 console.log('\n🎉 ALL 39 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 

@@ -167,6 +167,148 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       }
       return JSON.parse(jsonString);
     }
+
+    // --- Cloud Speech-to-Text (fallback when the browser's Web Speech API is blocked, e.g. macOS Chrome) ---
+
+    /**
+     * Transcribes a recorded audio blob (MediaRecorder output) via Gemini.
+     * @param {Blob} audioBlob - audio/webm (Chrome), audio/mp4 (Safari), ...
+     * @param {string} lang - BCP-47 language, e.g. 'de-DE' or 'tr-TR'
+     * @returns {Promise<string>} plain transcript ('' if no speech)
+     */
+    async transcribeAudio(audioBlob, lang = 'de-DE') {
+      const apiKey = this.getApiKey();
+      if (!apiKey) throw new Error('MISSING_API_KEY');
+      if (!audioBlob || !audioBlob.size) return '';
+
+      // Gemini officially supports WAV/MP3/AAC/OGG/FLAC -> convert MediaRecorder output to 16 kHz mono WAV.
+      let uploadBlob = audioBlob;
+      let mimeType = (audioBlob.type || 'audio/webm').split(';')[0];
+      try {
+        const wav = await GeminiAIEvaluator.audioBlobToWav16k(audioBlob);
+        // Inline request limit is ~20 MB; keep compressed original for very long answers.
+        if (wav && wav.size < 15 * 1024 * 1024) {
+          uploadBlob = wav;
+          mimeType = 'audio/wav';
+        }
+      } catch (convErr) {
+        console.warn('[GeminiAI] WAV conversion failed, sending original audio:', convErr);
+      }
+
+      const base64 = await GeminiAIEvaluator.blobToBase64(uploadBlob);
+      const isTr = String(lang || '').toLowerCase().startsWith('tr');
+      const prompt = isTr
+        ? 'Bu ses kaydını kelimesi kelimesine Türkçe olarak yazıya dök. Konuşmacı anesteziyoloji uzmanlık sınavına hazırlanan bir hekimdir; tıbbi terimleri, ilaç adlarını ve kısaltmaları (ör. FiO2, PEEP, Sugammadeks) doğru yaz. YALNIZCA transkripti döndür, yorum ekleme. Kayıtta konuşma yoksa boş yanıt döndür.'
+        : 'Transkribiere diese Audioaufnahme wortgetreu auf Deutsch. Es handelt sich um eine mündliche Antwort in der Facharztprüfung Anästhesiologie: Schreibe medizinische Fachbegriffe, Medikamentennamen, Dosierungen und Abkürzungen korrekt (z. B. FiO2, PEEP, Sugammadex, Rocuronium, CICO, DLT). Gib AUSSCHLIESSLICH den transkribierten Text zurück, ohne Kommentar oder Anführungszeichen. Wenn keine Sprache hörbar ist, gib eine leere Antwort zurück.';
+
+      const payload = {
+        contents: [{
+          parts: [
+            { text: prompt },
+            { inline_data: { mime_type: mimeType, data: base64 } }
+          ]
+        }],
+        generationConfig: {
+          temperature: 0,
+          thinkingConfig: { thinkingLevel: 'minimal' }
+        }
+      };
+
+      let text;
+      try {
+        text = await this._callGeminiText(this.model, apiKey, payload);
+      } catch (err) {
+        console.warn(`[GeminiAI] STT with ${this.model} failed, trying ${this.fallbackModel}:`, err);
+        text = await this._callGeminiText(this.fallbackModel, apiKey, payload);
+      }
+      return GeminiAIEvaluator.cleanTranscript(text);
+    }
+
+    async _callGeminiText(model, apiKey, payload) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errorText}`);
+      }
+      const data = await res.json();
+      const parts = data?.candidates?.[0]?.content?.parts || [];
+      return parts.filter(p => typeof p.text === 'string' && !p.thought).map(p => p.text).join(' ').trim();
+    }
+
+    static cleanTranscript(text) {
+      let t = String(text || '').trim();
+      t = t.replace(/^["„“'`]+|["“”'`]+$/g, '').trim();
+      // Model sometimes answers "no speech" in words instead of returning empty text
+      if (/^(\[|\()?\s*(keine sprache|kein(e)? (ton|audio)|stille|no speech|silence|konuşma yok|ses yok)/i.test(t)) return '';
+      return t;
+    }
+
+    static blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const result = String(reader.result || '');
+          const comma = result.indexOf(',');
+          resolve(comma >= 0 ? result.slice(comma + 1) : result);
+        };
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    /** Decodes any browser-recorded audio and re-encodes it as 16-bit PCM WAV, 16 kHz, mono. */
+    static async audioBlobToWav16k(blob) {
+      const AudioCtx = (typeof window !== 'undefined') && (window.AudioContext || window.webkitAudioContext);
+      const OfflineCtx = (typeof window !== 'undefined') && (window.OfflineAudioContext || window.webkitOfflineAudioContext);
+      if (!AudioCtx || !OfflineCtx) throw new Error('NO_WEB_AUDIO');
+
+      const arrayBuf = await blob.arrayBuffer();
+      const decodeCtx = new AudioCtx();
+      let decoded;
+      try {
+        decoded = await decodeCtx.decodeAudioData(arrayBuf.slice(0));
+      } finally {
+        try { decodeCtx.close(); } catch (e) {}
+      }
+
+      const targetRate = 16000;
+      const frameCount = Math.max(1, Math.ceil(decoded.duration * targetRate));
+      const offline = new OfflineCtx(1, frameCount, targetRate);
+      const src = offline.createBufferSource();
+      src.buffer = decoded;
+      src.connect(offline.destination);
+      src.start(0);
+      const rendered = await offline.startRendering();
+      const pcm = rendered.getChannelData(0);
+
+      const buffer = new ArrayBuffer(44 + pcm.length * 2);
+      const view = new DataView(buffer);
+      const writeStr = (off, s) => { for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i)); };
+      writeStr(0, 'RIFF');
+      view.setUint32(4, 36 + pcm.length * 2, true);
+      writeStr(8, 'WAVE');
+      writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true);         // PCM chunk size
+      view.setUint16(20, 1, true);          // PCM format
+      view.setUint16(22, 1, true);          // mono
+      view.setUint32(24, targetRate, true);
+      view.setUint32(28, targetRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeStr(36, 'data');
+      view.setUint32(40, pcm.length * 2, true);
+      let off = 44;
+      for (let i = 0; i < pcm.length; i++, off += 2) {
+        const s = Math.max(-1, Math.min(1, pcm[i]));
+        view.setInt16(off, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+      }
+      return new Blob([view], { type: 'audio/wav' });
+    }
   }
 
   if (typeof module !== 'undefined' && module.exports) {
