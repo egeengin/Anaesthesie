@@ -855,6 +855,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function isGeminiSttMode() {
     if (!canUseGeminiStt()) return false;
     const hasWebSpeech = Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+    const isChrome = /chrome|crios/i.test(navigator.userAgent || '') && !/edg|opr|brave/i.test(navigator.userAgent || '');
+    // On macOS Chrome, Web Speech API has a known CoreAudio/Google cloud deadlock (even Google's official demo fails).
+    // Auto-enable Gemini STT directly on macOS Chrome for instant, reliable dictation.
+    if (isMac && isChrome) return true;
     return !hasWebSpeech || getSttEngine() === 'gemini';
   }
 
@@ -870,7 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function transcribeRecordingWithGemini(questionIdAtStop) {
     const blob = recordedAudioBlob;
-    if (!blob || blob.size < 1000) return;
+    if (!blob || blob.size < 300) return;
     const isTr = isTrSpeechUi();
     isTranscribingWithGemini = true;
     if (elVoiceMicIndicator) elVoiceMicIndicator.style.display = 'flex';
@@ -1630,20 +1635,23 @@ document.addEventListener('DOMContentLoaded', () => {
           mediaRecorder.stop();
         } catch (e) {
           console.warn('MediaRecorder stop error:', e);
+          stopMicrophoneHardware();
           resolve();
         }
-        setTimeout(resolve, 2000); // safety net
+        setTimeout(() => {
+          stopMicrophoneHardware();
+          resolve();
+        }, 2000); // safety net
       } else {
+        stopMicrophoneHardware();
         resolve();
       }
     });
 
-    stopMicrophoneHardware();
     updateRecordingUIState(false);
 
-    // Gemini transcription when the browser's own recognizer produced nothing
-    const shouldTranscribe = wasRecording && !webSpeechGotResult && canUseGeminiStt() &&
-      sessionMs >= 800 && (geminiModeAtStop || loudAudioFrames >= 15);
+    // Gemini transcription when the browser's own recognizer produced nothing or when Gemini mode is active
+    const shouldTranscribe = wasRecording && !webSpeechGotResult && canUseGeminiStt() && sessionMs >= 400;
     if (!shouldTranscribe) return recorderStopped;
     return recorderStopped.then(() => transcribeRecordingWithGemini(questionIdAtStop));
   }

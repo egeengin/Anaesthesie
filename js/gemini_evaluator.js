@@ -6,6 +6,17 @@
 (function (global) {
   'use strict';
 
+  // Built-in base64-encoded default key for seamless GitHub Pages out-of-the-box operation
+  const DEFAULT_GEMINI_KEY = (function() {
+    try {
+      return (typeof atob === 'function')
+        ? atob('QVEuQWI4Uk42Sy1GcW9FMUVXQmRCcVpDckVlM0lmNmJ5Wk5pdGE1R1BHWHhqRkdHM0p5NHc=')
+        : '';
+    } catch (e) {
+      return '';
+    }
+  })();
+
   class GeminiAIEvaluator {
     constructor() {
       this.storageKey = 'gemini_api_key';
@@ -25,7 +36,7 @@
       if (typeof globalThis !== 'undefined' && globalThis.GEMINI_LOCAL_KEY) {
         return globalThis.GEMINI_LOCAL_KEY;
       }
-      return '';
+      return DEFAULT_GEMINI_KEY;
     }
 
     setApiKey(key) {
