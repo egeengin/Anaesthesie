@@ -1218,7 +1218,74 @@ assert(appCode.includes('STT_ENGINE_KEY'), 'app.js must define STT_ENGINE_KEY');
 
 console.log('[PASS] Suite 39 passed! Verified Google Gemini AI integration, audio STT cloud fallback, medical STT error tolerance, and clinical scoring resilience.');
 
-console.log('\n🎉 ALL 39 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 40. Test Zero 'undefined' Regressions & ÄKNO Legal / BGA / Redefluss Property Verification
+console.log('Testing Suite 40: Zero "undefined" Regressions & ÄKNO Legal / BGA / Redefluss Property Verification...');
+
+const CurriculumEngine = require('./js/curriculum_engine.js');
+
+// 1. Verify ÄKNO Legal Checkpoints have zero undefined fields across all 664 questions
+let legalVerifiedCount = 0;
+questions.forEach(q => {
+  const legal = CurriculumEngine.getLegalCheckpoint(q);
+  if (legal) {
+    legalVerifiedCount++;
+    assert(legal.title && legal.title !== 'undefined', `Legal title must be defined in ${q.id}`);
+    assert(legal.topic && legal.topic !== 'undefined', `Legal topic must be defined in ${q.id}`);
+    assert(legal.rule && legal.rule !== 'undefined', `Legal rule must be defined in ${q.id}`);
+    assert(legal.ruleDE && legal.ruleDE !== 'undefined', `Legal ruleDE must be defined in ${q.id}`);
+    assert(legal.scenario && legal.scenario !== 'undefined', `Legal scenario must be defined in ${q.id}`);
+    assert(legal.paragraph && legal.paragraph !== 'undefined', `Legal paragraph must be defined in ${q.id}`);
+  }
+});
+assert(legalVerifiedCount >= 20, `At least 20 legal checkpoints must be active, found ${legalVerifiedCount}`);
+
+// 2. Verify Redefluss Baukasten steps have valid de/tr and textDE/textTR
+questions.forEach(q => {
+  const rf = CurriculumEngine.getRedeflussBaukasten(q);
+  ['step1', 'step2', 'step3', 'step4'].forEach(s => {
+    assert(rf[s].de && rf[s].de !== 'undefined', `Redefluss ${s}.de must be defined in ${q.id}`);
+    assert(rf[s].tr && rf[s].tr !== 'undefined', `Redefluss ${s}.tr must be defined in ${q.id}`);
+    assert(rf[s].textDE && rf[s].textDE !== 'undefined', `Redefluss ${s}.textDE must be defined in ${q.id}`);
+    assert(rf[s].textTR && rf[s].textTR !== 'undefined', `Redefluss ${s}.textTR must be defined in ${q.id}`);
+  });
+});
+
+// 3. Verify BGA Training Cases contain patient scenarios and no undefined
+assert.strictEqual(CurriculumEngine.BGA_TRAINING_CASES.length, 4, 'Must have 4 BGA training cases');
+CurriculumEngine.BGA_TRAINING_CASES.forEach(c => {
+  assert(c.patient && c.patient !== 'undefined', `BGA case ${c.id} must define patient scenario`);
+  assert(c.patient_tr && c.patient_tr !== 'undefined', `BGA case ${c.id} must define patient_tr scenario`);
+  assert(c.title && c.title !== 'undefined', `BGA case ${c.id} must define title`);
+  assert(c.clinicalAction && c.clinicalAction !== 'undefined', `BGA case ${c.id} must define clinicalAction`);
+});
+
+// 4. Verify Ground Truth Dosages & Spickzettel contain zero undefined or [object Object]
+questions.forEach(q => {
+  const gt = CurriculumEngine.getMedicalGroundTruth(q);
+  assert(gt.topic && gt.topic !== 'undefined', `GT topic must be defined in ${q.id}`);
+  gt.dosages.forEach(d => {
+    assert(d.drug && d.drug !== 'undefined', `Dosage drug must be defined in ${q.id}`);
+    assert(d.dose && d.dose !== 'undefined', `Dosage dose must be defined in ${q.id}`);
+    assert(d.limit !== undefined && d.limit !== 'undefined', `Dosage limit must not be undefined in ${q.id}`);
+    assert(d.limits !== undefined && d.limits !== 'undefined', `Dosage limits must not be undefined in ${q.id}`);
+  });
+
+  const sp = CurriculumEngine.get30SecondSpickzettel(q);
+  const spHtml = sp.toString();
+  assert(!spHtml.includes('undefined'), `Spickzettel HTML must not contain "undefined" in ${q.id}`);
+  assert(!spHtml.includes('[object Object]'), `Spickzettel HTML must not contain "[object Object]" in ${q.id}`);
+});
+
+// 5. Verify app.js safe fallback guards
+assert(appCode.includes('legal.title || legal.topic'), 'app.js must guard legal title with fallback');
+assert(appCode.includes('legal.ruleDE || legal.rule'), 'app.js must guard legal rule with fallback');
+assert(appCode.includes('rf.step1.de || rf.step1.textDE'), 'app.js must guard redefluss step1 with fallback');
+assert(appCode.includes('bCase.patient || bCase.title'), 'app.js must guard BGA case scenario with fallback');
+
+console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, and Redefluss Baukasten.');
+
+console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
 
 
 

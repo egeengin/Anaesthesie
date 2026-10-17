@@ -345,26 +345,46 @@
   function getRedeflussBaukasten(q) {
     const text = ((q.stem_de || '') + ' ' + (q.question_de || '')).toLowerCase();
 
+    const s1de = 'Zusammenfassend handelt es sich um einen Risikopatienten mit akutem Handlungsbedarf. Mein primäres anästhesiologisches Ziel ist die lückenlose Sicherung der Vitalfunktionen und ein strukturiertes Vorgehen nach DGAI-Leitlinien.';
+    const s1tr = 'Özetle, acil müdahale gerektiren yüksek riskli bir hasta ile karşı karşıyayız. Birincil anesteziyolojik hedefim vital fonksiyonların eksiksiz korunması ve DGAI kılavuzlarına göre yapılandırılmış bir yaklaşım sergilemektir.';
+
+    const s2de = 'Bei der systematischen Inspektion des Monitors fällt unmittelbar die hämodynamische und respiratorische Dekompensation auf. Die Blutgasanalyse zeigt eine interventionsbedürftige Störung, die ich sofort gezielt korrigiere.';
+    const s2tr = 'Monitörün sistematik incelemesinde hemodinamik ve solunumsal dekompansasyon hemen göze çarpmaktadır. Kan gazı analizi, derhal hedefe yönelik düzeltmem gereken acil bir tabloyu doğrulamaktadır.';
+
+    const s3de = 'Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Ich rufe sofort den Oberarzt als Back-up, kommuniziere im Team mit Closed-Loop-Briefing und leite ohne Verzögerung die kausale Medikation ein.';
+    const s3tr = 'Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. Derhal kıdemli/uzman desteği çağırıyor, ekiple kapalı devre iletişim kuruyor ve nedensel ilaç tedavisini gecikmeksizin başlatıyorum.';
+
+    const s4de = 'Nach erfolgreicher Stabilisierung übergebe ich den Patienten strukturiert nach dem SBAR-Schema an die anästhesiologische Intensivstation zur engmaschigen invasiven Nachüberwachung.';
+    const s4tr = 'Hasta başarıyla stabilize edildikten sonra, yakın invaziv takip ve ileri tedavi için SBAR şablonuna göre yapılandırılmış şekilde anestezi yoğun bakım ünitesine devrediyorum.';
+
     return {
       step1: {
         title: 'Schritt 1: Patientenvorstellung & Strategie',
-        textDE: 'Zusammenfassend handelt es sich um einen Risikopatienten mit akutem Handlungsbedarf. Mein primäres anästhesiologisches Ziel ist die lückenlose Sicherung der Vitalfunktionen und ein strukturiertes Vorgehen nach DGAI-Leitlinien.',
-        textTR: 'Özetle, acil müdahale gerektiren yüksek riskli bir hasta ile karşı karşıyayız. Birincil anesteziyolojik hedefim vital fonksiyonların eksiksiz korunması ve DGAI kılavuzlarına göre yapılandırılmış bir yaklaşım sergilemektir.'
+        de: s1de,
+        tr: s1tr,
+        textDE: s1de,
+        textTR: s1tr
       },
       step2: {
         title: 'Schritt 2: Vitalparameter & BGA-Interpretation',
-        textDE: 'Bei der systematischen Inspektion des Monitors fällt unmittelbar die hämodynamische und respiratorische Dekompensation auf. Die Blutgasanalyse zeigt eine interventionsbedürftige Störung, die ich sofort gezielt korrigiere.',
-        textTR: 'Monitörün sistematik incelemesinde hemodinamik ve solunumsal dekompansasyon hemen göze çarpmaktadır. Kan gazı analizi, derhal hedefe yönelik düzeltmem gereken acil bir tabloyu doğrulamaktadır.'
+        de: s2de,
+        tr: s2tr,
+        textDE: s2de,
+        textTR: s2tr
       },
       step3: {
         title: 'Schritt 3: Sofortige Notfallintervention (ABCDE)',
-        textDE: 'Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Ich rufe sofort den Oberarzt als Back-up, kommuniziere im Team mit Closed-Loop-Briefing und leite ohne Verzögerung die kausale Medikation ein.',
-        textTR: 'Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. Derhal kıdemli/uzman desteği çağırıyor, ekiple kapalı devre iletişim kuruyor ve nedensel ilaç tedavisini gecikmeksizin başlatıyorum.'
+        de: s3de,
+        tr: s3tr,
+        textDE: s3de,
+        textTR: s3tr
       },
       step4: {
         title: 'Schritt 4: Zusammenfassung & Weiterversorgung',
-        textDE: 'Nach erfolgreicher Stabilisierung übergebe ich den Patienten strukturiert nach dem SBAR-Schema an die anästhesiologische Intensivstation zur engmaschigen invasiven Nachüberwachung.',
-        textTR: 'Hasta başarıyla stabilize edildikten sonra, yakın invaziv takip ve ileri tedavi için SBAR şablonuna göre yapılandırılmış şekilde anestezi yoğun bakım ünitesine devrediyorum.'
+        de: s4de,
+        tr: s4tr,
+        textDE: s4de,
+        textTR: s4tr
       }
     };
   }
@@ -377,6 +397,8 @@
       id: 'bga_01',
       title: 'Septischer Schock & Schwere Laktatazidose',
       title_tr: 'Septik Şok & Ağır Laktik Asidoz',
+      patient: '68-jährige Patientin nach perforierter Sigmadivertikulitis, katecholaminpflichtig (Noradrenalin 0,3 µg/kg/min), Vigilanzminderung und Tachypnoe auf Intensivstation.',
+      patient_tr: 'Perfore sigmoid divertikülit sonrası 68 yaşında kadın hasta, katekolamin ihtiyacı olan (Noradrenalin 0,3 µg/kg/dk), bilinç bulanıklığı ve taşipne ile yoğun bakımda.',
       vitals: {
         ph: '7,18',
         pco2: '28 mmHg',
@@ -401,6 +423,8 @@
       id: 'bga_02',
       title: 'Schwere COPD-Exazerbation & Respiratorische Globalinsuffizienz',
       title_tr: 'Ağır KOAH Alevlenmesi & Respiratuar Global Yetmezlik',
+      patient: '72-jähriger Patient mit bekannter schwerer COPD (GOLD IV), zunehmender Somnolenz und paradoxer Atembewegung im Notaufnahme-Schockraum.',
+      patient_tr: 'Bilinen ağır KOAH (GOLD IV) öyküsü olan 72 yaşında erkek hasta, acil servis şok odasında artan somnolans ve paradoks solunum.',
       vitals: {
         ph: '7,24',
         pco2: '72 mmHg',
@@ -425,6 +449,8 @@
       id: 'bga_03',
       title: 'Schwere Diabetische Ketoazidose (DKA)',
       title_tr: 'Ağır Diyabetik Ketoasidoz (DKA)',
+      patient: '24-jährige Patientin mit Diabetes mellitus Typ 1, akuter Kussmaul-Atmung, Dehydratation und Verwirrtheitszustand.',
+      patient_tr: 'Tip 1 diyabetli 24 yaşında kadın hasta, akut Kussmaul solunumu, dehidratasyon ve konfüzyon tablosunda.',
       vitals: {
         ph: '7,08',
         pco2: '18 mmHg',
@@ -449,6 +475,8 @@
       id: 'bga_04',
       title: 'TUR-Syndrom mit Verdünnungshyponatriämie',
       title_tr: 'Seyrelme Hiponatremisi ile TUR Sendromu',
+      patient: '76-jähriger Patient nach transurethraler Prostataresektion (TUR-P), akut bradykard, verwirrt und klagt über Sehstörungen und Kopfschmerzen.',
+      patient_tr: 'Transüretral prostat rezeksiyonu (TUR-P) sonrası 76 yaşında erkek hasta, akut bradikardik, konfüze, görme bozukluğu ve baş ağrısı tarifliyor.',
       vitals: {
         ph: '7,32',
         pco2: '36 mmHg',
@@ -474,50 +502,105 @@
   // ─────────────────────────────────────────────────────────────────────────────
   // 6. MEDIZINRECHT & AUFKLÄRUNG (NRW LEGAL CHECKPOINTS)
   // ─────────────────────────────────────────────────────────────────────────────
-  function getLegalCheckpoint(q) {
-    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '')).toLowerCase();
+  function _computeLegalCheckpoint(q) {
+    if (!q) return null;
+    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.category || '')).toLowerCase();
 
-    if (text.includes('zeugen jehova') || text.includes('transfusion') && text.includes('ablehn')) {
+    if (text.includes('zeugen jehova') || (text.includes('transfusion') && text.includes('ablehn'))) {
       return {
+        title: 'Zeugen Jehovas & Ablehnung von Blutprodukten',
         topic: 'Zeugen Jehovas & Ablehnung von Blutprodukten',
         scenario: 'Der Patient verweigert schriftlich die Gabe allogener Bluttransfusionen.',
+        rule: 'Das Selbstbestimmungsrecht des einwilligungsfähigen Patienten steht über der ärztlichen Lebensrettungspflicht (Art. 2 Abs. 1 GG). Eine schriftliche, spezifische Ablehnung ist rechtlich bindend. Bei Verstoß droht dem Arzt Strafbarkeit wegen Körperverletzung (§ 223 StGB)!',
         ruleDE: 'Das Selbstbestimmungsrecht des einwilligungsfähigen Patienten steht über der ärztlichen Lebensrettungspflicht (Art. 2 Abs. 1 GG). Eine schriftliche, spezifische Ablehnung ist rechtlich bindend. Bei Verstoß droht dem Arzt Strafbarkeit wegen Körperverletzung (§ 223 StGB)!',
-        ruleTR: 'Temyiz kudretine sahip hastanın kendi kaderini tayin hakkı hekimin hayat kurtarma görevinin önündedir. Yazılı ve spesifik kan reddi beyanı hukuken bağlayıcıdır. İhlali halinde hekime müessir fiil davası açılır (§ 223 StGB)!',
-        guideline: 'DGAI Patient Blood Management, Cell Saver, Tranexamsäure, permissiver Hämatokrit.'
+        ruleTR: 'Temyiz kudretine sahip hastanın kendi kaderini tayin hakkı hekimin hayat kurtarma görevinin önündedir (Art. 2 GG). Yazılı ve spesifik kan reddi beyanı hukuken bağlayıcıdır. İhlali halinde hekime müessir fiil davası açılır (§ 223 StGB)!',
+        guideline: 'DGAI Patient Blood Management, Cell Saver, Tranexamsäure, permissiver Hämatokrit.',
+        paragraph: 'Art. 2 Abs. 1 GG · § 223 StGB'
       };
     }
 
     if (text.includes('notsectio') || text.includes('eez') || text.includes('eilige sectio')) {
       return {
+        title: 'Aufklärung bei Notsectio (EEZ ≤ 20 min)',
         topic: 'Aufklärung bei Notsectio (EEZ ≤ 20 min)',
         scenario: 'Akute fetale Bradykardie, Notsectio-Alarm im Kreißsaal.',
+        rule: 'Bei vitaler Bedrohung von Mutter oder Kind entfällt eine ausführliche schriftliche Aufklärung zugunsten des mutmaßlichen Willens (§ 630d Abs. 1 BGB - Notfallindikation). Dokumentation erfolgt unverzüglich postoperativ.',
         ruleDE: 'Bei vitaler Bedrohung von Mutter oder Kind entfällt eine ausführliche schriftliche Aufklärung zugunsten des mutmaßlichen Willens (§ 630d Abs. 1 BGB - Notfallindikation). Dokumentation erfolgt unverzüglich postoperativ.',
         ruleTR: 'Anne veya bebek için hayati tehlike anında acil durum karinesi (§ 630d BGB) geçerlidir; ayrıntılı yazılı aydınlatma operasyonu geciktirmemelidir. Aydınlatma ve gerekçe operasyon sonrasında hemen belgelenir.',
-        guideline: 'S2k Notsectio DGAI / DGGG: EEZ (Entscheidungs-Entbindungs-Zeit) maximal 20 Minuten.'
+        guideline: 'S2k Notsectio DGAI / DGGG: EEZ (Entscheidungs-Entbindungs-Zeit) maximal 20 Minuten.',
+        paragraph: '§ 630d Abs. 1 BGB (Notfallindikation)'
       };
     }
 
     if (text.includes('patientenverfügung') || text.includes('therapiebegrenz') || text.includes('palliativ')) {
       return {
-        topic: 'Patientenverfügung & Vorsorgevollmacht (§ 1901a BGB)',
+        title: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1901a BGB)',
+        topic: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1901a BGB)',
         scenario: 'Schwerstkranker Intensivpatient mit schriftlicher Patientenverfügung zum Verzicht auf Reanimation und Beatmung.',
-        ruleDE: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
-        ruleTR: 'Yazılı hasta vasiyeti, mevcut klinik duruma uyuyorsa bağlayıcıdır (§ 1901a BGB). Hekim ile vekil arasında tedavi sınırlandırması konusunda fikir birliği varsa vesayet mahkemesi iznine gerek yoktur.',
-        guideline: 'Grundsätze der Bundesärztekammer zur ärztlichen Sterbebegleitung & DGAI Ethikkommission.'
+        rule: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
+        ruleDE: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
+        ruleTR: 'Yazılı hasta vasiyeti, mevcut klinik duruma uyuyorsa bağlayıcıdır (§ 1827 BGB, eski § 1901a BGB). Hekim ile vekil arasında tedavi sınırlandırması konusunda fikir birliği varsa vesayet mahkemesi iznine gerek yoktur.',
+        guideline: 'Grundsätze der Bundesärztekammer zur ärztlichen Sterbebegleitung & DGAI Ethikkommission.',
+        paragraph: '§ 1827 BGB (ehem. § 1901a) & § 1828 BGB'
       };
     }
 
     if (text.includes('delir') || text.includes('fixier') || text.includes('unruhe')) {
       return {
-        topic: 'Fixierung & Unterbringungsrecht in NRW (§ 1906 BGB / PsychKG NRW)',
+        title: 'Fixierung & Unterbringungsrecht in NRW (§ 1831 BGB / PsychKG NRW)',
+        topic: 'Fixierung & Unterbringungsrecht in NRW (§ 1831 BGB / PsychKG NRW)',
         scenario: 'Akut delirianter, fremdgefährdender Patient zieht an Kathetern und Tubus.',
-        ruleDE: 'Jede mechanische Fixierung (> 30 Minuten) stellt eine freiheitsentziehende Maßnahme dar und bedarf einer richterlichen Genehmigung (§ 1906 Abs. 4 BGB). Im akuten Notfall ist eine vorläufige Fixierung durch den Arzt zulässig, der richterliche Beschluss muss unverzüglich nachgefordert werden.',
-        ruleTR: 'Mekanik tespit/bağlama (> 30 dakika) hürriyeti kısıtlayıcı önlemdir ve hakim onayı gerektirir (§ 1906 BGB). Acil durumda hekim geçici tespit kararı verebilir, ancak mahkeme onayı ivedilikle talep edilmelidir.',
-        guideline: 'S3-Leitlinie Analgesie, Sedierung und Delirmanagement (DAS).'
+        rule: 'Jede mechanische Fixierung (> 30 Minuten) stellt eine freiheitsentziehende Maßnahme dar und bedarf einer richterlichen Genehmigung (§ 1831 Abs. 4 BGB, ehemals § 1906 BGB / PsychKG NRW). Im akuten Notfall ist eine vorläufige Fixierung durch den Arzt zulässig, der richterliche Beschluss muss unverzüglich nachgefordert werden.',
+        ruleDE: 'Jede mechanische Fixierung (> 30 Minuten) stellt eine freiheitsentziehende Maßnahme dar und bedarf einer richterlichen Genehmigung (§ 1831 Abs. 4 BGB, ehemals § 1906 BGB / PsychKG NRW). Im akuten Notfall ist eine vorläufige Fixierung durch den Arzt zulässig, der richterliche Beschluss muss unverzüglich nachgefordert werden.',
+        ruleTR: 'Mekanik tespit/bağlama (> 30 dakika) hürriyeti kısıtlayıcı önlemdir ve hakim onayı gerektirir (§ 1831 BGB / PsychKG NRW). Acil durumda hekim geçici tespit kararı verebilir, ancak mahkeme onayı ivedilikle talep edilmelidir.',
+        guideline: 'S3-Leitlinie Analgesie, Sedierung und Delirmanagement (DAS).',
+        paragraph: '§ 1831 BGB (ehem. § 1906) & PsychKG NRW'
+      };
+    }
+
+    if (text.includes('hirntod') || text.includes('organspende') || text.includes('transplantationsgesetz') || text.includes('iha')) {
+      return {
+        title: 'Irreversibler Hirnfunktionsausfall (IHA) & Organspende (TPG)',
+        topic: 'Irreversibler Hirnfunktionsausfall (IHA) & Organspende (TPG)',
+        scenario: 'Feststellung des Hirntodes bei potenziellem Organspender auf der Intensivstation.',
+        rule: 'Diagnostik des IHA nach Richtlinie der Bundesärztekammer durch zwei unabhängige, erfahrene Fachärzte (mind. ein Neurologe/Neurochirurg). Bei Organspende gilt in Deutschland die erweiterte Entscheidungslösung (§ 3 TPG, schriftliche Einwilligung oder mutmaßlicher Wille der Angehörigen).',
+        ruleDE: 'Diagnostik des IHA nach Richtlinie der Bundesärztekammer durch zwei unabhängige, erfahrene Fachärzte (mind. ein Neurologe/Neurochirurg). Bei Organspende gilt in Deutschland die erweiterte Entscheidungslösung (§ 3 TPG, schriftliche Einwilligung oder mutmaßlicher Wille der Angehörigen).',
+        ruleTR: 'BÄK yönergesine göre beyin ölümü tespiti iki bağımsız uzman hekim tarafından yapılır (en az biri nörolog/beyin cerrahı). Almanya\'da genişletilmiş rıza modeli (§ 3 TPG) geçerlidir: Organ bağışı için hastanın yazılı rızası veya yakınlarının beyan ettiği muhtemel irade şarttır.',
+        guideline: 'Richtlinie der Bundesärztekammer zur Feststellung des IHA & Transplantationsgesetz (TPG).',
+        paragraph: '§ 3 TPG · BÄK-Richtlinie IHA'
+      };
+    }
+
+    if (text.includes('schweigepflicht') || text.includes('§ 203') || text.includes('polizei')) {
+      return {
+        title: 'Ärztliche Schweigepflicht & Offenbarungsbefugnis (§ 203 StGB)',
+        topic: 'Ärztliche Schweigepflicht & Offenbarungsbefugnis (§ 203 StGB)',
+        scenario: 'Polizeiliche Ermittler verlangen auf der Intensivstation Auskunft oder Blutproben eines intoxikierten Patienten.',
+        rule: 'Die ärztliche Schweigepflicht (§ 203 StGB) gilt ausnahmslos gegenüber jedermann, einschließlich der Polizei. Auskunftserteilung ist nur bei Patienteneinwilligung, richterlichem Beschluss oder rechtfertigendem Notstand (§ 34 StGB zur Abwendung schwerer Straftaten) erlaubt!',
+        ruleDE: 'Die ärztliche Schweigepflicht (§ 203 StGB) gilt ausnahmslos gegenüber jedermann, einschließlich der Polizei. Auskunftserteilung ist nur bei Patienteneinwilligung, richterlichem Beschluss oder rechtfertigendem Notstand (§ 34 StGB zur Abwendung schwerer Straftaten) erlaubt!',
+        ruleTR: 'Hekim sır saklama yükümlülüğü (§ 203 StGB) istisnasız herkese, polise karşı da geçerlidir. Bilgi paylaşımı sadece hastanın rızası, hakim kararı veya meşru müdafaa/acil durum hallerinde (§ 34 StGB) mümkündür.',
+        guideline: 'Musterberufsordnung für die deutschen Ärztinnen und Ärzte (MBO-Ä) § 9 & § 203 StGB.',
+        paragraph: '§ 203 StGB · § 34 StGB · § 9 MBO-Ä'
       };
     }
 
     return null;
+  }
+
+  function getLegalCheckpoint(q) {
+    const res = _computeLegalCheckpoint(q);
+    if (!res) return null;
+    return {
+      ...res,
+      title: res.title || res.topic || 'ÄKNO Rechtsfrage & Aufklärung',
+      topic: res.topic || res.title || 'ÄKNO Rechtsfrage & Aufklärung',
+      rule: res.rule || res.ruleDE || 'Gemäß Berufsordnung & BGB',
+      ruleDE: res.ruleDE || res.rule || 'Gemäß Berufsordnung & BGB',
+      ruleTR: res.ruleTR || '',
+      scenario: res.scenario || 'Klinische Entscheidungssituation',
+      guideline: res.guideline || res.paragraph || 'Ärztekammer Nordrhein (ÄKNO) Rechtsstandard',
+      paragraph: res.paragraph || res.guideline || 'BGB & Berufsordnung'
+    };
   }
 
   // ─────────────────────────────────────────────────────────────────────────────

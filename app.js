@@ -4443,26 +4443,40 @@ Tedavi:
     }
     if (elSpickzettelContent && typeof CurriculumEngine !== 'undefined') {
       const spick = CurriculumEngine.get30SecondSpickzettel(currentQ);
-      elSpickzettelContent.innerHTML = (spick && typeof spick.toString === 'function') ? spick.toString() : (spick || '');
+      if (spick) {
+        if (typeof spick.toString === 'function' && spick.toString !== Object.prototype.toString) {
+          elSpickzettelContent.innerHTML = spick.toString();
+        } else if (typeof spick === 'string') {
+          elSpickzettelContent.innerHTML = spick;
+        } else if (spick.summaryDE) {
+          elSpickzettelContent.innerHTML = `
+            <div class="spickzettel-body-inner">
+              <div style="font-weight: 700; color: #0284c7; margin-bottom: 0.4rem;">📌 ${escapeHtml(spick.topic || 'Vorab-Wissen')}</div>
+              <div style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.5rem;">${renderDualLanguageText(spick.summaryDE, spick.summaryTR || '')}</div>
+            </div>`;
+        }
+      }
     }
 
     // 🗣️ Düsseldorfer Redefluss-Baukasten (Schritt 1-3 deutsche Formulierungshilfen)
     if (typeof CurriculumEngine !== 'undefined') {
       const rf = CurriculumEngine.getRedeflussBaukasten(currentQ);
-      const elRfStep1 = document.getElementById('redefluss-de-step1');
-      const elRfStep2 = document.getElementById('redefluss-de-step2');
-      const elRfStep3 = document.getElementById('redefluss-de-step3');
-      if (elRfStep1) elRfStep1.textContent = rf.step1.de;
-      const chip1 = document.getElementById('redefluss-chip-step1');
-      if (chip1) chip1.setAttribute('data-tr', rf.step1.tr);
+      if (rf) {
+        const elRfStep1 = document.getElementById('redefluss-de-step1');
+        const elRfStep2 = document.getElementById('redefluss-de-step2');
+        const elRfStep3 = document.getElementById('redefluss-de-step3');
+        if (elRfStep1 && rf.step1) elRfStep1.textContent = rf.step1.de || rf.step1.textDE || '';
+        const chip1 = document.getElementById('redefluss-chip-step1');
+        if (chip1 && rf.step1) chip1.setAttribute('data-tr', rf.step1.tr || rf.step1.textTR || '');
 
-      if (elRfStep2) elRfStep2.textContent = rf.step2.de;
-      const chip2 = document.getElementById('redefluss-chip-step2');
-      if (chip2) chip2.setAttribute('data-tr', rf.step2.tr);
+        if (elRfStep2 && rf.step2) elRfStep2.textContent = rf.step2.de || rf.step2.textDE || '';
+        const chip2 = document.getElementById('redefluss-chip-step2');
+        if (chip2 && rf.step2) chip2.setAttribute('data-tr', rf.step2.tr || rf.step2.textTR || '');
 
-      if (elRfStep3) elRfStep3.textContent = rf.step3.de;
-      const chip3 = document.getElementById('redefluss-chip-step3');
-      if (chip3) chip3.setAttribute('data-tr', rf.step3.tr);
+        if (elRfStep3 && rf.step3) elRfStep3.textContent = rf.step3.de || rf.step3.textDE || '';
+        const chip3 = document.getElementById('redefluss-chip-step3');
+        if (chip3 && rf.step3) chip3.setAttribute('data-tr', rf.step3.tr || rf.step3.textTR || '');
+      }
     }
 
     // Personal Medical Note
@@ -4604,7 +4618,7 @@ Tedavi:
     if (typeof CurriculumEngine !== 'undefined') {
       const gt = CurriculumEngine.getMedicalGroundTruth(currentQ);
       const elDosagesWrap = document.getElementById('rubric-dosages-table-wrap');
-      if (elDosagesWrap) {
+      if (elDosagesWrap && gt && gt.dosages) {
         let dosHtml = `<table class="dosages-table">
           <thead>
             <tr>
@@ -4615,12 +4629,14 @@ Tedavi:
             </tr>
           </thead>
           <tbody>`;
-        gt.dosages.forEach(d => {
+        (gt.dosages || []).forEach(d => {
+          const drugName = d.drug || 'Substanz';
+          const doseVal = d.dose || 'Siehe Klinik-SOP';
           const maxDoseText = d.maxDose || d.limit || 'Gemäß Klinik-SOP';
           const limitsText = d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung');
           dosHtml += `<tr>
-            <td><strong>${d.drug}</strong></td>
-            <td style="color: #dc2626; font-weight: 700;">${d.dose}</td>
+            <td><strong>${drugName}</strong></td>
+            <td style="color: #dc2626; font-weight: 700;">${doseVal}</td>
             <td>${maxDoseText}</td>
             <td>${limitsText}</td>
           </tr>`;
@@ -4630,12 +4646,13 @@ Tedavi:
       }
 
       const elGuidelinesContent = document.getElementById('rubric-guidelines-content');
-      if (elGuidelinesContent) {
+      if (elGuidelinesContent && gt && gt.guideline) {
+        const guidelineTitle = gt.guideline.title || 'DGAI / BDA Facharzt-Leitlinie';
         const guidelineOrg = gt.guideline.society || gt.guideline.org || 'DGAI / BDA';
         const guidelineAwmf = gt.guideline.awmf ? ` · ${gt.guideline.awmf}` : '';
         const guidelineYear = gt.guideline.year ? ` (${gt.guideline.year})` : '';
         const guidelineRec = gt.guideline.recommendation || gt.guideline.coreStatement || '';
-        let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${gt.guideline.title} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]</div>`;
+        let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${guidelineTitle} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]</div>`;
         if (guidelineRec) {
           gHtml += `<p style="margin-top: 0.5rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.45;"><strong>Kernaussage / DGAI-Empfehlung:</strong> ${guidelineRec}</p>`;
         }
@@ -4650,11 +4667,22 @@ Tedavi:
       const elLegalContent = document.getElementById('rubric-legal-content');
       if (legal && elLegalBlock && elLegalContent) {
         elLegalBlock.style.display = 'block';
+        const legalTitle = legal.title || legal.topic || 'ÄKNO Rechtsfrage & Aufklärung (NRW Medizinrecht)';
+        const legalScenario = legal.scenario || 'Klinische Entscheidungssituation';
+        const legalRuleDE = legal.ruleDE || legal.rule || 'Gemäß Berufsordnung und Patientenrechtegesetz (§ 630 BGB).';
+        const legalRuleTR = legal.ruleTR || '';
+        const legalParagraph = legal.paragraph || legal.guideline || '';
+        const pBadge = legalParagraph ? `<span style="font-size: 0.78rem; background: rgba(217, 119, 6, 0.15); color: #b45309; padding: 2px 7px; border-radius: 4px; font-weight: 600;">${escapeHtml(legalParagraph)}</span>` : '';
+
         elLegalContent.innerHTML = `
-          <div style="font-weight: 700; color: #d97706; margin-bottom: 0.35rem;">⚖️ ${legal.title}</div>
-          <p style="margin-bottom: 0.4rem; font-size: 0.87rem;"><strong>Fallkonstellation:</strong> ${legal.scenario}</p>
-          <div style="background: rgba(217, 119, 6, 0.08); padding: 0.6rem; border-radius: 6px; font-size: 0.85rem; border-left: 3px solid #d97706;">
-            <strong>ÄKNO Rechts-Grundsatz:</strong> ${legal.rule}
+          <div style="font-weight: 700; color: #d97706; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem;">
+            <span>⚖️ ${escapeHtml(legalTitle)}</span>
+            ${pBadge}
+          </div>
+          <p style="margin-bottom: 0.45rem; font-size: 0.87rem; line-height: 1.45;"><strong>Fallkonstellation:</strong> ${escapeHtml(legalScenario)}</p>
+          <div style="background: rgba(217, 119, 6, 0.08); padding: 0.65rem 0.8rem; border-radius: 6px; font-size: 0.85rem; border-left: 3px solid #d97706; line-height: 1.5;">
+            <strong style="color: #b45309; display: block; margin-bottom: 0.25rem;">ÄKNO Rechts-Grundsatz:</strong>
+            <div>${renderDualLanguageText(legalRuleDE, legalRuleTR)}</div>
           </div>
         `;
       } else if (elLegalBlock) {
@@ -6911,11 +6939,13 @@ Tedavi:
 
   function renderBGACase(caseId) {
     if (typeof CurriculumEngine === 'undefined') return;
-    const bCase = CurriculumEngine.BGA_TRAINING_CASES.find(c => c.id === caseId) || CurriculumEngine.BGA_TRAINING_CASES[0];
+    const bCase = (CurriculumEngine.BGA_TRAINING_CASES && CurriculumEngine.BGA_TRAINING_CASES.find(c => c.id === caseId)) || (CurriculumEngine.BGA_TRAINING_CASES && CurriculumEngine.BGA_TRAINING_CASES[0]);
     if (!bCase) return;
 
     const elDesc = document.getElementById('bga-case-description');
-    if (elDesc) elDesc.innerHTML = `<strong>Klinisches Szenario:</strong> ${bCase.patient}`;
+    const patientText = bCase.patient || bCase.title || 'Klinisches Szenario';
+    const patientTrText = bCase.patient_tr || bCase.title_tr || '';
+    if (elDesc) elDesc.innerHTML = `<strong>Klinisches Szenario:</strong> ${renderDualLanguageText(patientText, patientTrText)}`;
 
     const elDisplay = document.getElementById('bga-monitor-display');
     if (elDisplay) {
