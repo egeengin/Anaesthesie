@@ -6767,6 +6767,7 @@ Tedavi:
       state.filterMode = 'stage_1';
       state.currentIndex = 0;
       if (elFilterChips) elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'stage_1'));
+      updateActiveFilterBadge('🚨 Stufe 1: Top-50');
       saveState();
       renderCurrentQuestion();
       showToast('⭐ Stufe 1: Top-50 Überlebensfälle (High-Yield & K.O.) aktiviert', 'info', 3000);
@@ -6779,6 +6780,7 @@ Tedavi:
       state.filterMode = 'stage_2';
       state.currentIndex = 0;
       if (elFilterChips) elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'stage_2'));
+      updateActiveFilterBadge('🏥 Stufe 2: Vertiefung');
       saveState();
       renderCurrentQuestion();
       showToast('🩺 Stufe 2: Klinische Vertiefung (Fallbasierte Routine) aktiviert', 'info', 3000);
@@ -6802,6 +6804,7 @@ Tedavi:
       state.filterMode = 'smart_session';
       state.currentIndex = 0;
       if (elFilterChips) elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'smart_session'));
+      updateActiveFilterBadge('⚡ Smart-Session');
       saveState();
       renderCurrentQuestion();
       showToast('⚡ Akıllı Günlük Antrenman (15-20 dk): Sadece zayıf noktalar ve fällige High-Yield vakalar!', 'success', 3500);
@@ -7147,6 +7150,25 @@ Tedavi:
     });
   }
 
+  // Filter Drawer Toggle & Active Filter Badge
+  const elBtnToggleFilters = document.getElementById('btn-toggle-filters');
+  const elFilterDrawer = document.getElementById('filter-drawer');
+  const elActiveFilterBadge = document.getElementById('active-filter-badge');
+
+  function updateActiveFilterBadge(label) {
+    if (elActiveFilterBadge) {
+      elActiveFilterBadge.textContent = label || 'Alle Fragen';
+    }
+  }
+
+  if (elBtnToggleFilters && elFilterDrawer) {
+    elBtnToggleFilters.addEventListener('click', () => {
+      const isHidden = elFilterDrawer.style.display === 'none' || !elFilterDrawer.style.display;
+      elFilterDrawer.style.display = isHidden ? 'flex' : 'none';
+      elBtnToggleFilters.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    });
+  }
+
   // Filter Chips
   if (elFilterChips) {
     elFilterChips.forEach(chip => {
@@ -7155,6 +7177,7 @@ Tedavi:
         chip.classList.add('active');
         state.filterMode = chip.dataset.filter;
         state.currentIndex = 0;
+        updateActiveFilterBadge(chip.textContent.trim());
         saveState();
         renderCurrentQuestion();
       });
