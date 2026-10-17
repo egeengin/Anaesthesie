@@ -1276,11 +1276,13 @@ questions.forEach(q => {
   assert(!spHtml.includes('[object Object]'), `Spickzettel HTML must not contain "[object Object]" in ${q.id}`);
 });
 
-// 5. Verify app.js safe fallback guards
+// 5. Verify app.js safe fallback guards & Redemittel toggle handlers
 assert(appCode.includes('legal.title || legal.topic'), 'app.js must guard legal title with fallback');
 assert(appCode.includes('legal.ruleDE || legal.rule'), 'app.js must guard legal rule with fallback');
 assert(appCode.includes('rf.step1.de || rf.step1.textDE'), 'app.js must guard redefluss step1 with fallback');
 assert(appCode.includes('bCase.patient || bCase.title'), 'app.js must guard BGA case scenario with fallback');
+assert(appCode.includes('btn-toggle-redefluss-step${step}'), 'app.js must wire btn-toggle-redefluss-step click handlers');
+assert(appCode.includes('btn-speak-redefluss'), 'app.js must wire btn-speak-redefluss speech pronunciation');
 
 console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, and Redefluss Baukasten.');
 

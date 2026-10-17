@@ -7737,6 +7737,26 @@ body.mode-simulation-active #step3-container {
   font-weight: 700;
   color: #2563eb;
   user-select: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.redefluss-chip-header:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.redefluss-chip-header:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
+.chip-caret {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.redefluss-chip-header[aria-expanded="true"] .chip-caret {
+  transform: rotate(180deg);
 }
 
 [data-theme="dark"] .redefluss-chip-header {

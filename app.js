@@ -4463,17 +4463,24 @@ Tedavi:
       const rf = CurriculumEngine.getRedeflussBaukasten(currentQ);
       if (rf) {
         const elRfStep1 = document.getElementById('redefluss-de-step1');
+        const elRfTr1 = document.getElementById('redefluss-tr-step1');
         const elRfStep2 = document.getElementById('redefluss-de-step2');
+        const elRfTr2 = document.getElementById('redefluss-tr-step2');
         const elRfStep3 = document.getElementById('redefluss-de-step3');
+        const elRfTr3 = document.getElementById('redefluss-tr-step3');
+
         if (elRfStep1 && rf.step1) elRfStep1.textContent = rf.step1.de || rf.step1.textDE || '';
+        if (elRfTr1 && rf.step1) elRfTr1.textContent = rf.step1.tr || rf.step1.textTR || '';
         const chip1 = document.getElementById('redefluss-chip-step1');
         if (chip1 && rf.step1) chip1.setAttribute('data-tr', rf.step1.tr || rf.step1.textTR || '');
 
         if (elRfStep2 && rf.step2) elRfStep2.textContent = rf.step2.de || rf.step2.textDE || '';
+        if (elRfTr2 && rf.step2) elRfTr2.textContent = rf.step2.tr || rf.step2.textTR || '';
         const chip2 = document.getElementById('redefluss-chip-step2');
         if (chip2 && rf.step2) chip2.setAttribute('data-tr', rf.step2.tr || rf.step2.textTR || '');
 
         if (elRfStep3 && rf.step3) elRfStep3.textContent = rf.step3.de || rf.step3.textDE || '';
+        if (elRfTr3 && rf.step3) elRfTr3.textContent = rf.step3.tr || rf.step3.textTR || '';
         const chip3 = document.getElementById('redefluss-chip-step3');
         if (chip3 && rf.step3) chip3.setAttribute('data-tr', rf.step3.tr || rf.step3.textTR || '');
       }
@@ -6905,31 +6912,52 @@ Tedavi:
     });
   }
 
+  // --- FAZ 3: Düsseldorfer Redemittel / Redefluss-Baukasten Collapsible Chips ---
+  [1, 2, 3].forEach(step => {
+    const header = document.getElementById(`btn-toggle-redefluss-step${step}`);
+    const body = document.getElementById(`redefluss-body-step${step}`);
+    if (header && body) {
+      header.addEventListener('click', () => {
+        const isHidden = (body.style.display === 'none' || !body.style.display);
+        body.style.display = isHidden ? 'block' : 'none';
+        header.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        const caret = header.querySelector('.chip-caret');
+        if (caret) caret.textContent = isHidden ? '▴' : '▾';
+      });
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        }
+      });
+    }
+  });
+
   // Redefluss Speech pronunciation triggers
-  const btnSpeakRedef1 = document.getElementById('btn-speak-redef-1');
-  const btnSpeakRedef2 = document.getElementById('btn-speak-redef-2');
-  const btnSpeakRedef3 = document.getElementById('btn-speak-redef-3');
-  if (btnSpeakRedef1) {
-    btnSpeakRedef1.addEventListener('click', (e) => {
+  const speakRedeflussText = (step, btnEl) => {
+    const txtEl = document.getElementById(`redefluss-de-step${step}`);
+    if (txtEl) {
+      speakMedicalText(txtEl, btnEl);
+    }
+  };
+
+  document.querySelectorAll('.btn-speak-redefluss').forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const txt = document.getElementById('redefluss-de-step1');
-      if (txt) speakMedicalText(txt, btnSpeakRedef1);
+      const step = btn.getAttribute('data-step');
+      speakRedeflussText(step, btn);
     });
-  }
-  if (btnSpeakRedef2) {
-    btnSpeakRedef2.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const txt = document.getElementById('redefluss-de-step2');
-      if (txt) speakMedicalText(txt, btnSpeakRedef2);
-    });
-  }
-  if (btnSpeakRedef3) {
-    btnSpeakRedef3.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const txt = document.getElementById('redefluss-de-step3');
-      if (txt) speakMedicalText(txt, btnSpeakRedef3);
-    });
-  }
+  });
+
+  ['1', '2', '3'].forEach(step => {
+    const btn = document.getElementById(`btn-speak-redef-${step}`);
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        speakRedeflussText(step, btn);
+      });
+    }
+  });
 
   // --- FAZ 4: ÄKNO BGA-Trainer Mini-Tool ---
   const elBgaTrigger = document.getElementById('btn-bga-trainer-trigger');
