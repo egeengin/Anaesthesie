@@ -102,6 +102,62 @@
   <!-- Main Container -->
   <main class="container">
 
+    <!-- ADIM 1: Yeni Başlayanlar İçin "Hızlı Başlangıç & Odak Barı" (Hero Onboarding) -->
+    <section class="hero-focus-card" id="hero-focus-card">
+      <div class="hero-focus-main">
+        <div class="hero-focus-left">
+          <div class="hero-focus-tag-row">
+            <span class="hero-focus-tag">🎯 Heutiger Fokus</span>
+            <span class="hero-focus-stage-badge" id="hero-focus-stage-badge">Stufe 1: Top-50 Überlebensfälle</span>
+          </div>
+          <h2 class="hero-focus-title" id="hero-focus-title">Sırada: 1. Klinische Notfälle &amp; Düsseldorf Protokolle</h2>
+          <p class="hero-focus-subtitle" id="hero-focus-subtitle">Gereksiz detaylar arasında kaybolmadan, doğrudan sınavda puan getiren altın standart cevaplara odaklanın.</p>
+        </div>
+        <div class="hero-focus-actions">
+          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" title="15-Dakikalık Akıllı Seansı Başlat">
+            <span class="cta-play-icon">▶️</span>
+            <span id="hero-cta-label">15-Min Smart-Training starten</span>
+          </button>
+          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="Nasıl Çalışılır? Mini Rehberini Aç/Kapat" aria-label="Rehber">
+            <span>❓ Nasıl Çalışılır?</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible 3-Step Mini Onboarding Guide (kapatılabilir / localStorage) -->
+      <div class="onboarding-guide-strip" id="onboarding-guide-strip" style="display: none;">
+        <div class="guide-strip-header">
+          <div class="guide-strip-title">
+            <span>💡</span> <strong>Nasıl Çalışılır? (3 Adımda Uzmanlık Başarısı):</strong>
+          </div>
+          <button id="btn-dismiss-onboarding" class="btn-xs btn-dismiss-guide" type="button" title="Rehberi Kapat">✕ Anladım, Gizle</button>
+        </div>
+        <div class="guide-steps-grid">
+          <div class="guide-step-card">
+            <div class="guide-step-badge">1</div>
+            <div class="guide-step-body">
+              <strong>Vakayı Oku / Dinle</strong>
+              <small>Klinik tabloyu inceleyin veya <em>"Vorlesen"</em> butonuyla ana dili Almanca olan sesle dinleyin.</small>
+            </div>
+          </div>
+          <div class="guide-step-card">
+            <div class="guide-step-badge">2</div>
+            <div class="guide-step-body">
+              <strong>Sesli / Zihinden Yapılandır</strong>
+              <small>ABCDE algoritmasıyla kendi yanıtınızı sesli (mikrofonla) veya zihinden oluşturun.</small>
+            </div>
+          </div>
+          <div class="guide-step-card">
+            <div class="guide-step-badge">3</div>
+            <div class="guide-step-body">
+              <strong>Altın Standart &amp; K.O. Dozları</strong>
+              <small>Model cevabı, ölümcül K.O. dozlarını ve jürinin beklediği anahtar terimleri kontrol edin.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Compact Executive Progress Banner (Single Tidy Row) -->
     <section class="dashboard-compact">
       <div class="dash-compact-left">
@@ -130,101 +186,88 @@
       </div>
     </section>
 
-    <!-- 3-Stufen-Lernpfad & Quick Navigation Bar (FAZ 1, FAZ 5, FAZ 6) -->
-    <section class="curriculum-stage-section" id="curriculum-stage-section">
-      <div class="curriculum-stage-header">
-        <div class="curriculum-title-wrap">
-          <span class="curriculum-icon">🗺️</span>
-          <div>
-            <h2 class="curriculum-title">ÄKNO 3-Stufen-Lernpfad</h2>
-            <p class="curriculum-subtitle">Sıfırdan Düsseldorf Uzmanlık Sınavına: En kritik vakalarla sıfır vakit kaybı</p>
-          </div>
-        </div>
-        <div class="curriculum-actions-wrap">
-          <!-- View Mode Switcher (Lern-Modus vs. Prüfungs-Modus) -->
-          <div class="view-mode-toggle" id="view-mode-toggle" title="Ansichtsmodus wechseln">
-            <button id="btn-view-mode-learn" class="btn-view-mode active" type="button" title="📖 Lern-Modus: Spickzettel, Redemittel &amp; Leitlinien sichtbar">
-              <span>📖 Lern-Modus</span>
-            </button>
-            <button id="btn-view-mode-exam" class="btn-view-mode" type="button" title="⏱️ Prüfungs-Modus: Simuliere die echte Prüfung (Keine Spickzettel)">
-              <span>⏱️ Prüfungs-Modus</span>
-            </button>
-          </div>
-          <!-- Smart-Session Quick Launch Button -->
-          <button id="btn-smart-session" class="btn-smart-session" type="button" title="15-20 Min Smart-Session: Nur Schwachstellen &amp; fällige Fälle">
-            <span>⚡ Akıllı Günlük Seans (15-20 dk)</span>
-          </button>
-          <!-- BGA-Trainer Launch Button -->
-          <button id="btn-bga-trainer-trigger" class="btn-bga-trainer-trigger" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
-            <span>🧪 BGA-Trainer</span>
-          </button>
-        </div>
+    <!-- ADIM 2: Aktif Durumu Gösteren Temiz Bar & Çekmece Tetikleyici -->
+    <section class="active-path-bar" id="active-path-bar">
+      <div class="active-path-left">
+        <span class="active-path-icon">📚</span>
+        <span class="active-path-text" id="active-path-summary">Aktiver Pfad: <strong>Stufe 1: Top-50</strong> • Fallbasiert</span>
       </div>
-      <div class="curriculum-pills-row" role="tablist">
-        <button id="btn-stage-1" class="curriculum-pill active" type="button" data-stage="1" role="tab" aria-selected="true">
-          <span class="pill-badge">Stufe 1</span>
-          <div class="pill-body">
-            <strong>🚨 Die Top-50 Überlebensfälle</strong>
-            <small>K.O.-Fallen, Notfälle &amp; Düsseldorf Protokolle (54 Kernfälle)</small>
-          </div>
+      <div class="active-path-right">
+        <button id="btn-toggle-filters" class="btn-toggle-filters" type="button" aria-expanded="false" title="Arama çubuğunu ve tüm filtreleri aç/kapat">
+          <span>⚙️ Filter &amp; Suche öffnen</span> <span id="active-filter-badge" class="filter-count-badge">Alle Fragen</span> <span class="filter-chevron">▾</span>
         </button>
-        <button id="btn-stage-2" class="curriculum-pill" type="button" data-stage="2" role="tab" aria-selected="false">
-          <span class="pill-badge">Stufe 2</span>
-          <div class="pill-body">
-            <strong>🏥 Klinische Vertiefung</strong>
-            <small>Fallbasierte Routine &amp; Bilddiagnostik (278 Fälle)</small>
-          </div>
-        </button>
-        <button id="btn-stage-3" class="curriculum-pill" type="button" data-stage="3" role="tab" aria-selected="false">
-          <span class="pill-badge">Stufe 3</span>
-          <div class="pill-body">
-            <strong>⏱️ ÄKNO Generalprobe</strong>
-            <small>45-Min Düsseldorf Live-Simulation unter Realbedingungen</small>
-          </div>
-        </button>
-      </div>
-    </section>
-
-    <!-- Exam Simulation Active Banner / Oral Board HUD -->
-    <section id="exam-simulation-bar" class="exam-simulation-bar" style="display: none;">
-      <div class="sim-hud-left">
-        <span class="sim-aekno-badge">🏛️ ÄKNO Düsseldorf Mündliche Prüfung</span>
-        <span id="sim-case-counter" class="sim-case-counter">Fall 1 von 304</span>
-      </div>
-      <div class="sim-hud-center">
-        <div class="exam-timer-box" title="Gesamte Prüfungszeit">
-          <span class="timer-icon">⏱️</span>
-          <span id="exam-timer" class="exam-timer">45:00</span>
-          <span class="timer-sublabel">Gesamtzeit</span>
-        </div>
-        <div class="sim-answer-timer-box" id="sim-answer-timer-box" title="60s Countdown für Ihre mündliche Antwort">
-          <button id="btn-sim-answer-timer" class="btn-sim-timer" type="button">
-            <span>⏱️</span> <span id="sim-answer-timer-display">60s Antwortzeit</span>
-          </button>
-        </div>
-      </div>
-      <div class="sim-hud-right">
-        <button id="btn-stop-exam" class="btn btn-danger-outline btn-sm" title="Prüfungssimulation beenden und zur Lernübersicht zurückkehren">
-          ✕ Simulation Beenden
+        <button id="btn-quick-bga" class="btn-quick-bga" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
+          <span>🧪 BGA-Trainer</span>
         </button>
       </div>
     </section>
 
     <!-- Toolbar: Compact Clean Search & Collapsible Filters Drawer -->
     <section class="toolbar-clean">
-      <div class="toolbar-compact-row">
+      <div id="filter-drawer" class="filter-drawer" style="display: none;">
+        <!-- Search bar inside drawer -->
         <div class="search-box">
           <span class="search-icon">🔍</span>
           <input type="text" id="search-input" class="search-input" placeholder="Medikament, Symptom oder Begriff suchen (z. B. Propofol, MH, CICO, Sepsis)..." />
           <span class="kbd-search-hint">⌘K</span>
           <button id="btn-clear-search" class="btn-clear-search" style="display: none;">✕</button>
         </div>
-        <button id="btn-toggle-filters" class="btn-toggle-filters" type="button" aria-expanded="false" title="Alle Filter & AMBOSS-Säulen anzeigen/verbergen">
-          <span>⚙️ Filter & Säulen</span> <span id="active-filter-badge" class="filter-count-badge">Alle Fragen</span>
-        </button>
-      </div>
 
-      <div id="filter-drawer" class="filter-drawer" style="display: none;">
+        <!-- 3-Stufen-Lernpfad & Quick Navigation Bar (FAZ 1, FAZ 5, FAZ 6) inside drawer -->
+        <div class="curriculum-stage-section" id="curriculum-stage-section">
+          <div class="curriculum-stage-header">
+            <div class="curriculum-title-wrap">
+              <span class="curriculum-icon">🗺️</span>
+              <div>
+                <h3 class="curriculum-title">ÄKNO 3-Stufen-Lernpfad</h3>
+                <p class="curriculum-subtitle">Sıfırdan Düsseldorf Uzmanlık Sınavına: En kritik vakalarla sıfır vakit kaybı</p>
+              </div>
+            </div>
+            <div class="curriculum-actions-wrap">
+              <!-- View Mode Switcher (Lern-Modus vs. Prüfungs-Modus) -->
+              <div class="view-mode-toggle" id="view-mode-toggle" title="Ansichtsmodus wechseln">
+                <button id="btn-view-mode-learn" class="btn-view-mode active" type="button" title="📖 Lern-Modus: Spickzettel, Redemittel &amp; Leitlinien sichtbar">
+                  <span>📖 Lern-Modus</span>
+                </button>
+                <button id="btn-view-mode-exam" class="btn-view-mode" type="button" title="⏱️ Prüfungs-Modus: Simuliere die echte Prüfung (Keine Spickzettel)">
+                  <span>⏱️ Prüfungs-Modus</span>
+                </button>
+              </div>
+              <!-- Smart-Session Quick Launch Button -->
+              <button id="btn-smart-session" class="btn-smart-session" type="button" title="15-20 Min Smart-Session: Nur Schwachstellen &amp; fällige Fälle">
+                <span>⚡ Akıllı Günlük Seans (15-20 dk)</span>
+              </button>
+              <!-- BGA-Trainer Launch Button -->
+              <button id="btn-bga-trainer-trigger" class="btn-bga-trainer-trigger" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
+                <span>🧪 BGA-Trainer</span>
+              </button>
+            </div>
+          </div>
+          <div class="curriculum-pills-row" role="tablist">
+            <button id="btn-stage-1" class="curriculum-pill active" type="button" data-stage="1" role="tab" aria-selected="true">
+              <span class="pill-badge">Stufe 1</span>
+              <div class="pill-body">
+                <strong>🚨 Die Top-50 Überlebensfälle</strong>
+                <small>K.O.-Fallen, Notfälle &amp; Düsseldorf Protokolle (54 Kernfälle)</small>
+              </div>
+            </button>
+            <button id="btn-stage-2" class="curriculum-pill" type="button" data-stage="2" role="tab" aria-selected="false">
+              <span class="pill-badge">Stufe 2</span>
+              <div class="pill-body">
+                <strong>🏥 Klinische Vertiefung</strong>
+                <small>Fallbasierte Routine &amp; Bilddiagnostik (278 Fälle)</small>
+              </div>
+            </button>
+            <button id="btn-stage-3" class="curriculum-pill" type="button" data-stage="3" role="tab" aria-selected="false">
+              <span class="pill-badge">Stufe 3</span>
+              <div class="pill-body">
+                <strong>⏱️ ÄKNO Generalprobe</strong>
+                <small>45-Min Düsseldorf Live-Simulation unter Realbedingungen</small>
+              </div>
+            </button>
+          </div>
+        </div>
+
         <div class="filter-group">
           <button class="filter-chip active" data-filter="all">Alle Fragen</button>
           <button class="filter-chip" data-filter="stage_1">🚨 Stufe 1: Top-50</button>
@@ -298,20 +341,55 @@
       </div>
     </section>
 
+    <!-- ADIM 3: Exam Simulation Active Banner / Oral Board HUD (Nur im Prüfungs-Modus / 45-Min Simulation sichtbar) -->
+    <section id="exam-simulation-bar" class="exam-simulation-bar" style="display: none;">
+      <div class="sim-hud-left">
+        <span class="sim-aekno-badge">🏛️ ÄKNO Düsseldorf Mündliche Prüfung</span>
+        <span id="sim-case-counter" class="sim-case-counter">Fall 1 von 304</span>
+      </div>
+      <div class="sim-hud-center">
+        <div class="exam-timer-box" title="Gesamte Prüfungszeit">
+          <span class="timer-icon">⏱️</span>
+          <span id="exam-timer" class="exam-timer">45:00</span>
+          <span class="timer-sublabel">Gesamtzeit</span>
+        </div>
+        <div class="sim-answer-timer-box" id="sim-answer-timer-box" title="60s Countdown für Ihre mündliche Antwort">
+          <button id="btn-sim-answer-timer" class="btn-sim-timer" type="button">
+            <span>⏱️</span> <span id="sim-answer-timer-display">60s Antwortzeit</span>
+          </button>
+        </div>
+      </div>
+      <div class="sim-hud-right">
+        <button id="btn-stop-exam" class="btn btn-danger-outline btn-sm" title="Prüfungssimulation beenden und zur Lernübersicht zurückkehren">
+          ✕ Simulation Beenden
+        </button>
+      </div>
+    </section>
+
     <!-- Main Quiz Card -->
     <section class="quiz-card" id="main-quiz-card">
+      <!-- ADIM 4: Kart Üst Bilgisi (Minimal Header) -->
       <div class="quiz-header">
         <div class="quiz-meta">
           <span id="badge-hy" class="badge badge-hy" style="display: none;">⭐ ÄKNO Top-Frage</span>
-          <span id="badge-type" class="badge badge-type">Prüfungsformat</span>
           <span id="badge-amboss-pillar" class="badge badge-amboss-pillar" title="DGAI & BDA / AMBOSS Säule">📚 DGAI Säule</span>
           <span id="badge-category" class="badge badge-category">Kategorie</span>
+          <span id="badge-type" class="badge badge-type">Prüfungsformat</span>
           <span id="badge-source" class="badge badge-source">Quelle</span>
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
-          <button id="btn-toggle-spickzettel" class="btn-xs btn-spickzettel-toggle" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">📚 30-Sek. Spickzettel</button>
         </div>
         <div class="quiz-header-right">
           <div id="question-number" class="question-number">Frage 1 von 664</div>
+        </div>
+      </div>
+
+      <!-- ADIM 4: Şık Tek Satırlık Jüri Üyesi Şeridi (Prof. Dr. Annecke vb.) -->
+      <div class="quiz-examiner-strip" id="quiz-examiner-strip">
+        <div class="examiner-pill-trigger" id="examiner-pill-trigger" tabindex="0" role="button" title="Prüfer-Profil anzeigen / Jüri profilini gör">
+          <span class="examiner-pill-icon">👨‍⚕️</span>
+          <span class="examiner-pill-prefix">Prüfer:</span>
+          <strong id="examiner-header-name">Prof. Dr. med. Thorsten Annecke</strong>
+          <span class="examiner-pill-tag">Profili Gör ℹ️</span>
         </div>
       </div>
 
@@ -428,6 +506,15 @@
           </div>
         </div>
 
+        <button id="btn-toggle-keyboard-mode" class="oral-tool-btn keyboard-toggle-btn" type="button" title="Tastatur-Eingabe umschalten (Yazarak Cevapla)">
+          <span class="tool-icon">⌨️</span>
+          <span>Tippen</span>
+        </button>
+
+        <button id="btn-audio-settings-icon" class="oral-tool-btn audio-settings-btn" type="button" title="Audio- &amp; Mikrofon-Einstellungen (Diagnose &amp; Fehlerbehebung)">
+          <span class="tool-icon">🛠️</span>
+          <span>Audio-Setup</span>
+        </button>
 
       </div>
 
@@ -747,6 +834,16 @@
           Fragetext wird geladen...
         </div>
 
+        <!-- ADIM 4: Yardımcı Araçlar (İsteğe Bağlı Hap Butonlar / Action Pills) -->
+        <div class="case-action-pills-row" id="case-action-pills-row">
+          <button id="btn-toggle-spickzettel" class="case-action-pill pill-spickzettel" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">
+            <span>📘 30-Sekunden-Spickzettel (Konu Özeti)</span>
+          </button>
+          <button id="btn-toggle-redefluss-pill" class="case-action-pill pill-redefluss" type="button" title="Almanca giriş cümlesi kalıpları (Redefluss-Hilfe)">
+            <span>🗣️ Redefluss-Hilfe (Nasıl Cümle Kurarım?)</span>
+          </button>
+        </div>
+
         <!-- Step 1 Redefluss-Baukasten Chip (FAZ 3) -->
         <div class="redefluss-chip" id="redefluss-chip-step1">
           <div class="redefluss-chip-header" id="btn-toggle-redefluss-step1" tabindex="0" role="button" aria-expanded="false">
@@ -781,6 +878,13 @@
           <div id="step1-inline-answer-text" class="examiner-inline-answer-text">
             <!-- Dynamically populated answer -->
           </div>
+        </div>
+
+        <!-- ADIM 4: Adımlar Arası Temiz Geçiş (1 -> 2) -->
+        <div class="step-transition-bar" id="step1-transition-bar">
+          <button id="btn-advance-to-step2" class="btn btn-step-advance" type="button">
+            <span>➡️ Weiter zu Schritt 2: Vitalparameter &amp; Befunde anfordern ▾</span>
+          </button>
         </div>
       </div>
 
@@ -898,6 +1002,13 @@
                 <!-- Dynamically populated answer -->
               </div>
             </div>
+
+            <!-- ADIM 4: Adımlar Arası Temiz Geçiş (2 -> 3) -->
+            <div class="step-transition-bar" id="step2-transition-bar">
+              <button id="btn-advance-to-step3" class="btn btn-step-advance" type="button">
+                <span>➡️ Weiter zu Schritt 3: Prüfer-Intervention (Klinische Wendung) ▾</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -976,6 +1087,13 @@
               <!-- Dynamically populated examiner profile -->
             </div>
           </div>
+
+          <!-- ADIM 4: Adımlar Arası Temiz Geçiş (3 -> 4) -->
+          <div class="step-transition-bar" id="step3-transition-bar">
+            <button id="btn-advance-to-step4" class="btn btn-step-advance btn-step-advance-primary" type="button">
+              <span>💡 Weiter zu Schritt 4: Musterantwort &amp; Auswertung freischalten ▾</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1001,134 +1119,156 @@
         <!-- 3 High-Impact Model Answer Micro-Cards + Examiner Solution Card -->
         <div id="high-impact-rubric" class="high-impact-rubric" style="display: none;">
 
-          <!-- Block 0: Examiner Complication & Solution -->
-          <div class="rubric-card examiner-solution-card" id="rubric-block-examiner-solution">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">👨‍⚕️</span>
-                <h3>Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü (Klinische Wendung & Soforttherapie)</h3>
-              </div>
-              <div class="rubric-header-actions">
-                <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen / Jüri çözümünü dinle">
-                  <span>🔊 Prüfer-Lösung vorlesen / Çözümü Dinle</span>
-                </button>
-                <span class="rubric-tag-alert">ÄKNO Notfall-Lösung / Acil Çözüm</span>
-              </div>
-            </div>
-            <div class="rubric-card-body">
-              <div class="examiner-solution-prompt" id="rubric-examiner-prompt-text">
-                <!-- Question repeated for clarity -->
-              </div>
-              <div class="examiner-solution-content" id="rubric-examiner-solution-text">
-                <!-- Detailed model answer -->
-              </div>
-            </div>
+          <!-- ADIM 6: Sekmeli Çözüm ve Değerlendirme Çubuğu (3 Temiz Sekme) -->
+          <div class="rubric-tabs-bar" role="tablist">
+            <button id="rubric-tab-btn-solution" class="rubric-tab-btn active" type="button" data-rubric-tab="solution" role="tab" aria-selected="true">
+              <span>💡</span> Musterantwort &amp; Dosierung
+            </button>
+            <button id="rubric-tab-btn-pitfalls" class="rubric-tab-btn" type="button" data-rubric-tab="pitfalls" role="tab" aria-selected="false">
+              <span>⚠️</span> K.O.-Kriterien &amp; Prüfer-Fallen
+            </button>
+            <button id="rubric-tab-btn-framework" class="rubric-tab-btn" type="button" data-rubric-tab="framework" role="tab" aria-selected="false">
+              <span>🗣️</span> Redemittel &amp; Checkliste
+            </button>
           </div>
-          
-          <!-- Block 1: Verbal Framework (Wie sage ich es?) -->
-          <div class="rubric-card verbal-framework-card" id="rubric-block-verbal">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">🗣️</span>
-                <h3>"Wie sage ich es?" (Strukturierte Formulierungshilfe & Redemittel)</h3>
+
+          <!-- TAB PANE 1: Musterantwort & Dosierung (Varsayılan Açık) -->
+          <div class="rubric-tab-pane active" id="rubric-pane-solution">
+            <!-- Medical Ground-Truth Block A: Exact Dosages & Limits (FAZ 2) -->
+            <div class="rubric-card dosages-card" id="rubric-block-dosages">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">📏</span>
+                  <h3>Exakte Dosierungen &amp; Grenzwerte (Leitlinien-Dosierungstabelle)</h3>
+                </div>
+                <span class="rubric-tag-danger">Tödliche Dosis-Fallen</span>
               </div>
-              <div class="rubric-header-actions">
-                <button id="btn-audio-speak-verbal" class="btn-audio-action-sm" type="button" title="Formulierungshilfe & Redemittel laut vorlesen (Aussprache-Trainer)">
-                  <span>🔊 Redemittel vorlesen</span>
-                </button>
-                <span class="rubric-tag">ÄKNO-Sprachmuster</span>
+              <div class="rubric-card-body">
+                <div class="dosages-table-wrap" id="rubric-dosages-table-wrap">
+                  <!-- Dynamically populated table -->
+                </div>
               </div>
             </div>
-            <div class="rubric-card-body">
-              <div class="verbal-quote" id="rubric-verbal-text">
-                <!-- Dynamically populated German verbal phrasing -->
+
+            <!-- Medical Ground-Truth Block B: DGAI / AWMF Guidelines Anchor (FAZ 2) -->
+            <div class="rubric-card guidelines-card" id="rubric-block-guidelines">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">📘</span>
+                  <h3>DGAI / AWMF Leitlinien-Anker (Deutscher Facharzt-Standard)</h3>
+                </div>
+                <span class="rubric-tag">AWMF-Standard</span>
+              </div>
+              <div class="rubric-card-body" id="rubric-guidelines-content">
+                <!-- Dynamically populated guideline info -->
               </div>
             </div>
           </div>
 
-          <!-- Block 2: Keywords & Dosages (Schlüsselbegriffe & Dosierungen) -->
-          <div class="rubric-card checklist-card" id="rubric-block-checklist">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">🎯</span>
-                <h3>Schlüsselbegriffe & Dosierungen (Prüfer-Checkliste)</h3>
+          <!-- TAB PANE 2: K.O.-Kriterien & Prüfer-Fallen -->
+          <div class="rubric-tab-pane" id="rubric-pane-pitfalls" style="display: none;">
+            <!-- Block 3: Critical Pitfalls (Prüfungsfalle / Kardinalfehler) -->
+            <div class="rubric-card pitfall-card" id="rubric-block-pitfall">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">⚠️</span>
+                  <h3>Kritische Prüfungsfallen &amp; Kardinalfehler (K.O.-Kriterien)</h3>
+                </div>
+                <span class="rubric-tag-danger">Tödliche Fehler</span>
               </div>
-              <span class="rubric-tag">High-Yield Fakten</span>
+              <div class="rubric-card-body">
+                <div class="pitfall-content" id="rubric-pitfall-text">
+                  <!-- Dynamically populated critical pitfalls -->
+                </div>
+              </div>
             </div>
-            <div class="rubric-card-body">
-              <div class="checklist-items" id="rubric-checklist-items">
-                <!-- Dynamically populated bullet checklist -->
+
+            <!-- Block 0: Examiner Complication & Solution -->
+            <div class="rubric-card examiner-solution-card" id="rubric-block-examiner-solution">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">👨‍⚕️</span>
+                  <h3>Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü (Klinische Wendung &amp; Soforttherapie)</h3>
+                </div>
+                <div class="rubric-header-actions">
+                  <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen / Jüri çözümünü dinle">
+                    <span>🔊 Prüfer-Lösung vorlesen / Çözümü Dinle</span>
+                  </button>
+                  <span class="rubric-tag-alert">ÄKNO Notfall-Lösung / Acil Çözüm</span>
+                </div>
+              </div>
+              <div class="rubric-card-body">
+                <div class="examiner-solution-prompt" id="rubric-examiner-prompt-text">
+                  <!-- Question repeated for clarity -->
+                </div>
+                <div class="examiner-solution-content" id="rubric-examiner-solution-text">
+                  <!-- Detailed model answer -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Optional Legal & Consent Checkpoint (NRW Medizinrecht) (FAZ 4) -->
+            <div class="rubric-card legal-checkpoint-card" id="rubric-block-legal" style="display: none;">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">⚖️</span>
+                  <h3>ÄKNO Rechtsfrage &amp; Aufklärung (NRW Medizinrecht)</h3>
+                </div>
+                <span class="rubric-tag">BGB &amp; Berufsordnung</span>
+              </div>
+              <div class="rubric-card-body" id="rubric-legal-content">
+                <!-- Dynamically populated legal checkpoint -->
               </div>
             </div>
           </div>
 
-          <!-- Block 3: Critical Pitfalls (Prüfungsfalle / Kardinalfehler) -->
-          <div class="rubric-card pitfall-card" id="rubric-block-pitfall">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">⚠️</span>
-                <h3>Kritische Prüfungsfallen &amp; Kardinalfehler (K.O.-Kriterien)</h3>
+          <!-- TAB PANE 3: Redemittel & Checkliste -->
+          <div class="rubric-tab-pane" id="rubric-pane-framework" style="display: none;">
+            <!-- Block 1: Verbal Framework (Wie sage ich es?) -->
+            <div class="rubric-card verbal-framework-card" id="rubric-block-verbal">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">🗣️</span>
+                  <h3>"Wie sage ich es?" (Strukturierte Formulierungshilfe &amp; Redemittel)</h3>
+                </div>
+                <div class="rubric-header-actions">
+                  <button id="btn-audio-speak-verbal" class="btn-audio-action-sm" type="button" title="Formulierungshilfe &amp; Redemittel laut vorlesen (Aussprache-Trainer)">
+                    <span>🔊 Redemittel vorlesen</span>
+                  </button>
+                  <span class="rubric-tag">ÄKNO-Sprachmuster</span>
+                </div>
               </div>
-              <span class="rubric-tag-danger">Tödliche Fehler</span>
-            </div>
-            <div class="rubric-card-body">
-              <div class="pitfall-content" id="rubric-pitfall-text">
-                <!-- Dynamically populated critical pitfalls -->
+              <div class="rubric-card-body">
+                <div class="verbal-quote" id="rubric-verbal-text">
+                  <!-- Dynamically populated German verbal phrasing -->
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Medical Ground-Truth Block A: Exact Dosages & Limits (FAZ 2) -->
-          <div class="rubric-card dosages-card" id="rubric-block-dosages">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">📏</span>
-                <h3>Exakte Dosierungen &amp; Grenzwerte (Leitlinien-Dosierungstabelle)</h3>
+            <!-- Block 2: Keywords & Dosages (Schlüsselbegriffe & Dosierungen) -->
+            <div class="rubric-card checklist-card" id="rubric-block-checklist">
+              <div class="rubric-card-header">
+                <div class="rubric-badge-title">
+                  <span class="rubric-icon">🎯</span>
+                  <h3>Schlüsselbegriffe &amp; Dosierungen (Prüfer-Checkliste)</h3>
+                </div>
+                <span class="rubric-tag">High-Yield Fakten</span>
               </div>
-              <span class="rubric-tag-danger">Tödliche Dosis-Fallen</span>
-            </div>
-            <div class="rubric-card-body">
-              <div class="dosages-table-wrap" id="rubric-dosages-table-wrap">
-                <!-- Dynamically populated table -->
+              <div class="rubric-card-body">
+                <div class="checklist-items" id="rubric-checklist-items">
+                  <!-- Dynamically populated bullet checklist -->
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Medical Ground-Truth Block B: DGAI / AWMF Guidelines Anchor (FAZ 2) -->
-          <div class="rubric-card guidelines-card" id="rubric-block-guidelines">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">📘</span>
-                <h3>DGAI / AWMF Leitlinien-Anker (Deutscher Facharzt-Standard)</h3>
+            <!-- Full Text Accordion for In-Depth Background Reading -->
+            <details class="full-reference-accordion" id="full-reference-details">
+              <summary>📖 Vollständige Lehrbuch-Erklärung &amp; Hintergrund anzeigen</summary>
+              <div class="full-reference-body" id="full-reference-body">
+                <!-- Full textbook answer / explanation -->
               </div>
-              <span class="rubric-tag">AWMF-Standard</span>
-            </div>
-            <div class="rubric-card-body" id="rubric-guidelines-content">
-              <!-- Dynamically populated guideline info -->
-            </div>
+            </details>
           </div>
-
-          <!-- Optional Legal & Consent Checkpoint (NRW Medizinrecht) (FAZ 4) -->
-          <div class="rubric-card legal-checkpoint-card" id="rubric-block-legal" style="display: none;">
-            <div class="rubric-card-header">
-              <div class="rubric-badge-title">
-                <span class="rubric-icon">⚖️</span>
-                <h3>ÄKNO Rechtsfrage &amp; Aufklärung (NRW Medizinrecht)</h3>
-              </div>
-              <span class="rubric-tag">BGB &amp; Berufsordnung</span>
-            </div>
-            <div class="rubric-card-body" id="rubric-legal-content">
-              <!-- Dynamically populated legal checkpoint -->
-            </div>
-          </div>
-
-          <!-- Full Text Accordion for In-Depth Background Reading -->
-          <details class="full-reference-accordion" id="full-reference-details">
-            <summary>📖 Vollständige Lehrbuch-Erklärung &amp; Hintergrund anzeigen</summary>
-            <div class="full-reference-body" id="full-reference-body">
-              <!-- Full textbook answer / explanation -->
-            </div>
-          </details>
 
         </div>
       </div>

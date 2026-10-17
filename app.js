@@ -3956,11 +3956,11 @@ Tedavi:
     state.studyMode = mode;
     saveState();
 
-    const isSim = (mode === 'simulation');
-    document.body.classList.toggle('mode-simulation-active', isSim);
+    const isSimBarActive = (state.viewMode === 'exam') || (typeof mockExamState !== 'undefined' && mockExamState && mockExamState.isActive);
+    document.body.classList.toggle('mode-simulation-active', mode === 'simulation');
 
     if (elExamSimulationBar) {
-      elExamSimulationBar.style.display = isSim ? 'flex' : 'none';
+      elExamSimulationBar.style.display = isSimBarActive ? 'flex' : 'none';
     }
 
     // Update active tab buttons
@@ -4363,6 +4363,35 @@ Tedavi:
       ? MockExamSimulation.getRegistry(currentQ.id)
       : null;
     const prof = reg ? reg.examiner : getExaminerProfileForCase(currentQ);
+
+    // Update compact examiner strip (ADIM 4)
+    const elExaminerName = document.getElementById('examiner-header-name');
+    if (elExaminerName && prof) {
+      elExaminerName.textContent = prof.name;
+    }
+
+    // Update Hero Focus Bar (ADIM 1)
+    const elHeroStageBadge = document.getElementById('hero-focus-stage-badge');
+    const elHeroTitle = document.getElementById('hero-focus-title');
+    const elHeroCTA = document.getElementById('btn-hero-start-session');
+    if (elHeroStageBadge && elHeroTitle) {
+      let stageLabel = 'Stufe 1: Top-50 Überlebensfälle';
+      if (state.filterMode === 'stage_2') stageLabel = 'Stufe 2: Vertiefung';
+      else if (state.filterMode === 'dus_examiners') stageLabel = 'ÄKNO Düsseldorf';
+      else if (currentQ.stage) stageLabel = `Stufe ${currentQ.stage}`;
+      elHeroStageBadge.textContent = `${stageLabel} • Fall ${state.currentIndex + 1}/${filteredQuestions.length}`;
+      elHeroTitle.textContent = currentQ.category ? `${currentQ.category}: ${currentQ.title || 'Fallvignette'}` : (currentQ.title || 'Mündlicher Prüfungsfall');
+    }
+    if (elHeroCTA) {
+      const isContinuation = Object.keys(state.answers || {}).length > 0;
+      elHeroCTA.innerHTML = isContinuation
+        ? `<span>▶️ Weiterlernen (Fall ${state.currentIndex + 1})</span>`
+        : `<span>▶️ 15-Min Smart-Training starten</span>`;
+    }
+
+    if (typeof updateActivePathSummary === 'function') {
+      updateActivePathSummary();
+    }
 
     if (elQuestionNumber) {
       if (isSimMode) {
@@ -4840,12 +4869,17 @@ Tedavi:
     const isSim = (mode === 'simulation');
     document.body.classList.toggle('mode-simulation-active', isSim);
 
+    const isSimBarActive = (state.viewMode === 'exam') || (typeof mockExamState !== 'undefined' && mockExamState && mockExamState.isActive);
     if (elExamSimulationBar) {
-      elExamSimulationBar.style.display = isSim ? 'flex' : 'none';
+      elExamSimulationBar.style.display = isSimBarActive ? 'flex' : 'none';
     }
     if (elSimCaseCounter && isSim) {
       elSimCaseCounter.textContent = `Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
     }
+
+    const elBar1 = document.getElementById('step1-transition-bar');
+    const elBar2 = document.getElementById('step2-transition-bar');
+    const elBar3 = document.getElementById('step3-transition-bar');
 
     if (mode === 'guideline') {
       // Mode B: "Spickzettel / Leitfaden" (Continuous Reading - everything open)
@@ -4854,8 +4888,14 @@ Tedavi:
       toggleStep2(true);
       toggleStep3(true);
       if (elRevealContainer) elRevealContainer.style.display = 'none';
-      if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
+      if (elHighImpactRubric) {
+        elHighImpactRubric.style.display = 'flex';
+        if (typeof switchRubricTab === 'function') switchRubricTab('solution');
+      }
       if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
+      if (elBar1) elBar1.style.display = 'none';
+      if (elBar2) elBar2.style.display = 'none';
+      if (elBar3) elBar3.style.display = 'none';
 
     } else if (mode === 'flashcard') {
       // Mode C: "Blitz-Karteikarten" (Flashcard cloze)
@@ -4864,26 +4904,42 @@ Tedavi:
       toggleStep2(false);
       toggleStep3(false);
       if (elRevealContainer) elRevealContainer.style.display = 'none';
-      if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
+      if (elHighImpactRubric) {
+        elHighImpactRubric.style.display = 'flex';
+        if (typeof switchRubricTab === 'function') switchRubricTab('solution');
+      }
       if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
+      if (elBar1) elBar1.style.display = 'none';
+      if (elBar2) elBar2.style.display = 'none';
+      if (elBar3) elBar3.style.display = 'none';
 
     } else {
       // Mode A: "Prüfer-Simulation" (Stepped disclosure)
       if (elStepperIndicatorBar) elStepperIndicatorBar.style.display = 'flex';
       if (elOralToolsBar) elOralToolsBar.style.display = 'flex';
 
-      // Keep clinical vitals and examiner dialogue open for realistic immersion
-      toggleStep2(true);
-      toggleStep3(true);
-
       if (qState.revealed || qState.submitted) {
+        toggleStep2(true);
+        toggleStep3(true);
         if (elRevealContainer) elRevealContainer.style.display = 'none';
-        if (elHighImpactRubric) elHighImpactRubric.style.display = 'flex';
+        if (elHighImpactRubric) {
+          elHighImpactRubric.style.display = 'flex';
+          if (typeof switchRubricTab === 'function') switchRubricTab('solution');
+        }
         if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'flex';
+        if (elBar1) elBar1.style.display = 'none';
+        if (elBar2) elBar2.style.display = 'none';
+        if (elBar3) elBar3.style.display = 'none';
       } else {
+        // Progressive disclosure: Start at Step 1, advance step-by-step
+        toggleStep2(false);
+        toggleStep3(false);
         if (elRevealContainer) elRevealContainer.style.display = 'flex';
         if (elHighImpactRubric) elHighImpactRubric.style.display = 'none';
         if (elSelfAssessContainer) elSelfAssessContainer.style.display = 'none';
+        if (elBar1) elBar1.style.display = 'flex';
+        if (elBar2) elBar2.style.display = 'none';
+        if (elBar3) elBar3.style.display = 'none';
       }
     }
 
@@ -6913,11 +6969,18 @@ Tedavi:
       document.body.classList.add('view-mode-exam');
       if (elBtnViewModeExam) elBtnViewModeExam.classList.add('active');
       if (elBtnViewModeLearn) elBtnViewModeLearn.classList.remove('active');
+      if (elExamSimulationBar) {
+        elExamSimulationBar.style.display = 'flex';
+        startExamSimulationTimer();
+      }
       showToast('⏱️ Prüfungs-Modus aktiviert: Alle Hilfen ausgeblendet. Volle Konzentration auf Fall & Vitalwerte!', 'info', 2800);
     } else {
       document.body.classList.remove('view-mode-exam');
       if (elBtnViewModeLearn) elBtnViewModeLearn.classList.add('active');
       if (elBtnViewModeExam) elBtnViewModeExam.classList.remove('active');
+      if (elExamSimulationBar && (typeof mockExamState === 'undefined' || !mockExamState || !mockExamState.isActive)) {
+        elExamSimulationBar.style.display = 'none';
+      }
     }
     saveState();
   }
@@ -7607,11 +7670,213 @@ Tedavi:
     });
   }
 
+  // --- Senior UI/UX Progressive Disclosure & Modern Interaction Engine ---
+  function updateActivePathSummary() {
+    const elSummary = document.getElementById('active-path-summary');
+    if (!elSummary) return;
+    let stageLabel = 'Stufe 1: Top-50';
+    if (state.filterMode === 'stage_2') stageLabel = 'Stufe 2: Vertiefung';
+    else if (state.filterMode === 'stage_1') stageLabel = 'Stufe 1: Top-50';
+    else if (state.filterMode === 'dus_examiners') stageLabel = '🏛️ ÄKNO Düsseldorf';
+    else if (state.filterMode === 'sm2_due') stageLabel = '🧠 Spaced Repetition';
+    else if (state.filterMode === 'smart_session') stageLabel = '🎯 Smart Session';
+    else if (state.selectedCategory && state.selectedCategory !== 'all') stageLabel = state.selectedCategory;
+
+    let modeLabel = 'Fallbasiert';
+    if (state.studyMode === 'flashcard') modeLabel = 'Blitz-Karteikarten';
+    else if (state.studyMode === 'guideline') modeLabel = 'Leitlinien-Modus';
+    else if (state.studyMode === 'simulation') modeLabel = 'Prüfer-Simulation';
+
+    elSummary.textContent = `📚 Aktiver Pfad: [${stageLabel}] • [${modeLabel}]`;
+  }
+
+  function switchRubricTab(tabName) {
+    const tabs = [
+      { name: 'solution', btnId: 'rubric-tab-btn-solution', paneId: 'rubric-pane-solution' },
+      { name: 'pitfalls', btnId: 'rubric-tab-btn-pitfalls', paneId: 'rubric-pane-pitfalls' },
+      { name: 'framework', btnId: 'rubric-tab-btn-framework', paneId: 'rubric-pane-framework' }
+    ];
+    tabs.forEach(t => {
+      const btn = document.getElementById(t.btnId);
+      const pane = document.getElementById(t.paneId);
+      const isActive = (t.name === tabName);
+      if (btn) {
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      }
+      if (pane) {
+        pane.style.display = isActive ? 'block' : 'none';
+        pane.classList.toggle('active', isActive);
+      }
+    });
+  }
+
+  function initSeniorUXEnhancements() {
+    // 1. Hero Onboarding & Focus Bar
+    const elBtnHeroStart = document.getElementById('btn-hero-start-session');
+    const elBtnToggleOnboarding = document.getElementById('btn-toggle-onboarding-guide');
+    const elBtnDismissOnboarding = document.getElementById('btn-dismiss-onboarding');
+    const elOnboardingGuide = document.getElementById('onboarding-guide-strip');
+
+    if (localStorage.getItem('facharzt_onboarding_dismissed') === 'true') {
+      if (elOnboardingGuide) elOnboardingGuide.style.display = 'none';
+    }
+
+    if (elBtnHeroStart) {
+      elBtnHeroStart.addEventListener('click', () => {
+        if (elBtnSmartSession && (!state.filterMode || state.filterMode === 'all')) {
+          elBtnSmartSession.click();
+        }
+        const elCard = document.getElementById('main-quiz-card');
+        if (elCard) {
+          elCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    if (elBtnToggleOnboarding && elOnboardingGuide) {
+      elBtnToggleOnboarding.addEventListener('click', () => {
+        const isHidden = (elOnboardingGuide.style.display === 'none');
+        elOnboardingGuide.style.display = isHidden ? 'flex' : 'none';
+      });
+    }
+
+    if (elBtnDismissOnboarding && elOnboardingGuide) {
+      elBtnDismissOnboarding.addEventListener('click', () => {
+        elOnboardingGuide.style.display = 'none';
+        localStorage.setItem('facharzt_onboarding_dismissed', 'true');
+      });
+    }
+
+    // 2. Filter Drawer & Active Path Summary
+    const elBtnToggleFilters = document.getElementById('btn-toggle-filters');
+    const elFilterDrawer = document.getElementById('filter-drawer');
+    const elBtnQuickBga = document.getElementById('btn-quick-bga');
+
+    if (elBtnToggleFilters && elFilterDrawer) {
+      elBtnToggleFilters.addEventListener('click', () => {
+        const isClosed = (elFilterDrawer.style.display === 'none' || !elFilterDrawer.style.display);
+        elFilterDrawer.style.display = isClosed ? 'block' : 'none';
+        elBtnToggleFilters.innerHTML = isClosed
+          ? '<span>⚙️ Filter & Suche schließen ▴</span>'
+          : '<span>⚙️ Filter & Suche öffnen ▾</span>';
+      });
+    }
+
+    if (elBtnQuickBga) {
+      elBtnQuickBga.addEventListener('click', () => {
+        const elBgaTrigger = document.getElementById('btn-bga-trainer-trigger');
+        if (elBgaTrigger) {
+          elBgaTrigger.click();
+        } else {
+          const elBgaModal = document.getElementById('bga-trainer-modal');
+          if (elBgaModal) elBgaModal.style.display = 'flex';
+        }
+      });
+    }
+
+    // 3. Compact Examiner Profile Trigger & Redefluss Pill
+    const elExaminerPillTrigger = document.getElementById('examiner-pill-trigger');
+    if (elExaminerPillTrigger) {
+      elExaminerPillTrigger.addEventListener('click', () => {
+        if (typeof toggleSimExaminerDrawer === 'function') {
+          toggleSimExaminerDrawer();
+        }
+      });
+    }
+
+    const elBtnToggleRedeflussPill = document.getElementById('btn-toggle-redefluss-pill');
+    const elRedeflussBody1 = document.getElementById('redefluss-body-step1');
+    const elRedeflussChip1 = document.getElementById('redefluss-chip-step1');
+    if (elBtnToggleRedeflussPill && elRedeflussBody1) {
+      elBtnToggleRedeflussPill.addEventListener('click', () => {
+        const isHidden = (elRedeflussBody1.style.display === 'none');
+        elRedeflussBody1.style.display = isHidden ? 'block' : 'none';
+        if (elRedeflussChip1) elRedeflussChip1.style.display = isHidden ? 'block' : 'none';
+      });
+    }
+
+    // 4. Progressive Step Advance Buttons (1 -> 2 -> 3 -> 4)
+    const elBtnAdv2 = document.getElementById('btn-advance-to-step2');
+    const elBtnAdv3 = document.getElementById('btn-advance-to-step3');
+    const elBtnAdv4 = document.getElementById('btn-advance-to-step4');
+    const elBar1 = document.getElementById('step1-transition-bar');
+    const elBar2 = document.getElementById('step2-transition-bar');
+    const elBar3 = document.getElementById('step3-transition-bar');
+
+    if (elBtnAdv2) {
+      elBtnAdv2.addEventListener('click', () => {
+        toggleStep2(true);
+        if (elBar1) elBar1.style.display = 'none';
+        if (elBar2) elBar2.style.display = 'flex';
+        const elVitals = document.getElementById('step2-clinical-vitals');
+        if (elVitals) elVitals.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    if (elBtnAdv3) {
+      elBtnAdv3.addEventListener('click', () => {
+        toggleStep3(true);
+        if (elBar2) elBar2.style.display = 'none';
+        if (elBar3) elBar3.style.display = 'flex';
+        const elIntervention = document.getElementById('step3-examiner-intervention');
+        if (elIntervention) elIntervention.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    if (elBtnAdv4) {
+      elBtnAdv4.addEventListener('click', () => {
+        if (elBar3) elBar3.style.display = 'none';
+        if (typeof revealAnswer === 'function') {
+          revealAnswer();
+        } else {
+          const elRevealBtn = document.getElementById('btn-reveal-answer');
+          if (elRevealBtn) elRevealBtn.click();
+        }
+        switchRubricTab('solution');
+        const elRubric = document.getElementById('high-impact-rubric');
+        if (elRubric) elRubric.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    // 5. Compact Media Bar Handlers
+    const elBtnToggleKeyboard = document.getElementById('btn-toggle-keyboard-mode');
+    if (elBtnToggleKeyboard && elSpeechTranscriptBox) {
+      elBtnToggleKeyboard.addEventListener('click', () => {
+        const isHidden = (elSpeechTranscriptBox.style.display === 'none' || !elSpeechTranscriptBox.style.display);
+        elSpeechTranscriptBox.style.display = isHidden ? 'block' : 'none';
+        if (isHidden && elSpeechTranscriptInput) {
+          elSpeechTranscriptInput.focus();
+        }
+      });
+    }
+
+    const elBtnAudioSettings = document.getElementById('btn-audio-settings-icon');
+    if (elBtnAudioSettings) {
+      elBtnAudioSettings.addEventListener('click', () => {
+        if (typeof runMicrophoneDiagnostics === 'function') {
+          runMicrophoneDiagnostics();
+        }
+      });
+    }
+
+    // 6. Rubric Tabs Wiring
+    const elTabSol = document.getElementById('rubric-tab-btn-solution');
+    const elTabPit = document.getElementById('rubric-tab-btn-pitfalls');
+    const elTabFra = document.getElementById('rubric-tab-btn-framework');
+    if (elTabSol) elTabSol.addEventListener('click', () => switchRubricTab('solution'));
+    if (elTabPit) elTabPit.addEventListener('click', () => switchRubricTab('pitfalls'));
+    if (elTabFra) elTabFra.addEventListener('click', () => switchRubricTab('framework'));
+
+    updateActivePathSummary();
+  }
+
   // Initializing App
   initCategoryDropdown();
   initImageLightbox();
   initHoverTranslationHUD();
   initBgaTrainer();
+  initSeniorUXEnhancements();
   if (state.viewMode) applyViewMode(state.viewMode);
   updateAnalytics();
   renderCurrentQuestion();
