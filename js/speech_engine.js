@@ -148,6 +148,8 @@
     text = text.replace(/\bOSAS\b/g, 'obstruktives Schlafapnoe-Syndrom');
     text = text.replace(/\bBMI\b/g, 'Body-Mass-Index');
 
+    text = text.replace(/\.{2,}/g, '.');
+
     // 10. Clean whitespace & punctuation (protecting German decimal numbers like 7,28 or 0,6)
     text = text.replace(/\s+/g, ' ');
     text = text.replace(/(?<!\d),/g, ', ');
@@ -194,17 +196,18 @@
 
     for (let s of sentences) {
       s = s.trim();
-      if (!s) continue;
+      if (!s || !s.replace(/[.!?:\s,;]/g, '').length) continue;
       if (s.length <= maxLen) {
         chunks.push(s);
       } else {
         const parts = s.split(/(?<=[,;])\s+/);
         let cur = '';
         for (const p of parts) {
+          if (!p.trim() || !p.replace(/[.!?:\s,;]/g, '').length) continue;
           if ((cur + ' ' + p).trim().length <= maxLen) {
             cur = (cur + ' ' + p).trim();
           } else {
-            if (cur) chunks.push(cur);
+            if (cur && cur.replace(/[.!?:\s,;]/g, '').length) chunks.push(cur);
             if (p.length <= maxLen) {
               cur = p;
             } else {
@@ -214,14 +217,14 @@
                 if ((cur + ' ' + w).trim().length <= maxLen) {
                   cur = (cur + ' ' + w).trim();
                 } else {
-                  if (cur) chunks.push(cur);
+                  if (cur && cur.replace(/[.!?:\s,;]/g, '').length) chunks.push(cur);
                   cur = w;
                 }
               }
             }
           }
         }
-        if (cur) chunks.push(cur);
+        if (cur && cur.replace(/[.!?:\s,;]/g, '').length) chunks.push(cur);
       }
     }
     return chunks;
