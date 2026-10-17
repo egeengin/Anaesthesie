@@ -57,7 +57,7 @@
   // ─────────────────────────────────────────────────────────────────────────────
   // 2. MEDICAL GROUND-TRUTH LAYER (DGAI / AWMF GUIDELINES, DOSAGES & K.O. TRAPS)
   // ─────────────────────────────────────────────────────────────────────────────
-  function getMedicalGroundTruth(q) {
+  function _computeMedicalGroundTruth(q) {
     const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.category || '')).toLowerCase();
 
     // Maligne Hyperthermie (MH)
@@ -241,6 +241,27 @@
         { mistake: 'Unterlassen von Hilfeanforderung (Team-Kommunikation)', whyFatal: 'Überlastung in kritischen Notfallsituationen ist einer der häufigsten Durchfallgründe in der ÄKNO.', correctAction: 'Sofortige Ansage: "Ich rufe den Oberarzt hinzu und weise die Pflege im Closed-Loop an."' }
       ]
     };
+  }
+
+  function getMedicalGroundTruth(q) {
+    const res = _computeMedicalGroundTruth(q);
+    if (!res) return null;
+    if (res.dosages && Array.isArray(res.dosages)) {
+      res.dosages = res.dosages.map(d => ({
+        ...d,
+        limit: d.maxDose || d.limit || 'Gemäß Klinik-SOP',
+        maxDose: d.maxDose || d.limit || 'Gemäß Klinik-SOP',
+        note: d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung'),
+        limits: d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung')
+      }));
+    }
+    if (res.guideline) {
+      res.guideline.org = res.guideline.society || res.guideline.org || 'DGAI / BDA';
+      res.guideline.society = res.guideline.society || res.guideline.org || 'DGAI / BDA';
+      res.guideline.coreStatement = res.guideline.recommendation || res.guideline.coreStatement || '';
+      res.guideline.recommendation = res.guideline.recommendation || res.guideline.coreStatement || '';
+    }
+    return res;
   }
 
   // ─────────────────────────────────────────────────────────────────────────────

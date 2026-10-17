@@ -4615,11 +4615,13 @@ Tedavi:
           </thead>
           <tbody>`;
         gt.dosages.forEach(d => {
+          const maxDoseText = d.maxDose || d.limit || 'Gemäß Klinik-SOP';
+          const limitsText = d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung');
           dosHtml += `<tr>
             <td><strong>${d.drug}</strong></td>
             <td style="color: #dc2626; font-weight: 700;">${d.dose}</td>
-            <td>${d.limit}</td>
-            <td>${d.note}</td>
+            <td>${maxDoseText}</td>
+            <td>${limitsText}</td>
           </tr>`;
         });
         dosHtml += `</tbody></table>`;
@@ -4628,8 +4630,14 @@ Tedavi:
 
       const elGuidelinesContent = document.getElementById('rubric-guidelines-content');
       if (elGuidelinesContent) {
-        let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${gt.guideline.title} (${gt.guideline.org})</div>`;
-        gHtml += `<p style="margin-top: 0.5rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.45;">${gt.guideline.coreStatement}</p>`;
+        const guidelineOrg = gt.guideline.society || gt.guideline.org || 'DGAI / BDA';
+        const guidelineAwmf = gt.guideline.awmf ? ` · ${gt.guideline.awmf}` : '';
+        const guidelineYear = gt.guideline.year ? ` (${gt.guideline.year})` : '';
+        const guidelineRec = gt.guideline.recommendation || gt.guideline.coreStatement || '';
+        let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${gt.guideline.title} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]</div>`;
+        if (guidelineRec) {
+          gHtml += `<p style="margin-top: 0.5rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.45;"><strong>Kernaussage / DGAI-Empfehlung:</strong> ${guidelineRec}</p>`;
+        }
         if (gt.guideline.url) {
           gHtml += `<div style="margin-top: 0.35rem;"><a href="${gt.guideline.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; color: #0284c7; text-decoration: underline;">Offizielle AWMF / DGAI Leitlinie aufrufen ↗</a></div>`;
         }
