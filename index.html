@@ -130,6 +130,61 @@
       </div>
     </section>
 
+    <!-- 3-Stufen-Lernpfad & Quick Navigation Bar (FAZ 1, FAZ 5, FAZ 6) -->
+    <section class="curriculum-stage-section" id="curriculum-stage-section">
+      <div class="curriculum-stage-header">
+        <div class="curriculum-title-wrap">
+          <span class="curriculum-icon">🗺️</span>
+          <div>
+            <h2 class="curriculum-title">ÄKNO 3-Stufen-Lernpfad</h2>
+            <p class="curriculum-subtitle">Sıfırdan Düsseldorf Uzmanlık Sınavına: En kritik vakalarla sıfır vakit kaybı</p>
+          </div>
+        </div>
+        <div class="curriculum-actions-wrap">
+          <!-- View Mode Switcher (Lern-Modus vs. Prüfungs-Modus) -->
+          <div class="view-mode-toggle" id="view-mode-toggle" title="Ansichtsmodus wechseln">
+            <button id="btn-view-mode-learn" class="btn-view-mode active" type="button" title="📖 Lern-Modus: Spickzettel, Redemittel &amp; Leitlinien sichtbar">
+              <span>📖 Lern-Modus</span>
+            </button>
+            <button id="btn-view-mode-exam" class="btn-view-mode" type="button" title="⏱️ Prüfungs-Modus: Simuliere die echte Prüfung (Keine Spickzettel)">
+              <span>⏱️ Prüfungs-Modus</span>
+            </button>
+          </div>
+          <!-- Smart-Session Quick Launch Button -->
+          <button id="btn-smart-session" class="btn-smart-session" type="button" title="15-20 Min Smart-Session: Nur Schwachstellen &amp; fällige Fälle">
+            <span>⚡ Akıllı Günlük Seans (15-20 dk)</span>
+          </button>
+          <!-- BGA-Trainer Launch Button -->
+          <button id="btn-bga-trainer-trigger" class="btn-bga-trainer-trigger" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
+            <span>🧪 BGA-Trainer</span>
+          </button>
+        </div>
+      </div>
+      <div class="curriculum-pills-row" role="tablist">
+        <button id="btn-stage-1" class="curriculum-pill active" type="button" data-stage="1" role="tab" aria-selected="true">
+          <span class="pill-badge">Stufe 1</span>
+          <div class="pill-body">
+            <strong>🚨 Die Top-50 Überlebensfälle</strong>
+            <small>K.O.-Fallen, Notfälle &amp; Düsseldorf Protokolle (54 Kernfälle)</small>
+          </div>
+        </button>
+        <button id="btn-stage-2" class="curriculum-pill" type="button" data-stage="2" role="tab" aria-selected="false">
+          <span class="pill-badge">Stufe 2</span>
+          <div class="pill-body">
+            <strong>🏥 Klinische Vertiefung</strong>
+            <small>Fallbasierte Routine &amp; Bilddiagnostik (278 Fälle)</small>
+          </div>
+        </button>
+        <button id="btn-stage-3" class="curriculum-pill" type="button" data-stage="3" role="tab" aria-selected="false">
+          <span class="pill-badge">Stufe 3</span>
+          <div class="pill-body">
+            <strong>⏱️ ÄKNO Generalprobe</strong>
+            <small>45-Min Düsseldorf Live-Simulation unter Realbedingungen</small>
+          </div>
+        </button>
+      </div>
+    </section>
+
     <!-- Exam Simulation Active Banner / Oral Board HUD -->
     <section id="exam-simulation-bar" class="exam-simulation-bar" style="display: none;">
       <div class="sim-hud-left">
@@ -166,6 +221,9 @@
 
       <div class="filter-group">
         <button class="filter-chip active" data-filter="all">Alle Fragen</button>
+        <button class="filter-chip" data-filter="stage_1">🚨 Stufe 1: Top-50</button>
+        <button class="filter-chip" data-filter="stage_2">🏥 Stufe 2: Vertiefung</button>
+        <button class="filter-chip" data-filter="smart_session">⚡ Smart-Session (Fällig)</button>
         <button class="filter-chip" data-filter="sm2_due">🧠 Intervall-Wiederholung (SM-2)</button>
         <button class="filter-chip" data-filter="high_yield">⭐ ÄKNO NRW Top-Fragen</button>
         <button class="filter-chip" data-filter="dus_examiners">🏛️ Düsseldorf Prüfer-Fälle</button>
@@ -243,6 +301,7 @@
           <span id="badge-category" class="badge badge-category">Kategorie</span>
           <span id="badge-source" class="badge badge-source">Quelle</span>
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
+          <button id="btn-toggle-spickzettel" class="btn-xs btn-spickzettel-toggle" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">📚 30-Sek. Spickzettel</button>
         </div>
         <div class="quiz-header-right">
           <div id="question-number" class="question-number">Frage 1 von 664</div>
@@ -269,6 +328,20 @@
         <div class="stepper-step" data-step="4" id="step-node-4">
           <span class="step-badge">4</span>
           <span class="step-label">Musterantwort</span>
+        </div>
+      </div>
+
+      <!-- 30-Sekunden-Spickzettel Drawer / Card (FAZ 3) -->
+      <div id="vorab-spickzettel-box" class="vorab-spickzettel-box" style="display: none;">
+        <div class="spickzettel-header">
+          <div class="spickzettel-title">
+            <span>📚</span> <strong>30-Sekunden-Spickzettel (Vorab-Wissen)</strong>
+            <small class="spickzettel-subtitle">Konu Özeti &amp; Algoritma: Önce oku, sonra sözlü cevapla!</small>
+          </div>
+          <button id="btn-close-spickzettel" class="btn-xs btn-close-spickzettel" type="button" title="Spickzettel schließen">✕ Schließen</button>
+        </div>
+        <div id="spickzettel-content" class="spickzettel-content">
+          <!-- Dynamically populated by CurriculumEngine -->
         </div>
       </div>
 
@@ -363,7 +436,7 @@
               <button id="btn-voice-lang-de" class="btn-xs voice-lang-btn active" type="button" title="Deutsch (de-DE)">🇩🇪 DE</button>
               <button id="btn-voice-lang-tr" class="btn-xs voice-lang-btn" type="button" title="Türkçe (tr-TR)">🇹🇷 TR</button>
             </div>
-            <button id="btn-mic-diagnosis" class="btn-xs btn-outline-mic" type="button" title="Mikrofon-Test &amp; Pegel-Diagnose ausführen">🩺 Mikrofon-Test</button>
+            <button id="btn-mic-diagnosis" class="btn-xs btn-outline-mic" type="button" title="Audio-Diagnose &amp; Fehlerbehebung">⚙️ Audio &amp; Diagnose</button>
             <button id="btn-sample-voice" class="btn-xs btn-text" type="button" title="Muster-Stichpunkte dieser Frage zum Testen einfügen">💡 Beispiel einfügen</button>
             <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
           </div>
@@ -403,54 +476,56 @@
           </div>
         </div>
 
-        <!-- Interactive Microphone & Speech Diagnostic Drawer -->
+        <!-- Interactive Microphone & Speech Diagnostic Drawer (Modal Overlay) -->
         <div id="mic-diag-panel" class="mic-diag-panel" style="display: none;">
-          <div class="diag-header">
-            <span class="diag-title">🩺 Mikrofon- &amp; Spracherkennungs-Diagnose</span>
-            <button id="btn-close-mic-diag" class="btn-xs btn-close-diag" type="button" title="Diagnose schließen">✕</button>
-          </div>
-          <div class="diag-grid">
-            <div class="diag-item">
-              <span class="diag-label">Spracherkennung (Web Speech):</span>
-              <span id="diag-speech-status" class="diag-val">Prüfe...</span>
+          <div class="mic-diag-panel-inner">
+            <div class="diag-header">
+              <span class="diag-title">🩺 Mikrofon- &amp; Spracherkennungs-Diagnose</span>
+              <button id="btn-close-mic-diag" class="btn-xs btn-close-diag" type="button" title="Diagnose schließen">✕</button>
             </div>
-            <div class="diag-item">
-              <span class="diag-label">Mikrofon-Berechtigung:</span>
-              <span id="diag-perm-status" class="diag-val">Prüfe...</span>
-            </div>
-            <div class="diag-item">
-              <span class="diag-label">Aktives Eingabegerät:</span>
-              <span id="diag-device-name" class="diag-val">Standard</span>
-            </div>
-            <div class="diag-item diag-meter-item">
-              <span class="diag-label">Live-Eingangspegel:</span>
-              <div class="diag-vu-meter-bar">
-                <div id="diag-vu-fill" class="diag-vu-fill" style="width: 0%;"></div>
+            <div class="diag-grid">
+              <div class="diag-item">
+                <span class="diag-label">Spracherkennung (Web Speech):</span>
+                <span id="diag-speech-status" class="diag-val">Prüfe...</span>
               </div>
-              <span id="diag-vu-label" class="diag-vu-label">0%</span>
+              <div class="diag-item">
+                <span class="diag-label">Mikrofon-Berechtigung:</span>
+                <span id="diag-perm-status" class="diag-val">Prüfe...</span>
+              </div>
+              <div class="diag-item">
+                <span class="diag-label">Aktives Eingabegerät:</span>
+                <span id="diag-device-name" class="diag-val">Standard</span>
+              </div>
+              <div class="diag-item diag-meter-item">
+                <span class="diag-label">Live-Eingangspegel:</span>
+                <div class="diag-vu-meter-bar">
+                  <div id="diag-vu-fill" class="diag-vu-fill" style="width: 0%;"></div>
+                </div>
+                <span id="diag-vu-label" class="diag-vu-label">0%</span>
+              </div>
             </div>
-          </div>
-          <div class="diag-speech-test-row">
-            <button id="btn-diag-speech-test" class="btn btn-sm btn-outline-mic" type="button" title="Testet die Spracherkennung (Web Speech API) separat ohne Mikrofon-Sperre">
-              🗣️ Sprachtest starten (Jetzt "Hallo" sagen)
-            </button>
-            <span id="diag-speech-test-result" class="diag-speech-test-result">Klicken Sie auf den Button und sagen Sie laut "Hallo"</span>
-          </div>
-          <div id="diag-live-log" class="diag-live-log" style="display:none; margin-top:0.4rem; padding:0.5rem; background:rgba(0,0,0,0.35); border:1px solid var(--border-color); border-radius:6px; font-family:monospace; font-size:0.75rem; color:#94a3b8; max-height:120px; overflow-y:auto; white-space:pre-wrap;"></div>
-          <div class="diag-help-text" id="diag-help-text">
-            💡 <strong>Tipps zur Fehlerbehebung (macOS / Safari / Chrome):</strong> Wenn kein Text erkannt wird oder der Pegel zu leise ist:
-            <br>• <strong>Chrome auf macOS:</strong> Ist die Google-Spracherkennung blockiert (auch die offizielle Google-Testseite bleibt stumm), schaltet die App <strong>automatisch auf Gemini-Transkription</strong> um: Aufnahme starten → sprechen → stoppen, der Text erscheint nach ca. 2 s. Ein erfolgreicher Sprachtest hier schaltet wieder auf Live-Erkennung zurück. Safari nutzt die native Apple-Erkennung (live).
-            <br>• <strong>Browser-Berechtigung:</strong> Links in der Adresszeile auf das <strong>Schloss- / Website-Einstellungen-Symbol 🎚️</strong> klicken und <strong>Mikrofon: Zulassen</strong> wählen.
-            <br>• <strong>macOS-Toneinstellungen:</strong> Unter <strong>Systemeinstellungen > Ton > Eingang</strong> sicherstellen, dass das <em>MacBook-Mikrofon</em> aktiv und die <strong>Eingangslautstärke</strong> aufgedreht ist.
-            <br>• <strong>Mikrofon-Modus:</strong> Im macOS-Kontrollzentrum (oben rechts in der Menüleiste) den <strong>Mikrofonmodus</strong> auf <em>Standard</em> setzen (nicht auf „Stimmisolation“).
-            <br>• <strong>macOS-Diktierfunktion (Siri):</strong> Falls die Web-Spracherkennung blockiert ist, klicken Sie in das Antwortfeld und drücken Sie <strong>2× die Fn-Taste bzw. 🌐 (Globus-Taste)</strong>, um die systemeigene Offline-Diktierfunktion von macOS zu aktivieren!
-            <div class="diag-action-buttons" style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-              <a href="https://www.google.com/intl/en/chrome/demos/speech.html" target="_blank" rel="noopener" class="btn btn-xs btn-outline-mic" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
-                🌐 Offizielle Google-Sprachtestseite öffnen
-              </a>
-              <button id="btn-force-cache-clear" class="btn btn-xs btn-outline-mic" type="button" style="display:inline-flex; align-items:center; gap:4px;">
-                🔄 Cache leeren &amp; Neu laden (Hard Reset)
+            <div class="diag-speech-test-row">
+              <button id="btn-diag-speech-test" class="btn btn-sm btn-outline-mic" type="button" title="Testet die Spracherkennung (Web Speech API) separat ohne Mikrofon-Sperre">
+                🗣️ Sprachtest starten (Jetzt "Hallo" sagen)
               </button>
+              <span id="diag-speech-test-result" class="diag-speech-test-result">Klicken Sie auf den Button und sagen Sie laut "Hallo"</span>
+            </div>
+            <div id="diag-live-log" class="diag-live-log" style="display:none; margin-top:0.4rem; padding:0.5rem; background:rgba(0,0,0,0.35); border:1px solid var(--border-color); border-radius:6px; font-family:monospace; font-size:0.75rem; color:#94a3b8; max-height:120px; overflow-y:auto; white-space:pre-wrap;"></div>
+            <div class="diag-help-text" id="diag-help-text">
+              💡 <strong>Tipps zur Fehlerbehebung (macOS / Safari / Chrome):</strong> Wenn kein Text erkannt wird oder der Pegel zu leise ist:
+              <br>• <strong>Chrome auf macOS:</strong> Ist die Google-Spracherkennung blockiert (auch die offizielle Google-Testseite bleibt stumm), schaltet die App <strong>automatisch auf Gemini-Transkription</strong> um: Aufnahme starten → sprechen → stoppen, der Text erscheint nach ca. 2 s. Ein erfolgreicher Sprachtest hier schaltet wieder auf Live-Erkennung zurück. Safari nutzt die native Apple-Erkennung (live).
+              <br>• <strong>Browser-Berechtigung:</strong> Links in der Adresszeile auf das <strong>Schloss- / Website-Einstellungen-Symbol 🎚️</strong> klicken und <strong>Mikrofon: Zulassen</strong> wählen.
+              <br>• <strong>macOS-Toneinstellungen:</strong> Unter <strong>Systemeinstellungen > Ton > Eingang</strong> sicherstellen, dass das <em>MacBook-Mikrofon</em> aktiv und die <strong>Eingangslautstärke</strong> aufgedreht ist.
+              <br>• <strong>Mikrofon-Modus:</strong> Im macOS-Kontrollzentrum (oben rechts in der Menüleiste) den <strong>Mikrofonmodus</strong> auf <em>Standard</em> setzen (nicht auf „Stimmisolation“).
+              <br>• <strong>macOS-Diktierfunktion (Siri):</strong> Falls die Web-Spracherkennung blockiert ist, klicken Sie in das Antwortfeld und drücken Sie <strong>2× die Fn-Taste bzw. 🌐 (Globus-Taste)</strong>, um die systemeigene Offline-Diktierfunktion von macOS zu aktivieren!
+              <div class="diag-action-buttons" style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <a href="https://www.google.com/intl/en/chrome/demos/speech.html" target="_blank" rel="noopener" class="btn btn-xs btn-outline-mic" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                  🌐 Offizielle Google-Sprachtestseite öffnen
+                </a>
+                <button id="btn-force-cache-clear" class="btn btn-xs btn-outline-mic" type="button" style="display:inline-flex; align-items:center; gap:4px;">
+                  🔄 Cache leeren &amp; Neu laden (Hard Reset)
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -665,6 +740,19 @@
           Fragetext wird geladen...
         </div>
 
+        <!-- Step 1 Redefluss-Baukasten Chip (FAZ 3) -->
+        <div class="redefluss-chip" id="redefluss-chip-step1">
+          <div class="redefluss-chip-header" id="btn-toggle-redefluss-step1" tabindex="0" role="button" aria-expanded="false">
+            <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 1: Vorstellung &amp; Strategie)</span>
+            <span class="chip-caret">▾</span>
+          </div>
+          <div class="redefluss-chip-body" id="redefluss-body-step1" style="display: none;">
+            <p class="redefluss-text-de" id="redefluss-de-step1">Zusammenfassend handelt es sich um einen Risikopatienten. Mein primäres anästhesiologisches Ziel ist...</p>
+            <p class="redefluss-text-tr" id="redefluss-tr-step1">Özetle, acil müdahale gerektiren yüksek riskli bir hasta. Birincil anestezi hedefim...</p>
+            <button class="btn-xs btn-text btn-speak-redefluss" data-step="1" type="button">🔊 Kalıbı Dinle / Vorlesen</button>
+          </div>
+        </div>
+
         <!-- Step 1 Inline Action Bar & Revealable Answer -->
         <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 0.85rem;">
           <button id="btn-toggle-step1-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zu Schritt 1 anzeigen / 1. Adım model cevabını gör">
@@ -686,6 +774,18 @@
           <div id="step1-inline-answer-text" class="examiner-inline-answer-text">
             <!-- Dynamically populated answer -->
           </div>
+        </div>
+      </div>
+
+      <!-- Mündlicher Kurzfall (Prüfer-Zwischenfrage) Container for Options Questions (FAZ 1) -->
+      <div id="mcq-oral-prompt-box" class="mcq-oral-prompt-box" style="display: none;">
+        <div class="mcq-oral-badge">🎙️ Prüfer-Zwischenfrage</div>
+        <h4 class="mcq-oral-title">Mündlicher Kurzfall (Schnelle mündliche Stellungnahme)</h4>
+        <p class="mcq-oral-desc">Der Prüfer bittet um eine kurze mündliche Stellungnahme zu den Kernaussagen. Formulieren Sie Ihre Einschätzung frei heraus!</p>
+        <div class="mcq-oral-actions">
+          <button id="btn-reveal-mcq-options" class="btn btn-sm btn-outline-primary" type="button">
+            <span>💡</span> Aussagen &amp; Prüfungs-Fakten zur Selbstkontrolle einblenden / İpuçlarını Gör
+          </button>
         </div>
       </div>
 
@@ -756,6 +856,19 @@
               </div>
             </div>
 
+            <!-- Step 2 Redefluss-Baukasten Chip (FAZ 3) -->
+            <div class="redefluss-chip" id="redefluss-chip-step2">
+              <div class="redefluss-chip-header" id="btn-toggle-redefluss-step2" tabindex="0" role="button" aria-expanded="false">
+                <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 2: Vitalwerte &amp; BGA)</span>
+                <span class="chip-caret">▾</span>
+              </div>
+              <div class="redefluss-chip-body" id="redefluss-body-step2" style="display: none;">
+                <p class="redefluss-text-de" id="redefluss-de-step2">Bei der systematischen Inspektion des Monitors fällt unmittelbar auf...</p>
+                <p class="redefluss-text-tr" id="redefluss-tr-step2">Monitörün sistematik incelemesinde derhal göze çarpan bulgu...</p>
+                <button class="btn-xs btn-text btn-speak-redefluss" data-step="2" type="button">🔊 Kalıbı Dinle / Vorlesen</button>
+              </div>
+            </div>
+
             <!-- Step 2 Inline Action Bar & Revealable Answer -->
             <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 1rem;">
               <button id="btn-toggle-step2-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Befund-Auswertung & therapeutische Konsequenz anzeigen / 2. Adım bulguları ve tedaviyi gör">
@@ -813,6 +926,19 @@
               <div class="candidate-directive">
                 👉 <strong>Ihre verbale Aufgabe / Sözlü Göreviniz:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die typischen Kardinalfehler & K.O.-Kriterien!
                 <div style="font-size:0.83rem; color:var(--text-muted); margin-top:3px;">🇹🇷 Cevabınızı yüksek sesle yapılandırın, nedensel tedaviyi gerekçelendirin ve K.O. kriterlerini belirtin!</div>
+              </div>
+
+              <!-- Step 3 Redefluss-Baukasten Chip (FAZ 3) -->
+              <div class="redefluss-chip" id="redefluss-chip-step3">
+                <div class="redefluss-chip-header" id="btn-toggle-redefluss-step3" tabindex="0" role="button" aria-expanded="false">
+                  <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 3: Notfall &amp; Intervention)</span>
+                  <span class="chip-caret">▾</span>
+                </div>
+                <div class="redefluss-chip-body" id="redefluss-body-step3" style="display: none;">
+                  <p class="redefluss-text-de" id="redefluss-de-step3">Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Als Sofortmaßnahme...</p>
+                  <p class="redefluss-text-tr" id="redefluss-tr-step3">Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. İlk önlem olarak...</p>
+                  <button class="btn-xs btn-text btn-speak-redefluss" data-step="3" type="button">🔊 Kalıbı Dinle / Vorlesen</button>
+                </div>
               </div>
 
               <!-- Inline Revealable Examiner Answer inside Step 3 -->
@@ -934,7 +1060,7 @@
             <div class="rubric-card-header">
               <div class="rubric-badge-title">
                 <span class="rubric-icon">⚠️</span>
-                <h3>Kritische Prüfungsfallen & Kardinalfehler (K.O.-Kriterien)</h3>
+                <h3>Kritische Prüfungsfallen &amp; Kardinalfehler (K.O.-Kriterien)</h3>
               </div>
               <span class="rubric-tag-danger">Tödliche Fehler</span>
             </div>
@@ -945,9 +1071,53 @@
             </div>
           </div>
 
+          <!-- Medical Ground-Truth Block A: Exact Dosages & Limits (FAZ 2) -->
+          <div class="rubric-card dosages-card" id="rubric-block-dosages">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">📏</span>
+                <h3>Exakte Dosierungen &amp; Grenzwerte (Leitlinien-Dosierungstabelle)</h3>
+              </div>
+              <span class="rubric-tag-danger">Tödliche Dosis-Fallen</span>
+            </div>
+            <div class="rubric-card-body">
+              <div class="dosages-table-wrap" id="rubric-dosages-table-wrap">
+                <!-- Dynamically populated table -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Medical Ground-Truth Block B: DGAI / AWMF Guidelines Anchor (FAZ 2) -->
+          <div class="rubric-card guidelines-card" id="rubric-block-guidelines">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">📘</span>
+                <h3>DGAI / AWMF Leitlinien-Anker (Deutscher Facharzt-Standard)</h3>
+              </div>
+              <span class="rubric-tag">AWMF-Standard</span>
+            </div>
+            <div class="rubric-card-body" id="rubric-guidelines-content">
+              <!-- Dynamically populated guideline info -->
+            </div>
+          </div>
+
+          <!-- Optional Legal & Consent Checkpoint (NRW Medizinrecht) (FAZ 4) -->
+          <div class="rubric-card legal-checkpoint-card" id="rubric-block-legal" style="display: none;">
+            <div class="rubric-card-header">
+              <div class="rubric-badge-title">
+                <span class="rubric-icon">⚖️</span>
+                <h3>ÄKNO Rechtsfrage &amp; Aufklärung (NRW Medizinrecht)</h3>
+              </div>
+              <span class="rubric-tag">BGB &amp; Berufsordnung</span>
+            </div>
+            <div class="rubric-card-body" id="rubric-legal-content">
+              <!-- Dynamically populated legal checkpoint -->
+            </div>
+          </div>
+
           <!-- Full Text Accordion for In-Depth Background Reading -->
           <details class="full-reference-accordion" id="full-reference-details">
-            <summary>📖 Vollständige Lehrbuch-Erklärung & Hintergrund anzeigen</summary>
+            <summary>📖 Vollständige Lehrbuch-Erklärung &amp; Hintergrund anzeigen</summary>
             <div class="full-reference-body" id="full-reference-body">
               <!-- Full textbook answer / explanation -->
             </div>
@@ -959,27 +1129,32 @@
       <!-- Personal Medical Notes Card -->
       <div id="user-note-card" class="user-note-card">
         <div class="note-header">
-          <span>📝</span> Eigene Klinik-Notiz & Eselbrücke:
+          <span>📝</span> Eigene Klinik-Notiz &amp; Eselbrücke:
         </div>
         <textarea id="user-note-text" class="user-note-textarea" placeholder="Schreiben Sie hier persönliche Notizen, Klinik-SOPs oder Eselbrücken zu dieser Frage..."></textarea>
         <div class="note-actions">
           <button id="btn-save-note" class="btn btn-sm btn-primary">
             <span>💾</span> Notiz Speichern
           </button>
-          <span id="note-save-toast" class="note-save-toast" style="display: none;">✓ Notiz gespeichert & synchronisiert</span>
+          <span id="note-save-toast" class="note-save-toast" style="display: none;">✓ Notiz gespeichert &amp; synchronisiert</span>
         </div>
       </div>
 
-      <!-- Self-Assessment Buttons (Oral pass/fail) -->
+      <!-- Self-Assessment Buttons (3-Stufen SM-2) (FAZ 5) -->
       <div id="self-assess-container" class="self-assess-container" style="display: none;">
-        <div class="self-assess-label">Wie gut wussten Sie die Antwort?</div>
+        <div class="self-assess-label">Wie prüfungssicher war Ihre mündliche Antwort? (ÄKNO Spaced Repetition)</div>
         <div class="self-assess-buttons">
-          <button id="btn-knew-it" class="btn btn-knew-it">
-            <span>✅</span> Wusste ich <kbd class="kbd-hint">1 / R</kbd>
+          <button id="btn-assess-unsicher" class="btn btn-assess-btn btn-assess-red" type="button" title="Unsicher / K.O.-Fehler (Wiederholung morgen)">
+            <span>🔴</span> Unsicher / K.O.-Fehler <kbd class="kbd-hint">3 / F</kbd>
           </button>
-          <button id="btn-didnt-know" class="btn btn-didnt-know">
-            <span>❌</span> Wusste ich nicht <kbd class="kbd-hint">2 / F</kbd>
+          <button id="btn-assess-mittel" class="btn btn-assess-btn btn-assess-yellow" type="button" title="Mit Hilfe gelöst (Wiederholung in 3 Tagen)">
+            <span>🟡</span> Mit Hilfe gelöst <kbd class="kbd-hint">2</kbd>
           </button>
+          <button id="btn-assess-sicher" class="btn btn-assess-btn btn-assess-green" type="button" title="Prüfungssicher (Bestanden / In 6+ Tagen)">
+            <span>🟢</span> Prüfungssicher <kbd class="kbd-hint">1 / R</kbd>
+          </button>
+          <button id="btn-knew-it" style="display: none;" type="button"></button>
+          <button id="btn-didnt-know" style="display: none;" type="button"></button>
         </div>
       </div>
 
@@ -991,12 +1166,17 @@
 
         <!-- Quick Dock Assessment Buttons (Displayed on mobile / dock when answer revealed) -->
         <div id="dock-self-assess" class="dock-self-assess" style="display: none;">
-          <button id="btn-dock-knew-it" class="btn btn-knew-it" type="button" title="Wusste ich (1 / R)">
-            <span>✅</span> Wusste ich
+          <button id="btn-dock-unsicher" class="btn btn-assess-btn btn-assess-red btn-xs" type="button" title="Unsicher / K.O.-Fehler (Morgen)">
+            <span>🔴</span> Unsicher
           </button>
-          <button id="btn-dock-didnt-know" class="btn btn-didnt-know" type="button" title="Wusste ich nicht (2 / F)">
-            <span>❌</span> Nicht gewusst
+          <button id="btn-dock-mittel" class="btn btn-assess-btn btn-assess-yellow btn-xs" type="button" title="Mit Hilfe (3 Tage)">
+            <span>🟡</span> Mit Hilfe
           </button>
+          <button id="btn-dock-sicher" class="btn btn-assess-btn btn-assess-green btn-xs" type="button" title="Prüfungssicher (6+ Tage)">
+            <span>🟢</span> Sicher
+          </button>
+          <button id="btn-dock-knew-it" style="display: none;" type="button"></button>
+          <button id="btn-dock-didnt-know" style="display: none;" type="button"></button>
         </div>
 
         <div class="btn-group">
@@ -2084,6 +2264,37 @@
     </div>
   </div>
 
+  <!-- BGA Trainer Modal (ÄKNO Blutgasanalyse-Trainer) -->
+  <div id="bga-trainer-modal" class="modal-backdrop">
+    <div class="modal-content bga-modal-card">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <h2>🧪 ÄKNO BGA- & Säure-Basen-Trainer</h2>
+          <span class="modal-header-sub">Spezial-Prüfungsmodul Düsseldorf: 4-Schritte-Schema zur BGA-Interpretation</span>
+        </div>
+        <button id="btn-close-bga-modal" class="btn-icon" title="Schließen (Esc)">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="bga-case-selector-row">
+          <label for="bga-case-select" style="font-weight: 700; font-size: 0.85rem;">Fall auswählen:</label>
+          <select id="bga-case-select" class="bga-case-select">
+            <!-- Populated by CurriculumEngine.BGA_TRAINING_CASES -->
+          </select>
+        </div>
+        <div id="bga-case-description" style="font-size: 0.88rem; margin-bottom: 0.75rem; color: var(--text-secondary);"></div>
+        <div id="bga-monitor-display" class="bga-monitor-display">
+          <!-- Populated by JS -->
+        </div>
+        <div id="bga-steps-container" class="bga-systematic-steps">
+          <!-- Populated by JS -->
+        </div>
+        <div id="bga-action-card" class="bga-action-card">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -2102,6 +2313,7 @@
   <script src="js/calculators.js"></script>
   <script src="js/storage_sync.js"></script>
   <script src="js/speech_engine.js"></script>
+  <script src="js/curriculum_engine.js"></script>
   <script src="questions.js"></script>
   <script src="app.js?v=7.1"></script>
 

@@ -19,6 +19,7 @@ const CORE_ASSETS = [
   './js/calculators.js',
   './js/storage_sync.js',
   './js/speech_engine.js',
+  './js/curriculum_engine.js',
   './manifest.json',
   './favicon.svg'
 ];

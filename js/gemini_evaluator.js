@@ -107,7 +107,12 @@ WICHTIGE HINWEISE FÜR DIE BEWERTUNG:
    - "Dan Trowlen" = "Dantrolen"
    - "Kiko" = "CICO / Koniotomie"
 2. Bewerte die KLINISCHE LOGIK, Prioritätensetzung und Algorithmentreue. Wenn der Prüfling die richtige Maßnahme mit eigenen Worten beschreibt, werte den Punkt als VOLL ERFÜLLT.
-3. Beurteile, ob ein vitales K.O.-Kriterium verletzt wurde (z.B. Gabe falscher Kontraindikationen).
+3. STRENGES K.O.-KRITERIUM & DOSIERUNGSKONTROLLE (DGAI/AWMF MEDICAL GROUND-TRUTH):
+   Haluziniere keinesfalls. Halte dich ausschließlich an die DGAI/AWMF-Leitlinien und die offizielle Musterantwort als unbestechlicher Goldstandard.
+   Wenn der Prüfling eine falsche Dosierung nennt (z.B. Milligramm statt Mikrogramm oder 10-fache Über-/Unterdosierung) oder eine fatale Kontraindikation vorschlägt (z.B. Spinalanästhesie bei Aortenstenose, Ca-Antagonisten bei Maligner Hyperthermie, Benzodiazepine im Delir, permissive Hypotonie bei SHT):
+   - Setze "passed": false und "koViolated": true!
+   - Setze "grade": "Note 5.0 (Nicht bestanden - K.O.-Kriterium verletzt)" und deckele den Score auf maximal 40%!
+   - Korrigiere die fatale Fehlerquelle und nenne die exakte Leitliniendosierung unmissverständlich in verdictDE und verdictTR, selbst wenn andere Teile der Antwort korrekt waren.
 4. Berechne:
    - Einen Score von 0 bis 100%.
    - Eine realistische deutsche Prüfungsnote (z.B. "Note 1.0 (Sehr gut)", "Note 2.0 (Gut)", "Note 3.0 (Befriedigend)", "Note 4.0 (Ausreichend)", "Note 5.0 (Nicht bestanden)").

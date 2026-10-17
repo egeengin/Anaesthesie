@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Tag questions with 3-Stufen-Lernpfad (Stufe 1: Top-50 High-Yield & K.O. cases, Stufe 2: Klinische Vertiefung)
+  if (typeof CurriculumEngine !== 'undefined' && CurriculumEngine.tagCurriculumStages) {
+    CurriculumEngine.tagCurriculumStages(EXAM_QUESTIONS);
+  }
+
   // --- Initial Application State ---
   let state = {
     currentIndex: 0,
@@ -23,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     flagged: {},       // { questionId: true/false }
     theme: 'light',
     subtitleMode: false, // Default collapsed so page is clean & uncluttered; user can click small button directly below or press U
-    filterMode: 'all',  // 'all', 'unanswered', 'incorrect', 'review'
+    viewMode: 'learn',  // 'learn' (Sakin Çalışma) vs 'exam' (Düsseldorf Simülasyonu)
+    filterMode: 'all',  // 'all', 'stage_1', 'stage_2', 'smart_session', 'unanswered', 'incorrect', 'review'
     typeFilter: 'all',    // 'all', 'options', 'open', 'image'
     ambossPillarFilter: 'all', // 'all', 'anaesthesie', 'intensiv', 'notfall', 'schmerz', 'pharmakologie'
     categoryFilter: 'all',
@@ -520,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function getFilteredQuestions() {
     let list = EXAM_QUESTIONS.filter(q => {
       // In Oral Simulation Mode (Mode A), STRICTLY focus on authentic ÄKNO Düsseldorf protocol cases (36 cases)
-      if (state.studyMode === 'simulation') {
+      if (state.studyMode === 'simulation' && !['stage_1', 'stage_2', 'smart_session'].includes(state.filterMode)) {
         const isDus = !!q.is_dus_protocol || (q.source_book && (q.source_book.includes('Düsseldorf') || q.source_book.includes('D\u00fcsseldorf')));
         if (!isDus) return false;
         if (q.question_type === 'options' || (q.options && q.options.length > 0)) {
@@ -567,6 +573,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const qAns = state.answers[q.id];
       const isFlagged = !!state.flagged[q.id];
 
+      if (state.filterMode === 'stage_1') {
+        return !!q.is_high_yield || q.stage === 1;
+      }
+      if (state.filterMode === 'stage_2') {
+        return (q.stage === 2 || (!q.is_high_yield && q.question_type !== 'options')) && q.question_type !== 'options';
+      }
+      if (state.filterMode === 'smart_session') {
+        const sm2Item = state.sm2Data ? state.sm2Data[q.id] : null;
+        const isWeakOrDue = !qAns || !qAns.submitted || !qAns.isCorrect ||
+          (sm2Item && (sm2Item.easeFactor < 2.5 || Date.now() >= (sm2Item.dueDate || 0)));
+        return (!!q.is_high_yield || q.stage === 1) && isWeakOrDue;
+      }
       if (state.filterMode === 'sm2_due') {
         const sm2Item = state.sm2Data ? state.sm2Data[q.id] : null;
         if (!sm2Item) return false;
@@ -4414,6 +4432,38 @@ Tedavi:
       elStep1InlineAnswerText.innerHTML = renderStep1InlineAnswer(parsedCase, currentQ);
     }
 
+    // 📚 30-Sekunden-Spickzettel (Vorab-Wissen & Algorithmus für Sıfırdan Öğrenenler)
+    const elVorabSpickBox = document.getElementById('vorab-spickzettel-box');
+    const elSpickzettelContent = document.getElementById('spickzettel-content');
+    const elBtnToggleSpick = document.getElementById('btn-toggle-spickzettel');
+    if (elVorabSpickBox) elVorabSpickBox.style.display = 'none';
+    if (elBtnToggleSpick) {
+      elBtnToggleSpick.innerHTML = '<span>📚</span> 30-Sekunden-Spickzettel (Vorab-Wissen) <span class="spickzettel-badge">Sıfırdan Başlayanlar</span>';
+      elBtnToggleSpick.classList.remove('active');
+    }
+    if (elSpickzettelContent && typeof CurriculumEngine !== 'undefined') {
+      elSpickzettelContent.innerHTML = CurriculumEngine.get30SecondSpickzettel(currentQ);
+    }
+
+    // 🗣️ Düsseldorfer Redefluss-Baukasten (Schritt 1-3 deutsche Formulierungshilfen)
+    if (typeof CurriculumEngine !== 'undefined') {
+      const rf = CurriculumEngine.getRedeflussBaukasten(currentQ);
+      const elRfStep1 = document.getElementById('redefluss-de-step1');
+      const elRfStep2 = document.getElementById('redefluss-de-step2');
+      const elRfStep3 = document.getElementById('redefluss-de-step3');
+      if (elRfStep1) elRfStep1.textContent = rf.step1.de;
+      const chip1 = document.getElementById('redefluss-chip-step1');
+      if (chip1) chip1.setAttribute('data-tr', rf.step1.tr);
+
+      if (elRfStep2) elRfStep2.textContent = rf.step2.de;
+      const chip2 = document.getElementById('redefluss-chip-step2');
+      if (chip2) chip2.setAttribute('data-tr', rf.step2.tr);
+
+      if (elRfStep3) elRfStep3.textContent = rf.step3.de;
+      const chip3 = document.getElementById('redefluss-chip-step3');
+      if (chip3) chip3.setAttribute('data-tr', rf.step3.tr);
+    }
+
     // Personal Medical Note
     const elUserNoteText = document.getElementById('user-note-text');
     if (elUserNoteText) {
@@ -4549,6 +4599,60 @@ Tedavi:
       elRubricPitfallText.innerHTML = `<div class="pitfall-item"><span>⚠️</span> <div>${renderDualLanguageText(parsedCase.pitfalls, parsedCase.pitfallsTR)}</div></div>`;
     }
 
+    // FAZ 2 & FAZ 4: Medical Ground-Truth Layer (Dosages table, Guidelines anchor, Legal checkpoint)
+    if (typeof CurriculumEngine !== 'undefined') {
+      const gt = CurriculumEngine.getMedicalGroundTruth(currentQ);
+      const elDosagesWrap = document.getElementById('rubric-dosages-table-wrap');
+      if (elDosagesWrap) {
+        let dosHtml = `<table class="dosages-table">
+          <thead>
+            <tr>
+              <th>Substanz / Notfall-Intervention</th>
+              <th>Exakte Bolus-Dosierung</th>
+              <th>Kritischer Grenzwert / Perfusor</th>
+              <th>Klinische Indikation & Sicherheitshinweis</th>
+            </tr>
+          </thead>
+          <tbody>`;
+        gt.dosages.forEach(d => {
+          dosHtml += `<tr>
+            <td><strong>${d.drug}</strong></td>
+            <td style="color: #dc2626; font-weight: 700;">${d.dose}</td>
+            <td>${d.limit}</td>
+            <td>${d.note}</td>
+          </tr>`;
+        });
+        dosHtml += `</tbody></table>`;
+        elDosagesWrap.innerHTML = dosHtml;
+      }
+
+      const elGuidelinesContent = document.getElementById('rubric-guidelines-content');
+      if (elGuidelinesContent) {
+        let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${gt.guideline.title} (${gt.guideline.org})</div>`;
+        gHtml += `<p style="margin-top: 0.5rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.45;">${gt.guideline.coreStatement}</p>`;
+        if (gt.guideline.url) {
+          gHtml += `<div style="margin-top: 0.35rem;"><a href="${gt.guideline.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; color: #0284c7; text-decoration: underline;">Offizielle AWMF / DGAI Leitlinie aufrufen ↗</a></div>`;
+        }
+        elGuidelinesContent.innerHTML = gHtml;
+      }
+
+      const legal = CurriculumEngine.getLegalCheckpoint(currentQ);
+      const elLegalBlock = document.getElementById('rubric-block-legal');
+      const elLegalContent = document.getElementById('rubric-legal-content');
+      if (legal && elLegalBlock && elLegalContent) {
+        elLegalBlock.style.display = 'block';
+        elLegalContent.innerHTML = `
+          <div style="font-weight: 700; color: #d97706; margin-bottom: 0.35rem;">⚖️ ${legal.title}</div>
+          <p style="margin-bottom: 0.4rem; font-size: 0.87rem;"><strong>Fallkonstellation:</strong> ${legal.scenario}</p>
+          <div style="background: rgba(217, 119, 6, 0.08); padding: 0.6rem; border-radius: 6px; font-size: 0.85rem; border-left: 3px solid #d97706;">
+            <strong>ÄKNO Rechts-Grundsatz:</strong> ${legal.rule}
+          </div>
+        `;
+      } else if (elLegalBlock) {
+        elLegalBlock.style.display = 'none';
+      }
+    }
+
     if (elFullReferenceBody) {
       elFullReferenceBody.innerHTML = renderDualLanguageText(parsedCase.fullTextDE, parsedCase.fullTextTR);
     }
@@ -4566,10 +4670,19 @@ Tedavi:
       if (elClozeControlsBar) elClozeControlsBar.style.display = 'none';
     }
 
+    // FAZ 1: Prüfer-Zwischenfrage for Multiple Choice questions
+    const elMcqPromptBox = document.getElementById('mcq-oral-prompt-box');
+    const elBtnRevealMcq = document.getElementById('btn-reveal-mcq-options');
+
     // Render Options Container if question has options
     if (currentQ.options && currentQ.options.length > 0) {
+      if (elMcqPromptBox) elMcqPromptBox.style.display = 'block';
       if (elOptionsContainer) {
-        elOptionsContainer.style.display = 'block';
+        const shouldHideOptions = !qState.submitted && !qState.revealed;
+        elOptionsContainer.style.display = shouldHideOptions ? 'none' : 'block';
+        if (elBtnRevealMcq) {
+          elBtnRevealMcq.style.display = shouldHideOptions ? 'inline-flex' : 'none';
+        }
         elOptionsContainer.innerHTML = '';
 
         currentQ.options.forEach(opt => {
@@ -4750,6 +4863,22 @@ Tedavi:
       if (elBtnDockDidntKnow) elBtnDockDidntKnow.classList.remove('selected');
     }
 
+    // FAZ 5: Sync 3-Button Self-Assessment Buttons (Unsicher / Mit Hilfe / Prüfungssicher)
+    const userQuality = qState.submitted ? (qState.quality || (qState.isCorrect ? 4 : 1)) : 0;
+    const elBtnAssessUnsicher = document.getElementById('btn-assess-unsicher');
+    const elBtnAssessMittel = document.getElementById('btn-assess-mittel');
+    const elBtnAssessSicher = document.getElementById('btn-assess-sicher');
+    const elBtnDockAssessUnsicher = document.getElementById('btn-dock-assess-unsicher');
+    const elBtnDockAssessMittel = document.getElementById('btn-dock-assess-mittel');
+    const elBtnDockAssessSicher = document.getElementById('btn-dock-assess-sicher');
+
+    if (elBtnAssessUnsicher) elBtnAssessUnsicher.classList.toggle('selected', userQuality === 1);
+    if (elBtnAssessMittel) elBtnAssessMittel.classList.toggle('selected', userQuality === 3);
+    if (elBtnAssessSicher) elBtnAssessSicher.classList.toggle('selected', userQuality >= 4);
+    if (elBtnDockAssessUnsicher) elBtnDockAssessUnsicher.classList.toggle('selected', userQuality === 1);
+    if (elBtnDockAssessMittel) elBtnDockAssessMittel.classList.toggle('selected', userQuality === 3);
+    if (elBtnDockAssessSicher) elBtnDockAssessSicher.classList.toggle('selected', userQuality >= 4);
+
     updateStepperIndicator();
     updateAnalytics();
   }
@@ -4776,15 +4905,16 @@ Tedavi:
     const currentQ = filteredQuestions[state.currentIndex];
     let qState = state.answers[currentQ.id] || { userChoices: {}, submitted: false, revealed: false };
 
+    const quality = qualityOverride !== undefined ? qualityOverride : (knewIt ? 4 : 1);
     qState.submitted = true;
     qState.isCorrect = knewIt;
+    qState.quality = quality;
     state.answers[currentQ.id] = qState;
 
     // Automatic SuperMemo-2 Spaced Repetition calculation
     let sm2Item = null;
     if (typeof SM2Engine !== 'undefined') {
       state.sm2Data = state.sm2Data || {};
-      const quality = qualityOverride !== undefined ? qualityOverride : (knewIt ? 4 : 1);
       state.sm2Data[currentQ.id] = SM2Engine.calculateSM2(quality, state.sm2Data[currentQ.id]);
       sm2Item = state.sm2Data[currentQ.id];
     }
@@ -6603,6 +6733,231 @@ Tedavi:
   if (elBtnKnewIt) elBtnKnewIt.addEventListener('click', () => selfAssess(true));
   if (elBtnDidntKnow) elBtnDidntKnow.addEventListener('click', () => selfAssess(false));
 
+  // --- FAZ 5: 3-Button Self-Assessment (SM-2: Unsicher / Mit Hilfe / Prüfungssicher) ---
+  const elBtnAssessUnsicher = document.getElementById('btn-assess-unsicher');
+  const elBtnAssessMittel = document.getElementById('btn-assess-mittel');
+  const elBtnAssessSicher = document.getElementById('btn-assess-sicher');
+  const elBtnDockAssessUnsicher = document.getElementById('btn-dock-assess-unsicher');
+  const elBtnDockAssessMittel = document.getElementById('btn-dock-assess-mittel');
+  const elBtnDockAssessSicher = document.getElementById('btn-dock-assess-sicher');
+
+  if (elBtnAssessUnsicher) elBtnAssessUnsicher.addEventListener('click', () => selfAssess(false, 1));
+  if (elBtnAssessMittel) elBtnAssessMittel.addEventListener('click', () => selfAssess(true, 3));
+  if (elBtnAssessSicher) elBtnAssessSicher.addEventListener('click', () => selfAssess(true, 5));
+
+  if (elBtnDockAssessUnsicher) elBtnDockAssessUnsicher.addEventListener('click', () => selfAssess(false, 1));
+  if (elBtnDockAssessMittel) elBtnDockAssessMittel.addEventListener('click', () => selfAssess(true, 3));
+  if (elBtnDockAssessSicher) elBtnDockAssessSicher.addEventListener('click', () => selfAssess(true, 5));
+
+  // --- FAZ 1 & FAZ 5: 3-Stufen-Lernpfad Navigation & Smart-Session Launcher ---
+  const elStagePill1 = document.getElementById('stage-pill-1');
+  const elStagePill2 = document.getElementById('stage-pill-2');
+  const elStagePill3 = document.getElementById('stage-pill-3');
+  const elBtnSmartSession = document.getElementById('btn-smart-session');
+
+  function updateCurriculumPillsUI(activeNum) {
+    if (elStagePill1) elStagePill1.classList.toggle('active', activeNum === 1);
+    if (elStagePill2) elStagePill2.classList.toggle('active', activeNum === 2);
+    if (elStagePill3) elStagePill3.classList.toggle('active', activeNum === 3);
+  }
+
+  if (elStagePill1) {
+    elStagePill1.addEventListener('click', () => {
+      updateCurriculumPillsUI(1);
+      state.filterMode = 'stage_1';
+      state.currentIndex = 0;
+      if (elFilterChips) elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'stage_1'));
+      saveState();
+      renderCurrentQuestion();
+      showToast('⭐ Stufe 1: Top-50 Überlebensfälle (High-Yield & K.O.) aktiviert', 'info', 3000);
+    });
+  }
+
+  if (elStagePill2) {
+    elStagePill2.addEventListener('click', () => {
+      updateCurriculumPillsUI(2);
+      state.filterMode = 'stage_2';
+      state.currentIndex = 0;
+      if (elFilterChips) elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'stage_2'));
+      saveState();
+      renderCurrentQuestion();
+      showToast('🩺 Stufe 2: Klinische Vertiefung (Fallbasierte Routine) aktiviert', 'info', 3000);
+    });
+  }
+
+  if (elStagePill3) {
+    elStagePill3.addEventListener('click', () => {
+      updateCurriculumPillsUI(3);
+      if (typeof startExamSimulation === 'function') {
+        startExamSimulation();
+      } else {
+        const simModal = document.getElementById('mock-exam-modal');
+        if (simModal) simModal.classList.add('active');
+      }
+    });
+  }
+
+  if (elBtnSmartSession) {
+    elBtnSmartSession.addEventListener('click', () => {
+      state.filterMode = 'smart_session';
+      state.currentIndex = 0;
+      if (elFilterChips) elFilterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'smart_session'));
+      saveState();
+      renderCurrentQuestion();
+      showToast('⚡ Akıllı Günlük Antrenman (15-20 dk): Sadece zayıf noktalar ve fällige High-Yield vakalar!', 'success', 3500);
+    });
+  }
+
+  // --- FAZ 6: View Mode Switcher (Lern-Modus vs. Prüfungs-Modus) ---
+  const elBtnViewModeLearn = document.getElementById('btn-view-mode-learn');
+  const elBtnViewModeExam = document.getElementById('btn-view-mode-exam');
+
+  function applyViewMode(mode) {
+    state.viewMode = mode || 'learn';
+    if (state.viewMode === 'exam') {
+      document.body.classList.add('view-mode-exam');
+      if (elBtnViewModeExam) elBtnViewModeExam.classList.add('active');
+      if (elBtnViewModeLearn) elBtnViewModeLearn.classList.remove('active');
+      showToast('⏱️ Prüfungs-Modus aktiviert: Alle Hilfen ausgeblendet. Volle Konzentration auf Fall & Vitalwerte!', 'info', 2800);
+    } else {
+      document.body.classList.remove('view-mode-exam');
+      if (elBtnViewModeLearn) elBtnViewModeLearn.classList.add('active');
+      if (elBtnViewModeExam) elBtnViewModeExam.classList.remove('active');
+    }
+    saveState();
+  }
+
+  if (elBtnViewModeLearn) elBtnViewModeLearn.addEventListener('click', () => applyViewMode('learn'));
+  if (elBtnViewModeExam) elBtnViewModeExam.addEventListener('click', () => applyViewMode('exam'));
+
+  // --- FAZ 3: Spickzettel & Prüfer-Zwischenfrage Handlers ---
+  const elBtnToggleSpick = document.getElementById('btn-toggle-spickzettel');
+  const elVorabSpickBox = document.getElementById('vorab-spickzettel-box');
+  if (elBtnToggleSpick && elVorabSpickBox) {
+    elBtnToggleSpick.addEventListener('click', () => {
+      const isVisible = elVorabSpickBox.style.display === 'block';
+      elVorabSpickBox.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) {
+        elBtnToggleSpick.innerHTML = '<span>✕</span> 30-Sekunden-Spickzettel schließen';
+        elBtnToggleSpick.classList.add('active');
+      } else {
+        elBtnToggleSpick.innerHTML = '<span>📚</span> 30-Sekunden-Spickzettel (Vorab-Wissen) <span class="spickzettel-badge">Sıfırdan Başlayanlar</span>';
+        elBtnToggleSpick.classList.remove('active');
+      }
+    });
+  }
+
+  const elBtnRevealMcqOptions = document.getElementById('btn-reveal-mcq-options');
+  if (elBtnRevealMcqOptions) {
+    elBtnRevealMcqOptions.addEventListener('click', () => {
+      if (elOptionsContainer) elOptionsContainer.style.display = 'block';
+      elBtnRevealMcqOptions.style.display = 'none';
+    });
+  }
+
+  // Redefluss Speech pronunciation triggers
+  const btnSpeakRedef1 = document.getElementById('btn-speak-redef-1');
+  const btnSpeakRedef2 = document.getElementById('btn-speak-redef-2');
+  const btnSpeakRedef3 = document.getElementById('btn-speak-redef-3');
+  if (btnSpeakRedef1) {
+    btnSpeakRedef1.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const txt = document.getElementById('redefluss-de-step1');
+      if (txt) speakMedicalText(txt, btnSpeakRedef1);
+    });
+  }
+  if (btnSpeakRedef2) {
+    btnSpeakRedef2.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const txt = document.getElementById('redefluss-de-step2');
+      if (txt) speakMedicalText(txt, btnSpeakRedef2);
+    });
+  }
+  if (btnSpeakRedef3) {
+    btnSpeakRedef3.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const txt = document.getElementById('redefluss-de-step3');
+      if (txt) speakMedicalText(txt, btnSpeakRedef3);
+    });
+  }
+
+  // --- FAZ 4: ÄKNO BGA-Trainer Mini-Tool ---
+  const elBgaTrigger = document.getElementById('btn-bga-trainer-trigger');
+  const elBgaModal = document.getElementById('bga-trainer-modal');
+  const elBgaClose = document.getElementById('btn-close-bga-modal');
+  const elBgaSelect = document.getElementById('bga-case-select');
+
+  function renderBGACase(caseId) {
+    if (typeof CurriculumEngine === 'undefined') return;
+    const bCase = CurriculumEngine.BGA_TRAINING_CASES.find(c => c.id === caseId) || CurriculumEngine.BGA_TRAINING_CASES[0];
+    if (!bCase) return;
+
+    const elDesc = document.getElementById('bga-case-description');
+    if (elDesc) elDesc.innerHTML = `<strong>Klinisches Szenario:</strong> ${bCase.patient}`;
+
+    const elDisplay = document.getElementById('bga-monitor-display');
+    if (elDisplay) {
+      let tilesHtml = '';
+      for (const [k, v] of Object.entries(bCase.vitals)) {
+        tilesHtml += `<div class="bga-tile"><div class="bga-tile-lbl">${k}</div><div class="bga-tile-val">${v}</div></div>`;
+      }
+      elDisplay.innerHTML = tilesHtml;
+    }
+
+    const elSteps = document.getElementById('bga-steps-container');
+    if (elSteps) {
+      elSteps.innerHTML = `
+        <div class="bga-step-item">
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 1</span><strong>1. Oxygenierung:</strong></div>
+          <div class="bga-step-content">${bCase.systematicSteps.step1_oxygenation}</div>
+        </div>
+        <div class="bga-step-item">
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 2</span><strong>2. Säure-Basen-Status:</strong></div>
+          <div class="bga-step-content">${bCase.systematicSteps.step2_acidBase}</div>
+        </div>
+        <div class="bga-step-item">
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 3</span><strong>3. Kompensation:</strong></div>
+          <div class="bga-step-content">${bCase.systematicSteps.step3_compensation}</div>
+        </div>
+        <div class="bga-step-item">
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 4</span><strong>4. Anionenlücke & Elektrolyte:</strong></div>
+          <div class="bga-step-content">${bCase.systematicSteps.step4_anionGap}</div>
+        </div>
+      `;
+    }
+
+    const elAction = document.getElementById('bga-action-card');
+    if (elAction) {
+      elAction.innerHTML = `<strong>🚨 Konsequenz & ÄKNO Intervention:</strong> ${bCase.clinicalAction}`;
+    }
+  }
+
+  function initBgaTrainer() {
+    if (typeof CurriculumEngine === 'undefined') return;
+    if (elBgaSelect) {
+      elBgaSelect.innerHTML = CurriculumEngine.BGA_TRAINING_CASES.map(c => 
+        `<option value="${c.id}">${c.title}</option>`
+      ).join('');
+      elBgaSelect.addEventListener('change', () => {
+        renderBGACase(elBgaSelect.value);
+      });
+    }
+    if (elBgaTrigger && elBgaModal) {
+      elBgaTrigger.addEventListener('click', () => {
+        elBgaModal.classList.add('active');
+        if (elBgaSelect) renderBGACase(elBgaSelect.value);
+      });
+    }
+    if (elBgaClose && elBgaModal) {
+      elBgaClose.addEventListener('click', () => closeModal(elBgaModal));
+    }
+    if (elBgaModal) {
+      elBgaModal.addEventListener('click', (e) => {
+        if (e.target === elBgaModal) closeModal(elBgaModal);
+      });
+    }
+  }
+
   // --- Personal Medical Notes Auto-Save & Cloud Sync Engine ---
   const elUserNoteText = document.getElementById('user-note-text');
   const elBtnSaveNote = document.getElementById('btn-save-note');
@@ -7133,6 +7488,8 @@ Tedavi:
   initCategoryDropdown();
   initImageLightbox();
   initHoverTranslationHUD();
+  initBgaTrainer();
+  if (state.viewMode) applyViewMode(state.viewMode);
   updateAnalytics();
   renderCurrentQuestion();
   refreshAudioDevicesList();
