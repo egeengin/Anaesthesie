@@ -64,12 +64,15 @@
     if (text.includes('maligne hyperthermie') || text.includes('dantrolen')) {
       return {
         topic: 'Maligne Hyperthermie (MH)',
+        topic_tr: 'Malign Hipertermi (MH)',
+        firstDrugTR: 'Dantrolen (2,5 mg/kg i.v. Bolus)',
         guideline: {
           title: 'S2k-Leitlinie Diagnostik und Therapie der Malignen Hyperthermie',
           society: 'DGAI / BDA & European Malignant Hyperthermia Group (EMHG)',
           awmf: 'AWMF-Registernummer 001-036',
           year: '2023',
-          recommendation: 'Sofortige Trigger-Unterbrechung (Volatila STOP, Vapor dekonnektieren), 100% O2 mit maximalem Flow, Hyperventilation (2-3x MV), Dantrolen i.v. als Kausaltherapie.'
+          recommendation: 'Sofortige Trigger-Unterbrechung (Volatila STOP, Vapor dekonnektieren), 100% O2 mit maximalem Flow, Hyperventilation (2-3x MV), Dantrolen i.v. als Kausaltherapie.',
+          recommendation_tr: 'Tetikleyicilerin derhal kesilmesi (uçucu anestezikleri DURDUR, vaporizatörü ayır), maksimum akımla %100 O2, hiperventilasyon (dakika hacminin 2-3 katı), nedene yönelik tedavi olarak Dantrolen i.v.'
         },
         dosages: [
           { drug: 'Dantrolen (Ryanodex / Dantrolen i.v.)', dose: '2,5 mg/kg i.v. Bolus', route: 'i.v.', maxDose: 'Bis zu 10 mg/kg (Titration bis Abfall von EtCO₂ & Tachykardie)', limits: 'EtCO₂ Normalisierung, T < 38,5°C' },
@@ -87,12 +90,15 @@
     if (text.includes('last') || text.includes('lokalanästhetika') || text.includes('intralipid')) {
       return {
         topic: 'Lokalanästhetika-Intoxikation (LAST)',
+        topic_tr: 'Lokal Anestezik Sistemik Toksisitesi (LAST)',
+        firstDrugTR: 'Lipid Emülsiyonu %20 (İntralipid) (1,5 ml/kg i.v. bolus 1 dakikada)',
         guideline: {
           title: 'DGAI-Handlungsempfehlung: Systemische Toxizität von Lokalanästhetika (LAST)',
           society: 'DGAI / BDA / ESAIC / ASRA-Standard',
           awmf: 'DGAI SOP Lokalanästhetika-Intoxikation',
           year: '2023',
-          recommendation: 'Injektion sofort stoppen, Hilfe rufen, Atemweg sichern (100% O2 zur Azidosevermeidung), Krampfanfall mit Benzodiazepin/Propofol kupieren, frühzeitige Lipid-Rettung (Lipid 20%).'
+          recommendation: 'Injektion sofort stoppen, Hilfe rufen, Atemweg sichern (100% O2 zur Azidosevermeidung), Krampfanfall mit Benzodiazepin/Propofol kupieren, frühzeitige Lipid-Rettung (Lipid 20%).',
+          recommendation_tr: 'Enjeksiyonu derhal durdur, yardım çağır, havayolunu emniyete al (asidozu önlemek için %100 O2), nöbeti benzodiazepin/propofol ile sonlandır, erken lipid kurtarma tedavisi (%20 İntralipid).'
         },
         dosages: [
           { drug: 'Lipidemulsion 20% (Intralipid)', dose: '1,5 ml/kg i.v. Bolus über 1 min (~100 ml bei 70 kg)', route: 'i.v.', maxDose: 'Bolus max. 2x wdh. alle 5 min, anschl. 0,25–0,5 ml/kg/min; Max: 10–12 ml/kg', limits: 'Propofol ist KEIN Lipidersatz!' },
@@ -110,12 +116,15 @@
     if (text.includes('atemweg') || text.includes('intubation') || text.includes('cico') || text.includes('koniotomie') || text.includes('videolaryngoskop')) {
       return {
         topic: 'Atemwegsmanagement & Can-Not-Intubate-Can-Not-Oxygenate (CICO)',
+        topic_tr: 'Havayolu Yönetimi & Entübe Edilemiyor-Oksijenlenemiyor (CICO)',
+        firstDrugTR: 'Sugammadex (Roküronyumda CICO kurtarma için 16 mg/kg i.v. ani bolus)',
         guideline: {
           title: 'S1-Leitlinie Atemwegsmanagement (Präoperativ, Notfall, CICO)',
           society: 'DGAI / BDA Arbeitskreis Atemwegsmanagement',
           awmf: 'AWMF-Registernummer 001-028',
           year: '2023',
-          recommendation: 'Strikter DGAI 4-Stufen-Plan: Plan A (Maske & Videolaryngoskopie, max. 3 Versuche), Plan B (Supraglottischer Atemweg / Larynxmaske 2. Generation), Plan C (Aufwachen lassen / Beutel-Maske), Plan D (eFONA: Skalpell-Bougie-Tubus).'
+          recommendation: 'Strikter DGAI 4-Stufen-Plan: Plan A (Maske & Videolaryngoskopie, max. 3 Versuche), Plan B (Supraglottischer Atemweg / Larynxmaske 2. Generation), Plan C (Aufwachen lassen / Beutel-Maske), Plan D (eFONA: Skalpell-Bougie-Tubus).',
+          recommendation_tr: 'Katı DGAI 4 basamaklı planı: Plan A (Maske & Videolaringoskopi, en fazla 3 deneme), Plan B (Supraglottik havayolu / 2. nesil LMA), Plan C (Uyandırma / Balon-Maske), Plan D (eFONA: Skalpel-Buji-Tüp).'
         },
         dosages: [
           { drug: 'Sugammadex (CICO-Rescue bei Rocuronium)', dose: '16 mg/kg i.v. Notfall-Sofortbolus', route: 'i.v.', maxDose: 'Vollständige Aufhebung der neuromuskulären Blockade in < 3 min', limits: 'Funktioniert nur bei Rocuronium/Vecuronium' },
@@ -133,12 +142,15 @@
     if (text.includes('aortenklappen') || text.includes('aortenstenose')) {
       return {
         topic: 'Schwere Aortenklappenstenose',
+        topic_tr: 'Ağır Aort Kapak Darlığı',
+        firstDrugTR: 'Noradrenalin (1. seçenek: 2-10 µg i.v. bolus veya 0,02-0,2 µg/kg/dk)',
         guideline: {
           title: 'DGAI / ESC Leitlinie Perioperatives Management kardialer Risikopatienten',
           society: 'DGAI / BDA / ESC / ESAIC',
           awmf: 'AWMF-Registernummer 001-016',
           year: '2023',
-          recommendation: 'Hämodynamische Trias: SVR hoch-normal, Sinusrhythmus 60–80/min, Vorlast hoch-normal. Invasive Blutdruckmessung vor Narkoseeinleitung.'
+          recommendation: 'Hämodynamische Trias: SVR hoch-normal, Sinusrhythmus 60–80/min, Vorlast hoch-normal. Invasive Blutdruckmessung vor Narkoseeinleitung.',
+          recommendation_tr: 'Hemodinamik Triad: SVR yüksek-normal, Sinüs ritmi 60–80/dk, Ön yük yüksek-normal. Anestezi indüksiyonundan önce invaziv arteriyel kan basıncı ölçümü şarttır.'
         },
         dosages: [
           { drug: 'Noradrenalin (Vasopressor der 1. Wahl)', dose: '2–10 µg i.v. Boli oder 0,02–0,2 µg/kg/min Perfusor', route: 'i.v.', maxDose: 'Ziel-MAP ≥ 75–80 mmHg', limits: 'Periphere Vasokonstriktion sichert Koronardurchblutung' },
@@ -156,12 +168,15 @@
     if (text.includes('anaphylaxie') || text.includes('allergie') || text.includes('bronchospasmus')) {
       return {
         topic: 'Perioperative Anaphylaxie',
+        topic_tr: 'Perioperatif Anafilaksi ve Şok',
+        firstDrugTR: 'Adrenalin (0,5 mg i.m. veya 10-50 µg i.v. titre)',
         guideline: {
           title: 'S2k-Leitlinie Akuttherapie und Management anaphylaktischer Reaktionen',
           society: 'DGAI / BDA / DGAKI / AWMF',
           awmf: 'AWMF-Registernummer 061-025',
           year: '2023',
-          recommendation: 'Sofortiges Absetzen aller verdächtigen Substanzen, 100% O2, Adrenalin als Medikament der 1. Wahl, massive Volumentherapie mit kristalloiden Lösungen.'
+          recommendation: 'Sofortiges Absetzen aller verdächtigen Substanzen, 100% O2, Adrenalin als Medikament der 1. Wahl, massive Volumentherapie mit kristalloiden Lösungen.',
+          recommendation_tr: 'Tüm şüpheli ajanların derhal kesilmesi, %100 O2, ilk tercih olarak derhal Adrenalin, kristalloid solüsyonlarla agresif volüm replasmanı.'
         },
         dosages: [
           { drug: 'Adrenalin i.m. (Grad II–III, Spontanatmung)', dose: '0,5 mg i.m. (ungestreckt 1:1000)', route: 'i.m. M. vastus lat.', maxDose: 'Wiederholung alle 5–10 min bei Persistenz', limits: 'Schnellste Resorption und sicherster Weg' },
@@ -179,12 +194,15 @@
     if (text.includes('sepsis') || text.includes('septisch')) {
       return {
         topic: 'Sepsis & Septischer Schock',
+        topic_tr: 'Sepsis & Septik Şok',
+        firstDrugTR: 'Noradrenalin (0,05-0,5 µg/kg/dk titre)',
         guideline: {
           title: 'S3-Leitlinie Sepsis - Prävention, Diagnose, Therapie und Nachsorge',
           society: 'DGAI / DIVI / DSG / AWMF',
           awmf: 'AWMF-Registernummer 079-001',
           year: '2023',
-          recommendation: 'Surviving Sepsis 1-Hour-Bundle: Blutkulturen VOR Antibiose, kalkulierte Breitspektrumantibiose innerhalb 60 min, 30 ml/kg Kristalloide, Noradrenalin Ziel-MAP ≥ 65 mmHg, Laktat-Clearance.'
+          recommendation: 'Surviving Sepsis 1-Hour-Bundle: Blutkulturen VOR Antibiose, kalkulierte Breitspektrumantibiose innerhalb 60 min, 30 ml/kg Kristalloide, Noradrenalin Ziel-MAP ≥ 65 mmHg, Laktat-Clearance.',
+          recommendation_tr: 'Surviving Sepsis 1 Saat Paketi: Antibiyotikten ÖNCE kan kültürü, 60 dk içinde geniş spektrumlu antibiyotik, 30 ml/kg kristalloid, hedef MAP ≥ 65 mmHg için Noradrenalin, laktat klirensi.'
         },
         dosages: [
           { drug: 'Noradrenalin (Vasopressor 1. Wahl)', dose: '0,05–0,5 µg/kg/min titriert', route: 'i.v. (ZVK / Perfusor)', maxDose: 'Ziel-MAP ≥ 65 mmHg (bei chronischer Hypertonie 70–75 mmHg)', limits: 'Frühzeitig parallel zur Volumengabe starten' },
@@ -201,12 +219,15 @@
     if (text.includes('pph') || text.includes('postpartal') || text.includes('blutung') && text.includes('uterus') || text.includes('sectio')) {
       return {
         topic: 'Peripartale Blutungen (PPH) & Notsectio',
+        topic_tr: 'Peripartum Kanamalar (PPH) & Acil Sezaryen',
+        firstDrugTR: 'Oksitosin (3-5 IU yavaş i.v. 2 dakikada) + Traneksamik Asit (1 g i.v.)',
         guideline: {
           title: 'S2k-Leitlinie Peripartale Blutungen (Diagnostik und Therapie)',
           society: 'DGAI / DGGG / OEGGG / SGGG',
           awmf: 'AWMF-Registernummer 015-063',
           year: '2023',
-          recommendation: 'Stufenweises Vorgehen (4T: Tonus, Trauma, Tissue, Thrombin). Uterotonika, Tranexamsäure frühzeitig, Fibrinogen Ziel ≥ 2 g/l, Bakri-Ballon / chirurgische Kompression.'
+          recommendation: 'Stufenweises Vorgehen (4T: Tonus, Trauma, Tissue, Thrombin). Uterotonika, Tranexamsäure frühzeitig, Fibrinogen Ziel ≥ 2 g/l, Bakri-Ballon / chirurgische Kompression.',
+          recommendation_tr: 'Basamaklı yaklaşım (4T: Tonus, Travma, Doku, Trombin). Uterotonikler, erken Traneksamik asit, hedef Fibrinojen ≥ 2 g/l, Bakri balonu / cerrahi kompresyon.'
         },
         dosages: [
           { drug: 'Oxytocin (Syntocinon)', dose: '3–5 IE langsam i.v. über 1–2 min, dann Perfusor 10–20 IE in 500 ml', route: 'i.v.', maxDose: 'KEIN schneller Bolus (Hypotonie & Tachykardie!)', limits: '1. Wahl bei Uterusatonie' },
@@ -224,12 +245,15 @@
     // Default High-Yield Emergency Fallback
     return {
       topic: q.category || 'Anästhesiologisches Notfallmanagement',
+      topic_tr: 'Anesteziyolojik Acil Durum Yönetimi',
+      firstDrugTR: 'Adrenalin (10-50 µg i.v. titre / CPR için 1 mg)',
       guideline: {
         title: 'DGAI / BDA Empfehlungen & S3-Leitlinien Standards',
         society: 'Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin (DGAI)',
         awmf: 'AWMF Leitlinienportal Anästhesie & Intensivmedizin',
         year: '2023',
-        recommendation: 'Strukturierte Priorisierung nach dem ABCDE-Schema, Patientensicherheit vor Detailwissen, evidenzbasierte DGAI-Algorithmen.'
+        recommendation: 'Strukturierte Priorisierung nach dem ABCDE-Schema, Patientensicherheit vor Detailwissen, evidenzbasierte DGAI-Algorithmen.',
+        recommendation_tr: 'ABCDE şemasına göre yapılandırılmış önceliklendirme, detay bilgiden önce hasta güvenliği ve kanıta dayalı DGAI algoritmaları.'
       },
       dosages: [
         { drug: 'Adrenalin (Notfall-Rescue)', dose: '10–50 µg i.v. titriert / 1 mg bei ALS-CPR', route: 'i.v. / i.o.', maxDose: 'Ziel-MAP ≥ 65 mmHg', limits: 'Titration nach Wirkung' },
@@ -260,6 +284,7 @@
       res.guideline.society = res.guideline.society || res.guideline.org || 'DGAI / BDA';
       res.guideline.coreStatement = res.guideline.recommendation || res.guideline.coreStatement || '';
       res.guideline.recommendation = res.guideline.recommendation || res.guideline.coreStatement || '';
+      res.guideline.recommendation_tr = res.guideline.recommendation_tr || res.guideline.recommendation;
     }
     return res;
   }
@@ -271,32 +296,42 @@
     const gt = getMedicalGroundTruth(q);
     const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '')).toLowerCase();
 
-    let summaryDE = `Kompakter Leitfaden für die ÄKNO-Prüfung zu **${gt.topic}**:\n` +
-      `• **Pathophysiologischer Kern:** ${gt.guideline.recommendation.split('.')[0]}.\n` +
-      `• **Prüfer-Fokus:** Konsequente Priorisierung, exakte Dosierungen und Ausschluss von Kontraindikationen.\n` +
-      `• **Wichtigstes Medikament:** ${gt.dosages[0].drug} (${gt.dosages[0].dose}).`;
+    const topicDE = gt.topic;
+    const topicTR = gt.topic_tr || gt.topic;
 
-    let summaryTR = `**${gt.topic}** için 30 saniyelik pratik özet:\n` +
-      `• **Patofizyolojik Odak:** ${gt.guideline.recommendation.split('.')[0]}.\n` +
+    const recDE = (gt.guideline.recommendation || '').split('.')[0] + '.';
+    const recTR = (gt.guideline.recommendation_tr || gt.guideline.recommendation || '').split('.')[0] + '.';
+
+    const drugDE = `${gt.dosages[0].drug} (${gt.dosages[0].dose})`;
+    const drugTR = gt.firstDrugTR || drugDE;
+
+    let summaryDE = `Kompakter Leitfaden für die ÄKNO-Prüfung zu **${topicDE}**:\n` +
+      `• **Pathophysiologischer Kern:** ${recDE}\n` +
+      `• **Prüfer-Fokus:** Konsequente Priorisierung, exakte Dosierungen und Ausschluss von Kontraindikationen.\n` +
+      `• **Wichtigstes Medikament:** ${drugDE}.`;
+
+    let summaryTR = `**${topicTR}** için 30 saniyelik pratik özet:\n` +
+      `• **Patofizyolojik Odak:** ${recTR}\n` +
       `• **Jüri Beklentisi:** Kararlı önceliklendirme, hatasız miligram/mikrogram dozları ve K.O. tuzaklarından kaçınma.\n` +
-      `• **Kritik İlk İlaç:** ${gt.dosages[0].drug} (${gt.dosages[0].dose}).`;
+      `• **Kritik İlk İlaç:** ${drugTR}.`;
 
     let stepsDE = [
       `1. Sofortige Problemerkennung & Hilfe rufen (Team-Alarm)`,
-      `2. Kausale Erstmaßnahme: ${gt.dosages[0].drug} (${gt.dosages[0].dose})`,
+      `2. Kausale Erstmaßnahme: ${drugDE}`,
       `3. Vitalparameter stabilisieren (Ziel-MAP ≥ 65, SpO2 > 94%)`,
       `4. Postoperative Weiterversorgung auf Intensivstation organisieren`
     ];
 
     let stepsTR = [
       `1. Sorunun anında tanınması & Kıdemli/Ekip yardımı çağırma`,
-      `2. Nedene yönelik ilk müdahale: ${gt.dosages[0].drug} (${gt.dosages[0].dose})`,
+      `2. Nedene yönelik ilk müdahale: ${drugTR}`,
       `3. Yaşamsal bulguları stabilize etme (Hedef MAP ≥ 65, SpO2 > 94%)`,
       `4. Yoğun bakımda postoperatif takip ve yatış planlama`
     ];
 
     return {
-      topic: gt.topic,
+      topic: topicDE,
+      topic_tr: topicTR,
       summaryDE,
       summaryTR,
       stepsDE,
