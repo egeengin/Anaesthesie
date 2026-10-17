@@ -2089,10 +2089,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (elEvalMatchedTags) {
-          const matchedList = (aiRes.matchedCriteria && aiRes.matchedCriteria.length)
-            ? aiRes.matchedCriteria
-            : ['Klinischer Lösungsansatz erkannt'];
-          elEvalMatchedTags.innerHTML = matchedList.map(kw => `<span class="keyword-tag matched">✓ ${escapeHtml(kw)}</span>`).join('');
+          const matchedList = (aiRes.matchedCriteria && Array.isArray(aiRes.matchedCriteria))
+            ? aiRes.matchedCriteria.filter(Boolean)
+            : [];
+          if (matchedList.length > 0) {
+            elEvalMatchedTags.innerHTML = matchedList.map(kw => `<span class="keyword-tag matched">✓ ${escapeHtml(kw)}</span>`).join('');
+          } else {
+            elEvalMatchedTags.innerHTML = '<span class="eval-empty-hint">Keine spezifischen Fachkriterien genannt (z. B. nur Begrüßung / henüz eşleşen kriter yok)</span>';
+          }
         }
 
         if (elEvalMissedTags) {
