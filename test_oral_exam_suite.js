@@ -1292,7 +1292,7 @@ assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-s
 assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
 
 const freshSwCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
-assert(freshSwCode.includes('facharzt-cache-v7.4'), 'sw.js must be updated to v7.4 for cache bust');
+assert(freshSwCode.includes('facharzt-cache-v7.5'), 'sw.js must be updated to v7.5 for cache bust');
 
 const freshIndexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
 assert(freshIndexHtml.includes('app.js?v=7.4'), 'index.html must load app.js?v=7.4');

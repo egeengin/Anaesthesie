@@ -2,7 +2,7 @@
 <html lang="de" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="referrer" content="no-referrer">
   <title>Facharztprüfung Anästhesiologie - Smart Study System (NRW)</title>
   <meta name="description" content="Interaktive Prüfungsvorbereitung für die Facharztprüfung Anästhesiologie NRW mit verknüpften zweisprachigen Übersetzungen (DE/TR), Spaced Repetition und detaillierten Erklärungen.">
@@ -17,6 +17,7 @@
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Facharzt NRW">
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
@@ -2484,5 +2485,12 @@
       });
     }
   </script>
+  <!-- Mobile Fixed Thumb Bar (iPhone) -->
+  <nav class="mobile-thumb-bar" id="mobile-thumb-bar" aria-label="Schnellaktionen">
+    <button id="tb-listen" class="tb-btn" type="button"><span>🔊</span><small>Dinle</small></button>
+    <button id="tb-hint" class="tb-btn" type="button"><span>📘</span><small>İpucu</small></button>
+    <button id="tb-mic" class="tb-btn tb-btn-mic" type="button"><span>🎙️</span><small>Konuş</small></button>
+    <button id="tb-next" class="tb-btn tb-btn-primary" type="button"><span>💡</span><small>Çözüm / İleri →</small></button>
+  </nav>
 </body>
 </html>

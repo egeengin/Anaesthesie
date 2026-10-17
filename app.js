@@ -1483,8 +1483,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Screen Wake Lock (keeps iPhone awake while recording / during exam)
+  let screenWakeLock = null;
+  async function acquireWakeLock() {
+    try {
+      if ('wakeLock' in navigator && !screenWakeLock) {
+        screenWakeLock = await navigator.wakeLock.request('screen');
+        screenWakeLock.addEventListener('release', () => { screenWakeLock = null; });
+      }
+    } catch (e) { screenWakeLock = null; }
+  }
+  function releaseWakeLock() {
+    try {
+      const isExam = (state.viewMode === 'exam') || (typeof mockExamState !== 'undefined' && mockExamState && mockExamState.isActive);
+      if (screenWakeLock && !isExam) { screenWakeLock.release(); screenWakeLock = null; }
+    } catch (e) { screenWakeLock = null; }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && isRecordingVoice) acquireWakeLock();
+  });
+
   function updateRecordingUIState(isRec) {
     if (isRec) {
+      // iOS audio-ducking fix: stop any running TTS so the mic does not record the speaker
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+      const elStopTts = document.getElementById('btn-audio-stop');
+      if (elStopTts && elStopTts.offsetParent !== null) elStopTts.click();
+      acquireWakeLock();
       if (elBtnToggleMic) elBtnToggleMic.classList.add('recording');
       if (elMicStatusText) elMicStatusText.innerHTML = '🔴 Aufnahme läuft... <kbd class="kbd-hint">V</kbd>';
       if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'block';
@@ -1494,6 +1519,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elAudioWaveVisualizer.classList.add('pulsing');
       }
     } else {
+      releaseWakeLock();
       if (elBtnToggleMic) elBtnToggleMic.classList.remove('recording');
       if (elMicStatusText) elMicStatusText.innerHTML = 'Antwort einsprechen <kbd class="kbd-hint">V</kbd>';
       if (elVoiceMicIndicator) elVoiceMicIndicator.style.display = 'none';
@@ -5840,6 +5866,7 @@ Tedavi:
 
     if (isExamActive) {
       startExamSimulationTimer();
+      acquireWakeLock();
     }
 
     const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
@@ -7873,6 +7900,8 @@ Tedavi:
         if (elBtnSmartSession && (!state.filterMode || state.filterMode === 'all')) {
           elBtnSmartSession.click();
         }
+        const elHeroCard = document.getElementById('hero-focus-card');
+        if (elHeroCard) elHeroCard.classList.add('compact-mode');
         const elCard = document.getElementById('main-quiz-card');
         if (elCard) {
           elCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -7893,6 +7922,29 @@ Tedavi:
         localStorage.setItem('facharzt_onboarding_dismissed', 'true');
       });
     }
+
+    // Mobile Thumb Bar (iPhone ergonomics)
+    const clickIfExists = (id) => { const b = document.getElementById(id); if (b) b.click(); return b; };
+    const tbListen = document.getElementById('tb-listen');
+    const tbHint = document.getElementById('tb-hint');
+    const tbMic = document.getElementById('tb-mic');
+    const tbNext = document.getElementById('tb-next');
+    if (tbListen) tbListen.addEventListener('click', () => {
+      const stopBtn = document.getElementById('btn-audio-stop');
+      if (stopBtn && stopBtn.offsetParent !== null) stopBtn.click(); else clickIfExists('btn-audio-speak');
+    });
+    if (tbHint) tbHint.addEventListener('click', () => clickIfExists('btn-toggle-spickzettel'));
+    if (tbMic) tbMic.addEventListener('click', () => clickIfExists('btn-toggle-mic'));
+    if (tbNext) tbNext.addEventListener('click', () => {
+      const adv = ['btn-advance-to-step2', 'btn-advance-to-step3', 'btn-advance-to-step4']
+        .map(id => document.getElementById(id)).find(b => b && b.offsetParent !== null);
+      if (adv) { adv.click(); return; }
+      const rubric = document.getElementById('high-impact-rubric');
+      if (rubric && rubric.offsetParent !== null) { clickIfExists('btn-next'); return; }
+      const rev = document.getElementById('btn-reveal');
+      if (rev && rev.offsetParent !== null) { rev.click(); return; }
+      clickIfExists('btn-next');
+    });
 
     // 2. Filter Drawer & Active Path Summary
     const elBtnToggleFilters = document.getElementById('btn-toggle-filters');
