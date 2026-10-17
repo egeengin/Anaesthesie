@@ -2628,7 +2628,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const verbalFramework = generateVerbalFramework(category, stem, answer);
     const verbalFrameworkTR = generateVerbalFrameworkTR(category, stem, answer);
     const checklist = generateChecklist(category, stem, answer, q.options);
-    const checklistTR = generateChecklist(category, stem, answerTr, q.options);
+    const checklistTR = generateChecklistTR(category, stem, answerTr, q.options);
     const pitfalls = generatePitfalls(category, stem, answer);
     const pitfallsTR = generatePitfallsTR(category, stem, answer);
 
@@ -3886,6 +3886,44 @@ Tedavi:
     return items.slice(0, 7);
   }
 
+  function generateChecklistTR(category, stem, answerTR, options) {
+    const items = [];
+
+    // If multi-choice options exist, generate high-yield points from Turkish options
+    if (options && options.length > 0) {
+      options.slice(0, 6).forEach(opt => {
+        const status = opt.is_correct ? '✅ Doğru:' : '❌ Yanlış:';
+        const txt = opt.text_tr || opt.text_de;
+        const expl = opt.explanation_tr ? opt.explanation_tr.split('.')[0] : txt;
+        items.push(`<strong>${status}</strong> ${txt} — <small style="color: var(--text-muted);">${expl}</small>`);
+      });
+    } else {
+      const rawLines = (answerTR || '').split(/(?:\r?\n|•)/).map(s => s.trim()).filter(Boolean);
+      for (const line of rawLines) {
+        // Skip uppercase headers / section titles matching German skipping logic
+        if (/^[0-9]+\.\s+[A-ZÄÖÜİŞĞÇ\s\-_0-9/(')]+:?$/i.test(line) && line.length < 85) continue;
+        if (line.endsWith(':') && line.length < 50 && !line.includes(',') && !line.toLowerCase().includes('basamak') && !line.toLowerCase().includes('stufe')) continue;
+
+        const clean = line.replace(/^[•\-\–\—\*\s]+/, '').trim();
+        if (clean.length >= 15) {
+          items.push(clean);
+        }
+      }
+
+      // If bullet extraction produced fewer than 2 items, fallback to sentences
+      if (items.length < 2) {
+        const sentences = (answerTR || '').split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 15);
+        if (sentences.length > 0) {
+          sentences.slice(0, 6).forEach(s => items.push(s));
+        } else if (answerTR) {
+          items.push(answerTR.substring(0, 180));
+        }
+      }
+    }
+
+    return items.slice(0, 7);
+  }
+
   function generatePitfalls(category, stem, answer) {
     const text = (stem + ' ' + answer).toLowerCase();
 
@@ -4590,14 +4628,9 @@ Tedavi:
     if (elRubricChecklistItems) {
       elRubricChecklistItems.innerHTML = '';
       parsedCase.checklist.forEach((itemText, idx) => {
-        let itemTR = '';
-        if (currentQ.options && currentQ.options[idx]) {
-          const opt = currentQ.options[idx];
-          const stTR = opt.is_correct ? '✅ Doğru:' : '❌ Yanlış:';
-          itemTR = `${stTR} ${opt.text_tr || opt.text_de}${opt.explanation_tr ? ' — ' + opt.explanation_tr.split('.')[0] : ''}`;
-        } else if (parsedCase.fullTextTR) {
-          const trBullets = parsedCase.fullTextTR.split(/(?:^[0-9]+\.\s*|[•\n–-])/m).map(s => s.trim()).filter(s => s.length > 12);
-          itemTR = trBullets[idx] || (trBullets.length > 0 ? trBullets[idx % trBullets.length] : parsedCase.fullTextTR.substring(0, 140));
+        let itemTR = (parsedCase.checklistTR && parsedCase.checklistTR[idx]) || '';
+        if (!itemTR && parsedCase.checklistTR && parsedCase.checklistTR.length > 0) {
+          itemTR = parsedCase.checklistTR[idx % parsedCase.checklistTR.length];
         }
 
         const row = document.createElement('div');

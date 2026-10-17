@@ -1285,18 +1285,19 @@ assert(appCode.includes('btn-toggle-redefluss-step${step}'), 'app.js must wire b
 assert(appCode.includes('btn-speak-redefluss'), 'app.js must wire btn-speak-redefluss speech pronunciation');
 assert(appCode.includes('speakRedeflussText'), 'app.js must implement speakRedeflussText');
 assert(appCode.includes('window.speakRedeflussText = speakRedeflussText'), 'app.js must expose window.speakRedeflussText');
+assert(appCode.includes('generateChecklistTR'), 'app.js must implement generateChecklistTR');
 
 const stylesCss = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
 assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-speak-redefluss');
 assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
 
 const freshSwCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
-assert(freshSwCode.includes('facharzt-cache-v7.2'), 'sw.js must be updated to v7.2 for cache bust');
+assert(freshSwCode.includes('facharzt-cache-v7.3'), 'sw.js must be updated to v7.3 for cache bust');
 
 const freshIndexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
-assert(freshIndexHtml.includes('app.js?v=7.2'), 'index.html must load app.js?v=7.2');
+assert(freshIndexHtml.includes('app.js?v=7.3'), 'index.html must load app.js?v=7.3');
 
-console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, and PWA v7.2 cache busting.');
+console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), and PWA v7.3 cache busting.');
 
 console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
