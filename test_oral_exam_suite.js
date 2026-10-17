@@ -1292,12 +1292,18 @@ assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-s
 assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
 
 const freshSwCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
-assert(freshSwCode.includes('facharzt-cache-v7.3'), 'sw.js must be updated to v7.3 for cache bust');
+assert(freshSwCode.includes('facharzt-cache-v7.4'), 'sw.js must be updated to v7.4 for cache bust');
 
 const freshIndexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
-assert(freshIndexHtml.includes('app.js?v=7.3'), 'index.html must load app.js?v=7.3');
+assert(freshIndexHtml.includes('app.js?v=7.4'), 'index.html must load app.js?v=7.4');
 
-console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), and PWA v7.3 cache busting.');
+const freshAppCode = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
+assert(freshAppCode.includes('rec.continuous = true'), 'app.js must enable continuous speech recognition');
+assert(!freshAppCode.includes('if (isMac && isChrome) return true;'), 'app.js must not bypass Web Speech API on macOS Chrome');
+assert(freshAppCode.includes('echoCancellation: true'), 'app.js initMicrophoneHardware must enable echoCancellation');
+assert(freshAppCode.includes('noiseSuppression: true'), 'app.js initMicrophoneHardware must enable noiseSuppression');
+
+console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.4 cache busting.');
 
 console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 

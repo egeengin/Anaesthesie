@@ -852,10 +852,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentMicDeviceName = 'Standard-Mikrofon';
 
   // --- Cloud STT fallback (Gemini) ---
-  // Some browsers (notably Chrome on certain Macs) have a blocked Web Speech service: onstart/onaudiostart fire,
-  // but the recognizer never hears speech and ends with 'no-speech' – even on Google's own demo page.
-  // getUserMedia + MediaRecorder still capture audio fine, so we record and let Gemini transcribe on stop.
+  // Web Speech API is the primary real-time STT engine (modelled after DeutschLernen).
+  // Gemini STT acts as cloud fallback only if Web Speech is missing or explicitly selected.
   const STT_ENGINE_KEY = 'facharzt_stt_engine'; // 'webspeech' | 'gemini' (persisted per browser)
+  try {
+    if (localStorage.getItem(STT_ENGINE_KEY) === 'gemini' && (window.SpeechRecognition || window.webkitSpeechRecognition)) {
+      localStorage.removeItem(STT_ENGINE_KEY);
+    }
+  } catch (e) {}
   let webSpeechGotResult = false;
   let loudAudioFrames = 0;
   let isTranscribingWithGemini = false;
@@ -876,11 +880,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function isGeminiSttMode() {
     if (!canUseGeminiStt()) return false;
     const hasWebSpeech = Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
-    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
-    const isChrome = /chrome|crios/i.test(navigator.userAgent || '') && !/edg|opr|brave/i.test(navigator.userAgent || '');
-    // On macOS Chrome, Web Speech API has a known CoreAudio/Google cloud deadlock (even Google's official demo fails).
-    // Auto-enable Gemini STT directly on macOS Chrome for instant, reliable dictation.
-    if (isMac && isChrome) return true;
     return !hasWebSpeech || getSttEngine() === 'gemini';
   }
 
@@ -1040,6 +1039,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return null;
     }
 
+    if (audioStream) {
+      try {
+        audioStream.getTracks().forEach((t) => t.stop());
+      } catch (e) {}
+      audioStream = null;
+    }
+
     // Always prioritize the selected physical hardware mic over Teams virtual
     let targetDeviceId = preferredDeviceId || selectedAudioDeviceId;
     if (!targetDeviceId) {
@@ -1047,15 +1053,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (savedPref) targetDeviceId = savedPref;
     }
 
-    // macOS CoreAudio optimization: on macOS, echoCancellation: true switches CoreAudio to AUVoiceProcessingIO,
-    // which can starve Chrome's internal webkitSpeechRecognition capture pipeline. Using AUHAL (echoCancellation: false)
-    // on macOS allows shared mic access so both getUserMedia and SpeechRecognition receive audio simultaneously.
-    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
+    // Modelled after DeutschLernen: channelCount 1 with standard audio DSP
     const constraints = {
       audio: {
-        echoCancellation: !isMac,
-        noiseSuppression: !isMac,
-        autoGainControl: !isMac,
+        channelCount: 1,
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
         ...(targetDeviceId ? { deviceId: { exact: targetDeviceId } } : {})
       }
     };
@@ -1312,7 +1316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const rec = new SpeechAPI();
       rec.lang = speechRecognitionLang;
-      rec.continuous = false;
+      rec.continuous = true;
       rec.interimResults = true;
       rec.maxAlternatives = 1;
 
@@ -1413,35 +1417,11 @@ document.addEventListener('DOMContentLoaded', () => {
           );
           stopVoiceRecording();
         } else if (e.error === 'no-speech') {
-          // Hardware mic clearly captured speech, but Web Speech heard nothing -> browser speech service is blocked.
-          // Switch this browser permanently to Gemini transcription (MediaRecorder keeps recording meanwhile).
-          if (!webSpeechGotResult && loudAudioFrames >= 30 && canUseGeminiStt()) {
-            if (getSttEngine() !== 'gemini') {
-              setSttEngine('gemini');
-              showToast(
-                isTrSpeechUi()
-                  ? '🔄 Tarayıcının ses tanıma servisi yanıt vermiyor → Gemini transkripsiyonuna geçildi. Konuşmaya devam edin; durdurunca metin gelecek.'
-                  : '🔄 Browser-Spracherkennung blockiert → automatisch auf Gemini-Transkription umgestellt. Einfach weitersprechen, der Text erscheint nach dem Stoppen.',
-                'info',
-                7000
-              );
-            }
-            if (elVoiceMicHint) elVoiceMicHint.textContent = geminiRecordingHint();
-            return;
-          }
           if (elVoiceMicHint && !hasDetectedSoundInSession) {
-            const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
-            const isChrome = /chrome|crios/i.test(navigator.userAgent || '') && !/edg|opr|brave/i.test(navigator.userAgent || '');
-            const isTr = (navigator.language && navigator.language.startsWith('tr')) || (speechRecognitionLang && speechRecognitionLang.startsWith('tr'));
-            if (isMac && isChrome) {
-              elVoiceMicHint.textContent = isTr
-                ? '💡 macOS Chrome ses algılamadı: Safari önerilir veya metin kutusuna tıklayıp 2× Fn (Siri) ile dikte edebilirsiniz.'
-                : '💡 macOS Chrome hat kein Audiosignal erkannt: Safari nutzen oder Textfeld anklicken und 2× Fn (Siri-Diktat) drücken.';
-            } else {
-              elVoiceMicHint.textContent = isTr
-                ? '⏳ Ses bekleniyor... (Lütfen konuşun veya yazın)'
-                : '⏳ Höre zu... (Sprechen Sie frei oder tippen Sie)';
-            }
+            const isTr = isTrSpeechUi();
+            elVoiceMicHint.textContent = isTr
+              ? '⏳ Ses bekleniyor... (Lütfen konuşun veya yazın)'
+              : '⏳ Höre zu... (Sprechen Sie frei oder tippen Sie)';
           }
         }
       };
@@ -1479,8 +1459,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function startSpeechRecognizerLoop() {
     if (!isRecordingVoice) return;
     if (speechRecognizer) {
-      // Instance is already active, avoid collision
-      return;
+      try {
+        speechRecognizer.onend = null;
+        speechRecognizer.stop();
+      } catch (e) {}
+      speechRecognizer = null;
     }
 
     speechRecognizer = createSpeechRecognizerInstance();
@@ -1496,7 +1479,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isRecordingVoice) {
           startSpeechRecognizerLoop();
         }
-      }, 400);
+      }, 350);
     }
   }
 
@@ -1564,7 +1547,24 @@ document.addEventListener('DOMContentLoaded', () => {
       try { oldRec.abort(); } catch (e) {}
     }
 
-    // 2. Hardware microphone stream for real VU-meter and MediaRecorder backup
+    // 2. Speech Recognizer Loop: Start immediately and synchronously within user gesture (modelled after DeutschLernen)
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechAPI && !isGeminiSttMode()) {
+      startSpeechRecognizerLoop();
+    } else if (isGeminiSttMode()) {
+      if (elVoiceMicHint) elVoiceMicHint.textContent = geminiRecordingHint();
+    } else {
+      const isTr = isTrSpeechUi();
+      showToast(
+        isTr
+          ? 'ℹ️ Bu tarayıcıda doğrudan ses tanıma desteklenmiyor. Ses kaydınız alınıyor; cevabınızı doğrudan da yazabilirsiniz.'
+          : 'ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!',
+        'info',
+        5000
+      );
+    }
+
+    // 3. Hardware microphone stream for real VU-meter and MediaRecorder backup
     initMicrophoneHardware(selectedAudioDeviceId).then((stream) => {
       if (stream && isRecordingVoice) {
         setupAudioVisualizer(stream);
@@ -1579,23 +1579,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(isTrSpeechUi() ? '🎙️ Mikrofon açılamadı. Tarayıcı izinlerini kontrol edin.' : '🎙️ Mikrofon konnte nicht geöffnet werden. Bitte Browser-Berechtigung prüfen.', 'warning', 5000);
       }
     });
-
-    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (isGeminiSttMode()) {
-      if (elVoiceMicHint) elVoiceMicHint.textContent = geminiRecordingHint();
-    } else if (SpeechAPI) {
-      startSpeechRecognizerLoop();
-    } else {
-      const isTr = (navigator.language && navigator.language.startsWith('tr')) || (speechRecognitionLang && speechRecognitionLang.startsWith('tr'));
-      showToast(
-        isTr
-          ? 'ℹ️ Bu tarayıcıda doğrudan ses tanıma desteklenmiyor. Ses kaydınız alınıyor; cevabınızı doğrudan da yazabilirsiniz.'
-          : 'ℹ️ Spracherkennung in diesem Browser nicht nativ verfügbar. Lokale Audioaufnahme läuft – Sie können Stichpunkte auch direkt tippen!',
-        'info',
-        5000
-      );
-    }
 
     // Duration timer for recording
     recordingStartTime = Date.now();
@@ -1970,16 +1953,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? '❌ <strong>Zugriff verweigert:</strong> Browser hat den Mikrofonzugriff blockiert. Bitte Berechtigung in der Adressleiste erteilen.'
                 : '❌ <strong>İzin Verilmedi:</strong> Chrome bu adres için mikrofonu engelledi. Adres çubuğundaki kilit simgesinden izin verin.';
             } else if (err.error === 'no-speech') {
-              if (canUseGeminiStt()) {
-                setSttEngine('gemini');
-                elDiagTestRes.innerHTML = isGerman
-                  ? '⏳ <strong>Browser-Spracherkennung blockiert.</strong> ✅ Gemini-Transkription ist jetzt aktiv: Aufnahme starten, sprechen, stoppen – der Text erscheint automatisch.'
-                  : '⏳ <strong>Tarayıcı ses tanıması engelli.</strong> ✅ Gemini transkripsiyonu etkinleştirildi: Kaydı başlatın, konuşun, durdurun – metin otomatik gelir.';
-              } else {
-                elDiagTestRes.innerHTML = isGerman
-                  ? `⏳ <strong>Keine Sprache erfasst:</strong> Bitte lauter und deutlicher sprechen oder Safari nutzen.`
-                  : `⏳ <strong>Ses çevrilemedi:</strong> Mikrofona biraz daha yakın ve net ${promptWord} deyin veya Safari kullanın.`;
-              }
+              elDiagTestRes.innerHTML = isGerman
+                ? `⏳ <strong>Keine Sprache erfasst:</strong> Bitte lauter und deutlicher sprechen (z. B. "${escapeHtml(promptWord)}").`
+                : `⏳ <strong>Ses algılanamadı:</strong> Lütfen mikrofona biraz daha yakın ve sesli konuşun (örneğin "${escapeHtml(promptWord)}").`;
             } else if (err.error === 'network') {
               elDiagTestRes.innerHTML = isGerman
                 ? '🌐 <strong>Netzwerkfehler:</strong> Spracherkennungsdienst nicht erreichbar. Bitte VPN / AdBlocker prüfen.'
@@ -2008,8 +1984,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (elDiagTestRes && !elDiagTestRes.textContent.includes('❌') && !elDiagTestRes.textContent.includes('✅')) {
               elDiagTestRes.style.color = '#f59e0b';
               elDiagTestRes.innerHTML = isGerman
-                ? `⏳ <strong>Kein Wort erkannt.</strong> Bitte näher an das Mikrofon gehen und laut ${promptWord} sagen oder Safari nutzen.`
-                : `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın sesli ${promptWord} deyin veya Safari kullanın.`;
+                ? `⏳ <strong>Kein Wort erkannt.</strong> Bitte näher an das Mikrofon gehen und laut ${promptWord} sagen.`
+                : `⏳ <strong>Kelime çözümlenemedi.</strong> Mikrofona daha yakın sesli ${promptWord} deyin.`;
             }
           }
         };
@@ -2030,12 +2006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elDiagTestBtn) elDiagTestBtn.textContent = isGerman ? '🗣️ Test wiederholen' : '🗣️ Yeniden Test Et';
       }
     };
-    const isMac = /macintosh|mac os x/i.test(navigator.userAgent || '');
-    if (isMac) {
-      setTimeout(startTest, 600); // Wait for CoreAudio to flush before starting
-    } else {
-      startTest();
-    }
+    startTest();
   }
 
   async function evaluateVoiceAnswer() {
