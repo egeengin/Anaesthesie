@@ -4546,6 +4546,17 @@ Tedavi:
       }
     }
 
+    // Reset Voice, Microphone, Evaluation and Diagnostic Panels to Hidden by default
+    if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
+    const elAiExaminerComment = document.getElementById('ai-examiner-comment-box');
+    if (elAiExaminerComment) elAiExaminerComment.style.display = 'none';
+    const elSpeechTranscriptBox = document.getElementById('speech-transcript-box');
+    if (elSpeechTranscriptBox) elSpeechTranscriptBox.style.display = 'none';
+    const elMicWarnBanner = document.getElementById('mic-warning-banner');
+    if (elMicWarnBanner) elMicWarnBanner.style.display = 'none';
+    const elMicDiagPanelEl = document.getElementById('mic-diag-panel');
+    if (elMicDiagPanelEl) elMicDiagPanelEl.style.display = 'none';
+
     // Parse question through Medical EdTech Dialogue Engine
     const parsedCase = parseOralExamCase(currentQ);
 
@@ -4594,6 +4605,12 @@ Tedavi:
     }
 
     // 🗣️ Düsseldorfer Redefluss-Baukasten (Schritt 1-3 deutsche Formulierungshilfen)
+    const elRedefChip1 = document.getElementById('redefluss-chip-step1');
+    if (elRedefChip1) elRedefChip1.style.display = 'none';
+    ['redefluss-body-step1', 'redefluss-body-step2', 'redefluss-body-step3'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
     if (typeof CurriculumEngine !== 'undefined') {
       const rf = CurriculumEngine.getRedeflussBaukasten(currentQ);
       if (rf) {
@@ -5810,8 +5827,9 @@ Tedavi:
 
     const isSim = (state.studyMode === 'simulation');
     document.body.classList.toggle('mode-simulation-active', isSim);
+    const isExamActive = (state.viewMode === 'exam') || (typeof mockExamState !== 'undefined' && mockExamState && mockExamState.isActive);
     if (elExamSimulationBar) {
-      elExamSimulationBar.style.display = isSim ? 'flex' : 'none';
+      elExamSimulationBar.style.display = isExamActive ? 'flex' : 'none';
     }
 
     if (state.studyMode) {
@@ -5820,7 +5838,7 @@ Tedavi:
       if (elModeTabCloze) elModeTabCloze.classList.toggle('active', state.studyMode === 'flashcard');
     }
 
-    if (isSim) {
+    if (isExamActive) {
       startExamSimulationTimer();
     }
 
@@ -7879,20 +7897,24 @@ Tedavi:
     // 2. Filter Drawer & Active Path Summary
     const elBtnToggleFilters = document.getElementById('btn-toggle-filters');
     const elFilterDrawer = document.getElementById('filter-drawer');
+    const elToolbarClean = document.getElementById('toolbar-clean');
     const elBtnQuickBga = document.getElementById('btn-quick-bga');
 
     function toggleFilterDrawer(forceState = null) {
-      if (!elFilterDrawer || !elBtnToggleFilters) return;
-      const isClosed = (elFilterDrawer.style.display === 'none' || !elFilterDrawer.style.display);
+      if (!elBtnToggleFilters) return;
+      const targetEl = elToolbarClean || elFilterDrawer;
+      if (!targetEl) return;
+      const isClosed = (targetEl.style.display === 'none' || !targetEl.style.display);
       const shouldOpen = (forceState !== null) ? forceState : isClosed;
-      elFilterDrawer.style.display = shouldOpen ? 'flex' : 'none';
+      if (elToolbarClean) elToolbarClean.style.display = shouldOpen ? 'block' : 'none';
+      if (elFilterDrawer) elFilterDrawer.style.display = shouldOpen ? 'flex' : 'none';
       elBtnToggleFilters.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
       elBtnToggleFilters.innerHTML = shouldOpen
-        ? '<span>⚙️ Filter & Suche schließen ▴</span>'
-        : '<span>⚙️ Filter & Suche öffnen ▾</span>';
+        ? '<span>🔍 Filter &amp; Lernpfad schließen ▴</span>'
+        : '<span>🔍 Filter &amp; Lernpfad anpassen ▾</span>';
     }
 
-    if (elBtnToggleFilters && elFilterDrawer) {
+    if (elBtnToggleFilters) {
       elBtnToggleFilters.addEventListener('click', (e) => {
         e.preventDefault();
         toggleFilterDrawer();
@@ -7926,11 +7948,14 @@ Tedavi:
     const elBtnToggleRedeflussPill = document.getElementById('btn-toggle-redefluss-pill');
     const elRedeflussBody1 = document.getElementById('redefluss-body-step1');
     const elRedeflussChip1 = document.getElementById('redefluss-chip-step1');
-    if (elBtnToggleRedeflussPill && elRedeflussBody1) {
+    if (elBtnToggleRedeflussPill) {
       elBtnToggleRedeflussPill.addEventListener('click', () => {
-        const isHidden = (elRedeflussBody1.style.display === 'none');
-        elRedeflussBody1.style.display = isHidden ? 'block' : 'none';
+        const target = elRedeflussChip1 || elRedeflussBody1;
+        if (!target) return;
+        const isHidden = (target.style.display === 'none');
         if (elRedeflussChip1) elRedeflussChip1.style.display = isHidden ? 'block' : 'none';
+        if (elRedeflussBody1) elRedeflussBody1.style.display = isHidden ? 'block' : 'none';
+        elBtnToggleRedeflussPill.classList.toggle('active', isHidden);
       });
     }
 

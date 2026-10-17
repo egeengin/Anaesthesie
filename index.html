@@ -156,32 +156,32 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Compact Executive Progress Banner (Single Tidy Row) -->
-    <section class="dashboard-compact">
-      <div class="dash-compact-left">
-        <div class="dash-stat-item">
-          <span class="dash-label">Lernfortschritt:</span>
-          <span id="stat-progress-text" class="dash-val">0 / 664 (0%)</span>
+      <!-- Tek Satırlık İnce İstatistik Rozet Şeridi -->
+      <div class="dashboard-compact" id="dashboard-compact">
+        <div class="dash-compact-left">
+          <div class="dash-stat-item">
+            <span class="dash-label">Lernfortschritt:</span>
+            <span id="stat-progress-text" class="dash-val">0 / 664 (0%)</span>
+          </div>
+          <div class="dash-progress-bar-wrap">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
         </div>
-        <div class="dash-progress-bar-wrap">
-          <div id="progress-bar-fill" class="progress-bar-fill"></div>
-        </div>
-      </div>
 
-      <div class="dash-compact-right">
-        <div id="badge-readiness-trigger" class="dash-badge-item dash-badge-readiness clickable" title="Klicken für ÄKNO Düsseldorf Prüfungsreife-Radar">
-          <span>🎓 Reife:</span> <strong id="stat-readiness-score">0%</strong>
-        </div>
-        <div class="dash-badge-item">
-          <span>🎯 Quote:</span> <strong id="stat-accuracy">0%</strong>
-        </div>
-        <div class="dash-badge-item">
-          <span>🎯 Tagesziel:</span> <strong id="stat-daily-goal">0/20</strong>
-        </div>
-        <div class="dash-badge-item">
-          <span>🔥 Lernserie:</span> <strong id="stat-streak">0 Tage</strong>
+        <div class="dash-compact-right">
+          <div id="badge-readiness-trigger" class="dash-badge-item dash-badge-readiness clickable" title="Klicken für ÄKNO Düsseldorf Prüfungsreife-Radar">
+            <span>🎓 Reife:</span> <strong id="stat-readiness-score">0%</strong>
+          </div>
+          <div class="dash-badge-item">
+            <span>🎯 Quote:</span> <strong id="stat-accuracy">0%</strong>
+          </div>
+          <div class="dash-badge-item">
+            <span>🎯 Tagesziel:</span> <strong id="stat-daily-goal">0/20</strong>
+          </div>
+          <div class="dash-badge-item">
+            <span>🔥 Lernserie:</span> <strong id="stat-streak">0 Tage</strong>
+          </div>
         </div>
       </div>
     </section>
@@ -194,7 +194,7 @@
       </div>
       <div class="active-path-right">
         <button id="btn-toggle-filters" class="btn-toggle-filters" type="button" aria-expanded="false" title="Arama çubuğunu ve tüm filtreleri aç/kapat">
-          <span>⚙️ Filter &amp; Suche öffnen</span> <span id="active-filter-badge" class="filter-count-badge">Alle Fragen</span> <span class="filter-chevron">▾</span>
+          <span>🔍 Filter &amp; Lernpfad anpassen</span> <span id="active-filter-badge" class="filter-count-badge">Alle Fragen</span> <span class="filter-chevron">▾</span>
         </button>
         <button id="btn-quick-bga" class="btn-quick-bga" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
           <span>🧪 BGA-Trainer</span>
@@ -203,8 +203,8 @@
     </section>
 
     <!-- Toolbar: Compact Clean Search & Collapsible Filters Drawer -->
-    <section class="toolbar-clean">
-      <div id="filter-drawer" class="filter-drawer" style="display: none;">
+    <section class="toolbar-clean" id="toolbar-clean" style="display: none;">
+      <div id="filter-drawer" class="filter-drawer">
         <!-- Search bar inside drawer -->
         <div class="search-box">
           <span class="search-icon">🔍</span>
@@ -224,15 +224,6 @@
               </div>
             </div>
             <div class="curriculum-actions-wrap">
-              <!-- View Mode Switcher (Lern-Modus vs. Prüfungs-Modus) -->
-              <div class="view-mode-toggle" id="view-mode-toggle" title="Ansichtsmodus wechseln">
-                <button id="btn-view-mode-learn" class="btn-view-mode active" type="button" title="📖 Lern-Modus: Spickzettel, Redemittel &amp; Leitlinien sichtbar">
-                  <span>📖 Lern-Modus</span>
-                </button>
-                <button id="btn-view-mode-exam" class="btn-view-mode" type="button" title="⏱️ Prüfungs-Modus: Simuliere die echte Prüfung (Keine Spickzettel)">
-                  <span>⏱️ Prüfungs-Modus</span>
-                </button>
-              </div>
               <!-- Smart-Session Quick Launch Button -->
               <button id="btn-smart-session" class="btn-smart-session" type="button" title="15-20 Min Smart-Session: Nur Schwachstellen &amp; fällige Fälle">
                 <span>⚡ Akıllı Günlük Seans (15-20 dk)</span>
@@ -416,6 +407,16 @@
         </div>
       </div>
 
+      <!-- Yardımcı Kompakt Bar (Yan Yana 2 Küçük Buton) -->
+      <div class="case-action-pills-row" id="case-action-pills-row">
+        <button id="btn-toggle-spickzettel" class="case-action-pill pill-spickzettel" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">
+          <span>📘 30-Sekunden-Spickzettel (Konu Özeti)</span>
+        </button>
+        <button id="btn-toggle-redefluss-pill" class="case-action-pill pill-redefluss" type="button" title="Almanca giriş cümlesi kalıpları (Redefluss-Hilfe)">
+          <span>🗣️ Redefluss-Hilfe (Cümle Kalıpları)</span>
+        </button>
+      </div>
+
       <!-- 30-Sekunden-Spickzettel Drawer / Card (FAZ 3) -->
       <div id="vorab-spickzettel-box" class="vorab-spickzettel-box" style="display: none;">
         <div class="spickzettel-header">
@@ -430,248 +431,119 @@
         </div>
       </div>
 
-      <!-- Oral Exam Tools Bar: 60s Timer & Audio Dictation -->
-      <div class="oral-tools-bar" id="oral-tools-bar">
-        <div class="timer-pill-container">
-          <button id="btn-toggle-timer" class="oral-tool-btn" title="60-Sekunden Countdown für mündliche Antwort (T)">
-            <span class="tool-icon">⏱️</span>
-            <span id="timer-display-text" class="timer-display-text">60s Stoppuhr</span>
-          </button>
-          <div id="timer-progress-ring" class="timer-mini-bar" style="display: none;">
-            <div id="timer-mini-fill" class="timer-mini-fill"></div>
-          </div>
+      <!-- Step 1 Redefluss-Baukasten Chip (FAZ 3) -->
+      <div class="redefluss-chip" id="redefluss-chip-step1" style="display: none;">
+        <div class="redefluss-chip-header" id="btn-toggle-redefluss-step1" tabindex="0" role="button" aria-expanded="false">
+          <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 1: Vorstellung &amp; Strategie)</span>
+          <span class="chip-caret">▾</span>
         </div>
-
-        <div class="voice-pill-container">
-          <button id="btn-toggle-mic" class="oral-tool-btn voice-mic-btn" title="Antwort laut einsprechen (Spracherkennung) (Taste V)">
-            <span class="tool-icon">🎙️</span>
-            <span id="mic-status-text">Antwort einsprechen <kbd class="kbd-hint">V</kbd></span>
-          </button>
+        <div class="redefluss-chip-body" id="redefluss-body-step1" style="display: none;">
+          <p class="redefluss-text-de" id="redefluss-de-step1">Zusammenfassend handelt es sich um einen Risikopatienten. Mein primäres anästhesiologisches Ziel ist...</p>
+          <p class="redefluss-text-tr" id="redefluss-tr-step1">Özetle, acil müdahale gerektiren yüksek riskli bir hasta. Birincil anestezi hedefim...</p>
+          <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-1" data-step="1" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(1, this);">🔊 Kalıbı Dinle / Vorlesen</button>
         </div>
-
-        <!-- Real-Time Audio Level Waveform Indicator -->
-        <div class="audio-wave-visualizer" id="audio-wave-visualizer" style="display: none;" title="Mikrofon-Aktivität">
-          <span class="wave-bar"></span>
-          <span class="wave-bar"></span>
-          <span class="wave-bar"></span>
-          <span class="wave-bar"></span>
-          <span class="wave-bar"></span>
-        </div>
-
-        <!-- Audio Speech & Dedicated Stop / Interrupt Controls -->
-        <div class="audio-speak-group" id="audio-speak-group">
-          <button id="btn-audio-speak" class="oral-tool-btn audio-listen-pill btn-audio" title="Fall & Fragetext laut vorlesen (Taste P)">
-            <span class="tool-icon audio-speaker-icon">🔊</span>
-            <span id="audio-speak-text">Vorlesen</span>
-            <kbd class="kbd-hint">P</kbd>
-          </button>
-          <button id="btn-audio-stop" class="oral-tool-btn audio-stop-pill" style="display: none;" title="Vorlesen sofort stoppen (Taste Esc)" aria-label="Vorlesen stoppen">
-            <span class="tool-icon">⏹️</span>
-            <span>Stopp</span>
-            <kbd class="kbd-hint">Esc</kbd>
-          </button>
-        </div>
-
-        <!-- YouTube-Style Playback Speed Menu & Range Slider -->
-        <div class="speed-control-wrapper" id="speed-control-wrapper">
-          <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" type="button" title="Wiedergabegeschwindigkeit anpassen (0.5x – 1.5x)">
-            <span class="tool-icon">⚡</span>
-            <span id="audio-speed-display">0.95x</span>
-            <span class="speed-caret">▾</span>
-          </button>
-
-          <div id="audio-speed-dropdown" class="audio-speed-dropdown" style="display: none;" role="dialog" aria-label="Wiedergabegeschwindigkeit">
-            <div class="speed-dropdown-header">
-              <span class="speed-header-title">⚡ Geschwindigkeit</span>
-              <span id="speed-slider-val-badge" class="speed-val-badge">0.95x</span>
-            </div>
-            
-            <!-- Interactive Slider Bar -->
-            <div class="speed-slider-container">
-              <span class="slider-limit-label">0.5x</span>
-              <input type="range" id="audio-speed-slider" class="speed-range-slider" min="0.5" max="1.5" step="0.05" value="0.95" aria-label="Geschwindigkeit Regler">
-              <span class="slider-limit-label">1.5x</span>
-            </div>
-
-            <!-- YouTube-Style Presets -->
-            <div class="speed-presets-list" id="speed-presets-list">
-              <button class="speed-preset-item" type="button" data-rate="0.75">0.75x</button>
-              <button class="speed-preset-item" type="button" data-rate="0.85">0.85x</button>
-              <button class="speed-preset-item active" type="button" data-rate="0.95">0.95x <span class="speed-preset-tag">(Optimal)</span></button>
-              <button class="speed-preset-item" type="button" data-rate="1.0">1.0x <span class="speed-preset-tag">(Normal)</span></button>
-              <button class="speed-preset-item" type="button" data-rate="1.15">1.15x</button>
-              <button class="speed-preset-item" type="button" data-rate="1.25">1.25x</button>
-              <button class="speed-preset-item" type="button" data-rate="1.5">1.5x</button>
-            </div>
-          </div>
-        </div>
-
-        <button id="btn-toggle-keyboard-mode" class="oral-tool-btn keyboard-toggle-btn" type="button" title="Tastatur-Eingabe umschalten (Yazarak Cevapla)">
-          <span class="tool-icon">⌨️</span>
-          <span>Tippen</span>
-        </button>
-
-        <button id="btn-audio-settings-icon" class="oral-tool-btn audio-settings-btn" type="button" title="Audio- &amp; Mikrofon-Einstellungen (Diagnose &amp; Fehlerbehebung)">
-          <span class="tool-icon">🛠️</span>
-          <span>Audio-Setup</span>
-        </button>
-
       </div>
 
-      <!-- Live Voice Dictation & Speech Recognition Box -->
-      <div id="speech-transcript-box" class="speech-transcript-box" style="display: none;">
-        <div class="transcript-header">
-          <div class="transcript-pulse-badge">
-            <span class="pulse-dot"></span>
-            <strong id="transcript-badge-title">Ihre mündliche Antwort (Echtzeit-Spracherkennung):</strong>
-          </div>
-          <div class="transcript-controls">
-            <div class="voice-lang-switch" id="voice-lang-switch" title="Sprache für Spracherkennung">
-              <button id="btn-voice-lang-de" class="btn-xs voice-lang-btn active" type="button" title="Deutsch (de-DE)">🇩🇪 DE</button>
-              <button id="btn-voice-lang-tr" class="btn-xs voice-lang-btn" type="button" title="Türkçe (tr-TR)">🇹🇷 TR</button>
+      <!-- ==================== STEP 1: INITIAL PRESENTATION & BASELINE ==================== -->
+      <div id="step1-container" class="dialogue-step-card step-active">
+        <div class="step-card-header">
+          <div class="step-card-header-left">
+            <span class="step-tag-pill">Schritt 1: Klinische Präsentation</span>
+            <div class="step-callout-hint">
+              <span>🗣️</span> <em>Erstbeurteilung nach ABCDE-Schema formulieren</em>
             </div>
-            <button id="btn-mic-diagnosis" class="btn-xs btn-outline-mic" type="button" title="Audio-Diagnose &amp; Fehlerbehebung">⚙️ Audio &amp; Diagnose</button>
-            <button id="btn-sample-voice" class="btn-xs btn-text" type="button" title="Muster-Stichpunkte dieser Frage zum Testen einfügen">💡 Beispiel einfügen</button>
-            <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
           </div>
-        </div>
 
-        <!-- Hardware Microphone & Real-Time Status Row -->
-        <div class="mic-meta-row" id="mic-meta-row">
-          <div id="voice-mic-indicator" class="voice-mic-indicator" style="display: none;">
-            <span class="mic-dot"></span>
-            <span id="voice-mic-hint">Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...</span>
-          </div>
-          <div class="mic-device-wrapper" id="mic-device-wrapper" style="display: none;">
-            <span class="mic-device-icon" title="Eingabegerät">🎙️</span>
-            <select id="mic-device-select" class="mic-device-select" title="Mikrofon auswählen"></select>
-          </div>
-        </div>
-
-        <!-- Real-Time Hardware Warning Banner (Muted / No Sound / Network) -->
-        <div id="mic-warning-banner" class="mic-warning-banner" style="display: none;">
-          <div class="mic-warning-icon">⚠️</div>
-          <div class="mic-warning-content">
-            <strong id="mic-warning-title">Kein Audiosignal erfasst</strong>
-            <p id="mic-warning-desc">Ihr Mikrofon liefert derzeit keinen Ton (Lautstärke 0). Bitte überprüfen Sie die Mikrofon-Eingangslautstärke in den Systemeinstellungen oder wählen Sie ein anderes Gerät.</p>
-          </div>
-          <button id="btn-close-mic-warning" class="btn-xs btn-close-warning" type="button" title="Hinweis schließen">✕</button>
-        </div>
-
-        <!-- Real-Time Voice Recording Playback Card -->
-        <div id="voice-playback-box" class="voice-playback-box" style="display: none;">
-          <div class="playback-header">
-            <span class="playback-title">🎙️ Ihre Aufnahme:</span>
-            <span id="voice-recording-duration" class="playback-duration">0:00</span>
-          </div>
-          <div class="playback-controls">
-            <audio id="voice-recorded-audio" controls class="voice-audio-element" preload="metadata"></audio>
-            <button id="btn-re-record-voice" class="btn-xs btn-re-record" type="button" title="Neu aufnehmen">🔄 Neu aufnehmen</button>
-          </div>
-        </div>
-
-        <!-- Interactive Microphone & Speech Diagnostic Drawer (Modal Overlay) -->
-        <div id="mic-diag-panel" class="mic-diag-panel" style="display: none;">
-          <div class="mic-diag-panel-inner">
-            <div class="diag-header">
-              <span class="diag-title">🩺 Mikrofon- &amp; Spracherkennungs-Diagnose</span>
-              <button id="btn-close-mic-diag" class="btn-xs btn-close-diag" type="button" title="Diagnose schließen">✕</button>
-            </div>
-            <div class="diag-grid">
-              <div class="diag-item">
-                <span class="diag-label">Spracherkennung (Web Speech):</span>
-                <span id="diag-speech-status" class="diag-val">Prüfe...</span>
-              </div>
-              <div class="diag-item">
-                <span class="diag-label">Mikrofon-Berechtigung:</span>
-                <span id="diag-perm-status" class="diag-val">Prüfe...</span>
-              </div>
-              <div class="diag-item">
-                <span class="diag-label">Aktives Eingabegerät:</span>
-                <span id="diag-device-name" class="diag-val">Standard</span>
-              </div>
-              <div class="diag-item diag-meter-item">
-                <span class="diag-label">Live-Eingangspegel:</span>
-                <div class="diag-vu-meter-bar">
-                  <div id="diag-vu-fill" class="diag-vu-fill" style="width: 0%;"></div>
-                </div>
-                <span id="diag-vu-label" class="diag-vu-label">0%</span>
-              </div>
-            </div>
-            <div class="diag-speech-test-row">
-              <button id="btn-diag-speech-test" class="btn btn-sm btn-outline-mic" type="button" title="Testet die Spracherkennung (Web Speech API) separat ohne Mikrofon-Sperre">
-                🗣️ Sprachtest starten (Jetzt "Hallo" sagen)
+          <!-- Kompakt Sesli Okuma (TTS) Barı -->
+          <div class="step-header-audio-controls">
+            <!-- Audio Speech & Dedicated Stop / Interrupt Controls -->
+            <div class="audio-speak-group" id="audio-speak-group">
+              <button id="btn-audio-speak" class="oral-tool-btn audio-listen-pill btn-audio" title="Fall & Fragetext laut vorlesen (Taste P)">
+                <span class="tool-icon audio-speaker-icon">🔊</span>
+                <span id="audio-speak-text">Vorlesen</span>
+                <kbd class="kbd-hint">P</kbd>
               </button>
-              <span id="diag-speech-test-result" class="diag-speech-test-result">Klicken Sie auf den Button und sagen Sie laut "Hallo"</span>
+              <button id="btn-audio-stop" class="oral-tool-btn audio-stop-pill" style="display: none;" title="Vorlesen sofort stoppen (Taste Esc)" aria-label="Vorlesen stoppen">
+                <span class="tool-icon">⏹️</span>
+                <span>Stopp</span>
+                <kbd class="kbd-hint">Esc</kbd>
+              </button>
             </div>
-            <div id="diag-live-log" class="diag-live-log" style="display:none; margin-top:0.4rem; padding:0.5rem; background:rgba(0,0,0,0.35); border:1px solid var(--border-color); border-radius:6px; font-family:monospace; font-size:0.75rem; color:#94a3b8; max-height:120px; overflow-y:auto; white-space:pre-wrap;"></div>
-            <div class="diag-help-text" id="diag-help-text">
-              💡 <strong>Tipps zur Fehlerbehebung (macOS / Safari / Chrome):</strong> Wenn kein Text erkannt wird oder der Pegel zu leise ist:
-              <br>• <strong>Chrome auf macOS:</strong> Ist die Google-Spracherkennung blockiert (auch die offizielle Google-Testseite bleibt stumm), schaltet die App <strong>automatisch auf Gemini-Transkription</strong> um: Aufnahme starten → sprechen → stoppen, der Text erscheint nach ca. 2 s. Ein erfolgreicher Sprachtest hier schaltet wieder auf Live-Erkennung zurück. Safari nutzt die native Apple-Erkennung (live).
-              <br>• <strong>Browser-Berechtigung:</strong> Links in der Adresszeile auf das <strong>Schloss- / Website-Einstellungen-Symbol 🎚️</strong> klicken und <strong>Mikrofon: Zulassen</strong> wählen.
-              <br>• <strong>macOS-Toneinstellungen:</strong> Unter <strong>Systemeinstellungen > Ton > Eingang</strong> sicherstellen, dass das <em>MacBook-Mikrofon</em> aktiv und die <strong>Eingangslautstärke</strong> aufgedreht ist.
-              <br>• <strong>Mikrofon-Modus:</strong> Im macOS-Kontrollzentrum (oben rechts in der Menüleiste) den <strong>Mikrofonmodus</strong> auf <em>Standard</em> setzen (nicht auf „Stimmisolation“).
-              <br>• <strong>macOS-Diktierfunktion (Siri):</strong> Falls die Web-Spracherkennung blockiert ist, klicken Sie in das Antwortfeld und drücken Sie <strong>2× die Fn-Taste bzw. 🌐 (Globus-Taste)</strong>, um die systemeigene Offline-Diktierfunktion von macOS zu aktivieren!
-              <div class="diag-action-buttons" style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-                <a href="https://www.google.com/intl/en/chrome/demos/speech.html" target="_blank" rel="noopener" class="btn btn-xs btn-outline-mic" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
-                  🌐 Offizielle Google-Sprachtestseite öffnen
-                </a>
-                <button id="btn-force-cache-clear" class="btn btn-xs btn-outline-mic" type="button" style="display:inline-flex; align-items:center; gap:4px;">
-                  🔄 Cache leeren &amp; Neu laden (Hard Reset)
-                </button>
+
+            <!-- YouTube-Style Playback Speed Menu & Range Slider -->
+            <div class="speed-control-wrapper" id="speed-control-wrapper">
+              <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" type="button" title="Wiedergabegeschwindigkeit anpassen (0.5x – 1.5x)">
+                <span class="tool-icon">⚡</span>
+                <span id="audio-speed-display">0.95x</span>
+                <span class="speed-caret">▾</span>
+              </button>
+
+              <div id="audio-speed-dropdown" class="audio-speed-dropdown" style="display: none;" role="dialog" aria-label="Wiedergabegeschwindigkeit">
+                <div class="speed-dropdown-header">
+                  <span class="speed-header-title">⚡ Geschwindigkeit</span>
+                  <span id="speed-slider-val-badge" class="speed-val-badge">0.95x</span>
+                </div>
+                
+                <!-- Interactive Slider Bar -->
+                <div class="speed-slider-container">
+                  <span class="slider-limit-label">0.5x</span>
+                  <input type="range" id="audio-speed-slider" class="speed-range-slider" min="0.5" max="1.5" step="0.05" value="0.95" aria-label="Geschwindigkeit Regler">
+                  <span class="slider-limit-label">1.5x</span>
+                </div>
+
+                <!-- YouTube-Style Presets -->
+                <div class="speed-presets-list" id="speed-presets-list">
+                  <button class="speed-preset-item" type="button" data-rate="0.75">0.75x</button>
+                  <button class="speed-preset-item" type="button" data-rate="0.85">0.85x</button>
+                  <button class="speed-preset-item active" type="button" data-rate="0.95">0.95x <span class="speed-preset-tag">(Optimal)</span></button>
+                  <button class="speed-preset-item" type="button" data-rate="1.0">1.0x <span class="speed-preset-tag">(Normal)</span></button>
+                  <button class="speed-preset-item" type="button" data-rate="1.15">1.15x</button>
+                  <button class="speed-preset-item" type="button" data-rate="1.25">1.25x</button>
+                  <button class="speed-preset-item" type="button" data-rate="1.5">1.5x</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <textarea id="speech-transcript-input" class="transcript-textarea" placeholder="Sprechen Sie Ihre Antwort jetzt laut ein... (Ihre Worte erscheinen hier automatisch in Echtzeit oder Sie können Stichpunkte direkt tippen)"></textarea>
+        <!-- Question Image Container -->
+        <div id="question-image-container" class="question-image-container" style="display: none;">
+          <img id="question-image" src="" alt="Abbildung zur Frage" class="question-image" />
+        </div>
 
-        <div class="transcript-action-row">
-          <button id="btn-evaluate-voice" class="btn btn-primary" type="button" title="Antwort beenden und mit KI (Gemini) bewerten">
-            <span>🤖</span> Antwort mit KI auswerten (Gemini)
+        <div id="question-text" class="question-body">
+          Fragetext wird geladen...
+        </div>
+
+        <!-- Step 1 Inline Action Bar & Revealable Answer -->
+        <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 0.85rem;">
+          <button id="btn-toggle-step1-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zu Schritt 1 anzeigen / 1. Adım model cevabını gör">
+            <span>💡 Musterantwort anzeigen / Cevabı Gör</span>
           </button>
-          <button id="btn-quick-reveal" class="btn btn-secondary" type="button" title="Musterantwort und Redemittel sofort aufdecken">
-            <span>👁️</span> Musterantwort freischalten
+          <button id="btn-audio-speak-step1-ans" class="btn-audio-action-sm" type="button" title="Musterantwort zu Schritt 1 vorlesen / 1. Adım cevabını dinle">
+            <span>🔊 Antwort vorlesen / Dinle</span>
           </button>
         </div>
 
-        <!-- Real-Time Clinical Keyword & AI Evaluation Card -->
-        <div id="voice-eval-card" class="voice-eval-card" style="display: none;">
-          <div class="eval-card-header">
-            <div class="eval-score-badge" id="eval-score-badge">🎯 0% Treffer</div>
-            <div class="eval-status-msg" id="eval-status-msg">Auswertung Ihrer mündlichen Antwort</div>
+        <!-- Inline Revealable Step 1 Answer Box -->
+        <div id="step1-inline-answer-box" class="examiner-inline-answer-box step1-answer-box" style="display: none;">
+          <div class="examiner-inline-header">
+            <strong>💡 ÄKNO-Musterantwort zur klinischen Fallpräsentation (Schritt 1) / Vaka Sunumu Model Cevabı:</strong>
+            <button id="btn-audio-speak-step1-box" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen / Cevabı dinle">
+              <span>🔊 Vorlesen / Dinle</span>
+            </button>
           </div>
-
-          <!-- AI Examiner Dialogue Box -->
-          <div id="ai-examiner-comment-box" class="ai-examiner-comment-box" style="display: none;">
-            <div class="ai-examiner-header">
-              <span class="ai-examiner-badge">🤖 ÄKNO Facharzt-Prüfer Urteil</span>
-              <span id="ai-examiner-name" class="ai-examiner-name">Prof. Dr. med. Andreas Hohn</span>
-            </div>
-            <div id="ai-examiner-feedback-de" class="ai-examiner-text de"></div>
-            <div id="ai-examiner-feedback-tr" class="ai-examiner-text tr" style="margin-top: 8px; font-style: italic; color: var(--text-muted);"></div>
-          </div>
-
-          <div class="eval-keywords-grid">
-            <div class="eval-column eval-matched">
-              <div class="eval-column-title">🟢 Genannte Signalwörter & Kriterien:</div>
-              <div class="eval-tags-container" id="eval-matched-tags">
-                <span class="eval-empty-hint">Noch keine Begriffe erfasst</span>
-              </div>
-            </div>
-            <div class="eval-column eval-missed">
-              <div class="eval-column-title">⚪ Noch fehlende Kernaspekte:</div>
-              <div class="eval-tags-container" id="eval-missed-tags">
-                <span class="eval-empty-hint">-</span>
-              </div>
-            </div>
+          <div id="step1-inline-answer-text" class="examiner-inline-answer-text">
+            <!-- Dynamically populated answer -->
           </div>
         </div>
-      </div>
 
-      <!-- Question Image Container -->
-      <div id="question-image-container" class="question-image-container" style="display: none;">
-        <img id="question-image" src="" alt="Abbildung zur Frage" class="question-image" />
+        <!-- ADIM 4: Adımlar Arası Temiz Geçiş (1 -> 2) -->
+        <div class="step-transition-bar" id="step1-transition-bar">
+          <button id="btn-advance-to-step2" class="btn btn-step-advance" type="button">
+            <span>➡️ Weiter zu Schritt 2: Vitalparameter &amp; Befunde anfordern ▾</span>
+          </button>
+        </div>
       </div>
 
       <!-- ==================== ÄKNO DÜSSELDORF LIVE SIMULATION COCKPIT ==================== -->
@@ -819,72 +691,6 @@
               <!-- Dynamic examiner feedback -->
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- ==================== STEP 1: INITIAL PRESENTATION & BASELINE ==================== -->
-      <div id="step1-container" class="dialogue-step-card step-active">
-        <div class="step-card-header">
-          <span class="step-tag-pill">Schritt 1: Klinische Präsentation</span>
-          <div class="step-callout-hint">
-            <span>🗣️</span> <em>Erstbeurteilung nach ABCDE-Schema formulieren</em>
-          </div>
-        </div>
-        <div id="question-text" class="question-body">
-          Fragetext wird geladen...
-        </div>
-
-        <!-- ADIM 4: Yardımcı Araçlar (İsteğe Bağlı Hap Butonlar / Action Pills) -->
-        <div class="case-action-pills-row" id="case-action-pills-row">
-          <button id="btn-toggle-spickzettel" class="case-action-pill pill-spickzettel" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">
-            <span>📘 30-Sekunden-Spickzettel (Konu Özeti)</span>
-          </button>
-          <button id="btn-toggle-redefluss-pill" class="case-action-pill pill-redefluss" type="button" title="Almanca giriş cümlesi kalıpları (Redefluss-Hilfe)">
-            <span>🗣️ Redefluss-Hilfe (Nasıl Cümle Kurarım?)</span>
-          </button>
-        </div>
-
-        <!-- Step 1 Redefluss-Baukasten Chip (FAZ 3) -->
-        <div class="redefluss-chip" id="redefluss-chip-step1">
-          <div class="redefluss-chip-header" id="btn-toggle-redefluss-step1" tabindex="0" role="button" aria-expanded="false">
-            <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 1: Vorstellung &amp; Strategie)</span>
-            <span class="chip-caret">▾</span>
-          </div>
-          <div class="redefluss-chip-body" id="redefluss-body-step1" style="display: none;">
-            <p class="redefluss-text-de" id="redefluss-de-step1">Zusammenfassend handelt es sich um einen Risikopatienten. Mein primäres anästhesiologisches Ziel ist...</p>
-            <p class="redefluss-text-tr" id="redefluss-tr-step1">Özetle, acil müdahale gerektiren yüksek riskli bir hasta. Birincil anestezi hedefim...</p>
-            <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-1" data-step="1" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(1, this);">🔊 Kalıbı Dinle / Vorlesen</button>
-          </div>
-        </div>
-
-        <!-- Step 1 Inline Action Bar & Revealable Answer -->
-        <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 0.85rem;">
-          <button id="btn-toggle-step1-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zu Schritt 1 anzeigen / 1. Adım model cevabını gör">
-            <span>💡 Musterantwort anzeigen / Cevabı Gör</span>
-          </button>
-          <button id="btn-audio-speak-step1-ans" class="btn-audio-action-sm" type="button" title="Musterantwort zu Schritt 1 vorlesen / 1. Adım cevabını dinle">
-            <span>🔊 Antwort vorlesen / Dinle</span>
-          </button>
-        </div>
-
-        <!-- Inline Revealable Step 1 Answer Box -->
-        <div id="step1-inline-answer-box" class="examiner-inline-answer-box step1-answer-box" style="display: none;">
-          <div class="examiner-inline-header">
-            <strong>💡 ÄKNO-Musterantwort zur klinischen Fallpräsentation (Schritt 1) / Vaka Sunumu Model Cevabı:</strong>
-            <button id="btn-audio-speak-step1-box" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen / Cevabı dinle">
-              <span>🔊 Vorlesen / Dinle</span>
-            </button>
-          </div>
-          <div id="step1-inline-answer-text" class="examiner-inline-answer-text">
-            <!-- Dynamically populated answer -->
-          </div>
-        </div>
-
-        <!-- ADIM 4: Adımlar Arası Temiz Geçiş (1 -> 2) -->
-        <div class="step-transition-bar" id="step1-transition-bar">
-          <button id="btn-advance-to-step2" class="btn btn-step-advance" type="button">
-            <span>➡️ Weiter zu Schritt 2: Vitalparameter &amp; Befunde anfordern ▾</span>
-          </button>
         </div>
       </div>
 
@@ -1093,6 +899,197 @@
             <button id="btn-advance-to-step4" class="btn btn-step-advance btn-step-advance-primary" type="button">
               <span>💡 Weiter zu Schritt 4: Musterantwort &amp; Auswertung freischalten ▾</span>
             </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CEVAPLAMA ALANI (VAKA METNİNİN ALTINDA) ==================== -->
+      <!-- Oral Exam Tools Bar: 60s Timer & Audio Dictation -->
+      <div class="oral-tools-bar" id="oral-tools-bar">
+        <div class="timer-pill-container">
+          <button id="btn-toggle-timer" class="oral-tool-btn" title="60-Sekunden Countdown für mündliche Antwort (T)">
+            <span class="tool-icon">⏱️</span>
+            <span id="timer-display-text" class="timer-display-text">60s Stoppuhr</span>
+          </button>
+          <div id="timer-progress-ring" class="timer-mini-bar" style="display: none;">
+            <div id="timer-mini-fill" class="timer-mini-fill"></div>
+          </div>
+        </div>
+
+        <div class="voice-pill-container">
+          <button id="btn-toggle-mic" class="oral-tool-btn voice-mic-btn" title="Antwort laut einsprechen (Spracherkennung) (Taste V)">
+            <span class="tool-icon">🎙️</span>
+            <span id="mic-status-text">Antwort einsprechen <kbd class="kbd-hint">V</kbd></span>
+          </button>
+        </div>
+
+        <!-- Real-Time Audio Level Waveform Indicator -->
+        <div class="audio-wave-visualizer" id="audio-wave-visualizer" style="display: none;" title="Mikrofon-Aktivität">
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+        </div>
+
+        <button id="btn-toggle-keyboard-mode" class="oral-tool-btn keyboard-toggle-btn" type="button" title="Tastatur-Eingabe umschalten (Yazarak Cevapla)">
+          <span class="tool-icon">⌨️</span>
+          <span>Tippen</span>
+        </button>
+
+        <button id="btn-audio-settings-icon" class="oral-tool-btn audio-settings-btn" type="button" title="Audio- &amp; Mikrofon-Einstellungen (Diagnose &amp; Fehlerbehebung)">
+          <span class="tool-icon">🛠️</span>
+          <span>Mikrofon-Diagnose / Hilfe</span>
+        </button>
+      </div>
+
+      <!-- Live Voice Dictation & Speech Recognition Box (Varsayılan Olarak Gizli) -->
+      <div id="speech-transcript-box" class="speech-transcript-box" style="display: none;">
+        <div class="transcript-header">
+          <div class="transcript-pulse-badge">
+            <span class="pulse-dot"></span>
+            <strong id="transcript-badge-title">Ihre mündliche Antwort (Echtzeit-Spracherkennung):</strong>
+          </div>
+          <div class="transcript-controls">
+            <div class="voice-lang-switch" id="voice-lang-switch" title="Sprache für Spracherkennung">
+              <button id="btn-voice-lang-de" class="btn-xs voice-lang-btn active" type="button" title="Deutsch (de-DE)">🇩🇪 DE</button>
+              <button id="btn-voice-lang-tr" class="btn-xs voice-lang-btn" type="button" title="Türkçe (tr-TR)">🇹🇷 TR</button>
+            </div>
+            <button id="btn-mic-diagnosis" class="btn-xs btn-outline-mic" type="button" title="Audio-Diagnose &amp; Fehlerbehebung">⚙️ Audio &amp; Diagnose</button>
+            <button id="btn-sample-voice" class="btn-xs btn-text" type="button" title="Muster-Stichpunkte dieser Frage zum Testen einfügen">💡 Beispiel einfügen</button>
+            <button id="btn-clear-transcript" class="btn-xs btn-text" title="Transkript leeren">✕ Löschen</button>
+          </div>
+        </div>
+
+        <!-- Hardware Microphone & Real-Time Status Row -->
+        <div class="mic-meta-row" id="mic-meta-row">
+          <div id="voice-mic-indicator" class="voice-mic-indicator" style="display: none;">
+            <span class="mic-dot"></span>
+            <span id="voice-mic-hint">Mikrofon aktiv – Sprechen Sie frei Ihre Antwort ein...</span>
+          </div>
+          <div class="mic-device-wrapper" id="mic-device-wrapper" style="display: none;">
+            <span class="mic-device-icon" title="Eingabegerät">🎙️</span>
+            <select id="mic-device-select" class="mic-device-select" title="Mikrofon auswählen"></select>
+          </div>
+        </div>
+
+        <!-- Real-Time Hardware Warning Banner (Muted / No Sound / Network) -->
+        <div id="mic-warning-banner" class="mic-warning-banner" style="display: none;">
+          <div class="mic-warning-icon">⚠️</div>
+          <div class="mic-warning-content">
+            <strong id="mic-warning-title">Kein Audiosignal erfasst</strong>
+            <p id="mic-warning-desc">Ihr Mikrofon liefert derzeit keinen Ton (Lautstärke 0). Bitte überprüfen Sie die Mikrofon-Eingangslautstärke in den Systemeinstellungen oder wählen Sie ein anderes Gerät.</p>
+          </div>
+          <button id="btn-close-mic-warning" class="btn-xs btn-close-warning" type="button" title="Hinweis schließen">✕</button>
+        </div>
+
+        <!-- Real-Time Voice Recording Playback Card -->
+        <div id="voice-playback-box" class="voice-playback-box" style="display: none;">
+          <div class="playback-header">
+            <span class="playback-title">🎙️ Ihre Aufnahme:</span>
+            <span id="voice-recording-duration" class="playback-duration">0:00</span>
+          </div>
+          <div class="playback-controls">
+            <audio id="voice-recorded-audio" controls class="voice-audio-element" preload="metadata"></audio>
+            <button id="btn-re-record-voice" class="btn-xs btn-re-record" type="button" title="Neu aufnehmen">🔄 Neu aufnehmen</button>
+          </div>
+        </div>
+
+        <!-- Interactive Microphone & Speech Diagnostic Drawer (Modal Overlay) -->
+        <div id="mic-diag-panel" class="mic-diag-panel" style="display: none;">
+          <div class="mic-diag-panel-inner">
+            <div class="diag-header">
+              <span class="diag-title">🩺 Mikrofon- &amp; Spracherkennungs-Diagnose</span>
+              <button id="btn-close-mic-diag" class="btn-xs btn-close-diag" type="button" title="Diagnose schließen">✕</button>
+            </div>
+            <div class="diag-grid">
+              <div class="diag-item">
+                <span class="diag-label">Spracherkennung (Web Speech):</span>
+                <span id="diag-speech-status" class="diag-val">Prüfe...</span>
+              </div>
+              <div class="diag-item">
+                <span class="diag-label">Mikrofon-Berechtigung:</span>
+                <span id="diag-perm-status" class="diag-val">Prüfe...</span>
+              </div>
+              <div class="diag-item">
+                <span class="diag-label">Aktives Eingabegerät:</span>
+                <span id="diag-device-name" class="diag-val">Standard</span>
+              </div>
+              <div class="diag-item diag-meter-item">
+                <span class="diag-label">Live-Eingangspegel:</span>
+                <div class="diag-vu-meter-bar">
+                  <div id="diag-vu-fill" class="diag-vu-fill" style="width: 0%;"></div>
+                </div>
+                <span id="diag-vu-label" class="diag-vu-label">0%</span>
+              </div>
+            </div>
+            <div class="diag-speech-test-row">
+              <button id="btn-diag-speech-test" class="btn btn-sm btn-outline-mic" type="button" title="Testet die Spracherkennung (Web Speech API) separat ohne Mikrofon-Sperre">
+                🗣️ Sprachtest starten (Jetzt "Hallo" sagen)
+              </button>
+              <span id="diag-speech-test-result" class="diag-speech-test-result">Klicken Sie auf den Button und sagen Sie laut "Hallo"</span>
+            </div>
+            <div id="diag-live-log" class="diag-live-log" style="display:none; margin-top:0.4rem; padding:0.5rem; background:rgba(0,0,0,0.35); border:1px solid var(--border-color); border-radius:6px; font-family:monospace; font-size:0.75rem; color:#94a3b8; max-height:120px; overflow-y:auto; white-space:pre-wrap;"></div>
+            <div class="diag-help-text" id="diag-help-text">
+              💡 <strong>Tipps zur Fehlerbehebung (macOS / Safari / Chrome):</strong> Wenn kein Text erkannt wird oder der Pegel zu leise ist:
+              <br>• <strong>Chrome auf macOS:</strong> Ist die Google-Spracherkennung blockiert (auch die offizielle Google-Testseite bleibt stumm), schaltet die App <strong>automatisch auf Gemini-Transkription</strong> um: Aufnahme starten → sprechen → stoppen, der Text erscheint nach ca. 2 s. Ein erfolgreicher Sprachtest hier schaltet wieder auf Live-Erkennung zurück. Safari nutzt die native Apple-Erkennung (live).
+              <br>• <strong>Browser-Berechtigung:</strong> Links in der Adresszeile auf das <strong>Schloss- / Website-Einstellungen-Symbol 🎚️</strong> klicken und <strong>Mikrofon: Zulassen</strong> wählen.
+              <br>• <strong>macOS-Toneinstellungen:</strong> Unter <strong>Systemeinstellungen > Ton > Eingang</strong> sicherstellen, dass das <em>MacBook-Mikrofon</em> aktiv und die <strong>Eingangslautstärke</strong> aufgedreht ist.
+              <br>• <strong>Mikrofon-Modus:</strong> Im macOS-Kontrollzentrum (oben rechts in der Menüleiste) den <strong>Mikrofonmodus</strong> auf <em>Standard</em> setzen (nicht auf „Stimmisolation“).
+              <br>• <strong>macOS-Diktierfunktion (Siri):</strong> Falls die Web-Spracherkennung blockiert ist, klicken Sie in das Antwortfeld und drücken Sie <strong>2× die Fn-Taste bzw. 🌐 (Globus-Taste)</strong>, um die systemeigene Offline-Diktierfunktion von macOS zu aktivieren!
+              <div class="diag-action-buttons" style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <a href="https://www.google.com/intl/en/chrome/demos/speech.html" target="_blank" rel="noopener" class="btn btn-xs btn-outline-mic" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                  🌐 Offizielle Google-Sprachtestseite öffnen
+                </a>
+                <button id="btn-force-cache-clear" class="btn btn-xs btn-outline-mic" type="button" style="display:inline-flex; align-items:center; gap:4px;">
+                  🔄 Cache leeren &amp; Neu laden (Hard Reset)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <textarea id="speech-transcript-input" class="transcript-textarea" placeholder="Sprechen Sie Ihre Antwort jetzt laut ein... (Ihre Worte erscheinen hier automatisch in Echtzeit oder Sie können Stichpunkte direkt tippen)"></textarea>
+
+        <div class="transcript-action-row">
+          <button id="btn-evaluate-voice" class="btn btn-primary" type="button" title="Antwort beenden und mit KI (Gemini) bewerten">
+            <span>🤖</span> Antwort mit KI auswerten (Gemini)
+          </button>
+          <button id="btn-quick-reveal" class="btn btn-secondary" type="button" title="Musterantwort und Redemittel sofort aufdecken">
+            <span>👁️</span> Musterantwort freischalten
+          </button>
+        </div>
+
+        <!-- Real-Time Clinical Keyword & AI Evaluation Card (Varsayılan Olarak Gizli) -->
+        <div id="voice-eval-card" class="voice-eval-card" style="display: none;">
+          <div class="eval-card-header">
+            <div class="eval-score-badge" id="eval-score-badge">🎯 0% Treffer</div>
+            <div class="eval-status-msg" id="eval-status-msg">Auswertung Ihrer mündlichen Antwort</div>
+          </div>
+
+          <!-- AI Examiner Dialogue Box -->
+          <div id="ai-examiner-comment-box" class="ai-examiner-comment-box" style="display: none;">
+            <div class="ai-examiner-header">
+              <span class="ai-examiner-badge">🤖 ÄKNO Facharzt-Prüfer Urteil</span>
+              <span id="ai-examiner-name" class="ai-examiner-name">Prof. Dr. med. Andreas Hohn</span>
+            </div>
+            <div id="ai-examiner-feedback-de" class="ai-examiner-text de"></div>
+            <div id="ai-examiner-feedback-tr" class="ai-examiner-text tr" style="margin-top: 8px; font-style: italic; color: var(--text-muted);"></div>
+          </div>
+
+          <div class="eval-keywords-grid">
+            <div class="eval-column eval-matched">
+              <div class="eval-column-title">🟢 Genannte Signalwörter & Kriterien:</div>
+              <div class="eval-tags-container" id="eval-matched-tags">
+                <span class="eval-empty-hint">Noch keine Begriffe erfasst</span>
+              </div>
+            </div>
+            <div class="eval-column eval-missed">
+              <div class="eval-column-title">⚪ Noch fehlende Kernaspekte:</div>
+              <div class="eval-tags-container" id="eval-missed-tags">
+                <span class="eval-empty-hint">-</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

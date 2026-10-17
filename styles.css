@@ -8102,6 +8102,34 @@ body.view-mode-exam .full-reference-accordion {
   border-radius: 8px;
 }
 
+.hero-focus-card .dashboard-compact {
+  margin: 0.85rem 0 0 0;
+  padding: 0.55rem 0.85rem;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(2, 132, 199, 0.15);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .hero-focus-card .dashboard-compact {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.step-card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.step-header-audio-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+}
+
 /* ==========================================================================
    AMBOSS & APPLE STANDARD SENIOR UI/UX REFACTORING (ADIM 1 - ADIM 7)
    ========================================================================== */
