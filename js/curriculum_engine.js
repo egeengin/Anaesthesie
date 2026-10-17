@@ -531,6 +531,214 @@
         step4_anionGap: 'Akute schwere Hyponatriämie (Na 112 mmol/l) und Hämoglobinsturz durch massive intravasale Resorption elektrolytfreier Spülflüssigkeit (Glycin/Sorbitol).'
       },
       clinicalAction: 'OP sofort stoppen! Furosemid 20–40 mg i.v., bei neurologischen Symptomen/Krämpfen hypertones Kochsalz NaCl 3% (100 ml über 10–15 min). Maximaler Na-Anstieg: 8–10 mmol/l in 24h zur Vermeidung einer pontinen Myelinolyse!'
+    },
+    {
+      id: 'bga_05',
+      title: 'Akute Lungenarterienembolie (LAE) & Respiratorische Alkalose',
+      title_tr: 'Akut Pulmoner Emboli & Respiratuar Alkaloz',
+      patient: '54-jähriger Patient postoperativ nach Hüft-TEP, akute Dyspnoe, tachykard (130/min), Thoraxschmerz und Zyanose.',
+      patient_tr: 'Kalça protezi ameliyatı sonrası 54 yaşında erkek hasta, ani başlayan nefes darlığı, taşikardi (130/dk), göğüs ağrısı ve siyanoz.',
+      vitals: {
+        ph: '7,52',
+        pco2: '26 mmHg',
+        po2: '52 mmHg',
+        hco3: '22 mmol/l',
+        be: '+0,8 mmol/l',
+        lactate: '2,4 mmol/l',
+        na: '138 mmol/l',
+        k: '3,8 mmol/l',
+        cl: '104 mmol/l',
+        hb: '12,4 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Schwere arterielle Hypoxämie (PaO2 52 mmHg unter Raumluft) infolge intrapulmonalen Shunts und Ventilations-Perfusions-Mismatch.',
+        step2_acidBase: 'Relevante Alkalämie (pH 7,52 > 7,45).',
+        step3_compensation: 'Akute respiratorische Alkalose durch massive reflektorische Hyperventilation (pCO2 26 mmHg abgeatmet). Keine renale Kompensation (BE und HCO3 normwertig).',
+        step4_anionGap: 'Normale Anionenlücke (AG 12 mmol/l). Mäßig erhöhtes Laktat durch myokardiale und periphere Minderperfusion.'
+      },
+      clinicalAction: '100% Sauerstoffgabe, Notfall-Echokardiographie (FATE: Rechtsherzbelastung, McConnell-Zeichen), therapeutische Antikoagulation (Heparin 5000 IE Bolus), bei Kreislaufinstabilität/Schock sofortige systemische Fibrinolyse (Alteplase rt-PA 100 mg).'
+    },
+    {
+      id: 'bga_06',
+      title: 'Schwere Salizylat- / ASS-Intoxikation (Mischstörung)',
+      title_tr: 'Ağır Salisilat / Aspirin Zehirlenmesi (Kombine Bozukluk)',
+      patient: '32-jährige Patientin nach Einnahme von 40 Tabletten ASS in suizidaler Absicht, Tinnitus, Schwindel, Tachypnoe und Schwitzen.',
+      patient_tr: 'İntihar amaçlı 40 tablet Aspirin alan 32 yaşında kadın hasta, kulak çınlaması, baş dönmesi, takipne ve terleme ile acilde.',
+      vitals: {
+        ph: '7,39',
+        pco2: '21 mmHg',
+        po2: '94 mmHg',
+        hco3: '12 mmol/l',
+        be: '-11 mmol/l',
+        lactate: '3,1 mmol/l',
+        na: '140 mmol/l',
+        k: '3,6 mmol/l',
+        cl: '105 mmol/l',
+        glucose: '130 mg/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Normale arterielle Oxygenierung (PaO2 94 mmHg).',
+        step2_acidBase: 'Normaler/grenzwertiger pH (7,39), der jedoch eine schwere lebensbedrohliche Doppelstörung maskiert!',
+        step3_compensation: 'Gleichzeitige primäre respiratorische Alkalose (direkte medulläre Stimulation des Atemzentrums mit pCO2 21 mmHg) UND primäre metabolische Azidose.',
+        step4_anionGap: 'Massiv erhöhte Anionenlücke: AG = 140 - (105 + 12) = 23 mmol/l (> 12). Ursache: Entkopplung der oxidativen Phosphorylierung mit Laktat-, Salizylat- und Ketosäureakkumulation.'
+      },
+      clinicalAction: 'Urin-Alkalisierung mit Natriumbikarbonat 8,4% (Ziel-Urin-pH 7,5–8,0 zur Ionenfalle und renalen Ausscheidung), Kaliumsubstitution, bei Spiegeln > 80–100 mg/dl oder Enzephalopathie sofortige Hämodialyse!'
+    },
+    {
+      id: 'bga_07',
+      title: 'Massivtransfusion & Zitrat-Toxizität (Metabolische Alkalose)',
+      title_tr: 'Masif Transfüzyon & Sitrat Toksisitesi (Metabolik Alkaloz)',
+      patient: '45-jähriger Polytraumapatient nach Transfusion von 12 EK und 8 FFP, jetzt ventrikuläre Extrasystolen und verlängertes QTc-Intervall.',
+      patient_tr: '12 Ünite ES ve 8 Ünite TDP transfüzyonu yapılan 45 yaşında politravma hastası, ventriküler ekstrasistoller ve uzamış QT aralığı.',
+      vitals: {
+        ph: '7,56',
+        pco2: '46 mmHg',
+        po2: '92 mmHg',
+        hco3: '40 mmol/l',
+        be: '+15 mmol/l',
+        lactate: '1,6 mmol/l',
+        na: '142 mmol/l',
+        k: '3,1 mmol/l',
+        ca: '0,78 mmol/l',
+        hb: '9,2 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Gute Oxygenierung (PaO2 92 mmHg).',
+        step2_acidBase: 'Ausgeprägte Alkalämie (pH 7,56 > 7,45).',
+        step3_compensation: 'Schwere metabolische Alkalose (HCO3 40 mmol/l, BE +15) mit hypoventilatorischer partieller Kompensation (pCO2 auf 46 mmHg gestiegen).',
+        step4_anionGap: 'Normale Anionenlücke. Kritische ionisierte Hypokalzämie (0,78 mmol/l) durch Bindung von Ca²⁺ an Konservierungs-Zitrat sowie Hypokaliämie.'
+      },
+      clinicalAction: 'Sofortige Kalziumsubstitution mit Kalziumchlorid 10% (10–20 ml i.v.), Kaliumsubstitution, vorsichtige Beatmung (keine Hyperventilation, da Alkalose die Hypokalzämie verschlimmert).'
+    },
+    {
+      id: 'bga_08',
+      title: 'Rhabdomyolyse & Akutes Nierenversagen (Crush-Syndrom)',
+      title_tr: 'Rabdomiyoliz & Akut Böbrek Hasarı (Crush Sendromu)',
+      patient: '28-jähriger Patient nach 12-stündiger Verschüttung unter Trümmern, beidseitiges Kompartmentsyndrom der Oberschenkel, dunkler portweinfarbener Urin.',
+      patient_tr: 'Enkaz altında 12 saat kalan 28 yaşında hasta, iki taraflı uyluk kompartman sendromu, koyu çay rengi idrar.',
+      vitals: {
+        ph: '7,12',
+        pco2: '29 mmHg',
+        po2: '88 mmHg',
+        hco3: '9 mmol/l',
+        be: '-18 mmol/l',
+        lactate: '4,2 mmol/l',
+        na: '135 mmol/l',
+        k: '7,4 mmol/l',
+        cl: '98 mmol/l',
+        hb: '11,8 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Ausreichende Oxygenierung (PaO2 88 mmHg unter 2 l O2).',
+        step2_acidBase: 'Lebensbedrohliche schwere Azidämie (pH 7,12).',
+        step3_compensation: 'Schwere metabolische Azidose (HCO3 9 mmol/l, BE -18) mit respiratorischer Gegenregulation (pCO2 29 mmHg).',
+        step4_anionGap: 'Erhöhte Anionenlücke (AG 28 mmol/l) durch Akkumulation von Sulfat, Phosphat, Myoglobin und Laktat. Vital bedrohliche Hyperkaliämie (7,4 mmol/l!).'
+      },
+      clinicalAction: '1. Kardiale Membranstabilisierung: Kalziumchlorid 10% 10 ml i.v., 2. Shift-Therapie: 10 IE Altinsulin in 50 ml G40% + Salbutamol inhalativ, 3. Forcierte Hydratation mit Natriumbikarbonat (Harnalkalisierung pH > 6,5 zum Schutz vor Myoglobinzylindern), 4. Notfall-Hämodialysebereitschaft.'
+    },
+    {
+      id: 'bga_09',
+      title: 'Opioid-Überdosierung & Postoperative Atemdepression',
+      title_tr: 'Opioid Doz Aşımı & Postoperatif Solunum Depresyonu',
+      patient: '38-jähriger Patient postoperativ auf Normalstation nach Fentanyl-PCA-Pumpe, Atemfrequenz 4/min, stecknadelkopfgroße Pupillen, komatös.',
+      patient_tr: 'Fentanil PCA pompası sonrası serviste yatan 38 yaşında hasta, solunum sayısı 4/dk, toplu iğne başı pupiller, komatoz.',
+      vitals: {
+        ph: '7,06',
+        pco2: '94 mmHg',
+        po2: '42 mmHg',
+        hco3: '26 mmol/l',
+        be: '+0,2 mmol/l',
+        lactate: '2,0 mmol/l',
+        na: '139 mmol/l',
+        k: '4,5 mmol/l',
+        cl: '102 mmol/l',
+        hb: '14,2 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Schwere lebensbedrohliche Hypoxämie (PaO2 42 mmHg unter Raumluft).',
+        step2_acidBase: 'Akute schwere Azidämie (pH 7,06 < 7,10).',
+        step3_compensation: 'Reine akute unkompensierte respiratorische Azidose (CO2-Narkose mit pCO2 94 mmHg). Normales Bikarbonat (26 mmol/l) und normaler BE (+0,2), da Nierenkompensation 24–48h benötigt.',
+        step4_anionGap: 'Normale Anionenlücke (AG 11 mmol/l). Reine Hypoventilationsstörung.'
+      },
+      clinicalAction: 'Sofortige Beutel-Masken-Beatmung mit 100% O2! Naloxon titriert i.v. (0,04–0,08 mg alle 2 Minuten bis zum Wiedereintritt der Spontanatmung). Cave: Naloxon-Halbwertszeit (45–60 min) ist kürzer als die vieler Opioide -> Rebound-Überwachung auf Intensivstation!'
+    },
+    {
+      id: 'bga_10',
+      title: 'Maligne Hyperthermie (MH) - Akute hypermetabole Krise',
+      title_tr: 'Malign Hipertermi (MH) - Akut Hipermetabolik Kriz',
+      patient: '19-jähriger Patient intraoperativ unter Narkose mit Sevofluran, plötzlicher Anstieg von EtCO2 auf 85 mmHg trotz Hyperventilation, Temperatur 39,4 °C, Masseterspasmus.',
+      patient_tr: 'Sevofluran anestezisi altında 19 yaşında hasta, dakika solunum hacmi artırılmasına rağmen EtCO2 aniden 85 mmHg, vücut sıcaklığı 39,4 °C, masseter spazmı.',
+      vitals: {
+        ph: '6,98',
+        pco2: '98 mmHg',
+        po2: '120 mmHg',
+        hco3: '16 mmol/l',
+        be: '-16 mmol/l',
+        lactate: '12,5 mmol/l',
+        na: '144 mmol/l',
+        k: '7,2 mmol/l',
+        cl: '98 mmol/l',
+        hb: '13,8 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Oxygenierung durch 100% O2 vorerst erhalten (PaO2 120 mmHg).',
+        step2_acidBase: 'Extreme, lebensbedrohliche Azidämie (pH 6,98 < 7,0).',
+        step3_compensation: 'Schwere kombinierte respiratorische (pCO2 98 mmHg) UND metabolische Laktatazidose (Laktat 12,5 mmol/l, BE -16) durch explosionsartigen Zytosol-Kalziumeinstrom.',
+        step4_anionGap: 'Massiv erhöhte Anionenlücke (AG 30 mmol/l) und akute letale Hyperkaliämie (7,2 mmol/l).'
+      },
+      clinicalAction: 'Trigger SOFORT STOPPEN (Vapor abdrehen!), Hyperventilation mit 100% O2 maximaler Flow, Dantrolen 2,5 mg/kg i.v. Bolus sofort (wiederholen bis zu 10 mg/kg), aktive Kühlung, Kalziumchlorid + Glukose/Insulin. K.O.-Kriterium: NIEMALS Kalziumkanalblocker!'
+    },
+    {
+      id: 'bga_11',
+      title: 'Post-Reanimationsphase (ROSC nach Kammerflimmern)',
+      title_tr: 'Resüsitasyon Sonrası Dönem (Ventriküler Fibrilasyon Sonrası ROSC)',
+      patient: '61-jähriger Patient nach 18 Minuten Reanimation bei Kammerflimmern und 3 Schocks, nun Spontankreislauf (ROSC), komatös (GCS 3).',
+      patient_tr: 'Ventriküler fibrilasyon nedeniyle 18 dakika CPR ve 3 şok sonrası spontan dolaşımı dönen (ROSC) 61 yaşında komatoz hasta.',
+      vitals: {
+        ph: '7,02',
+        pco2: '56 mmHg',
+        po2: '110 mmHg',
+        hco3: '14 mmol/l',
+        be: '-17 mmol/l',
+        lactate: '10,8 mmol/l',
+        na: '138 mmol/l',
+        k: '3,4 mmol/l',
+        cl: '102 mmol/l',
+        hb: '13,1 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Hyperoxämie vermeiden! PaO2 110 mmHg unter FiO2 0,6.',
+        step2_acidBase: 'Schwere Azidämie (pH 7,02).',
+        step3_compensation: 'Gemischte metabolische (Laktat 10,8 mmol/l, BE -17) und mäßig respiratorische Azidose (pCO2 56 mmHg) infolge des Ganzkörper-Kreislaufstillstands.',
+        step4_anionGap: 'Massiv vergrößerte Anionenlücke (AG 22 mmol/l) durch hypoxische Gewebeischämie.'
+      },
+      clinicalAction: 'Zielgerichtetes Temperaturmanagement (TTM 32–36 °C), Vermeidung von Hyperoxie (Ziel SpO2 94–98%) und Hypokapnie (Normokapnie 35–45 mmHg zur Hirnperfusion), unverzüglicher Transfer ins Herzkatheterlabor (PTCA).'
+    },
+    {
+      id: 'bga_12',
+      title: 'Hyperchlorämische Dilutionsazidose nach NaCl 0,9%',
+      title_tr: 'Aşırı Serum Fizyolojik (%0,9 NaCl) Sonrası Hiperkloremik Asidoz',
+      patient: '42-jähriger Patient nach Schockraum-Stabilisierung und Zufuhr von 6 Litern NaCl 0,9% Infusion, nun Azidose im Aufwachraum.',
+      patient_tr: 'Şok odasında 6 litre %0,9 NaCl (serum fizyolojik) infüzyonu yapılan 42 yaşında hasta, derlenme odasında asidoz tespit edildi.',
+      vitals: {
+        ph: '7,22',
+        pco2: '32 mmHg',
+        po2: '96 mmHg',
+        hco3: '13 mmol/l',
+        be: '-12 mmol/l',
+        lactate: '1,2 mmol/l',
+        na: '144 mmol/l',
+        k: '4,1 mmol/l',
+        cl: '122 mmol/l',
+        hb: '10,2 g/dl'
+      },
+      systematicSteps: {
+        step1_oxygenation: 'Normale Oxygenierung (PaO2 96 mmHg).',
+        step2_acidBase: 'Relevante Azidämie (pH 7,22).',
+        step3_compensation: 'Metabolische Azidose (HCO3 13 mmol/l, BE -12) mit adäquater respiratorischer Kompensation (pCO2 32 mmHg).',
+        step4_anionGap: 'NORMALE Anionenlücke: AG = 144 - (122 + 13) = 9 mmol/l (< 12). Keine Laktatazidose (Laktat 1,2 normwertig!), sondern reine Verdünnungs-/Chlorid-Überladung (Cl 122 mmol/l).'
+      },
+      clinicalAction: 'Infusionsumstellung von NaCl 0,9% auf balancierte Vollelektrolytlösungen mit metabolisierbarem Anion (z.B. Jonosteril / Sterofundin), renale Säureausscheidung abwarten, keine Pufferung mit NaHCO3 indiziert!'
     }
   ];
 

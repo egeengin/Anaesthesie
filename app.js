@@ -2854,55 +2854,145 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getRealisticVitalsForCase(category, stem, answer) {
-    const text = (stem + ' ' + answer).toLowerCase();
+    const text = ((stem || '') + ' ' + (answer || '') + ' ' + (category || '')).toLowerCase();
 
-    // Baseline profiles by domain
-    if (category.includes('Atemweg')) {
+    // Deterministic pseudo-random seed based on text content to guarantee unique, realistic vitals per case
+    let seed = 0;
+    const sample = (stem || '') + (answer || '').slice(0, 40);
+    for (let i = 0; i < sample.length; i++) {
+      seed = ((seed << 5) - seed + sample.charCodeAt(i)) | 0;
+    }
+    const pseudoRand = (mod, offset = 0) => (Math.abs(seed) % mod) + offset;
+
+    // Specific Pathologies with Authentic Clinical BGA & Monitor Profiles
+    if (text.includes('turp') || text.includes('transurethral') || text.includes('verdünnung') || text.includes('glycin')) {
+      const naVal = 110 + pseudoRand(5);
+      const hbVal = (7.8 + (pseudoRand(8) / 10)).toFixed(1).replace('.', ',');
       return {
-        spo2: '89%', bp: '142/88', map: '106 mmHg', hr: '110 /min', rhythm: 'Sinustachykardie',
-        etco2: '48 mmHg', vent: 'Pmax 32 mbar', temp: '36,8 °C',
-        ph: '7,31', po2: '62 mmHg', pco2: '51 mmHg', hco3: '24 mmol/l', be: '-1,4 mmol/l', lactate: '1,6 mmol/l',
-        k: '4,2 mmol/l', na: '140 mmol/l', ca: '1,18 mmol/l', hb: '13,2 g/dl',
-        notes: 'Auskultation: Beidseits vesikulär, verlängertes Exspirium, Mallampati IV, thyromentaler Abstand 5,5 cm.',
-        notes_tr: 'Oskültasyon: İki taraflı veziküler solunum sesleri, uzamış ekspiryum, Mallampati IV, tiromental mesafe 5,5 cm.'
+        spo2: (93 + pseudoRand(3)) + '%', bp: (170 + pseudoRand(18)) + '/' + (100 + pseudoRand(10)),
+        map: (122 + pseudoRand(12)) + ' mmHg', hr: (44 + pseudoRand(6)) + ' /min', rhythm: 'Sinusbradykardie',
+        etco2: (34 + pseudoRand(4)) + ' mmHg', vent: 'Pmax 24 mbar', temp: '36,1 °C',
+        ph: (7.31 + (pseudoRand(3) / 100)).toFixed(2).replace('.', ','), po2: (80 + pseudoRand(6)) + ' mmHg',
+        pco2: (35 + pseudoRand(3)) + ' mmHg', hco3: (18 + pseudoRand(3)) + ' mmol/l', be: (-4.5 - (pseudoRand(15) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: (1.8 + (pseudoRand(6) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        k: (3.1 + (pseudoRand(4) / 10)).toFixed(1).replace('.', ',') + ' mmol/l', na: naVal + ' mmol/l',
+        ca: '1,12 mmol/l', hb: hbVal + ' g/dl',
+        notes: `Notfall-BGA: Verdünnungshyponatriämie (Na ${naVal} mmol/l) mit Hypervolämie und Bradykardie. V.a. akutes TURP-Syndrom!`,
+        notes_tr: `Acil Kan Gazı: Seyrelme hiponatremisi (Na ${naVal} mmol/l), hipervolemi ve bradikardi. Akut TURP sendromu şüphesi!`
+      };
+    }
+
+    if (text.includes('sepsis') || text.includes('septisch') || text.includes('laktatazidose')) {
+      const lacVal = (5.5 + (pseudoRand(35) / 10)).toFixed(1).replace('.', ',');
+      const phVal = (7.14 + (pseudoRand(8) / 100)).toFixed(2).replace('.', ',');
+      return {
+        spo2: (91 + pseudoRand(3)) + '%', bp: (75 + pseudoRand(12)) + '/' + (40 + pseudoRand(8)),
+        map: (50 + pseudoRand(6)) + ' mmHg', hr: (122 + pseudoRand(16)) + ' /min', rhythm: 'Sinustachykardie',
+        etco2: (22 + pseudoRand(5)) + ' mmHg', vent: 'Pmax 28 mbar', temp: (38.4 + (pseudoRand(10) / 10)).toFixed(1).replace('.', ',') + ' °C',
+        ph: phVal, po2: (64 + pseudoRand(10)) + ' mmHg', pco2: (28 + pseudoRand(5)) + ' mmHg',
+        hco3: (11 + pseudoRand(3)) + ' mmol/l', be: (-13 - (pseudoRand(30) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: lacVal + ' mmol/l', k: (5.1 + (pseudoRand(5) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        na: (136 + pseudoRand(4)) + ' mmol/l', ca: '0,98 mmol/l', hb: (8.4 + (pseudoRand(12) / 10)).toFixed(1).replace('.', ',') + ' g/dl',
+        notes: `Schwere Gewebehypoxie und Laktatazidose (Laktat ${lacVal} mmol/l, pH ${phVal}) im distributiven septischen Schock.`,
+        notes_tr: `Distributif septik şokta ağır doku hipoksisi ve laktik asidoz (Laktat ${lacVal} mmol/l, pH ${phVal}).`
+      };
+    }
+
+    if (text.includes('copd') || text.includes('hyperkapnie') || text.includes('emphysem')) {
+      const pco2Val = 66 + pseudoRand(12);
+      const phVal = (7.23 + (pseudoRand(6) / 100)).toFixed(2).replace('.', ',');
+      return {
+        spo2: (86 + pseudoRand(4)) + '%', bp: (145 + pseudoRand(15)) + '/' + (88 + pseudoRand(8)),
+        map: (105 + pseudoRand(10)) + ' mmHg', hr: (104 + pseudoRand(12)) + ' /min', rhythm: 'Sinustachykardie',
+        etco2: (pco2Val - 6) + ' mmHg', vent: 'Pmax 34 mbar, PEEP 8', temp: '37,2 °C',
+        ph: phVal, po2: (54 + pseudoRand(8)) + ' mmHg', pco2: pco2Val + ' mmHg',
+        hco3: (30 + pseudoRand(4)) + ' mmol/l', be: (+5 + (pseudoRand(25) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: (1.5 + (pseudoRand(6) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        k: (4.2 + (pseudoRand(5) / 10)).toFixed(1).replace('.', ',') + ' mmol/l', na: '139 mmol/l', ca: '1,15 mmol/l',
+        hb: (15.2 + (pseudoRand(14) / 10)).toFixed(1).replace('.', ',') + ' g/dl',
+        notes: `Akut auf chronische respiratorische Azidose (pCO2 ${pco2Val} mmHg, pH ${phVal}) mit renaler Vorkompensation.`,
+        notes_tr: `Renal ön kompanzasyonlu akut zeminli kronik solunumsal asidoz (pCO2 ${pco2Val} mmHg, pH ${phVal}).`
+      };
+    }
+
+    // Baseline profiles by domain with dynamic realistic variations
+    if (category.includes('Atemweg')) {
+      const phVal = (7.29 + (pseudoRand(5) / 100)).toFixed(2).replace('.', ',');
+      const po2Val = 58 + pseudoRand(10);
+      return {
+        spo2: (88 + pseudoRand(4)) + '%', bp: (138 + pseudoRand(14)) + '/' + (84 + pseudoRand(10)),
+        map: (102 + pseudoRand(10)) + ' mmHg', hr: (106 + pseudoRand(12)) + ' /min', rhythm: 'Sinustachykardie',
+        etco2: (46 + pseudoRand(6)) + ' mmHg', vent: (30 + pseudoRand(6)) + ' mbar', temp: '36,8 °C',
+        ph: phVal, po2: po2Val + ' mmHg', pco2: (49 + pseudoRand(6)) + ' mmHg',
+        hco3: '24 mmol/l', be: (-1.0 - (pseudoRand(12) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: (1.5 + (pseudoRand(6) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        k: '4,2 mmol/l', na: '140 mmol/l', ca: '1,18 mmol/l', hb: (12.8 + (pseudoRand(12) / 10)).toFixed(1).replace('.', ',') + ' g/dl',
+        notes: `Auskultation: Verlängertes Exspirium, bronchitische Nebengeräusche, PaO2 ${po2Val} mmHg (prä-oxygeniert).`,
+        notes_tr: `Oskültasyon: Uzamış ekspiryum, bronşitik ek sesler, PaO2 ${po2Val} mmHg (preoksijenasyon altında).`
       };
     } else if (category.includes('Herz') || category.includes('Hämo')) {
+      const phVal = (7.18 + (pseudoRand(8) / 100)).toFixed(2).replace('.', ',');
+      const lacVal = (4.2 + (pseudoRand(20) / 10)).toFixed(1).replace('.', ',');
+      const hbVal = (7.4 + (pseudoRand(16) / 10)).toFixed(1).replace('.', ',');
       return {
-        spo2: '93%', bp: '78/44', map: '55 mmHg', hr: '126 /min', rhythm: 'Sinustachykardie',
-        etco2: '24 mmHg', vent: 'Pmax 22 mbar', temp: '35,9 °C',
-        ph: '7,21', po2: '78 mmHg', pco2: '34 mmHg', hco3: '14 mmol/l', be: '-10,2 mmol/l', lactate: '4,8 mmol/l',
-        k: '4,8 mmol/l', na: '136 mmol/l', ca: '0,96 mmol/l', hb: '7,9 g/dl',
-        notes: 'FATE-Echokardiographie: Linker Ventrikel hyperdynam, VCI atemkollaptisch (< 1,2 cm), ScvO2 56%.',
-        notes_tr: 'FATE Odaklı Ekokardiyografi: Sol ventrikül hiperdinamik, VCI solunumla kollabe (< 1,2 cm), ScvO2 %56.'
+        spo2: (91 + pseudoRand(4)) + '%', bp: (74 + pseudoRand(12)) + '/' + (42 + pseudoRand(8)),
+        map: (52 + pseudoRand(8)) + ' mmHg', hr: (120 + pseudoRand(16)) + ' /min', rhythm: 'Sinustachykardie',
+        etco2: (22 + pseudoRand(6)) + ' mmHg', vent: 'Pmax 22 mbar', temp: '35,9 °C',
+        ph: phVal, po2: (76 + pseudoRand(12)) + ' mmHg', pco2: (32 + pseudoRand(6)) + ' mmHg',
+        hco3: (13 + pseudoRand(3)) + ' mmol/l', be: (-9.5 - (pseudoRand(20) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: lacVal + ' mmol/l', k: (4.6 + (pseudoRand(6) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        na: '136 mmol/l', ca: '0,96 mmol/l', hb: hbVal + ' g/dl',
+        notes: `Kardiovaskuläres Defizit: Hb ${hbVal} g/dl, Laktat ${lacVal} mmol/l, VCI atemkollaptisch (< 1,2 cm).`,
+        notes_tr: `Kardiyovasküler instabilite: Hb ${hbVal} g/dl, Laktat ${lacVal} mmol/l, VCI solunumla kollabe (< 1,2 cm).`
       };
     } else if (category.includes('Chemie') || category.includes('Elektrolyt') || category.includes('Säure')) {
       const isAlkalosis = text.includes('alkalose') || text.includes('hypokaliämie');
+      const phVal = isAlkalosis ? (7.48 + (pseudoRand(6) / 100)).toFixed(2).replace('.', ',') : (7.16 + (pseudoRand(7) / 100)).toFixed(2).replace('.', ',');
+      const kVal = isAlkalosis ? (2.7 + (pseudoRand(4) / 10)).toFixed(1).replace('.', ',') : (6.2 + (pseudoRand(7) / 10)).toFixed(1).replace('.', ',');
       return {
-        spo2: '98%', bp: '118/72', map: '87 mmHg', hr: isAlkalosis ? '88 /min' : '52 /min', rhythm: isAlkalosis ? 'Sinusrhythmus' : 'Sinusbradykardie',
-        etco2: '36 mmHg', vent: 'Pmax 19 mbar', temp: '36,6 °C',
-        ph: isAlkalosis ? '7,49' : '7,19', po2: '88 mmHg', pco2: isAlkalosis ? '44 mmHg' : '32 mmHg',
-        hco3: isAlkalosis ? '32 mmol/l' : '13 mmol/l', be: isAlkalosis ? '+7,8 mmol/l' : '-13,5 mmol/l',
-        lactate: '2,8 mmol/l', k: isAlkalosis ? '2,9 mmol/l' : '6,4 mmol/l', na: '128 mmol/l', ca: '0,94 mmol/l', hb: '11,4 g/dl',
-        notes: isAlkalosis ? 'EKG: Abgeflachte T-Welle, U-Welle sichtbar; Tetanieneigung.' : 'EKG: Hohe zeltförmige T-Wellen, QRS-Verbreiterung (125 ms), AV-Block I°.',
-        notes_tr: isAlkalosis ? 'EKG: Düzleşmiş T dalgası, belirgin U dalgası; tetani eğilimi.' : 'EKG: Sivri çadır T dalgaları, QRS genişlemesi (125 ms), 1. derece AV blok.'
+        spo2: '98%', bp: (115 + pseudoRand(10)) + '/' + (70 + pseudoRand(8)), map: (85 + pseudoRand(8)) + ' mmHg',
+        hr: isAlkalosis ? (86 + pseudoRand(8)) + ' /min' : (50 + pseudoRand(6)) + ' /min',
+        rhythm: isAlkalosis ? 'Sinusrhythmus' : 'Sinusbradykardie (AV-Block I°)',
+        etco2: (35 + pseudoRand(4)) + ' mmHg', vent: 'Pmax 19 mbar', temp: '36,6 °C',
+        ph: phVal, po2: (86 + pseudoRand(10)) + ' mmHg', pco2: isAlkalosis ? (43 + pseudoRand(4)) + ' mmHg' : (31 + pseudoRand(4)) + ' mmHg',
+        hco3: isAlkalosis ? (32 + pseudoRand(4)) + ' mmol/l' : (12 + pseudoRand(3)) + ' mmol/l',
+        be: isAlkalosis ? (+7.5 + (pseudoRand(15) / 10)).toFixed(1).replace('.', ',') : (-13.0 - (pseudoRand(15) / 10)).toFixed(1).replace('.', ','),
+        lactate: (2.5 + (pseudoRand(8) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        k: kVal + ' mmol/l', na: (127 + pseudoRand(5)) + ' mmol/l', ca: '0,94 mmol/l',
+        hb: (11.2 + (pseudoRand(12) / 10)).toFixed(1).replace('.', ',') + ' g/dl',
+        notes: isAlkalosis ? 'EKG: Abgeflachte T-Welle, U-Welle sichtbar; Tetanieneigung.' : `EKG: Hohe zeltförmige T-Wellen, QRS-Verbreiterung bei K+ ${kVal} mmol/l.`,
+        notes_tr: isAlkalosis ? 'EKG: Düzleşmiş T dalgası, belirgin U dalgası; tetani eğilimi.' : `EKG: Sivri çadır T dalgaları, K+ ${kVal} mmol/l ile QRS genişlemesi.`
       };
     } else if (category.includes('Pharmakologie') || category.includes('Notfall')) {
+      const phVal = (7.11 + (pseudoRand(6) / 100)).toFixed(2).replace('.', ',');
+      const lacVal = (5.2 + (pseudoRand(18) / 10)).toFixed(1).replace('.', ',');
       return {
-        spo2: '91%', bp: '65/35', map: '45 mmHg', hr: '140 /min', rhythm: 'Tachyarrhythmie',
-        etco2: '19 mmHg', vent: 'Pmax 30 mbar', temp: '38,8 °C',
-        ph: '7,14', po2: '72 mmHg', pco2: '56 mmHg', hco3: '17 mmol/l', be: '-11,2 mmol/l', lactate: '5,6 mmol/l',
-        k: '5,9 mmol/l', na: '141 mmol/l', ca: '1,02 mmol/l', hb: '12,0 g/dl',
+        spo2: (89 + pseudoRand(4)) + '%', bp: (62 + pseudoRand(12)) + '/' + (34 + pseudoRand(8)),
+        map: (43 + pseudoRand(8)) + ' mmHg', hr: (136 + pseudoRand(16)) + ' /min', rhythm: 'Tachyarrhythmie',
+        etco2: (18 + pseudoRand(6)) + ' mmHg', vent: 'Pmax 30 mbar', temp: (38.6 + (pseudoRand(6) / 10)).toFixed(1).replace('.', ',') + ' °C',
+        ph: phVal, po2: (70 + pseudoRand(10)) + ' mmHg', pco2: (54 + pseudoRand(6)) + ' mmHg',
+        hco3: (16 + pseudoRand(3)) + ' mmol/l', be: (-10.8 - (pseudoRand(15) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: lacVal + ' mmol/l', k: (5.7 + (pseudoRand(5) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        na: '141 mmol/l', ca: '1,02 mmol/l', hb: (11.8 + (pseudoRand(10) / 10)).toFixed(1).replace('.', ',') + ' g/dl',
         notes: 'Monitoring: Rasch progrediente Hyperkapnie, Rigor und Temperaturanstieg (V.a. MH / LAST).',
         notes_tr: 'Monitörizasyon: Hızla ilerleyen hiperkapni, kas rijiditesi ve vücut sıcaklığında artış (MH / LAST şüphesi).'
       };
     } else {
+      const phVal = (7.36 + (pseudoRand(7) / 100)).toFixed(2).replace('.', ',');
+      const po2Val = 88 + pseudoRand(12);
+      const pco2Val = 38 + pseudoRand(6);
+      const hbVal = (12.4 + (pseudoRand(16) / 10)).toFixed(1).replace('.', ',');
       return {
-        spo2: '96%', bp: '125/75', map: '91 mmHg', hr: '82 /min', rhythm: 'Sinusrhythmus',
-        etco2: '38 mmHg', vent: 'Pmax 21 mbar', temp: '36,7 °C',
-        ph: '7,38', po2: '92 mmHg', pco2: '41 mmHg', hco3: '24 mmol/l', be: '-0,5 mmol/l', lactate: '1,4 mmol/l',
-        k: '4,3 mmol/l', na: '139 mmol/l', ca: '1,20 mmol/l', hb: '12,8 g/dl',
-        notes: 'Vitalparameter und Monitoring im perioperativen Normbereich; Narkosetiefe adäquat.',
-        notes_tr: 'Vital bulgular ve monitörizasyon perioperatif normal sınırlarda; anestezi derinliği yeterli.'
+        spo2: (96 + pseudoRand(3)) + '%', bp: (122 + pseudoRand(10)) + '/' + (74 + pseudoRand(8)),
+        map: (90 + pseudoRand(6)) + ' mmHg', hr: (76 + pseudoRand(12)) + ' /min', rhythm: 'Sinusrhythmus',
+        etco2: (37 + pseudoRand(4)) + ' mmHg', vent: 'Pmax 21 mbar', temp: '36,7 °C',
+        ph: phVal, po2: po2Val + ' mmHg', pco2: pco2Val + ' mmHg',
+        hco3: (23 + pseudoRand(3)) + ' mmol/l', be: (-0.8 + (pseudoRand(12) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        lactate: (1.2 + (pseudoRand(6) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        k: (4.1 + (pseudoRand(4) / 10)).toFixed(1).replace('.', ',') + ' mmol/l',
+        na: (138 + pseudoRand(4)) + ' mmol/l', ca: '1,20 mmol/l', hb: hbVal + ' g/dl',
+        notes: `Vitalparameter und Monitoring im perioperativen Normbereich (pH ${phVal}, PaO2 ${po2Val} mmHg); Narkosetiefe adäquat.`,
+        notes_tr: `Vital bulgular ve monitörizasyon perioperatif normal sınırlarda (pH ${phVal}, PaO2 ${po2Val} mmHg); anestezi derinliği yeterli.`
       };
     }
   }
@@ -7053,8 +7143,19 @@ Tedavi:
 
   function renderBGACase(caseId) {
     if (typeof CurriculumEngine === 'undefined') return;
-    const bCase = (CurriculumEngine.BGA_TRAINING_CASES && CurriculumEngine.BGA_TRAINING_CASES.find(c => c.id === caseId)) || (CurriculumEngine.BGA_TRAINING_CASES && CurriculumEngine.BGA_TRAINING_CASES[0]);
+    const cases = CurriculumEngine.BGA_TRAINING_CASES || [];
+    const bCase = cases.find(c => c.id === caseId) || cases[0];
     if (!bCase) return;
+
+    if (elBgaSelect && elBgaSelect.value !== bCase.id) {
+      elBgaSelect.value = bCase.id;
+    }
+
+    const curIdx = cases.findIndex(c => c.id === bCase.id);
+    const elCounter = document.getElementById('bga-case-counter-badge');
+    const elTitleBadge = document.getElementById('bga-case-title-badge');
+    if (elCounter) elCounter.textContent = `Fall ${curIdx + 1} von ${cases.length}`;
+    if (elTitleBadge) elTitleBadge.textContent = bCase.title;
 
     const elDesc = document.getElementById('bga-case-description');
     const patientText = bCase.patient || bCase.title || 'Klinisches Szenario';
@@ -7100,14 +7201,48 @@ Tedavi:
 
   function initBgaTrainer() {
     if (typeof CurriculumEngine === 'undefined') return;
+    const cases = CurriculumEngine.BGA_TRAINING_CASES || [];
     if (elBgaSelect) {
-      elBgaSelect.innerHTML = CurriculumEngine.BGA_TRAINING_CASES.map(c => 
+      elBgaSelect.innerHTML = cases.map(c => 
         `<option value="${c.id}">${c.title}</option>`
       ).join('');
       elBgaSelect.addEventListener('change', () => {
         renderBGACase(elBgaSelect.value);
       });
     }
+
+    const elBtnPrev = document.getElementById('btn-bga-prev-case');
+    const elBtnNext = document.getElementById('btn-bga-next-case');
+    const elBtnRandom = document.getElementById('btn-bga-random-case');
+
+    if (elBtnPrev) {
+      elBtnPrev.addEventListener('click', (e) => {
+        e.preventDefault();
+        const curIdx = cases.findIndex(c => c.id === (elBgaSelect ? elBgaSelect.value : ''));
+        const nextIdx = (curIdx <= 0) ? cases.length - 1 : curIdx - 1;
+        renderBGACase(cases[nextIdx].id);
+      });
+    }
+    if (elBtnNext) {
+      elBtnNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        const curIdx = cases.findIndex(c => c.id === (elBgaSelect ? elBgaSelect.value : ''));
+        const nextIdx = (curIdx >= cases.length - 1) ? 0 : curIdx + 1;
+        renderBGACase(cases[nextIdx].id);
+      });
+    }
+    if (elBtnRandom) {
+      elBtnRandom.addEventListener('click', (e) => {
+        e.preventDefault();
+        const curIdx = cases.findIndex(c => c.id === (elBgaSelect ? elBgaSelect.value : ''));
+        let randIdx = Math.floor(Math.random() * cases.length);
+        if (cases.length > 1 && randIdx === curIdx) {
+          randIdx = (randIdx + 1) % cases.length;
+        }
+        renderBGACase(cases[randIdx].id);
+      });
+    }
+
     if (elBgaTrigger && elBgaModal) {
       elBgaTrigger.addEventListener('click', () => {
         elBgaModal.classList.add('active');
@@ -7324,13 +7459,6 @@ Tedavi:
     }
   }
 
-  if (elBtnToggleFilters && elFilterDrawer) {
-    elBtnToggleFilters.addEventListener('click', () => {
-      const isHidden = elFilterDrawer.style.display === 'none' || !elFilterDrawer.style.display;
-      elFilterDrawer.style.display = isHidden ? 'flex' : 'none';
-      elBtnToggleFilters.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-    });
-  }
 
   // Filter Chips
   if (elFilterChips) {
@@ -7753,24 +7881,34 @@ Tedavi:
     const elFilterDrawer = document.getElementById('filter-drawer');
     const elBtnQuickBga = document.getElementById('btn-quick-bga');
 
+    function toggleFilterDrawer(forceState = null) {
+      if (!elFilterDrawer || !elBtnToggleFilters) return;
+      const isClosed = (elFilterDrawer.style.display === 'none' || !elFilterDrawer.style.display);
+      const shouldOpen = (forceState !== null) ? forceState : isClosed;
+      elFilterDrawer.style.display = shouldOpen ? 'flex' : 'none';
+      elBtnToggleFilters.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      elBtnToggleFilters.innerHTML = shouldOpen
+        ? '<span>⚙️ Filter & Suche schließen ▴</span>'
+        : '<span>⚙️ Filter & Suche öffnen ▾</span>';
+    }
+
     if (elBtnToggleFilters && elFilterDrawer) {
-      elBtnToggleFilters.addEventListener('click', () => {
-        const isClosed = (elFilterDrawer.style.display === 'none' || !elFilterDrawer.style.display);
-        elFilterDrawer.style.display = isClosed ? 'block' : 'none';
-        elBtnToggleFilters.innerHTML = isClosed
-          ? '<span>⚙️ Filter & Suche schließen ▴</span>'
-          : '<span>⚙️ Filter & Suche öffnen ▾</span>';
+      elBtnToggleFilters.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFilterDrawer();
       });
     }
 
     if (elBtnQuickBga) {
-      elBtnQuickBga.addEventListener('click', () => {
-        const elBgaTrigger = document.getElementById('btn-bga-trainer-trigger');
-        if (elBgaTrigger) {
-          elBgaTrigger.click();
-        } else {
-          const elBgaModal = document.getElementById('bga-trainer-modal');
-          if (elBgaModal) elBgaModal.style.display = 'flex';
+      elBtnQuickBga.addEventListener('click', (e) => {
+        e.preventDefault();
+        const elBgaModal = document.getElementById('bga-trainer-modal');
+        if (elBgaModal) {
+          elBgaModal.classList.add('active');
+          const elSelect = document.getElementById('bga-case-select');
+          if (typeof renderBGACase === 'function' && elSelect) {
+            renderBGACase(elSelect.value);
+          }
         }
       });
     }

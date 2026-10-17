@@ -1251,7 +1251,7 @@ questions.forEach(q => {
 });
 
 // 3. Verify BGA Training Cases contain patient scenarios and no undefined
-assert.strictEqual(CurriculumEngine.BGA_TRAINING_CASES.length, 4, 'Must have 4 BGA training cases');
+assert(CurriculumEngine.BGA_TRAINING_CASES.length >= 4, 'Must have at least 4 BGA training cases');
 CurriculumEngine.BGA_TRAINING_CASES.forEach(c => {
   assert(c.patient && c.patient !== 'undefined', `BGA case ${c.id} must define patient scenario`);
   assert(c.patient_tr && c.patient_tr !== 'undefined', `BGA case ${c.id} must define patient_tr scenario`);
