@@ -302,7 +302,40 @@
       stepsDE,
       stepsTR,
       guideline: gt.guideline.title,
-      dosages: gt.dosages
+      dosages: gt.dosages,
+      toString: function() {
+        const cleanSummaryDE = (this.summaryDE || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        const cleanSummaryTR = (this.summaryTR || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        const stepsHtml = (this.stepsDE || []).map((s, idx) => {
+          const trNote = (this.stepsTR && this.stepsTR[idx]) ? `<span style="color: var(--text-muted); font-size: 0.8rem;"> — ${this.stepsTR[idx]}</span>` : '';
+          return `<li style="margin-bottom: 0.35rem;"><strong>${s}</strong>${trNote}</li>`;
+        }).join('');
+
+        return `
+          <div class="spickzettel-body-inner">
+            <div style="margin-bottom: 0.4rem; font-weight: 700; color: #0284c7; font-size: 0.95rem;">
+              📌 ${this.topic}
+            </div>
+            <div style="font-size: 0.8rem; background: rgba(2, 132, 199, 0.08); padding: 0.35rem 0.6rem; border-radius: 4px; margin-bottom: 0.65rem; color: #0369a1; border-left: 3px solid #0284c7;">
+              📘 <strong>DGAI-Leitlinie:</strong> ${this.guideline}
+            </div>
+            <div style="margin-bottom: 0.65rem;">
+              <div style="font-weight: 700; font-size: 0.84rem; color: #1e293b; margin-bottom: 0.25rem;">🇩🇪 30-Sekunden-Leitfaden (DE):</div>
+              <div style="font-size: 0.85rem; line-height: 1.5; white-space: pre-line; color: var(--text-primary);">${cleanSummaryDE}</div>
+            </div>
+            <div style="margin-bottom: 0.65rem; background: rgba(14, 165, 233, 0.05); padding: 0.5rem 0.75rem; border-radius: 6px; border-left: 3px solid #0ea5e9;">
+              <div style="font-weight: 700; font-size: 0.82rem; color: #0369a1; margin-bottom: 0.25rem;">🇹🇷 Hızlı Klinik Özet (TR):</div>
+              <div style="font-size: 0.83rem; line-height: 1.45; white-space: pre-line; color: var(--text-secondary);">${cleanSummaryTR}</div>
+            </div>
+            <div style="border-top: 1px dashed var(--border-color); padding-top: 0.5rem; margin-top: 0.5rem;">
+              <div style="font-weight: 700; font-size: 0.84rem; color: #d97706; margin-bottom: 0.35rem;">⚡ 4-Schritte-Notfall-Algorithmus:</div>
+              <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.83rem; line-height: 1.45; color: var(--text-primary);">
+                ${stepsHtml}
+              </ol>
+            </div>
+          </div>
+        `;
+      }
     };
   }
 

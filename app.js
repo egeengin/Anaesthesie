@@ -4442,7 +4442,8 @@ Tedavi:
       elBtnToggleSpick.classList.remove('active');
     }
     if (elSpickzettelContent && typeof CurriculumEngine !== 'undefined') {
-      elSpickzettelContent.innerHTML = CurriculumEngine.get30SecondSpickzettel(currentQ);
+      const spick = CurriculumEngine.get30SecondSpickzettel(currentQ);
+      elSpickzettelContent.innerHTML = (spick && typeof spick.toString === 'function') ? spick.toString() : (spick || '');
     }
 
     // 🗣️ Düsseldorfer Redefluss-Baukasten (Schritt 1-3 deutsche Formulierungshilfen)
@@ -6758,15 +6759,18 @@ Tedavi:
   if (elBtnDockAssessSicher) elBtnDockAssessSicher.addEventListener('click', () => selfAssess(true, 5));
 
   // --- FAZ 1 & FAZ 5: 3-Stufen-Lernpfad Navigation & Smart-Session Launcher ---
-  const elStagePill1 = document.getElementById('stage-pill-1');
-  const elStagePill2 = document.getElementById('stage-pill-2');
-  const elStagePill3 = document.getElementById('stage-pill-3');
+  const elStagePill1 = document.getElementById('btn-stage-1') || document.getElementById('stage-pill-1');
+  const elStagePill2 = document.getElementById('btn-stage-2') || document.getElementById('stage-pill-2');
+  const elStagePill3 = document.getElementById('btn-stage-3') || document.getElementById('stage-pill-3');
   const elBtnSmartSession = document.getElementById('btn-smart-session');
 
   function updateCurriculumPillsUI(activeNum) {
-    if (elStagePill1) elStagePill1.classList.toggle('active', activeNum === 1);
-    if (elStagePill2) elStagePill2.classList.toggle('active', activeNum === 2);
-    if (elStagePill3) elStagePill3.classList.toggle('active', activeNum === 3);
+    const p1 = document.getElementById('btn-stage-1') || document.getElementById('stage-pill-1');
+    const p2 = document.getElementById('btn-stage-2') || document.getElementById('stage-pill-2');
+    const p3 = document.getElementById('btn-stage-3') || document.getElementById('stage-pill-3');
+    if (p1) p1.classList.toggle('active', activeNum === 1);
+    if (p2) p2.classList.toggle('active', activeNum === 2);
+    if (p3) p3.classList.toggle('active', activeNum === 3);
   }
 
   if (elStagePill1) {
@@ -6798,11 +6802,18 @@ Tedavi:
   if (elStagePill3) {
     elStagePill3.addEventListener('click', () => {
       updateCurriculumPillsUI(3);
-      if (typeof startExamSimulation === 'function') {
-        startExamSimulation();
+      const mockTrigger = document.getElementById('mock-exam-trigger');
+      if (mockTrigger) {
+        mockTrigger.click();
       } else {
         const simModal = document.getElementById('mock-exam-modal');
-        if (simModal) simModal.classList.add('active');
+        if (simModal) {
+          simModal.classList.add('active');
+          if (mockExamEngine) {
+            mockExamEngine.startNewExam();
+            renderMockExamActiveCase();
+          }
+        }
       }
     });
   }
