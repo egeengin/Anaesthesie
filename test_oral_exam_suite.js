@@ -1283,8 +1283,13 @@ assert(appCode.includes('rf.step1.de || rf.step1.textDE'), 'app.js must guard re
 assert(appCode.includes('bCase.patient || bCase.title'), 'app.js must guard BGA case scenario with fallback');
 assert(appCode.includes('btn-toggle-redefluss-step${step}'), 'app.js must wire btn-toggle-redefluss-step click handlers');
 assert(appCode.includes('btn-speak-redefluss'), 'app.js must wire btn-speak-redefluss speech pronunciation');
+assert(appCode.includes('speakRedeflussText'), 'app.js must implement speakRedeflussText');
 
-console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, and Redefluss Baukasten.');
+const stylesCss = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-speak-redefluss');
+assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
+
+console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, and Redefluss Baukasten speech engine.');
 
 console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 

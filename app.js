@@ -6933,29 +6933,34 @@ Tedavi:
     }
   });
 
-  // Redefluss Speech pronunciation triggers
+  // Redefluss Speech pronunciation triggers (Düsseldorfer Redemittel)
   const speakRedeflussText = (step, btnEl) => {
     const txtEl = document.getElementById(`redefluss-de-step${step}`);
-    if (txtEl) {
-      speakMedicalText(txtEl, btnEl);
+    let textToSpeak = txtEl ? (txtEl.textContent || txtEl.innerText || '').trim() : '';
+    if (!textToSpeak && typeof CurriculumEngine !== 'undefined') {
+      filteredQuestions = getFilteredQuestions();
+      const currentQ = filteredQuestions[state.currentIndex];
+      if (currentQ) {
+        const rf = CurriculumEngine.getRedeflussBaukasten(currentQ);
+        const stepKey = `step${step}`;
+        if (rf && rf[stepKey]) {
+          textToSpeak = rf[stepKey].de || rf[stepKey].textDE || '';
+        }
+      }
+    }
+    if (textToSpeak) {
+      speakMedicalText(textToSpeak, btnEl);
     }
   };
 
-  document.querySelectorAll('.btn-speak-redefluss').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const step = btn.getAttribute('data-step');
-      speakRedeflussText(step, btn);
-    });
-  });
-
-  ['1', '2', '3'].forEach(step => {
-    const btn = document.getElementById(`btn-speak-redef-${step}`);
+  // Delegated click handler ensures a single, conflict-free click listener for all Redefluss speech buttons (.btn-speak-redefluss)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-speak-redefluss');
     if (btn) {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        speakRedeflussText(step, btn);
-      });
+      e.stopPropagation();
+      e.preventDefault();
+      const step = btn.getAttribute('data-step') || (btn.id ? btn.id.replace('btn-speak-redef-', '') : '1');
+      speakRedeflussText(step, btn);
     }
   });
 
