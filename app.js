@@ -2429,17 +2429,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
       ? MockExamSimulation.getRegistry(currentQ.id)
       : null;
-    if (!reg || !reg.crisis) return;
+    const parsed = parseOralExamCase(currentQ);
+    const crisisObj = (reg && reg.crisis) ? reg.crisis : {
+      title: '⚡ PRÜFER-ZWISCHENFALL (ÄKNO DÜSSELDORF)',
+      title_tr: 'JÜRİ AKUT MÜDAHALESİ',
+      prompt_de: parsed.examinerIntervention,
+      prompt_tr: parsed.examinerInterventionTR,
+      targetAction: parsed.examinerAnswer,
+      targetAction_tr: parsed.examinerAnswerTR,
+      vitals: parsed.vitals
+    };
+    if (!crisisObj || !crisisObj.prompt_de) return;
 
     if (elSimCrisisBanner) {
       elSimCrisisBanner.style.display = 'block';
       if (elSimCrisisTitle) {
-        elSimCrisisTitle.innerHTML = reg.crisis.title_tr 
-          ? `<span>${escapeHtml(reg.crisis.title)}</span> <span style="font-size:0.8rem; font-weight:normal; opacity:0.85; margin-left:8px;">🇹🇷 ${escapeHtml(reg.crisis.title_tr)}</span>`
-          : escapeHtml(reg.crisis.title);
+        elSimCrisisTitle.innerHTML = crisisObj.title_tr 
+          ? `<span>${escapeHtml(crisisObj.title)}</span> <span style="font-size:0.8rem; font-weight:normal; opacity:0.85; margin-left:8px;">🇹🇷 ${escapeHtml(crisisObj.title_tr)}</span>`
+          : escapeHtml(crisisObj.title);
       }
       if (elSimCrisisPrompt) {
-        elSimCrisisPrompt.innerHTML = renderDualLanguageText(reg.crisis.prompt_de, reg.crisis.prompt_tr);
+        elSimCrisisPrompt.innerHTML = renderDualLanguageText(crisisObj.prompt_de, crisisObj.prompt_tr);
       }
     }
 
@@ -2451,18 +2461,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (elSimCrisisSolutionText) {
       elSimCrisisSolutionText.innerHTML = renderDualLanguageText(
-        highlightDosagesAndUnits(reg.crisis.targetAction),
-        highlightDosagesAndUnits(reg.crisis.targetAction_tr)
+        highlightDosagesAndUnits(crisisObj.targetAction),
+        highlightDosagesAndUnits(crisisObj.targetAction_tr)
       );
     }
     if (elSimCrisisKoText) {
-      const koDE = (reg.koCriteria && reg.koCriteria.failureReason) ? reg.koCriteria.failureReason : 'Vitale Kontraindikationen beachten!';
-      const koTR = (reg.koCriteria && reg.koCriteria.failureReason_tr) ? reg.koCriteria.failureReason_tr : 'Hayati kontrendikasyonlara dikkat edilmelidir!';
+      const koDE = (reg && reg.koCriteria && reg.koCriteria.failureReason) ? reg.koCriteria.failureReason : (parsed.pitfalls || 'Vitale Kontraindikationen beachten!');
+      const koTR = (reg && reg.koCriteria && reg.koCriteria.failureReason_tr) ? reg.koCriteria.failureReason_tr : (parsed.pitfallsTR || 'Hayati kontrendikasyonlara dikkat edilmelidir!');
       elSimCrisisKoText.innerHTML = renderDualLanguageText(koDE, koTR);
     }
 
     // Update vital numbers to crisis state
-    const v = reg.crisis.vitals;
+    const v = crisisObj.vitals;
     if (v) {
       const setElemText = (id, txt) => {
         const el = document.getElementById(id);
@@ -2482,7 +2492,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleStep2(true); // Open vitals panel if closed
     if (playAudio) {
       playAudioTone(880, 'sine', 0.35); // Emergency alert beep
-      speakText(reg.crisis.prompt_de);
+      speakText(crisisObj.prompt_de);
     }
   }
 
@@ -2498,7 +2508,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
         ? MockExamSimulation.getRegistry(currentQ.id)
         : null;
-      if (reg && reg.crisis) speakText(reg.crisis.prompt_de);
+      const promptDe = (reg && reg.crisis && reg.crisis.prompt_de) ? reg.crisis.prompt_de : parseOralExamCase(currentQ).examinerIntervention;
+      if (promptDe) speakText(getCleanSpeechText(promptDe), elBtnSimSpeakCrisis);
     });
   }
 
@@ -2523,8 +2534,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const reg = (typeof MockExamSimulation !== 'undefined' && MockExamSimulation.getRegistry)
         ? MockExamSimulation.getRegistry(currentQ.id)
         : null;
-      if (reg && reg.crisis && reg.crisis.targetAction) {
-        speakText(getCleanSpeechText(reg.crisis.targetAction));
+      const targetActionDe = (reg && reg.crisis && reg.crisis.targetAction) ? reg.crisis.targetAction : parseOralExamCase(currentQ).examinerAnswer;
+      if (targetActionDe) {
+        speakText(getCleanSpeechText(targetActionDe), elBtnAudioSpeakCrisisSolution);
       }
     });
   }
@@ -2536,6 +2548,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elSimProfileBtnLabel) {
       elSimProfileBtnLabel.textContent = isHidden ? 'Profil Schließen / Kapat' : 'Jüri Profili / Prüfer-Profil';
     }
+    const elPillTrigger = document.getElementById('examiner-pill-trigger');
+    if (elPillTrigger) {
+      elPillTrigger.classList.toggle('active', isHidden);
+      const tag = elPillTrigger.querySelector('.examiner-pill-tag');
+      if (tag) tag.textContent = isHidden ? '✕ Schließen / Kapat' : 'Profil / Jüri ℹ️';
+    }
   }
 
   if (elBtnSimToggleExaminerProfile) {
@@ -2545,12 +2563,36 @@ document.addEventListener('DOMContentLoaded', () => {
     elSimExaminerAvatarBox.addEventListener('click', toggleSimExaminerDrawer);
   }
 
-  // 4-Phase Rhetoric Buttons
+  // 4-Phase Rhetoric Buttons with Bilingual Oral Sentence Starters
+  const RHETORIC_PHASE_HINTS = {
+    '1': {
+      de: '🇩🇪 „Zusammenfassend handelt es sich um einen Hochrisikopatienten mit akuter Gefährdung durch Hypoxie und hämodynamische Instabilität.“',
+      tr: '🇹🇷 „Özetle, hipoksi ve hemodinamik instabilite açısından akut hayati tehlike altında olan yüksek riskli bir hasta söz konusudur.“'
+    },
+    '2': {
+      de: '🇩🇪 „Vor der Einleitung sichere ich zwei großlumige Zugänge, etabliere ein erweitertes Monitoring inklusive invasiver Blutdruckmessung und halte Notfallmedikamente bereit.“',
+      tr: '🇹🇷 „İndüksiyondan önce iki geniş damar yolu açıyor, invaziv arteriyel basınç dahil genişletilmiş monitörizasyonu kuruyor ve acil ilaçları hazır bulunduruyorum.“'
+    },
+    '3': {
+      de: '🇩🇪 „Nach suffizienter Präoxygenierung führe ich eine hämodynamisch stabile Narkoseeinleitung durch und sichere den Atemweg primär mittels Videolaryngoskopie.“',
+      tr: '🇹🇷 „Yeterli preoksijenizasyonun ardından hemodinamik açıdan stabil bir anestezi indüksiyonu uyguluyor ve havayolunu öncelikle videolaringoskopi ile güvenceye alıyorum.“'
+    },
+    '4': {
+      de: '🇩🇪 „Bei akuter Dekompensation arbeite ich strikt nach dem ABCDE-Schema, rufe sofort Hilfe (CRM) und therapiere kausal unter Vermeidung jeglicher K.O.-Kriterien.“',
+      tr: '🇹🇷 „Akut dekompansasyon durumunda kesinlikle ABCDE algoritmasına göre hareket ediyor, derhal yardım çağırıyor (CRM) ve K.O. kriterlerinden kaçınarak nedensel tedaviyi uyguluyorum.“'
+    }
+  };
   const elRhetoricPhases = document.querySelectorAll('.sim-rhetoric-phase');
   elRhetoricPhases.forEach(btn => {
     btn.addEventListener('click', () => {
       elRhetoricPhases.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      const phaseKey = btn.getAttribute('data-phase') || '1';
+      const hint = RHETORIC_PHASE_HINTS[phaseKey] || RHETORIC_PHASE_HINTS['1'];
+      const elHintDe = document.getElementById('sim-rhetoric-hint-de');
+      const elHintTr = document.getElementById('sim-rhetoric-hint-tr');
+      if (elHintDe) elHintDe.textContent = hint.de;
+      if (elHintTr) elHintTr.textContent = hint.tr;
     });
   });
 
@@ -4554,45 +4596,52 @@ Tedavi:
       elSimCaseCounter.textContent = `🏛️ ÄKNO Düsseldorf: Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
     }
 
+    // Populate Examiner Profile Drawer universally (works in Simulation, Guideline, and Flashcard modes)
+    if (prof) {
+      if (elSimExaminerName) elSimExaminerName.textContent = prof.name;
+      if (elSimExaminerClinic) elSimExaminerClinic.textContent = prof.hospital;
+      if (elSimExaminerDrawer) elSimExaminerDrawer.style.display = 'none';
+      if (elSimProfileBtnLabel) elSimProfileBtnLabel.textContent = 'Jüri Profili / Prüfer-Profil';
+      const elPillTrigger = document.getElementById('examiner-pill-trigger');
+      if (elPillTrigger) {
+        elPillTrigger.classList.remove('active');
+        const tag = elPillTrigger.querySelector('.examiner-pill-tag');
+        if (tag) tag.textContent = 'Profil / Jüri ℹ️';
+      }
+      if (elSimExaminerDrawerContent) {
+        const profKeywordsDE = prof.keywords || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '');
+        const profKeywordsTR = prof.keywords_tr || profKeywordsDE;
+        elSimExaminerDrawerContent.innerHTML = `
+          <div class="examiner-drawer-header">
+            <div class="examiner-drawer-title">
+              <span class="examiner-drawer-badge">🏛️ ÄKNO Düsseldorf Fachprüfer / Sınav Jürisi</span>
+              <h4 class="examiner-drawer-name">👨‍⚕️ ${prof.name}</h4>
+              <p class="examiner-drawer-clinic">📍 ${prof.hospital}</p>
+            </div>
+          </div>
+          <div class="examiner-drawer-grid">
+            <div class="examiner-profile-item">
+              <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
+              <div>${renderDualLanguageText(prof.focus, prof.focus_tr)}</div>
+            </div>
+            <div class="examiner-profile-item alert-trap">
+              <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı (K.O.-Kriterium)</strong>
+              <div>${renderDualLanguageText(prof.trap, prof.trap_tr)}</div>
+            </div>
+            ${profKeywordsDE ? `
+            <div class="examiner-profile-item alert-pass">
+              <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
+              <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
+            </div>` : ''}
+          </div>
+        `;
+      }
+    }
+
     // Live ÄKNO Simulation Cockpit Setup
     if (elSimLiveCockpit) {
       elSimLiveCockpit.style.display = isSimMode ? 'block' : 'none';
       if (isSimMode) {
-        if (prof) {
-          if (elSimExaminerName) elSimExaminerName.textContent = prof.name;
-          if (elSimExaminerClinic) elSimExaminerClinic.textContent = prof.hospital;
-
-          if (elSimExaminerDrawer) elSimExaminerDrawer.style.display = 'none';
-          if (elSimProfileBtnLabel) elSimProfileBtnLabel.textContent = 'Jüri Profili / Prüfer-Profil';
-          if (elSimExaminerDrawerContent) {
-            const profKeywordsDE = prof.keywords || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '');
-            const profKeywordsTR = prof.keywords_tr || profKeywordsDE;
-            elSimExaminerDrawerContent.innerHTML = `
-              <div class="examiner-drawer-header">
-                <div class="examiner-drawer-title">
-                  <span class="examiner-drawer-badge">🏛️ ÄKNO Düsseldorf Fachprüfer / Sınav Jürisi</span>
-                  <h4 class="examiner-drawer-name">👨‍⚕️ ${prof.name}</h4>
-                  <p class="examiner-drawer-clinic">📍 ${prof.hospital}</p>
-                </div>
-              </div>
-              <div class="examiner-drawer-grid">
-                <div class="examiner-profile-item">
-                  <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
-                  <div>${renderDualLanguageText(prof.focus, prof.focus_tr)}</div>
-                </div>
-                <div class="examiner-profile-item alert-trap">
-                  <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı (K.O.-Kriterium)</strong>
-                  <div>${renderDualLanguageText(prof.trap, prof.trap_tr)}</div>
-                </div>
-                ${profKeywordsDE ? `
-                <div class="examiner-profile-item alert-pass">
-                  <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
-                  <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
-                </div>` : ''}
-              </div>
-            `;
-          }
-        }
         if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
         if (elSimCrisisSolutionCard) elSimCrisisSolutionCard.style.display = 'none';
         if (elSimKoRadarDisplay) elSimKoRadarDisplay.style.display = 'none';
@@ -4675,9 +4724,15 @@ Tedavi:
     const elBtnRedefPill = document.getElementById('btn-toggle-redefluss-pill');
     if (elRedefChip1) elRedefChip1.style.display = 'none';
     if (elBtnRedefPill) elBtnRedefPill.classList.remove('active');
-    ['redefluss-body-step1', 'redefluss-body-step2', 'redefluss-body-step3'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
+    [1, 2, 3].forEach(stepNum => {
+      const bodyEl = document.getElementById(`redefluss-body-step${stepNum}`);
+      if (bodyEl) bodyEl.style.display = 'none';
+      const hdrEl = document.getElementById(`btn-toggle-redefluss-step${stepNum}`);
+      if (hdrEl) {
+        hdrEl.setAttribute('aria-expanded', 'false');
+        const caret = hdrEl.querySelector('.chip-caret');
+        if (caret) caret.textContent = '▾';
+      }
     });
     if (typeof CurriculumEngine !== 'undefined') {
       const rf = CurriculumEngine.getRedeflussBaukasten(currentQ);
@@ -5031,7 +5086,8 @@ Tedavi:
         elOptionsContainer.style.display = 'none';
       }
       if (elBtnCheck) {
-        if (!qState.revealed && !qState.submitted) {
+        const isRubricAlreadyOpen = (mode === 'guideline' || mode === 'flashcard');
+        if (!qState.revealed && !qState.submitted && !isRubricAlreadyOpen) {
           elBtnCheck.style.display = 'inline-flex';
           elBtnCheck.innerHTML = `<span>👁️</span> Musterantwort freischalten <kbd class="kbd-hint">Space</kbd>`;
           elBtnCheck.className = 'btn btn-primary';
@@ -5930,6 +5986,16 @@ Tedavi:
     }
     if (elTypeFilter && state.typeFilter) {
       elTypeFilter.value = state.typeFilter;
+    }
+    if (state.filterMode && elFilterChips) {
+      let activeChipLabel = 'Alle Fragen';
+      elFilterChips.forEach(c => {
+        const isMatch = (c.dataset.filter === state.filterMode);
+        c.classList.toggle('active', isMatch);
+        if (isMatch) activeChipLabel = c.textContent.trim();
+      });
+      const elBadge = document.getElementById('active-filter-badge');
+      if (elBadge) elBadge.textContent = activeChipLabel;
     }
 
     // Trigger cloud auto-sync asynchronously
@@ -8053,7 +8119,8 @@ Tedavi:
 
     if (elBtnHeroStart) {
       elBtnHeroStart.addEventListener('click', () => {
-        if (elBtnSmartSession && (!state.filterMode || state.filterMode === 'all')) {
+        const hasProgress = Object.keys(state.answers || {}).length > 0;
+        if (!hasProgress && elBtnSmartSession && (!state.filterMode || state.filterMode === 'all')) {
           elBtnSmartSession.click();
         }
         if (elOnboardingGuide) elOnboardingGuide.open = false;
@@ -8228,6 +8295,12 @@ Tedavi:
         const isHidden = (target.style.display === 'none');
         if (elRedeflussChip1) elRedeflussChip1.style.display = isHidden ? 'block' : 'none';
         if (elRedeflussBody1) elRedeflussBody1.style.display = isHidden ? 'block' : 'none';
+        const hdr1 = document.getElementById('btn-toggle-redefluss-step1');
+        if (hdr1) {
+          hdr1.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+          const caret = hdr1.querySelector('.chip-caret');
+          if (caret) caret.textContent = isHidden ? '▴' : '▾';
+        }
         elBtnToggleRedeflussPill.classList.toggle('active', isHidden);
       });
     }
