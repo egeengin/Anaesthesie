@@ -8697,8 +8697,7 @@ body.view-mode-exam .full-reference-accordion {
 
 /* Hero compact mode (single-line strip) */
 .hero-focus-card.compact-mode .hero-focus-subtitle,
-.hero-focus-card.compact-mode .hero-focus-title,
-.hero-focus-card.compact-mode .onboarding-guide-strip { display: none !important; }
+.hero-focus-card.compact-mode .hero-focus-title { display: none !important; }
 .hero-focus-card.compact-mode { padding: 0.55rem 0.85rem; }
 
 /* Collapsible Onboarding Details styling */
@@ -8706,7 +8705,10 @@ details.onboarding-guide summary.guide-strip-header {
   cursor: pointer;
   user-select: none;
   list-style: none;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+details.onboarding-guide[open] summary.guide-strip-header {
+  margin-bottom: 0.65rem;
 }
 details.onboarding-guide summary::-webkit-details-marker {
   display: none;

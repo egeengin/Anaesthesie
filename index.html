@@ -103,7 +103,7 @@
   <!-- Main Container -->
   <main class="container">
 
-    <!-- ADIM 1: Yeni Başlayanlar İçin "Hızlı Başlangıç & Odak Barı" (Hero Onboarding) -->
+    <!-- ADIM 1: Hızlı Başlangıç & Odak Barı (Hero Onboarding - DE / TR) -->
     <section class="hero-focus-card" id="hero-focus-card">
       <div class="hero-focus-main">
         <div class="hero-focus-left">
@@ -111,52 +111,56 @@
             <span class="hero-focus-tag">🎯 Heutiger Fokus</span>
             <span class="hero-focus-stage-badge" id="hero-focus-stage-badge">Stufe 1: Top-50 Überlebensfälle</span>
           </div>
-          <h2 class="hero-focus-title" id="hero-focus-title">Sırada: 1. Klinische Notfälle &amp; Düsseldorf Protokolle</h2>
-          <p class="hero-focus-subtitle" id="hero-focus-subtitle">Gereksiz detaylar arasında kaybolmadan, doğrudan sınavda puan getiren altın standart cevaplara odaklanın.</p>
+          <h2 class="hero-focus-title" id="hero-focus-title">Aktueller Fokus: 1. Klinische Notfälle &amp; Düsseldorfer Prüfungsprotokolle</h2>
+          <div class="hero-focus-subtitle" id="hero-focus-subtitle">
+            <div>Im mündlichen Facharztgespräch (ÄKNO Düsseldorf) zählt kein Punktesystem, sondern <strong>Bestanden oder Nicht bestanden</strong>: Trainieren Sie strukturierte klinische Entscheidungsfindung (ABCDE), sichere Leitlinien-Dosierungen und das souveräne Vermeiden vitaler K.O.-Fehler.</div>
+            <div style="margin-top: 4px; font-size: 0.84rem; opacity: 0.9;">🇹🇷 Sözlü uzmanlık sınavında puanlama yoktur; doğrudan <strong>"Geçti / Kaldı" (Bestanden)</strong> değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı, güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin.</div>
+          </div>
         </div>
         <div class="hero-focus-actions">
-          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" title="15-Dakikalık Akıllı Seansı Başlat">
+          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" title="15-Minütiges Smart-Training starten / 15-Dakikalık Akıllı Seansı Başlat">
             <span class="cta-play-icon">▶️</span>
             <span id="hero-cta-label">15-Min Smart-Training starten</span>
           </button>
-          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="Nasıl Çalışılır? Mini Rehberini Aç/Kapat" aria-label="Rehber">
-            <span>❓ Nasıl Çalışılır?</span>
+          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="Trainingsanleitung ein-/ausklappen / Nasıl Çalışılır? Rehberini Aç/Kapat" aria-label="Anleitung">
+            <span>❓ So funktioniert's / Nasıl Çalışılır?</span>
           </button>
         </div>
       </div>
 
-      <!-- Collapsible 3-Step Mini Onboarding Guide (kapatılabilir / localStorage) -->
+      <!-- Collapsible 3-Step Mini Onboarding Guide (Her zaman açılıp kapatılabilir DE/TR) -->
       <details class="onboarding-guide onboarding-guide-strip" id="onboarding-guide-strip">
         <summary class="guide-strip-header">
           <span class="guide-strip-title">
-            <span>💡</span> <strong>Nasıl Çalışılır? (3 Adımda Uzmanlık Başarısı):</strong>
+            <span>💡</span> <strong>So funktioniert das Training (3 Schritte zum Facharzt) / Nasıl Çalışılır? (3 Adımda Sözlü Sınav Başarısı)</strong>
           </span>
+          <span class="guide-toggle-caret" style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">▾ Ein-/Ausblenden · Aç/Kapat</span>
         </summary>
-        <div class="guide-strip-header" style="justify-content:flex-end;">
-          <button id="btn-dismiss-onboarding" class="btn-xs btn-dismiss-guide" type="button" title="Rehberi Kapat">✕ Anladım, Gizle</button>
-        </div>
         <div class="guide-steps-grid">
           <div class="guide-step-card">
             <div class="guide-step-badge">1</div>
             <div class="guide-step-body">
-              <strong>Vakayı Oku / Dinle</strong>
-              <small>Klinik tabloyu inceleyin veya <em>"Vorlesen"</em> butonuyla ana dili Almanca olan sesle dinleyin.</small>
+              <strong>Fall erfassen &amp; anhören / Vakayı Oku veya Dinle</strong>
+              <small>Analysieren Sie das klinische Szenario oder hören Sie sich die Prüferfrage per <em>„Vorlesen“</em> auf Deutsch an.<br>🇹🇷 Klinik tabloyu inceleyin veya <em>"Vorlesen"</em> butonuyla jüri sorusunu Almanca dinleyin.</small>
             </div>
           </div>
           <div class="guide-step-card">
             <div class="guide-step-badge">2</div>
             <div class="guide-step-body">
-              <strong>Sesli / Zihinden Yapılandır</strong>
-              <small>ABCDE algoritmasıyla kendi yanıtınızı sesli (mikrofonla) veya zihinden oluşturun.</small>
+              <strong>Mündlich strukturieren / Sesli veya Zihinden Yapılandır</strong>
+              <small>Formulieren Sie Ihre Antwort nach dem ABCDE-Schema laut (per Mikrofon) oder gedanklich wie im echten Prüfungsgespräch.<br>🇹🇷 Gerçek sözlü sınavdaki gibi ABCDE algoritmasıyla yanıtınızı sesli (mikrofonla) veya zihinden kurgulayın.</small>
             </div>
           </div>
           <div class="guide-step-card">
             <div class="guide-step-badge">3</div>
             <div class="guide-step-body">
-              <strong>Altın Standart &amp; K.O. Dozları</strong>
-              <small>Model cevabı, ölümcül K.O. dozlarını ve jürinin beklediği anahtar terimleri kontrol edin.</small>
+              <strong>Facharzt-Standard &amp; K.O.-Schutz / Model Cevap &amp; K.O. Kriterleri</strong>
+              <small>Prüfen Sie Musterantwort, lebensrettende Dosierungen und die typischen K.O.-Prüfungsfallen der Kommission.<br>🇹🇷 Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin.</small>
             </div>
           </div>
+        </div>
+        <div class="guide-strip-header" style="justify-content:flex-end; margin-top: 0.5rem; margin-bottom: 0;">
+          <button id="btn-dismiss-onboarding" class="btn-xs btn-dismiss-guide" type="button" title="Anleitung einklappen / Rehberi Daralt">▲ Einklappen / Daralt</button>
         </div>
       </details>
 

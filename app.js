@@ -7999,9 +7999,13 @@ Tedavi:
     const elBtnToggleOnboarding = document.getElementById('btn-toggle-onboarding-guide');
     const elBtnDismissOnboarding = document.getElementById('btn-dismiss-onboarding');
     const elOnboardingGuide = document.getElementById('onboarding-guide-strip');
+    const elHeroCard = document.getElementById('hero-focus-card');
 
-    if (localStorage.getItem('facharzt_onboarding_dismissed') === 'true') {
-      if (elOnboardingGuide) elOnboardingGuide.style.display = 'none';
+    if (elOnboardingGuide) {
+      elOnboardingGuide.style.display = '';
+      if (localStorage.getItem('facharzt_onboarding_dismissed') === 'true') {
+        elOnboardingGuide.open = false;
+      }
     }
 
     if (elBtnHeroStart) {
@@ -8009,8 +8013,7 @@ Tedavi:
         if (elBtnSmartSession && (!state.filterMode || state.filterMode === 'all')) {
           elBtnSmartSession.click();
         }
-        const elHeroCard = document.getElementById('hero-focus-card');
-        if (elHeroCard) elHeroCard.classList.add('compact-mode');
+        if (elOnboardingGuide) elOnboardingGuide.open = false;
         const elCard = document.getElementById('main-quiz-card');
         if (elCard) {
           elCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -8020,12 +8023,10 @@ Tedavi:
 
     if (elBtnToggleOnboarding && elOnboardingGuide) {
       elBtnToggleOnboarding.addEventListener('click', () => {
+        if (elHeroCard) elHeroCard.classList.remove('compact-mode');
+        elOnboardingGuide.style.display = '';
         if (elOnboardingGuide.tagName && elOnboardingGuide.tagName.toLowerCase() === 'details') {
           elOnboardingGuide.open = !elOnboardingGuide.open;
-          elOnboardingGuide.style.display = '';
-        } else {
-          const isHidden = (elOnboardingGuide.style.display === 'none');
-          elOnboardingGuide.style.display = isHidden ? 'flex' : 'none';
         }
       });
     }
@@ -8036,7 +8037,7 @@ Tedavi:
         if (elOnboardingGuide.tagName && elOnboardingGuide.tagName.toLowerCase() === 'details') {
           elOnboardingGuide.open = false;
         }
-        elOnboardingGuide.style.display = 'none';
+        elOnboardingGuide.style.display = '';
         localStorage.setItem('facharzt_onboarding_dismissed', 'true');
       });
     }

@@ -1329,6 +1329,9 @@ const tbNextRubricIdx = freshAppCode.indexOf("if (tbNext) tbNext.addEventListene
 const rubricCheckIdx = freshAppCode.indexOf("const rubric = document.getElementById('high-impact-rubric');", tbNextRubricIdx);
 const advCheckIdx = freshAppCode.indexOf("'btn-advance-to-step2'", tbNextRubricIdx);
 assert(rubricCheckIdx > tbNextRubricIdx && advCheckIdx > rubricCheckIdx, 'tbNext must check high-impact-rubric and progressive steps cleanly');
+assert(!freshIndexHtml.includes('puan getiren'), 'index.html must not refer to point-scoring in oral exam subtitle');
+assert(freshIndexHtml.includes('Bestanden oder Nicht bestanden') && freshIndexHtml.includes('Geçti / Kaldı'), 'index.html must include bilingual oral exam Bestanden / Geçti-Kaldı guidance');
+assert(!freshAppCode.includes("elOnboardingGuide.style.display = 'none'"), 'app.js must not permanently hide #onboarding-guide-strip with display:none');
 
 console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.6 cache busting.');
 
