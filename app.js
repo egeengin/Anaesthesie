@@ -1535,6 +1535,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
+
+    const tbMic = document.getElementById('tb-mic');
+    if (tbMic) {
+      tbMic.classList.toggle('is-active', isRec);
+      const small = tbMic.querySelector('small');
+      if (small) small.textContent = isRec ? 'Aufnahme...' : 'Sprechen';
+    }
   }
 
   function startVoiceRecording() {
@@ -4088,6 +4095,7 @@ Tedavi:
     if (elModeTabGuide) elModeTabGuide.setAttribute('aria-selected', mode === 'guideline');
     if (elModeTabCloze) elModeTabCloze.setAttribute('aria-selected', mode === 'flashcard');
 
+    const isSim = (mode === 'simulation');
     if (isSim) {
       startExamSimulationTimer();
     } else {
@@ -4097,6 +4105,9 @@ Tedavi:
     }
 
     state.currentIndex = 0;
+    if (typeof updateActivePathSummary === 'function') {
+      updateActivePathSummary();
+    }
     renderCurrentQuestion();
   }
 
@@ -4578,6 +4589,14 @@ Tedavi:
         if (elSimPeekLabel) elSimPeekLabel.textContent = 'Falltext verbergen (Hörtest)';
       }
     }
+
+    // Reset Stepper Transition Bars
+    const elStep1TransBar = document.getElementById('step1-transition-bar');
+    const elStep2TransBar = document.getElementById('step2-transition-bar');
+    const elStep3TransBar = document.getElementById('step3-transition-bar');
+    if (elStep1TransBar) elStep1TransBar.style.display = 'flex';
+    if (elStep2TransBar) elStep2TransBar.style.display = 'none';
+    if (elStep3TransBar) elStep3TransBar.style.display = 'none';
 
     // Reset Voice, Microphone, Evaluation and Diagnostic Panels to Hidden by default
     if (elVoiceEvalCard) elVoiceEvalCard.style.display = 'none';
@@ -6582,6 +6601,13 @@ Tedavi:
       elAudioSpeakText.textContent = 'Vorlesen';
     }
 
+    const tbListen = document.getElementById('tb-listen');
+    if (tbListen) {
+      tbListen.classList.remove('is-active');
+      const small = tbListen.querySelector('small');
+      if (small) small.textContent = 'Vorlesen';
+    }
+
     if (typeof onSpeechCompleteCallback === 'function') {
       const cb = onSpeechCompleteCallback;
       onSpeechCompleteCallback = null;
@@ -6681,6 +6707,14 @@ Tedavi:
     const elAudioSpeakText = document.getElementById('audio-speak-text');
     if (elAudioSpeakText && triggerBtn && triggerBtn.id === 'btn-audio-speak') {
       elAudioSpeakText.textContent = 'Stoppen';
+    }
+
+    // Live feedback on mobile thumb bar Vorlesen button
+    const tbListen = document.getElementById('tb-listen');
+    if (tbListen) {
+      tbListen.classList.add('is-active');
+      const small = tbListen.querySelector('small');
+      if (small) small.textContent = 'Stopp';
     }
 
     const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
@@ -7963,6 +7997,19 @@ Tedavi:
       clickIfExists('btn-toggle-mic');
     });
     if (tbNext) tbNext.addEventListener('click', () => {
+      // 1. MCQ options flow check
+      const btnCheck = document.getElementById('btn-check');
+      if (btnCheck && btnCheck.offsetParent !== null && !btnCheck.disabled) {
+        btnCheck.click();
+        return;
+      }
+      const btnMcqReveal = document.getElementById('btn-reveal-mcq-options');
+      if (btnMcqReveal && btnMcqReveal.offsetParent !== null) {
+        btnMcqReveal.click();
+        return;
+      }
+
+      // 2. Progressive steps
       const adv = ['btn-advance-to-step2', 'btn-advance-to-step3', 'btn-advance-to-step4']
         .map(id => document.getElementById(id)).find(b => b && b.offsetParent !== null);
       if (adv) { adv.click(); return; }
@@ -7988,9 +8035,16 @@ Tedavi:
       if (elToolbarClean) elToolbarClean.style.display = shouldOpen ? 'block' : 'none';
       if (elFilterDrawer) elFilterDrawer.style.display = shouldOpen ? 'flex' : 'none';
       elBtnToggleFilters.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
-      elBtnToggleFilters.innerHTML = shouldOpen
-        ? '<span>🔍 Filter &amp; Lernpfad schließen ▴</span>'
-        : '<span>🔍 Filter &amp; Lernpfad anpassen ▾</span>';
+
+      const elText = elBtnToggleFilters.querySelector('.filter-btn-text') || elBtnToggleFilters.querySelector('span:not(.filter-count-badge):not(.filter-chevron)');
+      const elChevron = elBtnToggleFilters.querySelector('.filter-chevron');
+      if (elText) {
+        elText.innerHTML = shouldOpen ? '🔍 Filter &amp; Lernpfad schließen' : '🔍 Filter &amp; Lernpfad anpassen';
+      }
+      if (elChevron) {
+        elChevron.textContent = shouldOpen ? '▴' : '▾';
+      }
+      elBtnToggleFilters.classList.toggle('is-open', shouldOpen);
     }
 
     if (elBtnToggleFilters) {
@@ -8051,7 +8105,7 @@ Tedavi:
         toggleStep2(true);
         if (elBar1) elBar1.style.display = 'none';
         if (elBar2) elBar2.style.display = 'flex';
-        const elVitals = document.getElementById('step2-clinical-vitals');
+        const elVitals = document.getElementById('step2-container');
         if (elVitals) elVitals.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
@@ -8061,7 +8115,7 @@ Tedavi:
         toggleStep3(true);
         if (elBar2) elBar2.style.display = 'none';
         if (elBar3) elBar3.style.display = 'flex';
-        const elIntervention = document.getElementById('step3-examiner-intervention');
+        const elIntervention = document.getElementById('step3-container');
         if (elIntervention) elIntervention.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
@@ -8072,7 +8126,7 @@ Tedavi:
         if (typeof revealAnswer === 'function') {
           revealAnswer();
         } else {
-          const elRevealBtn = document.getElementById('btn-reveal-answer');
+          const elRevealBtn = document.getElementById('btn-reveal');
           if (elRevealBtn) elRevealBtn.click();
         }
         switchRubricTab('solution');
@@ -8080,6 +8134,18 @@ Tedavi:
         if (elRubric) elRubric.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
+
+    // Hide mobile thumb bar during Auth or when any modal backdrop is active
+    function syncThumbBarModalVisibility() {
+      const elBar = document.getElementById('mobile-thumb-bar');
+      if (!elBar) return;
+      const isAuthOpen = elAuthModal && elAuthModal.style.display !== 'none';
+      const isAnyModalActive = !!document.querySelector('.modal-backdrop.active');
+      elBar.classList.toggle('is-hidden-modal', isAuthOpen || isAnyModalActive);
+    }
+    const modalObserver = new MutationObserver(syncThumbBarModalVisibility);
+    modalObserver.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class', 'style'] });
+    syncThumbBarModalVisibility();
 
     // 5. Compact Media Bar Handlers
     const elBtnToggleKeyboard = document.getElementById('btn-toggle-keyboard-mode');

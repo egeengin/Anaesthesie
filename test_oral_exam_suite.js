@@ -1303,6 +1303,21 @@ assert(!freshAppCode.includes('if (isMac && isChrome) return true;'), 'app.js mu
 assert(freshAppCode.includes('echoCancellation: true'), 'app.js initMicrophoneHardware must enable echoCancellation');
 assert(freshAppCode.includes('noiseSuppression: true'), 'app.js initMicrophoneHardware must enable noiseSuppression');
 
+// 6. Verify Senior UX, Stepper Progression & Mobile Ergonomics
+assert(!freshAppCode.includes("elBtnToggleFilters.innerHTML = shouldOpen"), 'toggleFilterDrawer must preserve #active-filter-badge and not overwrite innerHTML');
+assert(freshAppCode.includes("document.getElementById('step2-container')"), 'app.js must scroll to step2-container on step 2 advance');
+assert(freshAppCode.includes("document.getElementById('step3-container')"), 'app.js must scroll to step3-container on step 3 advance');
+assert(freshAppCode.includes("elStep1TransBar.style.display = 'flex'"), 'renderCurrentQuestion must reset step1 transition bar');
+assert(freshIndexHtml.includes('id="mode-tab-sim"'), 'index.html must include #mode-tab-sim in filter drawer');
+assert(freshIndexHtml.includes('id="mode-tab-guide"'), 'index.html must include #mode-tab-guide in filter drawer');
+assert(freshIndexHtml.includes('id="mode-tab-cloze"'), 'index.html must include #mode-tab-cloze in filter drawer');
+assert(stylesCss.includes('.sim-examiner-stage-card .sim-examiner-avatar-box { display: none !important; }'), 'styles.css must hide avatar box while keeping cockpit action buttons accessible');
+assert(freshAppCode.includes("btnMcqReveal.offsetParent !== null"), 'tbNext must check btn-reveal-mcq-options visibility');
+assert(freshAppCode.includes("btnCheck.offsetParent !== null"), 'tbNext must check btn-check visibility');
+assert(freshAppCode.includes("tbListen.classList.add('is-active')"), 'speakMedicalText must set tb-listen is-active');
+assert(freshAppCode.includes("tbMic.classList.toggle('is-active'"), 'updateRecordingUIState must toggle tb-mic is-active');
+assert(freshAppCode.includes("elBar.classList.toggle('is-hidden-modal'"), 'app.js must hide thumb bar when modals are active');
+
 console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.4 cache busting.');
 
 console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');

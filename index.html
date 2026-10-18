@@ -197,7 +197,7 @@
       </div>
       <div class="active-path-right">
         <button id="btn-toggle-filters" class="btn-toggle-filters" type="button" aria-expanded="false" title="Arama çubuğunu ve tüm filtreleri aç/kapat">
-          <span>🔍 Filter &amp; Lernpfad anpassen</span> <span id="active-filter-badge" class="filter-count-badge">Alle Fragen</span> <span class="filter-chevron">▾</span>
+          <span class="filter-btn-text" id="filter-btn-text">🔍 Filter &amp; Lernpfad anpassen</span> <span id="active-filter-badge" class="filter-count-badge">Alle Fragen</span> <span class="filter-chevron">▾</span>
         </button>
         <button id="btn-quick-bga" class="btn-quick-bga" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
           <span>🧪 BGA-Trainer</span>
@@ -275,6 +275,33 @@
           <button class="filter-chip" data-filter="unanswered">Offen (Unbeantwortet)</button>
           <button class="filter-chip" data-filter="incorrect">Falsch beantwortet</button>
           <button class="filter-chip" data-filter="review">★ Wiederholen (Markiert)</button>
+        </div>
+
+        <!-- 3-Mode Persistent Study Switcher (inside Filter Drawer) -->
+        <div class="study-mode-switcher-wrap" style="margin: 0.75rem 0;">
+          <div class="study-mode-pills" role="tablist" aria-label="Lernmodus auswählen">
+            <button id="mode-tab-sim" class="study-mode-pill active" data-study-mode="simulation" role="tab" aria-selected="true" title="Interaktiver mündlicher Prüfungsdialog (ÄKNO)">
+              <span class="mode-icon">👨‍⚕️</span>
+              <span class="mode-info">
+                <strong>Prüfer-Simulation</strong>
+                <small>Stufenweiser Falldialog &amp; Mündliche Antwort</small>
+              </span>
+            </button>
+            <button id="mode-tab-guide" class="study-mode-pill" data-study-mode="guideline" role="tab" aria-selected="false" title="Vollständige Algorithmen und Leitlinien kontinuierlich lesen">
+              <span class="mode-icon">📋</span>
+              <span class="mode-info">
+                <strong>Spickzettel &amp; Leitfaden</strong>
+                <small>Kompakte Algorithmen &amp; Daueransicht</small>
+              </span>
+            </button>
+            <button id="mode-tab-cloze" class="study-mode-pill" data-study-mode="flashcard" role="tab" aria-selected="false" title="Blitz-Karteikarten mit verdeckten Dosierungen">
+              <span class="mode-icon">⚡</span>
+              <span class="mode-info">
+                <strong>Blitz-Karteikarten</strong>
+                <small>Lücken-Masken für Dosierungen &amp; Fakten</small>
+              </span>
+            </button>
+          </div>
         </div>
 
         <div class="mode-selector">
