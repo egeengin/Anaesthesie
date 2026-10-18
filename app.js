@@ -2407,7 +2407,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? MockExamSimulation.getRegistry(currentQ.id)
         : null;
       const textToSpeak = reg ? reg.speechIntro : (currentQ.stem_de || currentQ.question_de);
-      speakText(getCleanSpeechText(textToSpeak));
+      speakText(getCleanSpeechText(textToSpeak), elBtnSimSpeakStem);
     });
   }
 
