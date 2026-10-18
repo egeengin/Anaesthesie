@@ -1297,12 +1297,18 @@ assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-s
 assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
 
 const freshSwCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
-assert(freshSwCode.includes('facharzt-cache-v7.6'), 'sw.js must be updated to v7.6 for cache bust');
+assert(freshSwCode.includes('facharzt-cache-v7.7'), 'sw.js must be updated to v7.7 for cache bust');
+assert(freshSwCode.includes("url.hostname.includes('translate.google.com')"), 'sw.js must bypass Service Worker interception for audio streams');
 
 const freshIndexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
-assert(freshIndexHtml.includes('app.js?v=7.6'), 'index.html must load app.js?v=7.6');
+assert(freshIndexHtml.includes('app.js?v=7.7'), 'index.html must load app.js?v=7.7');
 
 const freshAppCode = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
+assert(freshAppCode.includes('ensureUnlockedAudioPlayer'), 'app.js must unlock shared HTMLAudioElement synchronously on user gesture');
+const speechEngineMod = require('./js/speech_engine.js');
+const testChunks = speechEngineMod.chunkTextForTTS(speechEngineMod.getCleanSpeechText('Patient: 68 J, BMI 26.8 kg/m². BGA: pH 7.31. Medikation: 2.5 mg/kg Propofol.'), 180);
+assert(testChunks.length === 1, 'Short multi-sentence medical text with colons and decimals must coalesce into 1 smooth chunk instead of fragmenting');
+assert(testChunks[0].includes('26,8 Kilogramm pro Quadratmeter') && testChunks[0].includes('2,5 Milligramm'), 'Decimal points must be converted to German decimal commas without splitting');
 assert(freshAppCode.includes('rec.continuous = true'), 'app.js must enable continuous speech recognition');
 assert(!freshAppCode.includes('if (isMac && isChrome) return true;'), 'app.js must not bypass Web Speech API on macOS Chrome');
 assert(freshAppCode.includes('echoCancellation: true'), 'app.js initMicrophoneHardware must enable echoCancellation');
@@ -1342,7 +1348,7 @@ assert(freshAppCode.includes("document.getElementById('btn-clear-search')"), 'ap
 assert(freshAppCode.includes("wireStepNode('step-node-1'") && freshAppCode.includes("wireStepNode('step-node-4'"), 'app.js must wire #step-node-1..4 interactive stepper navigation');
 assert(!freshAppCode.includes("Fallvignette`"), 'app.js must derive real clinical topic for #hero-focus-title instead of generic : Fallvignette');
 
-console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.6 cache busting.');
+console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.7 cache busting.');
 
 console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 

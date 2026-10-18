@@ -47,6 +47,8 @@
     text = text.replace(/\b1\s*:\s*100\.?000\b/g, 'eins zu einhunderttausend');
     text = text.replace(/\b1\s*:\s*200\.?000\b/g, 'eins zu zweihunderttausend');
     text = text.replace(/\b1\s*:\s*1\b/g, 'eins zu eins');
+    // Convert decimal dots between digits (e.g. 2.5, 7.31, 0.15, 26.8) to German decimal commas (2,5) BEFORE punctuation spacing
+    text = text.replace(/(\d)\.(\d)/g, '$1,$2');
     text = text.replace(/(\d+)\s*[-–—]\s*(\d+)\s*([a-zA-Z%]+)/g, '$1 bis $2 $3');
 
     // 6. Blood Pressure & Hemodynamics
@@ -80,15 +82,16 @@
     text = text.replace(/\bLaktat\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmol\/l)?\b/gi, 'Laktat $1 Millimol pro Liter');
 
     // 8. Dosages & Body Weight
+    text = text.replace(/\b(\d{1,3})\s*J\.?(?=\s|,|;|\)|$)/g, '$1 Jahre');
     text = text.replace(/\b(\d+[,.]?\d*)\s*mg\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Milligramm pro Kilogramm Körpergewicht ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg\s*[\/\\]\s*min\b/gi, '$1 Mikrogramm pro Kilogramm pro Minute ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Mikrogramm pro Kilogramm Körpergewicht ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\b/gi, '$1 Mikrogramm ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*mg\b/gi, '$1 Milligramm ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*ml\b/gi, '$1 Milliliter ');
-    text = text.replace(/\bkg\/m²\b/gi, 'Kilogramm pro Quadratmeter');
+    text = text.replace(/\bkg\s*\/\s*m(?:²|2)/gi, 'Kilogramm pro Quadratmeter');
     text = text.replace(/\bkg\s+KG\b/gi, 'Kilogramm Körpergewicht');
-    text = text.replace(/\b(\d+)\s*kg\b/gi, '$1 Kilogramm');
+    text = text.replace(/\b(\d+[,.]?\d*)\s*kg\b/gi, '$1 Kilogramm');
 
     // Standalone Units
     text = text.replace(/\bmmol\/[lL]\b/g, 'Millimol pro Liter');
@@ -151,10 +154,11 @@
     text = text.replace(/\.{2,}/g, '.');
 
     // 10. Clean whitespace & punctuation (protecting German decimal numbers like 7,28 or 0,6)
-    text = text.replace(/\s+/g, ' ');
     text = text.replace(/(?<!\d),/g, ', ');
     text = text.replace(/,(?!\d|\s)/g, ', ');
-    text = text.replace(/\s*([;:.!?])\s*/g, '$1 ');
+    text = text.replace(/\s*([;:!?])\s*/g, '$1 ');
+    text = text.replace(/(?<!\d)\.(?!\d)\s*/g, '. ');
+    text = text.replace(/\s+/g, ' ');
 
     return text.trim();
   }
@@ -169,13 +173,13 @@
     if (typeof elementOrText === 'string') {
       return prepareMedicalTextForSpeech(elementOrText);
     }
-    const deEl = elementOrText.querySelector ? elementOrText.querySelector('.de-text-block') : null;
+    const deBlocks = elementOrText.querySelectorAll ? elementOrText.querySelectorAll('.de-text-block') : null;
     let raw = '';
-    if (deEl) {
-      raw = deEl.textContent.trim();
+    if (deBlocks && deBlocks.length > 0) {
+      raw = Array.from(deBlocks).map(el => el.textContent.trim()).filter(Boolean).join(' ');
     } else if (elementOrText.cloneNode) {
       const clone = elementOrText.cloneNode(true);
-      clone.querySelectorAll('.tr-sub-container, .tr-subtitle-collapsible, .badge, script, button').forEach(n => n.remove());
+      clone.querySelectorAll('.tr-sub-container, .tr-subtitle-collapsible, .hover-tr-preview, .tr-inline-sub, .sim-rhetoric-phase-tr, .kbd-hint, .badge, script, button').forEach(n => n.remove());
       raw = clone.textContent.trim();
     } else {
       raw = String(elementOrText);
@@ -184,50 +188,67 @@
   }
 
   /**
-   * Chunks long texts at punctuation boundaries for audio synthesis
+   * Chunks long texts at sentence boundaries (never splitting on colons or decimal numbers)
+   * and coalesces adjacent short sentences up to maxLen for smooth, natural prosody.
    * @param {string} text 
    * @param {number} maxLen 
    * @returns {Array<string>} chunks
    */
-  function chunkTextForTTS(text, maxLen = 160) {
+  function chunkTextForTTS(text, maxLen = 180) {
     if (!text) return [];
-    const sentences = text.match(/[^.!?:]+[.!?:]+/g) || [text];
-    const chunks = [];
+    const rawSentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+    const sentences = rawSentences.length ? rawSentences : [text];
+    const finePieces = [];
 
     for (let s of sentences) {
       s = s.trim();
       if (!s || !s.replace(/[.!?:\s,;]/g, '').length) continue;
       if (s.length <= maxLen) {
-        chunks.push(s);
+        finePieces.push(s);
       } else {
-        const parts = s.split(/(?<=[,;])\s+/);
+        const parts = s.split(/(?<=[,;:])\s+/);
         let cur = '';
         for (const p of parts) {
           if (!p.trim() || !p.replace(/[.!?:\s,;]/g, '').length) continue;
-          if ((cur + ' ' + p).trim().length <= maxLen) {
-            cur = (cur + ' ' + p).trim();
+          if ((cur ? cur + ' ' + p : p).trim().length <= maxLen) {
+            cur = (cur ? cur + ' ' + p : p).trim();
           } else {
-            if (cur && cur.replace(/[.!?:\s,;]/g, '').length) chunks.push(cur);
+            if (cur && cur.replace(/[.!?:\s,;]/g, '').length) finePieces.push(cur);
             if (p.length <= maxLen) {
-              cur = p;
+              cur = p.trim();
             } else {
               const words = p.split(/\s+/);
               cur = '';
               for (const w of words) {
-                if ((cur + ' ' + w).trim().length <= maxLen) {
-                  cur = (cur + ' ' + w).trim();
+                if ((cur ? cur + ' ' + w : w).trim().length <= maxLen) {
+                  cur = (cur ? cur + ' ' + w : w).trim();
                 } else {
-                  if (cur && cur.replace(/[.!?:\s,;]/g, '').length) chunks.push(cur);
+                  if (cur && cur.replace(/[.!?:\s,;]/g, '').length) finePieces.push(cur);
                   cur = w;
                 }
               }
             }
           }
         }
-        if (cur && cur.replace(/[.!?:\s,;]/g, '').length) chunks.push(cur);
+        if (cur && cur.replace(/[.!?:\s,;]/g, '').length) finePieces.push(cur);
       }
     }
-    return chunks;
+
+    // Coalesce adjacent short sentences into fuller ~maxLen blocks so TTS reads with continuous breath
+    const mergedChunks = [];
+    let acc = '';
+    for (const piece of finePieces) {
+      if (!acc) {
+        acc = piece;
+      } else if ((acc + ' ' + piece).length <= maxLen) {
+        acc = acc + ' ' + piece;
+      } else {
+        mergedChunks.push(acc);
+        acc = piece;
+      }
+    }
+    if (acc) mergedChunks.push(acc);
+    return mergedChunks;
   }
 
   /**

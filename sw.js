@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v7.6';
+const CACHE_NAME = 'facharzt-cache-v7.7';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -54,8 +54,11 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // External RESTful API: direct network, graceful JSON fallback if offline
+  // External origins: let audio streams & Gemini API pass directly through browser media/network stack
   if (url.origin !== self.location.origin) {
+    if (url.hostname.includes('translate.google.com') || url.hostname.includes('googleapis.com')) {
+      return;
+    }
     event.respondWith(
       fetch(event.request).catch(() => {
         return new Response(JSON.stringify({ offline: true, message: 'Offline mode active' }), {

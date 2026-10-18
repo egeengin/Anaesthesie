@@ -326,71 +326,99 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       return new Blob([view], { type: 'audio/wav' });
     }
 
+    hasCachedSpeech(text, voiceName = 'Charon') {
+      if (!this.ttsCache) return false;
+      const clean = String(text || '').trim().slice(0, 1800);
+      return this.ttsCache.has(`${voiceName}::${clean}`);
+    }
+
     /**
      * Synthesizes natural German studio speech using Gemini 2.5 Flash TTS
      * @param {string} text - Clean German medical text to read
      * @param {string} voiceName - 'Charon' (Prüfer), 'Kore' (Oberärztin), 'Fenrir', 'Aoede'
+     * @param {number} timeoutMs - Max wait before fallback to stream
      * @returns {Promise<Blob>} Playable WAV audio blob
      */
-    async synthesizeSpeech(text, voiceName = 'Charon') {
+    async synthesizeSpeech(text, voiceName = 'Charon', timeoutMs = 4200) {
       const apiKey = this.getApiKey();
       if (!apiKey) throw new Error('MISSING_API_KEY');
       const clean = String(text || '').trim().slice(0, 1800);
       if (!clean) throw new Error('EMPTY_TEXT');
 
       if (!this.ttsCache) this.ttsCache = new Map();
+      if (!this.ttsInFlight) this.ttsInFlight = new Map();
       const cacheKey = `${voiceName}::${clean}`;
       if (this.ttsCache.has(cacheKey)) {
         return this.ttsCache.get(cacheKey);
       }
+      if (this.ttsInFlight.has(cacheKey)) {
+        return this.ttsInFlight.get(cacheKey);
+      }
 
-      const ttsModel = 'gemini-2.5-flash-preview-tts';
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${ttsModel}:generateContent?key=${apiKey}`;
-      const payload = {
-        contents: [{
-          parts: [{
-            text: `Lies den folgenden medizinischen Fachtext auf Deutsch flüssig, natürlich und mit der klaren Betonung eines erfahrenen deutschen Facharztprüfers vor:\n\n${clean}`
-          }]
-        }],
-        generationConfig: {
-          responseModalities: ['AUDIO'],
-          speechConfig: {
-            voiceConfig: {
-              prebuiltVoiceConfig: {
-                voiceName: voiceName || 'Charon'
+      const runPromise = (async () => {
+        const ttsModel = 'gemini-2.5-flash-preview-tts';
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${ttsModel}:generateContent?key=${apiKey}`;
+        const payload = {
+          contents: [{
+            parts: [{
+              text: clean
+            }]
+          }],
+          generationConfig: {
+            responseModalities: ['AUDIO'],
+            speechConfig: {
+              voiceConfig: {
+                prebuiltVoiceConfig: {
+                  voiceName: voiceName || 'Charon'
+                }
               }
             }
           }
+        };
+
+        const controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+        const timerId = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+        let res;
+        try {
+          res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller ? controller.signal : undefined
+          });
+        } finally {
+          if (timerId) clearTimeout(timerId);
         }
-      };
+        if (!res.ok) {
+          const errTxt = await res.text();
+          throw new Error(`TTS HTTP ${res.status}: ${errTxt}`);
+        }
+        const data = await res.json();
+        const parts = data?.candidates?.[0]?.content?.parts || [];
+        const audioPart = parts.find(p => p.inlineData && p.inlineData.data);
+        if (!audioPart) {
+          throw new Error('NO_AUDIO_DATA');
+        }
 
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) {
-        const errTxt = await res.text();
-        throw new Error(`TTS HTTP ${res.status}: ${errTxt}`);
-      }
-      const data = await res.json();
-      const parts = data?.candidates?.[0]?.content?.parts || [];
-      const audioPart = parts.find(p => p.inlineData && p.inlineData.data);
-      if (!audioPart) {
-        throw new Error('NO_AUDIO_DATA');
-      }
+        const mime = (audioPart.inlineData.mimeType || '').toLowerCase();
+        const rateMatch = mime.match(/rate=(\d+)/);
+        const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
+        const wavBlob = GeminiAIEvaluator.pcm16Base64ToWavBlob(audioPart.inlineData.data, sampleRate);
 
-      const mime = (audioPart.inlineData.mimeType || '').toLowerCase();
-      const rateMatch = mime.match(/rate=(\d+)/);
-      const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
-      const wavBlob = GeminiAIEvaluator.pcm16Base64ToWavBlob(audioPart.inlineData.data, sampleRate);
+        if (this.ttsCache.size > 80) {
+          const firstKey = this.ttsCache.keys().next().value;
+          this.ttsCache.delete(firstKey);
+        }
+        this.ttsCache.set(cacheKey, wavBlob);
+        return wavBlob;
+      })();
 
-      if (this.ttsCache.size > 60) {
-        const firstKey = this.ttsCache.keys().next().value;
-        this.ttsCache.delete(firstKey);
+      this.ttsInFlight.set(cacheKey, runPromise);
+      try {
+        return await runPromise;
+      } finally {
+        this.ttsInFlight.delete(cacheKey);
       }
-      this.ttsCache.set(cacheKey, wavBlob);
-      return wavBlob;
     }
 
     /** Converts base64-encoded signed 16-bit little-endian PCM into a playable WAV Blob. */
