@@ -4124,6 +4124,7 @@ Tedavi:
     elPanelVitals.style.display = nextState ? 'block' : 'none';
     elBtnStep2Toggle.setAttribute('aria-expanded', nextState.toString());
     updateStepperIndicator();
+    if (typeof updateThumbBarNextLabel === 'function') updateThumbBarNextLabel();
   }
 
   function toggleStep3(forceOpen = null) {
@@ -4140,6 +4141,7 @@ Tedavi:
     } else {
       if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
     }
+    if (typeof updateThumbBarNextLabel === 'function') updateThumbBarNextLabel();
   }
 
   function revealStep4() {
@@ -4296,35 +4298,42 @@ Tedavi:
         revealAnswer();
       }
     }
-    // Step navigation & self-assessment numbers
+    // Step navigation & 3-button SM-2 self-assessment numbers
     else if (key === '1') {
-      if (elHighImpactRubric && elHighImpactRubric.style.display !== 'none') {
-        selfAssess(true);
+      const isRubricVisible = elHighImpactRubric && elHighImpactRubric.style.display !== 'none';
+      if (isRubricVisible) {
+        selfAssess(true, 5);
       } else {
-        const elQCard = document.getElementById('question-card');
+        const elQCard = document.getElementById('main-quiz-card') || document.getElementById('question-card');
         if (elQCard) elQCard.scrollIntoView({ behavior: 'smooth' });
       }
     }
     else if (key === '2') {
-      if (elHighImpactRubric && elHighImpactRubric.style.display !== 'none') {
-        selfAssess(false);
+      const isRubricVisible = elHighImpactRubric && elHighImpactRubric.style.display !== 'none';
+      if (isRubricVisible) {
+        selfAssess(true, 3);
       } else {
         toggleStep2();
       }
     }
     else if (key === '3') {
-      toggleStep3();
+      const isRubricVisible = elHighImpactRubric && elHighImpactRubric.style.display !== 'none';
+      if (isRubricVisible) {
+        selfAssess(false, 1);
+      } else {
+        toggleStep3();
+      }
     }
     else if (key === '4') {
       revealAnswer();
     }
-    // K, G, R: Knew it (self assessment pass)
+    // K, G, R: Prüfungssicher (self assessment pass)
     else if (key === 'k' || key === 'g' || key === 'r') {
-      selfAssess(true);
+      selfAssess(true, 5);
     }
-    // F: Didn't know (self assessment fail)
+    // F: Unsicher / K.O.-Fehler (self assessment fail)
     else if (key === 'f') {
-      selfAssess(false);
+      selfAssess(false, 1);
     }
     // U: Toggle Turkish translation preview overlay for all visible boxes
     else if (key === 'u') {
@@ -5009,6 +5018,7 @@ Tedavi:
         }
       }
     } else {
+      if (elMcqPromptBox) elMcqPromptBox.style.display = 'none';
       if (elOptionsContainer) {
         elOptionsContainer.innerHTML = '';
         elOptionsContainer.style.display = 'none';
@@ -5135,22 +5145,24 @@ Tedavi:
 
     // FAZ 5: Sync 3-Button Self-Assessment Buttons (Unsicher / Mit Hilfe / Prüfungssicher)
     const userQuality = qState.submitted ? (qState.quality || (qState.isCorrect ? 4 : 1)) : 0;
+    const isSicherQuality = (userQuality === 5 || (userQuality === 4 && qState.isCorrect));
     const elBtnAssessUnsicher = document.getElementById('btn-assess-unsicher');
     const elBtnAssessMittel = document.getElementById('btn-assess-mittel');
     const elBtnAssessSicher = document.getElementById('btn-assess-sicher');
-    const elBtnDockAssessUnsicher = document.getElementById('btn-dock-assess-unsicher');
-    const elBtnDockAssessMittel = document.getElementById('btn-dock-assess-mittel');
-    const elBtnDockAssessSicher = document.getElementById('btn-dock-assess-sicher');
+    const elBtnDockAssessUnsicher = document.getElementById('btn-dock-unsicher') || document.getElementById('btn-dock-assess-unsicher');
+    const elBtnDockAssessMittel = document.getElementById('btn-dock-mittel') || document.getElementById('btn-dock-assess-mittel');
+    const elBtnDockAssessSicher = document.getElementById('btn-dock-sicher') || document.getElementById('btn-dock-assess-sicher');
 
     if (elBtnAssessUnsicher) elBtnAssessUnsicher.classList.toggle('selected', userQuality === 1);
     if (elBtnAssessMittel) elBtnAssessMittel.classList.toggle('selected', userQuality === 3);
-    if (elBtnAssessSicher) elBtnAssessSicher.classList.toggle('selected', userQuality >= 4);
+    if (elBtnAssessSicher) elBtnAssessSicher.classList.toggle('selected', isSicherQuality);
     if (elBtnDockAssessUnsicher) elBtnDockAssessUnsicher.classList.toggle('selected', userQuality === 1);
     if (elBtnDockAssessMittel) elBtnDockAssessMittel.classList.toggle('selected', userQuality === 3);
-    if (elBtnDockAssessSicher) elBtnDockAssessSicher.classList.toggle('selected', userQuality >= 4);
+    if (elBtnDockAssessSicher) elBtnDockAssessSicher.classList.toggle('selected', isSicherQuality);
 
     updateStepperIndicator();
     updateAnalytics();
+    if (typeof updateThumbBarNextLabel === 'function') updateThumbBarNextLabel();
   }
 
   // --- Reveal Answer (Open Q&A) ---
@@ -5165,6 +5177,7 @@ Tedavi:
     state.answers[currentQ.id] = qState;
     saveState();
     renderCurrentQuestion();
+    if (typeof updateThumbBarNextLabel === 'function') updateThumbBarNextLabel();
   }
 
   // --- Self Assessment (Open Q&A) ---
@@ -7051,9 +7064,9 @@ Tedavi:
   const elBtnAssessUnsicher = document.getElementById('btn-assess-unsicher');
   const elBtnAssessMittel = document.getElementById('btn-assess-mittel');
   const elBtnAssessSicher = document.getElementById('btn-assess-sicher');
-  const elBtnDockAssessUnsicher = document.getElementById('btn-dock-assess-unsicher');
-  const elBtnDockAssessMittel = document.getElementById('btn-dock-assess-mittel');
-  const elBtnDockAssessSicher = document.getElementById('btn-dock-assess-sicher');
+  const elBtnDockAssessUnsicher = document.getElementById('btn-dock-unsicher') || document.getElementById('btn-dock-assess-unsicher');
+  const elBtnDockAssessMittel = document.getElementById('btn-dock-mittel') || document.getElementById('btn-dock-assess-mittel');
+  const elBtnDockAssessSicher = document.getElementById('btn-dock-sicher') || document.getElementById('btn-dock-assess-sicher');
 
   if (elBtnAssessUnsicher) elBtnAssessUnsicher.addEventListener('click', () => selfAssess(false, 1));
   if (elBtnAssessMittel) elBtnAssessMittel.addEventListener('click', () => selfAssess(true, 3));
@@ -7186,6 +7199,7 @@ Tedavi:
     elBtnRevealMcqOptions.addEventListener('click', () => {
       if (elOptionsContainer) elOptionsContainer.style.display = 'block';
       elBtnRevealMcqOptions.style.display = 'none';
+      if (typeof updateThumbBarNextLabel === 'function') updateThumbBarNextLabel();
     });
   }
 
@@ -7925,6 +7939,61 @@ Tedavi:
     });
   }
 
+  function updateThumbBarNextLabel() {
+    const tbNext = document.getElementById('tb-next');
+    if (!tbNext) return;
+    const iconSpan = tbNext.querySelector('span');
+    const labelSmall = tbNext.querySelector('small');
+    if (!labelSmall) return;
+
+    const isVisible = (el) => !!(el && el.style.display !== 'none' && (el.offsetParent !== null || el.style.display === 'flex' || el.style.display === 'block' || el.style.display === 'inline-flex'));
+    const rubric = document.getElementById('high-impact-rubric');
+    const btnMcqReveal = document.getElementById('btn-reveal-mcq-options');
+    const optContainer = document.getElementById('options-container');
+    const btnCheck = document.getElementById('btn-check');
+    const curQ = filteredQuestions && filteredQuestions[state.currentIndex];
+    const isSubmitted = !!(curQ && state.answers[curQ.id] && state.answers[curQ.id].submitted);
+
+    if (isVisible(rubric)) {
+      if (iconSpan) iconSpan.textContent = '⏭️';
+      labelSmall.textContent = 'Nächste →';
+      return;
+    }
+    if (isVisible(btnMcqReveal)) {
+      if (iconSpan) iconSpan.textContent = '💡';
+      labelSmall.textContent = 'Aussagen zeigen';
+      return;
+    }
+    if (isVisible(optContainer) && isVisible(btnCheck) && !isSubmitted) {
+      if (iconSpan) iconSpan.textContent = '✅';
+      labelSmall.textContent = 'Auswerten';
+      return;
+    }
+    const adv2 = document.getElementById('btn-advance-to-step2');
+    const bar1 = document.getElementById('step1-transition-bar');
+    if (adv2 && isVisible(bar1)) {
+      if (iconSpan) iconSpan.textContent = '📊';
+      labelSmall.textContent = 'Schritt 2 →';
+      return;
+    }
+    const adv3 = document.getElementById('btn-advance-to-step3');
+    const bar2 = document.getElementById('step2-transition-bar');
+    if (adv3 && isVisible(bar2)) {
+      if (iconSpan) iconSpan.textContent = '👨‍⚕️';
+      labelSmall.textContent = 'Schritt 3 →';
+      return;
+    }
+    const adv4 = document.getElementById('btn-advance-to-step4');
+    const bar3 = document.getElementById('step3-transition-bar');
+    if (adv4 && isVisible(bar3)) {
+      if (iconSpan) iconSpan.textContent = '💡';
+      labelSmall.textContent = 'Lösung zeigen';
+      return;
+    }
+    if (iconSpan) iconSpan.textContent = '💡';
+    labelSmall.textContent = 'Lösung / Weiter →';
+  }
+
   function initSeniorUXEnhancements() {
     // 1. Hero Onboarding & Focus Bar
     const elBtnHeroStart = document.getElementById('btn-hero-start-session');
@@ -7997,26 +8066,46 @@ Tedavi:
       clickIfExists('btn-toggle-mic');
     });
     if (tbNext) tbNext.addEventListener('click', () => {
-      // 1. MCQ options flow check
-      const btnCheck = document.getElementById('btn-check');
-      if (btnCheck && btnCheck.offsetParent !== null && !btnCheck.disabled) {
-        btnCheck.click();
+      // 1. If rubric is already revealed, advance to next question
+      const rubric = document.getElementById('high-impact-rubric');
+      if (rubric && rubric.offsetParent !== null) {
+        clickIfExists('btn-next');
         return;
       }
+
+      // 2. If MCQ options are collapsed behind Prüfer-Zwischenfrage, reveal them first
       const btnMcqReveal = document.getElementById('btn-reveal-mcq-options');
       if (btnMcqReveal && btnMcqReveal.offsetParent !== null) {
         btnMcqReveal.click();
         return;
       }
 
-      // 2. Progressive steps
+      // 3. If MCQ options container is visible and unsubmitted, evaluate MCQ choices
+      const optContainer = document.getElementById('options-container');
+      const btnCheck = document.getElementById('btn-check');
+      const curQ = filteredQuestions && filteredQuestions[state.currentIndex];
+      const isSubmitted = !!(curQ && state.answers[curQ.id] && state.answers[curQ.id].submitted);
+      if (optContainer && optContainer.offsetParent !== null && btnCheck && btnCheck.offsetParent !== null && !btnCheck.disabled && !isSubmitted) {
+        btnCheck.click();
+        return;
+      }
+
+      // 4. Progressive step advancement (Step 1 -> 2 -> 3 -> 4)
       const adv = ['btn-advance-to-step2', 'btn-advance-to-step3', 'btn-advance-to-step4']
         .map(id => document.getElementById(id)).find(b => b && b.offsetParent !== null);
-      if (adv) { adv.click(); return; }
-      const rubric = document.getElementById('high-impact-rubric');
-      if (rubric && rubric.offsetParent !== null) { clickIfExists('btn-next'); return; }
+      if (adv) {
+        adv.click();
+        return;
+      }
+
+      // 5. Reveal rubric if still hidden
       const rev = document.getElementById('btn-reveal');
-      if (rev && rev.offsetParent !== null) { rev.click(); return; }
+      if (rev && rev.offsetParent !== null) {
+        rev.click();
+        return;
+      }
+
+      // 6. Fallback: advance to next question
       clickIfExists('btn-next');
     });
 
@@ -8105,6 +8194,7 @@ Tedavi:
         toggleStep2(true);
         if (elBar1) elBar1.style.display = 'none';
         if (elBar2) elBar2.style.display = 'flex';
+        updateThumbBarNextLabel();
         const elVitals = document.getElementById('step2-container');
         if (elVitals) elVitals.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
@@ -8115,6 +8205,7 @@ Tedavi:
         toggleStep3(true);
         if (elBar2) elBar2.style.display = 'none';
         if (elBar3) elBar3.style.display = 'flex';
+        updateThumbBarNextLabel();
         const elIntervention = document.getElementById('step3-container');
         if (elIntervention) elIntervention.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
@@ -8130,12 +8221,13 @@ Tedavi:
           if (elRevealBtn) elRevealBtn.click();
         }
         switchRubricTab('solution');
+        updateThumbBarNextLabel();
         const elRubric = document.getElementById('high-impact-rubric');
         if (elRubric) elRubric.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
 
-    // Hide mobile thumb bar during Auth or when any modal backdrop is active
+    // Hide mobile thumb bar during Auth or when any modal backdrop is active (scoped observer)
     function syncThumbBarModalVisibility() {
       const elBar = document.getElementById('mobile-thumb-bar');
       if (!elBar) return;
@@ -8144,8 +8236,12 @@ Tedavi:
       elBar.classList.toggle('is-hidden-modal', isAuthOpen || isAnyModalActive);
     }
     const modalObserver = new MutationObserver(syncThumbBarModalVisibility);
-    modalObserver.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class', 'style'] });
+    const modalTargets = [elAuthModal, ...document.querySelectorAll('.modal-backdrop')].filter(Boolean);
+    modalTargets.forEach(target => {
+      modalObserver.observe(target, { attributes: true, attributeFilter: ['class', 'style'] });
+    });
     syncThumbBarModalVisibility();
+    updateThumbBarNextLabel();
 
     // 5. Compact Media Bar Handlers
     const elBtnToggleKeyboard = document.getElementById('btn-toggle-keyboard-mode');

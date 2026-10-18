@@ -1317,6 +1317,16 @@ assert(freshAppCode.includes("btnCheck.offsetParent !== null"), 'tbNext must che
 assert(freshAppCode.includes("tbListen.classList.add('is-active')"), 'speakMedicalText must set tb-listen is-active');
 assert(freshAppCode.includes("tbMic.classList.toggle('is-active'"), 'updateRecordingUIState must toggle tb-mic is-active');
 assert(freshAppCode.includes("elBar.classList.toggle('is-hidden-modal'"), 'app.js must hide thumb bar when modals are active');
+assert(!freshAppCode.includes("modalObserver.observe(document.body, { attributes: true, subtree: true"), 'modalObserver must not observe document.body with subtree: true');
+assert(freshAppCode.includes("document.getElementById('btn-dock-unsicher')"), 'app.js must wire dock SM-2 button #btn-dock-unsicher');
+assert(freshAppCode.includes("document.getElementById('btn-dock-mittel')"), 'app.js must wire dock SM-2 button #btn-dock-mittel');
+assert(freshAppCode.includes("document.getElementById('btn-dock-sicher')"), 'app.js must wire dock SM-2 button #btn-dock-sicher');
+assert(freshAppCode.includes("function updateThumbBarNextLabel()"), 'app.js must implement updateThumbBarNextLabel()');
+assert(freshAppCode.includes("if (elMcqPromptBox) elMcqPromptBox.style.display = 'none';"), 'renderCurrentQuestion must hide elMcqPromptBox on open cases');
+const tbNextRubricIdx = freshAppCode.indexOf("if (tbNext) tbNext.addEventListener('click'");
+const rubricCheckIdx = freshAppCode.indexOf("const rubric = document.getElementById('high-impact-rubric');", tbNextRubricIdx);
+const advCheckIdx = freshAppCode.indexOf("'btn-advance-to-step2'", tbNextRubricIdx);
+assert(rubricCheckIdx > tbNextRubricIdx && advCheckIdx > rubricCheckIdx, 'tbNext must check high-impact-rubric and progressive steps cleanly');
 
 console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.4 cache busting.');
 
