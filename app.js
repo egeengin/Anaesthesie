@@ -2421,7 +2421,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function triggerCrisisComplication() {
+  function triggerCrisisComplication(options = {}) {
+    const playAudio = !!(options && options.playAudio === true);
     filteredQuestions = getFilteredQuestions();
     const currentQ = filteredQuestions[state.currentIndex];
     if (!currentQ) return;
@@ -2479,12 +2480,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elMonDashboard) elMonDashboard.classList.add('vital-crisis-flash');
 
     toggleStep2(true); // Open vitals panel if closed
-    playAudioTone(880, 'sine', 0.35); // Emergency alert beep
-    speakText(reg.crisis.prompt_de);
+    if (playAudio) {
+      playAudioTone(880, 'sine', 0.35); // Emergency alert beep
+      speakText(reg.crisis.prompt_de);
+    }
   }
 
   if (elBtnSimTriggerCrisis) {
-    elBtnSimTriggerCrisis.addEventListener('click', triggerCrisisComplication);
+    elBtnSimTriggerCrisis.addEventListener('click', () => triggerCrisisComplication({ playAudio: false }));
   }
 
   if (elBtnSimSpeakCrisis) {
@@ -4134,11 +4137,7 @@ Tedavi:
     elPanelExaminer.style.display = nextState ? 'block' : 'none';
     elBtnStep3Toggle.setAttribute('aria-expanded', nextState.toString());
     updateStepperIndicator();
-    if (nextState) {
-      if (typeof triggerCrisisComplication === 'function') {
-        triggerCrisisComplication();
-      }
-    } else {
+    if (!nextState) {
       if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
     }
     if (typeof updateThumbBarNextLabel === 'function') updateThumbBarNextLabel();
@@ -8276,6 +8275,9 @@ Tedavi:
   }
 
   // Initializing App
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
   initCategoryDropdown();
   initImageLightbox();
   initHoverTranslationHUD();

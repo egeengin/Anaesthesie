@@ -1292,10 +1292,10 @@ assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-s
 assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
 
 const freshSwCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
-assert(freshSwCode.includes('facharzt-cache-v7.5'), 'sw.js must be updated to v7.5 for cache bust');
+assert(freshSwCode.includes('facharzt-cache-v7.6'), 'sw.js must be updated to v7.6 for cache bust');
 
 const freshIndexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
-assert(freshIndexHtml.includes('app.js?v=7.4'), 'index.html must load app.js?v=7.4');
+assert(freshIndexHtml.includes('app.js?v=7.6'), 'index.html must load app.js?v=7.6');
 
 const freshAppCode = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
 assert(freshAppCode.includes('rec.continuous = true'), 'app.js must enable continuous speech recognition');
@@ -1323,12 +1323,14 @@ assert(freshAppCode.includes("document.getElementById('btn-dock-mittel')"), 'app
 assert(freshAppCode.includes("document.getElementById('btn-dock-sicher')"), 'app.js must wire dock SM-2 button #btn-dock-sicher');
 assert(freshAppCode.includes("function updateThumbBarNextLabel()"), 'app.js must implement updateThumbBarNextLabel()');
 assert(freshAppCode.includes("if (elMcqPromptBox) elMcqPromptBox.style.display = 'none';"), 'renderCurrentQuestion must hide elMcqPromptBox on open cases');
+assert(freshAppCode.includes("const playAudio = !!(options && options.playAudio === true);"), 'triggerCrisisComplication must guard audio playback behind options.playAudio === true');
+assert(!freshAppCode.includes("if (typeof triggerCrisisComplication === 'function')"), 'toggleStep3 must not auto-trigger triggerCrisisComplication on step/page load');
 const tbNextRubricIdx = freshAppCode.indexOf("if (tbNext) tbNext.addEventListener('click'");
 const rubricCheckIdx = freshAppCode.indexOf("const rubric = document.getElementById('high-impact-rubric');", tbNextRubricIdx);
 const advCheckIdx = freshAppCode.indexOf("'btn-advance-to-step2'", tbNextRubricIdx);
 assert(rubricCheckIdx > tbNextRubricIdx && advCheckIdx > rubricCheckIdx, 'tbNext must check high-impact-rubric and progressive steps cleanly');
 
-console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.4 cache busting.');
+console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.6 cache busting.');
 
 console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
