@@ -8714,6 +8714,14 @@ details.onboarding-guide summary::-webkit-details-marker {
   display: none;
 }
 
+/* Interactive Stepper Nodes */
+.stepper-step {
+  cursor: pointer;
+}
+.stepper-step:hover {
+  opacity: 0.9;
+}
+
 /* Mobile thumb bar: hidden on desktop */
 .mobile-thumb-bar { display: none; }
 

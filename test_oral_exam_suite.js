@@ -1332,6 +1332,10 @@ assert(rubricCheckIdx > tbNextRubricIdx && advCheckIdx > rubricCheckIdx, 'tbNext
 assert(!freshIndexHtml.includes('puan getiren'), 'index.html must not refer to point-scoring in oral exam subtitle');
 assert(freshIndexHtml.includes('Bestanden oder Nicht bestanden') && freshIndexHtml.includes('Geçti / Kaldı'), 'index.html must include bilingual oral exam Bestanden / Geçti-Kaldı guidance');
 assert(!freshAppCode.includes("elOnboardingGuide.style.display = 'none'"), 'app.js must not permanently hide #onboarding-guide-strip with display:none');
+assert(freshAppCode.includes("document.getElementById('btn-close-spickzettel')"), 'app.js must wire #btn-close-spickzettel close button');
+assert(freshAppCode.includes("document.getElementById('btn-clear-search')"), 'app.js must wire #btn-clear-search clear button');
+assert(freshAppCode.includes("wireStepNode('step-node-1'") && freshAppCode.includes("wireStepNode('step-node-4'"), 'app.js must wire #step-node-1..4 interactive stepper navigation');
+assert(!freshAppCode.includes("Fallvignette`"), 'app.js must derive real clinical topic for #hero-focus-title instead of generic : Fallvignette');
 
 console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.6 cache busting.');
 

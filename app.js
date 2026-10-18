@@ -4522,7 +4522,13 @@ Tedavi:
       else if (state.filterMode === 'dus_examiners') stageLabel = 'ÄKNO Düsseldorf';
       else if (currentQ.stage) stageLabel = `Stufe ${currentQ.stage}`;
       elHeroStageBadge.textContent = `${stageLabel} • Fall ${state.currentIndex + 1}/${filteredQuestions.length}`;
-      elHeroTitle.textContent = currentQ.category ? `${currentQ.category}: ${currentQ.title || 'Fallvignette'}` : (currentQ.title || 'Mündlicher Prüfungsfall');
+
+      const rawStemFirstLine = currentQ.stem_de ? currentQ.stem_de.replace(/<[^>]+>/g, '').split(/[.?!:\n]/)[0].trim() : '';
+      const shortStem = rawStemFirstLine.length > 72 ? rawStemFirstLine.slice(0, 69).trim() + '…' : rawStemFirstLine;
+      const caseTopic = (reg && reg.topic) || currentQ.title || shortStem || 'Mündlicher Prüfungsfall';
+      elHeroTitle.textContent = currentQ.category && !caseTopic.includes(currentQ.category)
+        ? `${currentQ.category} • ${caseTopic}`
+        : caseTopic;
     }
     if (elHeroCTA) {
       const isContinuation = Object.keys(state.answers || {}).length > 0;
@@ -4644,7 +4650,7 @@ Tedavi:
     const elBtnToggleSpick = document.getElementById('btn-toggle-spickzettel');
     if (elVorabSpickBox) elVorabSpickBox.style.display = 'none';
     if (elBtnToggleSpick) {
-      elBtnToggleSpick.innerHTML = '<span>📚</span> 30-Sekunden-Spickzettel (Vorab-Wissen) <span class="spickzettel-badge">Sıfırdan Başlayanlar</span>';
+      elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>';
       elBtnToggleSpick.classList.remove('active');
     }
     if (elSpickzettelContent && typeof CurriculumEngine !== 'undefined') {
@@ -4666,7 +4672,9 @@ Tedavi:
 
     // 🗣️ Düsseldorfer Redefluss-Baukasten (Schritt 1-3 deutsche Formulierungshilfen)
     const elRedefChip1 = document.getElementById('redefluss-chip-step1');
+    const elBtnRedefPill = document.getElementById('btn-toggle-redefluss-pill');
     if (elRedefChip1) elRedefChip1.style.display = 'none';
+    if (elBtnRedefPill) elBtnRedefPill.classList.remove('active');
     ['redefluss-body-step1', 'redefluss-body-step2', 'redefluss-body-step3'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
@@ -5577,6 +5585,11 @@ Tedavi:
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
+      const elToolbar = document.getElementById('toolbar-clean');
+      const elBtnFilters = document.getElementById('btn-toggle-filters');
+      if (elToolbar && (elToolbar.style.display === 'none' || !elToolbar.style.display) && elBtnFilters) {
+        elBtnFilters.click();
+      }
       if (elSearchInput) elSearchInput.focus();
     }
   });
@@ -7178,16 +7191,26 @@ Tedavi:
 
   // --- FAZ 3: Spickzettel & Prüfer-Zwischenfrage Handlers ---
   const elBtnToggleSpick = document.getElementById('btn-toggle-spickzettel');
+  const elBtnCloseSpick = document.getElementById('btn-close-spickzettel');
   const elVorabSpickBox = document.getElementById('vorab-spickzettel-box');
   if (elBtnToggleSpick && elVorabSpickBox) {
     elBtnToggleSpick.addEventListener('click', () => {
       const isVisible = elVorabSpickBox.style.display === 'block';
       elVorabSpickBox.style.display = isVisible ? 'none' : 'block';
       if (!isVisible) {
-        elBtnToggleSpick.innerHTML = '<span>✕</span> 30-Sekunden-Spickzettel schließen';
+        elBtnToggleSpick.innerHTML = '<span>✕ 30-Sekunden-Spickzettel schließen</span>';
         elBtnToggleSpick.classList.add('active');
       } else {
-        elBtnToggleSpick.innerHTML = '<span>📚</span> 30-Sekunden-Spickzettel (Vorab-Wissen) <span class="spickzettel-badge">Sıfırdan Başlayanlar</span>';
+        elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>';
+        elBtnToggleSpick.classList.remove('active');
+      }
+    });
+  }
+  if (elBtnCloseSpick && elVorabSpickBox) {
+    elBtnCloseSpick.addEventListener('click', () => {
+      elVorabSpickBox.style.display = 'none';
+      if (elBtnToggleSpick) {
+        elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>';
         elBtnToggleSpick.classList.remove('active');
       }
     });
@@ -7604,16 +7627,36 @@ Tedavi:
     });
   }
 
-  // Live Medical Full-Text Search Input
+  // Live Medical Full-Text Search Input & Clear Button
+  const elBtnClearSearch = document.getElementById('btn-clear-search');
   if (elSearchInput) {
     let searchDebounceTimer = null;
+    if (elBtnClearSearch) {
+      elBtnClearSearch.style.display = elSearchInput.value.trim() ? 'block' : 'none';
+    }
     elSearchInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (elBtnClearSearch) {
+        elBtnClearSearch.style.display = val.trim() ? 'block' : 'none';
+      }
       clearTimeout(searchDebounceTimer);
       searchDebounceTimer = setTimeout(() => {
-        state.searchQuery = e.target.value.trim();
+        state.searchQuery = val.trim();
         state.currentIndex = 0;
         renderCurrentQuestion();
       }, 250);
+    });
+  }
+  if (elBtnClearSearch) {
+    elBtnClearSearch.addEventListener('click', () => {
+      if (elSearchInput) {
+        elSearchInput.value = '';
+        elSearchInput.focus();
+      }
+      elBtnClearSearch.style.display = 'none';
+      state.searchQuery = '';
+      state.currentIndex = 0;
+      renderCurrentQuestion();
     });
   }
 
@@ -8165,6 +8208,14 @@ Tedavi:
           toggleSimExaminerDrawer();
         }
       });
+      elExaminerPillTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (typeof toggleSimExaminerDrawer === 'function') {
+            toggleSimExaminerDrawer();
+          }
+        }
+      });
     }
 
     const elBtnToggleRedeflussPill = document.getElementById('btn-toggle-redefluss-pill');
@@ -8181,7 +8232,7 @@ Tedavi:
       });
     }
 
-    // 4. Progressive Step Advance Buttons (1 -> 2 -> 3 -> 4)
+    // 4. Progressive Step Advance Buttons (1 -> 2 -> 3 -> 4) & Stepper Node Click Navigation
     const elBtnAdv2 = document.getElementById('btn-advance-to-step2');
     const elBtnAdv3 = document.getElementById('btn-advance-to-step3');
     const elBtnAdv4 = document.getElementById('btn-advance-to-step4');
@@ -8226,6 +8277,60 @@ Tedavi:
         if (elRubric) elRubric.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
+
+    // Wire Stepper Nodes (#step-node-1..4) for direct step navigation
+    const wireStepNode = (nodeId, actionFn) => {
+      const elNode = document.getElementById(nodeId);
+      if (!elNode) return;
+      elNode.addEventListener('click', actionFn);
+      elNode.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          actionFn();
+        }
+      });
+    };
+
+    wireStepNode('step-node-1', () => {
+      const elStep1 = document.getElementById('step1-container');
+      if (elStep1) elStep1.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    wireStepNode('step-node-2', () => {
+      toggleStep2(true);
+      if (elBar1) elBar1.style.display = 'none';
+      if (elBar2 && !state.step3Expanded) elBar2.style.display = 'flex';
+      updateThumbBarNextLabel();
+      const elVitals = document.getElementById('step2-container');
+      if (elVitals) elVitals.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    wireStepNode('step-node-3', () => {
+      if (!state.step2Expanded) toggleStep2(true);
+      toggleStep3(true);
+      if (elBar1) elBar1.style.display = 'none';
+      if (elBar2) elBar2.style.display = 'none';
+      if (elBar3 && !state.answerRevealed) elBar3.style.display = 'flex';
+      updateThumbBarNextLabel();
+      const elIntervention = document.getElementById('step3-container');
+      if (elIntervention) elIntervention.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    wireStepNode('step-node-4', () => {
+      if (elBar1) elBar1.style.display = 'none';
+      if (elBar2) elBar2.style.display = 'none';
+      if (elBar3) elBar3.style.display = 'none';
+      if (typeof revealAnswer === 'function') {
+        revealAnswer();
+      } else {
+        const elRevealBtn = document.getElementById('btn-reveal');
+        if (elRevealBtn) elRevealBtn.click();
+      }
+      switchRubricTab('solution');
+      updateThumbBarNextLabel();
+      const elRubric = document.getElementById('high-impact-rubric');
+      if (elRubric) elRubric.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
 
     // Hide mobile thumb bar during Auth or when any modal backdrop is active (scoped observer)
     function syncThumbBarModalVisibility() {
