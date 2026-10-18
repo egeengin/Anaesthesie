@@ -635,6 +635,11 @@ assert(cssCode.includes('.audio-stop-pill'), 'styles.css must style .audio-stop-
 assert(cssCode.includes('.audio-listen-pill'), 'styles.css must style .audio-listen-pill');
 assert(appCode.includes('isFallbackSpeaking'), 'app.js must guard against concurrent fallback speech loops');
 assert(appCode.includes('fallbackTriggered'), 'app.js must implement fallbackTriggered single-flight guard');
+assert(appCode.includes('speechRate: 1.15'), 'app.js must default speechRate to 1.15x');
+assert(appCode.includes('preloadAudioChunk'), 'app.js must pre-buffer next sentence for gapless TTS playback');
+assert(htmlContent.includes('tts-voice-mode-select'), 'index.html must include #tts-voice-mode-select for Gemini Studio / Stream / System voice selection');
+const geminiCode = fs.readFileSync(path.join(__dirname, 'js/gemini_evaluator.js'), 'utf8');
+assert(geminiCode.includes('synthesizeSpeech') && geminiCode.includes('pcm16Base64ToWavBlob'), 'gemini_evaluator.js must implement Gemini neural TTS synthesizeSpeech and PCM16 WAV converter');
 
 // 29. Test Complete Turkish Translations for All 54 Düsseldorf Simulation Cases & Protocols
 for (const [qid, data] of Object.entries(DUS_SIMULATION_REGISTRY)) {

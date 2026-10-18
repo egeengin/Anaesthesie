@@ -484,36 +484,47 @@
               </button>
             </div>
 
-            <!-- YouTube-Style Playback Speed Menu & Range Slider -->
+            <!-- YouTube-Style Playback Speed & Natural Voice Engine Menu -->
             <div class="speed-control-wrapper" id="speed-control-wrapper">
-              <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" type="button" title="Wiedergabegeschwindigkeit anpassen (0.5x – 1.5x)">
+              <button id="btn-audio-speed" class="oral-tool-btn audio-speed-pill" type="button" title="Wiedergabegeschwindigkeit &amp; Stimme anpassen (Standard: 1.15x)">
                 <span class="tool-icon">⚡</span>
-                <span id="audio-speed-display">0.95x</span>
+                <span id="audio-speed-display">1.15x</span>
                 <span class="speed-caret">▾</span>
               </button>
 
-              <div id="audio-speed-dropdown" class="audio-speed-dropdown" style="display: none;" role="dialog" aria-label="Wiedergabegeschwindigkeit">
+              <div id="audio-speed-dropdown" class="audio-speed-dropdown" style="display: none;" role="dialog" aria-label="Wiedergabegeschwindigkeit &amp; Stimme">
                 <div class="speed-dropdown-header">
-                  <span class="speed-header-title">⚡ Geschwindigkeit</span>
-                  <span id="speed-slider-val-badge" class="speed-val-badge">0.95x</span>
+                  <span class="speed-header-title">⚡ Geschwindigkeit / Hız</span>
+                  <span id="speed-slider-val-badge" class="speed-val-badge">1.15x</span>
                 </div>
                 
                 <!-- Interactive Slider Bar -->
                 <div class="speed-slider-container">
-                  <span class="slider-limit-label">0.5x</span>
-                  <input type="range" id="audio-speed-slider" class="speed-range-slider" min="0.5" max="1.5" step="0.05" value="0.95" aria-label="Geschwindigkeit Regler">
-                  <span class="slider-limit-label">1.5x</span>
+                  <span class="slider-limit-label">0.75x</span>
+                  <input type="range" id="audio-speed-slider" class="speed-range-slider" min="0.75" max="1.75" step="0.05" value="1.15" aria-label="Geschwindigkeit Regler">
+                  <span class="slider-limit-label">1.75x</span>
                 </div>
 
                 <!-- YouTube-Style Presets -->
                 <div class="speed-presets-list" id="speed-presets-list">
-                  <button class="speed-preset-item" type="button" data-rate="0.75">0.75x</button>
-                  <button class="speed-preset-item" type="button" data-rate="0.85">0.85x</button>
-                  <button class="speed-preset-item active" type="button" data-rate="0.95">0.95x <span class="speed-preset-tag">(Optimal)</span></button>
-                  <button class="speed-preset-item" type="button" data-rate="1.0">1.0x <span class="speed-preset-tag">(Normal)</span></button>
-                  <button class="speed-preset-item" type="button" data-rate="1.15">1.15x</button>
-                  <button class="speed-preset-item" type="button" data-rate="1.25">1.25x</button>
-                  <button class="speed-preset-item" type="button" data-rate="1.5">1.5x</button>
+                  <button class="speed-preset-item" type="button" data-rate="0.9">0.9x</button>
+                  <button class="speed-preset-item" type="button" data-rate="1.0">1.0x</button>
+                  <button class="speed-preset-item active" type="button" data-rate="1.15">1.15x <span class="speed-preset-tag">(Standard)</span></button>
+                  <button class="speed-preset-item" type="button" data-rate="1.25">1.25x <span class="speed-preset-tag">(Flüssig)</span></button>
+                  <button class="speed-preset-item" type="button" data-rate="1.4">1.4x</button>
+                  <button class="speed-preset-item" type="button" data-rate="1.6">1.6x</button>
+                </div>
+
+                <!-- Voice Engine Selector (Gemini Neural Studio vs. Gapless Stream vs. Siri) -->
+                <div class="voice-engine-selector-box" style="margin-top: 0.65rem; padding-top: 0.55rem; border-top: 1px solid var(--card-border);">
+                  <label for="tts-voice-mode-select" style="display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">🎙️ Stimme / Ses Motoru:</label>
+                  <select id="tts-voice-mode-select" style="width: 100%; font-size: 0.8rem; padding: 0.35rem 0.5rem; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg-secondary); color: var(--text-main);">
+                    <option value="gemini:Charon">🤖 Gemini Studio: Prof. Charon (Prüfer, Natürlich)</option>
+                    <option value="gemini:Kore">🤖 Gemini Studio: OÄ Kore (Weiblich, Klar)</option>
+                    <option value="gemini:Fenrir">🤖 Gemini Studio: OA Fenrir (Dynamisch)</option>
+                    <option value="stream">⚡ Schnell-Stream (Sofortstart, lückenlos)</option>
+                    <option value="system">🍎 System / Siri Neural (Offline)</option>
+                  </select>
                 </div>
               </div>
             </div>

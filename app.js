@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     randomOrder: false,
     studyMode: 'simulation', // 'simulation' (Mode A), 'guideline' (Mode B), 'flashcard' (Mode C)
     userNotes: {},
-    speechRate: 0.95,        // 0.8x, 0.95x, 1.15x
+    speechRate: 1.15,        // Faster natural default (0.75x .. 1.75x)
+    ttsVoiceMode: localStorage.getItem('facharzt_tts_voice_mode') || 'gemini:Charon',
     preferredVoiceName: localStorage.getItem('facharzt_preferred_voice') || '',
     speechPitch: 1.0,
     stepState: {}      // { [qId]: { step: 1..4, vitalsOpen: bool, examinerOpen: bool, revealed: bool, clozesUnmasked: bool } }
@@ -5944,6 +5945,10 @@ Tedavi:
       if (saved) {
         const parsed = JSON.parse(saved);
         state = { ...state, ...parsed };
+        if (!state.speechRateMigratedV2) {
+          state.speechRate = 1.15;
+          state.speechRateMigratedV2 = true;
+        }
       }
     } catch (e) {
       console.error('LocalStorage read error:', e);
@@ -5979,6 +5984,10 @@ Tedavi:
     const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
     if (elAudioSpeedDisplay && state.speechRate) {
       elAudioSpeedDisplay.textContent = `${state.speechRate}x`;
+    }
+    const elTtsVoiceSelect = document.getElementById('tts-voice-mode-select');
+    if (elTtsVoiceSelect && state.ttsVoiceMode) {
+      elTtsVoiceSelect.value = state.ttsVoiceMode;
     }
 
     if (elAmbossPillarFilter && state.ambossPillarFilter) {
@@ -6538,8 +6547,11 @@ Tedavi:
     return engine ? engine.getCleanVoiceDisplayName(name) : (name || 'Stimme');
   }
 
-  // --- Natural Neural Stream Player (Zero-Configuration for Mac & iPhone) ---
+  // --- Natural Neural Stream & Gemini Studio TTS Player (Mac & iPhone) ---
   let naturalAudioPlayer = null;
+  let preloadedNextAudio = null;
+  let preloadedNextIndex = -1;
+  let activeBlobObjectUrl = null;
   let naturalAudioQueue = [];
   let currentChunkIndex = 0;
   let isSpeakingMedical = false;
@@ -6550,8 +6562,7 @@ Tedavi:
   let activeFallbackSession = 0;
 
   function initNaturalAudioPlayer() {
-    // No-op: each chunk now gets its own fresh Audio() instance in playCurrentAudioChunk().
-    // Kept for backwards compatibility in case it's referenced elsewhere.
+    // No-op: each chunk gets its own Audio() instance (with pre-buffering for gapless playback).
   }
 
   function chunkTextForTTS(text, maxLen = 160) {
@@ -6560,6 +6571,33 @@ Tedavi:
       return engine.chunkTextForTTS(text, maxLen);
     }
     return [text];
+  }
+
+  function preloadAudioChunk(idx) {
+    if (idx < 0 || idx >= naturalAudioQueue.length) {
+      preloadedNextAudio = null;
+      preloadedNextIndex = -1;
+      return;
+    }
+    const nextText = (naturalAudioQueue[idx] || '').trim();
+    if (!nextText) {
+      preloadedNextAudio = null;
+      preloadedNextIndex = -1;
+      return;
+    }
+    try {
+      const audio = new Audio();
+      try { audio.referrerPolicy = 'no-referrer'; } catch (e) {}
+      audio.preload = 'auto';
+      const encoded = encodeURIComponent(nextText);
+      audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
+      audio.load();
+      preloadedNextAudio = audio;
+      preloadedNextIndex = idx;
+    } catch (e) {
+      preloadedNextAudio = null;
+      preloadedNextIndex = -1;
+    }
   }
 
   function playCurrentAudioChunk() {
@@ -6578,7 +6616,7 @@ Tedavi:
     const capturedSession = _speakSessionId;
     const capturedIndex   = currentChunkIndex;
 
-    // Completely silence previous player before creating a fresh one
+    // Completely silence previous player before switching to current or preloaded player
     if (naturalAudioPlayer) {
       try {
         naturalAudioPlayer.onended = null;
@@ -6605,10 +6643,23 @@ Tedavi:
       fallbackToWebSpeech();
     }
 
-    naturalAudioPlayer = new Audio();
-    try {
-      naturalAudioPlayer.referrerPolicy = 'no-referrer';
-    } catch (e) {}
+    if (preloadedNextAudio && preloadedNextIndex === currentChunkIndex) {
+      naturalAudioPlayer = preloadedNextAudio;
+      preloadedNextAudio = null;
+      preloadedNextIndex = -1;
+    } else {
+      naturalAudioPlayer = new Audio();
+      try {
+        naturalAudioPlayer.referrerPolicy = 'no-referrer';
+      } catch (e) {}
+      const encoded = encodeURIComponent(chunkText.trim());
+      naturalAudioPlayer.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
+    }
+
+    // Immediately pre-buffer the next sentence so there is zero pause between sentences
+    if (currentChunkIndex + 1 < naturalAudioQueue.length) {
+      preloadAudioChunk(currentChunkIndex + 1);
+    }
 
     naturalAudioPlayer.onended = () => {
       if (!isSpeakingMedical || _speakSessionId !== capturedSession || currentChunkIndex !== capturedIndex) {
@@ -6626,9 +6677,7 @@ Tedavi:
       triggerFallback();
     };
 
-    const encoded = encodeURIComponent(chunkText.trim());
-    naturalAudioPlayer.src = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=de&client=tw-ob`;
-    naturalAudioPlayer.playbackRate = state.speechRate || 0.95;
+    naturalAudioPlayer.playbackRate = state.speechRate || 1.15;
 
     const playPromise = naturalAudioPlayer.play();
     if (playPromise !== undefined) {
@@ -6644,7 +6693,7 @@ Tedavi:
     const allVoices = window.speechSynthesis.getVoices();
     if (!allVoices || !allVoices.length) return;
     // Specifically lock to Google Deutsch or highest quality German neural voice
-    preferredGermanVoice = allVoices.find(v => v.lang.startsWith('de') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Online')))
+    preferredGermanVoice = allVoices.find(v => v.lang.startsWith('de') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('Premium') || v.name.includes('Enhanced')))
       || allVoices.find(v => v.lang.startsWith('de') && !v.name.includes('Compact'))
       || allVoices.find(v => v.lang.startsWith('de'))
       || null;
@@ -6657,7 +6706,7 @@ Tedavi:
 
   function stopMedicalSpeech() {
     isSpeakingMedical = false;
-    _speakSessionId++; // Invalidate any pending 'ended' events from the old session
+    _speakSessionId++; // Invalidate any pending 'ended' or async TTS events from the old session
     isFallbackSpeaking = false;
 
     // Stop HTML5 Audio stream — null out handlers FIRST so no callback fires.
@@ -6667,7 +6716,21 @@ Tedavi:
         naturalAudioPlayer.onerror = null;
         naturalAudioPlayer.pause();
       } catch (e) {}
-      naturalAudioPlayer = null; // drop reference; next chunk gets a fresh instance
+      naturalAudioPlayer = null;
+    }
+
+    if (preloadedNextAudio) {
+      try {
+        preloadedNextAudio.pause();
+        preloadedNextAudio.src = '';
+      } catch (e) {}
+      preloadedNextAudio = null;
+      preloadedNextIndex = -1;
+    }
+
+    if (activeBlobObjectUrl && typeof URL !== 'undefined' && URL.revokeObjectURL) {
+      try { URL.revokeObjectURL(activeBlobObjectUrl); } catch (e) {}
+      activeBlobObjectUrl = null;
     }
 
     // Stop Web Speech Synthesis
@@ -6751,12 +6814,12 @@ Tedavi:
       const utterance = new SpeechSynthesisUtterance(chunk);
       utterance.lang = 'de-DE';
       if (preferredGermanVoice) utterance.voice = preferredGermanVoice;
-      utterance.rate = state.speechRate || 0.95;
+      utterance.rate = state.speechRate || 1.15;
       utterance.pitch = state.speechPitch || 1.0;
 
       utterance.onend = () => {
         if (isSpeakingMedical && _speakSessionId === capturedSession) {
-          setTimeout(speakNextFallbackChunk, 40);
+          setTimeout(speakNextFallbackChunk, 25);
         }
       };
 
@@ -6788,6 +6851,7 @@ Tedavi:
     isSpeakingMedical = true;
     activeMedicalTriggerBtn = triggerBtn;
     onSpeechCompleteCallback = onEnd;
+    const capturedSession = _speakSessionId;
     if (triggerBtn) triggerBtn.classList.add('speaking');
 
     // Show dedicated stop button whenever speech begins
@@ -6809,20 +6873,68 @@ Tedavi:
     }
 
     const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
+    const voiceMode = state.ttsVoiceMode || 'gemini:Charon';
 
-    if (isOnline) {
-      naturalAudioQueue = chunkTextForTTS(cleanText, 160);
-      currentChunkIndex = 0;
-      playCurrentAudioChunk();
-    } else {
+    // Mode 1: Apple Siri / System WebSpeech directly
+    if (voiceMode === 'system' || !isOnline) {
       fallbackToWebSpeech(cleanText);
+      return;
     }
+
+    // Mode 2: Gemini Studio Neural TTS (Charon / Kore / Fenrir) when API key is configured
+    if (voiceMode.startsWith('gemini:') && geminiEvaluator && geminiEvaluator.hasApiKey() && typeof geminiEvaluator.synthesizeSpeech === 'function') {
+      const geminiVoiceName = voiceMode.split(':')[1] || 'Charon';
+      geminiEvaluator.synthesizeSpeech(cleanText, geminiVoiceName).then(wavBlob => {
+        if (!isSpeakingMedical || _speakSessionId !== capturedSession) return;
+        if (activeBlobObjectUrl && typeof URL !== 'undefined' && URL.revokeObjectURL) {
+          try { URL.revokeObjectURL(activeBlobObjectUrl); } catch (e) {}
+        }
+        activeBlobObjectUrl = URL.createObjectURL(wavBlob);
+        naturalAudioPlayer = new Audio(activeBlobObjectUrl);
+        naturalAudioPlayer.playbackRate = state.speechRate || 1.15;
+        naturalAudioPlayer.onended = () => {
+          if (isSpeakingMedical && _speakSessionId === capturedSession) {
+            stopMedicalSpeech();
+          }
+        };
+        naturalAudioPlayer.onerror = () => {
+          if (isSpeakingMedical && _speakSessionId === capturedSession) {
+            naturalAudioQueue = chunkTextForTTS(cleanText, 160);
+            currentChunkIndex = 0;
+            playCurrentAudioChunk();
+          }
+        };
+        const playPromise = naturalAudioPlayer.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            if (isSpeakingMedical && _speakSessionId === capturedSession) {
+              naturalAudioQueue = chunkTextForTTS(cleanText, 160);
+              currentChunkIndex = 0;
+              playCurrentAudioChunk();
+            }
+          });
+        }
+      }).catch(() => {
+        // Automatic zero-interruption fallback to gapless stream if Gemini TTS fails
+        if (isSpeakingMedical && _speakSessionId === capturedSession) {
+          naturalAudioQueue = chunkTextForTTS(cleanText, 160);
+          currentChunkIndex = 0;
+          playCurrentAudioChunk();
+        }
+      });
+      return;
+    }
+
+    // Mode 3: Gapless pre-buffered neural sentence stream
+    naturalAudioQueue = chunkTextForTTS(cleanText, 160);
+    currentChunkIndex = 0;
+    playCurrentAudioChunk();
   }
 
   // Global alias so all cockpit / emergency / simulation calls use the natural medical engine
   window.speakText = speakMedicalText;
 
-  // --- YouTube-Style Playback Speed Menu & Range Slider Controller ---
+  // --- YouTube-Style Playback Speed Menu, Range Slider & Gemini Voice Controller ---
   const elBtnAudioSpeed = document.getElementById('btn-audio-speed');
   const elAudioSpeedDisplay = document.getElementById('audio-speed-display');
   const elAudioSpeedDropdown = document.getElementById('audio-speed-dropdown');
@@ -6830,9 +6942,26 @@ Tedavi:
   const elSpeedSliderValBadge = document.getElementById('speed-slider-val-badge');
   const elSpeedControlWrapper = document.getElementById('speed-control-wrapper');
   const elSpeedPresetsList = document.getElementById('speed-presets-list');
+  const elTtsVoiceModeSelect = document.getElementById('tts-voice-mode-select');
+
+  if (elTtsVoiceModeSelect) {
+    if (state.ttsVoiceMode) {
+      elTtsVoiceModeSelect.value = state.ttsVoiceMode;
+    }
+    elTtsVoiceModeSelect.addEventListener('change', (e) => {
+      e.stopPropagation();
+      const mode = e.target.value || 'gemini:Charon';
+      state.ttsVoiceMode = mode;
+      try { localStorage.setItem('facharzt_tts_voice_mode', mode); } catch (err) {}
+      saveState();
+      if (mode.startsWith('gemini:') && (!geminiEvaluator || !geminiEvaluator.hasApiKey())) {
+        showToast('💡 Tipp: Für Gemini Studio Stimmen bitte unter 🔑 KI-Key Ihren Gemini API-Key hinterlegen (sonst Gapless-Stream).', 'info', 4000);
+      }
+    });
+  }
 
   function setPlaybackSpeed(rate, updateSlider = true) {
-    const clampedRate = Math.min(1.5, Math.max(0.5, parseFloat(rate.toFixed(2))));
+    const clampedRate = Math.min(1.75, Math.max(0.75, parseFloat(rate.toFixed(2))));
     state.speechRate = clampedRate;
     saveState();
 
@@ -6866,8 +6995,11 @@ Tedavi:
       elAudioSpeedDropdown.style.display = isVisible ? 'none' : 'block';
       if (elSpeedControlWrapper) elSpeedControlWrapper.classList.toggle('open', !isVisible);
       if (!isVisible && elAudioSpeedSlider) {
-        elAudioSpeedSlider.value = state.speechRate || 0.95;
-        if (elSpeedSliderValBadge) elSpeedSliderValBadge.textContent = `${state.speechRate || 0.95}x`;
+        elAudioSpeedSlider.value = state.speechRate || 1.15;
+        if (elSpeedSliderValBadge) elSpeedSliderValBadge.textContent = `${state.speechRate || 1.15}x`;
+      }
+      if (!isVisible && elTtsVoiceModeSelect && state.ttsVoiceMode) {
+        elTtsVoiceModeSelect.value = state.ttsVoiceMode;
       }
     });
 

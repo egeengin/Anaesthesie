@@ -325,6 +325,102 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       }
       return new Blob([view], { type: 'audio/wav' });
     }
+
+    /**
+     * Synthesizes natural German studio speech using Gemini 2.5 Flash TTS
+     * @param {string} text - Clean German medical text to read
+     * @param {string} voiceName - 'Charon' (Prüfer), 'Kore' (Oberärztin), 'Fenrir', 'Aoede'
+     * @returns {Promise<Blob>} Playable WAV audio blob
+     */
+    async synthesizeSpeech(text, voiceName = 'Charon') {
+      const apiKey = this.getApiKey();
+      if (!apiKey) throw new Error('MISSING_API_KEY');
+      const clean = String(text || '').trim().slice(0, 1800);
+      if (!clean) throw new Error('EMPTY_TEXT');
+
+      if (!this.ttsCache) this.ttsCache = new Map();
+      const cacheKey = `${voiceName}::${clean}`;
+      if (this.ttsCache.has(cacheKey)) {
+        return this.ttsCache.get(cacheKey);
+      }
+
+      const ttsModel = 'gemini-2.5-flash-preview-tts';
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${ttsModel}:generateContent?key=${apiKey}`;
+      const payload = {
+        contents: [{
+          parts: [{
+            text: `Lies den folgenden medizinischen Fachtext auf Deutsch flüssig, natürlich und mit der klaren Betonung eines erfahrenen deutschen Facharztprüfers vor:\n\n${clean}`
+          }]
+        }],
+        generationConfig: {
+          responseModalities: ['AUDIO'],
+          speechConfig: {
+            voiceConfig: {
+              prebuiltVoiceConfig: {
+                voiceName: voiceName || 'Charon'
+              }
+            }
+          }
+        }
+      };
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        const errTxt = await res.text();
+        throw new Error(`TTS HTTP ${res.status}: ${errTxt}`);
+      }
+      const data = await res.json();
+      const parts = data?.candidates?.[0]?.content?.parts || [];
+      const audioPart = parts.find(p => p.inlineData && p.inlineData.data);
+      if (!audioPart) {
+        throw new Error('NO_AUDIO_DATA');
+      }
+
+      const mime = (audioPart.inlineData.mimeType || '').toLowerCase();
+      const rateMatch = mime.match(/rate=(\d+)/);
+      const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
+      const wavBlob = GeminiAIEvaluator.pcm16Base64ToWavBlob(audioPart.inlineData.data, sampleRate);
+
+      if (this.ttsCache.size > 60) {
+        const firstKey = this.ttsCache.keys().next().value;
+        this.ttsCache.delete(firstKey);
+      }
+      this.ttsCache.set(cacheKey, wavBlob);
+      return wavBlob;
+    }
+
+    /** Converts base64-encoded signed 16-bit little-endian PCM into a playable WAV Blob. */
+    static pcm16Base64ToWavBlob(base64Data, sampleRate = 24000) {
+      const binaryStr = atob(base64Data);
+      const pcmByteLen = binaryStr.length;
+      const buffer = new ArrayBuffer(44 + pcmByteLen);
+      const view = new DataView(buffer);
+      const writeStr = (off, s) => { for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i)); };
+
+      writeStr(0, 'RIFF');
+      view.setUint32(4, 36 + pcmByteLen, true);
+      writeStr(8, 'WAVE');
+      writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);            // PCM
+      view.setUint16(22, 1, true);            // Mono
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeStr(36, 'data');
+      view.setUint32(40, pcmByteLen, true);
+
+      const bytes = new Uint8Array(buffer, 44);
+      for (let i = 0; i < pcmByteLen; i++) {
+        bytes[i] = binaryStr.charCodeAt(i);
+      }
+      return new Blob([buffer], { type: 'audio/wav' });
+    }
   }
 
   if (typeof module !== 'undefined' && module.exports) {
