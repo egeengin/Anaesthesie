@@ -4122,6 +4122,13 @@ Tedavi:
     elPanelExaminer.style.display = nextState ? 'block' : 'none';
     elBtnStep3Toggle.setAttribute('aria-expanded', nextState.toString());
     updateStepperIndicator();
+    if (nextState) {
+      if (typeof triggerCrisisComplication === 'function') {
+        triggerCrisisComplication();
+      }
+    } else {
+      if (elSimCrisisBanner) elSimCrisisBanner.style.display = 'none';
+    }
   }
 
   function revealStep4() {
@@ -7911,13 +7918,22 @@ Tedavi:
 
     if (elBtnToggleOnboarding && elOnboardingGuide) {
       elBtnToggleOnboarding.addEventListener('click', () => {
-        const isHidden = (elOnboardingGuide.style.display === 'none');
-        elOnboardingGuide.style.display = isHidden ? 'flex' : 'none';
+        if (elOnboardingGuide.tagName && elOnboardingGuide.tagName.toLowerCase() === 'details') {
+          elOnboardingGuide.open = !elOnboardingGuide.open;
+          elOnboardingGuide.style.display = '';
+        } else {
+          const isHidden = (elOnboardingGuide.style.display === 'none');
+          elOnboardingGuide.style.display = isHidden ? 'flex' : 'none';
+        }
       });
     }
 
     if (elBtnDismissOnboarding && elOnboardingGuide) {
-      elBtnDismissOnboarding.addEventListener('click', () => {
+      elBtnDismissOnboarding.addEventListener('click', (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        if (elOnboardingGuide.tagName && elOnboardingGuide.tagName.toLowerCase() === 'details') {
+          elOnboardingGuide.open = false;
+        }
         elOnboardingGuide.style.display = 'none';
         localStorage.setItem('facharzt_onboarding_dismissed', 'true');
       });
@@ -7933,8 +7949,19 @@ Tedavi:
       const stopBtn = document.getElementById('btn-audio-stop');
       if (stopBtn && stopBtn.offsetParent !== null) stopBtn.click(); else clickIfExists('btn-audio-speak');
     });
-    if (tbHint) tbHint.addEventListener('click', () => clickIfExists('btn-toggle-spickzettel'));
-    if (tbMic) tbMic.addEventListener('click', () => clickIfExists('btn-toggle-mic'));
+    if (tbHint) tbHint.addEventListener('click', () => {
+      clickIfExists('btn-toggle-spickzettel');
+      const spickzettelBox = document.getElementById('vorab-spickzettel-box');
+      if (spickzettelBox) {
+        spickzettelBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+    if (tbMic) tbMic.addEventListener('click', () => {
+      if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+      }
+      clickIfExists('btn-toggle-mic');
+    });
     if (tbNext) tbNext.addEventListener('click', () => {
       const adv = ['btn-advance-to-step2', 'btn-advance-to-step3', 'btn-advance-to-step4']
         .map(id => document.getElementById(id)).find(b => b && b.offsetParent !== null);
