@@ -1,4 +1,4 @@
-# Facharztprüfung Anästhesiologie — Strukturierte Prüfungsfragen & Faktenwissen (MCQs)
+# Facharztprüfung Anästhesiologie — Strukturierte Prüfungsfragen & Faktenwissen (332 MCQs)
 
 > Zusammengestellt für Dr. Melis | Faktenwissen & Mehrfachauswahlfragen (332 Fragen)
 
@@ -93,11 +93,11 @@ Laktat metabolizmasına ilişkin aşağıdaki ifadeler geçerlidir:
   - *Erklärung (DE)*: Gerade beim Vorliegen einer regionalen Gewebeischämie/Hypoxie kann es zu einer Verdünnung der gebildeten Laktat- und Wasserstoffionen im venösen Blutstrom kommen. Normale Laktatwerte schließen daher das Vorliegen von regionalen Einzelorganischämien/Hypoxien grundsätzlich nicht aus. Umgekehrt sind Serumlaktaterhöhungen für globale Ischämien/Hypoxien typisch, aber nicht beweisend, da z. B. ein Thiaminmangel ohne Hypoxie zu einer Laktaterhöhung führt.
   - *Açıklama (TR)*: Özellikle bölgesel doku iskemi/hipoksi varlığında venöz kan dolaşımında oluşan laktat ve hidrojen iyonlarında dilüsyon meydana gelebilir. Bu nedenle normal laktat değerleri genellikle bölgesel bireysel organ iskemisi/hipoksisinin varlığını dışlamaz. Tersine, serum laktatındaki artışlar genel iskemi/hipoksi için tipiktir ancak kesin değildir; B. hipoksi olmaksızın tiamin eksikliği laktatta artışa yol açar.
 - **Option D)** ❌ [Falsch / Yanlış] Der Serumlaktatspiegel sollte nur im arteriellen Blut bestimmt werden.
-  - *Türkçe*: düzensiz nefes alma
+  - *Türkçe*: Serum laktat düzeyi yalnızca arteriyel kanda belirlenmelidir.
   - *Erklärung (DE)*: Der Laktatspiegel kann ohne gravierende Differenzen im gemischtvenösen, zentralvenösen oder arteriellen Blut bestimmt werden.
   - *Açıklama (TR)*: Laktat düzeyi karışık venöz, santral venöz veya arteriyel kanda ciddi farklar olmaksızın belirlenebilir.
 - **Option E)** ✅ [Richtig / Doğru] Eine mittelschwere Leberfunktionsstörung führt als alleinige Ursache nicht zu einem Anstieg des Serumlaktatspiegels.
-  - *Türkçe*: Tek neden olan orta derecede karaciğer yetmezliği serum laktat düzeylerinde artışa yol açmaz. 10 1Bölüm 1 · Genel bir
+  - *Türkçe*: Tek başına orta derecede karaciğer yetmezliği serum laktat düzeylerinde artışa yol açmaz.
   - *Erklärung (DE)*: Auch eine stark geschädigte Leber kann aufgrund der hohen Organreserven die anfallenden Laktationen zur Glukoneogenese heran-ziehen. Erst bei schwerster Schädigung der Leberfunktion (>90 % Funk-tionsverlust) kann die Laktatverstoffwechslung nicht mehr stattfinden, und die Leber kann selbst zu einem laktatproduzierenden Organ werden.
   - *Açıklama (TR)*: Ağır hasar görmüş bir karaciğer bile, yüksek organ rezervleri nedeniyle ortaya çıkan laktasyonu glukoneogenez için kullanabilir. Ancak karaciğer fonksiyonu ciddi şekilde hasar gördüğünde (>%90 fonksiyon kaybı) laktat metabolizması artık gerçekleşemez ve karaciğerin kendisi laktat üreten bir organ haline gelebilir.
 
@@ -312,7 +312,7 @@ Serum potasyumunda bir artış şu durumlarda bulunur:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] metabolischer Azidose.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Metabolik asidoz.
   - *Erklärung (DE)*: Bei metabolischer Azidose werden kompensatorisch intrazelluläre Kaliumionen gegen extrazelluläre Wasserstoffionen ausgetauscht, um den pH-Wert zu normalisieren.
   - *Açıklama (TR)*: Metabolik asidozda pH değerini normalleştirmek için telafi edici hücre içi potasyum iyonları hücre dışı hidrojen iyonlarıyla değiştirilir.
 - **Option B)** ✅ [Richtig / Doğru] Niereninsuffizienz.
@@ -592,7 +592,7 @@ Renin, anjiyotensinojenden anjiyotensin I oluşumuna neden olur.
   - *Erklärung (DE)*: Ein Sphygmomanometer ist ein Gerät zur Blutdruckmessung, im einfachsten Fall also ein Quecksilbermanometer.
   - *Açıklama (TR)*: Tansiyon aleti, kan basıncını ölçmek için kullanılan bir cihazdır, en basit durumda bir cıva manometresidir.
 - **Option E)** ✅ [Richtig / Doğru] Ein Sphygmomanometer misst den intrapleuralen Druck.
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Sfigmomanometre intraplevral basıncı ölçer.
   - *Erklärung (DE)*: Die Aussage ist fachlich zutreffend: Ein Sphygmomanometer misst den intrapleuralen Druck.
   - *Açıklama (TR)*: Bu ifade tıbbi olarak doğrudur: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
 
@@ -687,11 +687,11 @@ Değişken delikli rotametrelerden gaz akışı için:
   - *Erklärung (DE)*: Je niedriger der Gasfluss ist, desto größer ist die Abhängigkeit von der Viskosität. Der Gasfluss ist aber auch von der Dichte abhängig.
   - *Açıklama (TR)*: Gaz akışı ne kadar düşük olursa viskoziteye bağımlılık o kadar büyük olur. Gaz akışı aynı zamanda yoğunluğa da bağlıdır.
 - **Option D)** ❌ [Falsch / Yanlış] Mit Erhöhung des Gasflusses nimmt die Abhängigkeit der Kalibrierung von der Viskosität des Gases zu.
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Gaz akışı arttıkça kalibrasyonun gazın viskozitesine bağımlılığı artar.
   - *Erklärung (DE)*: Je höher der Gasfluss ist, desto größer ist die Abhängigkeit von der Dichte.
   - *Açıklama (TR)*: Gaz akışı ne kadar yüksek olursa yoğunluğa bağımlılık da o kadar fazla olur.
 - **Option E)** ✅ [Richtig / Doğru] Ein Rotameter, das für Cyclopropan kalibriert ist, zeigt für die Messung des Gasflusses von CO₂ bei einem Flussbereich von 1 000 ml/min einen Fehler von rund 18 % und bei einem Flussbereich von 100 ml/min einen Fehler von 100 % an (Cyclopropan hat die gleiche Dichte, aber nur 60 % der Visko-sität von CO₂ ).
-  - *Türkçe*: CO₂'nin gaz akışını ölçerken, siklopropan için kalibre edilmiş bir rotametre, 1.000 ml/dak'lık bir akış aralığında yaklaşık %18'lik bir hata ve 100 ml/dak'lık bir akış aralığında %100'lük bir hata gösterir (siklopropan aynı yoğunluğa sahiptir ancak CO₂'nin viskozitesinin yalnızca %60'ına sahiptir). 23 1 1.2 · Fizik
+  - *Türkçe*: CO₂ gaz akışını ölçerken, siklopropan için kalibre edilmiş bir rotametre, 1.000 ml/dak akış aralığında yaklaşık %18, 100 ml/dak akış aralığında ise %100 hata gösterir (siklopropan aynı yoğunluğa sahiptir ancak CO₂ viskozitesinin yalnızca %60'ına sahiptir).
   - *Erklärung (DE)*: Dies ist die Veranschaulichung des oben Gesagten. Da bei niedrigem Flussbereich die Viskosität eine große Rolle spielt und die in diesem Beispiel genannten Gase eine unterschiedliche Viskosität aufweisen, zeigt der Rotameter anstelle von 100 ml/min 200 ml/min an, da ein deutlicher Viskositätsunterschied zwischen den Gasen besteht. Im hohen Flussbe-reich kommt hingegen mehr die Abhängigkeit von der Dichte zum Tragen (gleiche Dichte der Gase), sodass das Rotameter einen geringeren Mess-fehler anzeigt, nämlich anstatt 1 000 ml/min »nur« 1 180 ml/min.
   - *Açıklama (TR)*: Bu yukarıdakilerin gösterimidir. Düşük akış aralığında viskozite önemli bir rol oynadığından ve bu örnekte bahsedilen gazların viskoziteleri farklı olduğundan rotametre 100 ml/dak yerine 200 ml/dak'yı gösterir çünkü gazlar arasında belirgin bir viskozite farkı vardır. Ancak yüksek akış aralığında yoğunluğa bağlılık daha önemlidir (gazların aynı yoğunluğu), böylece rotametre daha küçük bir ölçüm hatası gösterir, yani 1.000 ml/dak yerine "sadece" 1.180 ml/dak.
 
@@ -823,7 +823,7 @@ Aşağıdaki fiziksel ilişkiler gazlar için geçerlidir:
   - *Erklärung (DE)*: Der Umgebungsdruck nimmt pro 10 m Wassertiefe um 1 bar zu,
   - *Açıklama (TR)*: MO'nun etki süresi yaklaşık 4 saattir. İ.v.'den sonra maksimum etki. uygulama yalnızca 15-30 dakika sonra gerçekleşir.
 - **Option E)** ✅ [Richtig / Doğru] Der relative prozentuale Gasanteil eines Gasgemisches ändert sich nicht in Abhängigkeit vom Umgebungsdruck.
-  - *Türkçe*: Bir gaz karışımındaki gazın bağıl yüzdesi ortam basıncına bağlı olarak değişmez. 26 1Bölüm 1 · Genel bir şey
+  - *Türkçe*: Bir gaz karışımındaki gazın bağıl yüzdesi ortam basıncına bağlı olarak değişmez.
   - *Erklärung (DE)*: Das Gesetz nach Dalton besagt, dass die Summe der prozentualen Gasanteile bei sich ändernden Umgebungsdrücken gleich bleibt. Dies be-deutet, dass Sauerstoff 21 % des Volumenanteils der Luft ausmacht, sowohl in Meereshöhe als auch auf dem Mount Everest/Großglockner. Dies bedeu-tet aber auch, dass bei fallendem Umgebungsdruck die einzelnen Partial-drücke prozentual abnehmen. Die Summe der Partialdrücke ist gleich dem Umgebungsdruck.
   - *Açıklama (TR)*: Dalton yasası, ortam basıncı değiştikçe gaz yüzdelerinin toplamının aynı kaldığını belirtir. Bu, oksijenin hem deniz seviyesinde hem de Everest/Grossglockner Dağı'nda hacim olarak havanın %21'ini oluşturduğu anlamına gelir. Ancak bu aynı zamanda ortam basıncı düştüğünde bireysel kısmi basınçların yüzde cinsinden azaldığı anlamına da gelir. Kısmi basınçların toplamı ortam basıncına eşittir.
 
@@ -1050,11 +1050,11 @@ Hinsichtlich des Wärmehaushaltes des Menschen gilt:
   - *Erklärung (DE)*: Im Gegensatz zu Erwachsenen haben Neugeborene die Möglichkeit der zitterfreien Thermogenese im braunen Fettgewebe.
   - *Açıklama (TR)*: Yetişkinlerin aksine yenidoğanlarda kahverengi yağ dokusunda titremeyen termojenez olasılığı vardır.
 - **Option D)** ✅ [Richtig / Doğru] Liegt die Körperkerntemperatur in der thermoneutralen Zone, tritt keine endogene Hitzeproduktion auf.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Vücut merkez sıcaklığı termonötral bölgedeyse endojen ısı üretimi meydana gelmez.
   - *Erklärung (DE)*: Die thermoneutrale Zone ist die Körperkerntemperatur, bei der weder eine zusätzliche Thermogenese noch eine zusätzliche Hitze abgabe stattfindet. Diese Zone ist eng reguliert und hat eine Spanne von nur 0,2 °C.
   - *Açıklama (TR)*: Termonötral bölge, ne ek termojenezin ne de ek ısı salınımının meydana gelmediği çekirdek vücut sıcaklığıdır. Bu bölge sıkı bir şekilde düzenlenmiştir ve yalnızca 0,2°C'lik bir aralığa sahiptir.
 - **Option E)** ❌ [Falsch / Yanlış] Anästhetika verschieben die Zitterschwelle in Richtung höhere Temperatur.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Anestezikler titreme eşiğini daha yüksek bir sıcaklığa doğru kaydırır.
   - *Erklärung (DE)*: Anästhetika verschieben die Zitterschwelle in Richtung niedrigere Temperatur und die Schwelle zum Schwitzen in Richtung höhere Tempera-tur. Dies bedeutet, dass sich die thermoneutrale Zone nun über eine Span-ne von rund 4 °C bewegt. Unter 0,9 % Isofluran wird die Zitterschwelle auf 35 °C gesenkt.
   - *Açıklama (TR)*: Anestezikler titreme eşiğini daha düşük sıcaklıklara, terleme eşiğini ise daha yüksek sıcaklıklara doğru kaydırır. Bu, termonötr bölgenin artık yaklaşık 4 °C aralığında hareket ettiği anlamına gelir. %0,9 izofluranın altında titreme eşiği 35 °C'ye düşürülür.
 
@@ -1087,7 +1087,7 @@ Hücrelerin membran fizyolojisi ile ilgili olarak:
   - *Erklärung (DE)*: Bei Versagen oder Inaktivierung der Na-/K-Pumpe wird die intrazelluläre Natriumkonzentration erhöht und aufgrund der osmotischen Effekte strömt mehr Wasser nach intrazellulär. Dies ist der vermutete Mechanismus der Bildung der Sphärozyten bei der hereditären Sphäro-zytose (Berne 2008, S. 25).
   - *Açıklama (TR)*: Na/K pompası arızalanırsa veya etkisiz hale getirilirse hücre içi sodyum konsantrasyonu artar ve ozmotik etkilerden dolayı hücre içine daha fazla su akar. Bu, kalıtsal sferositozda sferosit oluşumunda şüphelenilen mekanizmadır (Berne 2008, s. 25).
 - **Option E)** ❌ [Falsch / Yanlış] Die Nernst-Gleichung beschreibt die Leitfähigkeit von Na-Kanälen.
-  - *Türkçe*: Nernst denklemi Na kanallarının iletkenliğini açıklar. 35 2 · Fizyoloji2
+  - *Türkçe*: Nernst denklemi Na⁺ kanallarının iletkenliğini açıklar.
   - *Erklärung (DE)*: Die Nernst-Gleichung beschreibt nicht die Leitfähigkeit von Ionenkanälen. Sie erlaubt es aufgrund des Verhältnisses von intra- und extrazel-lulären Ionenkonzentrationen, das resultierende elektrochemische Poten-zial zu berechnen. Die vereinfachte Gleichung lautet: E = –61×log(K i + /K a + ) [mV]. Für Kalium entsteht so bei Einsetzen von 40 für das Verhältnis Ionen innen/außen ein Potenzial von –97 mV.
   - *Açıklama (TR)*: Nernst denklemi iyon kanallarının iletkenliğini tanımlamaz. Hücre içi ve hücre dışı iyon konsantrasyonlarının oranına bağlı olarak ortaya çıkan elektrokimyasal potansiyelin hesaplanmasına olanak tanır. Basitleştirilmiş denklem şu şekildedir: E = –61×log(K i + /K a + ) [mV]. Potasyum için iç/dış iyon oranı 40'a ayarlandığında –97 mV'luk bir potansiyel yaratılır.
 
@@ -1120,7 +1120,7 @@ Aşağıdaki ifadeler uyarılabilir hücrelerin hücre zarlarındaki iyon süre�
   - *Erklärung (DE)*: Die Natriumkanäle sind während der absoluten Refraktärperiode nicht erneut aktivierbar. Dies wird mit einer spannungsabhängigen Inakti-vierung der Natriumkanäle erklärt und tritt ab einem Membranpotenzial auf, das ca. 30 mV unter dem Ruhepotenzial liegt. Erst wenn das Membran-potenzial durch Repolarisation diese Grenze überschreitet, sind die Natriumkanäle wieder aktivierbar.
   - *Açıklama (TR)*: Mutlak refrakter dönemde sodyum kanalları tekrar aktive edilemez. Bu, sodyum kanallarının voltaja bağlı inaktivasyonuyla açıklanır ve yaklaşık olarak bir membran potansiyelinde meydana gelir. Dinlenme potansiyelinin 30 mV altındadır. Ancak repolarizasyon nedeniyle membran potansiyeli bu sınırı aştığında sodyum kanalları yeniden etkinleştirilebilir.
 - **Option E)** ❌ [Falsch / Yanlış] Die Verlängerung des Aktionspotenzials im Herzmuskel (Plateauphase) wird hauptsächlich durch eine Abnahme der Kalziumleitfähigkeit hervor-gerufen.
-  - *Türkçe*: Kalp kasındaki aksiyon potansiyelinin uzamasına (plato fazı) esas olarak kalsiyum iletkenliğinin azalması neden olur. 36 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: Kalp kasındaki aksiyon potansiyelinin uzamasına (plato fazı) esas olarak kalsiyum iletkenliğinin azalması neden olur.
   - *Erklärung (DE)*: Die Zunahme der Kalziumleitfähigkeit ist die Grundlage für die Plateauphase des Aktionspotenzials einer Herzmuskelfaser.
   - *Açıklama (TR)*: Kalsiyum iletkenliğindeki artış, kalp kası lifinin aksiyon potansiyelinin plato fazının temelini oluşturur.
 
@@ -1153,7 +1153,7 @@ Sinir-kas kavşağında uyarılmanın iletilmesine ilişkin olarak:
   - *Erklärung (DE)*: Richtig.
   - *Açıklama (TR)*: Doğru.
 - **Option E)** ✅ [Richtig / Doğru] Die Ausschüttung von ACh geschieht kontinuierlich.
-  - *Türkçe*: miyoklonusa yol açar
+  - *Türkçe*: Asetilkolin (ACh) salınımı sürekli olarak gerçekleşir.
   - *Erklärung (DE)*: Die Aussage ist fachlich zutreffend: Die Ausschüttung von ACh geschieht kontinuierlich.
   - *Açıklama (TR)*: Bu ifade tıbbi olarak doğrudur: miyoklonusa yol açar
 
@@ -1285,7 +1285,7 @@ Baroreseptörler (BR) tarafından kan basıncının düzenlenmesiyle ilgili olar
   - *Erklärung (DE)*: Unterhalb von 60 mmHg reagieren die Rezeptoren überhaupt nicht, und oberhalb von 180 mmHg kann die maximale Entladungsrate nicht überschritten werden. Die BR zeigen allerdings eine Adaptation an anhaltende Blutdruckverschiebungen. So sind die Barorezeptorenreflexe an erhöhte Blutdruckwerte von Hypertonikern adaptiert.
   - *Açıklama (TR)*: 60 mmHg'nin altında reseptörler hiçbir şekilde yanıt vermez ve 180 mmHg'nin üzerinde maksimum deşarj hızı aşılamaz. Bununla birlikte BR, kan basıncındaki sürekli değişimlere karşı bir adaptasyon göstermektedir. Baroreseptör refleksleri hipertansif hastalarda artan kan basıncı değerlerine adapte olur.
 - **Option E)** ❌ [Falsch / Yanlış] Die BR reagieren auf Blutdruckänderungen nur langsam.
-  - *Türkçe*: BR, kan basıncındaki değişikliklere yalnızca yavaş tepki verir. 40 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: Baroreseptörler kan basıncındaki değişikliklere yalnızca yavaş tepki verir.
   - *Erklärung (DE)*: Im Gegenteil, die BR reagieren sehr schnell auf Blutdruckschwankungen, so schnell, dass sogar die Druckschwankungen der Pulsamplitude zu einer Veränderung der Entladungsrate während Systole und Diastole führen.
   - *Açıklama (TR)*: Aksine, BR kan basıncındaki dalgalanmalara çok hızlı tepki verir, o kadar hızlıdır ki, nabız genliğindeki basınç dalgalanmaları bile sistol ve diyastol sırasında deşarj hızında bir değişikliğe yol açar.
 
@@ -1318,7 +1318,7 @@ Karotid sinüsün ve aort kemerinin baroreseptörleri (BR):
   - *Erklärung (DE)*: Der BR-Reflex ist für die kurzzeitige Blutdruckregulierung von Bedeutung, nicht aber für die Langzeitblutdruckregulierung. Hierfür spielen der Wasserhaushalt und dessen Kontrolle durch die Nierenfunktion die entscheidende Rolle.
   - *Açıklama (TR)*: BR refleksi kısa süreli kan basıncı düzenlemesi için önemlidir, ancak uzun süreli kan basıncı düzenlemesi için önemli değildir. Su dengesi ve bunun böbrek fonksiyonuyla kontrolü çok önemli bir rol oynar.
 - **Option E)** ✅ [Richtig / Doğru] spielen für die Kurzzeitblutdruckregulierung eine wichtige Rolle.
-  - *Türkçe*: Kısa süreli kan basıncının düzenlenmesinde önemli bir rol oynar. 41 2 · Fizyoloji2
+  - *Türkçe*: Kısa süreli kan basıncının düzenlenmesinde önemli bir rol oynar.
   - *Erklärung (DE)*: Kurzzeitige Schwankungen des Blutdrucks auszugleichen ist die Funktion des BR-Reflexes.
   - *Açıklama (TR)*: BR refleksinin işlevi kan basıncındaki kısa süreli dalgalanmaları telafi etmektir.
 
@@ -1351,7 +1351,7 @@ Kemoreseptörler (CHR) ile ilgili olarak aşağıdaki ifadeler geçerlidir:
   - *Erklärung (DE)*: Die pCHR terminieren wie die BR im Nucleus tractus solitarius und werden von hier aus weiter verschaltet.
   - *Açıklama (TR)*: BR gibi pCHR de nukleus traktus solitariusta sonlanır ve buradan daha ileri bağlanır.
 - **Option E)** ❌ [Falsch / Yanlış] CHR reagieren auf einen erhöhten pO₂.
-  - *Türkçe*: CHR artan pO₂'ye yanıt verir. 42 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: Kemoreseptörler artan pO₂'ye yanıt verir.
   - *Erklärung (DE)*: Die pCHR reagieren auf eine Verminderung des pO₂, nicht auf eine Erhöhung. Im Gegensatz dazu reagieren die zentralen Chemorezepto-ren überhaupt nicht auf eine Verminderung des pO₂. Dies bedeutet einen totalen Ausfall der Steuerung der Atmung als Antwort auf eine Hypoxämie bei Ausfall der pCHR.
   - *Açıklama (TR)*: PCHR, pO₂'deki bir artışa değil, bir azalmaya yanıt verir. Bunun aksine, merkezi kemoreseptörler pO₂'deki bir azalmaya hiçbir şekilde tepki vermez. Bu, pCHR başarısızlığı üzerine hipoksemiye yanıt olarak solunum kontrolünün tamamen kaybedildiğini temsil eder.
 
@@ -1516,7 +1516,7 @@ Aşağıdaki ifadeler CVP eğrisi şekli için geçerlidir:
   - *Erklärung (DE)*: Durch die fehlende Vorhofkontraktion bei Vorhofflimmern fehlt die a-Welle. a-Flatterwellen können bei Vorhofflattern beobachtet werden. Bei einer Sinustachykardie können ebenfalls die a-Wellen fehlen. ohe a-Wellen: s. Anwort a.
   - *Açıklama (TR)*: Atriyal fibrilasyonda atriyal kasılmanın olmaması nedeniyle a dalgası eksiktir. Atriyal flutterda a-flutter dalgaları görülebilir. Sinüs taşikardisinde de a dalgaları eksik olabilir. dalgasız: cevap a'ya bakınız.
 - **Option E)** ❌ [Falsch / Yanlış] Große v-Wellen deuten auf eine Trikuspidalstenose hin.
-  - *Türkçe*: Büyük v dalgaları triküspit stenozu düşündürüyor. 46 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: Büyük v dalgaları triküspit darlığını düşündürür.
   - *Erklärung (DE)*: Hohe v-Wellen deuten auf eine Trikuspidalinsuffizienz hin. Da bei einer Trikuspidalinsuffizienz die x-Wellen fehlen, kommt es zu großen Ver-schmelzungswellen von c und v. Diese cv-Wellen (= große v-Welle) sieht man auch bei einer konstriktiven Perikarditis.
   - *Açıklama (TR)*: Yüksek v dalgaları triküspit yetersizliğini gösterir. Triküspit yetersizliğinde x dalgaları eksik olduğundan büyük c ve v füzyon dalgaları oluşur. Bu cv dalgaları (=büyük v dalgası) konstriktif perikarditte de görülür.
 
@@ -1615,7 +1615,7 @@ CO₂ taşınmasıyla ilgili olarak aşağıdakiler geçerlidir:
   - *Erklärung (DE)*: CO₂ wird im Blut in 3 Formen transportiert: als physikalisch gelöstes CO₂, als Bikarbonat und als Carbaminohämoglobin. Den größten Anteil hat mit 80 % das Bikarbonat. Die Hydratisierung von Kohlendioxid (CO₂ ) zu Kohlensäure (H 2 CO 3 ) geschieht unter physikalischen Bedingungen nur langsam und liegt auf der Seite des physikalisch gelösten CO₂. Durch die in den Erythrozyten intrazytoplasmatisch vorkommende Carboanhydrase wird die Bildung von H 2 CO 3 jedoch ca. 10 000-fach beschleunigt, weswegen die Bildung von Bikarbonat innerhalb des Erythrozyten stattfindet. H 2 CO 3 zerfällt dann sehr schnell spontan in HCO₃⁻ – und H +. HCO₃⁻ – wird sodann im Austausch mit Cl – (sog. Hamburger Shift) an das Plasma abgegeben.
   - *Açıklama (TR)*: CO₂ kanda 3 biçimde taşınır: fiziksel olarak çözünmüş CO₂, bikarbonat ve karbaminohemoglobin olarak. Bikarbonat %80 ile en büyük paya sahiptir. Karbondioksitin (C02) karbonik asite (H2C03) hidrasyonu, fiziksel koşullar altında yalnızca yavaş bir şekilde gerçekleşir ve fiziksel olarak çözünmüş C02 tarafındadır. Ancak eritrositlerde intrasitoplazmik olarak meydana gelen karbonik anhidraz, H2CO3 oluşumunu yaklaşık 10.000 kat hızlandırır, bu nedenle eritrosit içerisinde bikarbonat oluşumu gerçekleşir. H2CO3 daha sonra kendiliğinden çok hızlı bir şekilde HCO₃⁻ – ve H+'ya ayrışır. HCO₃⁻ - daha sonra Cl - ile değiştirilerek plazmaya salınır (Hamburg kayması olarak adlandırılır).
 - **Option E)** ✅ [Richtig / Doğru] Rund 10 % des CO₂ wird als Carbaminohämoglobin transportiert.
-  - *Türkçe*: CO₂'nin yaklaşık %10'u karbaminohemoglobin olarak taşınır. 48 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: CO₂'nin yaklaşık %10'u karbaminohemoglobin olarak taşınır.
   - *Erklärung (DE)*: 10 % des Gesamt-CO₂ werden als Carbaminohämoglobin im Blut transportiert. Zusammengefasst: Das Gesamt-CO₂ wird zu 80 % als Bikarbonat (35 % innerhalb, 45 % außerhalb der Erythrozyten im Plasma), zu 10 % als Carbaminohämoglobin und zu 10 % als physikalisch gelöstes Gas transportiert.
   - *Açıklama (TR)*: Toplam CO₂'nin %10'u kanda karbaminohemoglobin olarak taşınır. Özetle: Toplam CO₂'nin %80'i bikarbonat olarak (%35'i içeride, %45'i plazmadaki eritrositlerin dışında), %10'u karbaminohemoglobin olarak ve %10'u fiziksel olarak çözünmüş gaz olarak taşınır.
 
@@ -1648,7 +1648,7 @@ Nitrik oksit (NO):
   - *Erklärung (DE)*: NO ist darüber hinaus ein vermuteter Neurotransmitter und wird bei Stimulation von NMDA-Rezeptoren im Gehirn freigesetzt.
   - *Açıklama (TR)*: NO aynı zamanda şüpheli bir nörotransmiterdir ve beyindeki NMDA reseptörlerinin uyarılması üzerine salınır.
 - **Option E)** ✅ [Richtig / Doğru] wird durch die Bindung an Hämoglobin inaktiviert.
-  - *Türkçe*: Hemoglobin'e bağlanarak inaktive olur. 49 2 · Fizyoloji2
+  - *Türkçe*: Hemoglobine bağlanarak inaktive olur.
   - *Erklärung (DE)*: NO hat eine HWZ unter 5 s, da es an das Fe-Atom des Hämoglobins gebunden wird. Bei inhalativer Gabe kann es zu Stickstoffdioxid oxi-diert werden, was zu einer pulmonalen Schädigung führen kann. Daneben kommt es zur Methämoglobinbildung.
   - *Açıklama (TR)*: NO, hemoglobinin Fe atomuna bağlı olduğundan 5 saniyeden daha düşük bir HV'ye sahiptir. Solunum yoluyla uygulandığında nitrojen dioksite oksitlenebilir ve bu da akciğer hasarına yol açabilir. Ayrıca methemoglobin oluşur.
 
@@ -1937,7 +1937,7 @@ Pulmoner kılcal kapanma basıncı (PCWP):
   - *Erklärung (DE)*: Mit dem PCWP versucht man letztlich, den LVEDP zu ermitteln, um durch die Korrelation zwischen LVEDP und LVEDV auf das Maß für die Vorlast des linken Herzens zu schließen. Dies ist nur bei normalen Gefäß-, Klappen- und Ventrikelverhältnissen zulässig. Gerade die Ventrikelcompli-ance ist bei kritisch kranken Patienten häufig pathologisch vermindert und damit der PCWP nicht als Maß für die LVEDV geeignet. Beim Gesunden liegen Normalwerte für den PCWP bei 6–12 mmHg mit einem Mittelwert von ca. 9 mmHg. Viele herzinsuffiziente Patienten benötigen deutliche höhere Drücke (ca. 18 mmHg), um bei verminderter Ventrikelcompliance ausreichend die Ventrikel füllen zu können. Insgesamt besteht folgende Beziehung: PCWP > LAP > LVEDP ~ LVEDV.
   - *Açıklama (TR)*: PCWP sonuçta LVEDP ve LVEDV arasındaki korelasyon yoluyla sol kalbin ön yükünün ölçüsünü belirlemek için LVEDP'yi belirlemeye çalışır. Buna yalnızca damar, kapakçık ve ventriküler koşullar normalse izin verilir. Özellikle ventriküler uyum, kritik hastalarda sıklıkla patolojik olarak azalır ve bu nedenle PCWP, LVEDV'nin bir ölçüsü olarak uygun değildir. Sağlıklı insanlarda PCWP'nin normal değerleri 6-12 mmHg olup ortalama 9 mmHg civarındadır. Birçok kalp yetmezliği hastası, ventriküler kompliansı azaltacak şekilde ventrikülleri yeterince doldurabilmek için önemli ölçüde daha yüksek basınçlara (yaklaşık 18 mmHg) ihtiyaç duyar. Genel olarak şu ilişki mevcuttur: PCWP > LAP > LVEDP ~ LVEDV.
 - **Option C)** ✅ [Richtig / Doğru] dient als ein Maß für das linksventrikuläre enddiastolische Volumen (LVEDV).
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Sol ventrikül diyastol sonu hacminin (LVEDV) bir ölçüsü olarak hizmet eder.
   - *Erklärung (DE)*: Siehe Antwort b.
   - *Açıklama (TR)*: Cevap b'ye bakınız.
 - **Option D)** ✅ [Richtig / Doğru] ist ein Maß für den linken Vorhofdruck (LAP).
@@ -1978,7 +1978,7 @@ Pulmoner kılcal tıkanma basıncı aşağıdaki durumlarda hatalı olarak yüks
   - *Erklärung (DE)*: Bei der Mitralinsuffizienz ist der LAP größer als der LVEDP.
   - *Açıklama (TR)*: Mitral yetersizliğinde LAP, LVEDP'den daha büyüktür.
 - **Option E)** ✅ [Richtig / Doğru] Lage außerhalb der Zone III nach West
-  - *Türkçe*: Bölge III'ün dışında Batı'daki konum 56 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: West Bölge III'ün dışında yerleşim gösterir.
   - *Erklärung (DE)*: Streng genommen ist nur in der Zone III nach West (basale Lungenabschnitte) eine kontinuierliche Übertragung der Drücke vom linken Vorhof bis zur Pulmonalarterie gegeben. Nur in der Zone III besteht ein von den Atemexkursionen nicht unterbrochener Blutfluss zwischen distaler Pulmonaliskatheteröffnung und linkem Vorhof.
   - *Açıklama (TR)*: Kesin olarak konuşursak, yalnızca batıdaki III. Bölgede (bazal akciğer bölümleri), sol atriyumdan pulmoner artere sürekli bir basınç aktarımı vardır. Yalnızca III. Bölgede, distal pulmoner arter kateter açıklığı ile sol atriyum arasında nefes alma gezileri ile kesintisiz kan akışı vardır.
 
@@ -2061,7 +2061,7 @@ Kronik böbrek yetmezliğinde anestezi için aşağıdaki ifadeler geçerlidir:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] Häufig besteht eine Perikarditis.
-  - *Türkçe*: plazmatik pıhtılaşmayı engeller
+  - *Türkçe*: Sıklıkla perikardit mevcuttur.
   - *Erklärung (DE)*: Bei chronischer Niereninsuffizienz ist eine Perikarditis nicht selten. Arterielle Hypertonie und eine Anämie liegen fast immer vor.
   - *Açıklama (TR)*: Kronik böbrek yetmezliğinde perikardit nadir değildir. Arteriyel hipertansiyon ve anemi neredeyse her zaman mevcuttur.
 - **Option B)** ❌ [Falsch / Yanlış] Bei deutlich eingeschränkter Diurese sollte zur Erhaltung der Nierenfunktion eine großzügige Volumentherapie durchgeführt werden.
@@ -2275,7 +2275,7 @@ Heparin ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Es besteht leider keine lineare Dosis-Wirkungs-Beziehung, sodass eine Überwachung der Therapie mittels PTT oder ACT notwendig wird. Es tritt eine Wirkverlängerung bei höherer Dosierung aufgrund einer länge-ren HWZ auf. Heparin wird in der Leber desulfatiert und depolymerisiert, die teilweise aktiven Metabolite werden renal ausgeschieden. Mit einer Wirkver-längerung bei Leber- oder Niereninsuffizienz ist daher zu rechnen.
   - *Açıklama (TR)*: Ne yazık ki doğrusal bir doz-yanıt ilişkisi yoktur, dolayısıyla PTT veya ACT kullanılarak tedavinin izlenmesi gereklidir. Etki, daha uzun HWZ nedeniyle daha yüksek dozajlarda uzar. Heparin karaciğerde kükürtten arındırılır ve depolimerize edilir ve kısmen aktif metabolitler böbreklerden atılır. Bu nedenle karaciğer veya böbrek yetmezliği vakalarında etkinliğin uzaması beklenebilir.
 - **Option E)** ✅ [Richtig / Doğru] kann Thrombosen verursachen. 63
-  - *Türkçe*: tromboza neden olabilir. 63 2 2.1 · Pıhtılaşma
+  - *Türkçe*: Tromboza neden olabilir.
   - *Erklärung (DE)*: Aufgrund einer heparininduzierten Thrombozytopenie (HIT ) kann es paradoxerweise unter An tikoagulationstherapie mit Heparin zu Thrombosen kommen. Bei der schwerwiegenderen Form, HIT Typ II, werden Anti-köper gegen Heparin-Plättchenfaktor-4-Komplexe gebildet, die Thrombo-zyten anbinden. Dadurch kommt es zu Thrombosen und evtl. zu einer Ver-brauchskoagulopathie.
   - *Açıklama (TR)*: Paradoksal olarak, heparine bağlı trombositopeniye (HIT) bağlı olarak heparinle antikoagülasyon tedavisi sırasında tromboz meydana gelebilir. Daha ciddi form olan HIT tip II'de, trombositlere bağlanan heparin-trombosit faktör-4 komplekslerine karşı antikorlar oluşur. Bu tromboza ve muhtemelen tüketim koagülopatisine yol açar.
 
@@ -2605,7 +2605,7 @@ Hirudin ve heparinoidlerle tedaviye ilişkin aşağıdaki ifadeler doğrudur:
   - *Erklärung (DE)*: Hirudin ist ein AT-III-unabhängiger Thrombininhibitor. Es kommt zur Komplexbildung von Thrombin und Hirudin.
   - *Açıklama (TR)*: Hirudin, AT-III'den bağımsız bir trombin inhibitörüdür. Trombin ve hirudin kompleks oluşumu meydana gelir.
 - **Option E)** ❌ [Falsch / Yanlış] Die Antikoagulation mit Heparinoiden kann über die PTT überwacht werden.
-  - *Türkçe*: Heparinoidlerle antikoagülasyon PTT ile izlenebilir. 70 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: Heparinoidlerle antikoagülasyon aPTT ile izlenebilir.
   - *Erklärung (DE)*: Die Therapie mit Heparinoiden (Danaparoin ) muss mit Hilfe der Anti-Faktor-Xa-Aktivität evaluiert werden.
   - *Açıklama (TR)*: Heparinoidlerle (Danaparoin) tedavi, anti-faktör Xa aktivitesi kullanılarak değerlendirilmelidir.
 
@@ -2700,11 +2700,11 @@ Aşağıdaki ifadeleri kontrol edin:
   - *Erklärung (DE)*: Der Enterozyt verfügt über den Effluxtransporter P-Glykoprotein (P-gp). Dieser Transporter pumpt aufgenommenes Dabigatran in das Darmlumen zurück. Substanzen wie Amiodaron (aber auch Verapamil, Clarithromycin, Chinidin oder Ketokonazol) inhibieren den Transporter, und die ins Plasma aufgenommene Menge an Dabigatran steigt daher an. Es kommt also zu einer Wirkverstärkung. Dagegen ist z. B. Rifampicin ein Induktor des Transporters: Es wird mehr Dabigatran in das Darmlumen zurückgepumpt, wodurch der Plasmaspiegel der Substanz fällt, was mit einer Wirkminderung einhergeht.
   - *Açıklama (TR)*: Enterosit akış taşıyıcısı P-glikoproteine ​​(P-gp) sahiptir. Bu taşıyıcı, yutulan dabigatranı bağırsak lümenine geri pompalar. Amiodaron (aynı zamanda verapamil, klaritromisin, kinidin veya ketokonazol) gibi maddeler taşıyıcıyı inhibe eder ve dolayısıyla plazmaya emilen dabigatran miktarı artar. Yani etkide bir artış var. Öte yandan, ör. B. Rifampisin, taşıyıcının bir indükleyicisidir: daha fazla dabigatran bağırsak lümenine geri pompalanır, bu da maddenin plazma seviyesinin düşmesine neden olur ve buna etkinliğin azalması da eşlik eder.
 - **Option D)** ✅ [Richtig / Doğru] Bei gleichzeitiger Einnahme von Rifampicin ist die Plasmakonzentration von Dabigatran erniedrigt.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Rifampisin ile eşzamanlı kullanımda dabigatranın plazma konsantrasyonu düşer.
   - *Erklärung (DE)*: Siehe Antwort c. Carbamazepin oder Phenytoin wirken auch als P-gp-Induktoren.
   - *Açıklama (TR)*: Cevap c'ye bakınız. Karbamazepin veya fenitoin aynı zamanda P-gp indükleyicileri olarak da görev yapar.
 - **Option E)** ✅ [Richtig / Doğru] Bei Patienten über 80 Jahren muss mit einem höheren Blutungsrisiko gerechnet werden.
-  - *Türkçe*: Heparin bir lipoproteindir.
+  - *Türkçe*: 80 yaşın üzerindeki hastalarda daha yüksek bir kanama riski beklenmelidir.
   - *Erklärung (DE)*: Hohes Alter ist ein unabhängiger Risikofaktor für das Auftreten einer Blutungskomplikation (z. B. zerebrale Blutung). Der Einsatz von Dabigatran in dieser Patientengruppe wird das Blutungsrisiko daher (weiter) erhöhen. 73
   - *Açıklama (TR)*: Yaşlılık, kanama komplikasyonlarının (örn. beyin kanaması) ortaya çıkması açısından bağımsız bir risk faktörüdür. Bu nedenle bu hasta grubunda dabigatran kullanımı kanama riskini (daha da) artıracaktır. 73 2 2,2 · Hormon sistemi 2,2 Hormon sistemi
 
@@ -2902,7 +2902,7 @@ Ein 63-jähriger Patient mit insulinpflichtigem Diabetes mellitus Typ 2 soll zur
   - *Erklärung (DE)*: Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a'ya bakınız.
 - **Option E)** ✅ [Richtig / Doğru] Intraoperativ sind regelmäßige Blutzuckerkontrollen notwendig. 77
-  - *Türkçe*: Ameliyat sırasında düzenli kan şekeri kontrolleri gereklidir. 77 2 2.2 · Endokrin sistemi
+  - *Türkçe*: Ameliyat sırasında düzenli kan şekeri kontrolleri gereklidir.
   - *Erklärung (DE)*: Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a'ya bakınız.
 
@@ -2952,7 +2952,7 @@ Histamin ile ilgili aşağıdaki ifadeleri değerlendiriniz:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ❌ [Falsch / Yanlış] wirkt zentral sedierend.
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Santral sedatif etki gösterir.
   - *Erklärung (DE)*: Histamin, das biogene Amin der Aminosäure Histidin, wirkt über zentrale H 1 -Rezeptoren erregend und emetogen. H 1 -Blocker wirken dagegen zentral sedierend und antiemetisch.
   - *Açıklama (TR)*: Histidin amino asidinin biyojenik amini olan histamin, merkezi H1 reseptörleri yoluyla uyarıcı ve emetojenik etkiye sahiptir. H 1 blokerleri ise merkezi sakinleştirici ve antiemetik etkiye sahiptir.
 - **Option B)** ✅ [Richtig / Doğru] wird zu Methylhistamin abgebaut und im Urin ausgeschieden.
@@ -3212,7 +3212,7 @@ Tek akciğer ventilasyonu (ELV) ile:
 Bei Ein-Lungen-Ventilation (ELV) können die folgenden Maß nahmen die Oxygenierung des Patienten verbessern:
 
 ### Soru Kökü (Türkçe):
-Diyaliz ve/veya hemofiltrasyon 249 6 · Yoğun bakım tıbbı6
+Tek akciğer ventilasyonunda (ELV) aşağıdaki önlemler hastanın oksijenasyonunu iyileştirebilir:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] O₂ -Insufflation von 4 l/min tief endobronchial in die nichtventilierte Lunge.
@@ -3463,7 +3463,7 @@ Solunum mekaniği ve kaslarla ilgili olarak:
   - *Erklärung (DE)*: Siehe Antwort c.
   - *Açıklama (TR)*: Cevap c'ye bakınız.
 - **Option E)** ❌ [Falsch / Yanlış] Die Mm. intercostales externi werden bei der forcierten Exspiration einge-setzt.
-  - *Türkçe*: mm. intercostales externi zorla son kullanma tarihi için kullanılır. 90 2Bölüm 2 · Fizyoloji
+  - *Türkçe*: M. intercostales externi zorlu ekspirasyon için kullanılır.
   - *Erklärung (DE)*: Die Mm. intercostales interni kontrahieren bei der forcierten Exspiration. F. Kehl, H.-J. Wilke, Anästhesie. Fragen und Antworten, DOI 10.1007/978-3-662-53664-3_ 3, © Springer-Verlag GmbH Deutschland 201791 3 Pharma kologie Franz Kehl, Hans-Joachim Wilke
   - *Açıklama (TR)*: mm. Zorla sona erme sırasında intercostales interni sözleşmesi. F. Kehl, H.-J. Wilke, anestezi. Sorular ve cevaplar, DOI 10.1007/978-3-662-53664-3_ 3, © Springer-Verlag GmbH Almanya 201791 3 Farmakoloji Franz Kehl, Hans-Joachim Wilke
 
@@ -3561,8 +3561,8 @@ Aşağıdaki maddeler akciğerlerde kısmen elimine edilir:
   - *Türkçe*: Propranolol
   - *Erklärung (DE)*: Es werden außerdem noch Fentanyl, Imipramin und Prostaglandine partiell inaktiviert.
   - *Açıklama (TR)*: Fentanil, imipramin ve prostaglandinler de kısmen inaktive edilmiştir.
-- **Option E)** ✅ [Richtig / Doğru] Lidocain 93 3 3 · Pharma kologie
-  - *Türkçe*: Lidokain 93 3 3 · Farmakoloji
+- **Option E)** ✅ [Richtig / Doğru] Lidocain
+  - *Türkçe*: Lidokain
   - *Erklärung (DE)*: Die quantitativ wichtige Metabolisierung findet allerdings in der Leber statt. Lidocain wird zu Methylxylidid und Monoethylglycinxylidid (MEGX) metabolisiert. MEGX kann zur Quantifizierung der Lebermetaboli-sierungsleistung herangezogen werden. Die Lunge erfüllt auch vielfältige Syntheseleistungen. Neben Surfactant werden hier Prostaglandine, Hista-min, Kallikrein, Von-Willebrand-Faktor und Gewebeplasminogenaktivator (tPA) gebildet (Stoelting 2005, S. 691).
   - *Açıklama (TR)*: Ancak kantitatif olarak önemli olan metabolizma karaciğerde gerçekleşir. Lidokain, metilksilidid ve monoetilglisineksilidide (MEGX) metabolize olur. MEGX karaciğerin metabolik performansını ölçmek için kullanılabilir. Akciğerler ayrıca çeşitli sentetik işlevleri de yerine getirir. Burada sürfaktanın yanı sıra prostaglandinler, hista-min, kallikrein, von Willebrand faktörü ve doku plazminojen aktivatörü (tPA) de oluşur (Stoelting 2005, s. 691).
 
@@ -3760,7 +3760,7 @@ Etomidat ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Richtig.
   - *Açıklama (TR)*: Doğru.
 - **Option E)** ✅ [Richtig / Doğru] wird durch Plasmaesterasen metabolisiert
-  - *Türkçe*: Bir serbest dalıcıda, deniz seviyesinde ölçülen toplam akciğer hacmi (V 0 ), 20 m deniz derinliğinde (V 1 ) yarıya iner,
+  - *Türkçe*: Plazma esterazları tarafından metabolize edilir.
   - *Erklärung (DE)*: Die Aussage ist fachlich zutreffend: wird durch Plasmaesterasen metabolisiert
   - *Açıklama (TR)*: Bu ifade tıbbi olarak doğrudur: Bir serbest dalıcıda, deniz seviyesinde ölçülen toplam akciğer hacmi (V 0 ), 20 m deniz derinliğinde (V 1 ) yarıya iner,
 
@@ -3925,7 +3925,7 @@ Minimum alveoler konsantrasyon (MAC):
   - *Erklärung (DE)*: Die gleichzeitige Gabe zweier Inhalationsanästhetika führt zu einer Addition der MAC-Werte: 0,5 MAC Lachgas und 0,5 MAC Isofluran haben eine gemeinsame anästhetische Wirkung von 1 MAC Isofluran.
   - *Açıklama (TR)*: H + iyonlarındaki azalmaya yanıt verir.
 - **Option E)** ❌ [Falsch / Yanlış] ist größer in der Schwangerschaft
-  - *Türkçe*: gebelikte daha büyüktür 100 3Bölüm 3 · Farmakoloji
+  - *Türkçe*: Gebelikte daha büyüktür.
   - *Erklärung (DE)*: In der Schwangerschaft und bis ca. 72 h postpartal ist die MAC erheblich reduziert (30 %).
   - *Açıklama (TR)*: MAC, hamilelik sırasında ve doğum sonrası yaklaşık 72 saate kadar önemli ölçüde azalır (%30).
 
@@ -4181,7 +4181,7 @@ Anesteziklerin teratojenitesi ile ilgili aşağıdaki ifadelerden hangisi doğru
   - *Erklärung (DE)*: Für die Opioide Fentanyl, Sufentanil, Alfentanil und Morphin konnte im Tierexperiment eine teratogene Potenz ausgeschlossen werden.
   - *Açıklama (TR)*: Hayvan deneylerinde opioidler fentanil, sufentanil, alfentanil ve morfin için teratojenik etki göz ardı edilebilmektedir.
 - **Option C)** ✅ [Richtig / Doğru] Für Isofluran konnte tierexperimentell eine teratogene Potenz aus-geschlossen werden.
-  - *Türkçe*: Hayvan deneylerinde izofluran için teratojenik etki göz ardı edilmiştir. 106 3Bölüm 3 · Farmakoloji
+  - *Türkçe*: Hayvan deneylerinde izofluran için teratojenik etki dışlanmıştır.
   - *Erklärung (DE)*: Die volatilen Anästhetika Halothan, Enfluran und Isofluran haben bei Applikation einer MAC von 0,75 über weniger als 6 h keine teratogene Potenz.
   - *Açıklama (TR)*: Uçucu anestetikler halotan, enfluran ve izofluran, 0,75 MAC değerinde 6 saatten daha kısa bir süre uygulandığında teratojenik potansiyele sahip değildir.
 
@@ -4379,7 +4379,7 @@ Aşağıdaki ifadeler süksinil kolinin (SCh) kullanımı için geçerlidir:
   - *Erklärung (DE)*: Der Anstieg des intragastralen Drucks wird auf die abdominalen Muskelfaszikulationen zurückgeführt. Bei ausreichender Präkurarisierung und entsprechendem Ausbleiben der Muskelfaszikulationen ist nicht mit einem Anstieg des intragastralen Drucks zu rechnen.
   - *Açıklama (TR)*: Mide içi basınçtaki artış karın kaslarının fasikülasyonuna bağlanmaktadır. Yeterli prekürarizasyon varsa ve buna karşılık gelen kas fasikülasyonları yoksa, intragastrik basınçta bir artış beklenmemelidir.
 - **Option E)** ❌ [Falsch / Yanlış] Succinylcholin kann gefahrlos querschnittgelähmten Patienten gegeben werden. 111
-  - *Türkçe*: Belden aşağısı felçli hastalara süksinilkolin güvenle verilebilir. 111 3 3.3 · Kas gevşeticiler
+  - *Türkçe*: Parapleji hastalarına süksinilkolin güvenle verilebilir.
   - *Erklärung (DE)*: Jede Erkrankung, die mit einer muskulären Denervierung einhergeht, führt zur Bildung extrajunktionaler ACh-Rezeptoren. Durch die Gabe von SCh wird dabei soviel K + freigesetzt, dass rasche Anstiege um mehr als weitere 7 mmol/l im Plasma (Serum-K + >12 mmol/l) zur Asystolie führen können. Daher ist SCh absolut kontraindiziert bei Patienten, die Lähmun-gen aufweisen, insbesondere bei Vorliegen eines Querschnittsyndroms.
   - *Açıklama (TR)*: Kas denervasyonuyla ilişkili herhangi bir hastalık, eklem dışı ACh reseptörlerinin oluşumuna yol açar. SCh'nin uygulanması o kadar çok K+ salgılar ki, plazmada 7 mmol/l'den fazla hızlı artışlar (serum K+ >12 mmol/l) asistoliye yol açabilir. Bu nedenle SCh, felçli hastalarda, özellikle de omurilik sendromunun varlığında kesinlikle kontrendikedir.
 
@@ -4627,7 +4627,7 @@ Aşağıdaki ilaçlar dolaylı etkili, geri dönüşü olmayan parasempatomimeti
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] Physostigmin
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Fizostigmin
   - *Erklärung (DE)*: Medikamente, die kovalent an die Acetylcholinesterase binden und so die Spaltung von Acetylcholin (ACh) blockieren, sind irreversible ACh-Esterasehemmer. Physostigmin ist liquorgängig und kann daher auch bei einem zentralen anticholinergen Syndrom eingesetzt werden.
   - *Açıklama (TR)*: Asetilkolinesteraza kovalent olarak bağlanan ve böylece asetilkolinin (ACh) bölünmesini bloke eden ilaçlar, geri dönüşümsüz ACh esteraz inhibitörleridir. Fizostigmin likörden geçer ve bu nedenle merkezi antikolinerjik sendromda da kullanılabilir.
 - **Option B)** ❌ [Falsch / Yanlış] Glykopyrroniumbromid
@@ -4635,7 +4635,7 @@ Aşağıdaki ilaçlar dolaylı etkili, geri dönüşü olmayan parasempatomimeti
   - *Erklärung (DE)*: Glykopyrroniumbromid ist ein Parasympatholytikum wie Atropin mit dem Unterschied, dass es eine quaternäre Stickstoffgruppe trägt und daher nicht liquorgängig ist.
   - *Açıklama (TR)*: Glikopironyum bromür, atropin gibi bir parasempatolitiktir; tek farkı, dördüncül bir nitrojen grubuna sahip olması ve bu nedenle liköre karşı geçirgen olmamasıdır.
 - **Option C)** ❌ [Falsch / Yanlış] Carbachol
-  - *Türkçe*: • Hemodinamik, hemostazolojik ve metabolik stabilizasyon • Isı koruması • İkincil incelemeyi tamamlayın, dikkatlice belgeleyin • Tüm radyolojik bulguları kontrol edin (servikal omurga yaralanması, vertebral arter diseksiyonu, aort diseksiyonu hariç mi?) • Tetanos koruması • Diürezi koruyun ("böbreğin ezilmesi" riski) • Kompartman sendromlarının (ekstremiteler, karın) gelişimini izleyin • Stabilizasyondan sonra ikinci bakımı planlayın7 239 7.7 Politravma Acil doktor tarafından aşağıdaki durumlarda sağlanan bakımı nasıl değerlendiriyorsunuz? sitesi? Travmatik hemodinamik şok ile hastane öncesi kontrol edilemeyen kanama durumunda, yalnızca en yakın uygun kliniğe mümkün olan en hızlı nakil hayatınızı kurtarabilir. Pelvik kırığın neden olduğu iç kanama durumunda, pelvik askının doğru yerleştirilmesi hayat kurtarıcı olabilir. Bu nedenle acil doktoru doğru davrandı. KASUİSTİK
+  - *Türkçe*: Karbakol
   - *Erklärung (DE)*: Carbachol ist ein synthetisches Strukturanalogon von ACh, das von der ACh-Esterase nicht gespalten werden kann. Es ist damit ein Parasym-pathomimetikum und wird v. a. zur Therapie des nicht obstruktiven Harn-verhalts eingesetzt (Doryl ® ).
   - *Açıklama (TR)*: Karbakol, ACh esteraz tarafından parçalanamayan ACh'nin sentetik bir yapısal analoğudur. Bu nedenle bir parasempatomimetiktir ve öncelikli olarak kullanılır. A. obstrüktif olmayan idrar retansiyonunu tedavi etmek için kullanılır (Doryl ®).
 - **Option D)** ❌ [Falsch / Yanlış] Edrophonium
@@ -4676,7 +4676,7 @@ Opioidlerin uygulanmasından sonra aşağıdaki solunum düzenleri gözlemlenebi
   - *Erklärung (DE)*: Große Atempausen und tiefe Atemzüge sind typische Atemmuster nach Opioidgabe.
   - *Açıklama (TR)*: Lachmann ventilasyon konseptinin temel amacı, yüksek hava yolu basınçlarından sürekli olarak kaçınarak kollabe akciğer bölgelerini yeniden kazanmaktır.
 - **Option E)** ✅ [Richtig / Doğru] tiefe Atemzüge 117
-  - *Türkçe*: derin nefesler 117 3 3,4 · Opioidler
+  - *Türkçe*: Derin nefesler alma.
   - *Erklärung (DE)*: Siehe Antwort d.
   - *Açıklama (TR)*: Cevap d'ye bakınız.
 
@@ -4771,7 +4771,7 @@ Naloxon ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Naloxon ist auch ein reiner Antagonist am κ -Rezeptor.
   - *Açıklama (TR)*: Nalokson ayrıca κ reseptöründe saf bir antagonisttir.
 - **Option D)** ❌ [Falsch / Yanlış] ist ein Partialantagonist am δ-Rezeptor.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: δ-reseptöründe parsiyel bir antagonisttir.
   - *Erklärung (DE)*: Naloxon ist ein reiner Antagonist am δ -Rezeptor.
   - *Açıklama (TR)*: Nalokson δ reseptöründe saf bir antagonisttir.
 - **Option E)** ❌ [Falsch / Yanlış] kann die MAC von Inhalationsanästhetika erhöhen.
@@ -4973,7 +4973,7 @@ Kokain ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Ein körperliches Entzugssyndrom ist nur sehr gering ausgeprägt, die psychische Abhängigkeit steht ganz im Vordergrund.
   - *Açıklama (TR)*: Fiziksel yoksunluk sendromu yalnızca çok hafiftir; Psikolojik bağımlılık ana odak noktasıdır.
 - **Option E)** ✅ [Richtig / Doğru] ist ein Dopamin- und Noradrenalin-Wiederaufnahmehemmer.
-  - *Türkçe*: dopamin ve norepinefrin geri alım inhibitörüdür. 122 3Bölüm 3 · Farmakoloji
+  - *Türkçe*: Dopamin ve norepinefrin geri alım inhibitörüdür.
   - *Erklärung (DE)*: Siehe Antwort a. 3.5 Antihypertensiva
   - *Açıklama (TR)*: Cevap a'ya bakınız. 3.5 Antihipertansifler
 
@@ -5196,7 +5196,7 @@ Mannit ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Mannit wird nur glomerulär filtriert und nicht reabsorbiert. Hierdurch wird die Osmolarität im Primärharn erhöht und vermehrt Wasser osmotisch gebunden und ausgeschieden. Daneben werden praktisch alle Elektrolyte vermehrt ausgeschieden.
   - *Açıklama (TR)*: Mannitol yalnızca glomerüler olarak filtrelenir ve yeniden emilmez. Bu, birincil idrardaki ozmolariteyi arttırır ve ozmotik olarak bağlanan ve atılan su miktarını arttırır. Ek olarak, neredeyse tüm elektrolitler giderek artan oranda atılmaktadır.
 - **Option C)** ✅ [Richtig / Doğru] erhöht die Plasmaosmolarität.
-  - *Türkçe*: Yüzey gerilimi akciğerlerin elastik geri getirme kuvvetlerinin yaklaşık 2/3'ünden sorumludur.
+  - *Türkçe*: Plazma ozmolaritesini artırır.
   - *Erklärung (DE)*: Mannit 20–40 % ist hyperosmolar und wird in einer Dosis von 0,25–1,0 g/kgKG als Kurzinfusion verabreicht. Durch die fehlende Verstoff-wechselung bleibt die Hyperosmolarität bei normaler Nierenfunktion ca. 2 h erhalten. Die HWZ beträgt rund 45 min.
   - *Açıklama (TR)*: Mannitol %20-40 hiperosmolar olup 0.25-1.0 g/kg vücut ağırlığı dozunda kısa infüzyon şeklinde uygulanır. Metabolizma eksikliği nedeniyle hiperosmolarite normal böbrek fonksiyonuyla yaklaşık 2 saat boyunca korunur. HWZ yaklaşık 45 dakikadır.
 - **Option D)** ❌ [Falsch / Yanlış] erhöht den Hämatokrit.
@@ -5204,7 +5204,7 @@ Mannit ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Durch die Erhöhung der Plasmaosmolarität strömt interstitielles Wasser nach intravasal. Hierdurch wird der Hämatokrit erniedrigt, die Viskosität gesenkt und das extrazelluläre Volumen und der renale Blutfluss erhöht. Patienten mit einer kardialen Insuffizienz können bei der Anwen-dung von Mannitlösungen dekompensieren und ein Lungenödem ent-wickeln.
   - *Açıklama (TR)*: Plazma ozmolaritesinin artmasıyla interstisyel su intravasküler olarak akar. Bu hematokriti düşürür, viskoziteyi düşürür ve hücre dışı hacmi ve böbrek kan akışını arttırır. Kalp yetmezliği olan hastalarda mannitol solüsyonları kullanıldığında dekompanse olabilir ve akciğer ödemi gelişebilir.
 - **Option E)** ✅ [Richtig / Doğru] führt zu einer intrazellulären Dehydratation. 127
-  - *Türkçe*: hücre içi dehidrasyona yol açar. 127 3 3.6 · Diüretikler
+  - *Türkçe*: Hücre içi dehidrasyona yol açar.
   - *Erklärung (DE)*: Dadurch, dass interstitielles Wasser nach intravasal verschoben wird, wird wiederum intrazelluläres Wasser nach interstitiell verschoben und somit letztlich intrazellulär dehydriert. Dies ist die Grundlage der Therapie des Hirnödems mit M annit. Voraussetzung ist eine intakte Blut- Hirn-Schranke, da sonst mit einem Rebound-Phänomen gerechnet werden muss. Es kommt zu einem erneuten Anstieg des Hirndrucks durch Einlage-rung von Mannit in das Hirnparenchym.
   - *Açıklama (TR)*: İnterstisyel su intravasküler olarak kaydığı için, hücre içi su da interstisyel olarak kayar ve sonuçta hücre içi olarak dehidre olur. Bu, beyin ödeminin M annit ile tedavisinin temelidir. Ön koşul sağlam bir kan-beyin bariyeridir, aksi takdirde bir geri tepme fenomeni beklenmelidir. Mannitolün beyin parankiminde birikmesi nedeniyle kafa içi basıncında yeniden bir artış olur.
 
@@ -5336,7 +5336,7 @@ Amitriptilin tipi trisiklik antidepresanlarla zehirlenme veya aşırı doz kendi
   - *Erklärung (DE)*: Aufgrund der anticholinergen Wirkung kommt es zusätzlich zu einer Mydriasis, trockener geröteter Haut, Harnverhalt und Tachykardie.
   - *Açıklama (TR)*: Antikolinerjik etki nedeniyle midriyazis, ciltte kuru kızarıklık, idrar retansiyonu ve taşikardi de ortaya çıkar.
 - **Option E)** ✅ [Richtig / Doğru] trockener geröteter Haut
-  - *Türkçe*: kuru, kızarmış cilt 130 3Bölüm 3 · Farmakoloji
+  - *Türkçe*: Kuru, kızarmış cilt.
   - *Erklärung (DE)*: Siehe Antwort d. Hinzu kommen myokardiale Depression mit Verlängerung des QRS-Komplexes und ventrikuläre Arrhythmien. Die Behandlung der Vergiftung besteht in der frühen Phase (innerhalb der ersten 10 h) in einer Magenspülung und Kohleinstillation. Eine Hämoperfusion oder Hämodialyse ist aufgrund der hohen Proteinbindung nutzlos. Krampf-anfälle werden mit Diazepam und Phenytoin, das auch antiarrhythmisch wirkt, durchbrochen. Eine Alkalisierung mit Natriumbikarbonat und die kontrollierte Hyperventilation kann die myokardiale Toxizität vorübergehend mildern. Bei AV-Blockierungen ist die Gabe von Isoproterenol, bzw. Orciprenalin indi-ziert, bei Auftreten einer Hypotension steht die Volumen- und Katecholamin-therapie im Vordergrund.
   - *Açıklama (TR)*: Cevap d'ye bakınız. Ayrıca QRS kompleksinin uzaması ve ventriküler aritmilerle birlikte miyokard depresyonu da vardır. Erken dönemdeki (ilk 10 saat içindeki) zehirlenmelerin tedavisi mide lavajı ve kömür damlatılmasından oluşur. Hemoperfüzyon veya hemodiyaliz, proteinlere yüksek bağlanma nedeniyle yararsızdır. Antiaritmik etkisi de olan diazepam ve fenitoin ile nöbetler durdurulur. Sodyum bikarbonat ile alkalizasyon ve kontrollü hiperventilasyon, miyokardiyal toksisiteyi geçici olarak hafifletebilir. AV blokajları durumunda izoproterenol veya orsiprenalin uygulanması endikedir; hipotansiyon meydana gelirse hacim ve katekolamin tedavisine odaklanılır.
 
@@ -5658,7 +5658,7 @@ Propranolol ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Die hohe Plasmaeiweißbindung von bis zu 95 % kann dazu führen, dass unter Gabe von Heparin vermehrt Propranolol aus der Proteinbindung verdrängt und die freie Konzentration verdoppelt wird. Propranolol wird in der Leber zu dem aktiven Metaboliten 4-Hydroxipropranolol meta-bolisiert. Die Eliminationshalbwertszeit liegt bei rund 3 h.
   - *Açıklama (TR)*: %95'e varan yüksek plazma protein bağlanması, heparin uygulanmasının propranolol'ün protein bağlanmasından ayrılmasının artmasına ve serbest konsantrasyonun iki katına çıkmasına yol açabilir. Propranolol karaciğerde aktif metabolit 4-hidroksipropranolole metabolize edilir. Eliminasyon yarı ömrü yaklaşık 3 saattir.
 - **Option C)** ✅ [Richtig / Doğru] kann die Clearance von Bupivacain um 35 % vermindern.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Bupivakain klirensini %35 oranında azaltabilir.
   - *Erklärung (DE)*: Propranolol führt zu einer Verminderung des hepatischen Blutflusses und zu einer Verminderung der Metabolisierungsleistung der Leber. Amidlokalanästhetika können daher in Gegenwart von Propranolol ver-mindert metabolisiert werden, was zu einer Erhöhung der Toxizität beitra-gen kann. 137
   - *Açıklama (TR)*: Propranolol hepatik kan akışında azalmaya ve karaciğerin metabolik kapasitesinde azalmaya yol açar. Bu nedenle amid lokal anesteziklerin propranolol varlığında metabolizması azalabilir ve bu da toksisitenin artmasına katkıda bulunabilir. 137 3 3,9 · Adrenerjik reseptör blokerleri
 - **Option D)** ✅ [Richtig / Doğru] führt zu einem Anstieg des HZV.
@@ -6094,8 +6094,8 @@ Cormack ve Lehane'nin sınıflandırmasına göre, aşağıdaki laringoskopi der
   - *Türkçe*: Derece IV'te sadece epiglot.
   - *Erklärung (DE)*: Grad IV bedeutet, dass auch keine Epiglottis mehr zu sehen ist, sondern nur der weiche Gaumen.
   - *Açıklama (TR)*: Derece IV, epiglotun artık görülemediği, yalnızca yumuşak damağın görülebildiği anlamına gelir.
-- **Option E)** ❌ [Falsch / Yanlış] Bei Grad V nur der weiche Gaumen, die Epiglottis ist nicht mehr sichtbar. 147 4 · Anäst hesie4
-  - *Türkçe*: Derece V'de sadece yumuşak damak ve epiglot artık görülmez. 147 4 · Anestezi4
+- **Option E)** ❌ [Falsch / Yanlış] Bei Grad V nur der weiche Gaumen, die Epiglottis ist nicht mehr sichtbar.
+  - *Türkçe*: Evre V'te sadece yumuşak damak görülür, epiglot artık görünmez.
   - *Erklärung (DE)*: Grad V gibt es nach der Einteilung von Cormack und Lehane nicht.
   - *Açıklama (TR)*: Cormack ve Lehane'nin sınıflamasına göre V. derece mevcut değildir.
 
@@ -6292,8 +6292,8 @@ Prostatın transüretral rezeksiyonunun (TURP) bir parçası olarak aşağıdaki
   - *Türkçe*: Akciğer ödemi
   - *Erklärung (DE)*: Bei ausgeprägter Einschwemmung von Spülflüssigkeit mit akuter Hypervolämie ist das Auftreten eines Linksherzversagens mit Lungenödem möglich.
   - *Açıklama (TR)*: Akut hipervolemi ile birlikte durulama sıvısının şiddetli infiltrasyonu varsa, pulmoner ödemle birlikte sol ventrikül yetmezliği mümkündür.
-- **Option E)** ✅ [Richtig / Doğru] intravasale Hämolyse 151 4 · Anäst hesie4
-  - *Türkçe*: intravasküler hemoliz 151 4 · Anestezi4
+- **Option E)** ✅ [Richtig / Doğru] intravasale Hämolyse
+  - *Türkçe*: İntravasküler hemoliz
   - *Erklärung (DE)*: Bei einem Abfall des Serumnatriumspiegels auf 110 mmol/l kann es zu einer osmotischen intravasalen Hämolyse (Anschwellen der Erythro-zyten) kommen.
   - *Açıklama (TR)*: Serum sodyum düzeyi 110 mmol/l'ye düşerse ozmotik intravasküler hemoliz (eritrositlerin şişmesi) meydana gelebilir.
 
@@ -6636,7 +6636,7 @@ Genel anestezinin bir parçası olarak aralıklı pozitif basınçlı (IPPV) kon
 Ein junger, gesunder Mann:
 
 ### Soru Kökü (Türkçe):
-Adrenalin 190 5Bölüm 5 · Bölgesel anestezi
+Genç, sağlıklı bir erkek:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] hat eine Vitalkapazität von 60–70 ml/kgKG.
@@ -6689,7 +6689,7 @@ Anestezikler ve kemoterapi ilaçları ile ilgili hangi ifadeler doğrudur?
   - *Erklärung (DE)*: Cyclophosphamid, ein alkylierendes Chemotherapeutikum, wird u. a. in der Behandlung des Mammakarzinoms eingesetzt. Es ist ein starker Cholinesteraseinhibitor und verlängert die Succinylcholinwirkung durch Inhibition des esteraseabhängigen Succinylcholinabbaus.
   - *Açıklama (TR)*: Alkilleyici bir kemoterapi ilacı olan siklofosfamid, diğer şeylerin yanı sıra kullanılır. meme kanseri tedavisinde kullanılır. Güçlü bir kolinesteraz inhibitörüdür ve esteraza bağımlı süksinilkolin bozunmasını inhibe ederek süksinilkolin etkisini uzatır.
 - **Option E)** ✅ [Richtig / Doğru] Doxorubicin ist ausgesprochen kardiotoxisch.
-  - *Türkçe*: Doksorubisin son derece kardiyotoksiktir. 160 4Bölüm 4 · Anestezi
+  - *Türkçe*: Doksorubisin son derece kardiyotoksiktir.
   - *Erklärung (DE)*: Doxorubicin, ein Anthracyclin, wird u. a. in der Behandlung von Hodentumoren eingesetzt. Es hat eine akute, dosisunabhängige Kardio-toxizität, die sich in einer Linksherzinsuffizienz, malignen Herzrhythmus-störungen und einer erhöhten Inzidenz des plötzlichen Herztodes mani-festiert. Darüber hinaus wird eine chronische, dosisabhängige Kardio-toxizität beschrieben, die zum biventrikulären Herzversagen führen kann.
   - *Açıklama (TR)*: Diğer şeylerin yanı sıra bir antrasiklin olan doksorubisin kullanılır. testis tümörlerinin tedavisinde kullanılır. Sol kalp yetmezliği, malign kardiyak aritmiler ve artan ani kardiyak ölüm insidansı ile kendini gösteren akut, dozdan bağımsız kardiyotoksisiteye sahiptir. Ayrıca biventriküler kalp yetmezliğine yol açabilen kronik, doza bağımlı kardiyotoksisite de anlatılmaktadır.
 
@@ -6820,8 +6820,8 @@ Prilocain ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Türkçe*: dudak siyanozuna neden olabilir.
   - *Erklärung (DE)*: Ab einer Gesamtmenge von über 600 mg steigt die Gefahr der Methämoglobinbindung. Prilocain wird in der Leber zu o-Toluidin verstoff-wechselt. o-Toluidin ist ein Methämoglobinbildner, und wenn 3–5 g/dl Methämoglobin vorhanden sind, entsteht eine Lippenzyanose. Die Thera-pie besteht aus der Gabe von Methylenblau.
   - *Açıklama (TR)*: Toplam miktar 600 mg'ı aşarsa methemoglobin bağlanma riski artar. Prilokain karaciğerde o-toluidine metabolize edilir. o-Toluidin methemoglobin üreticisidir ve 3-5 g/dl methemoglobin varlığında dudak siyanozu gelişir. Terapi metilen mavisinin uygulanmasından oluşur.
-- **Option E)** ❌ [Falsch / Yanlış] wird von Cholinesterasen gespalten. 165 5 · Regionala nästhesie5
-  - *Türkçe*: kolinesterazlar tarafından parçalanır. 165 5 · Bölgesel anestezi5
+- **Option E)** ❌ [Falsch / Yanlış] wird von Cholinesterasen gespalten.
+  - *Türkçe*: Kolinesterazlar tarafından parçalanır.
   - *Erklärung (DE)*: Prilocain gehört zu den Amidlokalanästhetika und wird hepatisch hydrolysiert. Die Ester-LA werden von Cholinesterasen hydrolysiert.
   - *Açıklama (TR)*: Prilokain amid lokal anesteziklerden biridir ve hepatik olarak hidrolize edilir. Ester LA kolinesterazlar tarafından hidrolize edilir.
 
@@ -6945,7 +6945,7 @@ Lokal anesteziklerin toksisitesi ile ilgili aşağıdaki ifadeler doğru mudur?
   - *Erklärung (DE)*: Präkonvulsive Warnzeichen treten bei etwa 1,5 % aller Patienten auf; Krämpfe entwickeln sich bei etwa 0,15 %.
   - *Açıklama (TR)*: Tüm hastaların yaklaşık %1,5'inde prekonvülsif uyarı işaretleri ortaya çıkar; Yaklaşık %0,15 oranında kramplar gelişir.
 - **Option C)** ✅ [Richtig / Doğru] Bei Auftreten von präkonvulsiven Warnzeichen sollte der Patient auf-gefordert werden zu hyperventilieren.
-  - *Türkçe*: Prekonvülsif uyarı işaretleri ortaya çıkarsa hastadan hiperventilasyon yapması istenmelidir. 168 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Prekonvülsif uyarı işaretleri ortaya çıkarsa hastadan hiperventilasyon yapması istenmelidir.
   - *Erklärung (DE)*: Das Auftreten von präkonvulsiven Warnzeichen erfordert: 1. Abbruch der weiteren Gabe des Lokalanästhetikums; 2. Hyperventilation, da eine zerebrale Vasokonstriktion durch Hypokapnie den Antransport von LA vermindert; 3. i.v.-Gabe von Diazepam 2,5–5 mg (Antikonvulsivum).
   - *Açıklama (TR)*: Prekonvülsif uyarı işaretlerinin ortaya çıkması şunları gerektirir: 1. Lokal anestezik uygulamasının daha fazla durdurulması; 2. Hipokapniye bağlı serebral vazokonstriksiyon LA'nın taşınmasını azalttığı için hiperventilasyon; 3. 2,5-5 mg diazepamın (antikonvülsan) IV uygulaması.
 
@@ -7123,7 +7123,7 @@ Lokal anestezikler (LA) ile ilgili hangi ifadeler doğrudur?
 Die Wirkdauer eines Lokalanästhetikums (LA) korreliert:
 
 ### Soru Kökü (Türkçe):
-Nabız ölçümü yok. Fizikte momentum, büyük bir cismin hareketini tanımlar. Görsel olarak, dürtü kabaca çarpışan iki nesnenin "kuvvetine" karşılık gelir. Hareket eden her cisim, çarpışma sırasında momentumunu kısmen veya tamamen başka cisimlere aktarabilir veya başka cisimlerden devralabilir. 21 1 1.2 · Fizik
+Bir lokal anesteziğin (LA) etki süresi şununla korelasyon gösterir:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] mit der Proteinbindung.
@@ -7160,15 +7160,15 @@ Lokal anestezikler (LA) ile ilgili hangi ifadeler doğrudur?
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ❌ [Falsch / Yanlış] LA wirken positiv chronotrop.
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Lokal anestezikler pozitif kronotropik etki gösterir.
   - *Erklärung (DE)*: LA wirken generell negativ inotrop, negativ chronotrop, negativ bathmotrop und negativ dromotrop. Aufgrund dieser Eigenschaften kann z. B. Lidocain zur Behandlung ventrikulärer Rhythmusstörungen eingesetzt werden.
   - *Açıklama (TR)*: LA genellikle negatif inotropik, negatif kronotropik, negatif batmotropik ve negatif dromotropik etkiye sahiptir. Bu özellikler nedeniyle, ör. B. Lidokain ventriküler aritmileri tedavi etmek için kullanılabilir.
 - **Option B)** ❌ [Falsch / Yanlış] Lokalanästhetika vom Amid-Typ wirken stärker als LA vom Ester-Typ.
   - *Türkçe*: Amid tipi lokal anestezikler ester tipi LA'ya göre daha güçlü etkiye sahiptir.
   - *Erklärung (DE)*: Die chemische Struktur hat mit der Potenz eines LA nur wenig zu tun.
   - *Açıklama (TR)*: Kimyasal yapının LA'nın gücüyle pek ilgisi yoktur.
-- **Option C)** ✅ [Richtig / Doğru] Das Vorliegen einer Gewebsazidose kann einen Wirkverlust des LA verur sachen. 173 5 · Regionala nästhesie5
-  - *Türkçe*: Doku asidozunun varlığı LA etkinliğinin kaybına neden olabilir. 173 5 · Bölgesel anestezi5
+- **Option C)** ✅ [Richtig / Doğru] Das Vorliegen einer Gewebsazidose kann einen Wirkverlust des LA verursachen.
+  - *Türkçe*: Doku asidozunun varlığı LA etkinliğinde kayba neden olabilir.
   - *Erklärung (DE)*: Im sauren Milieu (z. B. bei Entzündung) wird ein großer Teil des LA protoniert und einfach positiv geladen (quaternäre Ammonium-struktur). Dadurch kann das LA nicht in das Zellinnere (dem Wirkort) gelangen und es kommt zu einem ausgeprägten Wirkungsverlust.
   - *Açıklama (TR)*: Asidik bir ortamda (örneğin iltihaplanmada), LA'nın büyük bir kısmı protonlanır ve basitçe pozitif olarak yüklenir (kuaterner amonyum yapısı). Sonuç olarak LA, hücrenin iç kısmına (etki alanı) ulaşamaz ve belirgin bir etkinlik kaybı olur.
 
@@ -7300,7 +7300,7 @@ Aşağıdaki ilaçlardan hangisinin antikonvülsan özelliği vardır?
   - *Erklärung (DE)*: Chlorpromazin erniedrigt wie andere Neuroleptika die Krampfschwelle. Im EEG werden bei der Applikation im Gegenteil Krampfäquivalente registriert.
   - *Açıklama (TR)*: Diğer nöroleptikler gibi klorpromazin de nöbet eşiğini düşürür. Aksine uygulama sırasında nöbet eşdeğerleri EEG'ye kaydedilir.
 - **Option E)** ❌ [Falsch / Yanlış] Bupivacain
-  - *Türkçe*: Bupivakain 176 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Bupivakain
   - *Erklärung (DE)*: Bupivacain hat, wie andere Lokalanästhetika auch, membranstabilisierende Eigenschaften. Es führt zunächst zu einer Dämpfung höherer kortikaler Zentren und damit evtl. zu einer Aktivierung untergeordneter Zentren (Temporallappenanfälle) durch Disinhibition. Hieraus erklären sich die bekannten klinischen Nebenwirkungen wie Exzitation, Nausea und epi-leptische Anfälle (initial Erregung, dann Dämpfung). Erst zuletzt entsteht eine komplette zerebrale Depression. Bupivacain hat demnach keine kli-nisch nutzbaren antikonvulsiven Eigenschaften.
   - *Açıklama (TR)*: Bupivakain, diğer lokal anestezikler gibi membran stabilize edici özelliklere sahiptir. Başlangıçta yüksek kortikal merkezlerin sönümlenmesine ve dolayısıyla muhtemelen disinhibisyon yoluyla daha düşük seviyeli merkezlerin aktivasyonuna (temporal lob nöbetleri) yol açar. Bu, uyarılma, mide bulantısı ve epileptik nöbetler (önce heyecan, sonra depresyon) gibi iyi bilinen klinik yan etkileri açıklamaktadır. Ancak sonunda tam bir serebral depresyon gelişir. Bupivakainin bu nedenle klinik olarak yararlı antikonvülsan özellikleri yoktur.
 
@@ -7465,7 +7465,7 @@ Kafa içi basıncı (ICP) ile ilgili olarak:
   - *Erklärung (DE)*: Hyperventilation wirkt sofort. Osmotische Diuretika wirken innerhalb von 15 min, Schleifendiuretika innerhalb von 45 min und Steroide innerhalb von Stunden.
   - *Açıklama (TR)*: Hiperventilasyon hemen işe yarar. Ozmotik diüretikler 15 dakika içinde, loop diüretikleri 45 dakika içinde ve steroidler saatler içinde etki gösterir.
 - **Option E)** ✅ [Richtig / Doğru] Diuretika vom Typ des Furosemid vermindern den ICP. 179
-  - *Türkçe*: Furosemid tipi diüretikler ICP'yi azaltır. 179 5 5.1 · Nöroanestezi
+  - *Türkçe*: Furosemid tipi diüretikler intrakraniyal basıncı (ICP) azaltır.
   - *Erklärung (DE)*: Furosemid wirkt nicht nur auf das Natriumchloridtransportprotein der Tubuluszellen der Nieren, sondern auch auf die Ependym- und Plexus-choroideus-Zellen des Gehirns und führt damit zu einer Verminderung der Liquorproduktion und damit zu einer Abnahme des ICP. Die Kammerwas-serproduktion des Auge s wird über denselben Wirkmechanismus reduziert.
   - *Açıklama (TR)*: Furosemid sadece böbreklerin tübüler hücrelerinin sodyum klorür taşıma proteinine değil, aynı zamanda beynin ependimal ve koroid pleksus hücrelerine de etki ederek BOS üretiminde bir azalmaya ve dolayısıyla ICP'de bir azalmaya yol açar. Aynı etki mekanizmasıyla gözün sulu mizah üretimi azalır.
 
@@ -7548,7 +7548,7 @@ Trigeminal sinir hassas bir şekilde aşağıdaki alanları besler:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] die Schleimhaut des weichen Gaumens
-  - *Türkçe*: Hipertermi
+  - *Türkçe*: Yumuşak damağın mukozası.
   - *Erklärung (DE)*: Dieser Bereich wird über den N. maxillaris V 2 versorgt. Die Endäste laufen über den N. palatinus major und minor.
   - *Açıklama (TR)*: Bu alan V2 maksiller sinir tarafından beslenir. Terminal dalları büyük ve küçük palatin sinirlerinin üzerinden geçer.
 - **Option B)** ✅ [Richtig / Doğru] das Trommelfell
@@ -7630,7 +7630,7 @@ Otonom (bitkisel) sinir sistemi:
   - *Erklärung (DE)*: ACh ist aber auch der Transmitter für die präganglionären sympathischen Nervenfasern.
   - *Açıklama (TR)*: Ancak ACh aynı zamanda preganglionik sempatik sinir liflerinin de vericisidir.
 - **Option E)** ✅ [Richtig / Doğru] Es wird hauptsächlich im Hypothalamus verschaltet.
-  - *Türkçe*: Esas olarak hipotalamusta bağlantılıdır. 182 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Esas olarak hipotalamusta bağlantılıdır.
   - *Erklärung (DE)*: Hauptintegrationsort des ANS ist der Hypothalamus. Von hier aus wird auch auf hormonellem Weg über die Adeno- und Neurohypophyse der Stoffwechsel gesteuert.
   - *Açıklama (TR)*: ANS'nin ana entegrasyon bölgesi hipotalamustur. Buradan metabolizma, adeno ve nörohipofiz aracılığıyla hormonal olarak da kontrol edilir.
 
@@ -8286,7 +8286,7 @@ Ein zentraler Venendruck (ZVD) von 20 mmHg ist vereinbar mit der Diagnose:
   - *Erklärung (DE)*: Siehe Antwort a.d. Richtig. Siehe Antwort a.e. Richtig. Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a.d'ye bakınız. Doğru. Bkz. cevap a.e. Doğru. Cevap a'ya bakınız.
 - **Option D)** ✅ [Richtig / Doğru] Überinfusion
-  - *Türkçe*: Propofol gerçek ağırlığa göre dozlanır.
+  - *Türkçe*: Aşırı sıvı yüklemesi (hipervolemi / aşırı infüzyon).
   - *Erklärung (DE)*: Siehe Antwort a.e. Richtig. Siehe Antwort a.
   - *Açıklama (TR)*: Bkz. cevap a.e. Doğru. Cevap a'ya bakınız.
 - **Option E)** ✅ [Richtig / Doğru] Lungenembolie
@@ -8616,7 +8616,7 @@ Yenidoğanlarda anestezi ile ilgili aşağıdaki ifadeler geçerlidir:
   - *Erklärung (DE)*: Ein ca. 3 kg schweres Neugeborenes hat ein Blutvolumen von etwa 255 ml.
   - *Açıklama (TR)*: Yaklaşık 3 kg ağırlığındaki bir yenidoğanın kan hacmi yaklaşık 255 ml'dir.
 - **Option D)** ❌ [Falsch / Yanlış] Der Hämoglobingehalt des Neugeborenen liegt bei 14 bei 16 g/dl.
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Yenidoğanın hemoglobin düzeyi 14 ila 16 g/dl arasındadır.
   - *Erklärung (DE)*: Der Hämoglobingehalt liegt bei etwa 18–20 g/dl. Es handelt sich um fetales Hämoglobin, dessen O₂ -Affinität im Vergleich zu adultem Hämoglobin erhöht ist.
   - *Açıklama (TR)*: Hemoglobin içeriği 18-20 g/dl civarındadır. Yetişkin hemoglobine kıyasla O₂ afinitesi artan fetal hemoglobindir.
 - **Option E)** ✅ [Richtig / Doğru] Beim Neugeborenen ist der Anteil des Gesamtkörperwassers größer als beim Erwachsenen.
@@ -8752,7 +8752,7 @@ Pediatrik anestezi ile ilgili aşağıdaki ifadeler doğrudur:
   - *Erklärung (DE)*: Siehe Antwort a.e. Richtig. Siehe Antwort a.
   - *Açıklama (TR)*: Bkz. cevap a.e. Doğru. Cevap a'ya bakınız.
 - **Option E)** ✅ [Richtig / Doğru] Thiopental wird in einer Dosierung von 8 mg/kgKG i.v. zur Einleitung bei Säuglingen gegeben.
-  - *Türkçe*: Tiyopental i.v. olarak uygulanır. 8 mg/kg vücut ağırlığı dozunda. Bebeklerde indüksiyon için verilir. 206 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Tiyopental bebeklerde indüksiyon için 8 mg/kg vücut ağırlığı dozunda i.v. uygulanır.
   - *Erklärung (DE)*: Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a'ya bakınız.
 
@@ -9033,7 +9033,7 @@ Hangi ifadeler doğrudur?
   - *Erklärung (DE)*: Über das Foramen ovale tritt während der Fetalzeit Blut vom rechten in den linken Vorhof. Das Foramen ovale verschließt sich unmittel-bar nach der Geburt, kann aber bis ins Erwachsenenalter (funktionell) offen bleiben (Inzidenz: ca. 20 %!).
   - *Açıklama (TR)*: Fetal dönemde kan foramen ovale yoluyla sağdan sol atriyuma doğru akar. Foramen ovale doğumdan hemen sonra kapanır, ancak yetişkinliğe kadar (işlevsel olarak) açık kalabilir (insidans: yaklaşık %20!).
 - **Option E)** ❌ [Falsch / Yanlış] Der Ductus venosus verschließt sich innerhalb von 4 Wochen nach der Geburt.
-  - *Türkçe*: Duktus venosus doğumdan sonraki 4 hafta içinde kapanır. 212 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Duktus venozus doğumdan sonraki 4 hafta içinde kapanır.
   - *Erklärung (DE)*: Der Ductus venosus verschließt sich innerhalb einer Woche nach Geburt.
   - *Açıklama (TR)*: Duktus venosus doğumdan sonraki bir hafta içinde kapanır.
 
@@ -9066,7 +9066,7 @@ HELLP sendromunun bir parçası olarak:
   - *Erklärung (DE)*: Es liegt eine ausgeprägte Hämolyse vor, die mit einem Haptoglobinabfall und einem Anstieg des freien Hämoglobins verbunden ist. Freies Hämoglobin hat eine nephrotoxische Wirkung.
   - *Açıklama (TR)*: Haptoglobinde azalma ve serbest hemoglobinde artışla ilişkili belirgin hemoliz vardır. Serbest hemoglobin nefrotoksik etkiye sahiptir.
 - **Option E)** ✅ [Richtig / Doğru] kommt es häufig zu Intubationsschwierigkeiten.
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Sıklıkla entübasyon zorlukları ortaya çıkar.
   - *Erklärung (DE)*: Es entwickelt sich häufig ein ausgeprägtes Ödem der oberen Luftwege mit Larynxbeteiligung, welche die Einstellung der Glottis erschweren kann. 213
   - *Açıklama (TR)*: Üst solunum yollarında belirgin ödem sıklıkla gırtlak tutulumuyla gelişir ve bu durum glottisin ayarlanmasını zorlaştırabilir. 213 5 5.5 · Kadın Doğum
 
@@ -9083,7 +9083,7 @@ Seçmeli sezaryenin bir parçası olarak:
 
 ### Antwortoptionen & Detaillierte Erklärungen:
 - **Option A)** ✅ [Richtig / Doğru] sollte die Spinalanästhesie oder Periduralanästhesie gegenüber der Allgemeinanästhesie bevorzugt werden.
-  - *Türkçe*: Hiponatremiye eşlik eden ruhsal bozukluk TUR sendromunun varlığını düşündürür. 9 1.1 · Klinik Kimya1
+  - *Türkçe*: Spinal anestezi veya epidural anestezi, genel anesteziye tercih edilmelidir.
   - *Erklärung (DE)*: Da die Gefahren und Komplikationen der Allgemeinanästhesie bei Schwangeren (Intubationsprobleme, Hypoxie, Aspiration) durch eine Regio-nalanästhesie umgangen werden (bei komplikationslosem Verlauf), sollte bei Elektiveingriffen ein Regionalanästhesieverfahren gewählt werden.
   - *Açıklama (TR)*: Gebelerde genel anestezinin tehlikeleri ve komplikasyonları (entübasyon sorunları, hipoksi, aspirasyon) bölgesel anestezi ile (eğer süreç sorunsuz geçiyorsa) önlendiğinden, elektif işlemlerde bölgesel anestezi yöntemi seçilmelidir.
 - **Option B)** ❌ [Falsch / Yanlış] ist die zur Spinalanästhesie benötigte Menge des Lokalanästhetikums vom Gewicht der Patientin abhängig.
@@ -9132,7 +9132,7 @@ Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin y
   - *Erklärung (DE)*: Siehe Antwort b.e. Falsch. Der Keil wird unter die rechte Gesäßhälfte gelegt.
   - *Açıklama (TR)*: Bkz. cevap b.e. Yanlış. Takoz kalçanın sağ yarısının altına yerleştirilir.
 - **Option E)** ❌ [Falsch / Yanlış] wird durch Unterlegen eines Keils unter die linke Gesäßhälfte verhindert.
-  - *Türkçe*: Kalçanın sol yarısının altına takoz konularak bu durum önlenir. 214 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Kalçanın sol tarafının altına takoz konularak bu durum önlenir.
   - *Erklärung (DE)*: Der Keil wird unter die rechte Gesäßhälfte gelegt.
   - *Açıklama (TR)*: Takoz kalçanın sağ yarısının altına yerleştirilir.
 
@@ -9198,7 +9198,7 @@ Preeklampsi belirtileri şunları içerir:
   - *Erklärung (DE)*: Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a'ya bakınız.
 - **Option E)** ❌ [Falsch / Yanlış] Anämie 215
-  - *Türkçe*: Anemi 215 5 5,6 · Geriatri
+  - *Türkçe*: Anemi.
   - *Erklärung (DE)*: Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a'ya bakınız.
 
@@ -9264,7 +9264,7 @@ Geriatrik hastalarda yaşlanma süreçleri için aşağıdaki ifadeler geçerlid
   - *Erklärung (DE)*: Beim jungen Menschen finden sich mitunter Rechtsschenkel blöcke (RSB) ohne (fassbare) organische Herzerkrankung. Beim alten Menschen ist ein RSB jedoch meist Ausdruck einer koronaren Herzerkrankung.
   - *Açıklama (TR)*: PH değeri 7,20-7,34 olan metabolik asidoz da genellikle tampon maddelerin uygulanmasıyla tedavi edilmelidir.
 - **Option E)** ✅ [Richtig / Doğru] Die linksventrikuläre Nachlast ist im Alter in der Regel erhöht.
-  - *Türkçe*: Sol ventriküler afterload genellikle yaşla birlikte artar. 216 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Sol ventriküler ard yük (afterload) genellikle yaşla birlikte artar.
   - *Erklärung (DE)*: Der periphere Gefäßwiderstand steigt im Alter regelhaft an, und die Nachlast ist somit erhöht.
   - *Açıklama (TR)*: Periferik vasküler direnç genellikle yaşla birlikte artar ve dolayısıyla afterload da artar.
 
@@ -9363,7 +9363,7 @@ Dantrolen ile ilgili aşağıdaki ifadeleri değerlendiriniz:
   - *Erklärung (DE)*: Therapeutische Wirkspiegel können mit der 4-maligen Verabreichung von 5 mg/kgKG Dantrolen pro Tag per os erreicht werden. Soll eine MH-Prophylaxe durchgeführt werden, können 2,5 mg/kgKG als einmalige i.v.-Dosis 30 min vor Narkosebeginn gegeben werden. Als thera-peutische Richtdosis gilt die repetitive i.v.-Gabe von 2 mg/kgKG i.v., bis die klinischen Symptome verschwinden.
   - *Açıklama (TR)*: Terapötik etkili seviyelere, günde dört kez ağızdan 5 mg/kg vücut ağırlığı dantrolenin uygulanmasıyla ulaşılabilir. MH profilaksisi yapılacaksa anestezi başlamadan 30 dakika önce tek doz IV doz olarak 2,5 mg/kg vücut ağırlığı verilebilir. Terapötik kılavuz doz, klinik semptomlar ortadan kalkana kadar 2 mg/kg vücut ağırlığı IV'ün tekrarlayan IV uygulamasıdır.
 - **Option E)** ❌ [Falsch / Yanlış] führt zu einer Kontraktilitätsminderung des Herzmuskels.
-  - *Türkçe*: kalp kasının kontraktilitesinde azalmaya yol açar. 218 5Bölüm 5 · Bölgesel anestezi
+  - *Türkçe*: Kalp kasının kontraktilitesinde azalmaya yol açar.
   - *Erklärung (DE)*: Eine negativ inotrope Wirkung ist aufgrund der Hemmung der Kalziumfreisetzung aus dem sarkoplasmatischen Retikulum zwar theore-tisch denkbar, spielt aber in der Praxis keine Rolle. Es wird auch keine Vaso-dilatation ausgelöst oder die uterine Kontraktion vermindert.
   - *Açıklama (TR)*: Sarkoplazmik retikulumdan kalsiyum salınımının inhibisyonu nedeniyle teorik olarak negatif bir inotropik etki düşünülebilir ancak pratikte hiçbir rolü yoktur. Vazodilatasyon tetiklenmez veya uterus kasılması azalmaz.
 
@@ -9396,7 +9396,7 @@ Malign hipertermi (MH):
   - *Erklärung (DE)*: Der Defekt betrifft den sog. Ryanodinrezeptor. Es sind mehrere Punktmutationen für diesen Rezeptor beschrieben, der die Kalziumionen-ströme des sarkoplasmatischen Retikulums reguliert. Eine weitere Störung betrifft den Dihydroperidinrezeptor.
   - *Açıklama (TR)*: Kusur sözde ryanodin reseptörünü etkiler. Sarkoplazmik retikulumdaki kalsiyum iyonu akımlarını düzenleyen bu reseptör için çeşitli nokta mutasyonları tarif edilmiştir. Başka bir bozukluk dihidroperidin reseptörünü etkiler.
 - **Option E)** ✅ [Richtig / Doğru] ist häufig bei Patienten mit einem »central core disease« vorhanden. 219
-  - *Türkçe*: santral çekirdek hastalığı olan hastalarda sıklıkla mevcuttur. 219 5 5,7 · Malign hipertermi
+  - *Türkçe*: Santral kor hastalığı (Central Core Disease) olan hastalarda sıklıkla mevcuttur.
   - *Erklärung (DE)*: Das »central core disease« ist eine mitochondriale Myopathie, die auf eine MH hinweist. Daneben ist eine Vielzahl von Myopathien be-schrieben worden, die mit einer MH vergesellschaftet sind. Eine spezifische Myopathie als ein morphologisches Korrelat der MH gibt es nicht. Praktisch sind alle Myopathien so zu behandeln, als ob sie ein erhöhtes Risiko der MH bedingen.
   - *Açıklama (TR)*: Merkezi çekirdek hastalığı, MH'yi gösteren bir mitokondriyal miyopatidir. Ayrıca MH ile ilişkili çok sayıda miyopati tanımlanmıştır. MH'nin morfolojik korelasyonu olarak spesifik bir miyopati yoktur. Pratik olarak tüm miyopatiler, MH riskinde artışa neden oluyormuş gibi tedavi edilmelidir.
 
@@ -9421,7 +9421,7 @@ Aşağıdaki anestezikler ve ilaçlar, bilinen malign hipertermisi (MH) olan has
   - *Erklärung (DE)*: Alle depolarisierenden Muskelrelaxanzien sind Trigger für eine MH und daher zu vermeiden.
   - *Açıklama (TR)*: Tüm depolarize edici kas gevşeticiler MH'yi tetikler ve bu nedenle kaçınılmalıdır. 220 5Bölüm 5 · Bölgesel anestezi
 - **Option C)** ✅ [Richtig / Doğru] Amidlokalanästhetika
-  - *Türkçe*: plazma sodyum seviyelerinde bir düşüş meydana gelebilir.
+  - *Türkçe*: Amid grubu lokal anestezikler.
   - *Erklärung (DE)*: Richtig.
   - *Açıklama (TR)*: Doğru.
 - **Option D)** ✅ [Richtig / Doğru] Pancuronium
@@ -9561,7 +9561,7 @@ Akut intermittan porfirisi olan hastalarda aşağıdaki ilaç ve anesteziklerden
   - *Erklärung (DE)*: Unter den Lokalanästhetika gelten (in Deutschland) Mepivacain und Lidocain als »unsicher«.
   - *Açıklama (TR)*: Lokal anestezikler arasında mepivakain ve lidokain (Almanya'da) “güvensiz” olarak kabul edilmektedir.
 - **Option E)** ✅ [Richtig / Doğru] DHB 223
-  - *Türkçe*: DHB 223 5 5,8 · Porfiri
+  - *Türkçe*: DHB (Dihidrobenzperidol).
   - *Erklärung (DE)*: Unter den Antiemetika gilt DHB als »sicher«, während Metoclopramid als »unsicher« klassifiziert wurde.
   - *Açıklama (TR)*: Antiemetikler arasında DHB "güvenli" olarak kabul edilirken metoklopramid "güvensiz" olarak sınıflandırıldı.
 
@@ -9825,7 +9825,7 @@ Refleks sempatik distrofi (SRD), etkilenen ekstremitede taze fazda aşağıdaki 
   - *Erklärung (DE)*: Siehe Antwort a.e. Richtig. Siehe Antwort a.
   - *Açıklama (TR)*: Bkz. cevap a.e. Doğru. Cevap a'ya bakınız.
 - **Option E)** ✅ [Richtig / Doğru] Hyper- oder Hypalgesie 229
-  - *Türkçe*: Hiper veya hipaljezi 229 5 5.10 · Ağrı tedavisi
+  - *Türkçe*: Hiperaljezi veya hipoaljezi.
   - *Erklärung (DE)*: Siehe Antwort a.
   - *Açıklama (TR)*: Cevap a'ya bakınız.
 
@@ -10143,7 +10143,7 @@ Aşağıdaki bulgular şiddetli sepsis için tipiktir:
   - *Erklärung (DE)*: In der Sepsis liegt in der Regel ein HZV von über 8 l/min vor (Normalwert: 5–8 l/min).
   - *Açıklama (TR)*: Sepsiste CO genellikle 8 l/dk'nın üzerindedir (normal değer: 5-8 l/dk).
 - **Option B)** ✅ [Richtig / Doğru] ein erniedrigter peripherer Gefäßwiderstand (TPR).
-  - *Türkçe*: periferik vasküler direncin (TPR) azalması. 237 6 · Yoğun bakım hekimliği6
+  - *Türkçe*: Periferik vasküler direncin (TPR) azalması.
   - *Erklärung (DE)*: Der periphere Gefäßwiderstand ist deutlich erniedrigt.
   - *Açıklama (TR)*: Periferik vasküler direnç önemli ölçüde azalır.
 
@@ -10263,7 +10263,7 @@ ABO uyumlu olmayan kanın transfüzyonu aşağıdaki sonuçlara yol açar:
   - *Erklärung (DE)*: Bei AB0-Inkompatibilität kommt es zu einer intravasalen Hämolyse mit Freisetzung von freiem Hämoglobin, das nephrotoxisch wirkt. Häufig entwickelt sich ein akutes Nierenversagen.
   - *Açıklama (TR)*: ABO uygunsuzluğu durumunda nefrotoksik etkisi olan serbest hemoglobin salınımı ile intravasküler hemoliz meydana gelir. Akut böbrek yetmezliği sıklıkla gelişir.
 - **Option B)** ❌ [Falsch / Yanlış] extravasaler Hämolyse
-  - *Türkçe*: Yanlış. Sıcaklıktaki her 1 °C'lik düşüş, serebral O₂ gereksiniminin yaklaşık %5 oranında azalmasına neden olur. Hafif hipotermide bile nöronların O₂ ihtiyacı azalır. Hipotermi, hem nöral fonksiyonel metabolizmanın O₂ ihtiyacını hem de bakım metabolizmasını (=hücre bütünlüğünü koruyan metabolizma) önemli ölçüde azaltır. 17 °C'deki nöral O₂ gereksinimi, normotermi altındaki gereksinimin yaklaşık %8'idir. 12 °C ila 17 °C arasındaki çekirdek sıcaklıklarında, 60 dakikadan uzun süreli serebral perfüzyon durması (“akış yok”) tolere edilir.
+  - *Türkçe*: Ekstravasküler hemoliz.
   - *Erklärung (DE)*: Die extravasale Hämolyse ist für die deutlich weniger bedrohlichen, verzögerten Unverträglichkeitsreaktionen (Unverträglichkeitsreaktionen der Blutuntergruppen) typisch.
   - *Açıklama (TR)*: Ekstravasküler hemoliz, önemli ölçüde daha az tehdit edici, gecikmiş intolerans reaksiyonlarının (kan alt gruplarının intolerans reaksiyonları) tipik bir örneğidir.
 - **Option C)** ✅ [Richtig / Doğru] massiven Rückenschmerzen (beim wachen Patienten)
@@ -10374,7 +10374,7 @@ Toplam parenteral beslenmenin (TPE) bir parçası olarak:
   - *Erklärung (DE)*: Bei der Berechnung der zugeführten Kalorienzahl bleiben die Aminosäuren in manchen Therapiekonzepten als Kalorienträger unberücksich-tigt, weil sie physiologisch in erster Linie dem Baustoffwechsel und nicht der Deckung des Energiebedarfs dienen. Ein schwer erreichbares Ziel der TPE sollte es sein, eine negative Stickstoffbilanz zu verhindern. Hierzu muss die im Postaggressionsstoffwechsel unvermeidliche Proteinkatabolie durch eine ausreichende Zufuhr an Nichtstickstoffkalorien möglichst minimiert werden.
   - *Açıklama (TR)*: Sağlanan kalori miktarı hesaplanırken bazı terapi konseptlerinde amino asitler kalori taşıyıcıları olarak dikkate alınmaz çünkü fizyolojik olarak öncelikle bina metabolizmasına hizmet ederler ve enerji ihtiyacını karşılamazlar. TPE'nin ulaşılması zor bir hedefi, negatif nitrojen dengesini önlemek olmalıdır. Bunu yapmak için, saldırganlık sonrası metabolizmada kaçınılmaz olan protein katabolizmasının yeterli miktarda nitrojen olmayan kalori tedariki yoluyla mümkün olduğunca en aza indirilmesi gerekir.
 - **Option E)** ❌ [Falsch / Yanlış] kommt es häufig zu einer Hyperphosphatämie.
-  - *Türkçe*: Hiperfosfatemi sıklıkla ortaya çıkar. 243 6 · Yoğun bakım hekimliği6
+  - *Türkçe*: Hiperfosfatemi sıklıkla ortaya çıkar.
   - *Erklärung (DE)*: Unter den Bedingungen der TPE wird häufig eine Hypophosphatämie beobachtet, weil im Stadium der positiven Stickstoffbilanz (Anabo-lie) Kalium und Phosphat nach intrazellulär aufgenommen werden. Im Rah-men einer Katabolie mit akutem Nierenversagen (Phosphatakkumulation) kommt es dagegen zu einer Hyperphosphatämie.
   - *Açıklama (TR)*: TPE koşulları altında, potasyum ve fosfatın pozitif nitrojen dengesi (anabolizma) aşamasında hücre içi olarak emilmesi nedeniyle hipofosfatemi sıklıkla gözlenir. Ancak akut böbrek yetmezliği (fosfat birikimi) ile birlikte katabolizma bağlamında hiperfosfatemi meydana gelir.
 
@@ -10597,7 +10597,7 @@ Metabolik alkalozun tedavisi için aşağıdaki önlemler uygundur:
   - *Erklärung (DE)*: Die Hemmung von Aldosteron vermindert die Natriumrückresorption im distalen Nierentubulus und erniedrigt den Verlust von Kalium und Protonen im Urin.
   - *Açıklama (TR)*: Aldosteronun inhibisyonu, distal renal tübülde sodyumun yeniden emilimini azaltır ve idrarda potasyum ve proton kaybını azaltır.
 - **Option E)** ❌ [Falsch / Yanlış] Dialyse und/oder Hämofiltration
-  - *Türkçe*: Diyaliz ve/veya hemofiltrasyon 249 6 · Yoğun bakım tıbbı6
+  - *Türkçe*: Diyaliz ve/veya hemofiltrasyon.
   - *Erklärung (DE)*: Diese wird eingesetzt, wenn die Nierenfunktion bei schwerer metabolischer Alkalose ausgefallen ist.
   - *Açıklama (TR)*: Bu, şiddetli metabolik alkaloz nedeniyle böbrek fonksiyonu başarısız olduğunda kullanılır.
 

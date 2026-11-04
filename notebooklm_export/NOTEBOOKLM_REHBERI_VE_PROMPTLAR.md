@@ -11,9 +11,9 @@ Bu rehber, **Dr. Melis'in** Facharzt Anästhesiologie (Ärztekammer Nordrhein, D
 3. Defter adını: **`Facharzt Anästhesie — ÄKNO Düsseldorf`** yapın.
 4. Kaynak ekleme (Add Sources) ekranında **"Upload Sources" / Dosya Yükle** seçeneğini seçin.
 5. Bu klasördeki dosyaları yükleyin:
-   - **Tüm arşivi tek seferde yüklemek için:** `FACHARZT_KOMPLETT_NOTEBOOKLM.md` (636 soru & vaka, Almanca + Türkçe).
+   - **Tüm arşivi tek seferde yüklemek için:** `FACHARZT_KOMPLETT_NOTEBOOKLM.md` (664 soru & vaka, Almanca + Türkçe).
    - **Veya modüler olarak:** 
-     - `01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md` (304 sözlü sınav vakası & ÄKNO protokolleri)
+     - `01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md` (332 sözlü sınav vakası & ÄKNO protokolleri)
      - `02_MCQ_und_Faktenwissen_NOTEBOOKLM.md` (332 MCQ ve hap bilgi sorusu)
 
 ---
