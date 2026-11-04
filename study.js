@@ -267,6 +267,40 @@
   }
 
   // --- Render Questions Feed ---
+  
+  // Helper to extract direct optimal answer for any question (eliminating A, B, C, D distractors)
+  function getQuestionOptimalAnswer(q) {
+    if (q.answer_de) {
+      return {
+        de: q.answer_de,
+        tr: q.answer_tr || '',
+        isBulleted: false
+      };
+    }
+
+    if (q.options && q.options.length > 0) {
+      const items = [];
+      q.options.forEach(opt => {
+        let textDE = opt.explanation_de ? opt.explanation_de.trim() : (opt.text_de ? opt.text_de.trim() : '');
+        let textTR = opt.explanation_tr ? opt.explanation_tr.trim() : (opt.text_tr ? opt.text_tr.trim() : '');
+
+        textDE = textDE.replace(/\s+/g, ' ');
+        textTR = textTR.replace(/\s+/g, ' ');
+
+        if (textDE) {
+          items.push({ de: textDE, tr: textTR });
+        }
+      });
+
+      return {
+        items: items,
+        isBulleted: true
+      };
+    }
+
+    return { de: '', tr: '', isBulleted: false };
+  }
+
   function renderFeed(resetVisible = false) {
     if (resetVisible) state.visibleCount = state.pageSize;
 
@@ -326,53 +360,53 @@
           </div>
       `;
 
-      if (isMcq && q.options) {
-        html += `<div class="mcq-options-list">`;
-        q.options.forEach(opt => {
-          const isCorrect = !!opt.is_correct;
+      
+      // Render Optimal Clinical Answer (Direct Soru & En Düzgün Cevap Yaklaşımı)
+      const optimalAns = getQuestionOptimalAnswer(q);
+
+      if (optimalAns.isBulleted && optimalAns.items && optimalAns.items.length > 0) {
+        html += `
+          <div class="direct-model-answer">
+            <div class="answer-header-title" style="color: var(--primary);">
+              <span>🩺</span> Optimale Facharzt-Antwort &amp; Kernaussagen (Doğrudan Model Cevap):
+            </div>
+            <div class="clinical-facts-list">
+        `;
+        optimalAns.items.forEach(item => {
           html += `
-            <div class="mcq-option-item ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
-              <div class="option-top-row">
-                <span class="opt-letter-tag">${opt.key.toUpperCase()}</span>
-                <div class="opt-text-area">
-                  ${renderInteractiveGerman(opt.text_de, opt.text_tr)}
-                  <span class="opt-status-tag ${isCorrect ? 'status-correct' : 'status-incorrect'}">
-                    ${isCorrect ? 'Richtig' : 'Falsch'}
-                  </span>
+            <div class="clinical-fact-item">
+              <span class="fact-bullet">✓</span>
+              <div class="fact-content">
+                ${renderInteractiveGerman(item.de, item.tr)}
+                <div class="inline-bilingual-tr">
+                  🇹🇷 ${escapeHtml(item.tr || '')}
                 </div>
               </div>
-              <div class="inline-bilingual-tr">
-                🇹🇷 ${escapeHtml(opt.text_tr || '')}
-              </div>
-              ${opt.explanation_de ? `
-                <div class="opt-explanation-box">
-                  <strong>💡 Erklärung:</strong> ${renderInteractiveGerman(opt.explanation_de, opt.explanation_tr)}
-                  <div class="inline-bilingual-tr">
-                    🇹🇷 ${escapeHtml(opt.explanation_tr || '')}
-                  </div>
-                </div>
-              ` : ''}
             </div>
           `;
         });
-        html += `</div>`;
-      }
-
-      if (!isMcq && q.answer_de) {
+        html += `
+            </div>
+          </div>
+        `;
+      } else if (optimalAns.de) {
         html += `
           <div class="case-model-answer">
             <div class="answer-header-title">
-              <span>🩺</span> Musterantwort & Leitlinien:
+              <span>🩺</span> Musterantwort &amp; Leitlinien (Sınav Model Cevabı):
             </div>
             <div class="answer-body-text">
-              ${renderInteractiveGerman(q.answer_de, q.answer_tr)}
+              ${renderInteractiveGerman(optimalAns.de, optimalAns.tr)}
             </div>
             <div class="inline-bilingual-tr">
-              🇹🇷 ${escapeHtml(q.answer_tr || '')}
+              🇹🇷 ${escapeHtml(optimalAns.tr || '')}
             </div>
           </div>
         `;
       }
+
+
+      
 
       
       // Examiner Profile Box (if available)

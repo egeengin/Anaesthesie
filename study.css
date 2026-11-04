@@ -1145,3 +1145,50 @@ body.mode-german-only .trans-interactive {
   align-items: center;
   gap: 6px;
 }
+
+
+/* Direct Oral Exam Model Answer & Clinical Facts (No A,B,C,D distractors) */
+.direct-model-answer {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-top: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.clinical-facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.clinical-fact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--reading-font-size);
+  line-height: var(--reading-line-height);
+  color: var(--text-primary);
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+
+.clinical-fact-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.fact-bullet {
+  color: var(--accent-emerald);
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  flex-shrink: 0;
+}
+
+.fact-content {
+  flex: 1;
+}
