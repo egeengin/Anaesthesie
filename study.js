@@ -300,8 +300,10 @@
             <div class="card-badges">
               <span class="badge-case-number">Fall #${globalIndex || (idx + 1)}</span>
               <span class="badge-category">${escapeHtml(q.category || 'Anästhesie')}</span>
+              ${q.amboss_pillar ? `<span class="badge-pillar">🏛️ ${escapeHtml(q.amboss_pillar)}</span>` : ''}
               ${isDus ? `<span class="badge-dus-protocol">🏛️ ÄKNO Düsseldorf</span>` : ''}
               ${q.is_high_yield ? `<span class="badge-hy-star">⭐ High-Yield</span>` : ''}
+              ${q.is_amboss_curriculum ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS</span>` : ''}
             </div>
 
             <div class="card-actions-top">
@@ -367,6 +369,69 @@
             </div>
             <div class="inline-bilingual-tr">
               🇹🇷 ${escapeHtml(q.answer_tr || '')}
+            </div>
+          </div>
+        `;
+      }
+
+      
+      // Examiner Profile Box (if available)
+      if (q.examiner_profile) {
+        const ep = q.examiner_profile;
+        html += `
+          <div class="study-examiner-profile-box">
+            <div class="study-examiner-profile-header">
+              <span>🏛️</span> ÄKNO Düsseldorf Prüfer-Profil: ${escapeHtml(ep.name || 'Prüfungskommission')} (${escapeHtml(ep.hospital || 'Universitätsklinikum')})
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-secondary);">
+              <div><strong>🎯 Prüfungsschwerpunkt:</strong> ${escapeHtml(ep.focus || '')}</div>
+              ${ep.trap ? `<div style="margin-top: 2px; color: #b45309;"><strong>⚠️ Typische Prüfungsfalle:</strong> ${escapeHtml(ep.trap)}</div>` : ''}
+              ${ep.keywords ? `<div style="margin-top: 2px; color: #047857;"><strong>⭐ Signalwörter:</strong> ${escapeHtml(ep.keywords)}</div>` : ''}
+            </div>
+          </div>
+        `;
+      }
+
+      // Examiner Intervention & Steering
+      if (q.examiner_intervention) {
+        html += `
+          <div class="study-examiner-intervention-box">
+            <div class="study-examiner-intervention-title">
+              <span>⚡</span> Prüfer-Intervention & Zwischenfrage (Akute Verschlechterung):
+            </div>
+            <div class="answer-body-text">
+              ${renderInteractiveGerman(q.examiner_intervention, q.examiner_intervention_tr)}
+            </div>
+            <div class="inline-bilingual-tr">
+              🇹🇷 ${escapeHtml(q.examiner_intervention_tr || '')}
+            </div>
+            ${q.examiner_answer ? `
+              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(245, 158, 11, 0.3);">
+                <strong style="color: var(--text-primary); font-size: 0.88rem;">🎯 Prüfer-Erwartung & Leitlinien-Handeln:</strong>
+                <div class="answer-body-text" style="margin-top: 4px;">
+                  ${renderInteractiveGerman(q.examiner_answer, q.examiner_answer_tr)}
+                </div>
+                <div class="inline-bilingual-tr">
+                  🇹🇷 ${escapeHtml(q.examiner_answer_tr || '')}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      // Examiner Tip & K.O. Traps
+      if (q.examiner_tip) {
+        html += `
+          <div class="study-examiner-tip-box">
+            <div class="study-examiner-tip-title">
+              <span>💡</span> Prüfer-Tipp & K.O.-Kriterien (Vermeidung von Durchfall-Fehlern):
+            </div>
+            <div class="answer-body-text">
+              ${renderInteractiveGerman(q.examiner_tip, q.examiner_tip_tr)}
+            </div>
+            <div class="inline-bilingual-tr">
+              🇹🇷 ${escapeHtml(q.examiner_tip_tr || '')}
             </div>
           </div>
         `;
