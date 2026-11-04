@@ -22,6 +22,7 @@
   
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="study.css">
 </head>
 <body>
 
@@ -65,9 +66,12 @@
         </div>
 
         <div class="nav-action-pill">
-          <button id="readiness-trigger" class="pill-btn highlight-pill" title="ÄKNO Düsseldorf Prüfungsreife-Radar: Sind Sie wirklich bereit für die Facharztprüfung?">
+<button id="readiness-trigger" class="pill-btn highlight-pill" title="ÄKNO Düsseldorf Prüfungsreife-Radar: Sind Sie wirklich bereit für die Facharztprüfung?">
             <span>🎓</span> <span class="pill-btn-text">Prüfungsreife</span>
           </button>
+<a href="study.html" id="melis-study-link" class="pill-btn pill-btn-melis" title="Melis'in Çalışma & Okuma Sayfası (Hover & Dokun Türkçe Çeviri)">
+            <span>📖</span> <span class="pill-btn-text">Çalışma Sayfası</span>
+          </a>
           <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & K.O.-Kriterien">
             <span>🏛️</span> <span class="pill-btn-text">Düsseldorf-Kompass</span>
           </button>
@@ -100,8 +104,118 @@
     </div>
   </nav>
 
+  <!-- Dual-Mode Master Switcher (Melis'in Çalışma Sayfası vs Sınav Simülatörü) -->
+  <div class="master-view-switcher-bar" role="navigation" aria-label="Görünüm Seçici">
+    <div class="master-view-container">
+      <button id="master-btn-study" class="master-tab-btn active" type="button" title="Melis'in Çalışma Sayfası (Almanca Oku, Üzerinde Durunca/Dokununca Türkçe Çeviri)">
+        <span class="tab-icon">📖</span>
+        <span class="tab-label-group">
+          <strong>Melis'in Çalışma Sayfası</strong>
+          <small>Almanca Oku • Dokun/Üzerinde Dur Türkçe • Sesli Telaffuz</small>
+        </span>
+        <span class="tab-badge-new">Önerilen</span>
+      </button>
+
+      <button id="master-btn-exam" class="master-tab-btn" type="button" title="4-Adımlı Sınav Simülatörü (Vital/BGA Monitörü & 45-Dk Sözlü Sınav)">
+        <span class="tab-icon">🎯</span>
+        <span class="tab-label-group">
+          <strong>Sınav Simülatörü</strong>
+          <small>4-Stufen ÄKNO Cockpit & 45-Min Prüfung</small>
+        </span>
+      </button>
+    </div>
+  </div>
+
   <!-- Main Container -->
   <main class="container">
+    <!-- ==========================================================================
+         VIEW 1: MELIS'IN ÇALIŞMA SAYFASI (LESEMODUS - DOKUN/ÜZERİNDE DUR ÇEVİRİ)
+         ========================================================================== -->
+    <div id="study-view-wrapper">
+      <!-- Melis Study Progress Tracker -->
+      <section class="study-progress-card">
+        <div class="progress-header">
+          <div class="progress-status">
+            <span>🩺 Melis'in İlerlemesi:</span>
+            <strong id="study-progress-status-text">0 / 636 Vaka Okundu</strong>
+            <span id="study-progress-streak" class="progress-streak-badge">🎯 0 Tamamlandı</span>
+          </div>
+          <div id="study-progress-percentage" style="font-weight: 700; color: var(--primary);">%0</div>
+        </div>
+        <div class="progress-bar-track">
+          <div id="study-progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </section>
+
+      <!-- Controls Strip: Search, Reading Modes, Themes & Categories -->
+      <section class="controls-container">
+        <!-- Live Search Bar -->
+        <div class="search-bar-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="study-search-input" class="search-input" placeholder="İlaç, vaka, sendrom veya kılavuz ara (örn. Dantrolen, Sugammadex, Laringospazm, Koniotomi)..." autocomplete="off" />
+          <button id="study-btn-clear-search" class="btn-clear-search" title="Aramayı Temizle">✕</button>
+        </div>
+
+        <!-- Reading Modes Bar -->
+        <div class="reading-modes-bar">
+          <!-- Translation Mode Selector -->
+          <div class="mode-pill-group">
+            <button class="btn-mode-tab active" data-mode="hover" title="Almanca metin görünür. Üzerinde durunca veya dokununca Türkçesi anında açılır">
+              <span>💡</span> Dokun / Üzerinde Dur (Çeviri)
+            </button>
+            <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta birlikte görünür">
+              <span>📖</span> Çift Dilli Okuma
+            </button>
+            <button class="btn-mode-tab" data-mode="german" title="Sadece sınav Almancası">
+              <span>🇩🇪</span> Nur Deutsch
+            </button>
+          </div>
+
+          <!-- Typography & Theme Settings -->
+          <div class="reader-settings-group">
+            <button id="study-btn-font-toggle" class="btn-icon-setting" title="Metin Boyutunu Değiştir">
+              <span>17px</span>
+            </button>
+            <button id="study-btn-theme-toggle" class="btn-icon-setting" title="Tema Değiştir (Aydınlık / Sepia / Gece)">
+              <span>☀️</span>
+            </button>
+            <button id="study-btn-notebook-trigger" class="btn-icon-setting" title="Google NotebookLM Dosyaları">
+              <span>🎙️</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Question Type Switcher -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Formatlar (636)</button>
+          <button class="btn-cat-chip btn-type-filter" data-type="open">Klinik Kasuistikler & Protokoller (304)</button>
+          <button class="btn-cat-chip btn-type-filter" data-type="options">MCQ & Hap Bilgiler (332)</button>
+        </div>
+
+        <!-- Horizontal Scroll Category Chips -->
+        <nav id="study-category-filter-scroll" class="category-filter-scroll" aria-label="Konu Kategorileri">
+          <!-- Dynamically populated from questions.js -->
+        </nav>
+      </section>
+
+      <!-- Reading Feed -->
+      <section id="study-feed" class="study-feed">
+        <!-- Dynamically rendered reading cards -->
+      </section>
+
+      <!-- Load More -->
+      <div id="study-load-more-wrapper" style="text-align: center; margin: 28px 0; display: none;">
+        <button id="study-btn-load-more" class="btn-header btn-header-primary" style="padding: 12px 28px; font-size: 0.95rem;">
+          Daha Fazla Göster
+        </button>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 2: 4-ADIMLI SINAV SİMÜLATÖRÜ (ORAL EXAM COCKPIT)
+         ========================================================================== -->
+    <div id="exam-view-wrapper" style="display: none;">
+
 
     <!-- ADIM 1: Hızlı Başlangıç & Odak Barı (Hero Onboarding - DE / TR) -->
     <section class="hero-focus-card" id="hero-focus-card">
@@ -1361,6 +1475,7 @@
       </div>
     </section>
 
+      </div><!-- /#exam-view-wrapper -->
   </main>
 
   <!-- Mobile Fixed Thumb Bar (iPhone 15 Pro Max) -->
@@ -2513,6 +2628,56 @@
           });
       });
     }
+  </script>
+
+  <!-- Study Engine & Master View Switcher Controller -->
+  <script src="study.js"></script>
+  <script>
+    (function() {
+      const btnStudy = document.getElementById('master-btn-study');
+      const btnExam = document.getElementById('master-btn-exam');
+      const viewStudy = document.getElementById('study-view-wrapper');
+      const viewExam = document.getElementById('exam-view-wrapper');
+
+      function switchMasterView(targetView, savePref = true) {
+        if (!viewStudy || !viewExam) return;
+        const isStudy = (targetView === 'study');
+
+        viewStudy.style.display = isStudy ? 'block' : 'none';
+        viewExam.style.display = isStudy ? 'none' : 'block';
+
+        if (btnStudy) btnStudy.classList.toggle('active', isStudy);
+        if (btnExam) btnExam.classList.toggle('active', !isStudy);
+
+        if (savePref) {
+          localStorage.setItem('facharzt_melis_master_view', targetView);
+        }
+
+        // If switching to study and feed empty, trigger render
+        if (isStudy && window.refreshMelisStudyFeed) {
+          window.refreshMelisStudyFeed();
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (btnStudy) btnStudy.addEventListener('click', () => switchMasterView('study'));
+      if (btnExam) btnExam.addEventListener('click', () => switchMasterView('exam'));
+
+      // Check initial view from hash or storage (Defaults to 'study' for Melis!)
+      const hash = window.location.hash.toLowerCase();
+      let initView = 'study';
+      if (hash === '#exam' || hash === '#simulator') {
+        initView = 'exam';
+      } else if (hash === '#study' || hash === '#reader') {
+        initView = 'study';
+      } else {
+        const saved = localStorage.getItem('facharzt_melis_master_view');
+        if (saved === 'exam') initView = 'exam';
+      }
+
+      switchMasterView(initView, false);
+    })();
   </script>
 </body>
 </html>

@@ -21,7 +21,10 @@ const CORE_ASSETS = [
   './js/speech_engine.js',
   './js/curriculum_engine.js',
   './manifest.json',
-  './favicon.svg'
+  './favicon.svg',
+  './study.html',
+  './study.css',
+  './study.js'
 ];
 
 // 1. Install: Pre-cache core application shell
