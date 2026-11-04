@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css">
+  <link rel="stylesheet" href="study.css?v=8.0">
 </head>
 <body>
 
@@ -244,8 +244,17 @@
   </div>
 
   <!-- Load Dataset & Script -->
-  <script src="questions.js"></script>
-  <script src="study.js"></script>
+  <script src="questions.js?v=8.0"></script>
+  <script src="study.js?v=8.0"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js?v=8.0').then(reg => {
+          reg.update();
+        });
+      });
+    }
+  </script>
 </body>
 </html>
 
