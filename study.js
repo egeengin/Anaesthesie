@@ -243,7 +243,13 @@
           );
         }
 
-        return stemDe.includes(q) || stemTr.includes(q) || ansDe.includes(q) || ansTr.includes(q) || cat.includes(q) || optMatch;
+        const oralQDe = (item.oral_question_de || '').toLowerCase();
+        const oralQTr = (item.oral_question_tr || '').toLowerCase();
+        const oralADe = (item.oral_answer_de || '').toLowerCase();
+        const oralATr = (item.oral_answer_tr || '').toLowerCase();
+        return stemDe.includes(q) || stemTr.includes(q) || ansDe.includes(q) || ansTr.includes(q) || 
+               oralQDe.includes(q) || oralQTr.includes(q) || oralADe.includes(q) || oralATr.includes(q) || 
+               cat.includes(q) || optMatch;
       });
     }
 
@@ -268,37 +274,52 @@
 
   // --- Render Questions Feed ---
   
-  // Helper to extract direct optimal answer for any question (eliminating A, B, C, D distractors)
-  function getQuestionOptimalAnswer(q) {
-    if (q.answer_de) {
-      return {
-        de: q.answer_de,
-        tr: q.answer_tr || '',
-        isBulleted: false
-      };
-    }
+  // Format structured oral exam answers into clear paragraphs, bullet items, and section headings
+  function renderFormattedOralAnswer(aDe, aTr) {
+    if (!aDe) return '';
 
-    if (q.options && q.options.length > 0) {
-      const items = [];
-      q.options.forEach(opt => {
-        let textDE = opt.explanation_de ? opt.explanation_de.trim() : (opt.text_de ? opt.text_de.trim() : '');
-        let textTR = opt.explanation_tr ? opt.explanation_tr.trim() : (opt.text_tr ? opt.text_tr.trim() : '');
+    const linesDe = aDe.split('\n');
+    const linesTr = (aTr || '').split('\n');
 
-        textDE = textDE.replace(/\s+/g, ' ');
-        textTR = textTR.replace(/\s+/g, ' ');
+    let html = '';
+    linesDe.forEach((lDe, idx) => {
+      const rawDe = lDe.trim();
+      if (!rawDe) return;
+      const rawTr = (linesTr[idx] || '').trim();
 
-        if (textDE) {
-          items.push({ de: textDE, tr: textTR });
-        }
-      });
+      // Bullet points (e.g. • or -)
+      if (rawDe.startsWith('•') || rawDe.startsWith('-')) {
+        const cleanDe = rawDe.replace(/^[•\-]\s*/, '').trim();
+        const cleanTr = rawTr.replace(/^[•\-]\s*/, '').trim();
+        html += `
+          <div class="oral-answer-bullet-row">
+            <span class="oral-bullet-icon">▸</span>
+            <div class="oral-bullet-content">
+              <div class="oral-bullet-de">${renderInteractiveGerman(cleanDe, cleanTr)}</div>
+              ${cleanTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(cleanTr)}</div>` : ''}
+            </div>
+          </div>
+        `;
+      } else if (/^\d+\.\s+/.test(rawDe)) {
+        // Section heading (e.g. 1. DIE 3 SÄULEN DER BÄK)
+        html += `
+          <div class="oral-section-heading">
+            <div class="oral-heading-de">${renderInteractiveGerman(rawDe, rawTr)}</div>
+            ${rawTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(rawTr)}</div>` : ''}
+          </div>
+        `;
+      } else {
+        // Normal paragraph / intro sentence
+        html += `
+          <div class="oral-paragraph-row">
+            <div class="oral-para-de">${renderInteractiveGerman(rawDe, rawTr)}</div>
+            ${rawTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(rawTr)}</div>` : ''}
+          </div>
+        `;
+      }
+    });
 
-      return {
-        items: items,
-        isBulleted: true
-      };
-    }
-
-    return { de: '', tr: '', isBulleted: false };
+    return html;
   }
 
   function renderFeed(resetVisible = false) {
@@ -341,7 +362,7 @@
             </div>
 
             <div class="card-actions-top">
-              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(q.stem_de || q.question_de || '')}" title="Almanca Sesli Oku">
+              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml((q.oral_question_de || q.stem_de || q.question_de || '') + '\n\n' + (q.oral_answer_de || q.answer_de || ''))}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
                 <span>🔊</span> Telaffuz
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
@@ -350,60 +371,31 @@
             </div>
           </div>
 
-          <div class="question-title-area">
-            <h2 class="card-stem-title">
-              ${renderInteractiveGerman(q.stem_de || q.question_de, q.stem_tr || q.question_tr)}
-            </h2>
-            <div class="inline-bilingual-tr">
-              🇹🇷 ${escapeHtml(q.stem_tr || q.question_tr || '')}
+          <!-- 👨‍⚕️ PRÜFER-FRAGE (Sözlü Sınav Sorusu) -->
+          <div class="oral-question-card-box">
+            <div class="oral-role-badge examiner-role-badge">
+              <span>👨‍⚕️</span> Prüfer-Frage (Sözlü Sınav Sorusu)
             </div>
-          </div>
-      `;
-
-      
-      // Render Optimal Clinical Answer (Direct Soru & En Düzgün Cevap Yaklaşımı)
-      const optimalAns = getQuestionOptimalAnswer(q);
-
-      if (optimalAns.isBulleted && optimalAns.items && optimalAns.items.length > 0) {
-        html += `
-          <div class="direct-model-answer">
-            <div class="answer-header-title" style="color: var(--primary);">
-              <span>🩺</span> Optimale Facharzt-Antwort &amp; Kernaussagen (Doğrudan Model Cevap):
-            </div>
-            <div class="clinical-facts-list">
-        `;
-        optimalAns.items.forEach(item => {
-          html += `
-            <div class="clinical-fact-item">
-              <span class="fact-bullet">✓</span>
-              <div class="fact-content">
-                ${renderInteractiveGerman(item.de, item.tr)}
-                <div class="inline-bilingual-tr">
-                  🇹🇷 ${escapeHtml(item.tr || '')}
-                </div>
+            <div class="oral-question-text">
+              <h2 class="card-stem-title oral-stem-title">
+                ${renderInteractiveGerman(q.oral_question_de || q.stem_de || q.question_de, q.oral_question_tr || q.stem_tr || q.question_tr)}
+              </h2>
+              <div class="inline-bilingual-tr oral-trans-sub" style="margin-top: 6px;">
+                🇹🇷 ${escapeHtml(q.oral_question_tr || q.stem_tr || q.question_tr || '')}
               </div>
             </div>
-          `;
-        });
-        html += `
+          </div>
+
+          <!-- 🩺 FACHARZT-MUSTERANTWORT (Doğrudan Model Uzman Yanıtı) -->
+          <div class="oral-answer-card-box">
+            <div class="oral-role-badge candidate-role-badge">
+              <span>🩺</span> Facharzt-Musterantwort &amp; Leitlinien (Model Uzman Cevabı)
+            </div>
+            <div class="oral-answer-content">
+              ${renderFormattedOralAnswer(q.oral_answer_de || q.answer_de || '', q.oral_answer_tr || q.answer_tr || '')}
             </div>
           </div>
         `;
-      } else if (optimalAns.de) {
-        html += `
-          <div class="case-model-answer">
-            <div class="answer-header-title">
-              <span>🩺</span> Musterantwort &amp; Leitlinien (Sınav Model Cevabı):
-            </div>
-            <div class="answer-body-text">
-              ${renderInteractiveGerman(optimalAns.de, optimalAns.tr)}
-            </div>
-            <div class="inline-bilingual-tr">
-              🇹🇷 ${escapeHtml(optimalAns.tr || '')}
-            </div>
-          </div>
-        `;
-      }
 
 
       
