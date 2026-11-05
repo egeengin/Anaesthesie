@@ -22,7 +22,7 @@
   
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="study.css?v=8.5">
+  <link rel="stylesheet" href="study.css?v=9.0">
 </head>
 <body>
 
@@ -205,9 +205,10 @@
 
         <!-- Question Type Switcher -->
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Soru &amp; Vakalar (664)</button>
-          <button class="btn-cat-chip btn-type-filter" data-type="open">Klinik Kasuistikler & Protokoller (332)</button>
-          <button class="btn-cat-chip btn-type-filter" data-type="options">Klinik Bilgiler & Hap Soru-Cevap (332)</button>
+          <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Sözlü Sınav Arşivi (664)</button>
+          <button class="btn-cat-chip btn-type-filter" data-type="dus">🏛️ ÄKNO Düsseldorf &amp; AMBOSS Vaka Protokolleri (86)</button>
+          <button class="btn-cat-chip btn-type-filter" data-type="open">🏥 Klinik Vaka Soruları — Annecke &amp; Hohn (339)</button>
+          <button class="btn-cat-chip btn-type-filter" data-type="options">📚 Konu Bazlı Sözlü Soru-Cevap (325)</button>
         </div>
 
         <!-- Horizontal Scroll Category Chips -->
@@ -2627,7 +2628,7 @@
   <script src="js/storage_sync.js"></script>
   <script src="js/speech_engine.js?v=7.7"></script>
   <script src="js/curriculum_engine.js"></script>
-  <script src="questions.js"></script>
+  <script src="questions.js?v=9.0"></script>
   <script src="app.js?v=7.7"></script>
 
   <!-- Service Worker Registration for Offline PWA Mode -->
@@ -2649,7 +2650,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=8.5"></script>
+  <script src="study.js?v=9.0"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');

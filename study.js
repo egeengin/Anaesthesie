@@ -1,6 +1,6 @@
 /**
- * Facharzt Anästhesie — Interaktive Lern- & Lesemappe (study.js)
- * High-Performance Reader with Sentence-Level Hover/Tap Translations
+ * Facharzt Anästhesie — Interaktive Mündliche Prüfungs-Lesemappe (study.js)
+ * High-Performance Oral Exam Reader with Sentence-Level Hover/Tap Translations
  * Tailored for iPhone (iOS Safari) & Desktop
  * Self-Contained: Works both inside index.html and study.html
  */
@@ -34,7 +34,7 @@
     fontSize: savedSettings.fontSize || 17, // 15, 17, 19, 21
     viewMode: savedSettings.viewMode || 'hover', // 'hover', 'bilingual', 'german'
     activeCategory: 'all',
-    activeType: 'all', // 'all', 'open', 'options'
+    activeType: 'all', // 'all', 'dus', 'open', 'options'
     activeStatusFilter: 'all', // 'all', 'unread', 'read'
     searchQuery: '',
     visibleCount: 25,
@@ -90,22 +90,22 @@
           <div class="modal-download-box">
             <a href="notebooklm_export/FACHARZT_KOMPLETT_NOTEBOOKLM.md" download="FACHARZT_KOMPLETT_NOTEBOOKLM.md" class="btn-download-file">
               <div>
-                <div style="font-weight: 700;">📦 1. Tüm Arşiv Tek Dosyada (636 Vaka)</div>
-                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">FACHARZT_KOMPLETT_NOTEBOOKLM.md (~1.8 MB)</div>
+                <div style="font-weight: 700;">📦 1. Tüm Sözlü Sınav Arşivi Tek Dosyada (664 Vaka)</div>
+                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">FACHARZT_KOMPLETT_NOTEBOOKLM.md</div>
               </div>
               <span style="font-size: 1.2rem;">📥</span>
             </a>
             <a href="notebooklm_export/01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md" download="01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md" class="btn-download-file">
               <div>
-                <div style="font-weight: 700;">🏥 2. Klinik Kasuistikler & ÄKNO Protokolleri (304 Vaka)</div>
-                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md (~780 KB)</div>
+                <div style="font-weight: 700;">🏥 2. Klinik Kasuistikler & ÄKNO Protokolleri (339 Vaka)</div>
+                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md</div>
               </div>
               <span style="font-size: 1.2rem;">📥</span>
             </a>
             <a href="notebooklm_export/02_MCQ_und_Faktenwissen_NOTEBOOKLM.md" download="02_MCQ_und_Faktenwissen_NOTEBOOKLM.md" class="btn-download-file">
               <div>
-                <div style="font-weight: 700;">📚 3. Yapılandırılmış MCQ & Hap Bilgiler (332 Soru)</div>
-                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">02_MCQ_und_Faktenwissen_NOTEBOOKLM.md (~1.1 MB)</div>
+                <div style="font-weight: 700;">📚 3. Konu Bazlı Sözlü Sınav Soru-Cevapları (325 Soru)</div>
+                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">02_MCQ_und_Faktenwissen_NOTEBOOKLM.md</div>
               </div>
               <span style="font-size: 1.2rem;">📥</span>
             </a>
@@ -132,7 +132,7 @@
 
   // --- DOM Elements ---
   const elFeed = document.getElementById('study-feed');
-  if (!elFeed) return; // Exit gracefully if study view not in DOM
+  if (!elFeed) return;
 
   const elSearchInput = document.getElementById('study-search-input') || document.getElementById('search-input');
   const elBtnClearSearch = document.getElementById('study-btn-clear-search') || document.getElementById('btn-clear-search');
@@ -162,11 +162,24 @@
   const elBtnOpenNotebook = document.getElementById('study-btn-notebook-trigger') || document.getElementById('btn-notebooklm-trigger');
   const elBtnCloseNotebook = document.getElementById('btn-close-notebook-modal');
 
+  // Bottom bar buttons (study.html)
+  const elBtnBottomTop = document.getElementById('btn-bottom-top');
+  const elBtnBottomSearch = document.getElementById('btn-bottom-search');
+  const elBtnBottomUnread = document.getElementById('btn-bottom-unread');
+
   let currentActiveSentence = null;
   let activeUtteranceText = '';
 
-  // --- Initialize Dataset ---
-  const allQuestions = (typeof EXAM_QUESTIONS !== 'undefined' && Array.isArray(EXAM_QUESTIONS)) ? EXAM_QUESTIONS : [];
+  // --- Initialize Dataset (Ensure Priority Tier Sorting: Düsseldorf/AMBOSS -> Annecke & Hohn -> Kehl & Wilke) ---
+  const rawQuestions = (typeof EXAM_QUESTIONS !== 'undefined' && Array.isArray(EXAM_QUESTIONS)) ? EXAM_QUESTIONS.slice() : [];
+  function getQuestionPriorityWeight(q) {
+    if (q.id && q.id.startsWith('q_dus_')) return 10;
+    if (q.id && q.id.startsWith('q_amboss_')) return 20;
+    if (q.study_tier === 1 || q.is_dus_protocol || q.is_amboss_curriculum) return 30;
+    if (q.study_tier === 2 || q.question_type === 'open') return 40;
+    return 50;
+  }
+  const allQuestions = rawQuestions.sort((a, b) => getQuestionPriorityWeight(a) - getQuestionPriorityWeight(b));
 
   // --- Sentence-Level Text Processing ---
   function splitIntoSentences(text) {
@@ -176,6 +189,19 @@
       .replace(/u\.\s*a\./g, 'u_a_')
       .replace(/bzw\./g, 'bzw_')
       .replace(/ca\./g, 'ca_')
+      .replace(/ggf\./g, 'ggf_')
+      .replace(/d\.\s*h\./g, 'd_h_')
+      .replace(/i\.\s*d\.\s*R\./g, 'i_d_R_')
+      .replace(/i\.\s*v\./g, 'i_v_')
+      .replace(/s\.\s*c\./g, 's_c_')
+      .replace(/p\.\s*o\./g, 'p_o_')
+      .replace(/i\.\s*m\./g, 'i_m_')
+      .replace(/V\.\s*a\./g, 'V_a_')
+      .replace(/Z\.\s*n\./g, 'Z_n_')
+      .replace(/M\.\s+/g, 'M_')
+      .replace(/N\.\s+/g, 'N_')
+      .replace(/A\.\s+/g, 'A_')
+      .replace(/V\.\s+/g, 'V_')
       .replace(/(\d+)\.\s*(\d+)/g, '$1_DOT_$2');
 
     const rawSentences = protectedText.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g) || [protectedText];
@@ -186,6 +212,19 @@
         .replace(/u_a_/g, 'u. a.')
         .replace(/bzw_/g, 'bzw.')
         .replace(/ca_/g, 'ca.')
+        .replace(/ggf_/g, 'ggf.')
+        .replace(/d_h_/g, 'd. h.')
+        .replace(/i_d_R_/g, 'i. d. R.')
+        .replace(/i_v_/g, 'i.v.')
+        .replace(/s_c_/g, 's.c.')
+        .replace(/p_o_/g, 'p.o.')
+        .replace(/i_m_/g, 'i.m.')
+        .replace(/V_a_/g, 'V. a.')
+        .replace(/Z_n_/g, 'Z. n.')
+        .replace(/M_/g, 'M. ')
+        .replace(/N_/g, 'N. ')
+        .replace(/A_/g, 'A. ')
+        .replace(/V_/g, 'V. ')
         .replace(/_DOT_/g, '.')
         .trim();
     }).filter(s => s.length > 0);
@@ -232,24 +271,14 @@
         const ansDe = (item.answer_de || '').toLowerCase();
         const ansTr = (item.answer_tr || '').toLowerCase();
         const cat = (item.category || '').toLowerCase();
-
-        let optMatch = false;
-        if (item.options) {
-          optMatch = item.options.some(o => 
-            (o.text_de || '').toLowerCase().includes(q) ||
-            (o.text_tr || '').toLowerCase().includes(q) ||
-            (o.explanation_de || '').toLowerCase().includes(q) ||
-            (o.explanation_tr || '').toLowerCase().includes(q)
-          );
-        }
-
         const oralQDe = (item.oral_question_de || '').toLowerCase();
         const oralQTr = (item.oral_question_tr || '').toLowerCase();
         const oralADe = (item.oral_answer_de || '').toLowerCase();
         const oralATr = (item.oral_answer_tr || '').toLowerCase();
+
         return stemDe.includes(q) || stemTr.includes(q) || ansDe.includes(q) || ansTr.includes(q) || 
                oralQDe.includes(q) || oralQTr.includes(q) || oralADe.includes(q) || oralATr.includes(q) || 
-               cat.includes(q) || optMatch;
+               cat.includes(q);
       });
     }
 
@@ -257,10 +286,12 @@
       list = list.filter(item => item.category === state.activeCategory);
     }
 
-    if (state.activeType === 'options') {
-      list = list.filter(item => item.question_type === 'options' || (item.options && item.options.length > 0));
+    if (state.activeType === 'dus') {
+      list = list.filter(item => item.study_tier === 1 || item.is_dus_protocol || item.is_amboss_curriculum);
     } else if (state.activeType === 'open') {
-      list = list.filter(item => item.question_type === 'open' || !item.options || item.options.length === 0);
+      list = list.filter(item => item.question_type === 'open' || item.study_tier === 1 || item.study_tier === 2);
+    } else if (state.activeType === 'options') {
+      list = list.filter(item => item.question_type === 'options' || item.study_tier === 3);
     }
 
     if (state.activeStatusFilter === 'read') {
@@ -272,25 +303,71 @@
     return list;
   }
 
-  // --- Render Questions Feed ---
-  
-  // Format structured oral exam answers into clear paragraphs, bullet items, and section headings
-  function renderFormattedOralAnswer(aDe, aTr) {
-    if (!aDe) return '';
+  // --- Format Oral Question (Multi-line Case Vignette + Examiner Sub-Questions) ---
+  function renderFormattedOralQuestion(qDe, qTr) {
+    if (!qDe) return '';
+    const linesDe = qDe.split('\n').map(l => l.trim()).filter(Boolean);
+    const linesTr = (qTr || '').split('\n').map(l => l.trim()).filter(Boolean);
 
-    const linesDe = aDe.split('\n');
-    const linesTr = (aTr || '').split('\n');
+    if (linesDe.length === 1) {
+      return `
+        <h2 class="card-stem-title oral-stem-title">
+          ${renderInteractiveGerman(linesDe[0], linesTr[0] || qTr)}
+        </h2>
+        ${linesTr[0] ? `<div class="inline-bilingual-tr oral-trans-sub" style="margin-top: 6px;">🇹🇷 ${escapeHtml(linesTr[0])}</div>` : ''}
+      `;
+    }
 
     let html = '';
     linesDe.forEach((lDe, idx) => {
-      const rawDe = lDe.trim();
-      if (!rawDe) return;
-      const rawTr = (linesTr[idx] || '').trim();
+      const lTr = linesTr[idx] || '';
+      if (lDe.startsWith('👨‍⚕️') || /^\d+\.\s+/.test(lDe)) {
+        html += `
+          <div class="oral-subquestion-row" style="margin-top: 10px; padding: 10px 14px; background: rgba(2, 132, 199, 0.08); border-left: 3px solid var(--primary); border-radius: 8px;">
+            <div style="font-weight: 700; font-size: 1.02rem; color: var(--text-primary); line-height: 1.48;">
+              ${renderInteractiveGerman(lDe, lTr)}
+            </div>
+            ${lTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(lTr)}</div>` : ''}
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="oral-vignette-para" style="${idx > 0 ? 'margin-top: 8px;' : ''}">
+            <div class="card-stem-title oral-stem-title" style="font-size: 1.04rem; font-weight: 600;">
+              ${renderInteractiveGerman(lDe, lTr)}
+            </div>
+            ${lTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(lTr)}</div>` : ''}
+          </div>
+        `;
+      }
+    });
+    return html;
+  }
 
-      // Bullet points (e.g. • or -)
-      if (rawDe.startsWith('•') || rawDe.startsWith('-')) {
-        const cleanDe = rawDe.replace(/^[•\-]\s*/, '').trim();
-        const cleanTr = rawTr.replace(/^[•\-]\s*/, '').trim();
+  // --- Format Structured Oral Exam Answers ---
+  function renderFormattedOralAnswer(aDe, aTr) {
+    if (!aDe) return '';
+
+    const linesDe = aDe.split('\n').map(l => l.trim()).filter(Boolean);
+    const linesTr = (aTr || '').split('\n').map(l => l.trim()).filter(Boolean);
+
+    let html = '';
+    linesDe.forEach((rawDe, idx) => {
+      const rawTr = linesTr[idx] || '';
+
+      // Follow-up question from examiner inside Annecke & Hohn case
+      if (rawDe.startsWith('👨‍⚕️')) {
+        html += `
+          <div class="oral-followup-question-box" style="margin: 14px 0 8px 0; padding: 10px 14px; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 8px;">
+            <div style="font-weight: 700; color: #b45309; font-size: 0.96rem;">
+              ${renderInteractiveGerman(rawDe, rawTr)}
+            </div>
+            ${rawTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(rawTr)}</div>` : ''}
+          </div>
+        `;
+      } else if (rawDe.startsWith('•') || rawDe.startsWith('-') || rawDe.startsWith('–')) {
+        const cleanDe = rawDe.replace(/^[•\-–]\s*/, '').trim();
+        const cleanTr = rawTr.replace(/^[•\-–]\s*/, '').trim();
         html += `
           <div class="oral-answer-bullet-row">
             <span class="oral-bullet-icon">▸</span>
@@ -300,8 +377,7 @@
             </div>
           </div>
         `;
-      } else if (/^\d+\.\s+/.test(rawDe)) {
-        // Section heading (e.g. 1. DIE 3 SÄULEN DER BÄK)
+      } else if (/^\d+\.\s+/.test(rawDe) || /^MERKE\b/.test(rawDe)) {
         html += `
           <div class="oral-section-heading">
             <div class="oral-heading-de">${renderInteractiveGerman(rawDe, rawTr)}</div>
@@ -309,7 +385,6 @@
           </div>
         `;
       } else {
-        // Normal paragraph / intro sentence
         html += `
           <div class="oral-paragraph-row">
             <div class="oral-para-de">${renderInteractiveGerman(rawDe, rawTr)}</div>
@@ -322,6 +397,7 @@
     return html;
   }
 
+  // --- Render Questions Feed ---
   function renderFeed(resetVisible = false) {
     if (resetVisible) state.visibleCount = state.pageSize;
 
@@ -345,24 +421,43 @@
 
     visibleItems.forEach((q, idx) => {
       const isRead = !!readStatus[q.id];
-      const isMcq = q.question_type === 'options' || (q.options && q.options.length > 0);
       const isDus = q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'));
+      const isAnnecke = q.source_book && q.source_book.includes('Annecke');
       const globalIndex = allQuestions.findIndex(x => x.id === q.id) + 1;
+
+      const questionDE = q.oral_question_de || q.question_de || q.stem_de || '';
+      const questionTR = q.oral_question_tr || q.question_tr || q.stem_tr || '';
+      const answerDE = q.oral_answer_de || q.answer_de || '';
+      const answerTR = q.oral_answer_tr || q.answer_tr || '';
+
+      // Optional Redefluss & Guideline enrichment from CurriculumEngine for clinical cases
+      let redeflussStep1 = null;
+      let groundTruth = null;
+      if (window.CurriculumEngine && q.study_tier !== 3) {
+        try {
+          const rf = window.CurriculumEngine.getRedeflussBaukasten(q);
+          if (rf && rf.step1) redeflussStep1 = rf.step1;
+          const gt = window.CurriculumEngine.getMedicalGroundTruth(q);
+          if (gt && gt.guideline && gt.guideline.awmf && gt.guideline.awmf !== 'DGAI / BDA Standard') {
+            groundTruth = gt;
+          }
+        } catch (_) {}
+      }
 
       html += `
         <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}">
           <div class="card-header-bar">
             <div class="card-badges">
-              <span class="badge-case-number">Fall #${globalIndex || (idx + 1)}</span>
+              <span class="badge-case-number">Frage #${globalIndex || (idx + 1)}</span>
               <span class="badge-category">${escapeHtml(q.category || 'Anästhesie')}</span>
-              ${q.amboss_pillar ? `<span class="badge-pillar">🏛️ ${escapeHtml(q.amboss_pillar)}</span>` : ''}
-              ${isDus ? `<span class="badge-dus-protocol">🏛️ ÄKNO Düsseldorf</span>` : ''}
+              ${isDus ? `<span class="badge-dus-protocol">🏛️ ÄKNO Düsseldorf Protokoll</span>` : ''}
+              ${q.is_amboss_curriculum ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS / DGAI Leitlinie</span>` : ''}
+              ${isAnnecke ? `<span class="badge-pillar">🏥 Annecke &amp; Hohn Fall</span>` : ''}
               ${q.is_high_yield ? `<span class="badge-hy-star">⭐ High-Yield</span>` : ''}
-              ${q.is_amboss_curriculum ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS</span>` : ''}
             </div>
 
             <div class="card-actions-top">
-              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml((q.oral_question_de || q.stem_de || q.question_de || '') + '\n\n' + (q.oral_answer_de || q.answer_de || ''))}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
+              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(questionDE + '\n\n' + answerDE)}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
                 <span>🔊</span> Telaffuz
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
@@ -371,36 +466,67 @@
             </div>
           </div>
 
-          <!-- 👨‍⚕️ PRÜFER-FRAGE (Sözlü Sınav Sorusu) -->
+          <!-- 👨‍⚕️ PRÜFER-FRAGE (Sözlü Sınav Sorusu & Fallvorstellung) -->
           <div class="oral-question-card-box">
             <div class="oral-role-badge examiner-role-badge">
-              <span>👨‍⚕️</span> Prüfer-Frage (Sözlü Sınav Sorusu)
+              <span>👨‍⚕️</span> Prüfer-Frage / Fallvorstellung (Sözlü Sınav Sorusu)
             </div>
             <div class="oral-question-text">
-              <h2 class="card-stem-title oral-stem-title">
-                ${renderInteractiveGerman(q.oral_question_de || q.stem_de || q.question_de, q.oral_question_tr || q.stem_tr || q.question_tr)}
-              </h2>
-              <div class="inline-bilingual-tr oral-trans-sub" style="margin-top: 6px;">
-                🇹🇷 ${escapeHtml(q.oral_question_tr || q.stem_tr || q.question_tr || '')}
-              </div>
+              ${renderFormattedOralQuestion(questionDE, questionTR)}
             </div>
           </div>
+
+          ${redeflussStep1 ? `
+          <!-- 🗣️ REDEEINSTIEG (Sınavda Söze Başlama Kalıbı) -->
+          <div class="oral-redeeinstieg-box" style="margin-bottom: 14px; padding: 10px 14px; background: rgba(16, 185, 129, 0.06); border: 1px dashed rgba(16, 185, 129, 0.35); border-radius: 10px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
+              <span style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: #047857; letter-spacing: 0.03em;">
+                🗣️ Empfohlener Redeeinstieg (Sınavda Söze Başlama Kalıbı)
+              </span>
+              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: 0.74rem;" data-text="${escapeHtml(redeflussStep1.de || redeflussStep1.textDE || '')}">
+                🔊 Dinle
+              </button>
+            </div>
+            <div style="font-size: 0.93rem; font-style: italic; color: var(--text-primary);">
+              „${renderInteractiveGerman(redeflussStep1.de || redeflussStep1.textDE, redeflussStep1.tr || redeflussStep1.textTR)}“
+            </div>
+            <div class="inline-bilingual-tr" style="margin-top: 4px;">
+              🇹🇷 "${escapeHtml(redeflussStep1.tr || redeflussStep1.textTR || '')}"
+            </div>
+          </div>
+          ` : ''}
 
           <!-- 🩺 FACHARZT-MUSTERANTWORT (Doğrudan Model Uzman Yanıtı) -->
           <div class="oral-answer-card-box">
             <div class="oral-role-badge candidate-role-badge">
-              <span>🩺</span> Facharzt-Musterantwort &amp; Leitlinien (Model Uzman Cevabı)
+              <span>🩺</span> Facharzt-Musterantwort &amp; Leitlinien (Doğrudan Model Uzman Cevabı)
             </div>
             <div class="oral-answer-content">
-              ${renderFormattedOralAnswer(q.oral_answer_de || q.answer_de || '', q.oral_answer_tr || q.answer_tr || '')}
+              ${renderFormattedOralAnswer(answerDE, answerTR)}
+            </div>
+          </div>
+      `;
+
+      // Ground-Truth Dosages & Guideline Box (if high-yield emergency match)
+      if (groundTruth && groundTruth.dosages && groundTruth.dosages.length > 0) {
+        html += `
+          <div class="study-guideline-dosage-box" style="margin-top: 12px; padding: 12px 14px; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.22); border-radius: 10px;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px;">
+              💊 ${escapeHtml(groundTruth.guideline.title)} (${escapeHtml(groundTruth.guideline.awmf)}) — Wichtigste Prüfungs-Dosierungen:
+            </div>
+            <div style="display: grid; gap: 6px; font-size: 0.86rem;">
+              ${groundTruth.dosages.map(d => `
+                <div style="padding: 6px 10px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-color);">
+                  <strong style="color: var(--text-primary);">${escapeHtml(d.drug)}:</strong>
+                  <span style="color: #0369a1; font-weight: 700;"> ${escapeHtml(d.dose)}</span>
+                  <span style="color: var(--text-muted); font-size: 0.8rem;"> (${escapeHtml(d.maxDose || d.limits || '')})</span>
+                </div>
+              `).join('')}
             </div>
           </div>
         `;
+      }
 
-
-      
-
-      
       // Examiner Profile Box (if available)
       if (q.examiner_profile) {
         const ep = q.examiner_profile;
@@ -423,7 +549,7 @@
         html += `
           <div class="study-examiner-intervention-box">
             <div class="study-examiner-intervention-title">
-              <span>⚡</span> Prüfer-Intervention & Zwischenfrage (Akute Verschlechterung):
+              <span>⚡</span> Prüfer-Intervention &amp; Zwischenfrage im Saal (Akute Krise):
             </div>
             <div class="answer-body-text">
               ${renderInteractiveGerman(q.examiner_intervention, q.examiner_intervention_tr)}
@@ -433,7 +559,7 @@
             </div>
             ${q.examiner_answer ? `
               <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(245, 158, 11, 0.3);">
-                <strong style="color: var(--text-primary); font-size: 0.88rem;">🎯 Prüfer-Erwartung & Leitlinien-Handeln:</strong>
+                <strong style="color: var(--text-primary); font-size: 0.88rem;">🎯 Optimale Sofort-Antwort auf die Zwischenfrage:</strong>
                 <div class="answer-body-text" style="margin-top: 4px;">
                   ${renderInteractiveGerman(q.examiner_answer, q.examiner_answer_tr)}
                 </div>
@@ -451,7 +577,7 @@
         html += `
           <div class="study-examiner-tip-box">
             <div class="study-examiner-tip-title">
-              <span>💡</span> Prüfer-Tipp & K.O.-Kriterien (Vermeidung von Durchfall-Fehlern):
+              <span>💡</span> Prüfer-Tipp &amp; K.O.-Kriterium (Vermeidung von Durchfall-Fehlern):
             </div>
             <div class="answer-body-text">
               ${renderInteractiveGerman(q.examiner_tip, q.examiner_tip_tr)}
@@ -471,7 +597,7 @@
     if (elLoadMoreWrapper) {
       if (state.visibleCount < filtered.length) {
         elLoadMoreWrapper.style.display = 'block';
-        elBtnLoadMore.textContent = `Daha Fazla Göster (${filtered.length - state.visibleCount} vaka kaldı)`;
+        elBtnLoadMore.textContent = `Daha Fazla Göster (${filtered.length - state.visibleCount} soru/vaka kaldı)`;
       } else {
         elLoadMoreWrapper.style.display = 'none';
       }
@@ -770,6 +896,28 @@
   if (elModalNotebook) {
     elModalNotebook.addEventListener('click', (e) => {
       if (e.target === elModalNotebook) elModalNotebook.style.display = 'none';
+    });
+  }
+
+  // Bottom quick bar handlers
+  if (elBtnBottomTop) {
+    elBtnBottomTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if (elBtnBottomSearch && elSearchInput) {
+    elBtnBottomSearch.addEventListener('click', () => {
+      elSearchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => elSearchInput.focus(), 300);
+    });
+  }
+  if (elBtnBottomUnread) {
+    elBtnBottomUnread.addEventListener('click', () => {
+      state.activeStatusFilter = state.activeStatusFilter === 'unread' ? 'all' : 'unread';
+      elBtnBottomUnread.innerHTML = state.activeStatusFilter === 'unread'
+        ? `<span class="nav-icon">🎯</span><span>Okunmayanlar</span>`
+        : `<span class="nav-icon">📖</span><span>Tümü</span>`;
+      renderFeed(true);
     });
   }
 

@@ -1350,7 +1350,35 @@ assert(!freshAppCode.includes("Fallvignette`"), 'app.js must derive real clinica
 
 console.log('[PASS] Suite 40 passed! Verified zero "undefined" and zero "[object Object]" regressions across all 664 questions, legal checkpoints, BGA trainer, Redefluss Baukasten speech engine, paired Turkish checklist generator (generateChecklistTR), aligned Chrome Web Speech microphone configuration, and PWA v7.7 cache busting.');
 
-console.log('\n🎉 ALL 40 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+
+// 41. Test Priority Ordering & Authentic Oral Exam Q&A Quality (Zero Meta-Stems / Zero "Siehe Antwort" / Zero OCR)
+console.log('Testing Suite 41: Priority Ordering & Authentic Oral Exam Q&A Quality...');
+
+assert(questions[0].id.startsWith('q_dus_'), 'First question in EXAM_QUESTIONS must be an ÄKNO Düsseldorf protocol case');
+const tier1Count = questions.filter(q => q.study_tier === 1).length;
+const tier2Count = questions.filter(q => q.study_tier === 2).length;
+const tier3Count = questions.filter(q => q.study_tier === 3).length;
+assert.strictEqual(tier1Count + tier2Count + tier3Count, questions.length, 'All 664 questions must have a valid study_tier (1, 2, or 3)');
+assert(tier1Count >= 80, 'Tier 1 (Düsseldorf + AMBOSS + ÄKNO Curriculum) must have at least 80 priority oral exam cases');
+assert(tier2Count >= 250, 'Tier 2 (Annecke & Hohn clinical cases) must have at least 250 cases');
+
+questions.forEach(q => {
+  assert(q.oral_question_de && q.oral_question_de.length > 15, `${q.id} must have a valid oral_question_de`);
+  assert(q.oral_question_tr && q.oral_question_tr.length > 15, `${q.id} must have a valid oral_question_tr`);
+  assert(q.oral_answer_de && q.oral_answer_de.length > 20, `${q.id} must have a valid oral_answer_de`);
+  assert(q.oral_answer_tr && q.oral_answer_tr.length > 20, `${q.id} must have a valid oral_answer_tr`);
+
+  assert(!q.oral_question_de.includes('Was müssen Sie als Facharzt wissen über:'), `${q.id} oral_question_de must not contain robotic prefix`);
+  assert(!/überprüfen sie (die )?folgenden? (aussagen|zuordnungen)/i.test(q.oral_question_de), `${q.id} oral_question_de must not contain generic MCQ meta-instruction`);
+  assert(!/siehe antwort [a-e]/i.test(q.oral_answer_de), `${q.id} oral_answer_de must not contain "Siehe Antwort"`);
+  assert(!/dies ist die (erste|zweite|dritte|d+.) kernaussage/i.test(q.oral_answer_de), `${q.id} oral_answer_de must not contain orphan "Dies ist die X. Kernaussage"`);
+  assert(!q.oral_answer_de.includes('=× ml(1-molar'), `${q.id} oral_answer_de must not contain broken OCR formula`);
+  assert(!q.oral_answer_de.includes('DOI 10.1007'), `${q.id} oral_answer_de must not contain Springer DOI footer`);
+});
+
+console.log(`[PASS] Suite 41 passed! Verified priority oral exam ordering (Tier 1: ${tier1Count}, Tier 2: ${tier2Count}, Tier 3: ${tier3Count}) and 100% clean oral Q&A across all ${questions.length} items.`);
+
+console.log('\n🎉 ALL 41 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

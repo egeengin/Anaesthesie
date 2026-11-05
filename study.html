@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css?v=8.5">
+  <link rel="stylesheet" href="study.css?v=9.0">
 </head>
 <body>
 
@@ -122,9 +122,10 @@
 
       <!-- Question Type Switcher -->
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Soru &amp; Vakalar (664)</button>
-        <button class="btn-cat-chip btn-type-filter" data-type="open">Klinik Kasuistikler & Protokoller (332)</button>
-        <button class="btn-cat-chip btn-type-filter" data-type="options">Klinik Bilgiler & Hap Soru-Cevap (332)</button>
+        <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Sözlü Sınav Arşivi (664)</button>
+        <button class="btn-cat-chip btn-type-filter" data-type="dus">🏛️ ÄKNO Düsseldorf &amp; AMBOSS Vaka Protokolleri (86)</button>
+        <button class="btn-cat-chip btn-type-filter" data-type="open">🏥 Klinik Vaka Soruları — Annecke &amp; Hohn (339)</button>
+        <button class="btn-cat-chip btn-type-filter" data-type="options">📚 Konu Bazlı Sözlü Soru-Cevap (325)</button>
       </div>
 
       <!-- Horizontal Scroll Category Chips -->
@@ -212,7 +213,7 @@
 
         <a href="notebooklm_export/01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md" download="01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md" class="btn-download-file">
           <div>
-            <div style="font-weight: 700;">🏥 2. Klinik Kasuistikler & ÄKNO Protokolleri (332 Vaka)</div>
+            <div style="font-weight: 700;">🏥 2. Klinik Kasuistikler & ÄKNO Protokolleri (339 Vaka)</div>
             <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md (~780 KB)</div>
           </div>
           <span style="font-size: 1.2rem;">📥</span>
@@ -220,7 +221,7 @@
 
         <a href="notebooklm_export/02_MCQ_und_Faktenwissen_NOTEBOOKLM.md" download="02_MCQ_und_Faktenwissen_NOTEBOOKLM.md" class="btn-download-file">
           <div>
-            <div style="font-weight: 700;">📚 3. Yapılandırılmış MCQ & Hap Bilgiler (332 Soru)</div>
+            <div style="font-weight: 700;">📚 3. Konu Bazlı Sözlü Sınav Soru-Cevapları (325 Soru)</div>
             <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">02_MCQ_und_Faktenwissen_NOTEBOOKLM.md (~1.1 MB)</div>
           </div>
           <span style="font-size: 1.2rem;">📥</span>
@@ -244,8 +245,10 @@
   </div>
 
   <!-- Load Dataset & Script -->
-  <script src="questions.js?v=8.5"></script>
-  <script src="study.js?v=8.5"></script>
+  <script src="js/curriculum_engine.js?v=9.0"></script>
+  <script src="js/exam_simulation.js?v=9.0"></script>
+  <script src="questions.js?v=9.0"></script>
+  <script src="study.js?v=9.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
