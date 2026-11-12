@@ -516,23 +516,23 @@
             <div class="melis-vitals-grid">
               <div class="melis-vital-tile">
                 <div class="melis-vital-label">HF / Frequenz</div>
-                <div class="melis-vital-value vital-hr">♥ ${escapeHtml(monitorData.vitals.hr)}</div>
+                <div class="melis-vital-value melis-val-hr">♥ ${escapeHtml(monitorData.vitals.hr)}</div>
               </div>
               <div class="melis-vital-tile">
                 <div class="melis-vital-label">RR / MAP (Invasiv)</div>
-                <div class="melis-vital-value vital-bp">${escapeHtml(monitorData.vitals.bp)} <small style="font-size:0.75rem; opacity:0.85;">(${escapeHtml(monitorData.vitals.map)})</small></div>
+                <div class="melis-vital-value melis-val-bp">${escapeHtml(monitorData.vitals.bp)} <small style="font-size:0.75rem; opacity:0.85;">(${escapeHtml(monitorData.vitals.map)})</small></div>
               </div>
               <div class="melis-vital-tile">
                 <div class="melis-vital-label">SpO₂ (Pulsoxy)</div>
-                <div class="melis-vital-value vital-spo2">${escapeHtml(monitorData.vitals.spo2)}</div>
+                <div class="melis-vital-value melis-val-spo2">${escapeHtml(monitorData.vitals.spo2)}</div>
               </div>
               <div class="melis-vital-tile">
                 <div class="melis-vital-label">EtCO₂ (Kapno)</div>
-                <div class="melis-vital-value vital-etco2">${escapeHtml(monitorData.vitals.etco2)}</div>
+                <div class="melis-vital-value melis-val-etco2">${escapeHtml(monitorData.vitals.etco2)}</div>
               </div>
               <div class="melis-vital-tile">
                 <div class="melis-vital-label">Temperatur</div>
-                <div class="melis-vital-value vital-temp">${escapeHtml(monitorData.vitals.temp)}</div>
+                <div class="melis-vital-value melis-val-temp">${escapeHtml(monitorData.vitals.temp)}</div>
               </div>
             </div>
             <div class="melis-bga-strip">
