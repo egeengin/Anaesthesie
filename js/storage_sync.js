@@ -84,7 +84,18 @@
     merged.notes = robustNotes;
     merged.sm2Cards = robustSm2;
     merged.dailyReviews = robustDaily;
-    merged.streak = Math.max(cloudState.streak || 0, localState.streak || 0);
+        merged.streak = Math.max(cloudState.streak || 0, localState.streak || 0);
+
+    // 6. Study Read Status union (Melis Lesemappe)
+    const cloudRead = cloudState.studyReadStatus || {};
+    const localRead = localState.studyReadStatus || {};
+    const mergedRead = { ...cloudRead, ...localRead };
+    merged.studyReadStatus = mergedRead;
+    try {
+      const currentProgress = JSON.parse(localStorage.getItem('facharzt_melis_read_status_v1') || '{}');
+      const unionProgress = { ...currentProgress, ...mergedRead };
+      localStorage.setItem('facharzt_melis_read_status_v1', JSON.stringify(unionProgress));
+    } catch (e) {}
 
     return merged;
   }

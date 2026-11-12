@@ -90,7 +90,7 @@
           <div class="modal-download-box">
             <a href="notebooklm_export/FACHARZT_KOMPLETT_NOTEBOOKLM.md" download="FACHARZT_KOMPLETT_NOTEBOOKLM.md" class="btn-download-file">
               <div>
-                <div style="font-weight: 700;">📦 1. Tüm Sözlü Sınav Arşivi Tek Dosyada (664 Vaka)</div>
+                <div style="font-weight: 700;">📦 1. Tüm Sözlü Sınav Arşivi Tek Dosyada (669 Vaka)</div>
                 <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">FACHARZT_KOMPLETT_NOTEBOOKLM.md</div>
               </div>
               <span style="font-size: 1.2rem;">📥</span>
@@ -630,6 +630,16 @@
 
         localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(readStatus));
         updateProgressBar();
+        try {
+          const appState = JSON.parse(localStorage.getItem('facharzt_anaesthesie_state_v2') || '{}');
+          appState.studyReadStatus = readStatus;
+          localStorage.setItem('facharzt_anaesthesie_state_v2', JSON.stringify(appState));
+          if (window.StorageSync && typeof window.StorageSync.pushToCloud === 'function') {
+            window.StorageSync.pushToCloud(appState);
+          }
+        } catch (e) {
+          console.warn('[StudySync] Background sync to appState failed:', e);
+        }
       });
     });
 

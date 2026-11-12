@@ -86,8 +86,83 @@
       };
     }
 
+    
+    // GLP-1-Rezeptoragonisten & Aspirationsprävention
+    if (text.includes('glp-1') || text.includes('semaglutid') || text.includes('ozempic') || text.includes('liraglutid') || text.includes('tirzepatid')) {
+      return {
+        topic: 'GLP-1-Rezeptoragonisten & Magenentleerungsverzögerung',
+        topic_tr: 'GLP-1 Reseptör Agonistleri & Mide Boşalması Gecikmesi (Aspirasyon Riski)',
+        firstDrugTR: 'Mide Ultrasonu (POCUS) + Hızlı Seri İndüksiyon (RSI)',
+        guideline: {
+          title: 'DGAI / ESAIC / ASA Konsensus-Leitlinie Perioperatives Management GLP-1-Agonisten',
+          society: 'DGAI / ESAIC / ASA Taskforce',
+          awmf: 'ESAIC Consensus 2024 GLP-1 Receptor Agonists',
+          year: '2024',
+          recommendation: 'Aufgrund extremer Magenentleerungsverzögerung (Gastroparese) droht trotz 6h Nüchternheit ein voller Magen. Tägliche GLP-1-RA am OP-Tag pausieren, wöchentliche GLP-1-RA 1 Woche vor OP pausieren. Bei Notfällen oder fehlender Pause: Magen-POCUS und konsequente RSI.',
+          recommendation_tr: 'Belirgin gastroparezi nedeniyle 6 saatlik açlığa rağmen ameliyatta dolu mide riski mevcuttur. Günlük ilaç ameliyat günü, haftalık ilaç 1 hafta önce kesilir. Yetersiz aralıkta mide POCUS ve kesin RSI uygulanır.'
+        },
+        dosages: [
+          { drug: 'Präoperative Karenz wöchentlicher Substanzen', dose: '1 Dosisintervall auslassen (7 Tage vor OP)', route: 's.c.', maxDose: 'Elektive Eingriffe bei Völlegefühl/Erbrechen verschieben', limits: 'Ozempic / Wegovy / Mounjaro' },
+          { drug: 'Magen-Sonographie (POCUS)', dose: 'Antrum-Querschnitt im Rechtsseitenlage (Perlas 0-2)', route: 'Ultraschall', maxDose: 'Flüssigkeit > 1,5 ml/kg oder Feststoffe = Magen voll', limits: 'Grad 2 = Hohes Aspirationsrisiko' },
+          { drug: 'Narkoseeinleitung bei vollem Magen', dose: 'RSI mit Videolaryngoskop + Magensonde nach Intubation', route: 'i.v.', maxDose: 'Rocuronium 1,0–1,2 mg/kg oder Succinylcholin 1,0 mg/kg', limits: 'Keine Zwischenbeatmung!' }
+        ],
+        koPitfalls: [
+          { mistake: 'Annahme, 6 Stunden Nüchternheit reichten bei Semaglutid aus', whyFatal: 'GLP-1-Agonisten führen zu stark verzögerter Magenmotilität; Patienten aspirieren trotz 10 Stunden Nüchternheit massive Feststoffmengen (Mendelson-Syndrom)!', correctAction: 'Immer nach GLP-1 fragen, Magen-Sonographie durchführen und bei Unklarheit RSI indizieren.' }
+        ]
+      };
+    }
+
+    // SGLT2-Inhibitoren & Euglykämische Ketoazidose (euDKA)
+    if (text.includes('sglt2') || text.includes('dapagliflozin') || text.includes('empagliflozin') || text.includes('eudka') || text.includes('euglykämische ketoazidose')) {
+      return {
+        topic: 'SGLT2-Inhibitoren & Euglykämische Ketoazidose (euDKA)',
+        topic_tr: 'SGLT2 İnhibitörleri & Normoglisemik/Öglisemik Ketoasidoz (euDKA)',
+        firstDrugTR: 'Glukoz-İnsülin İnfüzyonu + Agresif Sıvı Tedavisi',
+        guideline: {
+          title: 'ESAIC / FDA / EMA Safety Warning & Guidelines on SGLT2-Inhibitor euDKA',
+          society: 'ESAIC & DGAI Empfehlungen Perioperativer Diabetes',
+          awmf: 'ESAIC Guideline Perioperative Glycemic Management',
+          year: '2023',
+          recommendation: 'SGLT2-Inhibitoren (Empagliflozin, Dapagliflozin) 3 Tage vor elektiven Operationen pausieren. Bei perioperativer metabolischer Azidose mit normalem Blutzucker IMMER an euDKA denken: BGA (Anionenlücke), Blutketone messen, Glukose-Insulin-Perfusor starten.',
+          recommendation_tr: 'SGLT2 inhibitörleri elektif ameliyattan 3 gün önce kesilmelidir. Normal kan şekeri varlığında derin metabolik asidoz gelişirse öglisemik DKA düşünülmeli, keton ölçülmeli ve insülin-glukoz infüzyonu başlanmalıdır.'
+        },
+        dosages: [
+          { drug: 'Präoperatives Absetzen', dose: 'Mindestens 72 Stunden (3 Tage) vor Op-Tag', route: 'p.o.', maxDose: 'Notfall-OP: Perioperatives Keton-Monitoring obligat', limits: 'Forxiga, Jardiance' },
+          { drug: 'Therapie der euDKA', dose: 'Insulin i.v. (0,05–0,1 IE/kg/h) + Glukose 10% (100–150 ml/h)', route: 'i.v.', maxDose: 'Stoppt Ketogenese ohne Hypoglykämie zu induzieren', limits: 'Kalium engmaschig kontrollieren!' },
+          { drug: 'Volumensubstitution', dose: 'Vollelektrolytlösung 1.000–2.000 ml i.v.', route: 'i.v.', maxDose: 'Korrektur des osmotischen Flüssigkeitsdefizits', limits: 'Keine HES' }
+        ],
+        koPitfalls: [
+          { mistake: 'Ausschluss einer Ketoazidose wegen normalem Blutzucker (< 200 mg/dl)', whyFatal: 'SGLT2-Hemmer führen über renale Glukoseausscheidung zu normalen Glukosewerten trotz lebensbedrohlicher Ketoazidose!', correctAction: 'BGA-Anionenlücke berechnen und Serum-Ketonkörper (Beta-Hydroxybutyrat) bestimmen.' }
+        ]
+      };
+    }
+
+    // Post-Dural-Puncture-Headache (PDPH) & Epiduraler Blutpatch (EBP)
+    if (text.includes('pdph') || text.includes('postpunktioneller') || text.includes('blutpatch') || text.includes('postdural')) {
+      return {
+        topic: 'Postpunktioneller Kopfschmerz (PDPH) & Epiduraler Blutpatch',
+        topic_tr: 'Postdural Ponksiyon Baş Ağrısı (PDPH) & Epidural Kan Yaması (EBP)',
+        firstDrugTR: 'Epidural Kan Yaması (EBP) (15-20 ml otolog kan)',
+        guideline: {
+          title: 'S1-Leitlinie Diagnostik und Therapie des postpunktionellen Kopfschmerzes',
+          society: 'DGAI / BDA / DGN',
+          awmf: 'AWMF-Registernummer 030-113',
+          year: '2023',
+          recommendation: 'Konservativer Versuch (Flüssigkeit, Paracetamol, Koffein) maximal 24–48h. Bei persistierendem ortostatischer Kopfschmerz ist der autologe epidurale Blutpatch (EBP) Goldstandard (85-90% Erfolgsrate).',
+          recommendation_tr: 'Konservatif tedavi en fazla 24-48 saat denenir. Devam eden ortostatik baş ağrısında altın standart otolog epidural kan yamasıdır (EBP, %85-90 başarı).'
+        },
+        dosages: [
+          { drug: 'Autologer Epiduraler Blutpatch (EBP)', dose: '15–20 ml patienteneigenes Venenblut (steril abgenommen)', route: 'epidural', maxDose: 'Injektion stoppen bei Druckgefühl im Rücken/Beinen', limits: 'Strikte Asepsis; Kontraindikation: Lokale Infektion, Sepsis, Gerinnungsstörung' },
+          { drug: 'Koffein i.v. / p.o.', dose: 'Koffein 200–300 mg p.o. / Koffeincitrat i.v.', route: 'p.o. / i.v.', maxDose: 'Zerebrale Vasokonstriktion mildert Liquorunterdruck', limits: 'Nur vorübergehende Symptomlinderung' }
+        ],
+        koPitfalls: [
+          { mistake: 'Verkennen von Red Flags (Fieber, Nackensteife, fokal-neurologische Ausfälle)', whyFatal: 'Es droht eine Verwechslung von PDPH mit epiduralem Hämatom, Abszess oder Meningitis mit irreversibler Lähmung!', correctAction: 'Bei neurologischen Defiziten oder Fieber sofortiges Notfall-MRT der Wirbelsäule.' }
+        ]
+      };
+    }
+
     // Lokalanästhetika-Intoxikation (LAST)
-    if (text.includes('last') || text.includes('lokalanästhetika') || text.includes('intralipid')) {
+    if (text.includes('last') || text.includes('intralipid') || (text.includes('lokalanästhetik') && (text.includes('intoxikation') || text.includes('toxizität') || text.includes('krampfanfall') || text.includes('überdosierung')))) {
       return {
         topic: 'Lokalanästhetika-Intoxikation (LAST)',
         topic_tr: 'Lokal Anestezik Sistemik Toksisitesi (LAST)',
@@ -113,7 +188,7 @@
     }
 
     // Schwieriger Atemweg / CICO / eFONA
-    if (text.includes('atemweg') || text.includes('intubation') || text.includes('cico') || text.includes('koniotomie') || text.includes('videolaryngoskop')) {
+    if (text.includes('cico') || text.includes('cannot intubate') || text.includes('koniotomie') || text.includes('efona') || text.includes('schwieriger atemweg') || text.includes('videolaryngoskop') || (text.includes('atemweg') && text.includes('notfall'))) {
       return {
         topic: 'Atemwegsmanagement & Can-Not-Intubate-Can-Not-Oxygenate (CICO)',
         topic_tr: 'Havayolu Yönetimi & Entübe Edilemiyor-Oksijenlenemiyor (CICO)',
