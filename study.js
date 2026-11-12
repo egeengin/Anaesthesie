@@ -144,6 +144,8 @@
   const elActiveRecallToggle = document.getElementById('study-btn-active-recall-toggle') || document.getElementById('btn-active-recall-toggle');
   const elThemeToggle = document.getElementById('study-btn-theme-toggle') || document.getElementById('btn-theme-toggle');
   const elFontToggle = document.getElementById('study-btn-font-toggle') || document.getElementById('btn-font-toggle');
+  const elFontDec = document.getElementById('study-btn-font-dec') || document.getElementById('btn-font-dec');
+  const elFontInc = document.getElementById('study-btn-font-inc') || document.getElementById('btn-font-inc');
   const elProgressBarFill = document.getElementById('study-progress-bar-fill') || document.getElementById('progress-bar-fill');
   const elProgressText = document.getElementById('study-progress-status-text') || document.getElementById('progress-status-text');
   const elProgressPercentage = document.getElementById('study-progress-percentage') || document.getElementById('progress-percentage');
@@ -1137,19 +1139,80 @@
     }
   }
 
+  const FONT_LEVELS = [
+    { size: 15, label: 'Kompakt' },
+    { size: 17, label: 'Standart' },
+    { size: 19, label: 'Rahat' },
+    { size: 21, label: 'Geniş' }
+  ];
+
+  function stepFontSize(dir, isPillClick = false) {
+    const sizes = [15, 17, 19, 21];
+    let curIdx = sizes.indexOf(state.fontSize);
+    if (curIdx === -1) curIdx = 1;
+
+    let nextIdx;
+    if (isPillClick) {
+      nextIdx = (curIdx + 1) % sizes.length;
+    } else {
+      nextIdx = Math.max(0, Math.min(sizes.length - 1, curIdx + dir));
+    }
+    state.fontSize = sizes[nextIdx];
+    applyFontSize(state.fontSize);
+    saveSettings();
+  }
+
   if (elFontToggle) {
-    elFontToggle.addEventListener('click', () => {
-      const sizes = [15, 17, 19, 21];
-      const nextIdx = (sizes.indexOf(state.fontSize) + 1) % sizes.length;
-      state.fontSize = sizes[nextIdx];
-      applyFontSize(state.fontSize);
-      saveSettings();
+    elFontToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      stepFontSize(1, true);
+    });
+  }
+
+  if (elFontDec) {
+    elFontDec.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      stepFontSize(-1, false);
+    });
+  }
+
+  if (elFontInc) {
+    elFontInc.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      stepFontSize(1, false);
     });
   }
 
   function applyFontSize(size) {
     document.documentElement.style.setProperty('--reading-font-size', `${size}px`);
-    if (elFontToggle) elFontToggle.innerHTML = `<span>${size}px</span>`;
+    const match = FONT_LEVELS.find(l => l.size === size) || { size, label: 'Standart' };
+
+    if (elFontToggle) {
+      elFontToggle.title = `Okuma Boyutu: ${match.label} (Tıkla ve Değiştir)`;
+      elFontToggle.innerHTML = `
+        <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
+        <span class="stepper-label">${escapeHtml(match.label)}</span>
+        <span class="stepper-dots" aria-hidden="true">
+          <span class="step-dot ${size === 15 ? 'active' : ''}"></span>
+          <span class="step-dot ${size === 17 ? 'active' : ''}"></span>
+          <span class="step-dot ${size === 19 ? 'active' : ''}"></span>
+          <span class="step-dot ${size === 21 ? 'active' : ''}"></span>
+        </span>
+      `;
+    }
+
+    if (elFontDec) {
+      const isMin = size <= 15;
+      elFontDec.disabled = isMin;
+      elFontDec.classList.toggle('disabled', isMin);
+    }
+    if (elFontInc) {
+      const isMax = size >= 21;
+      elFontInc.disabled = isMax;
+      elFontInc.classList.toggle('disabled', isMax);
+    }
   }
 
   if (elBtnLoadMore) {

@@ -430,6 +430,171 @@ body {
   border-color: var(--primary);
 }
 
+/* ==========================================================================
+   ELEGANT READER FONT SIZE STEPPER (APPLE BOOKS / SAFARI READER STYLE)
+   ========================================================================== */
+.reader-font-stepper {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  height: 36px;
+  padding: 2px 3px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.reader-font-stepper:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.stepper-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  height: 30px;
+  min-width: 28px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: all 0.15s ease;
+  font-family: var(--font-heading), 'Inter', -apple-system, sans-serif;
+  line-height: 1;
+}
+
+.stepper-btn:hover:not(:disabled) {
+  background: var(--bg-secondary);
+  color: var(--primary);
+}
+
+.stepper-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.stepper-btn:disabled,
+.stepper-btn.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.stepper-glyph-small {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.stepper-glyph-large {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.stepper-current-pill {
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  padding: 0 10px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text-primary);
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.stepper-current-pill:hover {
+  background: var(--bg-secondary);
+}
+
+.stepper-aa-icon {
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--primary);
+  font-family: 'Outfit', Georgia, serif;
+}
+
+.stepper-aa-icon .aa-s {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.stepper-aa-icon .aa-l {
+  font-size: 0.96rem;
+}
+
+.stepper-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.stepper-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding-left: 2px;
+}
+
+.step-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.step-dot.active {
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  box-shadow: 0 0 4px rgba(2, 132, 199, 0.4);
+}
+
+/* Warm Sepia & Dark Mode adjustments */
+[data-theme="sepia"] .reader-font-stepper {
+  background: #f4ede1;
+  border-color: #d6c6b0;
+}
+
+[data-theme="sepia"] .step-dot.active {
+  background: #b45309;
+}
+
+[data-theme="dark"] .reader-font-stepper {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="dark"] .step-dot.active {
+  background: #38bdf8;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+}
+
+@media (max-width: 480px) {
+  .stepper-current-pill {
+    padding: 0 7px;
+    gap: 5px;
+  }
+  .stepper-label {
+    font-size: 0.72rem;
+  }
+}
+
 /* Category Filter Scroll */
 .category-filter-scroll {
   display: flex;

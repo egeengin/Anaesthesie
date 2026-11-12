@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css?v=9.3">
+  <link rel="stylesheet" href="study.css?v=9.4">
 </head>
 <body>
 
@@ -114,9 +114,24 @@
           <button id="btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
             <span>⚡</span> İlk 3 Hamle Test Modu
           </button>
-          <button id="btn-font-toggle" class="btn-icon-setting" title="Metin Boyutunu Değiştir">
-            <span>17px</span>
-          </button>
+          <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
+            <button type="button" id="btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
+              <span class="stepper-glyph-small">A</span>
+            </button>
+            <button type="button" id="btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart (Tıkla ve Değiştir)" aria-label="Yazı boyutu">
+              <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
+              <span class="stepper-label" id="font-size-label">Standart</span>
+              <span class="stepper-dots" aria-hidden="true">
+                <span class="step-dot"></span>
+                <span class="step-dot active"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+              </span>
+            </button>
+            <button type="button" id="btn-font-inc" class="stepper-btn stepper-btn-inc" title="Yazı Boyutunu Büyüt (A⁺)" aria-label="Yazıyı büyüt">
+              <span class="stepper-glyph-large">A</span>
+            </button>
+          </div>
           <button id="btn-theme-toggle" class="btn-icon-setting" title="Tema Değiştir (Aydınlık / Sepia / Gece)">
             <span>☀️</span>
           </button>
@@ -251,11 +266,11 @@
   <script src="js/curriculum_engine.js?v=9.0"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
   <script src="questions.js?v=9.0"></script>
-  <script src="study.js?v=9.3"></script>
+  <script src="study.js?v=9.4"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=9.3').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=9.4').then(reg => {
           reg.update();
         });
       });
