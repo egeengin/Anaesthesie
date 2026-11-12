@@ -529,13 +529,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Filtering Question Bank ---
   function getFilteredQuestions() {
     let list = EXAM_QUESTIONS.filter(q => {
-      // In Oral Simulation Mode (Mode A), STRICTLY focus on authentic ÄKNO Düsseldorf protocol cases (36 cases)
-      if (state.studyMode === 'simulation' && !['stage_1', 'stage_2', 'smart_session'].includes(state.filterMode)) {
+      // In Oral Simulation Mode (Mode A), only restrict to authentic ÄKNO protocols when specifically requested (e.g. dus_examiners)
+      if (state.filterMode === 'dus_examiners') {
         const isDus = !!q.is_dus_protocol || (q.source_book && (q.source_book.includes('Düsseldorf') || q.source_book.includes('D\u00fcsseldorf')));
         if (!isDus) return false;
-        if (q.question_type === 'options' || (q.options && q.options.length > 0)) {
-          return false;
-        }
       }
 
       // Live Global Medical Search Filter
@@ -581,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return !!q.is_high_yield || q.stage === 1;
       }
       if (state.filterMode === 'stage_2') {
-        return (q.stage === 2 || (!q.is_high_yield && q.question_type !== 'options')) && q.question_type !== 'options';
+        return q.stage === 2 || (!q.is_high_yield && q.stage !== 1);
       }
       if (state.filterMode === 'smart_session') {
         const sm2Item = state.sm2Data ? state.sm2Data[q.id] : null;
@@ -5398,10 +5395,12 @@ Tedavi:
     const hyAnsweredPassed = hyQuestions.filter(q => state.answers[q.id] && state.answers[q.id].submitted && state.answers[q.id].isCorrect).length;
     const hyScore = hyQuestions.length > 0 ? (hyAnsweredPassed / hyQuestions.length) * 35 : 0;
 
-    // Pillar 2: Patient Safety & K.O.-Kriterien Radar (30 pts max)
+    // Pillar 2: Patient Safety & K.O.-Kriterien Radar (30 pts max - optimized lookup)
     const criticalQuestions = EXAM_QUESTIONS.filter(q => {
-      const p = parseOralExamCase(q);
-      return (p.pitfalls && p.pitfalls.length > 15) || (q.examiner_tip && q.examiner_tip.toLowerCase().includes('k.o.'));
+      return (q.examiner_tip && q.examiner_tip.toLowerCase().includes('k.o.')) ||
+             (q.pitfalls && q.pitfalls.length > 15) ||
+             (q.is_dus_protocol) ||
+             (q.category && (q.category.includes('Notfall') || q.category.includes('Atemweg') || q.category.includes('Intensiv')));
     });
     const criticalFailed = criticalQuestions.filter(q => state.answers[q.id] && state.answers[q.id].submitted && !state.answers[q.id].isCorrect).length;
     const safetyScore = Math.max(0, Math.round(30 - (criticalFailed * 5)));
@@ -6079,6 +6078,9 @@ Tedavi:
         state.answers = {};
         state.flagged = {};
         state.userNotes = {};
+        state.sm2Data = {};
+        state.sm2Cards = {};
+        state.dailyCount = 0;
         state.currentIndex = 0;
         saveState();
         updateAnalytics();

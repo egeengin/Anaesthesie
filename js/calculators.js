@@ -200,7 +200,7 @@
         <div class="calc-card-metric highlight-safe">
           <div class="calc-metric-title">🫁 Tubus gecufft / unblockt</div>
           <div class="calc-metric-value">${res.cuffed.toFixed(1)} mm <small style="font-size: 0.8rem; font-weight: normal;">(uncuffed: ${res.uncuffed.toFixed(1)})</small></div>
-          <div class="calc-metric-note">Einführtiefe Zähne: <strong>ca. ${res.depth.toFixed(1)} cm</strong> (Formel: ID × 3)</div>
+          <div class="calc-metric-note">Einführtiefe Zähne: <strong>ca. ${res.depth.toFixed(1)} cm</strong> (Formel: ID × 3 bzw. Alter/2 + 12 cm oraler Zahnreihenabstand)</div>
         </div>
         <div class="calc-card-metric highlight-alert">
           <div class="calc-metric-title">🚨 Adrenalin Notfall (ALS)</div>
