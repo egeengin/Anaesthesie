@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v9.5'; // upgraded from facharzt-cache-v7.7 / v8.5 / v9.1 / v9.2 / v9.3 / v9.4 for default warm sepia paper theme and cohesive palette harmony
+const CACHE_NAME = 'facharzt-cache-v9.6'; // upgraded from facharzt-cache-v7.7 / v8.5 / v9.1 / v9.2 / v9.3 / v9.4 / v9.5 for universal Nur Deutsch mode and hover-translations
 const CORE_ASSETS = [
   './',
   './index.html',

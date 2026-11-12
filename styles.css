@@ -9011,3 +9011,46 @@ body:has(#auth-modal:not([style*="display: none"]):not([style*="display:none"]))
     display: none;
   }
 }
+
+/* ==========================================================================
+   NUR DEUTSCH (GERMAN ONLY) EXAMINATION MODE RULES & BUTTON
+   ========================================================================== */
+body.mode-german-only .hover-tr-preview,
+body.mode-german-only .hover-tr-preview.force-visible,
+body.mode-german-only .trans-interactive:after,
+body.mode-german-only .inline-bilingual-tr,
+body.mode-german-only .step-translation-box,
+body.mode-german-only .turkish-subtext,
+body.mode-german-only .hover-tr-badge,
+body.mode-german-only .inline-tr {
+  display: none !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.mode-german-only .translatable-box {
+  cursor: default !important;
+}
+
+body.mode-german-only .trans-interactive {
+  pointer-events: none !important;
+  text-decoration: none !important;
+}
+
+.pill-btn-german,
+.btn-header-german {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+}
+
+.pill-btn-german.active,
+.btn-header-german.active {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 2px 8px var(--primary-glow) !important;
+}

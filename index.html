@@ -21,8 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="study.css?v=9.5">
+  <link rel="stylesheet" href="styles.css?v=9.6">
+  <link rel="stylesheet" href="study.css?v=9.6">
 </head>
 <body>
 
@@ -72,6 +72,9 @@
 <a href="study.html" id="melis-study-link" class="pill-btn pill-btn-melis" title="Melis'in Çalışma & Okuma Sayfası (Hover & Dokun Türkçe Çeviri)">
             <span>📖</span> <span class="pill-btn-text">Çalışma Sayfası</span>
           </a>
+          <button id="btn-global-german-toggle" class="pill-btn pill-btn-german" type="button" title="Sınav Modu: Sadece Almanca (Nur Deutsch) Aç/Kapat">
+            <span>🇩🇪</span> <span class="pill-btn-text">Nur Deutsch</span>
+          </button>
           <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & K.O.-Kriterien">
             <span>🏛️</span> <span class="pill-btn-text">Düsseldorf-Kompass</span>
           </button>
@@ -132,22 +135,19 @@
          VIEW 1: MELIS'IN ÇALIŞMA SAYFASI (LESEMODUS - DOKUN/ÜZERİNDE DUR ÇEVİRİ)
          ========================================================================== -->
     <div id="study-view-wrapper">
-      <!-- Melis'in Çalışma Sayfası: Eğitim & Kullanım Rehberi Şeridi -->
+      <!-- Melis'in Çalışma Sayfası: Sade & Şık Başlık Şeridi -->
       <section class="onboarding-guide onboarding-guide-strip" style="margin-bottom: 14px;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 1.3rem;">🩺</span>
             <div>
-              <strong style="font-size: 0.95rem; color: var(--text-primary);">Dr. Melis'in Özel Facharzt Çalışma &amp; Simülasyon Sayfası (St. Antonius-Hospital Eschweiler · ÄKNO)</strong>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">669 Klinik Vaka · Data-First Monitör/BGA · İlk 3 Acil Hamle · First-Principles Fizyoloji &amp; Klinik-Jargon</div>
+              <strong style="font-size: 0.95rem; color: var(--text-primary);">Dr. Melis · St. Antonius-Hospital Eschweiler</strong>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">669 Klinik Vaka · ÄKNO Düsseldorf Mündliche Facharztprüfung</div>
             </div>
           </div>
           <div style="font-size: 0.78rem; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 9999px; font-weight: 600;">
             💡 Dokun / Üzerinde Dur: Anında Türkçe Çeviri
           </div>
-        </div>
-        <div style="margin-top: 10px; font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 8px;">
-          <span>📖 <strong>Melis'in Öğrenme Profiline Özel 5 Sütunlu Sistem</strong>: Her kartta <strong>1) 📟 Data-First Monitör, BGA &amp; EKG/PiCCO Trendi</strong>, <strong>2) ⚡ Prüfer-Impuls: İlk 3 Acil Hamle &amp; First-Principles Takip Sorusu</strong>, <strong>3) 🎯 3 Basamaklı Sınav Sentezi (Acil · Tanı · Farmakoloji)</strong>, <strong>4) 🧠 First-Principles Fizyoloji &amp; Farmakoloji (Neden?)</strong> ve <strong>5) 🗣️ St. Antonius Eschweiler Sabah Teslimi (Frühbesprechung), Premedikasyon &amp; Klinik-Jargon</strong> yer alır. Kendinizi sınamak için <strong>⚡ İlk 3 Hamle Test Modu</strong> butonunu aktif edebilirsiniz!</span>
         </div>
       </section>
       <!-- Melis Study Progress Tracker -->
@@ -264,17 +264,22 @@
           </div>
           <h2 class="hero-focus-title" id="hero-focus-title">Aktueller Fokus: 1. Klinische Notfälle &amp; Düsseldorfer Prüfungsprotokolle</h2>
           <div class="hero-focus-subtitle" id="hero-focus-subtitle">
-            <div>Im mündlichen Facharztgespräch (ÄKNO Düsseldorf) zählt kein Punktesystem, sondern <strong>Bestanden oder Nicht bestanden</strong>: Trainieren Sie strukturierte klinische Entscheidungsfindung (ABCDE), sichere Leitlinien-Dosierungen und das souveräne Vermeiden vitaler K.O.-Fehler.</div>
-            <div style="margin-top: 4px; font-size: 0.84rem; opacity: 0.9;">🇹🇷 Sözlü uzmanlık sınavında puanlama yoktur; doğrudan <strong>"Geçti / Kaldı" (Bestanden)</strong> değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı, güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin.</div>
+            <div class="translatable-box" data-tr="Sözlü uzmanlık sınavında puanlama yoktur; doğrudan &quot;Geçti / Kaldı&quot; (Bestanden) değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı (ABCDE), güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin." tabindex="0">
+              <div class="de-text-block">Im mündlichen Facharztgespräch (ÄKNO Düsseldorf) zählt kein Punktesystem, sondern <strong>Bestanden oder Nicht bestanden</strong>: Trainieren Sie strukturierte klinische Entscheidungsfindung (ABCDE), sichere Leitlinien-Dosierungen und das souveräne Vermeiden vitaler K.O.-Fehler.</div>
+              <div class="hover-tr-preview" aria-hidden="true">
+                <span class="hover-tr-badge">🇹🇷</span>
+                <span class="hover-tr-content">Sözlü uzmanlık sınavında puanlama yoktur; doğrudan <strong>"Geçti / Kaldı" (Bestanden)</strong> değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı (ABCDE), güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin.</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="hero-focus-actions">
-          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" title="15-Minütiges Smart-Training starten / 15-Dakikalık Akıllı Seansı Başlat">
+          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" title="15-Min Smart-Training starten — 🇹🇷 15-Dakikalık Akıllı Seansı Başlat">
             <span class="cta-play-icon">▶️</span>
             <span id="hero-cta-label">15-Min Smart-Training starten</span>
           </button>
-          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="Trainingsanleitung ein-/ausklappen / Nasıl Çalışılır? Rehberini Aç/Kapat" aria-label="Anleitung">
-            <span>❓ So funktioniert's / Nasıl Çalışılır?</span>
+          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="So funktioniert's — 🇹🇷 Nasıl Çalışılır? Rehberini Aç/Kapat" aria-label="Anleitung">
+            <span>❓ So funktioniert's</span>
           </button>
         </div>
       </div>
@@ -283,9 +288,9 @@
       <details class="onboarding-guide onboarding-guide-strip" id="onboarding-guide-strip">
         <summary class="guide-strip-header">
           <span class="guide-strip-title">
-            <span>💡</span> <strong>So funktioniert das Training (3 Schritte zum Facharzt) / Nasıl Çalışılır? (3 Adımda Sözlü Sınav Başarısı)</strong>
+            <span>💡</span> <strong>So funktioniert das Training (3 Schritte zum Facharzt)</strong>
           </span>
-          <span class="guide-toggle-caret" style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">▾ Ein-/Ausblenden · Aç/Kapat</span>
+          <span class="guide-toggle-caret" style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">▾ Ein-/Ausblenden</span>
         </summary>
         <div class="guide-steps-grid">
           <div class="guide-step-card">
@@ -2668,7 +2673,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=9.5"></script>
+  <script src="study.js?v=9.6"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');

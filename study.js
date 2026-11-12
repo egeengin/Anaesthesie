@@ -1115,9 +1115,51 @@
         document.body.classList.remove('mode-hover', 'mode-bilingual', 'mode-german-only');
         if (mode === 'bilingual') document.body.classList.add('mode-bilingual');
         if (mode === 'german') document.body.classList.add('mode-german-only');
+        updateGermanOnlyButtonState();
       });
     });
   }
+
+  function updateGermanOnlyButtonState() {
+    const isGerman = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
+    const allGermanBtns = document.querySelectorAll('#btn-quick-german-toggle, #btn-global-german-toggle, .pill-btn-german, .btn-header-german');
+    allGermanBtns.forEach(b => {
+      b.classList.toggle('active', isGerman);
+      const label = b.querySelector('.btn-label') || b.querySelector('.pill-btn-text');
+      if (label) {
+        label.textContent = isGerman ? 'Nur Deutsch ✓' : 'Nur Deutsch';
+      }
+    });
+  }
+
+  function toggleGermanOnlyMode() {
+    const isCurrentlyGerman = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
+    const newMode = isCurrentlyGerman ? 'hover' : 'german';
+    state.viewMode = newMode;
+    saveSettings();
+
+    document.body.classList.remove('mode-hover', 'mode-bilingual', 'mode-german-only');
+    if (newMode === 'german') {
+      document.body.classList.add('mode-german-only');
+    } else {
+      document.body.classList.add('mode-hover');
+    }
+
+    if (elModeTabs) {
+      elModeTabs.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-mode') === newMode);
+      });
+    }
+
+    updateGermanOnlyButtonState();
+  }
+
+  document.querySelectorAll('#btn-quick-german-toggle, #btn-global-german-toggle, .pill-btn-german, .btn-header-german').forEach(b => {
+    b.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleGermanOnlyMode();
+    });
+  });
 
   if (elThemeToggle) {
     elThemeToggle.addEventListener('click', () => {
@@ -1313,6 +1355,7 @@
   applyActiveRecallMode(state.activeRecallMode);
   if (state.viewMode === 'bilingual') document.body.classList.add('mode-bilingual');
   if (state.viewMode === 'german') document.body.classList.add('mode-german-only');
+  updateGermanOnlyButtonState();
 
   updateDynamicQuestionCounts();
   initCategories();

@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css?v=9.5">
+  <link rel="stylesheet" href="study.css?v=9.6">
 </head>
 <body>
 
@@ -41,6 +41,9 @@
       </a>
 
       <div class="header-actions">
+        <button id="btn-quick-german-toggle" class="btn-header btn-header-german" type="button" title="Sınav Modu: Sadece Almanca (Nur Deutsch) Aç/Kapat">
+          <span>🇩🇪</span> <span class="btn-label">Nur Deutsch</span>
+        </button>
         <button id="btn-notebooklm-trigger" class="btn-header" title="Google NotebookLM Dosyaları & Podcast Rehberi">
           <span>🎙️</span> <span class="btn-label">NotebookLM</span>
         </button>
@@ -52,22 +55,19 @@
   </header>
 
   <main style="padding: 0 16px;">
-    <!-- Melis'in Çalışma Sayfası: Eğitim & Kullanım Rehberi Şeridi -->
-    <section class="onboarding-guide onboarding-guide-strip" style="max-width: 900px; margin: 14px auto 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px;">
+    <!-- Melis'in Çalışma Sayfası: Sade & Şık Başlık Şeridi -->
+    <section class="onboarding-guide onboarding-guide-strip" style="max-width: 900px; margin: 14px auto 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 18px;">
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="font-size: 1.3rem;">🩺</span>
           <div>
-            <strong style="font-size: 0.95rem; color: var(--text-primary);">Dr. Melis'in Özel Facharzt Çalışma &amp; Simülasyon Sayfası (St. Antonius-Hospital Eschweiler · ÄKNO)</strong>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">669 Klinik Vaka · Data-First Monitör/BGA · İlk 3 Acil Hamle · First-Principles Fizyoloji &amp; Klinik-Jargon</div>
+            <strong style="font-size: 0.95rem; color: var(--text-primary);">Dr. Melis · St. Antonius-Hospital Eschweiler</strong>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">669 Klinik Vaka · ÄKNO Düsseldorf Mündliche Facharztprüfung</div>
           </div>
         </div>
         <div style="font-size: 0.78rem; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 9999px; font-weight: 600;">
           💡 Dokun / Üzerinde Dur: Anında Türkçe Çeviri
         </div>
-      </div>
-      <div style="margin-top: 10px; font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 8px;">
-        <span>📖 <strong>Melis'in Öğrenme Profiline Özel 5 Sütunlu Sistem</strong>: Her kartta <strong>1) 📟 Data-First Monitör, BGA &amp; EKG/PiCCO Trendi</strong>, <strong>2) ⚡ Prüfer-Impuls: İlk 3 Acil Hamle &amp; First-Principles Takip Sorusu</strong>, <strong>3) 🎯 3 Basamaklı Sınav Sentezi (Acil · Tanı · Farmakoloji)</strong>, <strong>4) 🧠 First-Principles Fizyoloji &amp; Farmakoloji (Neden?)</strong> ve <strong>5) 🗣️ St. Antonius Eschweiler Sabah Teslimi (Frühbesprechung), Premedikasyon &amp; Klinik-Jargon</strong> yer alır. Kendinizi sınamak için <strong>⚡ İlk 3 Hamle Test Modu</strong> butonunu aktif edebilirsiniz!</span>
       </div>
     </section>
     <!-- Melis Study Progress Tracker -->
@@ -266,11 +266,11 @@
   <script src="js/curriculum_engine.js?v=9.0"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
   <script src="questions.js?v=9.0"></script>
-  <script src="study.js?v=9.5"></script>
+  <script src="study.js?v=9.6"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=9.5').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=9.6').then(reg => {
           reg.update();
         });
       });

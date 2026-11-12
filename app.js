@@ -4572,6 +4572,9 @@ Tedavi:
     }
     if (elHeroCTA) {
       const isContinuation = Object.keys(state.answers || {}).length > 0;
+      elHeroCTA.title = isContinuation
+        ? `Weiterlernen (Fall ${state.currentIndex + 1}) — 🇹🇷 Öğrenmeye Devam Et (Vaka ${state.currentIndex + 1})`
+        : `15-Min Smart-Training starten — 🇹🇷 15-Dakikalık Akıllı Seansı Başlat`;
       elHeroCTA.innerHTML = isContinuation
         ? `<span>▶️ Weiterlernen (Fall ${state.currentIndex + 1})</span>`
         : `<span>▶️ 15-Min Smart-Training starten</span>`;
