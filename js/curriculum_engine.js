@@ -900,7 +900,14 @@
         step3_compensation: 'Primär metabolische Azidose (HCO3 11 mmol/l, BE -14) mit partiell respiratorischer Kompensation (pCO2 auf 28 mmHg abgeatmet).',
         step4_anionGap: 'Anionenlücke: AG = 136 - (101 + 11) = 24 mmol/l (erhöht, > 12). Ursache: Schwere Hyperlaktatämie (7,4 mmol/l) bei Gewebehypoperfusion im septischen Schock.'
       },
-      clinicalAction: 'Fokussanierung, Noradrenalin Ziel-MAP ≥ 65, 30 ml/kg Kristalloide, kalkulierte Breitspektrum-Antibiose innerhalb 1 Stunde.'
+      systematicSteps_tr: {
+        step1_oxygenation: '4 l O2 altında hipoksemi (PaO2 64 mmHg). Horovitz indeksi düşmüş (~170 mmHg) -> Akciğer tutulumu / başlangıç evre ARDS.',
+        step2_acidBase: 'Ağır asidemi (pH 7,18 < 7,35).',
+        step3_compensation: 'Kısmi solunumsal kompanzasyonlu primer metabolik asidoz (pCO2 hiperventilasyonla 28 mmHg\'ye düşürülmüş, HCO3 11, BE -14).',
+        step4_anionGap: 'Anyon açığı: AG = 136 - (101 + 11) = 24 mmol/l (artmış, > 12). Neden: Septik şokta doku hipoperfüzyonuna bağlı ağır hiperlaktatemi (7,4 mmol/l).'
+      },
+      clinicalAction: 'Fokussanierung, Noradrenalin Ziel-MAP ≥ 65, 30 ml/kg Kristalloide, kalkulierte Breitspektrum-Antibiose innerhalb 1 Stunde.',
+      clinicalAction_tr: 'Odak kontrolü/cerrahi, Noradrenalin hedef MAP ≥ 65, 30 ml/kg dengeli kristaloid, ilk 1 saat içinde geniş spektrumlu antibiyotik.'
     },
     {
       id: 'bga_02',
@@ -926,7 +933,14 @@
         step3_compensation: 'Akut auf chronische respiratorische Azidose. Chronische renale Vorkompensation (HCO3 31 mmol/l, BE +6), akut dekompensiert durch CO2-Retention (pCO2 72 mmHg).',
         step4_anionGap: 'Normale Anionenlücke, normales Laktat (1,4). Reine Ventilationsstörung (Erschöpfung der Atempumpe).'
       },
-      clinicalAction: 'Sofortige Nicht-invasive Beatmung (NIV) mit PEEP 4–5 und PS 8–12 cmH2O. Keine unkontrollierte Hyperoxie! Intubationsbereitschaft bei Vigilanzminderung.'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Ağır arteryel hipoksemi (PaO2 54 mmHg).',
+        step2_acidBase: 'Belirgin asidemi (pH 7,24).',
+        step3_compensation: 'Kronik zemin üzerine akut solunumsal asidoz. Kronik renal ön kompanzasyon (HCO3 31 mmol/l, BE +6), akut CO2 retansiyonu ile dekompanse (pCO2 72 mmHg).',
+        step4_anionGap: 'Normal anyon açığı, normal laktat (1,4). Saf ventilasyon yetersizliği (solunum pompası tükenmesi).'
+      },
+      clinicalAction: 'Sofortige Nicht-invasive Beatmung (NIV) mit PEEP 4–5 und PS 8–12 cmH2O. Keine unkontrollierte Hyperoxie! Intubationsbereitschaft bei Vigilanzminderung.',
+      clinicalAction_tr: 'Derhal non-invaziv mekanik ventilasyon (NIV) PEEP 4–5 ve PS 8–12 cmH2O. Kontrolsüz hiperoksiden kaçın! Bilinç bozulursa entübasyon hazırlığı.'
     },
     {
       id: 'bga_03',
@@ -952,7 +966,14 @@
         step3_compensation: 'Schwerste metabolische Azidose (HCO3 6 mmol/l) mit maximaler respiratorischer Kussmaul-Kompensation (pCO2 auf 18 mmHg hyperventiliert).',
         step4_anionGap: 'Massiv erhöhte Anionenlücke: AG = 132 - (96 + 6) = 30 mmol/l. Ursache: Ketonkörper (Beta-Hydroxybutyrat & Acetoacetat).'
       },
-      clinicalAction: 'Flüssigkeitssubstitution (NaCl 0,9% / Vollelektrolyt), Normalinsulin 0,1 IE/kg/h i.v. Perfusor (erst wenn Kalium > 3,5 mmol/l!), engmaschige Kaliumkontrolle.'
+      systematicSteps_tr: {
+        step1_oxygenation: 'O2 parsiyel basıncı normal (oda havasında PaO2 98 mmHg).',
+        step2_acidBase: 'Hayati tehlike oluşturan derin asidemi (pH 7,08).',
+        step3_compensation: 'Maksimal respiratuar Kussmaul kompanzasyonu gösteren en ağır metabolik asidoz (HCO3 6 mmol/l, pCO2 18 mmHg\'ye düşmüş).',
+        step4_anionGap: 'Masif artmış anyon açığı: AG = 132 - (96 + 6) = 30 mmol/l. Neden: Keton cisimleri (Beta-hidroksibütirat & Asetoasetat).'
+      },
+      clinicalAction: 'Flüssigkeitssubstitution (NaCl 0,9% / Vollelektrolyt), Normalinsulin 0,1 IE/kg/h i.v. Perfusor (erst wenn Kalium > 3,5 mmol/l!), engmaschige Kaliumkontrolle.',
+      clinicalAction_tr: 'Sıvı resüsitasyonu (%0,9 NaCl / dengeli elektrolit), i.v. regüler insülin perfüzörü 0,1 IU/kg/sa (yalnızca Potasyum > 3,5 mmol/l olduğunda!), yakın potasyum takibi.'
     },
     {
       id: 'bga_04',
@@ -978,7 +999,14 @@
         step3_compensation: 'Leichte Verdünnungsazidose (Dilutionsazidose).',
         step4_anionGap: 'Akute schwere Hyponatriämie (Na 112 mmol/l) und Hämoglobinsturz durch massive intravasale Resorption elektrolytfreier Spülflüssigkeit (Glycin/Sorbitol).'
       },
-      clinicalAction: 'OP sofort stoppen! Furosemid 20–40 mg i.v., bei neurologischen Symptomen/Krämpfen hypertones Kochsalz NaCl 3% (100 ml über 10–15 min). Maximaler Na-Anstieg: 8–10 mmol/l in 24h zur Vermeidung einer pontinen Myelinolyse!'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Orta derece oksijenasyon bozukluğu (PaO2 82 mmHg), hipervolemiye bağlı akciğer ödemi riski.',
+        step2_acidBase: 'Hafif asidemi (pH 7,32).',
+        step3_compensation: 'Hafif dilüsyon (seyrelme) asidozu.',
+        step4_anionGap: 'Akut ağır hiponatremi (Na 112 mmol/l) ve elektrolitsiz yıkama sıvısının (Glisin/Sorbitol) masif intravasküler emilimine bağlı ani hemoglobin düşüşü.'
+      },
+      clinicalAction: 'OP sofort stoppen! Furosemid 20–40 mg i.v., bei neurologischen Symptomen/Krämpfen hypertones Kochsalz NaCl 3% (100 ml über 10–15 min). Maximaler Na-Anstieg: 8–10 mmol/l in 24h zur Vermeidung einer pontinen Myelinolyse!',
+      clinicalAction_tr: 'Ameliyatı DERHAL durdurun! Furosemid 20–40 mg i.v., nörolojik bulgu/nöbette hipertonik tuzlu su %3 NaCl (10–15 dakikada 100 ml). Pontin miyelinolizisten kaçınmak için 24 saatte maksimum Na artışı: 8–10 mmol/l!'
     },
     {
       id: 'bga_05',
@@ -1004,7 +1032,14 @@
         step3_compensation: 'Akute respiratorische Alkalose durch massive reflektorische Hyperventilation (pCO2 26 mmHg abgeatmet). Keine renale Kompensation (BE und HCO3 normwertig).',
         step4_anionGap: 'Normale Anionenlücke (AG 12 mmol/l). Mäßig erhöhtes Laktat durch myokardiale und periphere Minderperfusion.'
       },
-      clinicalAction: '100% Sauerstoffgabe, Notfall-Echokardiographie (FATE: Rechtsherzbelastung, McConnell-Zeichen), therapeutische Antikoagulation (Heparin 5000 IE Bolus), bei Kreislaufinstabilität/Schock sofortige systemische Fibrinolyse (Alteplase rt-PA 100 mg).'
+      systematicSteps_tr: {
+        step1_oxygenation: 'İntrapulmoner şant ve ventilasyon-perfüzyon uyumsuzluğuna bağlı ağır arteryel hipoksemi (oda havasında PaO2 52 mmHg).',
+        step2_acidBase: 'Belirgin alkademi (pH 7,52 > 7,45).',
+        step3_compensation: 'Masif refleks hiperventilasyona bağlı akut solunumsal alkaloz (pCO2 26 mmHg). Renal kompanzasyon henüz yok (BE ve HCO3 normal).',
+        step4_anionGap: 'Normal anyon açığı (AG 12 mmol/l). Miyokard ve periferik perfüzyon bozukluğuna bağlı orta derecede laktat artışı.'
+      },
+      clinicalAction: '100% Sauerstoffgabe, Notfall-Echokardiographie (FATE: Rechtsherzbelastung, McConnell-Zeichen), therapeutische Antikoagulation (Heparin 5000 IE Bolus), bei Kreislaufinstabilität/Schock sofortige systemische Fibrinolyse (Alteplase rt-PA 100 mg).',
+      clinicalAction_tr: '%100 oksijen tedavisi, acil odaklanmış ekokardiyografi (FATE: sağ kalp yüklenmesi, McConnell belirtisi), terapötik antikoagülasyon (Heparin 5000 IU bolus), hemodinamik instabilite/şokta derhal sistemik fibrinoliz (Alteplase rt-PA 100 mg).'
     },
     {
       id: 'bga_06',
@@ -1030,7 +1065,14 @@
         step3_compensation: 'Gleichzeitige primäre respiratorische Alkalose (direkte medulläre Stimulation des Atemzentrums mit pCO2 21 mmHg) UND primäre metabolische Azidose.',
         step4_anionGap: 'Massiv erhöhte Anionenlücke: AG = 140 - (105 + 12) = 23 mmol/l (> 12). Ursache: Entkopplung der oxidativen Phosphorylierung mit Laktat-, Salizylat- und Ketosäureakkumulation.'
       },
-      clinicalAction: 'Urin-Alkalisierung mit Natriumbikarbonat 8,4% (Ziel-Urin-pH 7,5–8,0 zur Ionenfalle und renalen Ausscheidung), Kaliumsubstitution, bei Spiegeln > 80–100 mg/dl oder Enzephalopathie sofortige Hämodialyse!'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Normal arteryel oksijenasyon (PaO2 94 mmHg).',
+        step2_acidBase: 'Normal/sınırda pH (7,39); ancak bu değer hayati tehlike oluşturan ağır bir mikst bozukluğu gizlemektedir!',
+        step3_compensation: 'Eşzamanlı primer solunumsal alkaloz (solunum merkezinin doğrudan uyarılmasıyla pCO2 21 mmHg) VE primer metabolik asidoz.',
+        step4_anionGap: 'Masif artmış anyon açığı: AG = 140 - (105 + 12) = 23 mmol/l (> 12). Neden: Oksidatif fosforilasyonun bozulmasıyla laktat, salisilat ve ketoasit birikimi.',
+      },
+      clinicalAction: 'Urin-Alkalisierung mit Natriumbikarbonat 8,4% (Ziel-Urin-pH 7,5–8,0 zur Ionenfalle und renalen Ausscheidung), Kaliumsubstitution, bei Spiegeln > 80–100 mg/dl oder Enzephalopathie sofortige Hämodialyse!',
+      clinicalAction_tr: 'Sodyum bikarbonat %8,4 ile idrar alkalinizasyonu (iyon tuzağı ve böbrekten atılım için hedef idrar pH 7,5–8,0), potasyum replasmanı, kan düzeyi > 80–100 mg/dl veya ensefalopatide derhal hemodiyaliz!'
     },
     {
       id: 'bga_07',
@@ -1056,7 +1098,14 @@
         step3_compensation: 'Schwere metabolische Alkalose (HCO3 40 mmol/l, BE +15) mit hypoventilatorischer partieller Kompensation (pCO2 auf 46 mmHg gestiegen).',
         step4_anionGap: 'Normale Anionenlücke. Kritische ionisierte Hypokalzämie (0,78 mmol/l) durch Bindung von Ca²⁺ an Konservierungs-Zitrat sowie Hypokaliämie.'
       },
-      clinicalAction: 'Sofortige Kalziumsubstitution mit Kalziumchlorid 10% (10–20 ml i.v.), Kaliumsubstitution, vorsichtige Beatmung (keine Hyperventilation, da Alkalose die Hypokalzämie verschlimmert).'
+      systematicSteps_tr: {
+        step1_oxygenation: 'İyi oksijenasyon (PaO2 92 mmHg).',
+        step2_acidBase: 'Belirgin alkademi (pH 7,56 > 7,45).',
+        step3_compensation: 'Hipoventilasyonla kısmi kompanzasyon gösteren ağır metabolik alkaloz (HCO3 40 mmol/l, BE +15, pCO2 46 mmHg\'ye yükselmiş).',
+        step4_anionGap: 'Normal anyon açığı. Sitratın kalsiyumu bağlaması nedeniyle kritik iyonize hipokalsemi (0,78 mmol/l) ve hipokalemi.'
+      },
+      clinicalAction: 'Sofortige Kalziumsubstitution mit Kalziumchlorid 10% (10–20 ml i.v.), Kaliumsubstitution, vorsichtige Beatmung (keine Hyperventilation, da Alkalose die Hypokalzämie verschlimmert).',
+      clinicalAction_tr: 'Kalsiyum klorür %10 (10–20 ml i.v.) ile derhal kalsiyum replasmanı, potasyum desteği, dikkatli ventilasyon (hiperventilasyondan kaçının; alkaloz hipokalsemiyi daha da derinleştirir).'
     },
     {
       id: 'bga_08',
@@ -1082,7 +1131,14 @@
         step3_compensation: 'Schwere metabolische Azidose (HCO3 9 mmol/l, BE -18) mit respiratorischer Gegenregulation (pCO2 29 mmHg).',
         step4_anionGap: 'Erhöhte Anionenlücke (AG 28 mmol/l) durch Akkumulation von Sulfat, Phosphat, Myoglobin und Laktat. Vital bedrohliche Hyperkaliämie (7,4 mmol/l!).'
       },
-      clinicalAction: '1. Kardiale Membranstabilisierung: Kalziumchlorid 10% 10 ml i.v., 2. Shift-Therapie: 10 IE Altinsulin in 50 ml G40% + Salbutamol inhalativ, 3. Forcierte Hydratation mit Natriumbikarbonat (Harnalkalisierung pH > 6,5 zum Schutz vor Myoglobinzylindern), 4. Notfall-Hämodialysebereitschaft.'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Yeterli oksijenasyon (2 l O2 altında PaO2 88 mmHg).',
+        step2_acidBase: 'Hayati tehlike oluşturan derin asidemi (pH 7,12).',
+        step3_compensation: 'Solunumsal karşı düzenleme gösteren ağır metabolik asidoz (HCO3 9 mmol/l, BE -18, pCO2 29 mmHg).',
+        step4_anionGap: 'Sülfat, fosfat, miyoglobin ve laktat birikimine bağlı artmış anyon açığı (AG 28 mmol/l). Hayati tehdit oluşturan hiperkalemi (7,4 mmol/l!).'
+      },
+      clinicalAction: '1. Kardiale Membranstabilisierung: Kalziumchlorid 10% 10 ml i.v., 2. Shift-Therapie: 10 IE Altinsulin in 50 ml G40% + Salbutamol inhalativ, 3. Forcierte Hydratation mit Natriumbikarbonat (Harnalkalisierung pH > 6,5 zum Schutz vor Myoglobinzylindern), 4. Notfall-Hämodialysebereitschaft.',
+      clinicalAction_tr: '1. Kardiyak membran stabilizasyonu: Kalsiyum klorür %10 10 ml i.v., 2. Hücre içi kaydırma: 50 ml %40 Dekstroz içine 10 IU regüler insülin + Salbutamol inhalasyonu, 3. Sodyum bikarbonat ile zorlu hidrasyon (miyoglobin tübüler tıkaçlarını önlemek için hedef idrar pH > 6,5), 4. Acil hemodiyaliz hazırlığı.'
     },
     {
       id: 'bga_09',
@@ -1108,7 +1164,14 @@
         step3_compensation: 'Reine akute unkompensierte respiratorische Azidose (CO2-Narkose mit pCO2 94 mmHg). Normales Bikarbonat (26 mmol/l) und normaler BE (+0,2), da Nierenkompensation 24–48h benötigt.',
         step4_anionGap: 'Normale Anionenlücke (AG 11 mmol/l). Reine Hypoventilationsstörung.'
       },
-      clinicalAction: 'Sofortige Beutel-Masken-Beatmung mit 100% O2! Naloxon titriert i.v. (0,04–0,08 mg alle 2 Minuten bis zum Wiedereintritt der Spontanatmung). Cave: Naloxon-Halbwertszeit (45–60 min) ist kürzer als die vieler Opioide -> Rebound-Überwachung auf Intensivstation!'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Hayati tehlike oluşturan ağır hipoksemi (oda havasında PaO2 42 mmHg).',
+        step2_acidBase: 'Akut derin asidemi (pH 7,06 < 7,10).',
+        step3_compensation: 'Saf akut kompanse edilmemiş solunumsal asidoz (pCO2 94 mmHg ile CO2 narkozu). Normal bikarbonat (26) ve BE (+0,2); çünkü böbrek kompanzasyonu 24–48 saat sürer.',
+        step4_anionGap: 'Normal anyon açığı (AG 11 mmol/l). Saf hipoventilasyon bozukluğu.'
+      },
+      clinicalAction: 'Sofortige Beutel-Masken-Beatmung mit 100% O2! Naloxon titriert i.v. (0,04–0,08 mg alle 2 Minuten bis zum Wiedereintritt der Spontanatmung). Cave: Naloxon-Halbwertszeit (45–60 min) ist kürzer als die vieler Opioide -> Rebound-Überwachung auf Intensivstation!',
+      clinicalAction_tr: '%100 O2 ile derhal balon-valf-maske ventilasyonu! Titre edilerek i.v. Nalokson (spontan solunum dönene kadar her 2 dakikada 0,04–0,08 mg). Dikkat: Nalokson yarı ömrü (45–60 dk) birçok opioidden kısadır -> Yoğun bakımda rebound izlemi!'
     },
     {
       id: 'bga_10',
@@ -1134,7 +1197,14 @@
         step3_compensation: 'Schwere kombinierte respiratorische (pCO2 98 mmHg) UND metabolische Laktatazidose (Laktat 12,5 mmol/l, BE -16) durch explosionsartigen Zytosol-Kalziumeinstrom.',
         step4_anionGap: 'Massiv erhöhte Anionenlücke (AG 30 mmol/l) und akute letale Hyperkaliämie (7,2 mmol/l).'
       },
-      clinicalAction: 'Trigger SOFORT STOPPEN (Vapor abdrehen!), Hyperventilation mit 100% O2 maximaler Flow, Dantrolen 2,5 mg/kg i.v. Bolus sofort (wiederholen bis zu 10 mg/kg), aktive Kühlung, Kalziumchlorid + Glukose/Insulin. K.O.-Kriterium: NIEMALS Kalziumkanalblocker!'
+      systematicSteps_tr: {
+        step1_oxygenation: '%100 O2 ile oksijenasyon şimdilik korunuyor (PaO2 120 mmHg).',
+        step2_acidBase: 'Uç düzeyde, ölümcül asidemi (pH 6,98 < 7,0).',
+        step3_compensation: 'Patlayıcı sitozolik kalsiyum akışına bağlı ağır kombine solunumsal (pCO2 98 mmHg) VE metabolik laktik asidoz (Laktat 12,5 mmol/l, BE -16).',
+        step4_anionGap: 'Masif artmış anyon açığı (AG 30 mmol/l) ve akut öldürücü hiperkalemi (7,2 mmol/l).'
+      },
+      clinicalAction: 'Trigger SOFORT STOPPEN (Vapor abdrehen!), Hyperventilation mit 100% O2 maximaler Flow, Dantrolen 2,5 mg/kg i.v. Bolus sofort (wiederholen bis zu 10 mg/kg), aktive Kühlung, Kalziumchlorid + Glukose/Insulin. K.O.-Kriterium: NIEMALS Kalziumkanalblocker!',
+      clinicalAction_tr: 'Tetikleyici ajanları DERHAL DURDURUN (Vaporu kapatın!), maksimum akışla %100 O2 ile hiperventilasyon, derhal Dantrolen 2,5 mg/kg i.v. bolus (10 mg/kg\'a kadar tekrar), aktif soğutma, kalsiyum klorür + glukoz/insülin. K.O. Kriteri: ASLA kalsiyum kanal blokeri vermeyin!'
     },
     {
       id: 'bga_11',
@@ -1160,7 +1230,14 @@
         step3_compensation: 'Gemischte metabolische (Laktat 10,8 mmol/l, BE -17) und mäßig respiratorische Azidose (pCO2 56 mmHg) infolge des Ganzkörper-Kreislaufstillstands.',
         step4_anionGap: 'Massiv vergrößerte Anionenlücke (AG 22 mmol/l) durch hypoxische Gewebeischämie.'
       },
-      clinicalAction: 'Zielgerichtetes Temperaturmanagement (TTM 32–36 °C), Vermeidung von Hyperoxie (Ziel SpO2 94–98%) und Hypokapnie (Normokapnie 35–45 mmHg zur Hirnperfusion), unverzüglicher Transfer ins Herzkatheterlabor (PTCA).'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Hiperoksemiden kaçının! FiO2 0,6 altında PaO2 110 mmHg.',
+        step2_acidBase: 'Ağır asidemi (pH 7,02).',
+        step3_compensation: 'Tüm vücut dolaşım durmasına bağlı mikst metabolik (Laktat 10,8, BE -17) ve ılımlı solunumsal asidoz (pCO2 56 mmHg).',
+        step4_anionGap: 'Hipoksik doku iskemisine bağlı masif genişlemiş anyon açığı (AG 22 mmol/l).'
+      },
+      clinicalAction: 'Zielgerichtetes Temperaturmanagement (TTM 32–36 °C), Vermeidung von Hyperoxie (Ziel SpO2 94–98%) und Hypokapnie (Normokapnie 35–45 mmHg zur Hirnperfusion), unverzüglicher Transfer ins Herzkatheterlabor (PTCA).',
+      clinicalAction_tr: 'Hedefe yönelik sıcaklık yönetimi (TTM 32–36 °C), hiperoksiden (hedef SpO2 %94–98) ve hipokapniden (beyin perfüzyonu için normokapni 35–45 mmHg) kaçınma, derhal anjiyografi laboratuvarına nakil (primer PKG).'
     },
     {
       id: 'bga_12',
@@ -1186,7 +1263,14 @@
         step3_compensation: 'Metabolische Azidose (HCO3 13 mmol/l, BE -12) mit adäquater respiratorischer Kompensation (pCO2 32 mmHg).',
         step4_anionGap: 'NORMALE Anionenlücke: AG = 144 - (122 + 13) = 9 mmol/l (< 12). Keine Laktatazidose (Laktat 1,2 normwertig!), sondern reine Verdünnungs-/Chlorid-Überladung (Cl 122 mmol/l).'
       },
-      clinicalAction: 'Infusionsumstellung von NaCl 0,9% auf balancierte Vollelektrolytlösungen mit metabolisierbarem Anion (z.B. Jonosteril / Sterofundin), renale Säureausscheidung abwarten, keine Pufferung mit NaHCO3 indiziert!'
+      systematicSteps_tr: {
+        step1_oxygenation: 'Normal oksijenasyon (PaO2 96 mmHg).',
+        step2_acidBase: 'Belirgin asidemi (pH 7,22).',
+        step3_compensation: 'Yeterli solunumsal kompanzasyon gösteren metabolik asidoz (HCO3 13 mmol/l, BE -12, pCO2 32 mmHg).',
+        step4_anionGap: 'NORMAL anyon açığı: AG = 144 - (122 + 13) = 9 mmol/l (< 12). Laktik asidoz YOKTUR (Laktat 1,2 normal!), tablo saf dilüsyon ve klor yüklenmesidir (Cl 122 mmol/l).'
+      },
+      clinicalAction: 'Infusionsumstellung von NaCl 0,9% auf balancierte Vollelektrolytlösungen mit metabolisierbarem Anion (z.B. Jonosteril / Sterofundin), renale Säureausscheidung abwarten, keine Pufferung mit NaHCO3 indiziert!',
+      clinicalAction_tr: 'İnfüzyon tedavisini %0,9 NaCl\'den metabolize edilebilir anyon içeren dengeli elektrolit solüsyonlarına (örn. Jonosteril / Sterofundin) çevirin, böbreğin asit atılımını bekleyin, NaHCO3 tamponlaması KONTRENDİKEDİR!'
     }
   ];
 

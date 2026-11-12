@@ -7596,29 +7596,31 @@ Tedavi:
 
     const elSteps = document.getElementById('bga-steps-container');
     if (elSteps) {
+      const stepsTr = bCase.systematicSteps_tr || {};
       elSteps.innerHTML = `
         <div class="bga-step-item">
           <div class="bga-step-header"><span class="bga-step-badge">Schritt 1</span><strong>1. Oxygenierung:</strong></div>
-          <div class="bga-step-content">${bCase.systematicSteps.step1_oxygenation}</div>
+          <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step1_oxygenation, stepsTr.step1_oxygenation || '')}</div>
         </div>
         <div class="bga-step-item">
           <div class="bga-step-header"><span class="bga-step-badge">Schritt 2</span><strong>2. Säure-Basen-Status:</strong></div>
-          <div class="bga-step-content">${bCase.systematicSteps.step2_acidBase}</div>
+          <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step2_acidBase, stepsTr.step2_acidBase || '')}</div>
         </div>
         <div class="bga-step-item">
           <div class="bga-step-header"><span class="bga-step-badge">Schritt 3</span><strong>3. Kompensation:</strong></div>
-          <div class="bga-step-content">${bCase.systematicSteps.step3_compensation}</div>
+          <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step3_compensation, stepsTr.step3_compensation || '')}</div>
         </div>
         <div class="bga-step-item">
           <div class="bga-step-header"><span class="bga-step-badge">Schritt 4</span><strong>4. Anionenlücke & Elektrolyte:</strong></div>
-          <div class="bga-step-content">${bCase.systematicSteps.step4_anionGap}</div>
+          <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step4_anionGap, stepsTr.step4_anionGap || '')}</div>
         </div>
       `;
     }
 
     const elAction = document.getElementById('bga-action-card');
     if (elAction) {
-      elAction.innerHTML = `<strong>🚨 Konsequenz & ÄKNO Intervention:</strong> ${bCase.clinicalAction}`;
+      const actionTr = bCase.clinicalAction_tr || '';
+      elAction.innerHTML = `<strong>🚨 Konsequenz & ÄKNO Intervention:</strong> ${renderDualLanguageText(bCase.clinicalAction, actionTr)}`;
     }
   }
 
