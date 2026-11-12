@@ -77,6 +77,158 @@
   --trans-tooltip-text: #faf3e8;
 }
 
+/* 📜 Warm Sepia Complete Palette Harmony: Ensures zero cool/harsh color leakage */
+[data-theme="sepia"] .brand-badge-icon {
+  background: linear-gradient(135deg, #b45309, #d97706);
+  box-shadow: 0 4px 10px rgba(180, 83, 9, 0.25);
+}
+
+[data-theme="sepia"] .brand-tag-melis {
+  background: linear-gradient(135deg, #b45309, #c2410c);
+}
+
+[data-theme="sepia"] .badge-pillar {
+  background: rgba(180, 83, 9, 0.12);
+  color: #b45309;
+}
+
+[data-theme="sepia"] .badge-case-number {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+[data-theme="sepia"] .btn-cat-chip.active {
+  background: #b45309;
+  border-color: #b45309;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.25);
+}
+
+[data-theme="sepia"] .btn-mode-tab.active {
+  background: #f4ede1;
+  color: #b45309;
+  box-shadow: 0 1px 3px rgba(61, 50, 34, 0.1);
+}
+
+[data-theme="sepia"] .oral-subquestion-row {
+  background: rgba(180, 83, 9, 0.08) !important;
+  border-left-color: #b45309 !important;
+}
+
+[data-theme="sepia"] .oral-followup-question-box {
+  background: rgba(217, 119, 6, 0.1) !important;
+  border-left-color: #d97706 !important;
+}
+
+[data-theme="sepia"] .melis-three-actions-box {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.32);
+  border-left-color: #d97706;
+}
+
+[data-theme="sepia"] .btn-reveal-turn {
+  background: linear-gradient(135deg, #b45309, #d97706);
+  border-color: #b45309;
+  box-shadow: 0 4px 12px rgba(180, 83, 9, 0.22);
+}
+
+[data-theme="sepia"] .btn-reveal-turn:hover {
+  box-shadow: 0 6px 16px rgba(180, 83, 9, 0.3);
+}
+
+[data-theme="sepia"] .melis-followup-probe {
+  background: rgba(180, 83, 9, 0.08);
+  border-left-color: #b45309;
+}
+
+[data-theme="sepia"] .study-guideline-dosage-box {
+  background: rgba(180, 83, 9, 0.06);
+  border-color: rgba(180, 83, 9, 0.25);
+}
+
+[data-theme="sepia"] .study-examiner-profile-box {
+  background: rgba(180, 83, 9, 0.06);
+  border-color: rgba(180, 83, 9, 0.25);
+}
+
+[data-theme="sepia"] .melis-formula-pill {
+  background: rgba(180, 83, 9, 0.1);
+  border-color: rgba(180, 83, 9, 0.28);
+  color: #92400e;
+}
+
+[data-theme="sepia"] .melis-module-summary {
+  background: #eae0d0;
+  color: #3d3222;
+}
+
+[data-theme="sepia"] .melis-module-details[open] {
+  border-color: #b45309;
+}
+
+[data-theme="sepia"] .melis-tier-block {
+  background: #faf3e8;
+  border-color: #dfd4c0;
+}
+
+[data-theme="sepia"] .melis-jargon-card {
+  background: #faf3e8;
+  border-color: #dfd4c0;
+}
+
+[data-theme="sepia"] .melis-monitor-strip {
+  background: #231c16;
+  border-color: #3d3024;
+  border-left-color: #d97706;
+  color: #faf3e8;
+}
+
+[data-theme="sepia"] .melis-monitor-header {
+  color: #fbbf24;
+  border-bottom-color: rgba(223, 212, 192, 0.2);
+}
+
+[data-theme="sepia"] .melis-vital-tile {
+  background: #2d241c !important;
+  border-color: #42362a !important;
+}
+
+[data-theme="sepia"] .melis-vital-label {
+  color: #c4b5a0 !important;
+}
+
+[data-theme="sepia"] .melis-bga-strip {
+  background: #1c1611;
+  border-color: rgba(217, 119, 6, 0.35);
+  color: #f5ebe0;
+}
+
+[data-theme="sepia"] .melis-bga-strip strong {
+  color: #fbbf24;
+}
+
+[data-theme="sepia"] .melis-monitor-pattern {
+  background: rgba(180, 83, 9, 0.14);
+  border-left-color: #d97706;
+  color: #fef3c7;
+}
+
+[data-theme="sepia"] .oral-role-badge.examiner-role-badge {
+  background: rgba(217, 119, 6, 0.14);
+  color: #b45309;
+  border-color: rgba(217, 119, 6, 0.35);
+}
+
+[data-theme="sepia"] .oral-role-badge.candidate-role-badge {
+  background: rgba(21, 128, 61, 0.12);
+  color: #15803d;
+  border-color: rgba(21, 128, 61, 0.3);
+}
+
+[data-theme="sepia"] .progress-fill {
+  background: linear-gradient(90deg, #b45309, #d97706);
+}
+
 /* 🌙 Dark OLED Mode: Battery saving & hospital night-shift reading */
 [data-theme="dark"] {
   --bg-app: #0b1118;

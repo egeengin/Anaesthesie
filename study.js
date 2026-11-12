@@ -30,7 +30,7 @@
   const readStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '{}');
 
   const state = {
-    theme: savedSettings.theme || 'light', // 'light', 'sepia', 'dark'
+    theme: (savedSettings.theme && savedSettings.theme !== 'light') ? savedSettings.theme : 'sepia', // Default to warm sepia, or user's explicit preference
     fontSize: savedSettings.fontSize || 17, // 15, 17, 19, 21
     viewMode: savedSettings.viewMode || 'hover', // 'hover', 'bilingual', 'german'
     activeRecallMode: !!savedSettings.activeRecallMode, // true = start with Vitals & First-3-Actions prompt hidden answer
@@ -596,7 +596,7 @@
             ${threeActionsChallenge.firstThreeActions.map(act => `
               <div class="melis-action-step-card">
                 <div style="font-weight: 700; color: var(--text-primary);">
-                  <span style="color: #0284c7;">#${act.step}:</span> ${renderInteractiveGerman(act.actionDE, act.actionTR)}
+                  <span style="color: var(--primary);">#${act.step}:</span> ${renderInteractiveGerman(act.actionDE, act.actionTR)}
                 </div>
                 <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(act.actionTR)}</div>
                 <div class="melis-action-rationale">
@@ -608,13 +608,13 @@
 
             <div class="melis-followup-probe">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-                <strong style="color: #0369a1;">👨‍⚕️ ${renderInteractiveGerman(threeActionsChallenge.examinerFollowupDE, threeActionsChallenge.examinerFollowupTR)}</strong>
+                <strong style="color: var(--primary);">👨‍⚕️ ${renderInteractiveGerman(threeActionsChallenge.examinerFollowupDE, threeActionsChallenge.examinerFollowupTR)}</strong>
                 <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.examinerFollowupDE + ' ' + threeActionsChallenge.examinerJustificationDE)}">
                   🔊 Dinle
                 </button>
               </div>
               <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerFollowupTR)}</div>
-              <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgba(2, 132, 199, 0.25);">
+              <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-subtle);">
                 ${renderInteractiveGerman(threeActionsChallenge.examinerJustificationDE, threeActionsChallenge.examinerJustificationTR)}
                 <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerJustificationTR)}</div>
               </div>
@@ -664,7 +664,7 @@
               ${groundTruth.dosages.map(d => `
                 <div style="padding: 6px 10px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-color);">
                   <strong style="color: var(--text-primary);">${escapeHtml(d.drug)}:</strong>
-                  <span style="color: #0369a1; font-weight: 700;"> ${escapeHtml(d.dose)}</span>
+                  <span style="color: var(--primary); font-weight: 700;"> ${escapeHtml(d.dose)}</span>
                   <span style="color: var(--text-muted); font-size: var(--font-sm);"> (${escapeHtml(d.maxDose || d.limits || '')})</span>
                 </div>
               `).join('')}
@@ -688,7 +688,7 @@
                 <div class="melis-formula-pill">📐 ${escapeHtml(firstPrinciples.formulaOrPrinciple)}</div>
                 <div style="margin-bottom: 10px;">
                   <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: #0369a1;">⚙️ Pathophysiologisches Prinzip (Warum im Körper?):</strong>
+                    <strong style="color: var(--primary);">⚙️ Pathophysiologisches Prinzip (Warum im Körper?):</strong>
                     <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.mechanismDE)}">🔊 Dinle</button>
                   </div>
                   <div>${renderInteractiveGerman(firstPrinciples.mechanismDE, firstPrinciples.mechanismTR)}</div>
@@ -696,7 +696,7 @@
                 </div>
                 <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
                   <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: #0f766e;">💊 Pharmakologische Kinetik &amp; Rezeptor-Logik (Warum genau dieses Medikament?):</strong>
+                    <strong style="color: var(--text-primary);">💊 Pharmakologische Kinetik &amp; Rezeptor-Logik (Warum genau dieses Medikament?):</strong>
                     <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.pharmacologyDE)}">🔊 Dinle</button>
                   </div>
                   <div>${renderInteractiveGerman(firstPrinciples.pharmacologyDE, firstPrinciples.pharmacologyTR)}</div>
@@ -715,16 +715,16 @@
                 <span style="font-size: var(--font-xs); color: var(--primary);">Prüfer-Bewertung ▼</span>
               </summary>
               <div class="melis-module-body">
-                <div class="melis-tier-block" style="border-left: 3px solid #e11d48;">
-                  <div style="font-weight: 800; color: #be123c; margin-bottom: 4px;">🚨 ${escapeHtml(examSynthesis.tier1Immediate.titleDE)}</div>
+                <div class="melis-tier-block" style="border-left: 3px solid var(--accent-rose);">
+                  <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${escapeHtml(examSynthesis.tier1Immediate.titleDE)}</div>
                   ${examSynthesis.tier1Immediate.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:var(--font-sm);">— 🇹🇷 ${it.tr}</span></div>`).join('')}
                 </div>
-                <div class="melis-tier-block" style="border-left: 3px solid #0284c7;">
-                  <div style="font-weight: 800; color: #0369a1; margin-bottom: 4px;">🔬 ${escapeHtml(examSynthesis.tier2Diagnostics.titleDE)}</div>
+                <div class="melis-tier-block" style="border-left: 3px solid var(--primary);">
+                  <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${escapeHtml(examSynthesis.tier2Diagnostics.titleDE)}</div>
                   ${examSynthesis.tier2Diagnostics.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:var(--font-sm);">— 🇹🇷 ${it.tr}</span></div>`).join('')}
                 </div>
-                <div class="melis-tier-block" style="border-left: 3px solid #059669;">
-                  <div style="font-weight: 800; color: #047857; margin-bottom: 4px;">💊 ${escapeHtml(examSynthesis.tier3Pharmacology.titleDE)}</div>
+                <div class="melis-tier-block" style="border-left: 3px solid var(--accent-emerald);">
+                  <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${escapeHtml(examSynthesis.tier3Pharmacology.titleDE)}</div>
                   ${examSynthesis.tier3Pharmacology.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:var(--font-sm);">— 🇹🇷 ${it.tr}</span></div>`).join('')}
                 </div>
               </div>
@@ -742,7 +742,7 @@
               <div class="melis-module-body">
                 <div style="margin-bottom: 10px;">
                   <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: #0369a1;">🏥 Morgen-Übergabe / Frühbesprechung (Sabah Toplantısı &amp; Kıdemli Devri):</strong>
+                    <strong style="color: var(--primary);">🏥 Morgen-Übergabe / Frühbesprechung (Sabah Toplantısı &amp; Kıdemli Devri):</strong>
                     <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
                   </div>
                   <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
@@ -750,7 +750,7 @@
                 </div>
                 <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
                   <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: #047857;">🤝 Prämedikations- &amp; Aufklärungsgespräch (Hasta/Yakını Aydınlatma Cümlesi):</strong>
+                    <strong style="color: var(--accent-emerald);">🤝 Prämedikations- &amp; Aufklärungsgespräch (Hasta/Yakını Aydınlatma Cümlesi):</strong>
                     <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
                   </div>
                   <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
@@ -1121,7 +1121,7 @@
 
   if (elThemeToggle) {
     elThemeToggle.addEventListener('click', () => {
-      const themes = ['light', 'sepia', 'dark'];
+      const themes = ['sepia', 'light', 'dark'];
       const nextIdx = (themes.indexOf(state.theme) + 1) % themes.length;
       state.theme = themes[nextIdx];
       applyTheme(state.theme);
@@ -1131,11 +1131,11 @@
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    const icons = { light: '☀️', sepia: '📜', dark: '🌙' };
-    const titles = { light: 'Heller Modus', sepia: 'Sepia (Lesemodus)', dark: 'Dunkler Modus' };
+    const icons = { sepia: '📜', light: '☀️', dark: '🌙' };
+    const titles = { sepia: 'Sepia (Sıcak Sarımsı Okuma)', light: 'Heller Modus (Aydınlık)', dark: 'Dunkler Modus (Gece)' };
     if (elThemeToggle) {
-      elThemeToggle.innerHTML = `<span>${icons[theme]}</span>`;
-      elThemeToggle.title = titles[theme];
+      elThemeToggle.innerHTML = `<span>${icons[theme] || '📜'}</span>`;
+      elThemeToggle.title = titles[theme] || 'Tema Değiştir';
     }
   }
 
