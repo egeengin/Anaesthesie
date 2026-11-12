@@ -8911,11 +8911,34 @@ body.view-mode-exam .full-reference-accordion {
   color: var(--primary) !important;
 }
 
+/* Candidate Directive Callout */
+.candidate-directive .translatable-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
 /* Sepia theme harmony for Onboarding Popup Modal & Focus Bar */
 [data-theme="sepia"] .hero-focus-card {
   background: #f4ede0 !important;
   border: 1px solid #dfceb7 !important;
   box-shadow: 0 1px 3px rgba(120, 53, 15, 0.05) !important;
+}
+
+[data-theme="sepia"] .btn-hero-help-pill {
+  background: #faf4ea !important;
+  border-color: #dfceb7 !important;
+  color: #92400e !important;
+}
+
+[data-theme="sepia"] .btn-hero-help-pill:hover {
+  background: #f4ede0 !important;
+  border-color: #b45309 !important;
+  color: #b45309 !important;
 }
 
 [data-theme="sepia"] #onboarding-modal .modal-content {
@@ -8930,6 +8953,18 @@ body.view-mode-exam .full-reference-accordion {
 
 [data-theme="sepia"] #onboarding-modal .modal-header-sub {
   color: #92400e !important;
+}
+
+[data-theme="sepia"] #onboarding-modal .guide-step-card {
+  background: #fbf7ee !important;
+  border: 1px solid #dfceb7 !important;
+}
+
+[data-theme="sepia"] .candidate-directive .translatable-box {
+  background: #fbf7ee !important;
+  border-color: #dfceb7 !important;
+  border-left-color: #b45309 !important;
+  color: #451a03 !important;
 }
 
 /* Collapsible Onboarding Details styling */

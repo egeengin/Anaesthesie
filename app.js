@@ -4282,11 +4282,19 @@ Tedavi:
       return;
     }
 
-    // Escape: Interrupt and stop speech playback immediately
-    if (e.key === 'Escape' && isSpeakingMedical) {
-      e.preventDefault();
-      stopMedicalSpeech();
-      return;
+    // Escape: Close any open modal backdrop first, or stop medical speech
+    if (e.key === 'Escape') {
+      const activeModal = document.querySelector('.modal-backdrop.active');
+      if (activeModal) {
+        e.preventDefault();
+        closeModal(activeModal);
+        return;
+      }
+      if (isSpeakingMedical) {
+        e.preventDefault();
+        stopMedicalSpeech();
+        return;
+      }
     }
 
     const key = e.key.toLowerCase();
