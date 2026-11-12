@@ -8842,10 +8842,92 @@ body.view-mode-exam .full-reference-accordion {
 #filter-drawer .curriculum-stage-section { display: none !important; }
 .sim-examiner-stage-card .sim-examiner-avatar-box { display: none !important; }
 
-/* Hero compact mode (single-line strip) */
-.hero-focus-card.compact-mode .hero-focus-subtitle,
-.hero-focus-card.compact-mode .hero-focus-title { display: none !important; }
-.hero-focus-card.compact-mode { padding: 0.55rem 0.85rem; }
+/* ==========================================================================
+   MINIMALIST HERO ONBOARDING & POPUP MODAL (Apple Clean & Uncluttered)
+   ========================================================================== */
+.hero-focus-card {
+  margin: 0.35rem 0 0.55rem 0 !important;
+  padding: 0.6rem 0.95rem !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.hero-focus-main {
+  gap: 0.65rem !important;
+}
+
+.hero-focus-left {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  flex-wrap: wrap !important;
+}
+
+.hero-focus-tag-row {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+.hero-focus-title {
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  color: var(--text-primary) !important;
+}
+
+/* Hide multi-paragraph hero clutter from main study flow (moved cleanly to #onboarding-modal) */
+.hero-focus-subtitle {
+  display: none !important;
+}
+
+#btn-hero-start-session {
+  display: none !important;
+}
+
+#onboarding-guide-strip {
+  display: none !important;
+}
+
+.btn-hero-help-pill {
+  padding: 0.32rem 0.65rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: var(--shadow-sm) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-hero-help-pill:hover {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+/* Sepia theme harmony for Onboarding Popup Modal & Focus Bar */
+[data-theme="sepia"] .hero-focus-card {
+  background: #f4ede0 !important;
+  border: 1px solid #dfceb7 !important;
+  box-shadow: 0 1px 3px rgba(120, 53, 15, 0.05) !important;
+}
+
+[data-theme="sepia"] #onboarding-modal .modal-content {
+  background: #faf4ea !important;
+  border: 1.5px solid #dfceb7 !important;
+  color: #451a03 !important;
+}
+
+[data-theme="sepia"] #onboarding-modal .modal-header {
+  border-bottom: 1px solid #dfceb7 !important;
+}
+
+[data-theme="sepia"] #onboarding-modal .modal-header-sub {
+  color: #92400e !important;
+}
 
 /* Collapsible Onboarding Details styling */
 details.onboarding-guide summary.guide-strip-header {

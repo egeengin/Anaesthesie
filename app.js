@@ -8698,12 +8698,40 @@ Tedavi:
       });
     }
 
-    if (elBtnToggleOnboarding && elOnboardingGuide) {
+    const elOnboardingModal = document.getElementById('onboarding-modal');
+    const elBtnCloseOnboardingModal = document.getElementById('btn-close-onboarding-modal');
+    const elBtnOnboardingGotIt = document.getElementById('btn-onboarding-modal-got-it');
+
+    if (elBtnToggleOnboarding) {
       elBtnToggleOnboarding.addEventListener('click', () => {
-        if (elHeroCard) elHeroCard.classList.remove('compact-mode');
-        elOnboardingGuide.style.display = '';
-        if (elOnboardingGuide.tagName && elOnboardingGuide.tagName.toLowerCase() === 'details') {
-          elOnboardingGuide.open = !elOnboardingGuide.open;
+        if (elOnboardingModal) {
+          elOnboardingModal.classList.add('active');
+        } else if (elOnboardingGuide) {
+          if (elHeroCard) elHeroCard.classList.remove('compact-mode');
+          elOnboardingGuide.style.display = '';
+          if (elOnboardingGuide.tagName && elOnboardingGuide.tagName.toLowerCase() === 'details') {
+            elOnboardingGuide.open = !elOnboardingGuide.open;
+          }
+        }
+      });
+    }
+
+    if (elBtnCloseOnboardingModal && elOnboardingModal) {
+      elBtnCloseOnboardingModal.addEventListener('click', () => {
+        elOnboardingModal.classList.remove('active');
+      });
+    }
+
+    if (elBtnOnboardingGotIt && elOnboardingModal) {
+      elBtnOnboardingGotIt.addEventListener('click', () => {
+        elOnboardingModal.classList.remove('active');
+      });
+    }
+
+    if (elOnboardingModal) {
+      elOnboardingModal.addEventListener('click', (e) => {
+        if (e.target === elOnboardingModal) {
+          elOnboardingModal.classList.remove('active');
         }
       });
     }

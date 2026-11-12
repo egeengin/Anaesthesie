@@ -2674,6 +2674,61 @@
     </div>
   </div>
 
+  <!-- Quick Onboarding & Exam Guide Modal (Popup) -->
+  <div id="onboarding-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 680px; width: 92vw; border-radius: 16px;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <h2>❓ So funktioniert's / Nasıl Çalışılır?</h2>
+          <span class="modal-header-sub">ÄKNO Düsseldorf mündlicher Prüfungsleitfaden &amp; 3-Schritte-Methode</span>
+        </div>
+        <button id="btn-close-onboarding-modal" class="btn-icon" title="Schließen (Esc)">✕</button>
+      </div>
+      <div class="modal-body" style="padding: 1.25rem 1.5rem; max-height: 75vh; overflow-y: auto;">
+        
+        <!-- Prüfungsfokus Card -->
+        <div style="background: rgba(2, 132, 199, 0.08); border: 1px solid rgba(2, 132, 199, 0.22); border-left: 4px solid #0284c7; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1.25rem;">
+          <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: var(--primary);">🎯 ÄKNO Düsseldorf: Bestanden / Nicht bestanden</h3>
+          <div class="translatable-box" data-tr="Sözlü uzmanlık sınavında puanlama yoktur; doğrudan &quot;Geçti / Kaldı&quot; (Bestanden) değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı (ABCDE), güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin." tabindex="0">
+            <div class="de-text-block">Im mündlichen Facharztgespräch (ÄKNO Düsseldorf) zählt kein Punktesystem, sondern <strong>Bestanden oder Nicht bestanden</strong>: Trainieren Sie strukturierte klinische Entscheidungsfindung (ABCDE), sichere Leitlinien-Dosierungen und das souveräne Vermeiden vitaler K.O.-Fehler.</div>
+            <div class="hover-tr-preview" aria-hidden="true">
+              <span class="hover-tr-badge">🇹🇷</span>
+              <span class="hover-tr-content">Sözlü uzmanlık sınavında puanlama yoktur; doğrudan <strong>"Geçti / Kaldı" (Bestanden)</strong> değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı (ABCDE), güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Schritte Training -->
+        <h4 style="margin: 0 0 0.75rem 0; font-size: 0.95rem;">💡 3 Schritte zum Facharzt (3 Adımda Çalışma Yöntemi)</h4>
+        <div class="guide-steps-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div class="guide-step-card" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0.95rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
+            <div class="guide-step-badge" style="background: #0284c7; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">1</div>
+            <div class="guide-step-body" style="font-size: 0.86rem;">
+              <strong>Fall erfassen &amp; anhören / Vakayı Oku veya Dinle</strong><br>
+              <span style="color: var(--text-muted); font-size: 0.82rem;">Analysieren Sie das Szenario oder hören Sie die Prüferfrage per <em>„Vorlesen“</em>.<br>🇹🇷 Klinik tabloyu inceleyin veya <em>"Vorlesen"</em> ile jüri sorusunu dinleyin.</span>
+            </div>
+          </div>
+          <div class="guide-step-card" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0.95rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
+            <div class="guide-step-badge" style="background: #0284c7; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">2</div>
+            <div class="guide-step-body" style="font-size: 0.86rem;">
+              <strong>Mündlich strukturieren / Sesli veya Zihinden Yapılandır</strong><br>
+              <span style="color: var(--text-muted); font-size: 0.82rem;">Formulieren Sie Ihre Antwort nach ABCDE laut (per Mikrofon) oder gedanklich.<br>🇹🇷 ABCDE algoritmasıyla yanıtınızı sesli (mikrofonla) veya zihinden kurgulayın.</span>
+            </div>
+          </div>
+          <div class="guide-step-card" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0.95rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
+            <div class="guide-step-badge" style="background: #0284c7; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">3</div>
+            <div class="guide-step-body" style="font-size: 0.86rem;">
+              <strong>Facharzt-Standard &amp; K.O.-Schutz / Model Cevap &amp; K.O. Kriterleri</strong><br>
+              <span style="color: var(--text-muted); font-size: 0.82rem;">Prüfen Sie Musterantwort, lebensrettende Dosierungen und vitale K.O.-Prüfungsfallen.<br>🇹🇷 Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin.</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="btn-onboarding-modal-got-it" class="btn btn-primary" type="button" style="width: 100%; justify-content: center; padding: 0.65rem 1rem; font-weight: 700; border-radius: 10px;">✓ Verstanden &amp; Loslegen / Anladım ve Başla</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
