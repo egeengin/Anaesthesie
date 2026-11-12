@@ -1304,3 +1304,308 @@ body.mode-german-only .trans-interactive {
   line-height: var(--reading-line-height);
   color: var(--text-primary);
 }
+
+/* =========================================================================
+   MELIS PEDAGOGICAL ENGINE (ST. ANTONIUS-HOSPITAL ESCHWEILER / ÄKNO)
+   1. Data-First Clinical Monitor, BGA & ECG Trend Strip
+   2. Immediate First 3 Actions Challenge & Prüfer Follow-Up
+   3. 3-Tier Structured Exam Synthesis
+   4. First-Principles Physiology & Pharmacology
+   5. Bedside Communication (Frühbesprechung, Prämedikation & Klinik-Jargon)
+   ========================================================================= */
+
+.btn-active-recall-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid #d97706;
+  background: rgba(245, 158, 11, 0.1);
+  color: #b45309;
+  font-family: inherit;
+  font-size: 0.81rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-active-recall-toggle.active {
+  background: linear-gradient(135deg, #d97706, #ea580c);
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 3px 10px rgba(234, 88, 12, 0.28);
+}
+
+[data-theme="dark"] .btn-active-recall-toggle {
+  color: #fbbf24;
+  border-color: #f59e0b;
+}
+
+/* 1. Data-First Clinical Monitor & BGA Strip */
+.melis-monitor-strip {
+  margin-top: 12px;
+  margin-bottom: 14px;
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #1e293b;
+  border-left: 4px solid #10b981;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.melis-monitor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.melis-vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.melis-vital-tile {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 8px;
+  padding: 6px 9px;
+}
+
+.melis-vital-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.melis-vital-value {
+  font-size: 0.92rem;
+  font-weight: 800;
+  font-family: 'Outfit', monospace, sans-serif;
+  margin-top: 2px;
+}
+
+.vital-hr { color: #4ade80; }
+.vital-bp { color: #f87171; }
+.vital-spo2 { color: #38bdf8; }
+.vital-etco2 { color: #facc15; }
+.vital-temp { color: #c084fc; }
+
+.melis-bga-strip {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px dashed rgba(56, 189, 248, 0.35);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+
+.melis-bga-strip strong {
+  color: #38bdf8;
+}
+
+.melis-monitor-pattern {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  padding: 7px 10px;
+  background: rgba(16, 185, 129, 0.12);
+  border-left: 3px solid #10b981;
+  border-radius: 6px;
+  color: #ecfdf5;
+}
+
+/* 2. Immediate First 3 Actions Challenge Box */
+.melis-three-actions-box {
+  margin-top: 12px;
+  margin-bottom: 14px;
+  background: rgba(245, 158, 11, 0.07);
+  border: 1px solid rgba(245, 158, 11, 0.32);
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 13px 16px;
+}
+
+.melis-three-actions-prompt {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #b45309;
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+[data-theme="dark"] .melis-three-actions-prompt {
+  color: #fbbf24;
+}
+
+.btn-reveal-turn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid #0284c7;
+  background: linear-gradient(135deg, #0284c7, #0d9488);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-reveal-turn:hover, .btn-reveal-turn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
+}
+
+.melis-hidden-turn {
+  display: none !important;
+}
+
+.melis-action-step-card {
+  margin-top: 8px;
+  padding: 9px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.48;
+}
+
+.melis-action-rationale {
+  margin-top: 4px;
+  font-size: 0.81rem;
+  color: var(--text-secondary);
+  padding-left: 10px;
+  border-left: 2px solid var(--primary);
+}
+
+.melis-followup-probe {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: rgba(2, 132, 199, 0.07);
+  border-left: 3px solid var(--primary);
+  border-radius: 8px;
+  font-size: 0.87rem;
+  line-height: 1.48;
+}
+
+/* 3. Deep-Dive Accordion / Collapsible Modules (First-Principles, 3-Tier Synthesis, Bedside Comm) */
+.melis-deep-dive-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.melis-module-details {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.melis-module-details[open] {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.melis-module-summary {
+  padding: 11px 15px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  user-select: none;
+}
+
+.melis-module-summary::-webkit-details-marker {
+  display: none;
+}
+
+.melis-module-body {
+  padding: 13px 16px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.melis-formula-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  background: rgba(13, 148, 136, 0.1);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  border-radius: 6px;
+  font-family: 'Outfit', monospace, sans-serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+[data-theme="dark"] .melis-formula-pill {
+  color: #2dd4bf;
+}
+
+.melis-tier-block {
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: var(--bg-app);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 8px;
+}
+
+.melis-tier-block:last-child {
+  margin-bottom: 0;
+}
+
+.melis-jargon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.melis-jargon-card {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--bg-app);
+  border: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  line-height: 1.42;
+}
+

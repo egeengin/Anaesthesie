@@ -1378,7 +1378,68 @@ questions.forEach(q => {
 
 console.log(`[PASS] Suite 41 passed! Verified priority oral exam ordering (Tier 1: ${tier1Count}, Tier 2: ${tier2Count}, Tier 3: ${tier3Count}) and 100% clean oral Q&A across all ${questions.length} items.`);
 
-console.log('\n🎉 ALL 41 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 42. Test Melis Pedagogical Engine (St. Antonius-Hospital Eschweiler Profile: Data-First Monitor, First 3 Actions, First-Principles, Bedside Comm & 3-Tier Synthesis)
+console.log('Testing Suite 42: Melis Pedagogical Engine & St. Antonius-Hospital Eschweiler Profile Verification...');
+
+assert.strictEqual(typeof CurriculumEngine.getDataFirstDiagnosticMonitor, 'function', 'CurriculumEngine must export getDataFirstDiagnosticMonitor');
+assert.strictEqual(typeof CurriculumEngine.getImmediateThreeActionsChallenge, 'function', 'CurriculumEngine must export getImmediateThreeActionsChallenge');
+assert.strictEqual(typeof CurriculumEngine.getFirstPrinciplesPhysiology, 'function', 'CurriculumEngine must export getFirstPrinciplesPhysiology');
+assert.strictEqual(typeof CurriculumEngine.getBedsideCommunicationAndJargon, 'function', 'CurriculumEngine must export getBedsideCommunicationAndJargon');
+assert.strictEqual(typeof CurriculumEngine.getThreeTierExamSynthesis, 'function', 'CurriculumEngine must export getThreeTierExamSynthesis');
+
+questions.forEach(q => {
+  // Verify zero truncated 2-word stem_tr placeholders remain on clinical vignettes
+  if (q.stem_de && q.stem_de.length > 60) {
+    assert(q.stem_tr && q.stem_tr.length >= 30, `${q.id} stem_tr must be a complete Turkish clinical translation, got: "${q.stem_tr}"`);
+  }
+
+  const mon = CurriculumEngine.getDataFirstDiagnosticMonitor(q);
+  assert(mon && mon.vitals && mon.bga && mon.patternDE && mon.patternTR, `${q.id} must have complete Data-First Monitor & BGA`);
+  assert(!JSON.stringify(mon).includes('"undefined"'), `${q.id} monitor must not contain undefined strings`);
+
+  const ch = CurriculumEngine.getImmediateThreeActionsChallenge(q);
+  assert(ch && Array.isArray(ch.firstThreeActions) && ch.firstThreeActions.length === 3, `${q.id} must have exactly 3 immediate actions`);
+  assert(ch.examinerFollowupDE && ch.examinerJustificationDE, `${q.id} must have Prüfer follow-up and first-principles justification`);
+
+  const fp = CurriculumEngine.getFirstPrinciplesPhysiology(q);
+  assert(fp && fp.formulaOrPrinciple && fp.mechanismDE && fp.pharmacologyDE, `${q.id} must have First-Principles physiology & pharmacology`);
+
+  const bc = CurriculumEngine.getBedsideCommunicationAndJargon(q);
+  assert(bc && bc.fruehbesprechungDE && bc.praemedikationDE && Array.isArray(bc.jargonTerms) && bc.jargonTerms.length >= 4, `${q.id} must have Frühbesprechung, Prämedikation & Klinik-Jargon`);
+
+  const syn = CurriculumEngine.getThreeTierExamSynthesis(q);
+  assert(syn && syn.tier1Immediate && syn.tier2Diagnostics && syn.tier3Pharmacology, `${q.id} must have 3-Tier Exam Synthesis`);
+});
+
+// Verify specific clinical scenarios from Melis's profile (rBAA, PiCCO, Pacemaker/ICD)
+const qRbaa = questions.find(q => q.id === 'q_457');
+assert(qRbaa, 'q_457 (BAA / Cross-Clamping) must exist');
+assert(CurriculumEngine.getFirstPrinciplesPhysiology(qRbaa).formulaOrPrinciple.includes('Laplace'), 'rBAA must teach Laplace Law');
+assert(CurriculumEngine.getImmediateThreeActionsChallenge(qRbaa).firstThreeActions[0].actionDE.includes('Permissive Hypotonie'), 'rBAA action 1 must enforce permissive hypotension');
+
+const qPicco = questions.find(q => q.id === 'q_403');
+assert(qPicco, 'q_403 (PiCCO / Thermodilution) must exist');
+assert(CurriculumEngine.getDataFirstDiagnosticMonitor(qPicco).advanced.valuesDE.includes('GEDI'), 'PiCCO monitor must include GEDI/ELWI/SVV');
+
+const qPacer = questions.find(q => q.id === 'q_dus_15');
+assert(qPacer, 'q_dus_15 (Pacemaker/ICD) must exist');
+assert(CurriculumEngine.getImmediateThreeActionsChallenge(qPacer).examinerJustificationDE.includes('ICD'), 'Pacemaker challenge must distinguish SM (VOO) from ICD magnet effect');
+
+const studyHtmlCode = fs.readFileSync(path.join(__dirname, 'study.html'), 'utf8');
+const studyJsCode = fs.readFileSync(path.join(__dirname, 'study.js'), 'utf8');
+const studyCssCode = fs.readFileSync(path.join(__dirname, 'study.css'), 'utf8');
+
+assert(studyHtmlCode.includes('St. Antonius-Hospital Eschweiler'), 'study.html must feature St. Antonius-Hospital Eschweiler');
+assert(studyHtmlCode.includes('btn-active-recall-toggle'), 'study.html must include #btn-active-recall-toggle');
+assert(freshIndexHtml.includes('study-btn-active-recall-toggle'), 'index.html must include #study-btn-active-recall-toggle');
+assert(studyJsCode.includes('melis-monitor-strip'), 'study.js must render .melis-monitor-strip');
+assert(studyJsCode.includes('melis-three-actions-box'), 'study.js must render .melis-three-actions-box');
+assert(studyJsCode.includes('updateDynamicQuestionCounts'), 'study.js must define updateDynamicQuestionCounts');
+assert(studyCssCode.includes('.melis-monitor-strip'), 'study.css must style .melis-monitor-strip');
+
+console.log('[PASS] Suite 42 passed! Verified all 5 Melis Pedagogical Engine modules across all 669 questions.');
+
+console.log('\n🎉 ALL 42 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

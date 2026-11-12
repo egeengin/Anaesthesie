@@ -116,8 +116,8 @@ WICHTIGE HINWEISE FÜR DIE BEWERTUNG:
 4. Berechne:
    - Einen Score von 0 bis 100%.
    - Eine realistische deutsche Prüfungsnote (z.B. "Note 1.0 (Sehr gut)", "Note 2.0 (Gut)", "Note 3.0 (Befriedigend)", "Note 4.0 (Ausreichend)", "Note 5.0 (Nicht bestanden)").
-   - Ausführliches, professionelles Feedback aus Prüfersicht (verdictDE) mit konkretem Lob und didaktischer Anleitung.
-   - Eine prägnante türkische Zusammenfassung (verdictTR), die dem lernenden Arzt auf einen Blick zeigt, was klinisch stark war und welcher Schritt noch fehlte.
+   - Ausführliches, professionelles Feedback aus Prüfersicht (verdictDE) mit konkretem Lob, einer First-Principles-Begründung (Physiologie/Pharmakologie: WARUM handeln wir so?), einer Prüfer-Nachfrage und einem idiomatischen Formulierungsvorschlag für die Frühbesprechung / Oberarzt-Übergabe (St. Antonius-Hospital Eschweiler / ÄKNO-Niveau).
+   - Eine prägnante türkische Zusammenfassung (verdictTR), die Dr. Melis auf einen Blick zeigt: 1) Erste 3 Sofortmaßnahmen, 2) First-Principles-Mechanismus (Neden?) und 3) fehlende pharmakologische Nuancen.
    - Eine Liste erfüllter Kriterien (matchedCriteria) und fehlender Kriterien (missedCriteria).
 
 Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`\`json):

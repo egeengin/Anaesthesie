@@ -527,6 +527,109 @@
       };
     }
 
+    // PiCCO & Erweitertes Hämodynamisches Monitoring (Thermodilution / Pulskontur)
+    if (text.includes('picco') || text.includes('thermodilution') || text.includes('elwi') || text.includes('gedi') || text.includes('itbi') || text.includes('schlagvolumenvariation') || text.includes('pulskontur')) {
+      return {
+        topic: 'Erweitertes Hämodynamik-Monitoring (PiCCO, GEDI, ELWI, SVV)',
+        topic_tr: 'İleri Hemodinamik Monitörizasyon (PiCCO, Transpulmoner Termodilüsyon, GEDI, ELWI, SVV)',
+        firstDrugTR: 'GEDI/SVV ile Volüm Yanıtlılığı Analizi + ELWI ile Akciğer Ödemi Ayrımı',
+        guideline: {
+          title: 'S3-Leitlinie Intravasale Volumentherapie & Hämodynamisches Monitoring auf der Intensivstation',
+          society: 'DGAI / DIVI',
+          awmf: 'AWMF-Registernummer 001-020',
+          year: '2023',
+          recommendation: 'Dynamische Vorlastparameter (SVV/PPV > 12–13%) und volumetrische Thermodilutionsparameter (GEDI, ITBI) sind statischen Füllungsdrücken (ZVD) zur Steuerung der Volumentherapie klar überlegen. ELWI quantifiziert das extravaskuläre Lungenwasser am Krankenbett.',
+          recommendation_tr: 'Sıvı tedavisinin yönetiminde dinamik ön yük parametreleri (SVV/PPV > %12–13) ve volümetrik termodilüsyon indeksleri (GEDI, ITBI), statik dolum basınçlarına (SVB/ZVD) göre açıkça üstündür. ELWI yatak başında ekstravasküler akciğer suyunu ölçer.'
+        },
+        dosages: [
+          { drug: 'GEDI (Globaler Enddiastolischer Volumenindex)', dose: 'Normwert: 680–800 ml/m² (ITBI Norm: 850–1000 ml/m²)', route: 'Thermodilution', maxDose: '< 680 ml/m² = Volumetrischer Vorlastmangel', limits: 'Unabhängig vom intrathorakalen Beatmungsdruck' },
+          { drug: 'ELWI (Extravaskulärer Lungenwasserindex)', dose: 'Normwert: 3–7 ml/kg PBW (> 10 ml/kg = manifestes Lungenödem)', route: 'Thermodilution', maxDose: 'PVPI > 3,0 spricht für Permeabilitätsödem (ARDS) statt kardiales Ödem', limits: 'Steuert restriktive Flüssigkeitsbilanz / Negativbilanzierung' },
+          { drug: 'SVV / PPV (Schlagvolumen-/Pulsdruckvariation)', dose: '> 12–13 % = Volumenreagibilität positiv (Fluid Responder)', route: 'Pulskonturanalyse', maxDose: 'Passive Leg Raising (PLR) Test als Alternative bei Vorhofflimmern', limits: 'Voraussetzung: Sinusrhythmus, kontrollierte Beatmung Vt ≥ 8 ml/kg, geschlossener Thorax!' }
+        ],
+        koPitfalls: [
+          { mistake: 'Steuerung der Volumentherapie anhand von SVV/PPV bei Vorhofflimmern oder Spontanatmung', whyFatal: 'Unter Arrhythmie oder Spontanatmung schwankt das Schlagvolumen Schlag-zu-Schlag unabhängig vom Volumenstatus -> falsch-positive SVV führt zu massiver Überwässerung und Lungenödem!', correctAction: 'Bei Vorhofflimmern oder Spontanatmung GEDI/ITBI aus der Thermodilution oder den Passive-Leg-Raising-Test (PLR mit HZV-Anstieg > 10%) nutzen.' }
+        ]
+      };
+    }
+
+    // Rupturiertes Bauchaortenaneurysma (rBAA) & Aortenchirurgie (Cross-Clamping / Declamping)
+    if (text.includes('bauchaorten') || text.includes('aortenaneurysma') || text.includes('aortendissektion') || text.includes('declamping') || text.includes('cross-clamping') || text.includes('evar')) {
+      return {
+        topic: 'Bauchaortenaneurysma (rBAA) & Aortales Cross-Clamping / Declamping',
+        topic_tr: 'Rüptüre Abdominal Aort Anevrizması (rBAA) & Aort Klempleme / Declamping Yönetimi',
+        firstDrugTR: 'Permissif Hipotansiyon (RRsyst 70–90 mmHg) + Steril Örtüm Sonrası RSI ("Schnittbereit")',
+        guideline: {
+          title: 'S3-Leitlinie Bauchaortenaneurysma & ESVS Vascular Surgery Guidelines',
+          society: 'DGG / DGAI / ESVS',
+          awmf: 'AWMF-Registernummer 004-014',
+          year: '2024',
+          recommendation: 'Bei rBAA vor Aortenklemme strikte permissive Hypotonie (RRsyst 70–90 mmHg bei erhaltener Vigilanz) zur Vermeidung einer Thrombussprengung („Popping the clot“). Narkoseeinleitung (RSI) erst am schnittbereiten, steril abgewaschenen und abgedeckten Patienten! Vor Declamping Volumenvorladung und Noradrenalin-Erhöhung gegen den Ischämie-Reperfusions-Schock.',
+          recommendation_tr: 'rBAA da aort klemplenmeden önce pıhtının kopmasını ("Popping the clot") önlemek için sıkı permissif hipotansiyon (bilinç açıkken sistolik TA 70–90 mmHg) uygulanır. Anestezi indüksiyonu (RSI) yalnızca hasta steril boyanıp örtüldükten ve cerrah kesmeye hazır olduğunda ("Schnittbereit") yapılır! Klemp açılmadan (Declamping) önce reperfüzyon şokuna karşı volüm doldurulur ve Noradrenalin artırılır.'
+        },
+        dosages: [
+          { drug: 'Permissive Hypotonie (vor Klemme)', dose: 'Ziel-RRsyst 70–90 mmHg (MAP 50–65 mmHg)', route: 'Hämodynamik', maxDose: 'Restriktive Volumengabe bis Aortenklemme sitzt', limits: 'Verhindert freie Ruptur aus retroperitonealem Hämatom' },
+          { drug: 'RSI am schnittbereiten Patienten', dose: 'Etomidat 0,2–0,3 mg/kg (oder Ketamin/Sufentanil) + Rocuronium 1,2 mg/kg', route: 'i.v.', maxDose: 'Chirurg steht mit Skalpell schnittbereit am Tisch', limits: 'Relaxierung hebt Bauchdeckentamponade sofort auf!' },
+          { drug: 'Unfraktioniertes Heparin (vor Clamping Elektiv)', dose: '3.000–5.000 IE i.v. (ca. 70–100 IE/kg) 3–5 min vor Klemme', route: 'i.v.', maxDose: 'Ziel-ACT > 200–250 s (bei freier Ruptur individuell nach Chirurg)', limits: 'Mindestens 1h Abstand zu vorangehender PDK-Anlage!' },
+          { drug: 'Declamping-Management', dose: 'Noradrenalin-Perfusor steigern + Kalziumchlorid 10% 10 ml + Vollelektrolyt-Bolus', route: 'i.v.', maxDose: 'Schrittweises Öffnen der Aortenklemme durch Operateur', limits: 'Fängt Laktat-/Kalium-/H+-Washout aus unterer Körperhälfte ab' }
+        ],
+        koPitfalls: [
+          { mistake: 'Narkoseeinleitung und Muskelrelaxierung im Einleitungsraum VOR sterilem Abwaschen beim rBAA', whyFatal: 'Die Muskelrelaxierung nimmt den kompensatorischen intraabdominellen Gegendruck (Bauchdeckentamponade) weg -> sofortige freie Massenblutung und pulslose elektrische Aktivität (PEA) noch vor Schnitt!', correctAction: 'Patient wach im OP lagern, großlumige Zugänge + Arterie legen, steril abwaschen/abdecken und erst bei „Schnittbereit“-Ansage des Operateurs RSI durchführen!' },
+          { mistake: 'Aggressives Anheben des Blutdrucks auf Normwerte (> 120 mmHg systolisch) vor Aortenklemme', whyFatal: 'Erhöht nach dem Laplace-Gesetz die Wandspannung exponentiell und sprengt den schützenden Thrombus („Popping the clot“).', correctAction: 'Permissive Hypotonie (RRsyst 70–90 mmHg) bis zum Setzen der Aortenklemme strikt einhalten.' }
+        ]
+      };
+    }
+
+    // Intraoperative Reanimation & ACLS (4H & HITS)
+    if (text.includes('reanimation') || text.includes('acls') || text.includes('kammerflimmern') || text.includes('asystolie') || text.includes('pea') || text.includes('herzdruckmassage')) {
+      return {
+        topic: 'Advanced Life Support (ACLS) & Intraoperativer Kreislaufstillstand (4H & HITS)',
+        topic_tr: 'İleri Yaşam Desteği (ACLS) & İntraoperatif Kardiyak Arrest (4H & HITS)',
+        firstDrugTR: 'Yüksek Kaliteli KPR + Şoklanabilir Ritimde Erken Defibrilasyon + Adrenalin 1 mg / Amiodaron 300 mg',
+        guideline: {
+          title: 'ERC / GRC Leitlinien zur Reanimation (Adult Advanced Life Support)',
+          society: 'European Resuscitation Council (ERC) / GRC / DGAI',
+          awmf: 'ERC Guidelines ALS 2021/2025',
+          year: '2024',
+          recommendation: 'Ununterbrochene Herzdruckmassage (Tiefe 5–6 cm, Frequenz 100–120/min), Kapnographie (EtCO2 > 15–20 mmHg als Qualitätsmarker & plötzlicher Sprung bei ROSC). Bei VF/pVT sofortige Defibrillation; Adrenalin 1 mg und Amiodaron 300 mg nach dem 3. Schock. Bei Asystolie/PEA Adrenalin 1 mg sofort. Systematische Suche nach 4H & HITS.',
+          recommendation_tr: 'Kesintisiz göğüs kompresyonu (derinlik 5–6 cm, hız 100–120/dk), kapnografi takibi (kaliteli KPR için EtCO2 > 15–20 mmHg ve ROSC anında ani sıçrama). VF/nVT de derhal defibrilasyon; 3. şoktan sonra Adrenalin 1 mg ve Amiodaron 300 mg. Asistoli/NEA da Adrenalin 1 mg derhal verilir; 4H ve HITS nedenleri sistematik taranır.'
+        },
+        dosages: [
+          { drug: 'Adrenalin 1 mg i.v./i.o. (ALS)', dose: '1 mg alle 3–5 min (jeder 2. Zyklus)', route: 'i.v. / i.o.', maxDose: 'VF/pVT: erst NACH dem 3. erfolglosen Schock! Asystolie/PEA: SOFORT!', limits: 'Sichert koronaren und zerebralen Perfusionsdruck über Alpha-1' },
+          { drug: 'Amiodaron i.v./i.o.', dose: '300 mg Bolus nach dem 3. Schock, weitere 150 mg nach dem 5. Schock', route: 'i.v. / i.o.', maxDose: 'Alternativ Lidocain 100 mg (1–1,5 mg/kg) nach 3. Schock', limits: 'Nur bei schockbarem Rhythmus (VF / pVT)' },
+          { drug: 'Systemische Thrombolyse (bei LAE-Reanimation)', dose: 'Alteplase (rt-PA) 50–100 mg i.v. Bolus/Kurzinfusion', route: 'i.v.', maxDose: 'Zwingend mindestens 60–90 Minuten CPR nach Lysegabe fortführen!', limits: 'Bei „T“ = Thrombose (Lungenembolie / Koronarthrombose)' }
+        ],
+        koPitfalls: [
+          { mistake: 'Gabe von 1 mg Adrenalin und 300 mg Amiodaron direkt nach dem 1. Schock bei Kammerflimmern', whyFatal: 'Widerspricht dem ERC-Algorithmus! Frühe Katecholamingabe bei primärem Kammerflimmern verschlechtert die Mikrozirkulation und erhöht post-ROSC-Arrhythmien.', correctAction: 'Bei VF/pVT werden Adrenalin 1 mg und Amiodaron 300 mg erst NACH dem 3. erfolglosen Defibrillationsversuch appliziert!' }
+        ]
+      };
+    }
+
+    // Inhalationsanästhetika & TIVA Pharmakokinetik (MAC, Blut-Gas-Koeffizient, Kontextsensitive Halbwertszeit)
+    if (text.includes('sevofluran') || text.includes('desfluran') || text.includes('isofluran') || text.includes('lachgas') || text.includes('blut-gas') || text.includes('mac-wert') || text.includes('kontextsensitive') || text.includes('remifentanil') || text.includes('propofol')) {
+      return {
+        topic: 'Pharmakokinetik & First-Principles der Inhalationsanästhetika & TIVA',
+        topic_tr: 'İnhalasyon Anestezikleri & TİVA Farmakokinetiği (MAC, Kan/Gaz Katsayısı, Bağlama Duyarlı Yarı Ömür)',
+        firstDrugTR: 'Kan/Gaz Dağılım Katsayısı (Desfluran 0,42 vs Sevofluran 0,65) + MAC Titrasyonu',
+        guideline: {
+          title: 'DGAI Empfehlungen zur Inhalationsanästhesie, TIVA & EEG-Monitoring',
+          society: 'DGAI / BDA',
+          awmf: 'DGAI S2e / Klinische Pharmakologie',
+          year: '2023',
+          recommendation: 'Die An- und Abflutungsgeschwindigkeit volatiler Anästhetika wird primär durch den Blut-Gas-Verteilungskoeffizienten (λ_B/G) und das Herzzeitvolumen bestimmt, während die Wirkstärke (Potenz) über die Lipidlöslichkeit (Öl-Gas-Koeffizient / Meyer-Overton-Regel) mit dem MAC-Wert korreliert.',
+          recommendation_tr: 'Uçucu anesteziklerin indüksiyon ve uyanma hızı öncelikle kan-gaz dağılım katsayısı (λ_B/G) ve kardiyak debi ile belirlenirken, anestezik güç (potens) yağda çözünürlük (yağ-gaz katsayısı / Meyer-Overton kuralı) üzerinden MAC değeri ile koreledir.'
+        },
+        dosages: [
+          { drug: 'Sevofluran', dose: 'MAC₅₀ ≈ 2,0 Vol-% (Blut-Gas-Koeffizient λ_B/G = 0,65)', route: 'Inhalativ', maxDose: 'Nicht-irritierend -> ideal zur Maskeneinleitung beim Kind', limits: 'Flussrate & FGF beachten; epileptogene Potenziale bei hoher Konzentration' },
+          { drug: 'Desfluran', dose: 'MAC₅₀ ≈ 6,0 Vol-% (Blut-Gas-Koeffizient λ_B/G = 0,42)', route: 'Inhalativ (Spezial-Siedeverdampfer 39°C / 2 bar)', maxDose: 'Schnellstes An-/Abfluten aller volatilen Gase', limits: 'Kontraindiziert zur Maskeneinleitung (Atemwegsreizung, Laryngospasmus, Sympathikusaktivierung bei > 1 MAC Sprung)!' },
+          { drug: 'Remifentanil (TIVA)', dose: '0,1–0,5 µg/kg/min Perfusor', route: 'i.v.', maxDose: 'Kontextsensitive Halbwertszeit (CSHT) konstant 3–4 Minuten unabhängig von Infusionsdauer!', limits: 'Unspezifische Plasma-/Gewebeesterasen; rechtzeitige postoperative Übergangsanalgesie (Piritramid/Morphin) zwingend!' }
+        ],
+        koPitfalls: [
+          { mistake: 'Inhalative Maskeneinleitung eines Kindes mit Desfluran wegen des niedrigen Blut-Gas-Koeffizienten', whyFatal: 'Desfluran wirkt stark stechend/atemwegsreizend und löst bei wachen Kindern sofortigen schweren Laryngospasmus, Bronchospasmus und Hustenstöße bis zur Hypoxie aus!', correctAction: 'Zur inhalativen Einleitung ausschließlich Sevofluran verwenden; Desfluran nur zur Narkoseaufrechterhaltung über gesicherten Atemweg.' },
+          { mistake: 'Verwechslung von Blut-Gas-Koeffizient (Geschwindigkeit) und Öl-Gas-Koeffizient (Potenz / MAC)', whyFatal: 'Klassische Prüfungsfalle: Ein hoher Blut-Gas-Koeffizient bedeutet hohe Löslichkeit im Blut = großer Speicher = LANGSAME Einleitung, da der alveoläre Partialdruck (P_A/P_I) langsamer ansteigt.', correctAction: 'Merksatz für die Prüfung: Niedriges λ_B/G (Desfluran 0,42 < Sevofluran 0,65 < Isofluran 1,4) = rascher alveolärer Partialdruckaufbau = schnelles Einschlafen und Aufwachen!' }
+        ]
+      };
+    }
+
     // Default High-Yield Emergency Fallback
     return {
       topic: q.category || 'Anästhesiologisches Notfallmanagement',
@@ -1235,6 +1338,941 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
+  // 8. MELIS PEDAGOGICAL ENGINE (ST. ANTONIUS-HOSPITAL ESCHWEILER / ÄKNO)
+  //    - Data-First Diagnostic Interpretation (Vitals, BGA, ECG, PiCCO/ROTEM/ICP)
+  //    - Immediate First 3 Actions Challenge & Prüfer Follow-Up
+  //    - First-Principles Physiology & Pharmacology (Why behind decisions)
+  //    - Oral Exam, Frühbesprechung, Prämedikationsgespräch & Klinik-Jargon
+  //    - Structured 3-Tier Exam Synthesis (Sofortmaßnahmen · Diagnostik · Pharmakologie)
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  function _detectScenarioProfile(q) {
+    if (!q) q = {};
+    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.oral_question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.oral_answer_de || '') + ' ' + (q.category || '')).toLowerCase();
+
+    if (text.includes('picco') || text.includes('thermodilution') || text.includes('elwi') || text.includes('gedi') || text.includes('itbi') || text.includes('schlagvolumenvariation') || text.includes('pulskontur')) {
+      return 'picco';
+    }
+    if (text.includes('bauchaorten') || text.includes('aortenaneurysma') || text.includes('aortendissektion') || text.includes('declamping') || text.includes('cross-clamping') || text.includes('evar')) {
+      return 'rbaa';
+    }
+    if (text.includes('schrittmacher') || text.includes('icd') || text.includes('kardioverter') || text.includes('magnetauflage') || text.includes('voo') || text.includes('do0')) {
+      return 'pacemaker';
+    }
+    if (text.includes('reanimation') || text.includes('acls') || text.includes('kammerflimmern') || text.includes('asystolie') || text.includes('herzdruckmassage')) {
+      return 'acls';
+    }
+    if (text.includes('maligne hyperthermie') || text.includes('dantrolen') || text.includes('masseterspasmus')) {
+      return 'mh';
+    }
+    if (text.includes('last') || text.includes('lokalanästhetika-intox') || text.includes('intralipid') || text.includes('lipid-rescue') || (text.includes('bupivacain') && text.includes('krampf'))) {
+      return 'last';
+    }
+    if (text.includes('anaphylax') || text.includes('allergisch') || text.includes('bronchospasmus')) {
+      return 'anaphylaxis';
+    }
+    if (text.includes('postpartale blutung') || text.includes('atonie') || text.includes('präeklampsie') || text.includes('eklampsie') || text.includes('hellp') || text.includes('sectio') || text.includes('fruchtwasserembolie') || text.includes('schwangere')) {
+      return 'obstetrics';
+    }
+    if (text.includes('kind') || text.includes('pädiatr') || text.includes('säugling') || text.includes('krughusten') || text.includes('epiglottitis') || text.includes('fremdkörperaspiration')) {
+      return 'pediatrics';
+    }
+    if (text.includes('hirndruck') || text.includes('icp') || text.includes('schädel-hirn') || text.includes('sht') || text.includes('anisokorie') || text.includes('sab') || text.includes('subarachnoidal')) {
+      return 'icp';
+    }
+    if (text.includes('sevofluran') || text.includes('desfluran') || text.includes('isofluran') || text.includes('lachgas') || text.includes('blut-gas') || text.includes('mac-wert') || text.includes('kontextsensitive') || text.includes('remifentanil')) {
+      return 'pharmacology';
+    }
+    if (text.includes('atemweg') || text.includes('intubation') || text.includes('cico') || text.includes('koniotomie') || text.includes('laryngospasmus') || text.includes('videolaryngoskop')) {
+      return 'airway';
+    }
+    if (text.includes('polytrauma') || text.includes('schockraum') || text.includes('massivtransfusion') || text.includes('rotem') || text.includes('fibrinogen')) {
+      return 'trauma';
+    }
+    if (text.includes('sepsis') || text.includes('septisch') || text.includes('ards') || text.includes('lungenembolie') || text.includes('anionenlücke') || text.includes('ketoazidose') || text.includes('säure-base')) {
+      return 'icu_sepsis';
+    }
+    if (text.includes('peridural') || text.includes('pdk') || text.includes('spinalanästhesie') || text.includes('regionalanästhesie') || text.includes('epidural')) {
+      return 'regional';
+    }
+    return 'general';
+  }
+
+  // 8.1 DATA-FIRST DIAGNOSTIC INTERPRETATION (Monitor, BGA, ECG, Advanced Trends)
+  function getDataFirstDiagnosticMonitor(q) {
+    const profile = _detectScenarioProfile(q);
+
+    const monitors = {
+      rbaa: {
+        scenarioBadgeDE: 'OP-Saal / Schockraum · Rupturiertes BAA (Cross-Clamping / Declamping)',
+        scenarioBadgeTR: 'Ameliyathane / Şok Odası · Rüptüre AAA (Klempleme / Declamping)',
+        vitals: {
+          hr: '124 /min',
+          bp: '78/44 mmHg',
+          map: '55 mmHg (Permissiv!)',
+          spo2: '95 % (O₂-Maske)',
+          etco2: '29 mmHg',
+          temp: '35,4 °C',
+          rhythmDE: 'Sinustachykardie, flache T-Wellen, kaltschweißig',
+          rhythmTR: 'Sinüs taşikardisi, düz T dalgaları, soğuk terleme'
+        },
+        bga: {
+          ph: '7,21',
+          pco2: '31 mmHg',
+          po2: '86 mmHg',
+          hco3: '12 mmol/l',
+          be: '-13,5 mmol/l',
+          lactate: '6,8 mmol/l',
+          hb: '7,4 g/dl',
+          electrolytes: 'Ca²⁺ 0,89 mmol/l · K⁺ 5,4 mmol/l (post-Declamping: 6,3 mmol/l!)'
+        },
+        advanced: {
+          labelDE: 'Hämodynamik & Gerinnung (ROTEM / ZVD / Aortenklemme)',
+          labelTR: 'Hemodinami & Koagülasyon (ROTEM / SVB / Aort Klempi)',
+          valuesDE: 'Vor Klemme: RRsyst strikt 70–90 mmHg · Nach Cross-Clamping: SVR ↑↑, Nachlast ↑ · Nach Declamping: SVR ↓↓, Laktat-/K⁺-Washout · FIBTEM A10: 6 mm (< 10 mm)',
+          valuesTR: 'Klemp öncesi: Sistolik TA 70–90 mmHg · Klemp sonrası: SVR ↑↑, Afterload ↑ · Declamping sonrası: SVR ↓↓, Laktat/K⁺ washout · FIBTEM A10: 6 mm (< 10 mm)'
+        },
+        patternDE: 'Mustererkennung: Retroperitoneale Tamponade mit hämorrhagischer Laktatazidose (Laktat 6,8 mmol/l) und kritischer Hypokalzämie (Ca²⁺ 0,89 mmol/l). Keine Normotension erzwingen (Gefahr: „Popping the clot“)!',
+        patternTR: 'Patern Tanıma: Hemorajik laktik asidoz (Laktat 6,8 mmol/l) ve kritik hipokalsemi (Ca²⁺ 0,89 mmol/l) ile giden retroperitoneal tamponad. Klemp öncesi normotansiyona zorlama ("Popping the clot" riski)!'
+      },
+      picco: {
+        scenarioBadgeDE: 'Intensivstation · Erweitertes Hämodynamik-Monitoring (PiCCO)',
+        scenarioBadgeTR: 'Yoğun Bakım · İleri Hemodinamik Monitörizasyon (PiCCO)',
+        vitals: {
+          hr: '112 /min (Sinusrhythmus)',
+          bp: '84/46 mmHg',
+          map: '58 mmHg',
+          spo2: '91 % (FiO₂ 0,65)',
+          etco2: '38 mmHg',
+          temp: '38,6 °C',
+          rhythmDE: 'Sinustachykardie (kontrollierte Beatmung Vt 8 ml/kg PBW)',
+          rhythmTR: 'Sinüs taşikardisi (kontrollü ventilasyon Vt 8 ml/kg PBW)'
+        },
+        bga: {
+          ph: '7,26',
+          pco2: '41 mmHg',
+          po2: '68 mmHg',
+          hco3: '17 mmol/l',
+          be: '-8,2 mmol/l',
+          lactate: '4,6 mmol/l',
+          hb: '9,6 g/dl',
+          electrolytes: 'ScvO₂ 61 % · Na⁺ 138 mmol/l · K⁺ 4,4 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Transpulmonale Thermodilution & Pulskonturanalyse (PiCCO)',
+          labelTR: 'Transpulmoner Termodilüsyon & Nabız Kontur Analizi (PiCCO)',
+          valuesDE: 'CI: 4,2 l/min/m² (↑) · SVRI: 1120 dyn·s·cm⁻⁵·m² (↓↓) · GEDI: 540 ml/m² (↓↓ Norm 680–800) · SVV: 19 % (> 13 %!) · ELWI: 13 ml/kg (↑↑ Norm 3–7) · PVPI: 3,6 (> 3,0)',
+          valuesTR: 'CI: 4,2 l/dk/m² (↑) · SVRI: 1120 (↓↓) · GEDI: 540 ml/m² (↓↓ Normal 680–800) · SVV: %19 (> %13!) · ELWI: 13 ml/kg (↑↑ Normal 3–7) · PVPI: 3,6 (> 3,0)'
+        },
+        patternDE: 'Mustererkennung: Hyperdynamer distributiver Schock (CI ↑, SVRI ↓↓) mit intravasalem Volumenmangel (GEDI 540 ml/m², SVV 19 % = Fluid Responder), ABER gleichzeitigem ARDS-Permeabilitätslungenödem (ELWI 13 ml/kg, PVPI 3,6 > 3)!',
+        patternTR: 'Patern Tanıma: İntravasküler hipovolemi (GEDI 540 ml/m², SVV %19 = Sıvı yanıtlı) ile birlikte hiperdinamik distributif şok (CI ↑, SVRI ↓↓), ANCAK eşlik eden ARDS permeabilite akciğer ödemi (ELWI 13 ml/kg, PVPI 3,6 > 3)!'
+      },
+      pacemaker: {
+        scenarioBadgeDE: 'OP-Saal · Intraoperatives Schrittmacher- / ICD-Management',
+        scenarioBadgeTR: 'Ameliyathane · İntraoperatif Kalp Pili (SM) / ICD Yönetimi',
+        vitals: {
+          hr: '34 /min (während monopolarer Kauterung)',
+          bp: '68/38 mmHg',
+          map: '48 mmHg',
+          spo2: '94 %',
+          etco2: '26 mmHg',
+          temp: '36,3 °C',
+          rhythmDE: 'EKG: Elektromagnetische Interferenz (EMI) -> Oversensing mit Asystolie-Pausen bei Schrittmacherabhängigkeit!',
+          rhythmTR: 'EKG: Elektromanyetik İnterferans (EMİ) -> Pil bağımlı hastada Oversensing kaynaklı asistoli duraklamaları!'
+        },
+        bga: {
+          ph: '7,34',
+          pco2: '40 mmHg',
+          po2: '115 mmHg',
+          hco3: '21 mmol/l',
+          be: '-3,0 mmol/l',
+          lactate: '2,4 mmol/l',
+          hb: '11,8 g/dl',
+          electrolytes: 'K⁺ 4,6 mmol/l · Mg²⁺ 0,9 mmol/l · Ca²⁺ 1,18 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Aggregat-Antwort auf Ringmagnet-Auflage (SM vs. ICD)',
+          labelTR: 'Halka Mıknatıs Uygulamasına Cihaz Yanıtı (Kalp Pili vs. ICD)',
+          valuesDE: 'Schrittmacher + Magnet = Asynchrones Pacing (VOO/DOO, ca. 85–100/min, kein Oversensing) · ICD + Magnet = NUR Antitachykardie-/Schockfunktion (VT/VF) deaktiviert, antibradykarder SM bleibt im Bedarfsmodus (VVI/DDD)!',
+          valuesTR: 'Kalp Pili + Mıknatıs = Asenkron Pacing (VOO/DOO, ~85–100/dk, oversensing durur) · ICD + Mıknatıs = SADECE antitakikardi/şok fonksiyonu devre dışı kalır, antibradikardik pil VVI/DDD modunda kalır!'
+        },
+        patternDE: 'Mustererkennung: Intraoperative EMI durch monopolare Diathermie täuscht dem Aggregat Eigenaktionen vor (Oversensing) -> bei SM: Inhibition/Asystolie; bei ICD: inadäquater Schock!',
+        patternTR: 'Patern Tanıma: Monopolar koter kaynaklı EMİ cihazda yanlış algılamaya (Oversensing) yol açar -> Kalp pilinde inhibisyon/asistoli; ICD de ise uygunsuz şok!'
+      },
+      acls: {
+        scenarioBadgeDE: 'OP / Schockraum · Intraoperativer Kreislaufstillstand (ERC ALS)',
+        scenarioBadgeTR: 'Ameliyathane / Şok Odası · İntraoperatif Kardiyak Arrest (ERC ALS)',
+        vitals: {
+          hr: '0 /min (Kammerflimmern / PEA)',
+          bp: 'Nicht messbar (Arterie flach)',
+          map: '< 20 mmHg (unter HDM: diastolisch > 30 mmHg)',
+          spo2: 'Kein Puls-Signal',
+          etco2: '18 mmHg unter HDM (-> Sprung auf 42 mmHg = ROSC!)',
+          temp: '35,8 °C',
+          rhythmDE: 'EKG: Grobwelliges Kammerflimmern (VF) bzw. Pulslose Elektrische Aktivität (PEA)',
+          rhythmTR: 'EKG: Kaba dalgalı Ventriküler Fibrilasyon (VF) veya Nabızsız Elektriksel Aktivite (NEA)'
+        },
+        bga: {
+          ph: '7,04',
+          pco2: '64 mmHg',
+          po2: '88 mmHg',
+          hco3: '13 mmol/l',
+          be: '-16,0 mmol/l',
+          lactate: '9,8 mmol/l',
+          hb: '10,5 g/dl',
+          electrolytes: 'K⁺ 6,4 mmol/l · Ca²⁺ 1,04 mmol/l · Glukose 145 mg/dl'
+        },
+        advanced: {
+          labelDE: 'CPR-Qualitätsmonitoring & 4H / HITS Screening',
+          labelTR: 'KPR Kalite Monitörizasyonu & 4H / HITS Taraması',
+          valuesDE: 'HDM-Tiefe: 5–6 cm (100–120/min) · EtCO₂ > 15–20 mmHg bestätigt suffiziente Perfusion · Invasiver RR diastolisch ≥ 25–30 mmHg (= koronarer Perfusionsdruck) · 3. Schock -> Adrenalin 1 mg + Amiodaron 300 mg',
+          valuesTR: 'Kompresyon: 5–6 cm (100–120/dk) · EtCO₂ > 15–20 mmHg kaliteli perfüzyonu doğrular · İnvaziv diyastolik TA ≥ 25–30 mmHg (= koroner perfüzyon basıncı) · 3. Şok sonrası -> Adrenalin 1 mg + Amiodaron 300 mg'
+        },
+        patternDE: 'Mustererkennung: Kreislaufstillstand mit kombinierter respiratorisch-metabolischer Laktatazidose. Kapnographie (EtCO₂) dient als Echtzeit-HZV-Monitor unter Herzdruckmassage und zeigt ROSC sofort durch steilen Sprung (> 35–40 mmHg) an.',
+        patternTR: 'Patern Tanıma: Kombine respiratuar-metabolik laktik asidozlu kardiyak arrest. Kapnografi (EtCO₂) KPR sırasında gerçek zamanlı debi monitörüdür ve ROSC anında ani sıçrama (> 35–40 mmHg) gösterir.'
+      },
+      mh: {
+        scenarioBadgeDE: 'OP-Saal · Akute Maligne Hyperthermie (MH-Krise)',
+        scenarioBadgeTR: 'Ameliyathane · Akut Malign Hipertermi (MH Krizi)',
+        vitals: {
+          hr: '148 /min',
+          bp: '155/92 mmHg -> fallend auf 82/45 mmHg',
+          map: '57 mmHg',
+          spo2: '91 % (fallend)',
+          etco2: '84 mmHg (trotz Atemminutenvolumen 16 l/min!)',
+          temp: '39,6 °C (+1 °C alle 5 min)',
+          rhythmDE: 'Tachykarde Rhythmusstörungen, gehäufte VES, spitz-hohe T-Wellen',
+          rhythmTR: 'Taşikardik ritim bozukluğu, sık VES, sivri T dalgaları'
+        },
+        bga: {
+          ph: '6,98',
+          pco2: '96 mmHg',
+          po2: '92 mmHg',
+          hco3: '15 mmol/l',
+          be: '-16,5 mmol/l',
+          lactate: '11,4 mmol/l',
+          hb: '14,1 g/dl',
+          electrolytes: 'K⁺ 7,1 mmol/l (Rhabdomyolyse!) · CK > 25.000 U/l · Myoglobinurie'
+        },
+        advanced: {
+          labelDE: 'Narkosegerät & Metabolik (RYR1-Rezeptor-Entkopplung)',
+          labelTR: 'Anestezi Cihazı & Metabolizma (RYR1 Reseptör Bozukluğu)',
+          valuesDE: 'Inspiratorisch Sevofluran 2,0 Vol-% -> SOFORT 0 % (Vapor abnehmen!) · FGF > 10–15 l/min 100 % O₂ · Aktivkohlefilter (Vapor-Clean) · Masseterspasmus + generalisierte Muskelrigidität',
+          valuesTR: 'İnspiratuar Sevofluran %2,0 -> DERHAL %0 (Vaporizatörü çıkar!) · Taze gaz > 10–15 l/dk %100 O₂ · Aktif karbon filtre · Masseter spazmı + jeneralize rijidite'
+        },
+        patternDE: 'Mustererkennung: Explosiver EtCO₂-Anstieg (> 60–80 mmHg trotz Hyperventilation) + Sinustachykardie als früheste Leitsymptome! Kombinierte respiratorisch-metabolische Azidose (pH 6,98) + letale Hyperkaliämie (7,1 mmol/l).',
+        patternTR: 'Patern Tanıma: Hiperventilasyona rağmen patlayıcı EtCO₂ artışı (> 60–80 mmHg) + taşikardi en erken bulgulardır! Kombine respiratuar-metabolik asidoz (pH 6,98) + ölümcül hiperkalemi (7,1 mmol/l).'
+      },
+      last: {
+        scenarioBadgeDE: 'Regionalanästhesie / Aufwachraum · LAST (Lokalanästhetika-Intoxikation)',
+        scenarioBadgeTR: 'Rejyonel Anestezi / Derlenme · LAST (Lokal Anestezik Toksisitesi)',
+        vitals: {
+          hr: '42 /min -> polymorphe VT',
+          bp: '64/32 mmHg',
+          map: '43 mmHg',
+          spo2: '89 %',
+          etco2: '24 mmHg',
+          temp: '36,5 °C',
+          rhythmDE: 'EKG: PR-Verlängerung, breiter QRS-Komplex (180 ms), AV-Block III° -> Torsades / VT',
+          rhythmTR: 'EKG: PR uzaması, geniş QRS kompleksi (180 ms), AV Blok III° -> Torsades / VT'
+        },
+        bga: {
+          ph: '7,19',
+          pco2: '52 mmHg',
+          po2: '68 mmHg',
+          hco3: '18 mmol/l',
+          be: '-9,0 mmol/l',
+          lactate: '5,2 mmol/l',
+          hb: '12,8 g/dl',
+          electrolytes: 'Na⁺ 139 mmol/l · K⁺ 4,8 mmol/l · Azidose erhöht ungebundene LA-Fraktion!'
+        },
+        advanced: {
+          labelDE: 'ZNS-Prodromi & Kardiale Natriumkanal-Blockade (Bupivacain/Ropivacain)',
+          labelTR: 'MSS Prodromu & Kardiyak Sodyum Kanal Blokajı',
+          valuesDE: 'Prodromi: Metallischer Geschmack, periorale Taubheit, Tinnitus, verwaschene Sprache -> Generalisierter tonisch-klonischer Krampfanfall -> Refraktärer kardiogener Schock',
+          valuesTR: 'Prodrom: Ağızda metalik tat, perioral uyuşma, kulak çınlaması, dizartri -> Jeneralize tonik-klonik nöbet -> Dirençli kardiyojenik şok'
+        },
+        patternDE: 'Mustererkennung: Biphasischer Verlauf (1. ZNS-Exzitation/Krampf -> 2. ZNS-Depression + schwere kardiale Leitungsblockade durch Na⁺-Kanal-Arrest). Hypoxie und Azidose unbedingt vermeiden (Ion-Trapping verstärkt Kardiotoxizität)!',
+        patternTR: 'Patern Tanıma: Bifazik seyir (1. MSS eksitasyonu/nöbet -> 2. MSS depresyonu + Na⁺ kanal blokajına bağlı ağır iletim bloğu). Hipoksi ve asidoz kesinlikle önlenmelidir (İyon tuzağı kardiyotoksisiteyi katlar)!'
+      },
+      anaphylaxis: {
+        scenarioBadgeDE: 'OP-Einleitung · Perioperative Anaphylaxie Grad III/IV',
+        scenarioBadgeTR: 'Anestezi İndüksiyonu · Perioperatif Anafilaksi Evre III/IV',
+        vitals: {
+          hr: '138 /min',
+          bp: '54/28 mmHg',
+          map: '37 mmHg',
+          spo2: '84 %',
+          etco2: '19 mmHg (steil ansteigende Kapnographie-Rampe / „Shark-Fin“)',
+          temp: '36,4 °C',
+          rhythmDE: 'Massive Sinustachykardie, Niedervoltage durch kapilläres Leck',
+          rhythmTR: 'Masif sinüs taşikardisi, kapiller kaçak kaynaklı düşük voltaj'
+        },
+        bga: {
+          ph: '7,23',
+          pco2: '54 mmHg',
+          po2: '56 mmHg',
+          hco3: '20 mmol/l',
+          be: '-6,5 mmol/l',
+          lactate: '4,9 mmol/l',
+          hb: '16,2 g/dl (Hämokonzentration durch Plasmaextravasation!)',
+          electrolytes: 'Serum-Tryptase nach 1–2 h abnehmen! · K⁺ 4,2 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Beatmungsmechanik & Hämodynamik (Distributiv + Bronchospasmus)',
+          labelTR: 'Ventilasyon Mekaniği & Hemodinami (Distributif + Bronkospazm)',
+          valuesDE: 'Spitzendruck Ppeak: 46 mbar (↑↑) · Plateaudruck Pplat: 24 mbar · Flush / Urtikaria / Angioödem · Bis zu 35 % des Intravasalvolumens extravasiert binnen 10 Minuten!',
+          valuesTR: 'Pik basınç Ppeak: 46 mbar (↑↑) · Plato basıncı Pplat: 24 mbar · Flush / Ürtiker / Anjiyoödem · 10 dakikada intravasküler hacmin %35 i damar dışına kaçar!'
+        },
+        patternDE: 'Mustererkennung: Unmittelbar nach Narkoseinduktion (Rocuronium / Antibiotikum): Ppeak ↑↑ + „Shark-Fin“-Kapnogramm (schwerer Bronchospasmus) + tiefer Blutdrucksturz mit Hämokonzentration (Hb 16,2 g/dl).',
+        patternTR: 'Patern Tanıma: İndüksiyondan hemen sonra (Roküronyum / Antibiyotik): Ppeak ↑↑ + "Shark-Fin" kapnogram (ağır bronkospazm) + hemokonsantrasyonlu (Hb 16,2 g/dl) derin hipotansiyon.'
+      },
+      obstetrics: {
+        scenarioBadgeDE: 'Kreißsaal / Sectio-OP · Geburtshilflicher Notfall (PPH / Präeklampsie / EEZ)',
+        scenarioBadgeTR: 'Doğumhane / Sezaryen · Obstetrik Acil (PPH / Preeklampsi / Acil Sezaryen)',
+        vitals: {
+          hr: '128 /min (bei PPH) bzw. 105 /min (bei Eklampsie)',
+          bp: '76/42 mmHg (PPH) bzw. 185/115 mmHg (Schwere Präeklampsie)',
+          map: '53 mmHg (PPH) / 138 mmHg (Präeklampsie)',
+          spo2: '93 %',
+          etco2: '30 mmHg (Schwangerschaftsnorm: 28–32 mmHg!)',
+          temp: '36,1 °C',
+          rhythmDE: 'Sinustachykardie (Schockindex HF/RRsyst > 1,1 = manifester PPH-Schock!)',
+          rhythmTR: 'Sinüs taşikardisi (Şok İndeksi KAH/Sistolik TA > 1,1 = aşikar PPH şoku!)'
+        },
+        bga: {
+          ph: '7,28',
+          pco2: '30 mmHg',
+          po2: '89 mmHg',
+          hco3: '15 mmol/l',
+          be: '-9,8 mmol/l',
+          lactate: '4,8 mmol/l',
+          hb: '6,9 g/dl',
+          electrolytes: 'Fibrinogen 1,1 g/l (kritisch < 2,0 g/l!) · Thrombozyten 62 G/l · Ca²⁺ 0,94 mmol/l'
+        },
+        advanced: {
+          labelDE: 'ROTEM & Uteroplazentare Physiologie',
+          labelTR: 'ROTEM & Uteroplasental Fizyoloji',
+          valuesDE: 'FIBTEM A5: 7 mm (< 12 mm bei PPH pathologisch!) · Schwangeren-Fibrinogen-Norm am Termin: 4–6 g/l! · 15° Linksseitenlage gegen Vena-cava-Kompressionssyndrom · EEZ bei Notsectio ≤ 20 min',
+          valuesTR: 'FIBTEM A5: 7 mm (PPH de < 12 mm patolojik!) · Termde gebelik fibrinojen normali: 4–6 g/l! · Aortokaval kompresyona karşı 15° sol yan pozisyon · Acil sezaryende EEZ ≤ 20 dk'
+        },
+        patternDE: 'Mustererkennung: Ein Fibrinogen von 2,0 g/l ist bei einer Nicht-Schwangeren normal, bei einer Kreißenden mit PPH jedoch bereits Ausdruck einer schweren Koagulopathie (Frühmarker der Hyperfibrinolyse)!',
+        patternTR: 'Patern Tanıma: Gebe olmayan birinde normal sayılan 2,0 g/l fibrinojen, doğum sonu kanamalı (PPH) bir gebede ağır koagülopatinin ve hiperfibrinolizin erken göstergesidir!'
+      },
+      pediatrics: {
+        scenarioBadgeDE: 'Kinder-OP / Schockraum · Pädiatrischer Atemwegs- & Kreislaufnotfall',
+        scenarioBadgeTR: 'Pediatrik Ameliyathane · Çocuk Havayolu & Dolaşım Acili',
+        vitals: {
+          hr: '165 /min -> kritischer Abfall auf 56 /min (Hypoxie-Bradykardie!)',
+          bp: '62/34 mmHg',
+          map: '43 mmHg',
+          spo2: '78 % (rasant fallend wegen hoher O₂-Verbrauchsrate + kleiner FRC)',
+          etco2: 'Kein Plateau (Laryngospasmus) bzw. 62 mmHg',
+          temp: '36,2 °C',
+          rhythmDE: 'EKG: Hypoxie-induzierte Sinusbradykardie (< 60/min beim Säugling/Kleinkind = CPR-Indikation!)',
+          rhythmTR: 'EKG: Hipoksi kaynaklı sinüs bradikardisi (< 60/dk süt çocuğunda = KPR endikasyonu!)'
+        },
+        bga: {
+          ph: '7,18',
+          pco2: '64 mmHg',
+          po2: '48 mmHg',
+          hco3: '21 mmol/l',
+          be: '-5,5 mmol/l',
+          lactate: '3,8 mmol/l',
+          hb: '11,2 g/dl',
+          electrolytes: 'Glukose 54 mg/dl · Na⁺ 137 mmol/l · K⁺ 4,7 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Pädiatrische Physiologie & Dosierungs-Sicherheit',
+          labelTR: 'Pediatrik Fizyoloji & Doz Güvenliği',
+          valuesDE: 'O₂-Verbrauch Kind: 6–8 ml/kg/min (Erwachsener: 3 ml/kg/min) · Closing Capacity > FRC -> rascher Alveolarkollaps · PEEP + CPAP mit 100 % O₂ + Larson-Handgriff · Adrenalin CPR: 10 µg/kg (0,01 mg/kg)',
+          valuesTR: 'Çocuk O₂ tüketimi: 6–8 ml/kg/dk (Erişkin: 3 ml/kg/dk) · Closing Capacity > FRC -> hızlı alveoler kollaps · %100 O₂ CPAP + Larson manevrası · Adrenalin KPR: 10 µg/kg'
+        },
+        patternDE: 'Mustererkennung: Beim Kind ist die Bradykardie (HF < 60/min) fast immer die direkte Folge einer schweren Hypoxie! Das HZV des Kleinkindes ist streng herzfrequenzabhängig (unelastisches Myokard, fixes Schlagvolumen).',
+        patternTR: 'Patern Tanıma: Çocukta bradikardi (KAH < 60/dk) neredeyse her zaman ağır hipoksinin doğrudan sonucudur! Küçük çocuğun kalp debisi tamamen kalp hızına bağımlıdır (sabit atım hacmi).'
+      },
+      icp: {
+        scenarioBadgeDE: 'Schockraum / Neuro-ITS · Schweres SHT & Intrakranielle Hypertension (ICP)',
+        scenarioBadgeTR: 'Şok Odası / Nöro-YBÜ · Ağır Kafa Travması & KİBAS (ICP)',
+        vitals: {
+          hr: '48 /min (Cushing-Reflex!)',
+          bp: '178/96 mmHg (Cushing-Hypertonie)',
+          map: '123 mmHg -> bei Abfall auf 70 mmHg droht Einklemmung!',
+          spo2: '97 %',
+          etco2: '36 mmHg (Ziel-PaCO₂: 35–38 mmHg!)',
+          temp: '36,6 °C',
+          rhythmDE: 'Cushing-Trias: Arterielle Hypertonie + Sinusbradykardie + unregelmäßige Atmung',
+          rhythmTR: 'Cushing Triadı: Arteriyel hipertansiyon + Sinüs bradikardisi + düzensiz solunum'
+        },
+        bga: {
+          ph: '7,38',
+          pco2: '37 mmHg',
+          po2: '112 mmHg',
+          hco3: '22 mmol/l',
+          be: '-1,5 mmol/l',
+          lactate: '2,2 mmol/l',
+          hb: '11,5 g/dl',
+          electrolytes: 'Na⁺ 146 mmol/l (Ziel 145–155 mmol/l unter Osmotherapie) · Glukose 135 mg/dl'
+        },
+        advanced: {
+          labelDE: 'Neuro-Monitoring (Monro-Kellie-Doktrin & CPP-Steuerung)',
+          labelTR: 'Nöro-Monitörizasyon (Monro-Kellie Doktrini & CPP Yönetimi)',
+          valuesDE: 'ICP: 28 mmHg (pathologisch > 20–22 mmHg!) · Ziel-CPP (CPP = MAP − ICP): 60–70 mmHg (daher MAP ≥ 90 mmHg nötig!) · Pupillen: Anisokorie rechts weit/lichtstarr · 30°-Oberkörperhochlagerung achsengerecht',
+          valuesTR: 'ICP: 28 mmHg (patolojik > 20–22 mmHg!) · Hedef CPP (CPP = MAP − ICP): 60–70 mmHg (bu yüzden MAP ≥ 90 mmHg şart!) · Pupiller: Sağda anizokori · 30° baş nötral elevasyon'
+        },
+        patternDE: 'Mustererkennung: Cushing-Trias + Anisokorie = drohende transtentorielle Herniation bei ICP 28 mmHg! Nach CPP = MAP − ICP darf der hohe Blutdruck NICHT aggressiv gesenkt werden, sonst bricht die zerebrale Perfusion zusammen.',
+        patternTR: 'Patern Tanıma: Cushing triadı + anizokori = ICP 28 mmHg ile yakın transtentoriyel herniasyon! CPP = MAP − ICP formülü gereği yüksek tansiyon agresif düşürülmemelidir, aksi halde beyin perfüzyonu çöker.'
+      },
+      pharmacology: {
+        scenarioBadgeDE: 'OP-Saal · Narkosetiefe, Gas-Kinetik & Pharmakodynamik-Monitor',
+        scenarioBadgeTR: 'Ameliyathane · Anestezi Derinliği, Gaz Kinetiği & Farmakodinami Monitörü',
+        vitals: {
+          hr: '68 /min',
+          bp: '108/62 mmHg',
+          map: '77 mmHg',
+          spo2: '99 % (FiO₂ 0,40)',
+          etco2: '36 mmHg',
+          temp: '36,5 °C',
+          rhythmDE: 'Normofrequenter Sinusrhythmus, stabile Hämodynamik',
+          rhythmTR: 'Normofrekanslı sinüs ritmi, stabil hemodinami'
+        },
+        bga: {
+          ph: '7,40',
+          pco2: '38 mmHg',
+          po2: '145 mmHg',
+          hco3: '24 mmol/l',
+          be: '+0,2 mmol/l',
+          lactate: '1,1 mmol/l',
+          hb: '13,2 g/dl',
+          electrolytes: 'Na⁺ 140 mmol/l · K⁺ 4,1 mmol/l · Ca²⁺ 1,22 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Gasbank, BIS/EEG & Neuromuskuläres Monitoring (TOF)',
+          labelTR: 'Gaz Analizörü, BİS/EEG & Nöromüsküler Monitörizasyon (TOF)',
+          valuesDE: 'F_I/F_A Sevofluran: 2,2 / 1,8 Vol-% (MAC 0,9) · λ_B/G: Desfluran 0,42 vs. Sevofluran 0,65 vs. Isofluran 1,4 · BIS: 44 (Ziel 40–60) · Remifentanil CSHT: 3–4 min · TOF-Ratio vor Extubation zwingend > 0,90!',
+          valuesTR: 'F_I/F_A Sevofluran: %2,2 / %1,8 (MAC 0,9) · λ_B/G: Desfluran 0,42 vs. Sevofluran 0,65 vs. İzofluran 1,4 · BİS: 44 (Hedef 40–60) · Remifentanil CSHT: 3–4 dk · Ekstübasyon öncesi TOF > 0,90 şart!'
+        },
+        patternDE: 'Mustererkennung: Das Verhältnis von alveolärer zu inspiratorischer Konzentration (F_A/F_I) bestimmt die Einschlafgeschwindigkeit: Niedriger Blut-Gas-Koeffizient (λ_B/G) + niedriges HZV = schneller Anstieg von F_A/F_I!',
+        patternTR: 'Patern Tanıma: Alveoler konsantrasyonun inspiratuar konsantrasyona oranı (F_A/F_I) uyuma hızını belirler: Düşük kan-gaz katsayısı (λ_B/G) + düşük kalp debisi = hızlı F_A/F_I yükselişi!'
+      },
+      airway: {
+        scenarioBadgeDE: 'OP-Einleitung / Schockraum · Schwieriger Atemweg & Oxygenierung',
+        scenarioBadgeTR: 'Ameliyathane / Şok Odası · Zor Havayolu & Oksijenasyon',
+        vitals: {
+          hr: '118 /min -> Abfall auf 46 /min bei Hypoxie',
+          bp: '142/88 mmHg',
+          map: '106 mmHg',
+          spo2: '76 % (kritische Desaturierung!)',
+          etco2: '0 mmHg (flache Nulllinie = fehlende Alveolarventilation!)',
+          temp: '36,4 °C',
+          rhythmDE: 'Tachykardie mit Übergang in hypoxische Sinusbradykardie',
+          rhythmTR: 'Hipoksik sinüs bradikardisine geçen taşikardi'
+        },
+        bga: {
+          ph: '7,16',
+          pco2: '72 mmHg (Anstieg +3–4 mmHg/min in Apnoe)',
+          po2: '44 mmHg',
+          hco3: '24 mmol/l',
+          be: '-2,5 mmol/l',
+          lactate: '3,2 mmol/l',
+          hb: '13,5 g/dl',
+          electrolytes: 'K⁺ 4,6 mmol/l (Cave: Succinylcholin +0,5 mmol/l!) · Ca²⁺ 1,20 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Kapnographie, Präoxygenierung & DGAI-Stufenplan',
+          labelTR: 'Kapnografi, Preoksijenasyon & DGAI Basamaklı Planı',
+          valuesDE: 'EtO₂ nach Präoxygenierung: Ziel ≥ 90 % · Kapnographie = Goldstandard zum Ausschluss der Ösophagusintubation · Max. 2–3 Intubationsversuche (VL) -> Plan B: Zweitgenerations-LMA -> Plan D bei CICO: eFONA (Skalpell-Bougie-Tubus 6.0)',
+          valuesTR: 'Preoksijenasyon sonrası EtO₂: Hedef ≥ %90 · Kapnografi = Özofagus entübasyonunu dışlamada altın standart · Maks. 2–3 deneme (VL) -> Plan B: 2. Nesil LMA -> CICO da Plan D: eFONA (Skalpel-Buji-Tüp 6.0)'
+        },
+        patternDE: 'Mustererkennung: Fehlende EtCO₂-Kurve nach Intubation gilt bis zum Beweis des Gegenteils als Fehlintubation („No trace = wrong place“)! Bei CICO-Situation rettet nicht der 5. Laryngoskopieversuch, sondern die eFONA-Koniotomie das Leben.',
+        patternTR: 'Patern Tanıma: Entübasyon sonrası EtCO₂ dalgasının olmaması aksi kanıtlanana kadar özofagus entübasyonudur ("No trace = wrong place")! CICO durumunda 5. laringoskopi değil, eFONA krikotiroidotomi hayat kurtarır.'
+      },
+      trauma: {
+        scenarioBadgeDE: 'Schockraum · Polytrauma, Hämorrhagischer Schock & ROTEM',
+        scenarioBadgeTR: 'Şok Odası · Politravma, Hemorajik Şok & ROTEM',
+        vitals: {
+          hr: '134 /min',
+          bp: '72/40 mmHg',
+          map: '51 mmHg',
+          spo2: '92 %',
+          etco2: '25 mmHg (niedriges HZV / vergrößerter Totraum)',
+          temp: '34,6 °C (Hypothermie der tödlichen Trias!)',
+          rhythmDE: 'Sinustachykardie, schmale Komplexe, hohes Pulsdruck-Variation-Signal',
+          rhythmTR: 'Sinüs taşikardisi, dar kompleks, yüksek nabız basıncı varyasyonu'
+        },
+        bga: {
+          ph: '7,17',
+          pco2: '34 mmHg',
+          po2: '78 mmHg',
+          hco3: '12 mmol/l',
+          be: '-14,8 mmol/l (Schock-Marker!)',
+          lactate: '7,2 mmol/l',
+          hb: '6,8 g/dl',
+          electrolytes: 'Ca²⁺ ionisiert: 0,81 mmol/l (Zitrat-Hypokalzämie!) · K⁺ 5,3 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Viszkoelastische Point-of-Care-Gerinnung (ROTEM)',
+          labelTR: 'Viskoelastik Yatak Başı Koagülasyon (ROTEM)',
+          valuesDE: 'FIBTEM A10: 5 mm (Ziel ≥ 10–12 mm -> Fibrinogen 4–6 g i.v.!) · EXTEM CT: 112 s (Norm < 80 s -> PPSB / FFP) · EXTEM ML: > 15 % (Hyperfibrinolyse -> Tranexamsäure 1 g i.v. sofort!)',
+          valuesTR: 'FIBTEM A10: 5 mm (Hedef ≥ 10–12 mm -> Fibrinojen 4–6 g i.v.!) · EXTEM CT: 112 sn (Normal < 80 sn -> PCC / TDP) · EXTEM ML: > %15 (Hiperfibrinoliz -> Traneksamik asit 1 g i.v. derhal!)'
+        },
+        patternDE: 'Mustererkennung: Manifeste tödliche Trias + Hypokalzämie (Raute des Todes: pH 7,17, Temp 34,6 °C, FIBTEM A10 5 mm, Ca²⁺ 0,81 mmol/l). Ohne Korrektur von Ca²⁺ ≥ 1,1 mmol/l und Temperatur ≥ 36 °C greift keine Gerinnungsfaktorengabe!',
+        patternTR: 'Patern Tanıma: Aşikar ölümcül triad + hipokalsemi (Ölüm elması: pH 7,17, Isı 34,6 °C, FIBTEM A10 5 mm, Ca²⁺ 0,81 mmol/l). Ca²⁺ ≥ 1,1 mmol/l ve ısı ≥ 36 °C düzeltilmeden pıhtılaşma faktörleri çalışmaz!'
+      },
+      icu_sepsis: {
+        scenarioBadgeDE: 'Intensivstation · Septischer Schock, ARDS & Säure-Basen-Haushalt',
+        scenarioBadgeTR: 'Yoğun Bakım · Septik Şok, ARDS & Asit-Baz Dengesi',
+        vitals: {
+          hr: '122 /min',
+          bp: '80/42 mmHg (unter Noradrenalin 0,25 µg/kg/min)',
+          map: '55 mmHg (Ziel ≥ 65 mmHg)',
+          spo2: '89 % (FiO₂ 0,70, PEEP 14 mbar)',
+          etco2: '44 mmHg',
+          temp: '38,9 °C',
+          rhythmDE: 'Tachykarder Sinusrhythmus bzw. neu aufgetretenes Vorhofflimmern',
+          rhythmTR: 'Taşikardik sinüs ritmi veya yeni başlayan atriyal fibrilasyon'
+        },
+        bga: {
+          ph: '7,19',
+          pco2: '48 mmHg (permissive Hyperkapnie bei ARDS)',
+          po2: '63 mmHg (Horovitz PaO₂/FiO₂ = 90 mmHg = schweres ARDS!)',
+          hco3: '14 mmol/l',
+          be: '-12,0 mmol/l',
+          lactate: '5,8 mmol/l',
+          hb: '8,8 g/dl',
+          electrolytes: 'Na⁺ 138 mmol/l · Cl⁻ 102 mmol/l · AG = 22 mmol/l (↑) · SID = 34 mmol/l (↓)'
+        },
+        advanced: {
+          labelDE: 'Lungenprotektive Beatmung & Stewart-Säure-Basen-Status',
+          labelTR: 'Akciğer Koruyucu Ventilasyon & Stewart Asit-Baz Analizi',
+          valuesDE: 'Vt: 6 ml/kg PBW · Pplat: 26 mbar (Ziel ≤ 30) · Driving Pressure (ΔP = Pplat − PEEP): 12 mbar (Ziel < 15!) · Bauchlagerung ≥ 16 h bei PaO₂/FiO₂ < 150 mmHg',
+          valuesTR: 'Vt: 6 ml/kg PBW · Pplat: 26 mbar (Hedef ≤ 30) · Driving Pressure (ΔP = Pplat − PEEP): 12 mbar (Hedef < 15!) · PaO₂/FiO₂ < 150 mmHg ise ≥ 16 saat yüzüstü (Prone) pozisyon'
+        },
+        patternDE: 'Mustererkennung: Schweres ARDS (Horovitz 90 mmHg) + septischer Schock mit vergrößerter Anionenlücke (AG 22 mmol/l) und erniedrigter Strong Ion Difference (SID) nach Stewart. Driving Pressure ΔP < 15 mbar ist der wichtigste Überlebensprädiktor der Beatmung!',
+        patternTR: 'Patern Tanıma: Ağır ARDS (Horovitz 90 mmHg) + artmış anyon açıklı (AG 22 mmol/l) ve düşük Güçlü İyon Farklı (SID) septik şok. Driving Pressure ΔP < 15 mbar ventilasyonda sağkalımın en güçlü belirleyicisidir!'
+      },
+      regional: {
+        scenarioBadgeDE: 'OP / Kreißsaal / Schmerzdienst · Neuroaxiale & Periphere Regionalanästhesie',
+        scenarioBadgeTR: 'Ameliyathane / Doğumhane · Nöroaksiyel & Periferik Rejyonel Anestezi',
+        vitals: {
+          hr: '52 /min (Sympathikolyse / Bezold-Jarisch-Reflex)',
+          bp: '82/46 mmHg',
+          map: '58 mmHg',
+          spo2: '98 %',
+          etco2: '35 mmHg',
+          temp: '36,4 °C',
+          rhythmDE: 'Sinusbradykardie bei hoher Sympathikolyse (Th1–Th4 Nn. accelerantes)',
+          rhythmTR: 'Yüksek sempatikolize (Th1–Th4 Nn. accelerantes) bağlı sinüs bradikardisi'
+        },
+        bga: {
+          ph: '7,39',
+          pco2: '38 mmHg',
+          po2: '96 mmHg',
+          hco3: '23 mmol/l',
+          be: '-0,8 mmol/l',
+          lactate: '1,3 mmol/l',
+          hb: '12,4 g/dl',
+          electrolytes: 'Quick 92 % · INR 1,0 · PTT 28 s · Thrombozyten 185 G/l'
+        },
+        advanced: {
+          labelDE: 'DGAI-Antikoagulations-Zeitintervalle & Blockadeausbreitung',
+          labelTR: 'DGAI Antikoagülasyon Zaman Aralıkları & Blok Dağılımı',
+          valuesDE: 'NMH prophylaktisch: 12 h vor / 4 h nach Punktion · NMH therapeutisch: 24 h vor / 4 h nach · DOAK (Apixaban/Rivaroxaban): 72 h vor / 6 h nach · Red Flag epidurales Hämatom/Abszess: Neue Paraparese + Blasen-/Mastdarmstörung -> Notfall-MRT!',
+          valuesTR: 'DMAH profilaktik: İşlemden 12 saat önce / 4 saat sonra · DMAH terapötik: 24 saat önce / 4 saat sonra · DOAK: 72 saat önce / 6 saat sonra · Epidural hematom/apse Red Flag: Yeni paraparezi + sfinkter kusuru -> Acil MRG!'
+        },
+        patternDE: 'Mustererkennung: Neuroaxialer Sympathikusblock führt zu venösem Pooling (Vorlast ↓) und bei Ausbreitung auf Th1–Th4 zum Ausfall der kardialen Nn. accelerantes mit Bezold-Jarisch-Reflex (Bradykardie + Hypotonie).',
+        patternTR: 'Patern Tanıma: Nöroaksiyel sempatik blok venöz göllenmeye (ön yük ↓) ve Th1–Th4 seviyesine ulaştığında kardiyak Nn. accelerantes blokajıyla Bezold-Jarisch refleksine (bradikardi + hipotansiyon) yol açar.'
+      },
+      general: {
+        scenarioBadgeDE: 'OP / Intensivstation · Perioperatives Akut- & Risikomanagement',
+        scenarioBadgeTR: 'Ameliyathane / Yoğun Bakım · Perioperatif Akut & Risk Yönetimi',
+        vitals: {
+          hr: '108 /min',
+          bp: '88/50 mmHg',
+          map: '62 mmHg',
+          spo2: '93 %',
+          etco2: '34 mmHg',
+          temp: '36,2 °C',
+          rhythmDE: 'Sinustachykardie, kontinuierliches 5-Kanal-EKG & invasive Arterie',
+          rhythmTR: 'Sinüs taşikardisi, 5 kanallı EKG ve invaziv arter monitörizasyonu'
+        },
+        bga: {
+          ph: '7,31',
+          pco2: '37 mmHg',
+          po2: '82 mmHg',
+          hco3: '18 mmol/l',
+          be: '-6,2 mmol/l',
+          lactate: '3,1 mmol/l',
+          hb: '10,4 g/dl',
+          electrolytes: 'Na⁺ 138 mmol/l · K⁺ 4,3 mmol/l · Ca²⁺ 1,15 mmol/l · Glukose 128 mg/dl'
+        },
+        advanced: {
+          labelDE: 'Erweitertes Trend-Monitoring (DO₂ / VO₂ & Organperfusion)',
+          labelTR: 'İleri Trend Monitörizasyonu (DO₂ / VO₂ & Organ Perfüzyonu)',
+          valuesDE: 'Ziel-MAP ≥ 65 mmHg (bei Hypertonikern/KHK ≥ 70 mmHg) · Stundendiurese ≥ 0,5 ml/kg/h · Laktat-Clearance alle 2 h prüfen · DO₂ = HZV × (1,34 × Hb × SaO₂)',
+          valuesTR: 'Hedef MAP ≥ 65 mmHg (Hipertansif/KAH hastada ≥ 70 mmHg) · Saatlik idrar ≥ 0,5 ml/kg/saat · 2 saatte bir laktat klirensi · DO₂ = Kalp Debisi × (1,34 × Hb × SaO₂)'
+        },
+        patternDE: 'Mustererkennung: Beginnende Gewebehypoperfusion (Laktat 3,1 mmol/l, BE −6,2 mmol/l, MAP 62 mmHg). Frühzeitige Differenzierung zwischen Vorlastmangel, Vasoplegie und Kontraktilitätsproblem verhindert das Multiorganversagen.',
+        patternTR: 'Patern Tanıma: Başlangıç evresinde doku hipoperfüzyonu (Laktat 3,1 mmol/l, BE −6,2 mmol/l, MAP 62 mmHg). Ön yük eksikliği, vazopleji ve kontraktilite sorununun erken ayrımı çoklu organ yetmezliğini önler.'
+      }
+    };
+
+    return monitors[profile] || monitors.general;
+  }
+
+  // 8.2 IMMEDIATE FIRST 3 ACTIONS CHALLENGE & PRÜFER FOLLOW-UP
+  function getImmediateThreeActionsChallenge(q) {
+    const profile = _detectScenarioProfile(q);
+    const gt = getMedicalGroundTruth(q);
+
+    const challenges = {
+      rbaa: {
+        vignetteTriggerDE: 'Prüfer-Impuls (St. Antonius-Hospital Eschweiler): Der Patient mit rupturiertem Bauchaortenaneurysma (RR 78/44 mmHg, wach) liegt auf dem OP-Tisch. Was sind Ihre ERSTEN 3 SOFORTMASSNAHMEN vor dem Hautschnitt?',
+        vignetteTriggerTR: 'Jüri Sorusu (St. Antonius-Hospital Eschweiler): Rüptüre AAA hastası (TA 78/44 mmHg, bilinci açık) ameliyat masasında. Cilt kesisinden önceki İLK 3 ACİL ADIMINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Permissive Hypotonie strikt einhalten (Ziel-RRsyst 70–90 mmHg) & wachen Patienten unter 100 % O₂-Maske mit 2 großlumigen Zugängen + A. radialis versorgen.',
+            actionTR: 'Permissif hipotansiyonu sıkıca koru (Hedef Sistolik TA 70–90 mmHg) ve uyanık hastaya %100 O₂ maskesi altında 2 geniş damar yolu + radyal arter aç.',
+            whyDE: 'Ein Blutdruckanstieg > 100 mmHg erhöht nach dem Laplace-Gesetz die Wandspannung und sprengt das retroperitoneale Hämatom („Popping the clot“).',
+            whyTR: 'Kan basıncının > 100 mmHg üzerine çıkması Laplace yasasına göre duvar gerilimini artırır ve retroperitoneal tamponadı patlatır ("Popping the clot").'
+          },
+          {
+            step: 2,
+            actionDE: 'Wach lagern, steril abwaschen & abdecken lassen – Narkoseeinleitung (RSI mit Etomidat/Ketamin + Rocuronium) ERST bei „Schnittbereit“-Ansage des Gefäßchirurgen!',
+            actionTR: 'Uyanık pozisyon verdir, steril boyatıp örttür – Anestezi indüksiyonunu (RSI) SADECE damar cerrahı "Bistüri elimde, kesmeye hazırım" dediğinde yap!',
+            whyDE: 'Muskelrelaxierung hebt den intraabdominellen Gegendruck (Bauchdeckentamponade) sofort auf und führt ohne unmittelbare Aortenklemme zum freien Verbluten.',
+            whyTR: 'Kas gevşemesi karın duvarı tamponadını anında ortadan kaldırır; aort hemen klemplenmezse serbest masif kanama ve arrest gelişir.'
+          },
+          {
+            step: 3,
+            actionDE: 'Massivtransfusionsprotokoll (EK:FFP:TK 4:4:1), Cell-Saver, Tranexamsäure 1 g i.v., aktives Wärmemanagement & Kalziumchlorid vor Declamping vorbereiten.',
+            actionTR: 'Masif transfüzyon protokolünü (4:4:1), Cell-Saver ı, Traneksamik asit 1 g i.v., aktif ısıtmayı ve Declamping öncesi Kalsiyum klorürü hazırla.',
+            whyDE: 'Verhindert die tödliche Trias und fängt beim Öffnen der Aortenklemme (Declamping) den sauren Laktat-/Kalium-Washout aus der unteren Körperhälfte ab.',
+            whyTR: 'Ölümcül triadı önler ve aort klempi açıldığında (Declamping) alt ekstremiteden gelen asidik laktat/potasyum washout şokunu karşılar.'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Frau Kollegin, warum fällt beim Declamping der Blutdruck so dramatisch ab, und warum geben Sie vorher kein Natriumbikarbonat bei geschlossener Klemme?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "Meslektaşım, Declamping anında tansiyon neden bu kadar dramatik düşer ve klemp kapalıyken neden Sodyum bikarbonat vermiyorsunuz?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Beim Öffnen der Klemme sinkt der systemische Gefäßwiderstand (SVR) schlagartig ab, während saures, laktat- und kaliumreiches Blut aus der ischämischen unteren Körperhälfte eingeschwemmt wird und negativ inotrop wirkt. Natriumbikarbonat wird in CO₂ und H₂O umgewandelt; CO₂ diffundiert frei in die Myokardzellen und verschlechtert die intrazelluläre Azidose, sofern wir nicht gleichzeitig über das Atemminutenvolumen hyperventilieren!“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "Klemp açıldığında sistemik vasküler direnç (SVR) aniden düşer ve iskemik alt yarıdan gelen laktat/potasyum yüklü asidik kan miyokardı baskılar. NaHCO₃ vücutta CO₂ ye dönüşür; CO₂ hücre zarından serbestçe geçerek miyokard içi paradoks asidozu derinleştirir, bu yüzden dakika ventilasyonu artırılmadan verilmemelidir!"'
+      },
+      picco: {
+        vignetteTriggerDE: 'Prüfer-Impuls (Intensivstation Eschweiler): Ihr septischer Patient zeigt im PiCCO: CI 4,2 l/min/m², GEDI 540 ml/m², SVV 19 %, ELWI 13 ml/kg, PVPI 3,6. Was sind Ihre ERSTEN 3 SCHRITTE?',
+        vignetteTriggerTR: 'Jüri Sorusu (Eschweiler Yoğun Bakım): Septik hastanızın PiCCO değerleri: CI 4,2 l/dk/m², GEDI 540 ml/m², SVV %19, ELWI 13 ml/kg, PVPI 3,6. İLK 3 ADIMINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Differenzierte Befundinterpretation: Intravasaler Vorlastmangel (GEDI 540 < 680 ml/m², SVV 19 % > 13 %) bei gleichzeitigem ARDS-Permeabilitätsödem (ELWI 13 ml/kg, PVPI 3,6 > 3,0).',
+            actionTR: 'Diferansiye yorum: İntravasküler ön yük eksikliği (GEDI 540 < 680 ml/m², SVV %19 > %13) İLE BİRLİKTE ARDS permeabilite akciğer ödemi (ELWI 13 ml/kg, PVPI 3,6 > 3,0).',
+            whyDE: 'Ein hoher PVPI (> 3,0) beweist ein kapilläres Leck (ARDS/Sepsis) statt einer kardialen Stauung; blinde hochvolumige Flüssigkeitsbolusgabe würde das Lungenödem verschlimmern.',
+            whyTR: 'Yüksek PVPI (> 3,0) kardiyojenik ödem değil kapiller kaçak (ARDS/Sepsis) olduğunu kanıtlar; körlemesine yüksek hacimli sıvı yüklemek akciğer ödemini ağırlaştırır.'
+          },
+          {
+            step: 2,
+            actionDE: 'Noradrenalin-Perfusor primär anpassen (Ziel-MAP ≥ 65 mmHg zur Anhebung des SVRI) + kleiner, kontrollierter Fluid-Challenge-Bolus (250 ml balancierte Elektrolytlösung) unter SVV/HZV-Reevaluation.',
+            actionTR: 'SVRI yı artırmak için öncelikle Noradrenalin infüzyonunu titre et (Hedef MAP ≥ 65 mmHg) + SVV/Debi kontrolü altında küçük kontrollü sıvı yüklemesi (250 ml dengeli kristalloid) uygula.',
+            whyDE: 'Noradrenalin rekrutiert venöses Unstressed Volume in Stressed Volume und hebt GEDI ohne zusätzliche extravaskuläre Lungenwasser-Beladung (ELWI).',
+            whyTR: 'Noradrenalin venöz "unstressed" hacmi "stressed" hacme dönüştürerek akciğer suyunu (ELWI) artırmadan GEDI yi yükseltir.'
+          },
+          {
+            step: 3,
+            actionDE: 'Validitätsbedingungen der SVV prüfen (Sinusrhythmus, kontrollierte Beatmung Vt ≥ 8 ml/kg, geschlossener Thorax) – bei Arrhythmie oder Spontanatmung stattdessen Passive Leg Raising (PLR) nutzen!',
+            actionTR: 'SVV nin geçerlilik şartlarını doğrula (Sinüs ritmi, kontrollü ventilasyon Vt ≥ 8 ml/kg, kapalı toraks) – aritmi veya spontan solunum varsa Passive Leg Raising (PLR) testi kullan!',
+            whyDE: 'Unter Vorhofflimmern oder Spontanatmung ist die SVV falsch-positiv und unbrauchbar; die volumetrische Thermodilution (GEDI/ITBI) bleibt dagegen valide.',
+            whyTR: 'Atriyal fibrilasyon veya spontan solunumda SVV yanlış pozitiftir ve kullanılamaz; volümetrik termodilüsyon (GEDI/ITBI) ise geçerliliğini korur.'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Warum ist der GEDI bei Ihrem beatmeten Patienten mit PEEP 15 mbar dem klassischen ZVD zur Beurteilung der Vorlast überlegen?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "PEEP 15 mbar ile ventile edilen hastanızda ön yükü değerlendirmede GEDI neden klasik SVB (ZVD) ölçümünden üstündür?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Der ZVD ist ein intravasaler Druckparameter, der durch hohen intrathorakalen Druck (PEEP 15 mbar) falsch-hoch übertragen wird, obwohl der Ventrikel leer ist. GEDI und ITBI werden über die Stewart-Hamilton-Thermodilutionskurve und die Mean Transit Time als echtes enddiastolisches Volumen (in ml/m²) berechnet und sind damit unabhängig vom Beatmungsdruck.“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "SVB (ZVD) basınç temelli bir parametredir ve yüksek intratorasik basınç (PEEP 15 mbar) nedeniyle ventrikül boş olsa bile yanlış yüksek ölçülür. GEDI ve ITBI ise Stewart-Hamilton termodilüsyon eğrisi üzerinden gerçek diyastol sonu hacmi (ml/m²) ölçtüğü için ventilatör basıncından etkilenmez."'
+      },
+      pacemaker: {
+        vignetteTriggerDE: 'Prüfer-Impuls (OP-Saal): Während einer hemikolektomischen Präparation mit monopolarem Kauter zeigt Ihr schrittmacherabhängiger Patient plötzlich eine Asystolie am Monitor. Ihre ERSTEN 3 SOFORTMASSNAHMEN?',
+        vignetteTriggerTR: 'Jüri Sorusu (Ameliyathane): Monopolar koter ile diseksiyon sırasında kalp pili bağımlı hastanızda monitörde aniden asistoli görülüyor. İLK 3 ACİL ADIMINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Sofortige Ansage an den Operateur: „Kauter sofort STOPP!“ + Blick auf die invasive Blutdruckkurve / Plethysmographie zur Differenzierung echter Asystolie vs. EKG-Artefakt.',
+            actionTR: 'Cerraha derhal seslen: "Koteri hemen DURDUR!" + Gerçek asistoli ile EKG artefaktını ayırt etmek için invaziv arter/pleth dalgasına bak.',
+            whyDE: 'Monopolare Hochfrequenzchirurgie erzeugt elektromagnetische Interferenz (EMI), die vom Schrittmacher als Eigenrhythmus fehlinterpretiert wird (Oversensing -> Pacing-Inhibition).',
+            whyTR: 'Monopolar koter elektromanyetik interferans (EMİ) yaratarak pilin bunu kendi kalp atımı sanmasına (Oversensing -> Pacing inhibisyonu) yol açar.'
+          },
+          {
+            step: 2,
+            actionDE: 'Ringmagnet auf das Schrittmacheraggregat auflegen -> schaltet den Herzschrittmacher in den asynchronen Modus (VOO / DOO, feste Frequenz ca. 85–100/min ohne Sensing) + Umstellung auf bipolare Diathermie.',
+            actionTR: 'Kalp pili jeneratörü üzerine halka mıknatıs koy -> pili asenkron moda (VOO / DOO, algılama olmadan sabit ~85–100/dk hız) geçirir + bipolar kotere geç.',
+            whyDE: 'Im VOO/DOO-Modus ist das Sensing abgeschaltet, sodass EMI das Pacing nicht mehr inhibieren kann. Neutralelektrode möglichst weit weg vom Aggregat platzieren.',
+            whyTR: 'VOO/DOO modunda algılama (sensing) kapanır, böylece koter paraziti pili durduramaz. Topraklama plağı cihazdan uzağa yerleştirilir.'
+          },
+          {
+            step: 3,
+            actionDE: 'Externe Defibrillations-/Pacing-Klebeelektroden (Anterior-Posterior-Position, ≥ 10 cm Abstand zum Aggregat) bereithalten & postoperativ Schrittmacher-Kontrolle veranlassen.',
+            actionTR: 'Eksternal defibrilasyon/pacing pedlerini (Anterior-Posterior pozisyon, cihaza ≥ 10 cm mesafe) hazır tut ve postoperatif pil kontrolü yaptır.',
+            whyDE: 'Falls beim asynchronen Pacing ein Stimulus in die vulnerable T-Welle fällt (R-auf-T-Phänomen -> Kammerflimmern), muss sofort defibrilliert werden können.',
+            whyTR: 'Asenkron pacing sırasında uyarı vulnerabl T dalgası üzerine düşerse (R-on-T fenomeni -> VF), anında defibrilasyon yapılabilmelidir.'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Und was passiert, wenn Sie denselben Ringmagneten auf einen implantierten Kardioverter-Defibrillator (ICD) legen? Schaltet der ICD dann auch auf VOO-Pacing um?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "Peki aynı halka mıknatısı implante kardiyoverter-defibrilatör (ICD) üzerine koyarsanız ne olur? ICD de VOO asenkron pacing moduna geçer mi?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Nein, das ist eine klassische Prüfungsfalle! Bei einem ICD deaktiviert die Magnetauflage AUSSCHLIESSLICH die antitachykarde Erkennung und Schockabgabe (damit EMI keinen inadäquaten Schock auslöst). Die antibradykarde Schrittmacherfunktion eines ICD bleibt unter Magnetauflage unverändert im synchronen Bedarfsmodus (VVI/DDD)! Ist ein ICD-Patient zusätzlich schrittmacherabhängig, muss der ICD vor OP mit dem Programmiergerät auf VOO/DOO umprogrammiert werden.“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "Hayır, bu klasik bir sınav tuzağıdır! ICD üzerine mıknatıs konduğunda SADECE antitakikardi algılaması ve şok verme özelliği devre dışı kalır (koter paraziti yanlış şok çaktırmasın diye). ICD nin antibradikardik pil fonksiyonu ise mıknatısa rağmen senkron modda (VVI/DDD) kalır! ICD hastası aynı zamanda pil bağımlıysa, ameliyat öncesi programlayıcı cihazla VOO/DOO moduna alınmalıdır."'
+      }
+    };
+
+    if (challenges[profile]) return challenges[profile];
+
+    // Tailored fallback for all other profiles using Ground Truth + Profile logic
+    const step1Drug = gt.dosages && gt.dosages[0] ? `${gt.dosages[0].drug} (${gt.dosages[0].dose})` : 'Adrenalin / Noradrenalin nach Wirkung';
+    const step2Drug = gt.dosages && gt.dosages[1] ? `${gt.dosages[1].drug} (${gt.dosages[1].dose})` : 'Differenzierte Volumen- & Organprotektion';
+    const koMistake = gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].mistake : 'Verzögerung der Kausaltherapie';
+    const koReason = gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].whyFatal : 'Führt zur raschen kardiopulmonalen Dekompensation.';
+
+    return {
+      vignetteTriggerDE: `Prüfer-Impuls (St. Antonius-Hospital Eschweiler · ${gt.topic}): Blick auf Vitalparameter & BGA – nennen Sie Ihre ERSTEN 3 SOFORTMASSNAHMEN in den nächsten 60 Sekunden!`,
+      vignetteTriggerTR: `Jüri Sorusu (St. Antonius-Hospital Eschweiler · ${gt.topic_tr}): Monitör ve kan gazına bakın – ilk 60 saniyedeki İLK 3 ACİL ADIMINIZI söyleyin!`,
+      firstThreeActions: [
+        {
+          step: 1,
+          actionDE: `Sofortige Problemerkennung nach ABCDE, Oberarzt-Backup rufen (Closed-Loop-Teamkommunikation) & 100 % O₂ / Atemwegssicherung prüfen.`,
+          actionTR: `ABCDE şemasına göre sorunu anında tanı, kıdemli/uzman desteği çağır (Closed-Loop ekip iletişimi) ve %100 O₂ / havayolu güvenliğini sağla.`,
+          whyDE: `Sichert das zerebrale und myokardiale Sauerstoffangebot (DO₂) vor jeder invasiven Zusatzmaßnahme.`,
+          whyTR: `Ek invaziv işlemlere geçmeden önce serebral ve miyokardiyal oksijen sunumunu (DO₂) güvenceye alır.`
+        },
+        {
+          step: 2,
+          actionDE: `Unmittelbare leitliniengerechte Kausaltherapie einleiten: ${step1Drug}.`,
+          actionTR: `Kılavuza uygun nedensel ilk tedaviyi derhal başlat: ${gt.firstDrugTR || step1Drug}.`,
+          whyDE: `${gt.guideline.recommendation}`,
+          whyTR: `${gt.guideline.recommendation_tr || gt.guideline.recommendation}`
+        },
+        {
+          step: 3,
+          actionDE: `Erweiterte Stabilisierung & Trend-Steuerung (${step2Drug}) sowie Vorbereitung der strukturierten Intensivübernahme.`,
+          actionTR: `İleri stabilizasyon ve trend takibi (${step2Drug}) ile yoğun bakım devrini organize et.`,
+          whyDE: `Verhindert Sekundärschäden, Rebound-Phänomene und das K.O.-Risiko („${koMistake}“).`,
+          whyTR: `İkincil organ hasarını, rebound fenomenini ve K.O. hatasını ("${koMistake}") önler.`
+        }
+      ],
+      examinerFollowupDE: `Prüfer-Nachfrage: „Frau Kollegin, warum wäre in genau dieser Situation ‚${koMistake}‘ ein schwerer pathophysiologischer Fehler?“`,
+      examinerFollowupTR: `Jüri Takip Sorusu: "Meslektaşım, tam bu klinik tabloda '${koMistake}' neden ağır bir patofizyolojik hata olurdu?"`,
+      examinerJustificationDE: `Antwort ab First Principles: „${koReason} Deshalb handeln wir strikt nach ${gt.guideline.title}: ${gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].correctAction : gt.guideline.recommendation}“`,
+      examinerJustificationTR: `İlk İlkelerden Yanıt: "${koReason} Bu nedenle ${gt.guideline.title} kılavuzuna göre hareket ediyoruz: ${gt.guideline.recommendation_tr || gt.guideline.recommendation}"`
+    };
+  }
+
+  // 8.3 FIRST-PRINCIPLES PHYSIOLOGY & PHARMACOLOGY
+  function getFirstPrinciplesPhysiology(q) {
+    const profile = _detectScenarioProfile(q);
+
+    const principles = {
+      rbaa: {
+        titleDE: 'First Principles: Laplace-Gesetz, Cross-Clamping-Nachlast & Declamping-Reperfusion',
+        titleTR: 'İlk İlkeler: Laplace Yasası, Klempleme Ard Yükü & Declamping Reperfüzyonu',
+        formulaOrPrinciple: 'Laplace-Gesetz: Wandspannung T = (P_transmural × Radius r) / (2 × Wanddicke d) · Ohm-Gesetz: MAP − ZVD = HZV × SVR',
+        mechanismDE: 'Beim Bauchaortenaneurysma ist der Radius (r) massiv vergrößert und die Wanddicke (d) ausgedünnt. Jede Erhöhung des transmuralen Blutdrucks (P) treibt die Wandspannung (T) proportional nach oben und führt zur freien Ruptur („Popping the clot“). Beim Setzen der infrarenalen Aortenklemme (Cross-Clamping) steigt der systemische Gefäßwiderstand (SVR) um ca. 40 % an -> akute linksventrikuläre Nachlasterhöhung mit Gefahr der Myokardischämie. Beim Öffnen der Klemme (Declamping) fällt der SVR schlagartig ab, während zentrales Blutvolumen in die maximal vasodilatierte untere Körperhälfte versackt und Laktat, H⁺-Ionen sowie Kalium zum Herzen gespült werden (Reperfusions-Schock).',
+        mechanismTR: 'Abdominal aort anevrizmasında yarıçap (r) çok büyümüş ve duvar kalınlığı (d) incelmiştir. Transmural kan basıncındaki (P) her artış duvar gerilimini (T) doğrusal olarak artırarak pıhtıyı koparır ("Popping the clot"). Aort klemplendiğinde (Cross-Clamping) sistemik vasküler direnç (SVR) %40 artar -> akut sol ventrikül ard yük (afterload) artışıyla miyokard iskemisi riski doğar. Klemp açıldığında (Declamping) SVR aniden düşer, santral kan hacmi vazodilate alt ekstremiteye göllenir ve laktat, H⁺ ile potasyum kalbe hücum eder (Reperfüzyon şoku).',
+        pharmacologyDE: 'Vor RSI keine Vasodilatatoren; zur Einleitung am schnittbereiten Patienten hämodynamisch neutrale Substanzen (Etomidat 0,2–0,3 mg/kg oder Ketamin/Opioid) wählen. Während Cross-Clamping bei Nachlast-Exzess kurzwirksame Vasodilatatoren (Urapidil / Nitroglycerin); 5 Minuten VOR Declamping Vasodilatatoren stoppen, Volumenvorlast anheben, Noradrenalin-Perfusor hochstellen und Kalziumchlorid 10 % 10 ml i.v. als kardioprotektiven Antagonisten gegen den Kalium-Washout applizieren.',
+        pharmacologyTR: 'RSI öncesi vazodilatatör verilmez; cerrah kesmeye hazırken hemodinamik nötr ajanlar (Etomidat 0,2–0,3 mg/kg veya Ketamin/Opioid) seçilir. Klemp süresince aşırı afterload varsa kısa etkili vazodilatatör (Urapidil/Nitrogliserin); Declamping den 5 dakika ÖNCE vazodilatatörler kapatılır, volüm doldurulur, Noradrenalin artırılır ve potasyum washout etkisine karşı Kalsiyum klorür %10 10 ml i.v. yapılır.'
+      },
+      picco: {
+        titleDE: 'First Principles: Stewart-Hamilton-Thermodilution, Frank-Starling-Kurve & Starling-Glykokalyx',
+        titleTR: 'İlk İlkeler: Stewart-Hamilton Termodilüsyonu, Frank-Starling Eğrisi & Glikokaliks',
+        formulaOrPrinciple: 'HZV = V_Injektat × (T_Blut − T_Injektat) × k / ∫ ΔT_Blut(t) dt · GEDI = ITTV − PTV · SVV = (SV_max − SV_min) / SV_mean',
+        mechanismDE: 'Die transpulmonale Thermodilution (ZVK-Kältebolus -> femorale Thermistor-Arterie) integriert die Temperatur-Zeit-Kurve nach Stewart-Hamilton. Aus dem Produkt von HZV und Mean Transit Time (MTt) ergibt sich das intrathorakale Thermovolumen (ITTV), aus der exponentiellen Downslope-Time (DSt) das pulmonale Thermovolumen (PTV). Die Differenz ITTV − PTV liefert das globale enddiastolische Volumen (GEDI, Norm 680–800 ml/m²) als echte volumetrische Vorlast aller 4 Herzkammern. Die Pulskonturanalyse misst über Beatmungs-induzierte intrathorakale Druckschwankungen die Schlagvolumenvariation (SVV): Liegt der Ventrikel auf dem steilen Teil der Frank-Starling-Kurve, schwankt das Schlagvolumen um > 12–13 % (Fluid Responder).',
+        mechanismTR: 'Transpulmoner termodilüsyon (SVK soğuk bolus -> femoral termistörlü arter) Stewart-Hamilton denklemiyle sıcaklık-zaman eğrisini hesaplar. Kalp debisi ile Ortalama Geçiş Süresinin (MTt) çarpımı intratorasik termal hacmi (ITTV), üstel azalma süresi (DSt) ise pulmoner termal hacmi (PTV) verir. ITTV − PTV farkı 4 kalp boşluğunun gerçek hacimsel ön yükü olan GEDI yi (Normal 680–800 ml/m²) verir. SVV ise mekanik ventilasyonun yarattığı atım hacmi dalgalanmasını ölçer: Ventrikül Frank-Starling eğrisinin dik kısmındaysa SVV > %12–13 olur (Sıvı yanıtlı).',
+        pharmacologyDE: 'Noradrenalin wirkt über α₁-Adrenozeptoren nicht nur auf arterielle Widerstandsgefäße (SVR ↑), sondern auch auf venöse Kapazitätsgefäße (Splanchnikus): Es konvertiert „Unstressed Volume“ in hämodynamisch wirksames „Stressed Volume“, erhöht den mittleren systemischen Füllungsdruck (Pmsf) und verbessert GEDI, ohne den Extravaskulären Lungenwasserindex (ELWI, Norm 3–7 ml/kg) durch exzessive Kristalloidgabe in die geschädigte endotheliale Glykokalyx zu treiben.',
+        pharmacologyTR: 'Noradrenalin α₁-reseptörler üzerinden sadece arteriyel direnci (SVR ↑) artırmakla kalmaz, venöz kapasitans damarlarındaki "Unstressed Volume"u hemodinamik aktif "Stressed Volume"a dönüştürür; böylece hasarlı endotel glikokaliksinden akciğer dokusuna sıvı kaçırmadan (ELWI yi yükseltmeden) GEDI yi iyileştirir.'
+      },
+      pacemaker: {
+        titleDE: 'First Principles: Sensing-Schwellen, Reizschwelle, Reed-Schalter & R-auf-T-Phänomen',
+        titleTR: 'İlk İlkeler: Algılama Eşiği (Sensing), Uyarı Eşiği, Reed Anahtarı & R-on-T Fenomeni',
+        formulaOrPrinciple: 'NBG-Code: 1. Ort der Stimulation (V/A/D) · 2. Ort der Wahrnehmung (V/A/D/O) · 3. Betriebsart (I=Inhibited, D=Dual, O=None/Asynchron)',
+        mechanismDE: 'Ein Herzschrittmacher im Bedarfsmodus (z.B. VVI oder DDD) horcht über seine Elektrode auf intrakardiale Potenziale (Sensing in Millivolt). Hochfrequente Wechselströme der monopolaren Diathermie werden als schnelle ventrikuläre Eigenfrequenz fehlinterpretiert (Oversensing) -> der Schrittmacher inhibiert seine Impulsabgabe -> beim schrittmacherabhängigen Patienten ohne Eigenrhythmus resultiert eine sofortige Asystolie. Ein aufgelegter Ringmagnet schließt den magnetischen Reed-Schalter (bzw. Hall-Sensor) und erzwingt beim Schrittmacher den asynchronen Modus (VOO/DOO): Das Sensing wird auf „O“ gesetzt, das Gerät stimuliert starr weiter. Beim ICD hingegen sperrt der Magnet nur die Tachyarrhythmie-Therapie (ATP + Schock), lässt aber den Schrittmacherteil im VVI/DDD-Modus!',
+        mechanismTR: 'İhtiyaç modundaki (VVI veya DDD) bir kalp pili elektrodu üzerinden intrakardiyak potansiyelleri (milivolt düzeyinde Sensing) dinler. Monopolar koterin yüksek frekanslı akımı pil tarafından hastanın kendi kalp atımı sanılır (Oversensing) -> pil uyarı vermeyi durdurur (inhibisyon) -> kendi ritmi olmayan pil bağımlı hastada anında asistoli gelişir. Halka mıknatıs Reed anahtarını kapatarak kalp pilini asenkron moda (VOO/DOO) alır: Algılama "O" olur ve cihaz sabit hızda uyarır. ICD de ise mıknatıs SADECE taşiaritmi şokunu kapatır, pil kısmını VVI/DDD modunda bırakır!',
+        pharmacologyDE: 'Elektrolytverschiebungen und Pharmaka verändern die myokardiale Reizschwelle direkt über das Ruhemembranpotenzial (Nernst-Gleichung): Akute Hyperkaliämie depolarisiert das Ruhepotenzial, inaktiviert schnelle Na⁺-Kanäle und kann zum Exit-Block (Loss of Capture trotz Schrittmacher-Spike) führen. Bei pharmakologischer Überbrückung einer drittgradigen AV-Blockade hilft kein Atropin (wirkt nur nodal am AV-Knoten, nicht infranodal im His-Purkinje-System), sondern Adrenalin-Perfusor (2–10 µg/min) oder Isoprenalin bis zum transkutanen/transvenösen Pacing!',
+        pharmacologyTR: 'Elektrolit bozuklukları miyokard uyarılma eşiğini Nernst denklemi üzerinden doğrudan değiştirir: Akut hiperkalemi dinlenim potansiyelini depolarize ederek hızlı Na⁺ kanallarını inaktive eder ve Exit-Block (pil dikeni olmasına rağmen yakalama kaybı / Loss of Capture) yapar. İnfra-nodal 3. derece AV blokta Atropin etkisizdir (sadece AV düğümde etkilidir); transkütan pacinge kadar Adrenalin (2–10 µg/dk) veya İzoprenalin kullanılır!'
+      },
+      pharmacology: {
+        titleDE: 'First Principles: Blut-Gas-Verteilungskoeffizient (λ_B/G), Meyer-Overton-Regel & Kontextsensitive Halbwertszeit',
+        titleTR: 'İlk İlkeler: Kan-Gaz Dağılım Katsayısı (λ_B/G), Meyer-Overton Kuralı & Bağlama Duyarlı Yarı Ömür',
+        formulaOrPrinciple: 'Einleitungsgeschwindigkeit ∝ 1 / (λ_Blut/Gas × HZV) × Alveoläre Ventilation · Potenz (1/MAC) ∝ λ_Öl/Gas (Meyer-Overton)',
+        mechanismDE: 'Die hypnotische Wirkung im ZNS hängt allein vom alveolären Partialdruck (P_A, im Gleichgewicht mit P_Gehirn) ab, nicht von der im Blut gelösten Gasmenge! Ein niedriger Blut-Gas-Verteilungskoeffizient (Desfluran λ_B/G = 0,42; Sevofluran = 0,65; Isofluran = 1,4) bedeutet geringe Löslichkeit im Blut: Das Blut nimmt wenig Gas aus der Alveole auf, sodass sich das Verhältnis F_A/F_I rasant an 1,0 annähert -> schnelles Einschlafen und Aufwachen. Paradoxon des Herzzeitvolumens: Ein NIEDRIGES HZV (z.B. im Schock) beschleunigt das Anfluten volatiler Anästhetika, weil weniger Blut pro Zeiteinheit Gas aus der Alveole abtransportiert und F_A/F_I dadurch viel schneller steigt (Überdosierungsgefahr beim Schockpatienten!).',
+        mechanismTR: 'MSS deki hipnotik etki kanda çözünen gaz miktarına değil, doğrudan alveoler parsiyel basınca (P_A = P_Beyin) bağlıdır! Düşük kan-gaz dağılım katsayısı (Desfluran λ_B/G = 0,42; Sevofluran = 0,65; İzofluran = 1,4) kanda düşük çözünürlük demektir: Kan alveolden az gaz çeker, F_A/F_I oranı hızla 1,0 e yaklaşır -> hızlı uyuma ve uyanma. Kalp Debisi Paradoksu: DÜŞÜK kalp debisi (örn. şoktaki hasta) uçucu anesteziklerin etkisini HIZLANDIRIR, çünkü alveolden birim zamanda daha az gaz taşınır ve F_A/F_I çok hızlı yükselir (şoktaki hastada aşırı doz tehlikesi!).',
+        pharmacologyDE: 'Die Wirkstärke (MAC₅₀ = alveoläre Konzentration, bei der 50 % der Patienten auf Hautschnitt nicht abwehren) folgt der Meyer-Overton-Lipidlöslichkeitsregel (Öl-Gas-Koeffizient): Sevofluran (Öl/Gas ≈ 50) hat einen MAC von ~2,0 Vol-%, Desfluran (Öl/Gas ≈ 19) einen MAC von ~6,0 Vol-%. Bei TIVA beschreibt die Kontextsensitive Halbwertszeit (CSHT) die Zeit bis zum 50 %-igen Abfall der Plasmakonzentration nach Infusionsstopp in Abhängigkeit von der Infusionsdauer: Bei Remifentanil bleibt sie durch unspezifische Gewebe-/Plasmaesterasen konstant bei 3–4 Minuten, während sie bei Fentanyl nach > 2 Stunden durch Rückverteilung aus dem Fettgewebe steil auf > 200 Minuten ansteigt.',
+        pharmacologyTR: 'Anestezik güç (MAC₅₀) Meyer-Overton yağda çözünürlük kuralını (yağ-gaz katsayısı) izler: Sevofluran (Yağ/Gaz ≈ 50) MAC ~%2,0 iken Desfluran (Yağ/Gaz ≈ 19) MAC ~%6,0 dır. TİVA da Bağlama Duyarlı Yarı Ömür (CSHT), infüzyon süresiyle bağlantılı olarak plazma konsantrasyonunun %50 düşme süresidir: Remifentanilde non-spesifik esterazlar sayesinde infüzyon ne kadar sürerse sürsün 3–4 dakikada sabit kalırken, Fentanilde yağ dokusundan geri dağılım nedeniyle > 2 saat sonra > 200 dakikaya fırlar.'
+      },
+      icp: {
+        titleDE: 'First Principles: Monro-Kellie-Doktrin, Zerebrale Autoregulation & CO₂-Vasoreaktivität',
+        titleTR: 'İlk İlkeler: Monro-Kellie Doktrini, Serebral Otoregülasyon & CO₂ Vazoreaktivitesi',
+        formulaOrPrinciple: 'V_Gehirn (80 %) + V_Blut (10 %) + V_Liquor (10 %) = konstant · CPP = MAP − ICP (Ziel 60–70 mmHg)',
+        mechanismDE: 'Nach der Monro-Kellie-Doktrin ist das Innenvolumen der starren Schädelkapsel konstant. Wächst eine Raumforderung (Hämatom/Ödem), werden zunächst Liquor und venöses Blut verdrängt; danach steigt der ICP exponentiell an (Erschöpfung der intrakraniellen Compliance). Der zerebrale Blutfluss (CBF) hängt linear vom PaCO₂ ab: Pro 1 mmHg PaCO₂-Anstieg steigt der CBF um ca. 3–4 % durch H⁺-vermittelte Vasodilatation der zerebralen Arteriolen -> das intrakranielle Blutvolumen (V_Blut) wächst -> ICP-Krise! Umgekehrt führt Hyperventilation (PaCO₂ < 30 mmHg) zu gefährlicher zerebraler Vasokonstriktion und sekundärer Hirnischämie.',
+        mechanismTR: 'Monro-Kellie doktrinine göre sert kafatası içindeki toplam hacim (Beyin %80 + Kan %10 + BOS %10) sabittir. Hematom/ödem büyüdüğünde önce BOS ve venöz kan yer değiştirir; kompliyans tükendiğinde ICP üstel olarak fırlar. Serebral kan akımı (CBF) PaCO₂ ile doğrusal ilişkilidir: PaCO₂ deki her 1 mmHg artış H⁺ aracılı serebral vazodilatasyonla CBF yi %3–4 artırır -> kafa içi kan hacmi artar -> ICP krizi! Tersine aşırı hiperventilasyon (PaCO₂ < 30 mmHg) tehlikeli serebral vazokonstriksiyon ve iskemi yapar.',
+        pharmacologyDE: 'Osmotherapie (Mannitol 20 % 0,5–1 g/kg oder NaCl 10–20 %) baut über eine intakte Blut-Hirn-Schranke einen osmotischen Gradienten auf und entzieht dem Hirnparenchym freies Wasser. TIVA mit Propofol/Sufentanil senkt den zerebralen Sauerstoffverbrauch (CMRO₂) und gekoppelt den CBF/ICP, während volatile Anästhetika ab > 1,0 MAC die zerebrale Autoregulation aufheben und durch direkte Vasodilatation den ICP steigern (Entkopplung von CBF und CMRO₂).',
+        pharmacologyTR: 'Osmoterapi (Mannitol %20 0,5–1 g/kg veya hipertonik NaCl) sağlam kan-beyin bariyeri üzerinden osmotik gradyent oluşturarak beyin parankiminden serbest su çeker. Propofol/Sufentanil TİVA serebral metabolik hızı (CMRO₂) ve buna bağlı CBF/ICP yi düşürürken, uçucu anestezikler > 1,0 MAC üzerinde doğrudan serebral vazodilatasyon yaparak ICP yi artırır.'
+      },
+      mh: {
+        titleDE: 'First Principles: Ryanodin-Rezeptor-1 (RYR1) & Entkopplung der sarkoplasmatischen Kalzium-Homöostase',
+        titleTR: 'İlk İlkeler: Riyanodin Reseptörü-1 (RYR1) & Sarkoplazmik Kalsiyum Homeostazı',
+        formulaOrPrinciple: 'RYR1-Daueröffnung -> [Ca²⁺]_zytosolisch ↑↑↑ -> ATP-Hydrolyse -> O₂-Verbrauch ↑ + CO₂ ↑↑ + Laktat ↑↑ + Wärme ↑↑ -> Rhabdomyolyse',
+        mechanismDE: 'Volatile Inhalationsanästhetika (Sevofluran, Desfluran, Isofluran) und Succinylcholin bewirken bei genetischer Mutation des Ryanodin-Rezeptors (RYR1 auf dem sarkoplasmatischen Retikulum der Skelettmuskelzelle) ein unkontrolliertes Offenstehen des Kalziumkanals. Der massive zytosolische Ca²⁺-Einstrom erzwingt eine permanente Aktin-Myosin-Dauerkontraktion (Rigidität/Masseterspasmus). Die SERCA-Pumpen versuchen unter gigantischem ATP-Verbrauch vergeblich, Ca²⁺ zurückzupumpen -> explosionsartiger aerober und anaerober Hypermetabolismus mit exzessiver CO₂-Produktion (EtCO₂-Sprung als frühestes Zeichen!), Laktatazidose, Thermogenese (> 40 °C) und Untergang der Sarkolemm-Membran (Hyperkaliämie + Myoglobinurie).',
+        mechanismTR: 'Uçucu anestezikler ve Süksinilkolin, iskelet kasındaki sarkoplazmik retikulum üzerinde bulunan Riyanodin reseptörü (RYR1) mutasyonunda kalsiyum kanalının sürekli açık kalmasına yol açar. Sitozolik Ca²⁺ taşması kalıcı aktin-miyozin kasılmasını (rijidite/masseter spazmı) tetikler. SERCA pompaları Ca²⁺ u geri pompalamak için devasa ATP tüketir -> patlayıcı aerobik ve anaerobik hipermetabolizma sonucunda aşırı CO₂ üretimi (en erken bulgu EtCO₂ fırlaması!), laktik asidoz, ısı artışı ve kas zarı yıkımı (hiperkalemi + miyoglobinüri) gelişir.',
+        pharmacologyDE: 'Dantrolen (initial 2,5 mg/kg i.v.) bindet spezifisch an den RYR1-Rezeptor und blockiert die Kalziumfreisetzung aus dem sarkoplasmatischen Retikulum, ohne das neuromuskuläre Aktionspotenzial zu beeinflussen. Exogene Kalziumkanalblocker (z.B. Verapamil/Diltiazem) wirken am L-Typ-Kanal (DHPR) und interagieren unter Dantrolen zu letaler Hyperkaliämie und therapierefraktärer Asystolie (absolutes K.O.-Verbot!).',
+        pharmacologyTR: 'Dantrolen (başlangıç 2,5 mg/kg i.v.) doğrudan RYR1 reseptörüne bağlanarak sarkoplazmik retikulumdan kalsiyum salınımını durdurur. Kalsiyum kanal blokerleri (Verapamil/Diltiazem) ise Dantrolen ile etkileşerek ölümcül hiperkalemi ve dirençli asistoli yaptığı için kesinlikle kontrendikedir (K.O. kriteri!).'
+      },
+      last: {
+        titleDE: 'First Principles: Spannungsabhängige Na⁺-Kanal-Blockade, Ion-Trapping & Lipid-Sink-Mechanismus',
+        titleTR: 'İlk İlkeler: Voltaj Kapılı Na⁺ Kanal Blokajı, İyon Tuzağı & Lipid-Sink Mekanizması',
+        formulaOrPrinciple: 'Henderson-Hasselbalch: pH = pK_a + log([Base ungeladen] / [Kation BH⁺]) · Azidose -> intrazelluläres Ion-Trapping ↑',
+        mechanismDE: 'Lokalanästhetika sind schwache Basen (pK_a 7,7–8,1): Die ungeladene lipophile Base diffundiert durch die Nerven-/Myokardmembran, wird intrazellulär protoniert (BH⁺) und blockiert den spannungsabhängigen schnellen Natriumkanal von der Zytoplasmasseite. Im ZNS fallen zuerst inhibitorische GABAerge Interneurone aus (Exzitation/Krampfanfall), bevor eine globale Depression eintritt. Am Herzen hat vor allem lipophiles Bupivacain eine extrem langsame Dissoziationskinetik („Fast-in, slow-out“) am kardialen Na⁺-Kanal (Nav1.5) und hemmt zusätzlich die mitochondriale Fettsäureoxidation (Carnitin-Acylcarnitin-Translokase) -> refraktärer kardiogener Schock.',
+        mechanismTR: 'Lokal anestezikler zayıf bazdır (pK_a 7,7–8,1): Yüksüz lipofilik baz hücre zarından geçer, hücre içinde protonlanarak (BH⁺) voltaj kapılı hızlı sodyum kanalını iç yüzeyden bloke eder. MSS de önce inhibitör ara nöronlar bloke olduğu için eksitasyon/nöbet, ardından depresyon gelişir. Kalpte ise özellikle lipofilik Bupivakain kardiyak Na⁺ kanalından (Nav1.5) çok yavaş ayrılır ("Fast-in, slow-out") ve mitokondriyal yağ asidi oksidasyonunu bozarak dirençli kardiyojenik şok yapar.',
+        pharmacologyDE: 'Intralipid 20 % (1,5 ml/kg Bolus) wirkt bimodal: 1. „Lipid Sink / Lipid Shuttle“ bildet ein intravasales Lipidkompartiment, das lipophiles Bupivacain/Ropivacain aus Herz und Gehirn abzieht; 2. Direkte Bereitstellung freier Fettsäuren überwindet die mitochondriale ATP-Blockade im Myokard. Bei Azidose (Hyperkapnie/Hypoxie) sinkt die Proteinbindung im Plasma und intrazellulär entsteht vermehrt geladenes BH⁺, das die Zelle nicht mehr verlassen kann („Ion-Trapping“) -> daher sofort 100 % O₂ und Normokapnie sichern!',
+        pharmacologyTR: 'İntralipid %20 (1,5 ml/kg bolus) çift mekanizmayla çalışır: 1. "Lipid Sink / Shuttle" damar içinde lipofilik ilaçları kalp ve beyinden çeken bir lipid fazı oluşturur; 2. Miyokarda doğrudan serbest yağ asidi sağlayarak mitokondriyal ATP üretimini yeniden başlatır. Asidoz (hiperkapni/hipoksi) plazma protein bağlanmasını azaltır ve hücre içinde "İyon Tuzağı" (Ion-Trapping) yaratarak kardiyotoksisiteyi katlar -> bu yüzden derhal %100 O₂ ve normokapni şarttır!'
+      },
+      icu_sepsis: {
+        titleDE: 'First Principles: Henderson-Hasselbalch vs. Stewart-Modell (SID) & Pulmonaler Driving Pressure (ΔP)',
+        titleTR: 'İlk İlkeler: Henderson-Hasselbalch vs. Stewart Modeli (SID) & Driving Pressure (ΔP)',
+        formulaOrPrinciple: 'Stewart SID_app = ([Na⁺] + [K⁺] + [Ca²⁺] + [Mg²⁺]) − ([Cl⁻] + [Laktat⁻]) ≈ 40 mmol/l · Anionenlücke AG = [Na⁺] − ([Cl⁻] + [HCO₃⁻]) (Norm 8–12)',
+        mechanismDE: 'Nach Peter Stewart bestimmen drei unabhängige Variablen den pH-Wert: 1. PaCO₂, 2. die Konzentration schwacher Säuren (A_tot, v.a. Albumin und Phosphat) und 3. die Strong Ion Difference (SID ≈ 40 mmol/l). Jede Verkleinerung der SID (z.B. durch Chlorid-Exzess nach NaCl 0,9 % mit Cl⁻ 154 mmol/l -> SID = 0, oder durch Laktat-Anstieg im Schock) erzwingt aus Gründen der Elektroneutralität die Dissoziation von Wasser (H₂O -> H⁺ + OH⁻) und erzeugt eine metabolische Azidose. Umgekehrt bewirkt eine Hypoalbuminämie beim Intensivpatienten eine metabolische Alkalose, die eine gleichzeitige Laktatazidose im klassischen Base Excess maskieren kann!',
+        mechanismTR: 'Stewart modeline göre pH ı üç bağımsız değişken belirler: 1. PaCO₂, 2. Zayıf asitler (A_tot, özellikle Albümin ve Fosfat) ve 3. Güçlü İyon Farkı (SID ≈ 40 mmol/l). SID nin daralması (örn. %0,9 NaCl ile aşırı klor yükü veya şokta laktat artışı) elektroneutralite yasası gereği suyun ayrışmasını (H₂O -> H⁺ + OH⁻) zorlayarak metabolik asidoz yaratır. Tersine yoğun bakım hastasındaki hipoalbüminemi metabolik alkaloz yaratarak eşlik eden laktik asidozu gizleyebilir!',
+        pharmacologyDE: 'In der ARDS-Beatmung („Baby Lung“-Konzept nach Gattinoni) ist das belüftete Restlungenvolumen stark geschrumpft. Der Driving Pressure (ΔP = Pplat − PEEP = Vt / C_RS, Ziel < 15 mbar) repräsentiert die zyklische Dehnung (Strain) bezogen auf die funktionelle Lungengröße (Compliance C_RS) und korreliert direkter mit dem Baro-/Volutrauma als das reine Atemzugvolumen pro kg Idealgewicht.',
+        pharmacologyTR: 'ARDS ventilasyonunda ("Baby Lung" konsepti) havalanan fonksiyonel akciğer hacmi küçülmüştür. Driving Pressure (ΔP = Pplat − PEEP = Vt / Kompliyans, Hedef < 15 mbar) fonksiyonel akciğer büyüklüğüne düşen siklik gerilimi (strain) gösterir ve sağkalımla en güçlü korelasyona sahiptir.'
+      }
+    };
+
+    if (principles[profile]) return principles[profile];
+
+    return {
+      titleDE: 'First Principles: Sauerstoffangebot (DO₂), Frank-Starling-Gesetz & Rezeptor-Pharmakodynamik',
+      titleTR: 'İlk İlkeler: Oksijen Sunumu (DO₂), Frank-Starling Yasası & Reseptör Farmakodinamiği',
+      formulaOrPrinciple: 'DO₂ = HZV × CaO₂ = (HF × SV) × (1,34 × Hb × SaO₂ + 0,003 × PaO₂) · MAP − ZVD = HZV × SVR',
+      mechanismDE: 'Jede akute perioperative Dekompensation lässt sich auf die Determinanten der Gewebeoxygenierung (DO₂ vs. VO₂) und des Perfusionsdrucks (MAP = HZV × SVR + ZVD) zurückführen: 1. Atemweg & Alveolargas (SaO₂/PaO₂), 2. Sauerstoffträger (Hb), 3. Herzzeitvolumen (Vorlast/GEDI, Kontraktilität/Inotropie, Nachlast/SVR, Herzfrequenz/Rhythmus). Sinkt DO₂ unter die kritische Schwelle (~300 ml/min/m²), schaltet die Zelle von aerober Phosphorylierung (36 ATP/Glukose) auf anaerobe Glykolyse (2 ATP + Laktatbildung) um.',
+      mechanismTR: 'Her akut perioperatif dekompansasyon doku oksijenasyonu (DO₂ vs. VO₂) ve perfüzyon basıncı (MAP = Kalp Debisi × SVR + SVB) bileşenlerine dayanır: 1. Havayolu ve alveoler gaz (SaO₂/PaO₂), 2. Taşıyıcı (Hb), 3. Kalp debisi (Ön yük, Kontraktilite, Ard yük/SVR, Hız/Ritim). DO₂ kritik eşiğin altına düştüğünde hücre aerobik fosforilasyondan (36 ATP) anaerobik glikolize (2 ATP + Laktat) geçer.',
+      pharmacologyDE: 'Unsere medikamentöse Steuerung greift gezielt an diesen Stellschrauben an: α₁-Agonisten (Noradrenalin, Phenylephrin) steigern SVR und venösen Rückstrom (Stressed Volume); β₁-Agonisten (Dobutamin, Adrenalin in niedriger Dosis) steigern über cAMP und PKA den intrazellulären Ca²⁺-Transienten (Inotropie + Chronotropie); balancierte Kristalloide optimieren über das Frank-Starling-Gesetz die Sarkomer-Vordehnung bis zum Optimum der Aktin-Myosin-Überlappung.',
+      pharmacologyTR: 'Farmakolojik yönetimimiz bu denklemin değişkenlerini hedefler: α₁-agonistler (Noradrenalin) SVR ve venöz dönüşü (Stressed Volume) artırır; β₁-agonistler (Dobutamin, düşük doz Adrenalin) cAMP üzerinden hücre içi Ca²⁺ geçişini artırarak inotropiyi güçlendirir; dengeli kristalloidler ise Frank-Starling yasasına göre sarkomer ön gerilimini optimize eder.'
+    };
+  }
+
+  // 8.4 BEDSIDE COMMUNICATION (FRÜHBESPRECHUNG, PRÄMEDIKATIONSGESPRÄCH) & KLINIK-JARGON
+  function getBedsideCommunicationAndJargon(q) {
+    const profile = _detectScenarioProfile(q);
+    const gt = getMedicalGroundTruth(q);
+
+    const comms = {
+      rbaa: {
+        fruehbesprechungDE: '„Guten Morgen zusammen, ich übergebe aus dem Nachtdienst Saal 2: 72-jähriger Patient mit gedeckt rupturiertem infrarenalem BAA. Wir haben den Patienten unter strikter permissiver Hypotonie (RRsyst 80 mmHg) wach im Saal gelagert, erst am schnittbereiten, steril abgedeckten Patienten per RSI eingeleitet und das Declamping unter Noradrenalin-, Volumen- und Kalzium-Vorladung hämodynamisch stabil gemeistert. Nach ROTEM-gestützter Substitution (4 g Fibrinogen, 1 g Tranexamsäure, 6 EK, 6 FFP) wurde er normotherm und katecholaminarm auf unsere operative ITS übernommen.“',
+        fruehbesprechungTR: '"Günaydın arkadaşlar, gece nöbetinden Salon 2 yi devrediyorum: 72 yaşında kapalı rüptüre infrarenal AAA hastası. Hastayı sıkı permissif hipotansiyon (Sistolik TA 80 mmHg) altında uyanık olarak masaya aldık, yalnızca cerrah steril örtüp kesmeye hazır olduğunda RSI ile uyuttuk ve Declamping aşamasını Noradrenalin, volüm ve kalsiyum ön yüklemesiyle stabil yönettik. ROTEM hedefli replasman sonrası normotermik olarak yoğun bakımımıza devraldık."',
+        praemedikationDE: '„Herr Müller, an Ihrer Hauptschlagader im Bauchraum besteht eine akute Ausweitung, die sofort operiert werden muss. Zu Ihrer maximalen Sicherheit legen wir Ihnen schon im wachen Zustand unter örtlicher Betäubung einen Blutdruckmessschlauch am Handgelenk an und geben Ihnen die Schlafmedikamente erst unmittelbar, wenn das OP-Team komplett bereitsteht.“',
+        praemedikationTR: '"Sayın Müller, karın ana atardamarınızda acil ameliyat gerektiren bir genişleme var. Maksimum güvenliğiniz için el bileğinizden tansiyon ölçüm kateterini siz uyanıkken lokal anesteziyle takacağız ve uyku ilaçlarını cerrahi ekip tamamen hazır olduğunda vereceğiz."',
+        jargonTerms: [
+          { abbr: 'rBAA', termDE: 'Rupturiertes Bauchaortenaneurysma', meaningDE: 'Akuter gefäßchirurgischer Notfall mit hoher Letalität', meaningTR: 'Yüksek mortaliteli akut rüptüre abdominal aort anevrizması' },
+          { abbr: 'Schnittbereit-RSI', termDE: 'Einleitung am abgewaschenen Patienten', meaningDE: 'Relaxierung erst, wenn Chirurg das Skalpell in der Hand hält (Erhalt der Bauchdeckentamponade)', meaningTR: 'Karın duvarı tamponadını kaybetmemek için cerrah bistüriyi eline aldığında yapılan RSI' },
+          { abbr: 'Cross-Clamping', termDE: 'Aortales Abklemmen', meaningDE: 'Akute Nachlasterhöhung (SVR ↑↑) durch Ausklemmen der Aorta', meaningTR: 'Aortun klemplenmesiyle gelişen akut ard yük (afterload) artışı' },
+          { abbr: 'Declamping-Schock', termDE: 'Reperfusions-Hypotonie beim Öffnen der Klemme', meaningDE: 'Schlagartiger SVR-Abfall + Einschwemmung von Laktat und Kalium aus der unteren Körperhälfte', meaningTR: 'Klemp açıldığında ani SVR düşüşü ve alt ekstremiteden laktat/potasyum washout şoku' }
+        ]
+      },
+      picco: {
+        fruehbesprechungDE: '„Aus dem Intensivdienst Bett 4: 64-jähriger Patient im septischen Schock bei Pneumonie. Da unter PEEP 14 mbar und Vorhofflimmern weder ZVD noch SVV valide waren, haben wir das erweiterte Hämodynamik-Monitoring mittels PiCCO etabliert. Die Thermodilution zeigte initial ein erniedrigtes GEDI von 540 ml/m² bei gleichzeitig erhöhtem ELWI von 13 ml/kg und PVPI von 3,6 im Sinne eines ARDS-Permeabilitätsödems. Wir führen ihn daher restriktiv unter Noradrenalin-Titration.“',
+        fruehbesprechungTR: '"Yoğun bakım Yatak 4 ten devir: Pnömoniye sekonder septik şokta 64 yaşında hasta. PEEP 14 mbar ve atriyal fibrilasyon altında SVB ve SVV güvenilir olmadığından PiCCO taktık. Termodilüsyonda düşük GEDI (540 ml/m²) ile birlikte ARDS permeabilite ödemini gösteren yüksek ELWI (13 ml/kg) ve PVPI (3,6) saptadık; bu nedenle Noradrenalin titrasyonuyla restriktif sıvı yönetimi uyguluyoruz."',
+        praemedikationDE: '„Für die optimale Steuerung des Kreislaufs und zum Schutz der Lunge vor Überwässerung legen wir Ihrem Angehörigen in Narkose einen speziellen Messkatheter in die Leistenarterie, mit dem wir das Herzzeitvolumen und das Lungenwasser exakt messen können.“',
+        praemedikationTR: '"Dolaşımı en doğru şekilde yönetmek ve akciğerleri sıvı yükünden korumak için yakınınıza kasık atardamarından kalp debisini ve akciğer suyunu ölçen özel bir kateter (PiCCO) takacağız."',
+        jargonTerms: [
+          { abbr: 'GEDI / ITBI', termDE: 'Globaler Enddiastolischer / Intrathorakaler Blutvolumenindex', meaningDE: 'Volumetrische Vorlastparameter (Norm GEDI 680–800 ml/m²), unabhängig vom PEEP', meaningTR: 'PEEP ten etkilenmeyen hacimsel ön yük parametreleri (Normal GEDI 680–800 ml/m²)' },
+          { abbr: 'ELWI', termDE: 'Extravaskulärer Lungenwasserindex', meaningDE: 'Quantifiziert das Lungenödem am Bett (Norm 3–7 ml/kg PBW; > 10 ml/kg = manifestes Ödem)', meaningTR: 'Yatak başında akciğer ödemini ölçer (Normal 3–7 ml/kg; > 10 ml/kg = aşikar ödem)' },
+          { abbr: 'PVPI', termDE: 'Pulmonaler Vaskulärer Permeabilitätsindex', meaningDE: '> 3,0 beweist ein entzündliches Schrankenleck (ARDS) statt kardialem Rückstau (< 2,0)', meaningTR: '> 3,0 kardiyojenik ödem değil kapiller kaçak (ARDS) olduğunu kanıtlar' },
+          { abbr: 'SVV / PPV', termDE: 'Schlagvolumen- / Pulsdruckvariation', meaningDE: '> 12–13 % = Volumenreagibilität positiv (nur bei SR, kontrollierter Beatmung Vt ≥ 8 ml/kg!)', meaningTR: '> %12–13 = Sıvı yanıtlılığı pozitif (sadece sinüs ritmi ve kontrollü ventilasyonda!)' }
+        ]
+      },
+      pacemaker: {
+        fruehbesprechungDE: '„Kurzer Bericht zur gestrigen Hemikolektomie bei unserem Patienten mit CRT-D-Aggregat und absoluter Schrittmacherabhängigkeit nach AV-Knoten-Ablation: Da eine alleinige Magnetauflage beim ICD nur die Schockfunktion deaktiviert, nicht aber in den asynchronen VOO-Modus umschaltet, haben wir das Aggregat präoperativ durch die Kardiologie auf DOO umprogrammieren lassen, bipolare Diathermie genutzt und nach OP wieder auf DDD + aktive Tachytherapie zurückgestellt.“',
+        fruehbesprechungTR: '"AV düğüm ablasyonu sonrası tam pil bağımlı olan CRT-D li hastamızın dünkü hemikolektomi devri: ICD lerde mıknatıs yalnızca şok fonksiyonunu kapatıp pili asenkron VOO moduna geçirmediği için, ameliyat öncesi kardiyolojiye cihazı DOO moduna programlattık, bipolar koter kullandık ve postoperatif tekrar DDD + aktif şok moduna aldırdık."',
+        praemedikationDE: '„Bitte bringen Sie uns Ihren Herzschrittmacher- bzw. Defibrillator-Ausweis mit. Weil während der Operation mit elektrischem Strom verödet wird, schützen wir Ihr Gerät vor Störimpulsen und überprüfen es nach dem Eingriff sofort wieder.“',
+        praemedikationTR: '"Lütfen kalp pili/ICD kimlik kartınızı yanınızda getirin. Ameliyat sırasında elektrikli koter kullanılacağı için cihazınızı parazitlerden koruyacak ve işlem sonrası hemen kontrol edeceğiz."',
+        jargonTerms: [
+          { abbr: 'EMI', termDE: 'Elektromagnetische Interferenz', meaningDE: 'Störsignale durch monopolaren Kauter -> Oversensing (Inhibition beim SM / Fehlschock beim ICD)', meaningTR: 'Monopolar koter paraziti -> Oversensing (Pilde duraklama / ICD de uygunsuz şok)' },
+          { abbr: 'VOO / DOO', termDE: 'Asynchroner Stimulationsmodus', meaningDE: 'Starre Stimulation ohne Wahrnehmung (Sensing = O) unter Magnetauflage beim Schrittmacher', meaningTR: 'Kalp piline mıknatıs konduğunda algılama olmadan sabit hızda asenkron uyarım' },
+          { abbr: 'Loss of Capture', termDE: 'Stimulationsverlust / Exit-Block', meaningDE: 'Schrittmacher-Spike im EKG ohne nachfolgende Kammerdepolarisation (z.B. bei Hyperkaliämie/Ischämie)', meaningTR: 'EKG de pil dikeni olmasına rağmen QRS oluşmaması (örn. hiperkalemi/iskemi)' },
+          { abbr: 'ATP', termDE: 'Antitachykardes Pacing (Überstimulation)', meaningDE: 'Schmerzlose Überstimulation von VT durch den ICD (wird durch Magnetauflage ebenfalls deaktiviert)', meaningTR: 'ICD nin VT yi şoksuz sonlandırma fonksiyonu (mıknatıs ile devre dışı kalır)' }
+        ]
+      }
+    };
+
+    if (comms[profile]) return comms[profile];
+
+    return {
+      fruehbesprechungDE: `„Guten Morgen in die Runde (Frühbesprechung St. Antonius-Hospital Eschweiler): Ich berichte über einen Patienten mit akutem Komplikationsverlauf im Bereich ${gt.topic}. Wir haben unmittelbar nach ABCDE priorisiert, ${gt.dosages[0].drug} (${gt.dosages[0].dose}) leitliniengerecht nach ${gt.guideline.society} appliziert und den Patienten nach hämodynamischer sowie respiratorischer Stabilisierung strukturiert nach SBAR auf die Intensivstation übergeben.“`,
+      fruehbesprechungTR: `"Günaydın arkadaşlar (St. Antonius-Hospital Eschweiler Sabah Toplantısı): ${gt.topic_tr} gelişen hastamızı devrediyorum. ABCDE şemasına göre önceliklendirerek ${gt.guideline.society} kılavuzuna uygun şekilde ${gt.dosages[0].drug} (${gt.dosages[0].dose}) uyguladık ve hemodinamik/solunumsal stabilizasyon sonrası SBAR protokolüyle yoğun bakıma devrettik."`,
+      praemedikationDE: `„Im Rahmen unseres Prämedikationsgesprächs kläre ich Sie heute verständlich und individuell über das geplante Narkoseverfahren, das erweiterte Kreislaufmonitoring sowie unsere Sicherheitsmaßnahmen (${gt.topic}) auf und dokumentiere Ihre Fragen schriftlich auf dem Aufklärungsbogen.“`,
+      praemedikationTR: `"Premedikasyon görüşmemiz kapsamında bugün size planlanan anestezi yöntemini, ileri monitörizasyonumuzu ve güvenlik önlemlerimizi (${gt.topic_tr}) anlaşılır şekilde açıklıyor ve sorularınızı onam formuna kaydediyorum."`,
+      jargonTerms: [
+        { abbr: 'RSI ("Blitzeinleitung")', termDE: 'Rapid Sequence Induction', meaningDE: 'Aspirationsgeschützte Narkoseeinleitung ohne Zwischenbeatmung nach 3–5 min Präoxygenierung (EtO₂ ≥ 90 %)', meaningTR: '3–5 dk preoksijenasyon (EtO₂ ≥ %90) sonrası ara maske ventilasyonu yapmadan hızlı seri entübasyon' },
+        { abbr: 'ZVK & Arterie', termDE: 'Zentraler Venenkatheter & Invasive Blutdruckmessung', meaningDE: 'Katecholamin-Applikationsweg + Schlag-zu-Schlag-Blutdruck & arterielle BGA-Kontrolle', meaningTR: 'Katekolamin infüzyon yolu + atımdan atıma invaziv tansiyon ve arteriyel kan gazı takibi' },
+        { abbr: 'Closed-Loop & SBAR', termDE: 'Geschlossene Teamkommunikation & Übergabestandard', meaningDE: 'Situation – Background – Assessment – Recommendation (Standard im OP & auf ITS)', meaningTR: 'Durum – Arka Plan – Değerlendirme – Öneri (Ameliyathane ve YBÜ devir standardı)' },
+        { abbr: 'K.O.-Kriterium', termDE: 'Prüfungsrelevanter Behandlungsfehler (ÄKNO)', meaningDE: gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].mistake : 'Gefährdung der Patientensicherheit', meaningTR: gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].whyFatal : 'Hasta güvenliğini tehlikeye atan kritik sınav hatası' }
+      ]
+    };
+  }
+
+  // 8.5 STRUCTURED 3-TIER EXAM SYNTHESIS (Examiner Grading Breakdown)
+  function getThreeTierExamSynthesis(q) {
+    const gt = getMedicalGroundTruth(q);
+    const challenge = getImmediateThreeActionsChallenge(q);
+    const fp = getFirstPrinciplesPhysiology(q);
+
+    const tier1Items = challenge.firstThreeActions.map(a => ({
+      de: `<strong>Schritt ${a.step}:</strong> ${a.actionDE}`,
+      tr: `<strong>Adım ${a.step}:</strong> ${a.actionTR}`
+    }));
+
+    const tier2Items = [
+      {
+        de: `<strong>Point-of-Care-Diagnostik & BGA:</strong> Engmaschige arterielle BGA (pH, PaCO₂, PaO₂, Laktat-Clearance, ionisiertes Ca²⁺, K⁺) und gezieltes Gerinnungs-/Hämodynamik-Monitoring (${gt.topic}).`,
+        tr: `<strong>Yatak Başı Tanı & Kan Gazı:</strong> Yakın arteriyel kan gazı (pH, PaCO₂, PaO₂, laktat klirensi, iyonize Ca²⁺, K⁺) ve hedefe yönelik koagülasyon/hemodinami takibi (${gt.topic_tr}).`
+      },
+      {
+        de: `<strong>Apparative Zusatzdiagnostik:</strong> Fokussierte Sonographie (eFAST / FATE-Echokardiographie / Lungensonographie zum Pneumothorax-Ausschluss) + 12-Kanal-EKG und Temperatur-Trend.`,
+        tr: `<strong>Ek Görüntüleme & Monitörizasyon:</strong> Odaklanmış ultrasonografi (eFAST / FATE Ekokardiyografi / Pnömotoraks dışlamak için akciğer USG) + 12 derivasyonlu EKG ve ısı trendi.`
+      },
+      {
+        de: `<strong>Leitlinien-Referenz (${gt.guideline.society}):</strong> ${gt.guideline.title} (${gt.guideline.awmf}) – ${gt.guideline.recommendation}`,
+        tr: `<strong>Kılavuz Referansı (${gt.guideline.society}):</strong> ${gt.guideline.title} – ${gt.guideline.recommendation_tr || gt.guideline.recommendation}`
+      }
+    ];
+
+    const tier3Items = (gt.dosages || []).map(d => ({
+      de: `<strong>${d.drug}:</strong> ${d.dose} (${d.route || 'i.v.'}) — <em>Limit/Cave: ${d.maxDose || d.limits}</em>`,
+      tr: `<strong>${d.drug}:</strong> ${d.dose} (${d.route || 'i.v.'}) — <em>Sınır/Dikkat: ${d.limits || d.maxDose}</em>`
+    }));
+
+    if (gt.koPitfalls && gt.koPitfalls[0]) {
+      tier3Items.push({
+        de: `<strong>⛔ ÄKNO K.O.-Falle vermeiden:</strong> ${gt.koPitfalls[0].mistake} -> <em>${gt.koPitfalls[0].correctAction}</em>`,
+        tr: `<strong>⛔ ÄKNO K.O. Tuzağından Kaçın:</strong> ${gt.koPitfalls[0].mistake} -> <em>${gt.koPitfalls[0].whyFatal}</em>`
+      });
+    }
+
+    return {
+      tier1Immediate: {
+        titleDE: '1. Lebensrettende Sofortmaßnahmen (Erste 60 Sekunden im OP / auf ITS)',
+        titleTR: '1. Hayat Kurtarıcı Acil Müdahaleler (İlk 60 Saniye)',
+        items: tier1Items
+      },
+      tier2Diagnostics: {
+        titleDE: '2. Sekundärdiagnostik, Trend-Monitoring & Leitlinien-Zielwerte',
+        titleTR: '2. İkincil Tanı, Trend Monitörizasyonu & Kılavuz Hedefleri',
+        items: tier2Items
+      },
+      tier3Pharmacology: {
+        titleDE: '3. Pharmakologische Nuancen, Dosierungen & K.O.-Vermeidung',
+        titleTR: '3. Farmakolojik Nüanslar, Dozlar & K.O. Tuzakları',
+        items: tier3Items
+      },
+      firstPrinciplesFormula: fp.formulaOrPrinciple
+    };
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────────
   // EXPORT MODULE
   // ─────────────────────────────────────────────────────────────────────────────
   const CurriculumEngine = {
@@ -1244,6 +2282,11 @@
     getRedeflussBaukasten,
     getLegalCheckpoint,
     getSmartSessionQuestions,
+    getDataFirstDiagnosticMonitor,
+    getImmediateThreeActionsChallenge,
+    getFirstPrinciplesPhysiology,
+    getBedsideCommunicationAndJargon,
+    getThreeTierExamSynthesis,
     BGA_TRAINING_CASES,
     CORE_SURVIVAL_KEYWORDS
   };

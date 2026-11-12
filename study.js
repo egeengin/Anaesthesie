@@ -33,6 +33,8 @@
     theme: savedSettings.theme || 'light', // 'light', 'sepia', 'dark'
     fontSize: savedSettings.fontSize || 17, // 15, 17, 19, 21
     viewMode: savedSettings.viewMode || 'hover', // 'hover', 'bilingual', 'german'
+    activeRecallMode: !!savedSettings.activeRecallMode, // true = start with Vitals & First-3-Actions prompt hidden answer
+    revealedCards: {}, // per-card reveal state when activeRecallMode is true
     activeCategory: 'all',
     activeType: 'all', // 'all', 'dus', 'open', 'options'
     activeStatusFilter: 'all', // 'all', 'unread', 'read'
@@ -139,6 +141,7 @@
   const elCategoryScroll = document.getElementById('study-category-filter-scroll') || document.getElementById('category-filter-scroll');
   const elTypeFilters = document.querySelectorAll('.btn-type-filter');
   const elModeTabs = document.querySelectorAll('.btn-mode-tab');
+  const elActiveRecallToggle = document.getElementById('study-btn-active-recall-toggle') || document.getElementById('btn-active-recall-toggle');
   const elThemeToggle = document.getElementById('study-btn-theme-toggle') || document.getElementById('btn-theme-toggle');
   const elFontToggle = document.getElementById('study-btn-font-toggle') || document.getElementById('btn-font-toggle');
   const elProgressBarFill = document.getElementById('study-progress-bar-fill') || document.getElementById('progress-bar-fill');
@@ -434,19 +437,42 @@
       const answerDE = q.oral_answer_de || q.answer_de || '';
       const answerTR = q.oral_answer_tr || q.answer_tr || '';
 
-      // Optional Redefluss & Guideline enrichment from CurriculumEngine for clinical cases
+      // Melis Pedagogical Engine Enrichment (Data-First Monitor, First-3-Actions, First-Principles, Bedside Comm & 3-Tier Synthesis)
       let redeflussStep1 = null;
       let groundTruth = null;
-      if (window.CurriculumEngine && q.study_tier !== 3) {
+      let monitorData = null;
+      let threeActionsChallenge = null;
+      let firstPrinciples = null;
+      let bedsideComm = null;
+      let examSynthesis = null;
+
+      if (window.CurriculumEngine) {
         try {
           const rf = window.CurriculumEngine.getRedeflussBaukasten(q);
           if (rf && rf.step1) redeflussStep1 = rf.step1;
           const gt = window.CurriculumEngine.getMedicalGroundTruth(q);
-          if (gt && gt.guideline && gt.guideline.awmf && gt.guideline.awmf !== 'DGAI / BDA Standard') {
+          if (gt && gt.guideline && gt.guideline.awmf) {
             groundTruth = gt;
+          }
+          if (typeof window.CurriculumEngine.getDataFirstDiagnosticMonitor === 'function') {
+            monitorData = window.CurriculumEngine.getDataFirstDiagnosticMonitor(q);
+          }
+          if (typeof window.CurriculumEngine.getImmediateThreeActionsChallenge === 'function') {
+            threeActionsChallenge = window.CurriculumEngine.getImmediateThreeActionsChallenge(q);
+          }
+          if (typeof window.CurriculumEngine.getFirstPrinciplesPhysiology === 'function') {
+            firstPrinciples = window.CurriculumEngine.getFirstPrinciplesPhysiology(q);
+          }
+          if (typeof window.CurriculumEngine.getBedsideCommunicationAndJargon === 'function') {
+            bedsideComm = window.CurriculumEngine.getBedsideCommunicationAndJargon(q);
+          }
+          if (typeof window.CurriculumEngine.getThreeTierExamSynthesis === 'function') {
+            examSynthesis = window.CurriculumEngine.getThreeTierExamSynthesis(q);
           }
         } catch (_) {}
       }
+
+      const isTurnHidden = state.activeRecallMode && !state.revealedCards[q.id];
 
       html += `
         <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}">
@@ -479,6 +505,120 @@
               ${renderFormattedOralQuestion(questionDE, questionTR)}
             </div>
           </div>
+
+          ${monitorData ? `
+          <!-- 📟 1. DATA-FIRST KLINISCHER MONITOR, BGA, EKG & TREND-STRIP -->
+          <div class="melis-monitor-strip">
+            <div class="melis-monitor-header">
+              <span>📟 ${escapeHtml(monitorData.scenarioBadgeDE)}</span>
+              <span style="color: #94a3b8; font-size: 0.72rem; text-transform: none;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
+            </div>
+            <div class="melis-vitals-grid">
+              <div class="melis-vital-tile">
+                <div class="melis-vital-label">HF / Frequenz</div>
+                <div class="melis-vital-value vital-hr">♥ ${escapeHtml(monitorData.vitals.hr)}</div>
+              </div>
+              <div class="melis-vital-tile">
+                <div class="melis-vital-label">RR / MAP (Invasiv)</div>
+                <div class="melis-vital-value vital-bp">${escapeHtml(monitorData.vitals.bp)} <small style="font-size:0.75rem; opacity:0.85;">(${escapeHtml(monitorData.vitals.map)})</small></div>
+              </div>
+              <div class="melis-vital-tile">
+                <div class="melis-vital-label">SpO₂ (Pulsoxy)</div>
+                <div class="melis-vital-value vital-spo2">${escapeHtml(monitorData.vitals.spo2)}</div>
+              </div>
+              <div class="melis-vital-tile">
+                <div class="melis-vital-label">EtCO₂ (Kapno)</div>
+                <div class="melis-vital-value vital-etco2">${escapeHtml(monitorData.vitals.etco2)}</div>
+              </div>
+              <div class="melis-vital-tile">
+                <div class="melis-vital-label">Temperatur</div>
+                <div class="melis-vital-value vital-temp">${escapeHtml(monitorData.vitals.temp)}</div>
+              </div>
+            </div>
+            <div class="melis-bga-strip">
+              <div><strong>📈 EKG &amp; Rhythmus:</strong> ${renderInteractiveGerman(monitorData.vitals.rhythmDE, monitorData.vitals.rhythmTR)}</div>
+              <div style="margin-top: 4px;">
+                <strong>🩸 Arterielle BGA:</strong>
+                pH <strong>${escapeHtml(monitorData.bga.ph)}</strong> ·
+                PaCO₂ <strong>${escapeHtml(monitorData.bga.pco2)}</strong> ·
+                PaO₂ <strong>${escapeHtml(monitorData.bga.po2)}</strong> ·
+                HCO₃⁻ <strong>${escapeHtml(monitorData.bga.hco3)}</strong> ·
+                BE <strong>${escapeHtml(monitorData.bga.be)}</strong> ·
+                Laktat <strong>${escapeHtml(monitorData.bga.lactate)}</strong> ·
+                Hb <strong>${escapeHtml(monitorData.bga.hb)}</strong> ·
+                ${escapeHtml(monitorData.bga.electrolytes)}
+              </div>
+              ${monitorData.advanced ? `
+              <div style="margin-top: 4px;">
+                <strong>🔬 ${escapeHtml(monitorData.advanced.labelDE)}:</strong>
+                ${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}
+              </div>
+              ` : ''}
+            </div>
+            <div class="melis-monitor-pattern">
+              <strong>⚡ Data-First Reflex:</strong> ${renderInteractiveGerman(monitorData.patternDE, monitorData.patternTR)}
+              <div class="inline-bilingual-tr" style="color: #a7f3d0; margin-top: 3px;">🇹🇷 ${escapeHtml(monitorData.patternTR)}</div>
+            </div>
+          </div>
+          ` : ''}
+
+          ${threeActionsChallenge ? `
+          <!-- ⚡ 2. PRÜFER-IMPULS: ERSTE 3 SOFORTMASSNAHMEN VOR DEM NÄCHSTEN TURN -->
+          <div class="melis-three-actions-box">
+            <div class="melis-three-actions-prompt">
+              <div>
+                <span>⚡ ${renderInteractiveGerman(threeActionsChallenge.vignetteTriggerDE, threeActionsChallenge.vignetteTriggerTR)}</span>
+                <div class="inline-bilingual-tr" style="margin-top: 3px; font-weight: 500;">🇹🇷 ${escapeHtml(threeActionsChallenge.vignetteTriggerTR)}</div>
+              </div>
+              <button class="btn-card-action btn-pronounce-card" style="padding: 3px 9px; font-size: 0.74rem;" data-text="${escapeHtml(threeActionsChallenge.vignetteTriggerDE)}">
+                🔊 Prüfer
+              </button>
+            </div>
+            <button type="button" class="btn-reveal-turn" data-card-id="${q.id}">
+              ${isTurnHidden
+                ? '🎯 İlk 3 Hamlemi Düşündüm — Uzman Cevabını &amp; First-Principles Analizini Aç (Erste 3 Maßnahmen aufdecken)'
+                : '🔒 Kendimi Test Etmek İçin Cevabı Gizle (Erste 3 Maßnahmen &amp; Musterantwort ausblenden)'}
+            </button>
+          </div>
+          ` : ''}
+
+          <!-- REVEALABLE CLINICAL TURN CONTAINER -->
+          <div id="turn-reveal-${q.id}" class="${isTurnHidden ? 'melis-hidden-turn' : ''}">
+
+          ${threeActionsChallenge ? `
+          <!-- ✅ ERSTE 3 SOFORTMASSNAHMEN & PRÜFER-NACHFRAGE (FIRST PRINCIPLES) -->
+          <div style="margin-bottom: 14px; padding: 12px 15px; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.28); border-radius: 12px;">
+            <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: #047857; letter-spacing: 0.03em; margin-bottom: 6px;">
+              ✅ Erwartete Erste 3 Sofortmaßnahmen im OP / auf ITS (İlk 3 Acil Hamle &amp; Fizyolojik Gerekçe)
+            </div>
+            ${threeActionsChallenge.firstThreeActions.map(act => `
+              <div class="melis-action-step-card">
+                <div style="font-weight: 700; color: var(--text-primary);">
+                  <span style="color: #0284c7;">#${act.step}:</span> ${renderInteractiveGerman(act.actionDE, act.actionTR)}
+                </div>
+                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(act.actionTR)}</div>
+                <div class="melis-action-rationale">
+                  <strong>Warum (First Principle)?</strong> ${renderInteractiveGerman(act.whyDE, act.whyTR)}
+                  <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(act.whyTR)}</div>
+                </div>
+              </div>
+            `).join('')}
+
+            <div class="melis-followup-probe">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <strong style="color: #0369a1;">👨‍⚕️ ${renderInteractiveGerman(threeActionsChallenge.examinerFollowupDE, threeActionsChallenge.examinerFollowupTR)}</strong>
+                <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: 0.72rem;" data-text="${escapeHtml(threeActionsChallenge.examinerFollowupDE + ' ' + threeActionsChallenge.examinerJustificationDE)}">
+                  🔊 Dinle
+                </button>
+              </div>
+              <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerFollowupTR)}</div>
+              <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgba(2, 132, 199, 0.25);">
+                ${renderInteractiveGerman(threeActionsChallenge.examinerJustificationDE, threeActionsChallenge.examinerJustificationTR)}
+                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerJustificationTR)}</div>
+              </div>
+            </div>
+          </div>
+          ` : ''}
 
           ${redeflussStep1 ? `
           <!-- 🗣️ REDEEINSTIEG (Sınavda Söze Başlama Kalıbı) -->
@@ -529,6 +669,109 @@
             </div>
           </div>
         `;
+      }
+
+      // Melis Deep-Dive Modules: 3) First-Principles Physiology & Pharmacology, 4) 3-Tier Exam Synthesis, 5) St. Antonius Eschweiler Bedside Communication & Klinik-Jargon
+      if (firstPrinciples || examSynthesis || bedsideComm) {
+        html += `<div class="melis-deep-dive-grid">`;
+
+        if (firstPrinciples) {
+          html += `
+            <details class="melis-module-details" open>
+              <summary class="melis-module-summary">
+                <span>🧠 ${escapeHtml(firstPrinciples.titleDE)} <small style="color: var(--text-muted); font-weight: 500;">(${escapeHtml(firstPrinciples.titleTR)})</small></span>
+                <span style="font-size: 0.78rem; color: var(--primary);">First-Principles ▼</span>
+              </summary>
+              <div class="melis-module-body">
+                <div class="melis-formula-pill">📐 ${escapeHtml(firstPrinciples.formulaOrPrinciple)}</div>
+                <div style="margin-bottom: 10px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                    <strong style="color: #0369a1;">⚙️ Pathophysiologisches Prinzip (Warum im Körper?):</strong>
+                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: 0.72rem;" data-text="${escapeHtml(firstPrinciples.mechanismDE)}">🔊 Dinle</button>
+                  </div>
+                  <div>${renderInteractiveGerman(firstPrinciples.mechanismDE, firstPrinciples.mechanismTR)}</div>
+                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.mechanismTR)}</div>
+                </div>
+                <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                    <strong style="color: #0f766e;">💊 Pharmakologische Kinetik &amp; Rezeptor-Logik (Warum genau dieses Medikament?):</strong>
+                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: 0.72rem;" data-text="${escapeHtml(firstPrinciples.pharmacologyDE)}">🔊 Dinle</button>
+                  </div>
+                  <div>${renderInteractiveGerman(firstPrinciples.pharmacologyDE, firstPrinciples.pharmacologyTR)}</div>
+                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.pharmacologyTR)}</div>
+                </div>
+              </div>
+            </details>
+          `;
+        }
+
+        if (examSynthesis) {
+          html += `
+            <details class="melis-module-details">
+              <summary class="melis-module-summary">
+                <span>🎯 Strukturierte 3-Stufen Prüfungs-Synthese (Acil Müdahale · İkincil Tanı · Farmakolojik Nüanslar)</span>
+                <span style="font-size: 0.78rem; color: var(--primary);">Prüfer-Bewertung ▼</span>
+              </summary>
+              <div class="melis-module-body">
+                <div class="melis-tier-block" style="border-left: 3px solid #e11d48;">
+                  <div style="font-weight: 800; color: #be123c; margin-bottom: 4px;">🚨 ${escapeHtml(examSynthesis.tier1Immediate.titleDE)}</div>
+                  ${examSynthesis.tier1Immediate.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:0.8rem;">— 🇹🇷 ${it.tr}</span></div>`).join('')}
+                </div>
+                <div class="melis-tier-block" style="border-left: 3px solid #0284c7;">
+                  <div style="font-weight: 800; color: #0369a1; margin-bottom: 4px;">🔬 ${escapeHtml(examSynthesis.tier2Diagnostics.titleDE)}</div>
+                  ${examSynthesis.tier2Diagnostics.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:0.8rem;">— 🇹🇷 ${it.tr}</span></div>`).join('')}
+                </div>
+                <div class="melis-tier-block" style="border-left: 3px solid #059669;">
+                  <div style="font-weight: 800; color: #047857; margin-bottom: 4px;">💊 ${escapeHtml(examSynthesis.tier3Pharmacology.titleDE)}</div>
+                  ${examSynthesis.tier3Pharmacology.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:0.8rem;">— 🇹🇷 ${it.tr}</span></div>`).join('')}
+                </div>
+              </div>
+            </details>
+          `;
+        }
+
+        if (bedsideComm) {
+          html += `
+            <details class="melis-module-details">
+              <summary class="melis-module-summary">
+                <span>🗣️ St. Antonius-Hospital Eschweiler: Frühbesprechung, Prämedikationsgespräch &amp; Klinik-Jargon</span>
+                <span style="font-size: 0.78rem; color: var(--primary);">Klinik-Deutsch ▼</span>
+              </summary>
+              <div class="melis-module-body">
+                <div style="margin-bottom: 10px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                    <strong style="color: #0369a1;">🏥 Morgen-Übergabe / Frühbesprechung (Sabah Toplantısı &amp; Kıdemli Devri):</strong>
+                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: 0.72rem;" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
+                  </div>
+                  <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
+                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.fruehbesprechungTR)}</div>
+                </div>
+                <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                    <strong style="color: #047857;">🤝 Prämedikations- &amp; Aufklärungsgespräch (Hasta/Yakını Aydınlatma Cümlesi):</strong>
+                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: 0.72rem;" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
+                  </div>
+                  <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
+                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.praemedikationTR)}</div>
+                </div>
+                <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                  <strong style="color: #b45309; font-size: 0.84rem;">🔤 Idiomatischer Klinik-Jargon &amp; Abkürzungen (Hastane Kısaltmaları):</strong>
+                  <div class="melis-jargon-grid">
+                    ${(bedsideComm.jargonTerms || []).map(jt => `
+                      <div class="melis-jargon-card">
+                        <div><strong style="color: var(--primary);">${escapeHtml(jt.abbr)}</strong> — <strong>${escapeHtml(jt.termDE)}</strong></div>
+                        <div style="margin-top: 2px; color: var(--text-secondary);">${escapeHtml(jt.meaningDE)}</div>
+                        <div style="margin-top: 2px; color: var(--text-muted); font-size: 0.78rem;">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            </details>
+          `;
+        }
+
+        html += `</div>`;
       }
 
       // Examiner Profile Box (if available)
@@ -593,7 +836,7 @@
         `;
       }
 
-      html += `</article>`;
+      html += `</div></article>`;
     });
 
     elFeed.innerHTML = html;
@@ -652,6 +895,27 @@
         e.stopPropagation();
         const text = btn.getAttribute('data-text');
         speakGerman(text);
+      });
+    });
+
+    document.querySelectorAll('.btn-reveal-turn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cardId = btn.getAttribute('data-card-id');
+        const turnBox = document.getElementById(`turn-reveal-${cardId}`);
+        if (!turnBox) return;
+
+        const isCurrentlyHidden = turnBox.classList.contains('melis-hidden-turn');
+        if (isCurrentlyHidden) {
+          turnBox.classList.remove('melis-hidden-turn');
+          state.revealedCards[cardId] = true;
+          btn.innerHTML = '🔒 Kendimi Test Etmek İçin Cevabı Gizle (Erste 3 Maßnahmen &amp; Musterantwort ausblenden)';
+          triggerHapticFeedback();
+        } else {
+          turnBox.classList.add('melis-hidden-turn');
+          delete state.revealedCards[cardId];
+          btn.innerHTML = '🎯 İlk 3 Hamlemi Düşündüm — Uzman Cevabını &amp; First-Principles Analizini Aç (Erste 3 Maßnahmen aufdecken)';
+        }
       });
     });
 
@@ -939,13 +1203,51 @@
     localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify({
       theme: state.theme,
       fontSize: state.fontSize,
-      viewMode: state.viewMode
+      viewMode: state.viewMode,
+      activeRecallMode: state.activeRecallMode
     }));
+  }
+
+  function applyActiveRecallMode(enabled) {
+    if (!elActiveRecallToggle) return;
+    if (enabled) {
+      elActiveRecallToggle.classList.add('active');
+      elActiveRecallToggle.innerHTML = '<span>⚡</span> İlk 3 Hamle Test Modu: AÇIK';
+    } else {
+      elActiveRecallToggle.classList.remove('active');
+      elActiveRecallToggle.innerHTML = '<span>⚡</span> İlk 3 Hamle Test Modu';
+    }
+  }
+
+  if (elActiveRecallToggle) {
+    elActiveRecallToggle.addEventListener('click', () => {
+      state.activeRecallMode = !state.activeRecallMode;
+      state.revealedCards = {};
+      applyActiveRecallMode(state.activeRecallMode);
+      saveSettings();
+      renderFeed(false);
+    });
+  }
+
+  function updateDynamicQuestionCounts() {
+    const totalCount = allQuestions.length;
+    const dusCount = allQuestions.filter(item => item.study_tier === 1 || item.is_dus_protocol || item.is_amboss_curriculum).length;
+    const openCount = allQuestions.filter(item => item.question_type === 'open' || item.study_tier === 1 || item.study_tier === 2).length;
+    const optionsCount = allQuestions.filter(item => item.question_type === 'options' || item.study_tier === 3).length;
+
+    document.querySelectorAll('.btn-type-filter').forEach(btn => {
+      const t = btn.getAttribute('data-type');
+      if (t === 'all') btn.textContent = `Tüm Sözlü Sınav Arşivi (${totalCount})`;
+      else if (t === 'dus') btn.textContent = `🏛️ ÄKNO Düsseldorf & AMBOSS Vaka Protokolleri (${dusCount})`;
+      else if (t === 'open') btn.textContent = `🏥 Klinik Vaka Soruları — Annecke & Hohn (${openCount})`;
+      else if (t === 'options') btn.textContent = `📚 Konu Bazlı Sözlü Soru-Cevap (${optionsCount})`;
+    });
   }
 
   // --- Initial Bootstrap ---
   applyTheme(state.theme);
   applyFontSize(state.fontSize);
+  applyActiveRecallMode(state.activeRecallMode);
   if (state.viewMode === 'bilingual') document.body.classList.add('mode-bilingual');
   if (state.viewMode === 'german') document.body.classList.add('mode-german-only');
 
