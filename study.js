@@ -1061,8 +1061,56 @@
           elCategoryScroll.querySelectorAll('.btn-cat-chip').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           state.activeCategory = btn.getAttribute('data-cat');
+          updateCategoryToggleLabel();
           renderFeed(true);
         });
+      });
+    }
+
+    // Toggle button for category drawer (Clean Apple layout)
+    const elToggleCats = document.getElementById('study-btn-toggle-categories') || document.getElementById('btn-toggle-categories');
+    function updateCategoryToggleLabel() {
+      if (!elToggleCats) return;
+      const labelSpan = elToggleCats.querySelector('.category-drawer-label');
+      if (!labelSpan) return;
+      if (!state.activeCategory || state.activeCategory === 'all') {
+        labelSpan.textContent = `Konular (${sortedCats.length})`;
+      } else {
+        const shortName = state.activeCategory.length > 18 ? state.activeCategory.slice(0, 16) + '…' : state.activeCategory;
+        labelSpan.textContent = `${shortName} ✕`;
+      }
+    }
+
+    if (elToggleCats && !elToggleCats.dataset.drawerBound) {
+      elToggleCats.dataset.drawerBound = 'true';
+      elToggleCats.addEventListener('click', (e) => {
+        e.preventDefault();
+        // If clicking when active category is selected, reset to all
+        if (state.activeCategory && state.activeCategory !== 'all') {
+          state.activeCategory = 'all';
+          if (elCategoryScroll) {
+            elCategoryScroll.querySelectorAll('.btn-cat-chip').forEach(b => {
+              b.classList.toggle('active', b.getAttribute('data-cat') === 'all');
+            });
+          }
+          updateCategoryToggleLabel();
+          renderFeed(true);
+          return;
+        }
+
+        if (!elCategoryScroll) return;
+        const isCollapsed = elCategoryScroll.classList.contains('collapsed');
+        if (isCollapsed) {
+          elCategoryScroll.classList.remove('collapsed');
+          elCategoryScroll.classList.add('expanded');
+          elToggleCats.classList.add('active');
+          elToggleCats.setAttribute('aria-expanded', 'true');
+        } else {
+          elCategoryScroll.classList.add('collapsed');
+          elCategoryScroll.classList.remove('expanded');
+          elToggleCats.classList.remove('active');
+          elToggleCats.setAttribute('aria-expanded', 'false');
+        }
       });
     }
   }

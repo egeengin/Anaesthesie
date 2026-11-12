@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css?v=9.6">
+  <link rel="stylesheet" href="study.css?v=9.7">
 </head>
 <body>
 
@@ -55,21 +55,15 @@
   </header>
 
   <main style="padding: 0 16px;">
-    <!-- Melis'in Çalışma Sayfası: Sade & Şık Başlık Şeridi -->
-    <section class="onboarding-guide onboarding-guide-strip" style="max-width: 900px; margin: 14px auto 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 18px;">
-      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 1.3rem;">🩺</span>
-          <div>
-            <strong style="font-size: 0.95rem; color: var(--text-primary);">Dr. Melis · St. Antonius-Hospital Eschweiler</strong>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">669 Klinik Vaka · ÄKNO Düsseldorf Mündliche Facharztprüfung</div>
-          </div>
-        </div>
-        <div style="font-size: 0.78rem; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 9999px; font-weight: 600;">
-          💡 Dokun / Üzerinde Dur: Anında Türkçe Çeviri
-        </div>
-      </div>
-    </section>
+    <!-- Melis'in Çalışma Sayfası: Sade Apple-Stili Durum Şeridi -->
+    <div class="melis-subtle-status-bar">
+      <span>🩺 <strong>Dr. Melis · St. Antonius-Hospital Eschweiler</strong></span>
+      <span class="status-sep">·</span>
+      <span>669 Klinik Vaka · ÄKNO Düsseldorf</span>
+      <span class="status-sep">·</span>
+      <span class="status-hint">💡 Dokun / Hover: Anında Çeviri</span>
+    </div>
+
     <!-- Melis Study Progress Tracker -->
     <section class="study-progress-card">
       <div class="progress-header">
@@ -94,31 +88,42 @@
         <button id="btn-clear-search" class="btn-clear-search" title="Aramayı Temizle">✕</button>
       </div>
 
-      <!-- Reading Modes Bar -->
-      <div class="reading-modes-bar">
-        <!-- Translation Mode Selector -->
-        <div class="mode-pill-group">
-          <button class="btn-mode-tab active" data-mode="hover" title="Almanca metin görünür. Üzerinde durunca veya dokununca Türkçesi anında açılır">
-            <span>💡</span> Dokun / Üzerinde Dur (Çeviri)
-          </button>
-          <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta birlikte görünür">
-            <span>📖</span> Çift Dilli Okuma
-          </button>
-          <button class="btn-mode-tab" data-mode="german" title="Sadece sınav Almancası">
-            <span>🇩🇪</span> Nur Deutsch
+      <!-- Single Apple-Style Consolidated Toolbar -->
+      <div class="study-compact-toolbar">
+        <div class="toolbar-left-group">
+          <div class="type-filter-segmented-control" role="group" aria-label="Soru Türü">
+            <button class="btn-cat-chip btn-type-filter active" data-type="all">Tümü (669)</button>
+            <button class="btn-cat-chip btn-type-filter" data-type="dus">🏛️ ÄKNO (91)</button>
+            <button class="btn-cat-chip btn-type-filter" data-type="open">🏥 Vaka (344)</button>
+            <button class="btn-cat-chip btn-type-filter" data-type="options">📚 Konu (325)</button>
+          </div>
+          <button id="btn-toggle-categories" class="btn-toggle-category-drawer" type="button" aria-expanded="false" title="Konu Kategorilerini Aç/Kapat">
+            <span>📂</span> <span class="category-drawer-label">Konular (60)</span> <span class="category-drawer-chevron">▾</span>
           </button>
         </div>
 
-        <!-- Typography & Theme Settings -->
-        <div class="reader-settings-group">
+        <div class="toolbar-right-group">
+          <div class="mode-pill-group">
+            <button class="btn-mode-tab active" data-mode="hover" title="Almanca metin görünür. Dokununca veya üzerinde durunca Türkçesi anında açılır">
+              <span>💡</span> Çeviri
+            </button>
+            <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta">
+              <span>📖</span> Çift Dil
+            </button>
+            <button class="btn-mode-tab" data-mode="german" title="Sadece sınav Almancası">
+              <span>🇩🇪</span> Deutsch
+            </button>
+          </div>
+
           <button id="btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
-            <span>⚡</span> İlk 3 Hamle Test Modu
+            <span>⚡</span> Test Modu
           </button>
+
           <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
             <button type="button" id="btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
               <span class="stepper-glyph-small">A</span>
             </button>
-            <button type="button" id="btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart (Tıkla ve Değiştir)" aria-label="Yazı boyutu">
+            <button type="button" id="btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart" aria-label="Yazı boyutu">
               <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
               <span class="stepper-label" id="font-size-label">Standart</span>
               <span class="stepper-dots" aria-hidden="true">
@@ -132,22 +137,15 @@
               <span class="stepper-glyph-large">A</span>
             </button>
           </div>
+
           <button id="btn-theme-toggle" class="btn-icon-setting" title="Sepia (Sıcak Sarımsı Okuma)">
             <span>📜</span>
           </button>
         </div>
       </div>
 
-      <!-- Question Type Switcher -->
-      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Sözlü Sınav Arşivi (669)</button>
-        <button class="btn-cat-chip btn-type-filter" data-type="dus">🏛️ ÄKNO Düsseldorf &amp; AMBOSS Vaka Protokolleri (91)</button>
-        <button class="btn-cat-chip btn-type-filter" data-type="open">🏥 Klinik Vaka Soruları — Annecke &amp; Hohn (344)</button>
-        <button class="btn-cat-chip btn-type-filter" data-type="options">📚 Konu Bazlı Sözlü Soru-Cevap (325)</button>
-      </div>
-
-      <!-- Horizontal Scroll Category Chips -->
-      <nav id="category-filter-scroll" class="category-filter-scroll" aria-label="Konu Kategorileri">
+      <!-- Collapsible Category Drawer -->
+      <nav id="category-filter-scroll" class="category-filter-scroll collapsed" aria-label="Konu Kategorileri">
         <!-- Dynamically populated from questions.js -->
       </nav>
     </section>

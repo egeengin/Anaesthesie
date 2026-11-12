@@ -66,36 +66,77 @@
         </div>
 
         <div class="nav-action-pill">
-<button id="readiness-trigger" class="pill-btn highlight-pill" title="ÄKNO Düsseldorf Prüfungsreife-Radar: Sind Sie wirklich bereit für die Facharztprüfung?">
-            <span>🎓</span> <span class="pill-btn-text">Prüfungsreife</span>
-          </button>
-<a href="study.html" id="melis-study-link" class="pill-btn pill-btn-melis" title="Melis'in Çalışma & Okuma Sayfası (Hover & Dokun Türkçe Çeviri)">
+          <a href="study.html" id="melis-study-link" class="pill-btn pill-btn-melis" title="Melis'in Çalışma & Okuma Sayfası (Hover & Dokun Türkçe Çeviri)">
             <span>📖</span> <span class="pill-btn-text">Çalışma Sayfası</span>
           </a>
           <button id="btn-global-german-toggle" class="pill-btn pill-btn-german" type="button" title="Sınav Modu: Sadece Almanca (Nur Deutsch) Aç/Kapat">
             <span>🇩🇪</span> <span class="pill-btn-text">Nur Deutsch</span>
           </button>
-          <button id="aekno-guide-trigger" class="pill-btn" title="Ärztekammer Nordrhein (Düsseldorf) Prüfer, Protokolle & K.O.-Kriterien">
-            <span>🏛️</span> <span class="pill-btn-text">Düsseldorf-Kompass</span>
-          </button>
-          <button id="pocket-trigger" class="pill-btn" title="Notfall- & Medikamenten-Taschenkarte">
-            <span>📇</span> <span class="pill-btn-text">Notfallkarte</span>
-          </button>
-          <button id="calc-trigger" class="pill-btn" title="Klinik- & Facharztrechner (Kinder, ARDS, LA, Na)">
-            <span>🧮</span> <span class="pill-btn-text">Rechner</span>
-          </button>
-          <button id="mock-exam-trigger" class="pill-btn" title="45-Minütige Mündliche Facharztprüfung Simulieren">
-            <span>⏱️</span> <span class="pill-btn-text">45-Min Prüfung</span>
-          </button>
-          <button id="grid-trigger" class="pill-btn" title="Fragenübersicht & Navigation">
-            <span>📑</span> <span class="pill-btn-text">Übersicht</span>
-          </button>
-          <button id="abbrev-trigger" class="pill-btn" title="Kürzel- & Fachwortlexikon (Abkürzungen / Kısaltmalar Kılavuzu)">
-            <span>🔤</span> <span class="pill-btn-text">Kürzel (TR/DE)</span>
-          </button>
-          <button id="user-guide-trigger" class="pill-btn" title="Offizieller Benutzerleitfaden & Prüfungsanleitung">
-            <span>📖</span> <span class="pill-btn-text">Leitfaden</span>
-          </button>
+          <!-- 🛠️ Apple-Grade Tools & SOPs Dropdown Popover -->
+          <div class="nav-dropdown-wrapper">
+            <button id="nav-tools-menu-btn" class="pill-btn pill-btn-tools" type="button" aria-haspopup="true" aria-expanded="false" title="Klinik Araçlar, SOPs, Kompass ve Sınav Sistemleri">
+              <span>🛠️</span> <span class="pill-btn-text">Araçlar &amp; SOPs</span> <span class="dropdown-chevron">▾</span>
+            </button>
+            <div id="nav-tools-dropdown" class="nav-tools-dropdown-menu" role="menu">
+              <div class="dropdown-header">Klinik Araçlar &amp; Sınav Sistemi</div>
+              <button id="readiness-trigger" class="dropdown-item" type="button" role="menuitem" title="ÄKNO Düsseldorf Prüfungsreife-Radar">
+                <span class="item-icon">🎓</span>
+                <span class="item-content">
+                  <span class="item-title">Prüfungsreife-Radar</span>
+                  <span class="item-sub">ÄKNO Hazırlık Skoru</span>
+                </span>
+              </button>
+              <button id="aekno-guide-trigger" class="dropdown-item" type="button" role="menuitem" title="Ärztekammer Nordrhein (Düsseldorf) Jüri & Protokolleri">
+                <span class="item-icon">🏛️</span>
+                <span class="item-content">
+                  <span class="item-title">Düsseldorf-Kompass</span>
+                  <span class="item-sub">Jüri &amp; K.O.-Kriterleri</span>
+                </span>
+              </button>
+              <button id="pocket-trigger" class="dropdown-item" type="button" role="menuitem" title="Notfall- & Medikamenten-Taschenkarte">
+                <span class="item-icon">📇</span>
+                <span class="item-content">
+                  <span class="item-title">Notfallkarte &amp; SOPs</span>
+                  <span class="item-sub">MH, LAST, CICO, ALS</span>
+                </span>
+              </button>
+              <button id="calc-trigger" class="dropdown-item" type="button" role="menuitem" title="Klinik- & Facharztrechner">
+                <span class="item-icon">🧮</span>
+                <span class="item-content">
+                  <span class="item-title">Klinik-Rechner</span>
+                  <span class="item-sub">Pediatri, ARDS, LA, Na</span>
+                </span>
+              </button>
+              <button id="mock-exam-trigger" class="dropdown-item" type="button" role="menuitem" title="45-Minütige Mündliche Facharztprüfung Simulieren">
+                <span class="item-icon">⏱️</span>
+                <span class="item-content">
+                  <span class="item-title">45-Dk Sınav Simülasyonu</span>
+                  <span class="item-sub">Gerçekçi Sözlü Sınav</span>
+                </span>
+              </button>
+              <button id="grid-trigger" class="dropdown-item" type="button" role="menuitem" title="Fragenübersicht & Navigation">
+                <span class="item-icon">📑</span>
+                <span class="item-content">
+                  <span class="item-title">Soru Matrisi (669)</span>
+                  <span class="item-sub">Tüm Vaka Navigasyonu</span>
+                </span>
+              </button>
+              <button id="abbrev-trigger" class="dropdown-item" type="button" role="menuitem" title="Kürzel- & Fachwortlexikon">
+                <span class="item-icon">🔤</span>
+                <span class="item-content">
+                  <span class="item-title">Kürzel &amp; Sözlük (TR/DE)</span>
+                  <span class="item-sub">73 Tıbbi Kısaltma</span>
+                </span>
+              </button>
+              <button id="user-guide-trigger" class="dropdown-item" type="button" role="menuitem" title="Offizieller Benutzerleitfaden & Prüfungsanleitung">
+                <span class="item-icon">📖</span>
+                <span class="item-content">
+                  <span class="item-title">Kullanım Kılavuzu</span>
+                  <span class="item-sub">Sınav Rehberi &amp; İpuçları</span>
+                </span>
+              </button>
+            </div>
+          </div>
           <button id="theme-toggle" class="pill-btn" title="Dunkelmodus umschalten">
             <span>🌙</span>
           </button>
@@ -135,21 +176,15 @@
          VIEW 1: MELIS'IN ÇALIŞMA SAYFASI (LESEMODUS - DOKUN/ÜZERİNDE DUR ÇEVİRİ)
          ========================================================================== -->
     <div id="study-view-wrapper">
-      <!-- Melis'in Çalışma Sayfası: Sade & Şık Başlık Şeridi -->
-      <section class="onboarding-guide onboarding-guide-strip" style="margin-bottom: 14px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 1.3rem;">🩺</span>
-            <div>
-              <strong style="font-size: 0.95rem; color: var(--text-primary);">Dr. Melis · St. Antonius-Hospital Eschweiler</strong>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">669 Klinik Vaka · ÄKNO Düsseldorf Mündliche Facharztprüfung</div>
-            </div>
-          </div>
-          <div style="font-size: 0.78rem; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 9999px; font-weight: 600;">
-            💡 Dokun / Üzerinde Dur: Anında Türkçe Çeviri
-          </div>
-        </div>
-      </section>
+      <!-- Melis'in Çalışma Sayfası: Sade Apple-Stili Durum Şeridi -->
+      <div class="melis-subtle-status-bar">
+        <span>🩺 <strong>Dr. Melis · St. Antonius-Hospital Eschweiler</strong></span>
+        <span class="status-sep">·</span>
+        <span>669 Klinik Vaka · ÄKNO Düsseldorf</span>
+        <span class="status-sep">·</span>
+        <span class="status-hint">💡 Dokun / Hover: Anında Çeviri</span>
+      </div>
+
       <!-- Melis Study Progress Tracker -->
       <section class="study-progress-card">
         <div class="progress-header">
@@ -174,31 +209,42 @@
           <button id="study-btn-clear-search" class="btn-clear-search" title="Aramayı Temizle">✕</button>
         </div>
 
-        <!-- Reading Modes Bar -->
-        <div class="reading-modes-bar">
-          <!-- Translation Mode Selector -->
-          <div class="mode-pill-group">
-            <button class="btn-mode-tab active" data-mode="hover" title="Almanca metin görünür. Üzerinde durunca veya dokununca Türkçesi anında açılır">
-              <span>💡</span> Dokun / Üzerinde Dur (Çeviri)
-            </button>
-            <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta birlikte görünür">
-              <span>📖</span> Çift Dilli Okuma
-            </button>
-            <button class="btn-mode-tab" data-mode="german" title="Sadece sınav Almancası">
-              <span>🇩🇪</span> Nur Deutsch
+        <!-- Single Apple-Style Consolidated Toolbar -->
+        <div class="study-compact-toolbar">
+          <div class="toolbar-left-group">
+            <div class="type-filter-segmented-control" role="group" aria-label="Soru Türü">
+              <button class="btn-cat-chip btn-type-filter active" data-type="all">Tümü (669)</button>
+              <button class="btn-cat-chip btn-type-filter" data-type="dus">🏛️ ÄKNO (91)</button>
+              <button class="btn-cat-chip btn-type-filter" data-type="open">🏥 Vaka (344)</button>
+              <button class="btn-cat-chip btn-type-filter" data-type="options">📚 Konu (325)</button>
+            </div>
+            <button id="study-btn-toggle-categories" class="btn-toggle-category-drawer" type="button" aria-expanded="false" title="Konu Kategorilerini Aç/Kapat">
+              <span>📂</span> <span class="category-drawer-label">Konular (60)</span> <span class="category-drawer-chevron">▾</span>
             </button>
           </div>
 
-          <!-- Typography & Theme Settings -->
-          <div class="reader-settings-group">
+          <div class="toolbar-right-group">
+            <div class="mode-pill-group">
+              <button class="btn-mode-tab active" data-mode="hover" title="Almanca metin görünür. Dokununca veya üzerinde durunca Türkçesi anında açılır">
+                <span>💡</span> Çeviri
+              </button>
+              <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta">
+                <span>📖</span> Çift Dil
+              </button>
+              <button class="btn-mode-tab" data-mode="german" title="Sadece sınav Almancası">
+                <span>🇩🇪</span> Deutsch
+              </button>
+            </div>
+
             <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
-              <span>⚡</span> İlk 3 Hamle Test Modu
+              <span>⚡</span> Test Modu
             </button>
+
             <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
               <button type="button" id="study-btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
                 <span class="stepper-glyph-small">A</span>
               </button>
-              <button type="button" id="study-btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart (Tıkla ve Değiştir)" aria-label="Yazı boyutu">
+              <button type="button" id="study-btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart" aria-label="Yazı boyutu">
                 <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
                 <span class="stepper-label" id="study-font-size-label">Standart</span>
                 <span class="stepper-dots" aria-hidden="true">
@@ -212,6 +258,7 @@
                 <span class="stepper-glyph-large">A</span>
               </button>
             </div>
+
             <button id="study-btn-theme-toggle" class="btn-icon-setting" title="Sepia (Sıcak Sarımsı Okuma)">
               <span>📜</span>
             </button>
@@ -221,16 +268,8 @@
           </div>
         </div>
 
-        <!-- Question Type Switcher -->
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button class="btn-cat-chip btn-type-filter active" data-type="all">Tüm Sözlü Sınav Arşivi (669)</button>
-          <button class="btn-cat-chip btn-type-filter" data-type="dus">🏛️ ÄKNO Düsseldorf &amp; AMBOSS Vaka Protokolleri (91)</button>
-          <button class="btn-cat-chip btn-type-filter" data-type="open">🏥 Klinik Vaka Soruları — Annecke &amp; Hohn (344)</button>
-          <button class="btn-cat-chip btn-type-filter" data-type="options">📚 Konu Bazlı Sözlü Soru-Cevap (325)</button>
-        </div>
-
-        <!-- Horizontal Scroll Category Chips -->
-        <nav id="study-category-filter-scroll" class="category-filter-scroll" aria-label="Konu Kategorileri">
+        <!-- Collapsible Category Drawer -->
+        <nav id="study-category-filter-scroll" class="category-filter-scroll collapsed" aria-label="Konu Kategorileri">
           <!-- Dynamically populated from questions.js -->
         </nav>
       </section>

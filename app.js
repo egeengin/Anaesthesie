@@ -6106,6 +6106,31 @@ Tedavi:
     });
   }
 
+  // --- Apple-Grade Tools & SOPs Dropdown Navigation ---
+  const elNavToolsBtn = document.getElementById('nav-tools-menu-btn');
+  const elNavToolsDropdown = document.getElementById('nav-tools-dropdown');
+  if (elNavToolsBtn && elNavToolsDropdown) {
+    elNavToolsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = elNavToolsDropdown.classList.toggle('active');
+      elNavToolsBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    elNavToolsDropdown.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', () => {
+        elNavToolsDropdown.classList.remove('active');
+        elNavToolsBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!elNavToolsDropdown.contains(e.target) && e.target !== elNavToolsBtn) {
+        elNavToolsDropdown.classList.remove('active');
+        elNavToolsBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   // --- Emergency Pocket Cards Modal ---
   const elPocketTrigger = document.getElementById('pocket-trigger');
   const elPocketCardsModal = document.getElementById('pocket-cards-modal');

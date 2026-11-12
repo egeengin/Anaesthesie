@@ -9054,3 +9054,282 @@ body.mode-german-only .trans-interactive {
   border-color: var(--primary) !important;
   box-shadow: 0 2px 8px var(--primary-glow) !important;
 }
+
+/* --- Apple-grade Tools & SOPs Dropdown Navigation --- */
+.nav-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.pill-btn-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(141, 99, 70, 0.08);
+  border: 1px solid rgba(141, 99, 70, 0.22);
+  color: var(--text-primary);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  padding: 0.32rem 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+[data-theme="sepia"] .pill-btn-tools {
+  background: rgba(180, 83, 9, 0.08);
+  border-color: rgba(180, 83, 9, 0.22);
+  color: #78350f;
+}
+
+[data-theme="dark"] .pill-btn-tools {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+
+.pill-btn-tools:hover,
+.pill-btn-tools[aria-expanded="true"] {
+  background: rgba(141, 99, 70, 0.16);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.dropdown-chevron {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.pill-btn-tools[aria-expanded="true"] .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-tools-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 280px;
+  max-width: 340px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  z-index: 1000;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: dropdownFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-tools-dropdown-menu.active {
+  display: flex;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-header {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 0.4rem 0.65rem 0.25rem 0.65rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 0.25rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-hover, rgba(0, 0, 0, 0.04));
+  transform: translateX(2px);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.dropdown-item .item-icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dropdown-item .item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item .item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.dropdown-item .item-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* --- Apple-Grade Compact Single-Row Toolbar --- */
+.study-compact-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.toolbar-left-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar-right-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.type-filter-segmented-control {
+  display: inline-flex;
+  background: var(--bg-secondary);
+  padding: 3px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.type-filter-segmented-control .btn-type-filter {
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.type-filter-segmented-control .btn-type-filter.active {
+  background: var(--bg-card);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+}
+
+.btn-toggle-category-drawer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-toggle-category-drawer:hover,
+.btn-toggle-category-drawer.active {
+  background: var(--bg-card);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.category-drawer-chevron {
+  font-size: 0.72rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-toggle-category-drawer.active .category-drawer-chevron {
+  transform: rotate(180deg);
+}
+
+/* Category drawer collapsible states */
+.category-filter-scroll.collapsed {
+  display: none !important;
+}
+
+.category-filter-scroll.expanded {
+  display: flex !important;
+  animation: drawerSlideDown 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Minimal Apple Status Bar */
+.melis-subtle-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  margin: 10px auto 14px auto;
+  max-width: 900px;
+  background: rgba(180, 83, 9, 0.05);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(180, 83, 9, 0.12);
+}
+
+[data-theme="sepia"] .melis-subtle-status-bar {
+  background: rgba(180, 83, 9, 0.06);
+  border-color: rgba(180, 83, 9, 0.14);
+  color: #78350f;
+}
+
+[data-theme="dark"] .melis-subtle-status-bar {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.melis-subtle-status-bar .status-sep {
+  opacity: 0.4;
+}
+
+.melis-subtle-status-bar .status-hint {
+  color: var(--primary);
+  font-weight: 600;
+}
