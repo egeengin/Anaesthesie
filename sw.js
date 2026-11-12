@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v9.2'; // upgraded from facharzt-cache-v7.7 / v8.5 / v9.1 for vital tiles contrast & removed background leakage
+const CACHE_NAME = 'facharzt-cache-v9.3'; // upgraded from facharzt-cache-v7.7 / v8.5 / v9.1 / v9.2 for unified typography scale & crystal-clear telemetry contrast
 const CORE_ASSETS = [
   './',
   './index.html',
