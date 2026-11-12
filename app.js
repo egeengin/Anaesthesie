@@ -7982,21 +7982,29 @@ Tedavi:
   const elMockTimerDisplay = document.getElementById('mock-timer-display');
   const elMockCaseTabs = document.getElementById('mock-case-tabs');
   const elMockExamBodyContent = document.getElementById('mock-exam-body-content');
+  const elMockExamSidebar = document.getElementById('mock-exam-sidebar');
   const elMockExamReport = document.getElementById('mock-exam-report');
+  const elBtnMockPause = document.getElementById('btn-mock-pause');
 
   let mockExamEngine = null;
   if (typeof MockExamSimulation !== 'undefined') {
     mockExamEngine = new MockExamSimulation(EXAM_QUESTIONS);
   }
 
+  let mockCandidateNotes = ['', '', '', ''];
+  let mockSpeechRecognizer = null;
+  let isMockRecording = false;
+  let isMockPaused = false;
+
   function renderMockExamHUD() {
     if (!mockExamEngine || !elMockCaseTabs) return;
     elMockCaseTabs.innerHTML = '';
+    const domainLabels = ['1. Anästhesie', '2. Pharmakol.', '3. Intensiv', '4. Notfall'];
     mockExamEngine.activeCases.forEach((c, idx) => {
       const btn = document.createElement('button');
       btn.className = 'mock-tab-btn' + (idx === mockExamEngine.currentCaseIndex ? ' active' : '');
       const isScored = !!mockExamEngine.scores[idx];
-      btn.textContent = `Fall ${idx + 1}` + (isScored ? ' ✓' : '');
+      btn.textContent = `${domainLabels[idx] || 'Fall ' + (idx + 1)}` + (isScored ? ' ✓' : '');
       btn.addEventListener('click', () => {
         mockExamEngine.currentCaseIndex = idx;
         renderMockExamActiveCase();
@@ -8012,96 +8020,370 @@ Tedavi:
     if (!activeQ) return;
 
     if (elMockExamReport) elMockExamReport.style.display = 'none';
-    elMockExamBodyContent.style.display = 'block';
+    if (elMockExamBodyContent) elMockExamBodyContent.style.display = 'block';
+    if (elMockExamSidebar) elMockExamSidebar.style.display = 'flex';
 
     const parsed = parseOralExamCase(activeQ);
     const mockExaminer = getExaminerProfileForCase(activeQ);
+    const currentCaseNum = mockExamEngine.currentCaseIndex + 1;
 
+    // --- LEFT MAIN STAGE ---
     elMockExamBodyContent.innerHTML = `
-      <div class="mock-case-view" style="background: var(--bg-secondary); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-color); text-transform: uppercase;">
-            Fall ${mockExamEngine.currentCaseIndex + 1} von 4 &bull; ${parsed.clinicalContext}
-          </span>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">${activeQ.category}</span>
-        </div>
-
-        ${mockExaminer ? `
-        <div class="mock-examiner-profile-card">
-          <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.2rem;">🏛️ ÄKNO Düsseldorf Prüfer / Jüri: ${mockExaminer.name}</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">📍 ${mockExaminer.hospital}</div>
-          <div style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0.25rem;"><strong>🎯 Schwerpunkt / Odak:</strong> ${renderDualLanguageText(mockExaminer.focus, mockExaminer.focus_tr)}</div>
-          <div style="font-size: 0.85rem; line-height: 1.4; color: var(--danger);"><strong>⚠️ Prüfungsfalle / Sınav Tuzağı:</strong> ${renderDualLanguageText(mockExaminer.trap, mockExaminer.trap_tr)}</div>
-        </div>
-        ` : ''}
-
-        <div style="margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.5;">${renderDualLanguageText(parsed.stem, activeQ.stem_tr || activeQ.question_tr)}</div>
-
-        <div style="background: var(--bg-tertiary); padding: 0.85rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.88rem; border: 1px solid var(--border-color);">
-          <strong style="display: block; margin-bottom: 0.25rem;">📊 Vitalparameter & Befunde:</strong>
-          <div style="color: var(--text-main); margin-bottom: 0.5rem; line-height: 1.4;">${renderDualLanguageText(parsed.vitals.notes, parsed.vitals.notes_tr)}</div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
-            <span class="vital-chip vital-chip-spo2">SpO₂: ${parsed.vitals.spo2}</span>
-            <span class="vital-chip vital-chip-bp">RR: ${parsed.vitals.bp}</span>
-            <span class="vital-chip vital-chip-hr">HF: ${parsed.vitals.hr}</span>
-            <span class="vital-chip vital-chip-etco2">etCO₂: ${parsed.vitals.etco2}</span>
-            <span class="vital-chip vital-chip-temp">Temp: ${parsed.vitals.temp}</span>
+      <div class="mock-case-view" style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <!-- Case Meta Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-weight: 800; font-size: 0.95rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em;">
+              🏛️ ÄKNO Prüfungsfall ${currentCaseNum} von 4 &bull; ${parsed.clinicalContext}
+            </span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 0.78rem; background: var(--bg-tertiary); color: var(--text-muted); padding: 3px 8px; border-radius: var(--radius-full); font-weight: 600;">
+              ${escapeHtml(activeQ.category)}
+            </span>
+            <button type="button" id="btn-mock-speak-case" class="btn-card-action" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-full); border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--primary);">
+              🔊 Prüfer Vorlesen
+            </button>
           </div>
         </div>
 
-        <div style="background: rgba(192, 85, 68, 0.08); border-left: 3px solid var(--danger); padding: 0.75rem; border-radius: 4px; margin-bottom: 0.75rem; font-size: 0.88rem;">
-          <strong>⚠️ Prüfer-Intervention:</strong> ${renderDualLanguageText(parsed.examinerIntervention, parsed.examinerInterventionTR)}
+        <!-- Case Vignette (Clinical Stem) -->
+        <div style="margin-bottom: 1.25rem; font-size: 1.12rem; line-height: 1.55; color: var(--text-primary); font-weight: 500;">
+          ${renderDualLanguageText(parsed.stem, activeQ.stem_tr || activeQ.question_tr)}
         </div>
 
-        <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.85rem; font-size: 0.88rem;">
-          <strong>💡 Musterantwort zur Prüfer-Intervention:</strong><br>
-          <div style="margin-top: 0.35rem; line-height: 1.5; white-space: pre-line;">${renderDualLanguageText(highlightDosagesAndUnits(parsed.examinerAnswer), highlightDosagesAndUnits(parsed.examinerAnswerTR))}</div>
+        <!-- Real-Time Clinical Monitor & Vitals Strip -->
+        <div class="mock-vitals-strip" style="background: #0b1118; color: #f8fafc; padding: 1rem; border-radius: 10px; margin-bottom: 1.25rem; border: 1px solid #1e293b;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <strong style="color: #38bdf8; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;">📟 Klinischer Patienten-Monitor &amp; Vitalparameter:</strong>
+            <span style="color: #94a3b8; font-size: 0.75rem;">Echtzeit-Telemetrie</span>
+          </div>
+          <div style="color: #cbd5e1; margin-bottom: 0.75rem; font-size: 0.88rem; line-height: 1.45;">
+            ${renderDualLanguageText(parsed.vitals.notes, parsed.vitals.notes_tr)}
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px;">
+            <div class="vital-chip vital-chip-hr" style="background: #1e293b; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #22c55e;">
+              <div style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">HF / Frequenz</div>
+              <div style="font-size: 1.05rem; font-weight: 800; color: #22c55e;">♥ ${parsed.vitals.hr}</div>
+            </div>
+            <div class="vital-chip vital-chip-bp" style="background: #1e293b; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #f43f5e;">
+              <div style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">RR / MAP</div>
+              <div style="font-size: 1.05rem; font-weight: 800; color: #f43f5e;">${parsed.vitals.bp}</div>
+            </div>
+            <div class="vital-chip vital-chip-spo2" style="background: #1e293b; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+              <div style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">SpO₂ (Pulsoxy)</div>
+              <div style="font-size: 1.05rem; font-weight: 800; color: #38bdf8;">${parsed.vitals.spo2}</div>
+            </div>
+            <div class="vital-chip vital-chip-etco2" style="background: #1e293b; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #facc15;">
+              <div style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">EtCO₂ (Kapno)</div>
+              <div style="font-size: 1.05rem; font-weight: 800; color: #facc15;">${parsed.vitals.etco2}</div>
+            </div>
+            <div class="vital-chip vital-chip-temp" style="background: #1e293b; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #c084fc;">
+              <div style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Temperatur</div>
+              <div style="font-size: 1.05rem; font-weight: 800; color: #c084fc;">${parsed.vitals.temp}</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Comprehensive Dual-Language Case Model Answer & Verbal Framework -->
-        <details class="mock-case-full-solution" style="margin-bottom: 1.25rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.85rem;">
-          <summary style="font-weight: 700; cursor: pointer; color: var(--primary);">📖 Vollständige Fall-Musterantwort, Redemittel & Checkliste / Vaka Model Çözümü & İfadeler</summary>
-          <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color);">
-            <div style="margin-bottom: 0.75rem;">
-              <strong style="display: block; margin-bottom: 0.25rem; color: var(--accent-color);">🗣️ Formulierungshilfe & Redemittel (Wie sage ich es?):</strong>
-              <div>${renderDualLanguageText(parsed.verbalFramework, parsed.verbalFrameworkTR)}</div>
-            </div>
-            <div style="margin-bottom: 0.75rem;">
-              <strong style="display: block; margin-bottom: 0.25rem; color: var(--primary);">🎯 Vollständige Leitlinien-Musterantwort / Kılavuz Çözümü:</strong>
-              <div style="line-height: 1.5;">${renderDualLanguageText(highlightDosagesAndUnits(parsed.fullTextDE), highlightDosagesAndUnits(parsed.fullTextTR))}</div>
-            </div>
-            <div style="margin-bottom: 0.5rem;">
-              <strong style="display: block; margin-bottom: 0.25rem; color: var(--danger);">⚠️ Kritische Prüfungsfalle (K.O.-Kriterium):</strong>
-              <div>${renderDualLanguageText(parsed.pitfalls, parsed.pitfallsTR)}</div>
-            </div>
+        <!-- Prüfer-Intervention (Akute Krise / Zwischenfrage) -->
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1.5px solid rgba(239, 68, 68, 0.4); border-left: 5px solid #ef4444; padding: 1.1rem 1.25rem; border-radius: 8px; margin-bottom: 1.25rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+            <strong style="color: #ef4444; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+              ⚠️ Prüfer-Intervention (Akute Zwischenfrage):
+            </strong>
+            <button type="button" id="btn-mock-speak-intervention" class="btn-card-action" style="padding: 2px 8px; font-size: 0.76rem; border-radius: var(--radius-full); background: transparent; border: 1px solid rgba(239, 68, 68, 0.4); color: #ef4444; cursor: pointer;">
+              🔊 Frage vorlesen
+            </button>
           </div>
-        </details>
+          <div style="font-size: 1.05rem; line-height: 1.5; color: var(--text-primary); font-weight: 600;">
+            ${renderDualLanguageText(parsed.examinerIntervention, parsed.examinerInterventionTR)}
+          </div>
+        </div>
 
-        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
-          <h4 style="margin-bottom: 0.5rem; font-size: 0.95rem;">🗣️ Prüfungs-Bewertung für Fall ${mockExamEngine.currentCaseIndex + 1}:</h4>
-          <div class="sm2-btn-group">
-            <button class="sm2-btn hard" data-rating="1">🔴 Mangelhaft (Note 5)</button>
-            <button class="sm2-btn good" data-rating="3">🟡 Befriedigend (Note 3)</button>
-            <button class="sm2-btn easy" data-rating="5">🟢 Sehr Gut (Note 1)</button>
+        <!-- Interactive Voice Speech Answer Module (German STT) -->
+        <div class="mock-speech-box" style="margin-bottom: 1.25rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 0.65rem;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" id="btn-mock-mic" class="btn-mock-mic">
+                <span>🎙️</span> <span id="btn-mock-mic-label">Antwort Sprechen (Deutsch STT)</span>
+              </button>
+              <span id="mock-mic-status-hint" style="font-size: 0.8rem; color: var(--text-muted);">
+                Mikrofon aktivieren ve Almanca sözlü yanıtınızı verin
+              </span>
+            </div>
+            <button type="button" id="btn-mock-clear-stt" style="background: none; border: none; font-size: 0.78rem; color: var(--text-muted); cursor: pointer;">
+              Temizle ✕
+            </button>
           </div>
+          <div id="mock-speech-transcript" style="min-height: 52px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; font-size: 0.92rem; line-height: 1.45; color: var(--text-primary); font-style: italic;">
+            Mikrofon butonuna tıklayıp sözlü cevabınızı verdiğinizde konuşmanız buraya dökülecek ve ÄKNO rubriğine göre değerlendirilecektir...
+          </div>
+          <div id="mock-speech-eval-result" style="display: none; margin-top: 8px;"></div>
+        </div>
+
+        <!-- Progressive Reveal of Model Solution & Guidelines -->
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem;">
+          <details style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1rem;">
+            <summary style="font-weight: 700; cursor: pointer; color: #f59e0b; display: flex; align-items: center; gap: 6px;">
+              <span>⚡</span> Erste 3 Sofortmaßnahmen zur Prüfer-Intervention (İlk 3 Acil Hamle)
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); line-height: 1.5; white-space: pre-line; font-size: 0.92rem;">
+              ${renderDualLanguageText(highlightDosagesAndUnits(parsed.examinerAnswer), highlightDosagesAndUnits(parsed.examinerAnswerTR))}
+            </div>
+          </details>
+
+          <details style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1rem;">
+            <summary style="font-weight: 700; cursor: pointer; color: var(--accent-color); display: flex; align-items: center; gap: 6px;">
+              <span>🗣️</span> Formulierungshilfe &amp; Redemittel (Sözlü Sınav Cümle Kalıpları)
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); line-height: 1.5; font-size: 0.92rem;">
+              ${renderDualLanguageText(parsed.verbalFramework, parsed.verbalFrameworkTR)}
+            </div>
+          </details>
+
+          <details style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1rem;">
+            <summary style="font-weight: 700; cursor: pointer; color: #ef4444; display: flex; align-items: center; gap: 6px;">
+              <span>⚠️</span> Kritische Prüfungsfalle &amp; K.O.-Kriterium (Sınavı Kaybettiren Hata)
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); line-height: 1.5; font-size: 0.92rem; color: #ef4444; font-weight: 500;">
+              ${renderDualLanguageText(parsed.pitfalls, parsed.pitfallsTR)}
+            </div>
+          </details>
+
+          <details class="mock-case-full-solution" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1rem;">
+            <summary style="font-weight: 700; cursor: pointer; color: var(--primary); display: flex; align-items: center; gap: 6px;">
+              <span>🎯</span> Vollständige DGAI Leitlinien-Musterantwort (Eksiksiz Kılavuz Çözümü)
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); line-height: 1.55; font-size: 0.92rem;">
+              ${renderDualLanguageText(highlightDosagesAndUnits(parsed.fullTextDE), highlightDosagesAndUnits(parsed.fullTextTR))}
+            </div>
+          </details>
         </div>
       </div>
     `;
 
-    const ratingBtns = elMockExamBodyContent.querySelectorAll('.sm2-btn');
-    ratingBtns.forEach(b => {
-      b.addEventListener('click', (e) => {
-        const rating = parseInt(e.currentTarget.dataset.rating, 10);
-        mockExamEngine.recordCaseScore(mockExamEngine.currentCaseIndex, rating, 4, 4);
+    // --- RIGHT SIDEBAR: COCKPIT, SCRATCHPAD, SOPS & SCORING ---
+    if (elMockExamSidebar) {
+      elMockExamSidebar.innerHTML = `
+        <!-- Examiner Profile Card -->
+        ${mockExaminer ? `
+        <div class="mock-examiner-profile-card">
+          <div style="font-weight: 800; color: var(--primary); margin-bottom: 0.25rem; font-size: 0.95rem;">
+            🏛️ ÄKNO Prüfer: ${escapeHtml(mockExaminer.name)}
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            📍 ${escapeHtml(mockExaminer.hospital)}
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0.35rem;">
+            <strong>🎯 Schwerpunkt:</strong> ${renderDualLanguageText(mockExaminer.focus, mockExaminer.focus_tr)}
+          </div>
+          <div style="font-size: 0.85rem; line-height: 1.4; color: #ef4444;">
+            <strong>⚠️ K.O.-Falle:</strong> ${renderDualLanguageText(mockExaminer.trap, mockExaminer.trap_tr)}
+          </div>
+        </div>
+        ` : ''}
 
-        if (mockExamEngine.currentCaseIndex < 3) {
-          mockExamEngine.nextCase();
-          renderMockExamActiveCase();
-        } else {
-          showMockExamSummary();
+        <!-- Melis'in Sınav Karalama Not Defteri -->
+        <div class="mock-scratchpad-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong style="font-size: 0.88rem; color: var(--text-primary); display: flex; align-items: center; gap: 5px;">
+              <span>📝</span> Sınav Karalama Notları
+            </strong>
+            <span style="font-size: 0.74rem; color: var(--text-muted);">Fall ${currentCaseNum} Notları</span>
+          </div>
+          <div style="display: flex; gap: 4px; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn-scratch-tag" data-tag="[A: Atemweg] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ A</button>
+            <button type="button" class="btn-scratch-tag" data-tag="[B: Beatmung] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ B</button>
+            <button type="button" class="btn-scratch-tag" data-tag="[C: Kreislauf] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ C</button>
+            <button type="button" class="btn-scratch-tag" data-tag="[D: Drugs] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ D</button>
+            <button type="button" class="btn-scratch-tag" data-tag="[E: Environment] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ E</button>
+          </div>
+          <textarea id="mock-scratchpad-input" class="mock-scratchpad-textarea" placeholder="Sözlü cevabınızı yapılandırmak için buraya hızlı notlar alın (örn. A: FiO2 1.0, C: Noradrenalin 10 µg bolus)...">${mockCandidateNotes[mockExamEngine.currentCaseIndex] || ''}</textarea>
+        </div>
+
+        <!-- Quick Emergency SOPs Accordion -->
+        <div class="mock-sop-card">
+          <details>
+            <summary class="mock-sop-summary">
+              <span>📇 Acil SOP Hızlı Referansı</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">MH, LAST, CICO, ALS ▾</span>
+            </summary>
+            <div class="mock-sop-content">
+              <div style="margin-bottom: 6px;"><strong>🚨 MH:</strong> Dantrolen 2,5 mg/kg i.v. alle 10 min bis max. 10 mg/kg; Trigger stop, Hyperventilation 100% O2.</div>
+              <div style="margin-bottom: 6px;"><strong>💉 LAST:</strong> Lipid 20% Bolus 1,5 ml/kg über 1 min, dann 0,25 ml/kg/min; Adrenalin nur minidosiert (&le; 1 &micro;g/kg).</div>
+              <div style="margin-bottom: 6px;"><strong>🌪️ CICO:</strong> FONA (Koniotomie) scalpel-bougie-tube; 100% O2, Muskelrelaxans optimieren.</div>
+              <div><strong>⚡ ALS:</strong> VF/pVT 3. Schock -> Adrenalin 1 mg + Amiodaron 300 mg. Kompression 100-120/min.</div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Examiner Scoring & Navigation -->
+        <div style="background: var(--bg-secondary); border: 1.5px solid var(--border-color); border-radius: 12px; padding: 1rem; margin-top: auto;">
+          <strong style="display: block; font-size: 0.9rem; margin-bottom: 0.65rem; color: var(--text-primary);">
+            🗣️ Prüfungs-Benotung für Fall ${currentCaseNum}:
+          </strong>
+          <div class="sm2-btn-group" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 0.85rem;">
+            <button class="sm2-btn hard btn-mock-grade" data-rating="1" style="justify-content: center; padding: 8px;">
+              🔴 Mangelhaft (Note 5.0 - Nicht bestanden)
+            </button>
+            <button class="sm2-btn good btn-mock-grade" data-rating="3" style="justify-content: center; padding: 8px;">
+              🟡 Befriedigend (Note 3.0 - Bestanden)
+            </button>
+            <button class="sm2-btn easy btn-mock-grade" data-rating="5" style="justify-content: center; padding: 8px;">
+              🟢 Sehr Gut (Note 1.0 - Souverän bestanden)
+            </button>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+            ${currentCaseNum < 4 ? `Bir sonraki vaka: Fall ${currentCaseNum + 1} von 4` : 'Son vaka: Puanlandıktan sonra sonuç raporu açılacaktır.'}
+          </div>
+        </div>
+      `;
+
+      // Scratchpad sync
+      const elScratchInput = document.getElementById('mock-scratchpad-input');
+      if (elScratchInput) {
+        elScratchInput.addEventListener('input', (e) => {
+          mockCandidateNotes[mockExamEngine.currentCaseIndex] = e.target.value;
+        });
+      }
+
+      // Quick scratch tags
+      elMockExamSidebar.querySelectorAll('.btn-scratch-tag').forEach(tagBtn => {
+        tagBtn.addEventListener('click', () => {
+          if (!elScratchInput) return;
+          const tag = tagBtn.dataset.tag;
+          elScratchInput.value += tag;
+          mockCandidateNotes[mockExamEngine.currentCaseIndex] = elScratchInput.value;
+          elScratchInput.focus();
+        });
+      });
+
+      // Grade buttons
+      const ratingBtns = elMockExamSidebar.querySelectorAll('.btn-mock-grade');
+      ratingBtns.forEach(b => {
+        b.addEventListener('click', (e) => {
+          const rating = parseInt(e.currentTarget.dataset.rating, 10);
+          mockExamEngine.recordCaseScore(mockExamEngine.currentCaseIndex, rating, 4, 4);
+
+          if (mockExamEngine.currentCaseIndex < 3) {
+            mockExamEngine.nextCase();
+            renderMockExamActiveCase();
+          } else {
+            showMockExamSummary();
+          }
+        });
+      });
+    }
+
+    // Audio Vorlesen Listeners
+    const btnSpeakCase = document.getElementById('btn-mock-speak-case');
+    if (btnSpeakCase) {
+      btnSpeakCase.addEventListener('click', () => {
+        speakMedicalText(parsed.stem, btnSpeakCase);
+      });
+    }
+
+    const btnSpeakIntervention = document.getElementById('btn-mock-speak-intervention');
+    if (btnSpeakIntervention) {
+      btnSpeakIntervention.addEventListener('click', () => {
+        speakMedicalText(parsed.examinerIntervention, btnSpeakIntervention);
+      });
+    }
+
+    // Speech STT Listener
+    const btnMic = document.getElementById('btn-mock-mic');
+    const elTranscript = document.getElementById('mock-speech-transcript');
+    const elEvalResult = document.getElementById('mock-speech-eval-result');
+    const btnClearStt = document.getElementById('btn-mock-clear-stt');
+
+    if (btnClearStt && elTranscript) {
+      btnClearStt.addEventListener('click', () => {
+        elTranscript.textContent = 'Mikrofon butonuna tıklayıp sözlü cevabınızı verdiğinizde konuşmanız buraya dökülecektir...';
+        if (elEvalResult) {
+          elEvalResult.style.display = 'none';
+          elEvalResult.innerHTML = '';
         }
       });
-    });
+    }
+
+    if (btnMic) {
+      btnMic.addEventListener('click', () => {
+        const rubricPearls = [activeQ.category, parsed.clinicalContext].concat(parsed.examinerAnswer.split(' '));
+        toggleMockSpeechRecognition(btnMic, elTranscript, elEvalResult, activeQ.id, rubricPearls);
+      });
+    }
+  }
+
+  function toggleMockSpeechRecognition(btn, resultDiv, evalDiv, qId, rubricPearls) {
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechAPI) {
+      showToast('Spracherkennung wird in diesem Browser nicht unterstützt.', 'warning');
+      return;
+    }
+    if (isMockRecording && mockSpeechRecognizer) {
+      mockSpeechRecognizer.stop();
+      return;
+    }
+    try {
+      mockSpeechRecognizer = new SpeechAPI();
+      mockSpeechRecognizer.lang = 'de-DE';
+      mockSpeechRecognizer.continuous = true;
+      mockSpeechRecognizer.interimResults = true;
+
+      mockSpeechRecognizer.onstart = () => {
+        isMockRecording = true;
+        btn.classList.add('active');
+        const lbl = document.getElementById('btn-mock-mic-label');
+        if (lbl) lbl.textContent = '🛑 Aufnahme stoppen';
+        if (resultDiv && resultDiv.parentElement) resultDiv.parentElement.classList.add('recording');
+      };
+
+      let finalTranscript = '';
+      mockSpeechRecognizer.onresult = (event) => {
+        let interim = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript + ' ';
+          } else {
+            interim += event.results[i][0].transcript;
+          }
+        }
+        if (resultDiv) {
+          resultDiv.textContent = finalTranscript + interim;
+        }
+      };
+
+      mockSpeechRecognizer.onerror = (e) => {
+        console.warn('Mock speech error:', e);
+      };
+
+      mockSpeechRecognizer.onend = () => {
+        isMockRecording = false;
+        btn.classList.remove('active');
+        const lbl = document.getElementById('btn-mock-mic-label');
+        if (lbl) lbl.textContent = '🎙️ Antwort Sprechen (Deutsch STT)';
+        if (resultDiv && resultDiv.parentElement) resultDiv.parentElement.classList.remove('recording');
+
+        if (finalTranscript.trim() && evalDiv && typeof MockExamSimulation !== 'undefined') {
+          const evalRes = MockExamSimulation.evaluateCandidateAnswer(qId, finalTranscript, rubricPearls);
+          evalDiv.style.display = 'block';
+          evalDiv.innerHTML = `
+            <div style="padding: 0.85rem; border-radius: 8px; background: ${evalRes.passed ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)'}; border: 1.5px solid ${evalRes.passed ? '#10b981' : '#ef4444'};">
+              <strong style="color: ${evalRes.passed ? '#10b981' : '#ef4444'}; font-size: 0.95rem;">
+                ${evalRes.passed ? '✅ ÄKNO Rückmeldung: Bestanden' : '🚨 ÄKNO Rückmeldung: ' + (evalRes.koViolated ? 'K.O.-Kriterium verletzt!' : 'Nicht bestanden')}
+              </strong>
+              <div style="font-size: 0.85rem; margin-top: 5px; line-height: 1.45; color: var(--text-primary);">
+                ${evalRes.examinerFeedback || evalRes.feedback || evalRes.gradeText}
+              </div>
+            </div>
+          `;
+        }
+      };
+
+      mockSpeechRecognizer.start();
+    } catch (err) {
+      console.error('STT Start Error:', err);
+    }
   }
 
   function showMockExamSummary() {
@@ -8109,27 +8391,41 @@ Tedavi:
     const summary = mockExamEngine.finishExam();
 
     if (elMockExamBodyContent) elMockExamBodyContent.style.display = 'none';
+    if (elMockExamSidebar) elMockExamSidebar.style.display = 'none';
     elMockExamReport.style.display = 'block';
 
     let scoresHtml = summary.scores.map((s, idx) => {
       if (!s) return '';
-      return `<div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
-        <span>Fall ${idx + 1}: ${s.title.substring(0, 45)}...</span>
-        <strong>Bewertung: ${s.rating === 5 ? '🟢 Sehr Gut (1.0)' : (s.rating === 3 ? '🟡 Befriedigend (3.0)' : '🔴 Mangelhaft (5.0)')}</strong>
+      return `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+        <span><strong>Fall ${idx + 1}:</strong> ${s.title.substring(0, 50)}...</span>
+        <strong style="font-size: 0.95rem;">${s.rating === 5 ? '🟢 Sehr Gut (1.0)' : (s.rating === 3 ? '🟡 Befriedigend (3.0)' : '🔴 Mangelhaft (5.0)')}</strong>
       </div>`;
     }).join('');
 
     elMockExamReport.innerHTML = `
-      <div style="text-align: center; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 8px;">
-        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">${summary.statusText}</h2>
-        <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-color); margin-bottom: 1rem;">${summary.grade}</div>
-        <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">Benötigte Prüfungszeit: ${Math.floor(summary.timeSpentSeconds / 60)} Min. ${summary.timeSpentSeconds % 60} Sek.</p>
+      <div style="max-width: 800px; margin: 0 auto; padding: 2.5rem; background: var(--bg-card); border-radius: 16px; border: 1.5px solid var(--border-color); box-shadow: var(--shadow-md); text-align: center;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🏆</span>
+        <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-primary);">${summary.statusText}</h2>
+        <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">${summary.grade}</div>
+        <p style="color: var(--text-secondary); margin-bottom: 1.75rem;">
+          Benötigte Prüfungszeit: <strong>${Math.floor(summary.timeSpentSeconds / 60)} Min. ${summary.timeSpentSeconds % 60} Sek.</strong> (45 Minuten Gesamtrahmen)
+        </p>
 
-        <div style="text-align: left; max-width: 600px; margin: 0 auto 1.5rem auto;">
+        <div style="text-align: left; background: var(--bg-tertiary); padding: 1.25rem 1.5rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--border-color);">
+          <div style="font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em;">
+            ÄKNO DÜSSELDORF PRÜFUNGSERGEBNIS NACH DOMÄNEN:
+          </div>
           ${scoresHtml}
         </div>
 
-        <button id="btn-mock-restart" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">⏱️ Neue Prüfungssimulation starten</button>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button id="btn-mock-restart" class="btn btn-primary" style="padding: 0.85rem 1.75rem; font-size: 0.95rem; font-weight: 700; border-radius: var(--radius-full);">
+            ⏱️ Neue 45-Min Prüfung starten
+          </button>
+          <button id="btn-mock-exit-final" class="btn btn-secondary" style="padding: 0.85rem 1.5rem; font-size: 0.95rem; font-weight: 600; border-radius: var(--radius-full);">
+            Sınavdan Çık &amp; Ana Sayfaya Dön
+          </button>
+        </div>
       </div>
     `;
 
@@ -8142,21 +8438,52 @@ Tedavi:
         }
       });
     }
+
+    const btnExit = document.getElementById('btn-mock-exit-final');
+    if (btnExit) {
+      btnExit.addEventListener('click', () => {
+        closeModal(elMockExamModal);
+      });
+    }
+  }
+
+  // Pause / Resume handler
+  if (elBtnMockPause) {
+    elBtnMockPause.addEventListener('click', () => {
+      if (!mockExamEngine) return;
+      isMockPaused = !isMockPaused;
+      if (isMockPaused) {
+        mockExamEngine.stopTimer();
+        elBtnMockPause.textContent = '▶️';
+        elBtnMockPause.title = 'Prüfung fortsetzen';
+        if (elMockTimerDisplay) elMockTimerDisplay.style.opacity = '0.4';
+      } else {
+        mockExamEngine.startTimer();
+        elBtnMockPause.textContent = '⏸️';
+        elBtnMockPause.title = 'Prüfung pausieren';
+        if (elMockTimerDisplay) elMockTimerDisplay.style.opacity = '1';
+      }
+    });
   }
 
   if (elMockExamTrigger && elMockExamModal) {
     elMockExamTrigger.addEventListener('click', () => {
       elMockExamModal.classList.add('active');
+      isMockPaused = false;
+      if (elBtnMockPause) {
+        elBtnMockPause.textContent = '⏸️';
+        elBtnMockPause.title = 'Prüfung pausieren';
+      }
       if (mockExamEngine) {
         mockExamEngine.onTickCallback = (secs, formatted) => {
           if (elMockTimerDisplay) {
             elMockTimerDisplay.textContent = formatted;
             if (secs < 300) {
-              elMockTimerDisplay.className = 'hud-timer danger';
+              elMockTimerDisplay.className = 'hud-timer hud-timer-clock danger';
             } else if (secs < 600) {
-              elMockTimerDisplay.className = 'hud-timer warning';
+              elMockTimerDisplay.className = 'hud-timer hud-timer-clock warning';
             } else {
-              elMockTimerDisplay.className = 'hud-timer';
+              elMockTimerDisplay.className = 'hud-timer hud-timer-clock';
             }
           }
         };
@@ -8175,6 +8502,9 @@ Tedavi:
     elMockExamClose.addEventListener('click', () => {
       closeModal(elMockExamModal);
       if (mockExamEngine) mockExamEngine.stopTimer();
+      if (mockSpeechRecognizer && isMockRecording) {
+        try { mockSpeechRecognizer.stop(); } catch (e) {}
+      }
     });
   }
 

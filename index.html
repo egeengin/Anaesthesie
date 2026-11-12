@@ -2493,37 +2493,40 @@
 
   <!-- 45-Minute Timed Mock Oral Board Examination Modal -->
   <div id="mock-exam-modal" class="modal-backdrop modal-overlay">
-    <div class="modal-content modal-card mock-exam-card" style="max-width: 900px; width: 95%;">
-      <div class="modal-header" style="border-bottom: 2px solid var(--accent-color); padding-bottom: 0.75rem;">
+    <div class="modal-content modal-card mock-exam-card">
+      <div class="mock-fullscreen-header">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <span style="font-size: 1.6rem;">⏱️</span>
           <div>
-            <h3 style="margin: 0; font-size: 1.15rem;">Simulierte Mündliche Facharztprüfung (ÄKNO)</h3>
+            <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700;">Simulierte Mündliche Facharztprüfung (ÄKNO Düsseldorf)</h3>
             <small style="color: var(--text-muted);">4 Prüfungsfälle aus den Hauptdomänen &bull; 45 Minuten Prüfungszeit</small>
           </div>
         </div>
-        <button class="modal-close" id="mock-exam-close">&times;</button>
-      </div>
 
-      <div class="modal-body" style="max-height: 80vh; overflow-y: auto; padding-top: 1rem;">
-        <!-- HUD Header Bar -->
-        <div class="mock-exam-hud" style="display: flex; justify-space-between; align-items: center; background: var(--bg-tertiary); padding: 0.85rem 1.25rem; border-radius: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
           <div class="hud-stat" style="display: flex; align-items: center; gap: 0.5rem;">
-            <span class="hud-label" style="font-weight: 600; font-size: 0.9rem;">Verbleibende Prüfungszeit:</span>
-            <span id="mock-timer-display" class="hud-timer" style="font-family: monospace; font-size: 1.3rem; font-weight: 700; color: #10b981; background: var(--bg-primary); padding: 0.2rem 0.6rem; border-radius: 6px; border: 1px solid var(--border-color);">45:00</span>
+            <span class="hud-label" style="font-weight: 600; font-size: 0.85rem; color: var(--text-muted);">Verbleibend:</span>
+            <span id="mock-timer-display" class="hud-timer hud-timer-clock">45:00</span>
           </div>
-          <div class="hud-cases-progress" id="mock-case-tabs" style="display: flex; gap: 0.5rem;">
+          <div class="hud-cases-progress" id="mock-case-tabs" style="display: flex; gap: 0.4rem;">
             <!-- Rendered by JS: Case 1..4 tabs -->
           </div>
+          <button id="btn-mock-pause" class="btn-icon" type="button" title="Prüfung pausieren / fortsetzen" style="font-size: 1.1rem; cursor: pointer; background: transparent; border: 1px solid var(--border-color); border-radius: var(--radius-full); width: 34px; height: 34px;">⏸️</button>
+          <button class="modal-close" id="mock-exam-close" title="Prüfung beenden">&times;</button>
         </div>
+      </div>
 
-        <!-- Active Case Content View -->
-        <div id="mock-exam-body-content">
+      <div class="mock-fullscreen-body">
+        <div id="mock-exam-body-content" class="mock-stage-left">
           <!-- Rendered by JS -->
         </div>
 
+        <div id="mock-exam-sidebar" class="mock-sidebar-right">
+          <!-- Rendered by JS: Examiner Profile, Candidate Scratchpad, Quick SOPs, Scoring -->
+        </div>
+
         <!-- Exam Report Card (Shown upon completion) -->
-        <div id="mock-exam-report" style="display: none;" class="mock-report-card">
+        <div id="mock-exam-report" style="display: none; width: 100%; height: 100%; overflow-y: auto; padding: 2.5rem;" class="mock-report-card">
           <!-- Rendered by JS upon exam completion -->
         </div>
       </div>
