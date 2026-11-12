@@ -8878,15 +8878,18 @@ body.view-mode-exam .full-reference-accordion {
 }
 
 /* Hide multi-paragraph hero clutter from main study flow (moved cleanly to #onboarding-modal) */
-.hero-focus-subtitle {
+.hero-focus-subtitle,
+#hero-focus-subtitle {
   display: none !important;
 }
 
-#btn-hero-start-session {
+#btn-hero-start-session,
+.btn-hero-cta {
   display: none !important;
 }
 
-#onboarding-guide-strip {
+#onboarding-guide-strip,
+.onboarding-guide-strip {
   display: none !important;
 }
 

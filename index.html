@@ -21,8 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=9.6">
-  <link rel="stylesheet" href="study.css?v=9.6">
+  <link rel="stylesheet" href="styles.css?v=10.2">
+  <link rel="stylesheet" href="study.css?v=10.2">
 </head>
 <body>
 
@@ -302,7 +302,7 @@
             <span class="hero-focus-stage-badge" id="hero-focus-stage-badge">Stufe 1: Top-50 Überlebensfälle</span>
           </div>
           <h2 class="hero-focus-title" id="hero-focus-title">Aktueller Fokus: 1. Klinische Notfälle &amp; Düsseldorfer Prüfungsprotokolle</h2>
-          <div class="hero-focus-subtitle" id="hero-focus-subtitle">
+          <div class="hero-focus-subtitle" id="hero-focus-subtitle" style="display: none !important;">
             <div class="translatable-box" data-tr="Sözlü uzmanlık sınavında puanlama yoktur; doğrudan &quot;Geçti / Kaldı&quot; (Bestanden) değerlendirmesi yapılır: Jüri karşısında yapılandırılmış klinik yaklaşımı (ABCDE), güvenli kılavuz dozlarını ve sınavı kaybettiren K.O. hatalarından kaçınmayı pratik edin." tabindex="0">
               <div class="de-text-block">Im mündlichen Facharztgespräch (ÄKNO Düsseldorf) zählt kein Punktesystem, sondern <strong>Bestanden oder Nicht bestanden</strong>: Trainieren Sie strukturierte klinische Entscheidungsfindung (ABCDE), sichere Leitlinien-Dosierungen und das souveräne Vermeiden vitaler K.O.-Fehler.</div>
               <div class="hover-tr-preview" aria-hidden="true">
@@ -313,18 +313,18 @@
           </div>
         </div>
         <div class="hero-focus-actions">
-          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" title="15-Min Smart-Training starten — 🇹🇷 15-Dakikalık Akıllı Seansı Başlat">
+          <button id="btn-hero-start-session" class="btn-hero-cta" type="button" style="display: none !important;" title="15-Min Smart-Training starten — 🇹🇷 15-Dakikalık Akıllı Seansı Başlat">
             <span class="cta-play-icon">▶️</span>
             <span id="hero-cta-label">15-Min Smart-Training starten</span>
           </button>
-          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="So funktioniert's — 🇹🇷 Nasıl Çalışılır? Rehberini Aç/Kapat" aria-label="Anleitung">
+          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="So funktioniert's — 🇹🇷 Nasıl Çalışılır? Rehberini Aç" aria-label="Anleitung">
             <span>❓ So funktioniert's</span>
           </button>
         </div>
       </div>
 
-      <!-- Collapsible 3-Step Mini Onboarding Guide (Her zaman açılıp kapatılabilir DE/TR) -->
-      <details class="onboarding-guide onboarding-guide-strip" id="onboarding-guide-strip">
+      <!-- Collapsible 3-Step Mini Onboarding Guide (Hidden on main page, available in popup modal) -->
+      <details class="onboarding-guide onboarding-guide-strip" id="onboarding-guide-strip" style="display: none !important;">
         <summary class="guide-strip-header">
           <span class="guide-strip-title">
             <span>💡</span> <strong>So funktioniert das Training (3 Schritte zum Facharzt)</strong>
@@ -335,22 +335,28 @@
           <div class="guide-step-card">
             <div class="guide-step-badge">1</div>
             <div class="guide-step-body">
-              <strong>Fall erfassen &amp; anhören / Vakayı Oku veya Dinle</strong>
-              <small>Analysieren Sie das klinische Szenario oder hören Sie sich die Prüferfrage per <em>„Vorlesen“</em> auf Deutsch an.<br>🇹🇷 Klinik tabloyu inceleyin veya <em>"Vorlesen"</em> butonuyla jüri sorusunu Almanca dinleyin.</small>
+              <div class="translatable-box" data-tr="Vakayı Oku veya Dinle: Klinik tabloyu inceleyin veya 'Vorlesen' butonuyla jüri sorusunu dinleyin." tabindex="0">
+                <div class="de-text-block"><strong>Fall erfassen &amp; anhören</strong><br><small>Analysieren Sie das klinische Szenario oder hören Sie sich die Prüferfrage per <em>„Vorlesen“</em> auf Deutsch an.</small></div>
+                <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content"><strong>Vakayı Oku veya Dinle</strong><br><small>Klinik tabloyu inceleyin veya "Vorlesen" butonuyla jüri sorusunu dinleyin.</small></span></div>
+              </div>
             </div>
           </div>
           <div class="guide-step-card">
             <div class="guide-step-badge">2</div>
             <div class="guide-step-body">
-              <strong>Mündlich strukturieren / Sesli veya Zihinden Yapılandır</strong>
-              <small>Formulieren Sie Ihre Antwort nach dem ABCDE-Schema laut (per Mikrofon) oder gedanklich wie im echten Prüfungsgespräch.<br>🇹🇷 Gerçek sözlü sınavdaki gibi ABCDE algoritmasıyla yanıtınızı sesli (mikrofonla) veya zihinden kurgulayın.</small>
+              <div class="translatable-box" data-tr="Sesli veya Zihinden Yapılandır: Gerçek sözlü sınavdaki gibi ABCDE algoritmasıyla yanıtınızı sesli veya zihinden kurgulayın." tabindex="0">
+                <div class="de-text-block"><strong>Mündlich strukturieren</strong><br><small>Formulieren Sie Ihre Antwort nach dem ABCDE-Schema laut (per Mikrofon) oder gedanklich wie im echten Prüfungsgespräch.</small></div>
+                <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content"><strong>Sesli veya Zihinden Yapılandır</strong><br><small>Gerçek sözlü sınavdaki gibi ABCDE algoritmasıyla yanıtınızı sesli (mikrofonla) veya zihinden kurgulayın.</small></span></div>
+              </div>
             </div>
           </div>
           <div class="guide-step-card">
             <div class="guide-step-badge">3</div>
             <div class="guide-step-body">
-              <strong>Facharzt-Standard &amp; K.O.-Schutz / Model Cevap &amp; K.O. Kriterleri</strong>
-              <small>Prüfen Sie Musterantwort, lebensrettende Dosierungen und die typischen K.O.-Prüfungsfallen der Kommission.<br>🇹🇷 Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin.</small>
+              <div class="translatable-box" data-tr="Model Cevap &amp; K.O. Kriterleri: Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin." tabindex="0">
+                <div class="de-text-block"><strong>Facharzt-Standard &amp; K.O.-Schutz</strong><br><small>Prüfen Sie Musterantwort, lebensrettende Dosierungen und die typischen K.O.-Prüfungsfallen der Kommission.</small></div>
+                <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content"><strong>Model Cevap &amp; K.O. Kriterleri</strong><br><small>Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin.</small></span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2703,23 +2709,29 @@
         <div class="guide-steps-grid" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
           <div class="guide-step-card" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0.95rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
             <div class="guide-step-badge" style="background: #0284c7; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">1</div>
-            <div class="guide-step-body" style="font-size: 0.86rem;">
-              <strong>Fall erfassen &amp; anhören / Vakayı Oku veya Dinle</strong><br>
-              <span style="color: var(--text-muted); font-size: 0.82rem;">Analysieren Sie das Szenario oder hören Sie die Prüferfrage per <em>„Vorlesen“</em>.<br>🇹🇷 Klinik tabloyu inceleyin veya <em>"Vorlesen"</em> ile jüri sorusunu dinleyin.</span>
+            <div class="guide-step-body" style="font-size: 0.86rem; flex: 1;">
+              <div class="translatable-box" data-tr="Vakayı Oku veya Dinle: Klinik tabloyu inceleyin veya 'Vorlesen' butonuyla jüri sorusunu dinleyin." tabindex="0">
+                <div class="de-text-block"><strong>Fall erfassen &amp; anhören</strong><br><small>Analysieren Sie das klinische Szenario oder hören Sie die Prüferfrage per <em>„Vorlesen“</em> auf Deutsch an.</small></div>
+                <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content"><strong>Vakayı Oku veya Dinle</strong><br><small>Klinik tabloyu inceleyin veya "Vorlesen" butonuyla jüri sorusunu dinleyin.</small></span></div>
+              </div>
             </div>
           </div>
           <div class="guide-step-card" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0.95rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
             <div class="guide-step-badge" style="background: #0284c7; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">2</div>
-            <div class="guide-step-body" style="font-size: 0.86rem;">
-              <strong>Mündlich strukturieren / Sesli veya Zihinden Yapılandır</strong><br>
-              <span style="color: var(--text-muted); font-size: 0.82rem;">Formulieren Sie Ihre Antwort nach ABCDE laut (per Mikrofon) oder gedanklich.<br>🇹🇷 ABCDE algoritmasıyla yanıtınızı sesli (mikrofonla) veya zihinden kurgulayın.</span>
+            <div class="guide-step-body" style="font-size: 0.86rem; flex: 1;">
+              <div class="translatable-box" data-tr="Sesli veya Zihinden Yapılandır: Gerçek sözlü sınavdaki gibi ABCDE algoritmasıyla yanıtınızı sesli veya zihinden kurgulayın." tabindex="0">
+                <div class="de-text-block"><strong>Mündlich strukturieren</strong><br><small>Formulieren Sie Ihre Antwort nach ABCDE laut (per Mikrofon) oder gedanklich wie im echten Prüfungsgespräch.</small></div>
+                <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content"><strong>Sesli veya Zihinden Yapılandır</strong><br><small>Gerçek sözlü sınavdaki gibi ABCDE algoritmasıyla yanıtınızı sesli (mikrofonla) veya zihinden kurgulayın.</small></span></div>
+              </div>
             </div>
           </div>
           <div class="guide-step-card" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0.95rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
             <div class="guide-step-badge" style="background: #0284c7; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">3</div>
-            <div class="guide-step-body" style="font-size: 0.86rem;">
-              <strong>Facharzt-Standard &amp; K.O.-Schutz / Model Cevap &amp; K.O. Kriterleri</strong><br>
-              <span style="color: var(--text-muted); font-size: 0.82rem;">Prüfen Sie Musterantwort, lebensrettende Dosierungen und vitale K.O.-Prüfungsfallen.<br>🇹🇷 Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin.</span>
+            <div class="guide-step-body" style="font-size: 0.86rem; flex: 1;">
+              <div class="translatable-box" data-tr="Model Cevap &amp; K.O. Kriterleri: Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin." tabindex="0">
+                <div class="de-text-block"><strong>Facharzt-Standard &amp; K.O.-Schutz</strong><br><small>Prüfen Sie Musterantwort, lebensrettende Dosierungen und vitale K.O.-Prüfungsfallen der Kommission.</small></div>
+                <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content"><strong>Model Cevap &amp; K.O. Kriterleri</strong><br><small>Jüri model cevabını, hayati dozları ve sınavı kaybettiren K.O. tuzaklarını kontrol edin.</small></span></div>
+              </div>
             </div>
           </div>
         </div>
