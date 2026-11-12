@@ -5857,12 +5857,15 @@ Tedavi:
     if (status === 'syncing') {
       elCloudSyncStatus.className = 'cloud-sync-badge syncing';
       elCloudSyncStatus.innerHTML = '<span class="cloud-icon">🔄</span> <span class="cloud-text">Speichert...</span>';
+      elCloudSyncStatus.style.display = 'inline-flex';
     } else if (status === 'synced') {
       elCloudSyncStatus.className = 'cloud-sync-badge';
       elCloudSyncStatus.innerHTML = '<span class="cloud-icon">☁️</span> <span class="cloud-text">Synchronisiert</span>';
+      elCloudSyncStatus.style.display = 'inline-flex';
     } else if (status === 'offline') {
       elCloudSyncStatus.className = 'cloud-sync-badge offline';
-      elCloudSyncStatus.innerHTML = '<span class="cloud-icon">📱</span> <span class="cloud-text">Lokaler Modus</span>';
+      elCloudSyncStatus.innerHTML = '';
+      elCloudSyncStatus.style.display = 'none';
     }
   }
 
@@ -7774,9 +7777,9 @@ Tedavi:
         if (elGeminiKeyMsg) {
           elGeminiKeyMsg.style.display = 'block';
           elGeminiKeyMsg.style.color = '#f59e0b';
-          elGeminiKeyMsg.textContent = 'Key entfernt. Lokaler Prüfungsmodus ist aktiv.';
+          elGeminiKeyMsg.textContent = 'Key entfernt.';
         }
-        showToast('Gemini API-Key entfernt. Lokaler Modus aktiv.', 'info');
+        showToast('Gemini API-Key entfernt.', 'info');
         return;
       }
       geminiEvaluator.setApiKey(raw);
