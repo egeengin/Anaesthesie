@@ -4905,6 +4905,53 @@ Tedavi:
       const gt = CurriculumEngine.getMedicalGroundTruth(currentQ);
       const elDosagesWrap = document.getElementById('rubric-dosages-table-wrap');
       if (elDosagesWrap && gt && gt.dosages) {
+        function translateDosageTermTR(term) {
+          if (!term || typeof term !== 'string') return '';
+          const clean = term.trim();
+          const map = {
+            'Noradrenalin (Vasopressor der 1. Wahl)': 'Noradrenalin (1. Tercih Vazopressör)',
+            '2–10 µg i.v. Boli oder 0,02–0,2 µg/kg/min Perfusor': '2–10 µg i.v. bolus veya 0,02–0,2 µg/kg/dk perfüzör',
+            'Ziel-MAP ≥ 75–80 mmHg': 'Hedef MAP ≥ 75–80 mmHg',
+            'Periphere Vasokonstriktion sichert Koronardurchblutung': 'Periferik vazokonstriksiyon koroner perfüzyonu güvenceye alır',
+            'Phenylephrin (reiner Alpha-1-Agonist)': 'Fenilefrin (Saf Alfa-1 Agonisti)',
+            '50–100 µg i.v. Boli': '50–100 µg i.v. bolus',
+            'Reflexbradykardie beachten': 'Refleks bradikardiye dikkat edilmeli',
+            'Günstig bei Tachyarrhythmie': 'Taşiaritmi varlığında tercih edilir',
+            'Volumenbelastung (Vorlastsicherung)': 'Volüm yüklemesi (Ön yükün korunması)',
+            'Vollelektrolytlösung 250–500 ml Boli': 'Dengeli tam elektrolit solüsyonu 250–500 ml bolus',
+            'Hypovolämie führt sofort zum Kreislaufzusammenbruch': 'Hipovolemi derhal dolaşım kollapsına yol açar',
+            'Starrer hypertrophierter Ventrikel braucht Füllungsdruck': 'Sert hipertrofik ventrikül yüksek dolum basıncına ihtiyaç duyar',
+            'Adrenalin i.m. (Grad II–III, Spontanatmung)': 'Adrenalin i.m. (Evre II–III, Spontan Solunum)',
+            '0,5 mg i.m. (ungestreckt 1:1000)': '0,5 mg i.m. (sulandırılmamış 1:1000)',
+            'Wiederholung alle 5–10 min bei Persistenz': 'Semptomlar sürerse 5–10 dakikada bir tekrarlanır',
+            'Schnellste Resorption und sicherster Weg': 'En hızlı emilim ve en güvenli uygulama yolu',
+            'Adrenalin i.v. titriert (Narkose / Kreislaufkollaps)': 'Adrenalin i.v. titre (Anestezi / Dolaşım Kollapsı)',
+            '10–50 µg i.v. Boli (1:10.000 oder 1:100.000 verdünnt)': '10–50 µg i.v. bolus (1:10.000 veya 1:100.000 seyreltilmiş)',
+            'Perfusor 0,05–0,5 µg/kg/min nach Ansprechen': 'Yanıt sonrası perfüzör 0,05–0,5 µg/kg/dk',
+            'Nur verdünnt titrieren bei liegendem Monitoring': 'Yalnızca monitörize hastada seyreltilerek titre edilmelidir',
+            'Kristalloide Infusion': 'Kristalloid İnfüzyon',
+            'Vollelektrolytlösung 1000–2000 ml Druckinfusion': 'Dengeli tam elektrolit solüsyonu 1000–2000 ml basınçlı infüzyon',
+            'Bis zu 30–50 ml/kg in der ersten Stunde': 'İlk 1 saatte 30–50 ml/kg a kadar',
+            'Kompensiert kapilläres Leck & Vasodilatation': 'Kapiller kaçak ve vazodilatasyonu dengeler',
+            'Zweitlinien-Therapie (erst nach Adrenalin)': 'İkinci basamak tedavi (YALNIZCA Adrenalinden SONRA)',
+            'Dimetinden 0,1 mg/kg + Prednisolon 250–500 mg i.v.': 'Dimetinden 0,1 mg/kg + Prednizolon 250–500 mg i.v.',
+            'Wirkeintritt erst nach 20–30 min': 'Etki başlangıcı ancak 20–30 dakika sonradır',
+            'Verzögern Sie NIEMALS die Adrenalingabe dafür!': 'Bunun için Adrenalin uygulamasını ASLA geciktirmeyin!',
+            'Ziel-MAP ≥ 65 mmHg': 'Hedef MAP ≥ 65 mmHg'
+          };
+          if (map[clean]) return map[clean];
+          return clean
+            .replace(/Boli/g, 'bolus')
+            .replace(/Bolus/g, 'bolus')
+            .replace(/Perfusor/g, 'perfüzör')
+            .replace(/oder/g, 'veya')
+            .replace(/Ziel-MAP/g, 'Hedef MAP')
+            .replace(/beachten/g, 'dikkat edilmeli')
+            .replace(/Gemäß Klinik-SOP/g, 'Klinik SOP rehberliğinde')
+            .replace(/Siehe Klinik-SOP/g, 'Klinik SOP ye göre')
+            .replace(/Strikte Leitlinienüberwachung/g, 'Sıkı kılavuz takibi');
+        }
+
         let dosHtml = `<table class="dosages-table">
           <thead>
             <tr>
@@ -4920,11 +4967,17 @@ Tedavi:
           const doseVal = d.dose || 'Siehe Klinik-SOP';
           const maxDoseText = d.maxDose || d.limit || 'Gemäß Klinik-SOP';
           const limitsText = d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung');
+
+          const drugTr = d.drug_tr || translateDosageTermTR(drugName);
+          const doseTr = d.dose_tr || translateDosageTermTR(doseVal);
+          const maxDoseTr = d.maxDose_tr || d.limit_tr || translateDosageTermTR(maxDoseText);
+          const limitsTr = d.limits_tr || d.note_tr || translateDosageTermTR(limitsText);
+
           dosHtml += `<tr>
-            <td><strong>${drugName}</strong></td>
-            <td style="color: #dc2626; font-weight: 700;">${doseVal}</td>
-            <td>${maxDoseText}</td>
-            <td>${limitsText}</td>
+            <td><strong>${renderDualLanguageText(drugName, drugTr)}</strong></td>
+            <td style="color: #dc2626; font-weight: 700;">${renderDualLanguageText(doseVal, doseTr)}</td>
+            <td>${renderDualLanguageText(maxDoseText, maxDoseTr)}</td>
+            <td>${renderDualLanguageText(limitsText, limitsTr)}</td>
           </tr>`;
         });
         dosHtml += `</tbody></table>`;
@@ -4938,12 +4991,16 @@ Tedavi:
         const guidelineAwmf = gt.guideline.awmf ? ` · ${gt.guideline.awmf}` : '';
         const guidelineYear = gt.guideline.year ? ` (${gt.guideline.year})` : '';
         const guidelineRec = gt.guideline.recommendation || gt.guideline.coreStatement || '';
+        const guidelineRecTR = gt.guideline.recommendation_tr || gt.guideline.coreStatement_tr || '';
         let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${guidelineTitle} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]</div>`;
         if (guidelineRec) {
-          gHtml += `<p style="margin-top: 0.5rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.45;"><strong>Kernaussage / DGAI-Empfehlung:</strong> ${guidelineRec}</p>`;
+          gHtml += `<div class="guideline-recommendation-box" style="margin-top: 0.6rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.5;">
+            <div style="font-weight: 700; color: #0284c7; margin-bottom: 0.25rem;">📌 Kernaussage / DGAI-Empfehlung:</div>
+            ${renderDualLanguageText(guidelineRec, guidelineRecTR)}
+          </div>`;
         }
         if (gt.guideline.url) {
-          gHtml += `<div style="margin-top: 0.35rem;"><a href="${gt.guideline.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; color: #0284c7; text-decoration: underline;">Offizielle AWMF / DGAI Leitlinie aufrufen ↗</a></div>`;
+          gHtml += `<div style="margin-top: 0.45rem;"><a href="${gt.guideline.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; color: #0284c7; text-decoration: underline; font-weight: 600;">Offizielle AWMF / DGAI Leitlinie aufrufen ↗</a></div>`;
         }
         elGuidelinesContent.innerHTML = gHtml;
       }
@@ -7586,18 +7643,52 @@ Tedavi:
     const elCounter = document.getElementById('bga-case-counter-badge');
     const elTitleBadge = document.getElementById('bga-case-title-badge');
     if (elCounter) elCounter.textContent = `Fall ${curIdx + 1} von ${cases.length}`;
-    if (elTitleBadge) elTitleBadge.textContent = bCase.title;
+    if (elTitleBadge) {
+      elTitleBadge.textContent = bCase.title;
+      if (bCase.title_tr) elTitleBadge.title = `🇹🇷 ${bCase.title_tr}`;
+    }
 
     const elDesc = document.getElementById('bga-case-description');
     const patientText = bCase.patient || bCase.title || 'Klinisches Szenario';
     const patientTrText = bCase.patient_tr || bCase.title_tr || '';
-    if (elDesc) elDesc.innerHTML = `<strong>Klinisches Szenario:</strong> ${renderDualLanguageText(patientText, patientTrText)}`;
+    if (elDesc) {
+      elDesc.innerHTML = `
+        <div class="bga-scenario-card">
+          <div class="bga-scenario-header">
+            <span>📋</span>
+            <strong>Klinisches Szenario:</strong>
+          </div>
+          ${renderDualLanguageText(patientText, patientTrText)}
+        </div>
+      `;
+    }
 
     const elDisplay = document.getElementById('bga-monitor-display');
     if (elDisplay) {
+      const vitalGlossaryTR = {
+        'ph': { lbl: 'pH', desc: 'Asit-Baz Durumu (Normal: 7,35 - 7,45)' },
+        'pco2': { lbl: 'pCO₂', desc: 'Parsiyel Karbondioksit Basıncı (Normal: 35 - 45 mmHg)' },
+        'po2': { lbl: 'pO₂', desc: 'Parsiyel Oksijen Basıncı (Normal: 75 - 100 mmHg)' },
+        'hco3': { lbl: 'HCO₃⁻', desc: 'Aktüel Bikarbonat (Normal: 22 - 26 mmol/l)' },
+        'be': { lbl: 'Base Excess (BE)', desc: 'Baz Fazlalığı / Sapması (Normal: -2 ila +2 mmol/l)' },
+        'lactate': { lbl: 'Laktat', desc: 'Doku Hipoperfüzyonu (Normal: < 2,0 mmol/l)' },
+        'na': { lbl: 'Sodyum (Na⁺)', desc: 'Ekstraselüler Osmolalite (Normal: 135 - 145 mmol/l)' },
+        'k': { lbl: 'Potasyum (K⁺)', desc: 'Kardiyak Membran Potansiyeli (Normal: 3,5 - 5,0 mmol/l)' },
+        'cl': { lbl: 'Klor (Cl⁻)', desc: 'Anyon Açığı Hesabı (Normal: 98 - 106 mmol/l)' },
+        'hb': { lbl: 'Hemoglobin (Hb)', desc: 'Oksijen Taşıma Kapasitesi (Normal: 12 - 16 g/dl)' }
+      };
+
       let tilesHtml = '';
       for (const [k, v] of Object.entries(bCase.vitals)) {
-        tilesHtml += `<div class="bga-tile"><div class="bga-tile-lbl">${k}</div><div class="bga-tile-val">${v}</div></div>`;
+        const keyLower = k.toLowerCase().trim();
+        const info = vitalGlossaryTR[keyLower] || { lbl: k.toUpperCase(), desc: 'Klinischer Vitalwert' };
+        tilesHtml += `
+          <div class="bga-tile" title="${info.lbl}: ${info.desc}" tabindex="0">
+            <div class="bga-tile-lbl">${k}</div>
+            <div class="bga-tile-val">${v}</div>
+            <div class="bga-tile-tr-hint" style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${info.desc.split('(')[0].trim()}</div>
+          </div>
+        `;
       }
       elDisplay.innerHTML = tilesHtml;
     }
@@ -7607,19 +7698,19 @@ Tedavi:
       const stepsTr = bCase.systematicSteps_tr || {};
       elSteps.innerHTML = `
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 1</span><strong>1. Oxygenierung:</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 1</span><strong>1. Oxygenierung (Oksijenasyon):</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step1_oxygenation, stepsTr.step1_oxygenation || '')}</div>
         </div>
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 2</span><strong>2. Säure-Basen-Status:</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 2</span><strong>2. Säure-Basen-Status (Asit-Baz Durumu):</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step2_acidBase, stepsTr.step2_acidBase || '')}</div>
         </div>
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 3</span><strong>3. Kompensation:</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 3</span><strong>3. Kompensation (Kompanzasyon):</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step3_compensation, stepsTr.step3_compensation || '')}</div>
         </div>
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 4</span><strong>4. Anionenlücke & Elektrolyte:</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 4</span><strong>4. Anionenlücke & Elektrolyte (Anyon Açığı):</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step4_anionGap, stepsTr.step4_anionGap || '')}</div>
         </div>
       `;
@@ -7628,7 +7719,12 @@ Tedavi:
     const elAction = document.getElementById('bga-action-card');
     if (elAction) {
       const actionTr = bCase.clinicalAction_tr || '';
-      elAction.innerHTML = `<strong>🚨 Konsequenz & ÄKNO Intervention:</strong> ${renderDualLanguageText(bCase.clinicalAction, actionTr)}`;
+      elAction.innerHTML = `
+        <div style="font-weight: 700; color: #dc2626; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+          <span>🚨</span> <strong>Konsequenz &amp; ÄKNO Intervention (Klinik Müdahale):</strong>
+        </div>
+        ${renderDualLanguageText(bCase.clinicalAction, actionTr)}
+      `;
     }
   }
 
