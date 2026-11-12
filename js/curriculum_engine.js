@@ -242,6 +242,165 @@
       };
     }
 
+    // Schädel-Hirn-Trauma & Neuroanästhesie (ICP / CPP)
+    if (text.includes('schädel-hirn') || text.includes('hirndruck') || text.includes('icp') || text.includes('cpp') || text.includes('mannitol') || text.includes('hyperton')) {
+      return {
+        topic: 'Schädel-Hirn-Trauma & Hirndruckmanagement',
+        topic_tr: 'Travmatik Beyin Hasarı & KİBAS Yönetimi',
+        firstDrugTR: 'NaCl %3 (2 ml/kg i.v. bolus) veya Mannitol %20 (0,5–1 g/kg)',
+        guideline: {
+          title: 'DGN / DGAI S2k-Leitlinie Schädel-Hirn-Trauma & Neurotrauma',
+          society: 'DGAI / DGN / DGNC / Brain Trauma Foundation (BTF)',
+          awmf: 'AWMF-Registernummer 008-001',
+          year: '2024',
+          recommendation: 'Ziel-CPP ≥ 60–70 mmHg (MAP ≥ 80–90 mmHg), ICP < 20–22 mmHg, strikte Normokapnie (PaCO2 35–38 mmHg). Oberkörperhochlage 30°, Osmotherapie mit hypertoner Kochsalzlösung (NaCl 3%) oder Mannitol 20%.',
+          recommendation_tr: 'Hedef CPP ≥ 60–70 mmHg (MAP ≥ 80–90 mmHg), ICP < 20–22 mmHg, kesin normokapni (PaCO2 35–38 mmHg). 30° baş yukarı pozisyon, hipertonik NaCl %3 veya Mannitol ile osmotik tedavi.'
+        },
+        dosages: [
+          { drug: 'NaCl 3% hyperton', dose: '2 ml/kg i.v. Kurzinfusion über 15 min (ca. 150 ml)', route: 'i.v. (ZVK bevorzugt)', maxDose: 'Serum-Osmolarität max. 320 mosm/kg, Na max. 155 mmol/l', limits: 'Keine Hypovolämie induzierend' },
+          { drug: 'Mannitol 20%', dose: '0,5–1,0 g/kg i.v. über 15–30 min', route: 'i.v.', maxDose: 'Osmolaritätslücke überwachen (< 10 mosm/kg)', limits: 'Gefahr der osmotischen Hypovolämie & Nierenversagen' },
+          { drug: 'Noradrenalin (CPP-Sicherung)', dose: '0,05–0,5 µg/kg/min Perfusor', route: 'i.v.', maxDose: 'Ziel: MAP ≥ 80–90 mmHg bei ICP 20 mmHg (CPP = MAP - ICP)', limits: 'Permissive Hypotonie STRENG KONTRAINDIZIERT!' }
+        ],
+        koPitfalls: [
+          { mistake: 'Permissive Hypotonie beim Schädel-Hirn-Trauma tolerieren', whyFatal: 'Bricht den zerebralen Perfusionsdruck (CPP < 50 mmHg) zusammen und verursacht irreversible sekundäre ischämische Hirnschäden (K.O.-Kriterium!).', correctAction: 'Strikte CPP-Führung: MAP durch Noradrenalin und balancierte Kristalloide ≥ 80–90 mmHg halten!' },
+          { mistake: 'Dauerhafte prophylaktische Hyperventilation (PaCO2 < 30 mmHg)', whyFatal: 'Führt über zerebrale Vasokonstriktion zur drastischen Minderperfusion und fokalen Hirninfarkten.', correctAction: 'Normokapnie (PaCO2 35–38 mmHg) anstreben; milde Hyperventilation (PaCO2 30–35) nur als Notfallüberbrückung bei akuter Herniation.' }
+        ]
+      };
+    }
+
+    // Polytrauma & Massivtransfusion (ROTEM / Coagulopathy)
+    if (text.includes('polytrauma') || text.includes('massivtransfusion') || text.includes('rotem') || text.includes('fibtem') || text.includes('schockraum') || text.includes('tranexamsäure')) {
+      return {
+        topic: 'Polytrauma & Akute Traumatische Koagulopathie (ATC)',
+        topic_tr: 'Politravma & Masif Transfüzyon (ROTEM Kılavuzluğunda)',
+        firstDrugTR: 'Traneksamik Asit (1 g i.v. ilk 3 saatte) + Fibrinojen Konsantresi (2–4 g i.v.)',
+        guideline: {
+          title: 'S3-Leitlinie Polytrauma / Schwerverletzten-Behandlung & European Trauma Guidelines',
+          society: 'DGU / DGAI / DIVI / ESAIC Trauma Taskforce',
+          awmf: 'AWMF-Registernummer 187-023',
+          year: '2023',
+          recommendation: 'Frühzeitige Gabe von Tranexamsäure (TXA 1 g Bolus innerhalb von 3h), zielgerichtete Gerinnungstherapie nach Thrombelastometrie (ROTEM/TEG), Vermeidung der tödlichen Trias (Hypothermie, Azidose, Hypokalzämie).',
+          recommendation_tr: 'İlk 3 saatte erken Traneksamik asit (TXA 1 g bolus), ROTEM/TEG rehberliğinde hedefe yönelik faktör konsantresi (Fibrinojen, PCC), ölümcül triadın (hipotermi, asidoz, hipokalsemi) engellenmesi.'
+        },
+        dosages: [
+          { drug: 'Tranexamsäure (TXA)', dose: '1 g i.v. Bolus über 10 min, gefolgt von 1 g über 8h', route: 'i.v.', maxDose: 'Gabe MUSS innerhalb von 3 Stunden nach Trauma erfolgen', limits: 'CRASH-2: Nach > 3h erhöht TXA die Mortalität!' },
+          { drug: 'Fibrinogen-Konzentrat', dose: '2–4 g i.v. bei FIBTEM A10 < 10 mm (bzw. A5 < 9 mm)', route: 'i.v.', maxDose: 'Ziel: FIBTEM A10 ≥ 10–12 mm (Fibrinogen > 200 mg/dl)', limits: 'Erster verbrauchter Faktor im schweren Schock' },
+          { drug: 'Prothrombinkomplex (PPSB / PCC)', dose: '20–30 IE/kg i.v. bei EXTEM CT > 80–100 s', route: 'i.v.', maxDose: 'Nur bei gesichertem Fibrinogenspiegel applizieren', limits: 'Gefahr von Mikrothromben ohne Fibrinogen-Substrat' },
+          { drug: 'Kalziumchlorid 10%', dose: '10–20 ml i.v. (1–2 g)', route: 'i.v.', maxDose: 'Ziel: ionisiertes Kalzium > 1,1–1,2 mmol/l', limits: 'Citrat-Toxizität durch EK-Transfusionen neutralisieren' }
+        ],
+        koPitfalls: [
+          { mistake: 'Ungezielte Gabe von FFP (Fresh Frozen Plasma) statt Faktorkonzentraten', whyFatal: 'Verursacht massive Volumenüberladung, Dilutionskoagulopathie und erhöht das Risiko für TACO und TRALI erheblich.', correctAction: 'Zielgerichtete Hämostase mit TXA, Fibrinogen und PCC nach ROTEM/TEG-Algorithmus.' },
+          { mistake: 'Missachtung von Hypothermie (< 35°C) und Hypokalzämie (< 1,1 mmol/l)', whyFatal: 'Gerinnungsenzyme sind temperatur- und kalziumabhängig; unterhalb 35°C versagen alle Gerinnungsfaktoren.', correctAction: 'Konsequentes Wärmemanagement (Wärmedecken, Fluid-Warmer 41°C) und Kalziumsubstitution nach jedem 2. EK.' }
+        ]
+      };
+    }
+
+    // Elektrolyt-Notfälle (Hyperkaliämie & TURP-Syndrom / Hyponatriämie)
+    if (text.includes('hyperkaliämie') || text.includes('hyponatriämie') || text.includes('turp') || text.includes('tur-syndrom') || text.includes('kalium') || text.includes('dialyse')) {
+      return {
+        topic: 'Elektrolyt-Notfälle: Hyperkaliämie & TURP-Syndrom',
+        topic_tr: 'Elektrolit Acilleri: Hiperkalemi & TURP Sendromu',
+        firstDrugTR: 'Kalsiyum Glukonat %10 (10 ml i.v. membran stabilizasyonu) + Glukoz-İnsülin',
+        guideline: {
+          title: 'ERC / DGAI / DIVI Empfehlungen Elektrolytstörungen im Notfall & Intensivmedizin',
+          society: 'DGAI / ERC / DIVI / DGIM',
+          awmf: 'SOP Notfall-Elektrolytmanagement',
+          year: '2023',
+          recommendation: '3-Säulen-Therapie der Hyperkaliämie: 1. Membranstabilisierung (Kalzium), 2. Shift nach intrazellulär (Glukose-Insulin, Salbutamol, Bikarbonat), 3. Elimination (Dialyse, Kationenaustauscher). TURP: NaCl 3% bei Natrium < 120 mmol/l mit ZNS-Symptomen (max. 8–10 mmol/l/24h).',
+          recommendation_tr: 'Hiperkalemide 3 basamak: 1. Membran stabilizasyonu (Kalsiyum), 2. Hücre içine kaydırma (Glukoz-İnsülin, Salbutamol, Bikarbonat), 3. Eliminasyon (Diyaliz). TURP: Sodyum < 120 mmol/l ve nörolojik semptomda %3 NaCl (maks. 8-10 mmol/l/24saat).'
+        },
+        dosages: [
+          { drug: 'Calciumgluconat 10%', dose: '10 ml i.v. langsam über 3–5 min (oder CaCl2 10% 5–10 ml über ZVK)', route: 'i.v.', maxDose: 'Wiederholung nach 5–10 min bei persistierenden EKG-Zeichen', limits: 'Membranstabilisierung hält nur 30–60 min an; senkt Kalium NICHT!' },
+          { drug: 'Glukose 20% + Alt-Insulin', dose: '50 ml Glukose 20% + 10 IE Normalinsulin i.v. über 15–30 min', route: 'i.v.', maxDose: 'Blutzuckerkontrollen engmaschig alle 30–60 min', limits: 'Senkt Serumkalium um ca. 0,5–1,2 mmol/l' },
+          { drug: 'Salbutamol (Inhalation / i.v.)', dose: '10–20 mg vernebelt oder 0,5 mg i.v. über 15 min', route: 'Inhalativ / i.v.', maxDose: 'Beta-2-vermittelte Na-K-ATPase Aktivierung', limits: 'Vorsicht bei schwerer koronarer Herzkrankheit' },
+          { drug: 'NaCl 3% hyperton (bei TURP / Na < 120)', dose: '100 ml i.v. Kurzinfusion über 10–15 min', route: 'i.v.', maxDose: 'Max. Anstieg 8–10 mmol/l in 24h (Prävention der ODS / Myelinolyse)', limits: 'Stopp bei Sistieren von Krämpfen und Koma' }
+        ],
+        koPitfalls: [
+          { mistake: 'Gabe von Succinylcholin bei Dialysepatienten oder vorbestehender Hyperkaliämie', whyFatal: 'Succinylcholin steigert das Serumkalium akut um 0,5–1,0 mmol/l und führt unmittelbar zur Kammerasystolie!', correctAction: 'Succinylcholin ist strikt kontraindiziert. RSI mit Rocuronium 1,2 mg/kg durchführen (Reversierung mit Sugammadex).' },
+          { mistake: 'Zu rascher Ausgleich einer chronischen Hyponatriämie (> 10–12 mmol/l/24h)', whyFatal: 'Führt zur gefürchteten osmotischen Demyelinisierung (pontine Myelinolyse) mit irreversibler spastischer Tetraplegie und Locked-in-Syndrom.', correctAction: 'Streng limitierter Ausgleich: maximal 8–10 mmol/l innerhalb der ersten 24 Stunden!' }
+        ]
+      };
+    }
+
+    // Herzschrittmacher & Implantierbare Kardioverter-Defibrillatoren (ICD)
+    if (text.includes('schrittmacher') || text.includes('pacemaker') || text.includes('icd') || text.includes('magnetauflage') || text.includes('elektrokauter')) {
+      return {
+        topic: 'Perioperatives Management von Schrittmachern & ICDs',
+        topic_tr: 'Kalp Pili & İCD Perioperatif Yönetimi (EMI & Mıknatıs)',
+        firstDrugTR: 'Halka Mıknatıs (Ringmagnet) + Harici Defibrilatör Pedleri',
+        guideline: {
+          title: 'DGAI / DGK Konsensusempfehlung Perioperatives Management kardialer Implantate (CIED)',
+          society: 'DGAI / BDA / Deutsche Gesellschaft für Kardiologie (DGK)',
+          awmf: 'Kardiologie Leitlinien CIED Perioperativ',
+          year: '2023',
+          recommendation: 'ICD: Magnetauflage schaltet NUR die Schocktherapie ab (Antitachykardie-Funktion AUS, verhindert Fehlshocks durch Kauter-EMI). Schrittmacherfunktion bleibt unverändert! Herzschrittmacher: Magnet schaltet in asynchronen Starrfrequenzmodus (VOO/DOO 85–100/min). Klebe-Defibrillatorelektroden VOR Narkoseeinleitung anbringen.',
+          recommendation_tr: 'İCD: Mıknatıs SADECE şok fonksiyonunu devre dışı bırakır (koter girişimini şok sanmayı engeller), pili asenkron moda geçirmez! Kalp pili: Mıknatıs asenkron sabit hıza (VOO/DOO 85-100/dk) geçirir. Harici pedler indüksiyondan ÖNCE yapıştırılmalıdır.'
+        },
+        dosages: [
+          { drug: 'Externe Defibrillations-Pads', dose: 'Anterior-posterior vor Narkoseeinleitung kleben', route: 'Kutan', maxDose: 'Immer einsatzbereit bei deaktiviertem ICD', limits: 'Pflichtstandard bei jeder ICD-Operation' },
+          { drug: 'Bipolare Diathermie / Kauter', dose: 'Kurze Impulse (< 2 s), Neutralelektrode am Oberschenkel', route: 'Chirurgisch', maxDose: 'Strompfad darf niemals über das Aggregat oder die Sonden fließen', limits: 'Abstand Kauter zu Aggregat > 15 cm' },
+          { drug: 'Atropin / Adrenalin / Isoprenalin', dose: 'Atropin 0,5–1 mg, Adrenalin 10–50 µg bei Ausfall', route: 'i.v.', maxDose: 'Pharmakologische Notfall-Frequenzstützung', limits: 'Temporäre transkutane Schrittmacherbereitschaft' }
+        ],
+        koPitfalls: [
+          { mistake: 'Annahme, dass ein Ringmagnet den ICD in einen asynchronen Schrittmachermodus versetzt', whyFatal: 'Kardinaler Denkfehler! Der Magnet deaktiviert beim ICD ausschließlich die Schocktherapie. Ist der Patient schrittmacherabhängig, kann Kauter-EMI zur Asystolie führen.', correctAction: 'Schrittmacherabhängige ICD-Patienten müssen präoperativ durch Kardiotechnik/Programmiergerät in VOO/DOO umprogrammiert werden.' },
+          { mistake: 'Verzicht auf externe Defibrillationselektroden bei deaktiviertem ICD', whyFatal: 'Tritt intraoperativ Kammerflimmern auf, kann der Patient nicht sofort defibrilliert werden -> anoxischer Hirnschaden.', correctAction: 'Vor Schnittbeginn Defibrillator-Pads kleben und Defibrillator betriebsbereit im Saal vorhalten.' }
+        ]
+      };
+    }
+
+    // Thoraxanästhesie & Einlungenventilation (DLT / Hypoxämie)
+    if (text.includes('einlungenventilation') || text.includes('dlt') || text.includes('doppellumentubus') || text.includes('bronchusblocker') || text.includes('olv') || text.includes('thorakotomie')) {
+      return {
+        topic: 'Thoraxanästhesie & Einlungenventilation (OLV)',
+        topic_tr: 'Toraks Anestezisi & Tek Akciğer Ventilasyonu (OLV Hipoksemi Algoritması)',
+        firstDrugTR: '%100 FiO2 -> Kollebe Akciğere CPAP (1-5 cmH2O) -> İki Akciğer Ventilasyonu',
+        guideline: {
+          title: 'DGAI / EACTAIC Empfehlungen zur Thoraxanästhesie & Einlungenventilation',
+          society: 'DGAI / Arbeitskreis Thoraxanästhesie / EACTAIC',
+          awmf: 'Leitlinie Thoraxanästhesie & Lungenisolation',
+          year: '2023',
+          recommendation: 'Lungenprotektive OLV: Tidalvolumen 4–5 ml/kg PBW, PEEP 5–8 cmH2O, Driving Pressure ≤ 14 cmH2O. 5-Stufen-Algorithmus bei Hypoxämie: 1. FiO2 1.0, 2. Fiberoptische Lagekontrolle des DLT, 3. PEEP-Optimierung der ventilierten Lunge, 4. CPAP (1–5 cmH2O mit O2) an die nicht-ventilierte Lunge, 5. Re-Ventilation beider Lungen.',
+          recommendation_tr: 'Akciğer koruyucu OLV: Vt 4-5 ml/kg PBW, PEEP 5-8 cmH2O, Driving pressure <= 14. Hipoksemide 5 basamak: 1. %100 FiO2, 2. Fiberoptik DLT kontrolü, 3. Ventilasyon akciğerine PEEP, 4. Kollabe akciğere CPAP (1-5 cmH2O O2), 5. İki akciğeri tekrar havalandır.'
+        },
+        dosages: [
+          { drug: 'Sauerstoff-Insufflation (FiO2 1.0)', dose: '100% O2 bei akutem SpO2-Abfall', route: 'Beatmung', maxDose: 'Reduktion nach Stabilisierung auf FiO2 0,6–0,8', limits: 'Resorptionsatelektasen beachten' },
+          { drug: 'CPAP-System an kollabierte Lunge', dose: '1–5 cmH2O kontinuierlicher O2-Flow (2–5 l/min)', route: 'Kollabierter DLT-Schenkel', maxDose: 'Sehr effektiv zur Shunt-Reduktion ohne Sichtbehinderung für Operateur', limits: 'Operateur vorab informieren' },
+          { drug: 'Protektive Ventilation (PBW)', dose: 'Vt 4–5 ml/kg bezogen auf Idealgewicht (PBW) + PEEP 5–8 cmH2O', route: 'Ventilator', maxDose: 'Spitzendruck < 25–30 mbar, Driving Pressure < 14 mbar', limits: 'Hyperkapnie permissiv tolerieren (pH ≥ 7,20)' }
+        ],
+        koPitfalls: [
+          { mistake: 'Blindes Weiterprobieren ohne fiberoptische DLT-Lagekontrolle bei Hypoxie', whyFatal: 'Die häufigste Ursache einer akuten intraoperativen Hypoxie während OLV ist eine Dislokation des DLT (z.B. durch Umlagerung). Blindes Erhöhen von Beatmungsdrücken führt zum Barotrauma.', correctAction: 'Sofortige fiberoptische Kontrolle der Tubusspitze und der Karina über beide Schenkel!' },
+          { mistake: 'Ventilation der operierten Einzellunge mit Normal-Tidalvolumen (8–10 ml/kg)', whyFatal: 'Erzeugt massives Volu- und Barotrauma mit tödlichem akutem Lungenschaden (ARDS / ALI nach Thorakotomie).', correctAction: 'Tidalvolumen strikt auf 4–5 ml/kg PBW der Einzellunge reduzieren!' }
+        ]
+      };
+    }
+
+    // Pädiatrische Notfälle & Laryngospasmus
+    if (text.includes('laryngospasmus') || text.includes('pädiatr') || text.includes('larson') || text.includes('kind') || text.includes('fremdkörperaspiration')) {
+      return {
+        topic: 'Pädiatrische Anästhesie & Akuter Laryngospasmus',
+        topic_tr: 'Pediyatrik Anestezi & Akut Laringospazm Yönetimi',
+        firstDrugTR: '%100 O2 CPAP + Larson Manevrası -> Propofol (0,5-1 mg/kg) veya Süksinilkolin + Atropin',
+        guideline: {
+          title: 'DGAI / ESPA Handlungsempfehlung Pädiatrisches Atemwegsmanagement',
+          society: 'DGAI / Arbeitskreis Kinderanästhesie & ESPA',
+          awmf: 'Leitlinie Pädiatrisches Atemwegsmanagement',
+          year: '2023',
+          recommendation: 'Stufenplan Laryngospasmus: 1. Narkosevertiefung/Reizunterbrechung + 100% O2 mit dicht sitzender Maske & CPAP (10–15 cmH2O), 2. Larson-Punkt (Druck hinter den Kieferwinkeln), 3. Propofol (0,5–1 mg/kg i.v.), 4. Succinylcholin (0,5–1 mg/kg i.v. IMMER zusammen mit Atropin 0,02 mg/kg bei Kindern < 8 Jahren). Tubusgröße: (Alter/4) + 3,5 mm (gecufft).',
+          recommendation_tr: 'Laringospazm basamakları: 1. %100 O2, maskeyle sıkı CPAP (10-15 cmH2O), 2. Larson manevrası (çene köşesi arkasına bası), 3. Propofol (0.5-1 mg/kg), 4. Süksinilkolin (0.5-1 mg/kg i.v. + Atropin 0.02 mg/kg). Kafli tüp: (Yaş/4) + 3.5 mm.'
+        },
+        dosages: [
+          { drug: 'Sauerstoff-CPAP', dose: '100% O2 mit PEEP/CPAP 10–15 cmH2O via dichte Maske', route: 'Maske', maxDose: 'Überwindet leichten bis mäßigen Glottisschluss', limits: 'Vorsicht vor Magenüberblähung' },
+          { drug: 'Propofol (Krampflösung)', dose: '0,5–1,0 mg/kg i.v. Bolus', route: 'i.v.', maxDose: 'Durchbricht Laryngospasmus oft ohne Relaxierung', limits: 'Nur bei stabiler Hämodynamik' },
+          { drug: 'Succinylcholin (Notfall-Rescue)', dose: '0,5–1,0 mg/kg i.v. (oder 3–4 mg/kg i.m. bei fehlendem ZVK/Viggo)', route: 'i.v. / i.m.', maxDose: 'Zwingend zusammen mit Atropin 0,02 mg/kg i.v.!', limits: 'Verhindert vagale Asystolie des hypoxischen Kindes' },
+          { drug: 'Atropin (Bradykardieschutz)', dose: '0,02 mg/kg i.v. (Mindestdosis 0,1 mg)', route: 'i.v.', maxDose: 'Max. 0,5 mg Einzeldosis', limits: 'Essentiell bei pädiatrischer Hypoxie-Bradykardie' }
+        ],
+        koPitfalls: [
+          { mistake: 'Gabe von Succinylcholin beim hypoxischen Kind OHNE Atropin', whyFatal: 'Führt bei vorbestehendem Vagotonus und Hypoxie zur unmittelbaren, letalen bradykarden Asystolie (K.O.-Fehler!).', correctAction: 'Succinylcholin und Atropin müssen beim Kind immer gemeinsam aufgezogen und gespritzt werden!' },
+          { mistake: 'Blinde Überdruckbeatmung bei vermuteter Fremdkörperaspiration', whyFatal: 'Keilt den Fremdkörper tiefer im Bronchialbaum ein und konvertiert einen partiellen Verschluss in einen totalen Ventilpneumothorax.', correctAction: 'Spontanatmung unter Sevofluran erhalten; starre Bronchoskopie im OP durchführen.' }
+        ]
+      };
+    }
+
     // Default High-Yield Emergency Fallback
     return {
       topic: q.category || 'Anästhesiologisches Notfallmanagement',
@@ -378,19 +537,79 @@
   // 4. DÜSSELDORFER REDEFLUSS-BAUKASTEN (4-PHASE SPOKEN GERMAN TEMPLATES)
   // ─────────────────────────────────────────────────────────────────────────────
   function getRedeflussBaukasten(q) {
-    const text = ((q.stem_de || '') + ' ' + (q.question_de || '')).toLowerCase();
+    if (!q) {
+      q = { stem_de: '', question_de: '', category: '' };
+    }
+    const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.category || '')).toLowerCase();
 
-    const s1de = 'Zusammenfassend handelt es sich um einen Risikopatienten mit akutem Handlungsbedarf. Mein primäres anästhesiologisches Ziel ist die lückenlose Sicherung der Vitalfunktionen und ein strukturiertes Vorgehen nach DGAI-Leitlinien.';
-    const s1tr = 'Özetle, acil müdahale gerektiren yüksek riskli bir hasta ile karşı karşıyayız. Birincil anesteziyolojik hedefim vital fonksiyonların eksiksiz korunması ve DGAI kılavuzlarına göre yapılandırılmış bir yaklaşım sergilemektir.';
+    // Default tailored templates
+    let s1de = 'Zusammenfassend handelt es sich um einen Risikopatienten mit akutem Handlungsbedarf. Mein primäres anästhesiologisches Ziel ist die lückenlose Sicherung der Vitalfunktionen und ein strukturiertes Vorgehen nach DGAI-Leitlinien.';
+    let s1tr = 'Özetle, acil müdahale gerektiren yüksek riskli bir hasta ile karşı karşıyayız. Birincil anesteziyolojik hedefim vital fonksiyonların eksiksiz korunması ve DGAI kılavuzlarına göre yapılandırılmış bir yaklaşım sergilemektir.';
 
-    const s2de = 'Bei der systematischen Inspektion des Monitors fällt unmittelbar die hämodynamische und respiratorische Dekompensation auf. Die Blutgasanalyse zeigt eine interventionsbedürftige Störung, die ich sofort gezielt korrigiere.';
-    const s2tr = 'Monitörün sistematik incelemesinde hemodinamik ve solunumsal dekompansasyon hemen göze çarpmaktadır. Kan gazı analizi, derhal hedefe yönelik düzeltmem gereken acil bir tabloyu doğrulamaktadır.';
+    let s2de = 'Bei der systematischen Inspektion des Monitors fällt unmittelbar die hämodynamische und respiratorische Dekompensation auf. Die Blutgasanalyse zeigt eine interventionsbedürftige Störung, die ich sofort gezielt korrigiere.';
+    let s2tr = 'Monitörün sistematik incelemesinde hemodinamik ve solunumsal dekompansasyon hemen göze çarpmaktadır. Kan gazı analizi, derhal hedefe yönelik düzeltmem gereken acil bir tabloyu doğrulamaktadır.';
 
-    const s3de = 'Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Ich rufe sofort den Oberarzt als Back-up, kommuniziere im Team mit Closed-Loop-Briefing und leite ohne Verzögerung die kausale Medikation ein.';
-    const s3tr = 'Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. Derhal kıdemli/uzman desteği çağırıyor, ekiple kapalı devre iletişim kuruyor ve nedensel ilaç tedavisini gecikmeksizin başlatıyorum.';
+    let s3de = 'Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Ich rufe sofort den Oberarzt als Back-up, kommuniziere im Team mit Closed-Loop-Briefing und leite ohne Verzögerung die kausale Medikation ein.';
+    let s3tr = 'Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. Derhal kıdemli/uzman desteği çağırıyor, ekiple kapalı devre iletişim kuruyor ve nedensel ilaç tedavisini gecikmeksizin başlatıyorum.';
 
-    const s4de = 'Nach erfolgreicher Stabilisierung übergebe ich den Patienten strukturiert nach dem SBAR-Schema an die anästhesiologische Intensivstation zur engmaschigen invasiven Nachüberwachung.';
-    const s4tr = 'Hasta başarıyla stabilize edildikten sonra, yakın invaziv takip ve ileri tedavi için SBAR şablonuna göre yapılandırılmış şekilde anestezi yoğun bakım ünitesine devrediyorum.';
+    let s4de = 'Nach erfolgreicher Stabilisierung übergebe ich den Patienten strukturiert nach dem SBAR-Schema an die anästhesiologische Intensivstation zur engmaschigen invasiven Nachüberwachung.';
+    let s4tr = 'Hasta başarıyla stabilize edildikten sonra, yakın invaziv takip ve ileri tedavi için SBAR şablonuna göre yapılandırılmış şekilde anestezi yoğun bakım ünitesine devrediyorum.';
+
+    // 1. Airway / CICO / Laryngospasm
+    if (text.includes('atemweg') || text.includes('intubation') || text.includes('cico') || text.includes('koniotomie') || text.includes('laryngospasmus')) {
+      s1de = 'Herr Prüfungsvorsitzender, wir stehen vor einem kritischen Atemwegsnotfall. Meine oberste Priorität ist die lückenlose Oxygenierung nach dem DGAI-Stufenplan: Plan A Videolaryngoskopie, Plan B Larynxmaske, und bei CICO unverzüglich Plan D eFONA.';
+      s1tr = 'Sayın jüri başkanı, kritik bir havayolu acili ile karşı karşıyayız. En yüksek önceliğim DGAI basamaklı planına göre kesintisiz oksijenasyondur: Plan A Videolaringoskopi, Plan B LMA, ve CICO tablosunda derhal Plan D eFONA krikotiroidotomi.';
+      s2de = 'Der Monitor zeigt eine rasante Entsättigung mit SpO2 unter 80% und reflektorischer Bradykardie. Die Kapnografie bestätigt das Fehlen eines Beatmungshubs (No-Flow-Situation).';
+      s2tr = 'Monitör SpO2 nin hızla %80 in altına düştüğünü ve refleks bradikardi geliştiğini gösteriyor. Kapnografi havalanmanın tamamen durduğunu doğruluyor.';
+      s3de = 'Ich deklariere laut im Saal: "Cannot Intubate, Cannot Oxygenate!" Ich fordere das Koniotomie-Set, verabreiche 16 mg/kg Sugammadex bei Rocuronium und führe bei persistierender Hypoxie den Skalpell-Bougie-Schnitt durch.';
+      s3tr = 'Salonda yüksek sesle duyuruyorum: "Cannot Intubate, Cannot Oxygenate!" Krikotiroidotomi setini getirtiyor, Roküronyum için 16 mg/kg Sugammadeks veriyor ve hipoksemi devam ederse skalpel-buji kesisi yapıyorum.';
+      s4de = 'Nach Etablierung des chirurgischen Atemwegs und Erreichen einer stabilen Sättigung plane ich die definitive operative Versorgung und den Transfer auf die Intensivstation.';
+      s4tr = 'Cerrahi havayolu sağlandıktan ve satürasyon normale döndükten sonra kesin cerrahi onarımı ve yoğun bakıma transferi planlıyorum.';
+    }
+    // 2. Maligne Hyperthermie (MH)
+    else if (text.includes('maligne hyperthermie') || text.includes('dantrolen')) {
+      s1de = 'Ich diagnostiziere den dringenden Verdacht auf eine Maligne Hyperthermie. Das therapeutische Fenster ist extrem kurz; ich leite unverzüglich den DGAI/EMHG-Notfallalgorithmus ein.';
+      s1tr = 'Acil Malign Hipertermi şüphesi tanısı koyuyorum. Terapötik pencere son derece dardır; derhal DGAI/EMHG acil durum algoritmasını başlatıyorum.';
+      s2de = 'Leitsymptom im Monitoring ist der unerklärte, steile EtCO2-Anstieg trotz forcierter Beatmung, vergesellschaftet mit Sinustachykardie und metabolischer Laktatazidose in der BGA.';
+      s2tr = 'Monitörizasyondaki temel bulgu, yüksek dakika hacmine rağmen açıklanamayan hızlı EtCO2 artışı, sinüs taşikardisi ve kan gazındaki metabolik laktik asidozdur.';
+      s3de = 'Meine Sofortmaßnahmen lauten: Alle volatilen Anästhetika sofort STOPP, Verdampfer abkoppeln, 100% O2 mit maximalem Flow hyperventilieren und Dantrolen 2,5 mg/kg i.v. als Kausaltherapie spritzen.';
+      s3tr = 'Acil adımlarım: Tüm uçucu anestezikleri derhal DURDUR, vaporizatörü ayır, maksimum akımla %100 O2 ile hiperventile et ve neden tedavisi olarak Dantrolen 2.5 mg/kg i.v. bolus yap.';
+      s4de = 'Ich organisiere die kontinuierliche Dantrolen-Titration, kühle den Patienten bis maximal 38,5°C und übergebe ihn zur 24-stündigen Rezidiv-Überwachung auf die operative Intensivstation.';
+      s4tr = 'Sürekli Dantrolen titrasyonunu organize ediyor, hastayı en fazla 38.5°C ye kadar soğutuyor ve 24 saatlik nüks takibi için cerrahi yoğun bakıma devrediyorum.';
+    }
+    // 3. LAST / Lokalanästhetika-Intoxikation
+    else if (text.includes('last') || text.includes('lokalanästhetika') || text.includes('intralipid')) {
+      s1de = 'Es besteht der V.a. eine systemische Lokalanästhetika-Intoxikation (LAST). Ich stoppe sofort jede weitere Injektion, sichere die Atemwege mit 100% O2 und aktiviere das Lipid-Rescue-Protokoll.';
+      s1tr = 'Sistemik lokal anestezik toksisitesi (LAST) şüphesi mevcuttur. Her türlü enjeksiyonu derhal durduruyor, havayolunu %100 O2 ile emniyete alıyor ve Lipid Kurtarma protokolünü devreye sokuyorum.';
+      s2de = 'Am Monitor sehe ich typische neuro- und kardiotoxische Warnzeichen: tonisch-klonische Aktivität gefolgt von QRS-Verbreiterung, ventrikulären Arrhythmien bis zum Kreislaufstillstand.';
+      s2tr = 'Monitörde tipik nörotoksik ve kardiyotoksik bulgular izliyorum: tonik-klonik nöbeti takiben QRS genişlemesi, ventriküler aritmiler ve kardiyak arrest.';
+      s3de = 'Ich fordere das Lipid-Kit: Intralipid 20% Bolus 1,5 ml/kg i.v. über 1 Minute, gefolgt von 0,25 ml/kg/min. Adrenalin-Dosis bei CPR strikt auf unter 1 µg/kg reduzieren; Vasopressin und Lidocain sind kontraindiziert!';
+      s3tr = 'Lipid kitini getirtiyorum: İntralipid %20 bolus 1.5 ml/kg i.v. 1 dakikada, ardından 0.25 ml/kg/dk infüzyon. CPR da Adrenalin dozunu kesinlikle < 1 µg/kg a düşür; Vazopressin ve Lidokain kontrendikedir!';
+      s4de = 'Wegen der Gefahr eines Rebounds überwache ich den Patienten nach erfolgreicher kardiopulmonaler Stabilisierung für mindestens 24 Stunden invasiv auf der Intensivstation.';
+      s4tr = 'Rebound toksisite riski nedeniyle başarılı stabilizasyon sonrası hastayı yoğun bakımda en az 24 saat invaziv olarak takip ediyorum.';
+    }
+    // 4. Polytrauma & Massivtransfusion / Schock
+    else if (text.includes('polytrauma') || text.includes('schockraum') || text.includes('blutung') || text.includes('transfusion') || text.includes('rotem')) {
+      s1de = 'Wir leiten die Schockraumversorgung nach dem ATLS- und S3-Leitlinien-Algorithmus ein. Im Zentrum stehen die Beherrschung der lebensbedrohlichen Blutung und die Vermeidung der tödlichen Trias.';
+      s1tr = 'Şok odası yönetimini ATLS ve S3 kılavuz algoritmalarına göre başlatıyoruz. Merkezde hayatı tehdit eden kanamanın durdurulması ve ölümcül triadın engellenmesi yer almaktadır.';
+      s2de = 'Der Monitor dokumentiert einen hämorrhagischen Schock Klasse III bis IV mit Hypotonie und Tachykardie. Die BGA zeigt eine Laktatazidose und ein ionisiertes Kalzium unter 1,1 mmol/l.';
+      s2tr = 'Monitör hipotansiyon ve taşikardi ile Evre III-IV hemorajik şoku belgeler. Kan gazı laktik asidoz ve 1.1 mmol/l nin altında iyonize kalsiyum gösterir.';
+      s3de = 'Ich aktiviere das Massivtransfusionsprotokoll: Sofort Tranexamsäure 1 g i.v., gezielte ROTEM-Diagnostik mit Fibrinogen-Gabe bei FIBTEM A10 < 10 mm, Wärmemanagement und Kalziumsubstitution.';
+      s3tr = 'Masif transfüzyon protokolünü aktive ediyorum: Derhal Traneksamik asit 1 g i.v., FIBTEM A10 < 10 mm ise Fibrinojen konsantresi, aktif ısıtma ve kalsiyum replasmanı.';
+      s4de = 'Parallel zur chirurgischen Blutstillung (Damage Control Surgery) organisiere ich den nahtlosen Übergang auf die operative Intensivstation zur postoperativen Gerinnungsoptimierung.';
+      s4tr = 'Cerrahi kanama kontrolüne (Damage Control Surgery) paralel olarak, postoperatif koagülasyon optimizasyonu için cerrahi yoğun bakıma kesintisiz geçişi koordine ediyorum.';
+    }
+    // 5. Sepsis & Septischer Schock
+    else if (text.includes('sepsis') || text.includes('septisch') || text.includes('noradrenalin')) {
+      s1de = 'Der Patient erfüllt die Sepsis-3-Kriterien im septischen Schock. Ich initiiere unverzüglich das 1-Hour-Bundle nach Surviving Sepsis Campaign mit differenzierter Kreislaufstabilisierung.';
+      s1tr = 'Hasta septik şokta Sepsis-3 kriterlerini karşılamaktadır. Surviving Sepsis Campaign in 1 Saatlik Kurtarma Paketini derhal devreye sokuyorum.';
+      s2de = 'Monitoring und Blutgas zeigen einen refraktären distributiven Schock mit Hyperlaktatämie über 4 mmol/l und MAP unter 65 mmHg trotz kristalloider Vorlastoptimierung.';
+      s2tr = 'Monitör ve kan gazı, kristaloid yüklemesine rağmen 4 mmol/l üzeri laktat ve 65 mmHg altı MAP ile dirençli distributif şoku gösterir.';
+      s3de = 'Ich titriere Noradrenalin als First-Line-Vasopressor auf einen Ziel-MAP von mindestens 65 mmHg, starre Blutkulturen vor Antibiose, gebe Breitspektrum-Antibiotika binnen 60 Minuten und schließe bei Bedarf Vasopressin 0,03 IE/min an.';
+      s3tr = 'İlk tercih vazopressör Noradrenalini hedef MAP >= 65 mmHg olacak şekilde titre ediyorum, antibiyotikten önce kan kültürü alıp 60 dakikada geniş spektrumlu antibiyotiği başlıyorum; gerekirse sabit doz Vazopressin 0.03 IU/dk ekliyorum.';
+      s4de = 'Zur weiteren Organunterstützung und Steuerung der Laktat-Clearance verlege ich den Patienten unter invasivem hämodynamischem Monitoring auf die Intensivstation.';
+      s4tr = 'İleri organ desteği ve laktat klirensi takibi için hastayı invaziv hemodinamik monitörizasyon eşliğinde yoğun bakıma naklediyorum.';
+    }
 
     return {
       step1: {
@@ -424,7 +643,7 @@
     };
   }
 
-  // ─────────────────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────────────────
   // 5. BGA-TRAINER MINI-TOOL CASUISTICS (4-STUFEN-BGA-SYSTEMATIK)
   // ─────────────────────────────────────────────────────────────────────────────
   const BGA_TRAINING_CASES = [

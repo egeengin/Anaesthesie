@@ -1086,7 +1086,7 @@ console.log('[PASS] Suite 37 passed! Verified zero syntax errors across all appl
 
 // 38. Test DGAI/AMBOSS 5-Pillars Curriculum Mapping & High-Yield Cases
 console.log('Testing Suite 38: DGAI/AMBOSS 5-Pillars Curriculum Mapping & High-Yield Cases...');
-assert.strictEqual(questions.length, 664, `Expected exactly 664 questions in dataset, got ${questions.length}`);
+assert.strictEqual(questions.length, 669, `Expected exactly 669 questions in dataset, got ${questions.length}`);
 
 // Verify UI elements in index.html
 assert(htmlContent.includes('id="amboss-pillar-filter"'), 'index.html must include #amboss-pillar-filter');

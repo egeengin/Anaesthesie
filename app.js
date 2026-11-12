@@ -5361,6 +5361,18 @@ Tedavi:
       showToast(`⚠️ Nicht bestanden (${correctCount}/${totalOpts} richtig). Zur Wiederholung markiert.`, 'error', 4000);
     }
 
+    // Authentic calendar day & consecutive streak tracking
+    state.studyDays = state.studyDays || [];
+    const todayDateStr = new Date().toISOString().slice(0, 10);
+    if (!state.studyDays.includes(todayDateStr)) {
+      state.studyDays.push(todayDateStr);
+    }
+    if (isPassed) {
+      state.sessionStreak = (state.sessionStreak || 0) + 1;
+    } else {
+      state.sessionStreak = 0;
+    }
+
     // Daily study count tracking
     const todayStrCheck = new Date().toISOString().slice(0, 10);
     if (state.dailyDate !== todayStrCheck) {
@@ -5588,15 +5600,15 @@ Tedavi:
       }
     }
 
-    // Streak calculations
+    // Authentic Streak calculations (Calendar Days & Answer Streaks)
     const elStatStreak = document.getElementById('stat-streak');
     const elStatSessionStreak = document.getElementById('stat-session-streak');
     if (elStatStreak) {
-      const streakDays = Math.max(1, Math.min(answeredCount, 14));
-      elStatStreak.textContent = answeredCount > 0 ? `${streakDays} Tage` : '0 Tage';
+      const activeDays = (state.studyDays && Array.isArray(state.studyDays)) ? state.studyDays.length : (answeredCount > 0 ? 1 : 0);
+      elStatStreak.textContent = activeDays > 0 ? `${activeDays} ${activeDays === 1 ? 'Tag' : 'Tage'}` : '0 Tage';
     }
     if (elStatSessionStreak) {
-      const consecutive = Math.min(correctCount, 7);
+      const consecutive = state.sessionStreak || 0;
       elStatSessionStreak.textContent = `⚡ ${consecutive} in Folge`;
     }
 
