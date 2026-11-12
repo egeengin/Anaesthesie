@@ -97,7 +97,7 @@
             </a>
             <a href="notebooklm_export/01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md" download="01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md" class="btn-download-file">
               <div>
-                <div style="font-weight: 700;">🏥 2. Klinik Kasuistikler & ÄKNO Protokolleri (339 Vaka)</div>
+                <div style="font-weight: 700;">🏥 2. Klinik Kasuistikler & ÄKNO Protokolleri (344 Vaka)</div>
                 <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">01_Klinische_Faelle_und_Protokolle_NOTEBOOKLM.md</div>
               </div>
               <span style="font-size: 1.2rem;">📥</span>
@@ -399,6 +399,10 @@
 
   // --- Render Questions Feed ---
   function renderFeed(resetVisible = false) {
+    try {
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || "{}");
+      Object.assign(readStatus, stored);
+    } catch(e) {}
     if (resetVisible) state.visibleCount = state.pageSize;
 
     const filtered = getFilteredList();
@@ -945,6 +949,7 @@
   if (state.viewMode === 'bilingual') document.body.classList.add('mode-bilingual');
   if (state.viewMode === 'german') document.body.classList.add('mode-german-only');
 
+  updateDynamicQuestionCounts();
   initCategories();
   renderFeed(true);
 

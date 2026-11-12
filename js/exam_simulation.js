@@ -138,9 +138,9 @@
       speechIntro_tr: "68 yaşında erkek hasta üroseptik şok tablosuyla kabul ediliyor: MAP 52 mmHg, laktat 4.2 mmol/l. Surviving Sepsis 1-Hour-Bundle neleri içerir, ilk tercih vazopressör ve hedef değer nedir, ARDS Berlin kriterleri ve prone pozisyonunun endikasyonları nelerdir?",
       crisis: {
         title: "⚡ Refraktäre Hypoxämie auf der Intensivstation!",
-        title_tr: "⚡ Yogun Bakimda Tedaviye Dirençli Hipoksemi!",
+        title_tr: "⚡ Yoğun Bakımda Tedaviye Dirençli Hipoksemi!",
         prompt_de: "Der Horovitz-Quotient fällt unter PEEP 14 cmH2O auf 88 mmHg ab! Der Driving Pressure liegt bei 19 cmH2O. Welche lungenprotektiven Maßnahmen und welches Lagerungsmanöver leiten Sie jetzt ein?",
-        prompt_tr: "PEEP 14 cmH2O altinda Horovitz indeksi (PaO2/FiO2) 88 mmHg ye düşüyor! Driving pressure 19 cmH2O. Hangi akciğer koruyucu önlemleri ve pozisyonlandırma manevrasini derhal başlatırsınız?",
+        prompt_tr: "PEEP 14 cmH2O altında Horovitz indeksi (PaO2/FiO2) 88 mmHg ye düşüyor! Driving pressure 19 cmH2O. Hangi akciğer koruyucu önlemleri ve pozisyonlandırma manevrasini derhal başlatırsınız?",
         vitals: { spo2: "82%", bp: "80/45", map: "56 mmHg", hr: "125 /min", etco2: "54 mmHg", temp: "38.9 °C", rhythm: "Sinustachykardie", alert: true },
         targetAction: "Tidalvolumen strikt 6 ml/kg PBW, Driving Pressure ≤ 14 cmH2O, sofortige Bauchlagerung (Prone Positioning) für mindestens 16 Stunden!",
         targetAction_tr: "Tidal hacim kesinlikle 6 ml/kg PBW, Driving Pressure <= 14 cmH2O, günde en az 16 saat kesintisiz Prone (yüzüstü) pozisyonlama!",
@@ -167,7 +167,7 @@
         title: "⚡ Eklamptischer Anfall im Saal!",
         title_tr: "⚡ Dogum Masasinda Eklampsi Nöbeti!",
         prompt_de: "Während der Vorbereitung beginnt die Schwangere generalisiert tonisch-klonisch zu krampfen! Blutdruck 210/120 mmHg. Was ist das Mittel der 1. Wahl und welches Antidot muss bereitstehen?!",
-        prompt_tr: "Hazirlik sırasında gebe jeneralize tonik-klonik kasilmaya başlıyor! Tansiyon 210/120 mmHg. 1. tercih antikonvülzan nedir ve hangi antidot masada hazir bulunmalidir?!",
+        prompt_tr: "Hazırlık sırasında gebe jeneralize tonik-klonik kasilmaya başlıyor! Tansiyon 210/120 mmHg. 1. tercih antikonvülzan nedir ve hangi antidot masada hazir bulunmalidir?!",
         vitals: { spo2: "84%", bp: "210/120", map: "150 mmHg", hr: "145 /min", etco2: "45 mmHg", temp: "37.2 °C", rhythm: "Sinustachykardie", alert: true },
         targetAction: "Magnesiumsulfat 4-6 g i.v. als Kurzinfusion über 15-20 min, Calciumgluconat 10% als Antidot bereithalten, Linksseitenkippung sichern, zügige RSI!",
         targetAction_tr: "Magnezyum sülfat 4-6 g i.v. 15-20 dakikada kisa infüzyon, antidot olarak Kalsiyum glukonat %10 hazir bulundurulmali, 15-30° sol yan eğim güvenceye alinmali ve hizla RSI yapilmalidir!",
@@ -189,7 +189,7 @@
         trap_tr: "DOAK güvenlik araligi beklenmeden blok yapilmasi veya LAST tablosunda Vazopressin/Verapamil verilmesi",
       },
       speechIntro: "Eine 64-jährige Patientin unter Rivaroxaban und ASS soll eine Knie-TEP in Spinalanästhesie mit Femoraliskatheter erhalten. Welche Karenzzeiten gelten nach Leitlinie? Wenn es nach Bolusgabe von Ropivacain am Katheter zu Krampfanfall und Arrhythmie kommt: Wie lautet Ihr Notfallprotokoll (LAST) inklusive Lipidtherapie?",
-      speechIntro_tr: "Rivaroksaban ve ASA kullanan 64 yaşında kadin hastaya diz protezi için spinal anestezi ve femoral kateter planlaniyor. Kilavuza göre bekleme süreleri nedir? Kateterden Ropivakain sonrasi nöbet ve aritmi gelisirse Lipid kurtarma protokolünüz nedir?",
+      speechIntro_tr: "Rivaroksaban ve ASA kullanan 64 yaşında kadin hastaya diz protezi için spinal anestezi ve femoral kateter planlaniyor. Kilavuza göre bekleme süreleri nedir? Kateterden Ropivakain sonrası nöbet ve aritmi gelisirse Lipid kurtarma protokolünüz nedir?",
       crisis: {
         title: "⚡ LAST: Herz-Kreislauf-Stillstand!",
         title_tr: "⚡ LAST: Kardiyovasküler Kollaps ve Arrest!",
@@ -216,7 +216,7 @@
         trap_tr: "Hipoksik çocukta Süksinilkolinin Atropinsiz verilmesi (öldürücü vagal asistoli riski!)",
       },
       speechIntro: "Ein 4-jähriges Kind (16 kg) entwickelt unmittelbar nach Extubation nach Tonsillotomie schwere juguläre Einziehungen, Stridor, SpO2-Abfall auf 74% und Bradykardie von 55/min. Beschreiben Sie Differenzialdiagnose, anatomische Besonderheiten, Tubusgrößenformel und den Stufenplan zur Notfallbeherrschung.",
-      speechIntro_tr: "4 yaşında bir çocuk (16 kg) tonsillotomi sonrasi ekstübasyonda agir juguler çekilmeler, stridor, SpO2 %74 ve 55/dk bradikardi gelistiriyor. Ayirici tani, anatomik özellikler, tüp formülü ve acil basamak planini açiklayiniz.",
+      speechIntro_tr: "4 yaşında bir çocuk (16 kg) tonsillotomi sonrası ekstübasyonda agir juguler çekilmeler, stridor, SpO2 %74 ve 55/dk bradikardi gelistiriyor. Ayirici tani, anatomik özellikler, tüp formülü ve acil basamak planini açıklayiniz.",
       crisis: {
         title: "⚡ Hypoxische Bradykardie beim Kleinkind!",
         title_tr: "⚡ Çocukta Hipoksik Agir Bradikardi!",
@@ -243,7 +243,7 @@
         trap_tr: "Travmatik beyin hasarı (SHT) varliginda permissif hipotansiyon uygulanmasi (kesin K.O.!)",
       },
       speechIntro: "Ein 34-jähriger Motorradfahrer wird nach Hochrasanztrauma eingeliefert: GCS 6, Anisokorie rechts, instabiler Beckenring, RR 75/40 mmHg, SpO2 88%. Wie lösen Sie den Konflikt zwischen permissiver Hypotonie und CPP bei SHT? Erläutern Sie Schockraum-SOP, Narkoseeinleitung und intensivmedizinische Zielkorridore.",
-      speechIntro_tr: "34 yaşında motosiklet sürücüsü yüksek enerjili travma sonrasi getiriliyor: GCS 6, sagda anizokori, instabil pelvis halkasi, TA 75/40 mmHg, SpO2 %88. Permissif hipotansiyon ile SHT CPP hedefi çeliskisini nasil çözersiniz? Sok odasi SOP, indüksiyon ve yoğun bakim hedeflerini açiklayiniz.",
+      speechIntro_tr: "34 yaşında motosiklet sürücüsü yüksek enerjili travma sonrası getiriliyor: GCS 6, sagda anizokori, instabil pelvis halkasi, TA 75/40 mmHg, SpO2 %88. Permissif hipotansiyon ile SHT CPP hedefi çeliskisini nasil çözersiniz? Sok odasi SOP, indüksiyon ve yoğun bakım hedeflerini açıklayiniz.",
       crisis: {
         title: "⚡ Unkale Herniation droht!",
         title_tr: "⚡ Unkal Herniasyon ve Kanama Soku Tehdidi!",
@@ -270,12 +270,12 @@
         trap_tr: "Akut boyun hematomunda ameliyathane beklemek (K.O. - Larenks basisiyla bogulma!)",
       },
       speechIntro: "Bei einem 68-jährigen Patienten soll eine Karotis-TEA durchgeführt werden. Vergleichen Sie Allgemeinanästhesie vs. zervikale Plexusblockade, erläutern Sie das perioperative Neuromonitoring, Shunt-Kriterien sowie das Notfallmanagement eines akuten postoperativen Hals-Wundhämatoms.",
-      speechIntro_tr: "68 yaşında hastaya Karotis TEA planlaniyor. Genel anestezi ile servikal pleksus blogunu karsilastiriniz; perioperatif nöromonitörizasyon, sant kriterleri ve ameliyat sonrasi gelisebilecek akut boyun hematomu acil yönetimini anlatiniz.",
+      speechIntro_tr: "68 yaşında hastaya Karotis TEA planlaniyor. Genel anestezi ile servikal pleksus blogunu karsilastiriniz; perioperatif nöromonitörizasyon, sant kriterleri ve ameliyat sonrası gelisebilecek akut boyun hematomu acil yönetimini anlatiniz.",
       crisis: {
         title: "⚡ Akute Erstickungsgefahr im Aufwachraum!",
         title_tr: "⚡ Ayilma Odasinda Akut Bogulma Tehlikesi!",
         prompt_de: "Im Aufwachraum schwillt der Hals innerhalb von 2 Minuten prall-elastisch an! Der Patient ringt nach Luft, SpO2 stürzt auf 70%! Die Pflege will den OP anrufen. Was tun Sie in DIESER Sekunde?",
-        prompt_tr: "Ayilma odasinda hastanin boynu 2 dakika içinde gergin bir sekilde sisiyor! Hasta nefes alamiyor, stridor var, SpO2 %70! Hemsire ameliyathaneyi aramak istiyor. BU SANIYEDE ne yaparsiniz?",
+        prompt_tr: "Ayilma odasinda hastanın boynu 2 dakika içinde gergin bir sekilde sisiyor! Hasta nefes alamiyor, stridor var, SpO2 %70! Hemsire ameliyathaneyi aramak istiyor. BU SANIYEDE ne yaparsiniz?",
         vitals: { spo2: "70%", bp: "190/100", map: "130 mmHg", hr: "130 /min", etco2: "55 mmHg", temp: "36.8 °C", rhythm: "Tachykardie", alert: true },
         targetAction: "SOFORTIGE Naht- und Faszieneröffnung am Bett mit der Schere! Keine Zeit vergeuden mit Transport oder OP-Rufen vor Dekompression!",
         targetAction_tr: "YATAK BASINDA MAKASLA DERHAL DIKISLERI VE FASYAYI AÇ! Ameliyathane veya cerrah bekleyerek zaman kaybetme; önce dekompresyon!",
@@ -283,7 +283,7 @@
       koCriteria: {
         forbiddenPatterns: [/warten auf den op/i, /in den op transportieren vor eröffnung/i],
         failureReason: "Warten auf den OP-Saal bei akutem Hals-Wundhämatom nach Karotis-TEA führt zur Erstickung durch Larynxkompression! Die Wunde MUSS am Bett sofort eröffnet werden!",
-        failureReason_tr: "Karotis TEA sonrasi akut boyun hematomunda ameliyathaneyi beklemek laringeal basi nedeniyle dakikalar içinde asfiksiye yol açar! Yara yatak basinda derhal açilmalidir.",
+        failureReason_tr: "Karotis TEA sonrası akut boyun hematomunda ameliyathaneyi beklemek laringeal basi nedeniyle dakikalar içinde asfiksiye yol açar! Yara yatak basinda derhal açilmalidir.",
         mandatoryKeywords: ["bett", "nahtöffnung", "eröffnen", "zervikoplexus", "shunt", "nirs"]
       }
     },
@@ -292,7 +292,7 @@
         name: "Prof. Dr. med. Frank Wappler",
         hospital: "Kliniken der Stadt Köln / Nationales MH-Zentrum",
         focus: "Phäochromozytom, Alpha- vor Betablockade (Roizen-Kriterien), Urapidil intraoperativ, Noradrenalin nach Ligatur",
-        focus_tr: "Feokromositoma, Roizen kriterleri, Beta blokajdan ÖNCE Alfa blokaj, Urapidil, Ligasyon sonrasi Noradrenalin",
+        focus_tr: "Feokromositoma, Roizen kriterleri, Beta blokajdan ÖNCE Alfa blokaj, Urapidil, Ligasyon sonrası Noradrenalin",
         trap: "Gabe von Betablockern vor Alphablockern (sofortiges Nichtbestehen!)",
         trap_tr: "Alfa blokaj yapilmadan önce Beta bloker verilmesi (kesin sinavdan kalma!)",
       },
@@ -305,7 +305,7 @@
         prompt_tr: "Cerrah tümörü tuttugu anda tansiyon 250/135 mmHg ye firliyor, nabiz 145/dk! Hangi vazodilatatör acil ilaci hemen uygularsiniz?",
         vitals: { spo2: "97%", bp: "250/135", map: "173 mmHg", hr: "145 /min", etco2: "38 mmHg", temp: "37.0 °C", rhythm: "Sinustachykardie", alert: true },
         targetAction: "Urapidil (Ebrantil 12.5-25 mg i.v.), Phentolamin oder Nitroprussid; Esmolol erst NACH Alpha-Blockade! Nach Venenligatur Noradrenalin bereitstellen!",
-        targetAction_tr: "Urapidil (Ebrantil 12.5-25 mg i.v.), Fentolamin veya Nitroprussid; Esmolol SADECE alfa blokaj saglandiktan sonra verilebilir! Ven ligasyonu sonrasi Noradrenalin hazir olmalidir!",
+        targetAction_tr: "Urapidil (Ebrantil 12.5-25 mg i.v.), Fentolamin veya Nitroprussid; Esmolol SADECE alfa blokaj saglandiktan sonra verilebilir! Ven ligasyonu sonrası Noradrenalin hazir olmalıdır!",
       },
       koCriteria: {
         forbiddenPatterns: [/betablocker vor alpha/i, /erst betablocker/i, /metoprolol zuerst/i],
@@ -336,7 +336,7 @@
       },
       koCriteria: {
         forbiddenPatterns: [/spinalanästhesie durchführen/i, /pda stechen/i, /spinalanästhesie wähle/i],
-        failureReason: "Spinal- und Periduralanästhesie sind bei Thrombozyten < 50.000/µl wegen des Risikos eines raumfordernden spinalen Hämatoms mit permanenter Paraplegie streng verboten!",
+        failureReason: "Spinal- und Periduralanästhesie sind bei Thrombozyten < 50.000/µl wegen des Rışıkos eines raumfordernden spinalen Hämatoms mit permanenter Paraplegie streng verboten!",
         failureReason_tr: "Trombosit < 50.000/µl iken spinal veya epidural girisim yapilmasi spinal epidural hematom ve kalici felç riski nedeniyle kesinlikle yasaktir!",
         mandatoryKeywords: ["kontraindiziert", "hämatom", "vollnarkose", "rsi", "magnesium", "linksseitenkippung"]
       }
@@ -351,15 +351,15 @@
         trap_tr: "TRALI tablosunda Furosemid (Lasix) verilmesi (K.O. - hipovolemik sok ve kardiyovasküler kollaps!)",
       },
       speechIntro: "Ein 62-jähriger Patient entwickelt 25 Minuten nach FFP-Transfusion akuten SpO2-Abfall auf 78%, Anstieg des Pmax auf 38 mbar, schaumiges Trachealsekret und bilaterale Infiltrate. Wie differenzieren Sie TRALI vs. TACO und wie gestalten Sie die Akuttherapie?",
-      speechIntro_tr: "TDP transfüzyonundan 25 dakika sonra SpO2 %78 e düsen, tepe basinci 38 mbar a yükselen, pembe köpüklü sekresyon ve bilateral infiltrasyon gelisen 62 yaşında hasta. TRALI ile TACO ayirici tanisini nasil yapar ve akut tedaviyi nasil planlarsiniz?",
+      speechIntro_tr: "TDP transfüzyonundan 25 dakika sonra SpO2 %78 e düsen, tepe basınçi 38 mbar a yükselen, pembe köpüklü sekresyon ve bilateral infiltrasyon gelisen 62 yaşında hasta. TRALI ile TACO ayirici tanisini nasil yapar ve akut tedaviyi nasil planlarsiniz?",
       crisis: {
         title: "⚡ Respiratorische Katastrophe nach Transfusion!",
-        title_tr: "⚡ Transfüzyon Sonrasi Akut Solunumsal Afet!",
+        title_tr: "⚡ Transfüzyon Sonrası Akut Solunumsal Afet!",
         prompt_de: "Der Weiterbildungsassistent schlägt 40 mg Furosemid i.v. vor. Der Blutdruck liegt bei 85/50 mmHg. Stimmen Sie zu oder widersprechen Sie und warum?",
         prompt_tr: "Asistan hekim tansiyonu 85/50 mmHg olan hastaya hemen 40 mg Furosemid i.v. yapmayi öneriyor. Onayliyor musunuz, gerekçeniz nedir?",
         vitals: { spo2: "78%", bp: "85/50", map: "61 mmHg", hr: "125 /min", etco2: "48 mmHg", temp: "38.6 °C", rhythm: "Sinustachykardie", alert: true },
         targetAction: "Widerspruch! Furosemid ist bei TRALI kontraindiziert (Permeabilitätsödem ohne Vorlastüberhang)! Transfusionsstopp, Lungenprotektion Vt 6 ml/kg PBW, Kreislaufstützung Noradrenalin!",
-        targetAction_tr: "KESINLIKLE ITIRAZ ET! TRALI de Furosemid kontrendikedir (ön yük artisi olmayan kapiller kaçak ödemi)! Transfüzyonu durdur, Vt 6 ml/kg PBW koruyucu ventilasyon, Noradrenalin ile dolasim destegi sagla!",
+        targetAction_tr: "KESINLIKLE ITIRAZ ET! TRALI de Furosemid kontrendikedir (ön yük artışı olmayan kapiller kaçak ödemi)! Transfüzyonu durdur, Vt 6 ml/kg PBW koruyucu ventilasyon, Noradrenalin ile dolasim destegi sagla!",
       },
       koCriteria: {
         forbiddenPatterns: [/furosemid bei trali/i, /lasix geben/i],
@@ -378,7 +378,7 @@
         trap_tr: "Trakeobronşiyal yabancı cisim varken kas gevşetici (nöromusküler bloker) verilmesi (kesin K.O.!)",
       },
       speechIntro: "Ein 2-jähriges Kleinkind (12 kg) wird mit V. a. Erdnussaspiration vorgestellt. Warum ist die Narkoseeinleitung unter Erhalt der Spontanatmung der Goldstandard, welche Medikamente setzen Sie ein und welche Komplikationen drohen bei Narkoseeinleitung mit Muskelrelaxanzien?",
-      speechIntro_tr: "Fıstık aspirasyonu şüphesiyle getirilen 2 yaşında çocuk (12 kg). Neden spontan solunum korunarak anestezi indüksiyonu altin standarttir, hangi ajanlar kullanilir ve kas gevşetici verilirse hangi öldürücü komplikasyonlar doğar?",
+      speechIntro_tr: "Fıstık aspirasyonu şüphesiyle getirilen 2 yaşında çocuk (12 kg). Neden spontan solunum korunarak anestezi indüksiyonu altın standarttır, hangi ajanlar kullanılır ve kas gevşetici verilirse hangi öldürücü komplikasyonlar doğar?",
       crisis: {
         title: "⚡ Erdnuss verlegt die Trachea!",
         title_tr: "⚡ Yabancı Cisim Trakeayi Tam Tıkıyor!",
@@ -386,7 +386,7 @@
         prompt_tr: "Çocuk ajiteleşiyor, stridor kayboluyor, göğüs hareketleri duruyor, SpO2 %72 ye düşüyor! Bir meslektaşınız kas gevşetici verip maskeyle içeri basmayi öneriyor. Ne yaparsiniz?!",
         vitals: { spo2: "72%", bp: "70/40", map: "50 mmHg", hr: "65 /min", etco2: "62 mmHg", temp: "36.8 °C", rhythm: "Sinusbradykardie", alert: true },
         targetAction: "KEIN Relaxans! Starre Bronchoskopie unter Spontanatmung sofort einführen, Fremdkörper mit optischer Zange bergen! Masken-Überdruckbeatmung würde Erdnuss verkeilen!",
-        targetAction_tr: "KAS GEVSETICI KESINLIKLE VERİLMEZ! Spontan solunum altinda rijit bronkoskopi derhal yerleştirilmeli ve optik forseps ile parça çıkarılmalıdır! Pozitif basınç cismi daha derine tikar!",
+        targetAction_tr: "KAS GEVSETICI KESINLIKLE VERİLMEZ! Spontan solunum altında rijit bronkoskopi derhal yerleştirilmeli ve optik forseps ile parça çıkarılmalıdır! Pozitif basınç cismi daha derine tikar!",
       },
       koCriteria: {
         forbiddenPatterns: [/rocuronium geben/i, /relaxieren/i, /succinylcholin spritzen/i],
@@ -418,7 +418,7 @@
       koCriteria: {
         forbiddenPatterns: [/magnet macht asynchron beim icd/i, /icd schlägt im voo/i],
         failureReason: "Ein Magnet schaltet beim ICD NUR die Schocktherapie ab, nicht die Schrittmacherfunktion in den asynchronen Modus! Schrittmacherabhängige ICD-Patienten müssen umprogrammiert werden.",
-        failureReason_tr: "Mıknatıs ICD de SADECE sok fonksiyonunu kapatir, asenkron pace moduna geçirmez! Pil bagimli ICD hastalari operasyon öncesi programlanmalidir.",
+        failureReason_tr: "Mıknatıs ICD de SADECE sok fonksiyonunu kapatir, asenkron pace moduna geçirmez! Pil bağımlı ICD hastalari operasyon öncesi programlanmalidir.",
         mandatoryKeywords: ["magnet", "deaktiviert schock", "klebepads", "defibrillator", "bipolar"]
       }
     },
@@ -427,7 +427,7 @@
         name: "Prof. Dr. med. Thorsten Annecke",
         hospital: "Klinikum Leverkusen / ÄKNO Prüfungsvorsitzender",
         focus: "Chronische Niereninsuffizienz, Muskelrelaxanzien, Succinylcholin-Hyperkaliämie, Sugammadex",
-        focus_tr: "Kronik Böbrek Yetmezligi (Diyaliz), Kas gevşeticiler, Süksinilkolin hiperkalemisi kontrendikasyonu, Sugammadeks",
+        focus_tr: "Kronik Böbrek Yetmezliği (Diyaliz), Kas gevşeticiler, Süksinilkolin hiperkalemisi kontrendikasyonu, Sugammadeks",
         trap: "Gabe von Succinylcholin bei Dialysepatienten mit Hyperkaliämie (K.O. - Herzstillstand!)",
         trap_tr: "Diyaliz hastasinda Süksinilkolin kullanilmasi (K.O. - ölümcül hiperkalemik arrest!)",
       },
@@ -437,7 +437,7 @@
         title: "⚡ Spitze T-Wellen und Bradykardie!",
         title_tr: "⚡ Sivri T Dalgalari ve Bradikardi!",
         prompt_de: "Nach Einleitung klettert das Kalium in der BGA auf 6,8 mmol/l, QRS-Komplexe verbreitern sich! Wie lautet die kardioprotektive Soforttherapie?",
-        prompt_tr: "Indüksiyon sonrasi acil kan gazinda potasyum 6.8 mmol/l çikiyor, QRS genisliyor! Miyokardi koruyan derhal ilk tedavi nedir?",
+        prompt_tr: "Indüksiyon sonrası acil kan gazinda potasyum 6.8 mmol/l çikiyor, QRS genisliyor! Miyokardi koruyan derhal ilk tedavi nedir?",
         vitals: { spo2: "95%", bp: "75/40", map: "51 mmHg", hr: "48 /min", etco2: "36 mmHg", temp: "36.5 °C", rhythm: "Schenkelblockbreit", alert: true },
         targetAction: "10 ml Calciumgluconat 10% langsam i.v. zur Membranstabilisierung, Glukose 20% + Altinsulin, Hyperventilation, Natriumbikarbonat!",
         targetAction_tr: "Hemen 10 ml Kalsiyum glukonat %10 yavas i.v. (membran stabilizasyonu), ardindan %20 Glukoz + Kisa etkili Insülin, hiperventilasyon ve Sodyum bikarbonat!",
@@ -459,7 +459,7 @@
         trap_tr: "Larengeal maske denemeden 3 ten fazla entübasyon denemesi yapmak veya eFONA da tereddüt etmek",
       },
       speechIntro: "Ein 52-jähriger adipöser Patient (BMI 38 kg/m²) soll narkotisiert werden. Nach Einleitung gelingt die Maskenbeatmung nicht, Videolaryngoskopie Cormack IV, Larynxmaske scheitert: SpO2 65%. Beschreiben Sie den DGAI-Atemwegsalgorithmus und die Koniotomie.",
-      speechIntro_tr: "BMI 38 kg/m² olan 52 yaşında obez hasta. Indüksiyon sonrasi maske havalandirmasi basarisiz, videolaringoskopi Cormack IV, LMA basarisiz: SpO2 %65. DGAI basamakli planini ve cerrahi havayolu (eFONA) basamaklarını anlatiniz.",
+      speechIntro_tr: "BMI 38 kg/m² olan 52 yaşında obez hasta. Indüksiyon sonrası maske havalandirmasi basarisiz, videolaringoskopi Cormack IV, LMA basarisiz: SpO2 %65. DGAI basamakli planini ve cerrahi havayolu (eFONA) basamaklarını anlatiniz.",
       crisis: {
         title: "⚡ Cannot Intubate, Cannot Oxygenate (CICO)!",
         title_tr: "⚡ Cannot Intubate, Cannot Oxygenate (CICO)!",
@@ -486,7 +486,7 @@
         trap_tr: "Akut gaz embolisinde laparoskopik gaz insüflasyonunu sürdürmek",
       },
       speechIntro: "Während laparoskopischer Cholezystektomie stürzt das EtCO2 plötzlich von 38 auf 11 mmHg ab. Blutdruck 60/30 mmHg, im Stethoskop Mühlenradgeräusch. Erläutern Sie Pathophysiologie, Differenzialdiagnose und Sofortmaßnahmen der venösen CO2-Gasembolie.",
-      speechIntro_tr: "Laparoskopik kolesistektomi sırasında EtCO2 aniden 38 den 11 mmHg ye düşüyor. TA 60/30 mmHg, oskültasyonda degirmen çarki sesi. Venöz CO2 embolisinin patofizyolojisini, ayirici tanisini ve acil müdahalelerini açiklayiniz.",
+      speechIntro_tr: "Laparoskopik kolesistektomi sırasında EtCO2 aniden 38 den 11 mmHg ye düşüyor. TA 60/30 mmHg, oskültasyonda degirmen çarki sesi. Venöz CO2 embolisinin patofizyolojisini, ayirici tanisini ve acil müdahalelerini açıklayiniz.",
       crisis: {
         title: "⚡ Kreislaufstillstand durch Gasembolie!",
         title_tr: "⚡ Gaz Embolisine Bagli Kardiyak Arrest (PEA)!",
@@ -518,7 +518,7 @@
         title: "⚡ Akuter Druckverlust der Manschette nach 12 Minuten!",
         title_tr: "⚡ 12. Dakikada Turnikede Akut Basinç Kaybi!",
         prompt_de: "Nach 12 Minuten meldet die Manschette Druckabfall! Die Patientin äußert metallischen Geschmack, Schwindel und fängt an zu zucken! Was ist Ihre Rettungskette?",
-        prompt_tr: "12. dakikada manson basinci düşüyor! Hasta dilde metalik tat, bas dönmesi tarifliyor ve kasilmaya başlıyor! Kurtarma zinciriniz nedir?",
+        prompt_tr: "12. dakikada manson basınçi düşüyor! Hasta dilde metalik tat, bas dönmesi tarifliyor ve kasilmaya başlıyor! Kurtarma zinciriniz nedir?",
         vitals: { spo2: "88%", bp: "80/45", map: "56 mmHg", hr: "125 /min", etco2: "44 mmHg", temp: "36.8 °C", rhythm: "Tachykardie", alert: true },
         targetAction: "Manschette sofort wieder aufpumpen! 100% O2, Midazolam zur Krampfdurchbrechung, Intralipid 20% Rescue-Kit anfordern!",
         targetAction_tr: "Mansoni derhal tekrar sisir! %100 O2 ver, nöbet için Midazolam uygula, Lipid %20 kurtarma kitini derhal masaya getirt!",
@@ -567,7 +567,7 @@
         trap_tr: "Agresif profilaktik hiperventilasyon (PaCO2 < 30 mmHg - K.O. Serebral Iskemi!)",
       },
       speechIntro: "Ein 24-jähriger Motorradfahrer mit schwerem SHT liegt intubiert im OP: ICP steigt auf 28 mmHg, MAP 75 mmHg. Erläutern Sie das Stufenschema zur Senkung des intrakraniellen Drucks und warum prophylaktische tiefe Hyperventilation schädlich ist.",
-      speechIntro_tr: "Agir SHT tanili entübe 24 yaşında hasta: ICP 28 mmHg, MAP 75 mmHg. Intrakraniyal basinci düsürme basamaklarını ve profilaktik derin hiperventilasyonun neden zararli oldugunu açiklayiniz.",
+      speechIntro_tr: "Agir SHT tanili entübe 24 yaşında hasta: ICP 28 mmHg, MAP 75 mmHg. Intrakraniyal basınçi düsürme basamaklarını ve profilaktik derin hiperventilasyonun neden zararli oldugunu açıklayiniz.",
       crisis: {
         title: "⚡ Einklemmungsdruck ICP 35 mmHg!",
         title_tr: "⚡ Beyin Herniasyonu Tehlikesi ICP 35 mmHg!",
@@ -591,10 +591,10 @@
         focus: "Postpartale Blutung (PPH), Uterusatonie, Sulproston-Perfusor, Fibrinogen, Tranexamsäure",
         focus_tr: "Postpartum Kanama (PPH), Uterus atonisi, Sülproston perfüzörü, Fibrinojen, Traneksamik Asit",
         trap: "Sulproston als unverdünnter schneller Bolus (K.O.-Kriterium - Koronarspasmen und Herzstillstand!)",
-        trap_tr: "Sülprostonun sulandirilmadan hizli i.v. bolus yapilmasi (K.O. - ölümcül koroner spazm ve arrest!)",
+        trap_tr: "Sülprostonun sulandirilmadan hızlı i.v. bolus yapilmasi (K.O. - ölümcül koroner spazm ve arrest!)",
       },
       speechIntro: "Nach unkomplizierter Spontangeburt kommt es zur massiven vaginalen Blutung (> 1500 ml). Der Uterus ist weich und atonisch. Wie lautet Ihr medikamentöser Stufenplan (Oxytocin, Sulproston), welche Koagulopathie-Therapie leiten Sie ein und wie wird Sulproston appliziert?",
-      speechIntro_tr: "Sorunsuz spontan dogum sonrasi masif vajinal kanama (> 1500 ml). Uterus yumusak ve atonik. Ilaç basamaklarınız (Oksitosin, Sülproston), koagülopati tedavisi ve Sülprostonun güvenli uygulama kurallari nelerdir?",
+      speechIntro_tr: "Sorunsuz spontan dogum sonrası masif vajinal kanama (> 1500 ml). Uterus yumusak ve atonik. Ilaç basamaklarınız (Oksitosin, Sülproston), koagülopati tedavisi ve Sülprostonun güvenli uygulama kurallari nelerdir?",
       crisis: {
         title: "⚡ Hämorrhagischer Schock im Kreißsaal!",
         title_tr: "⚡ Dogumhanede Hemorajik Sok!",
@@ -607,7 +607,7 @@
       koCriteria: {
         forbiddenPatterns: [/sulproston als bolus/i, /nalador schnell spritzen/i],
         failureReason: "Sulproston als schneller Bolus führt zu fatalen Koronarspasmen, Myokardinfarkt und Kreislaufkollaps!",
-        failureReason_tr: "Sülprostonun hizli bolus verilmesi ölümcül koroner spazmlara, miyokard enfarktüsüne ve ani kardiyak arreste yol açar!",
+        failureReason_tr: "Sülprostonun hızlı bolus verilmesi ölümcül koroner spazmlara, miyokard enfarktüsüne ve ani kardiyak arreste yol açar!",
         mandatoryKeywords: ["oxytocin", "sulproston perfusor", "tranexamsäure", "fibrinogen", "b-lynch"]
       }
     },
@@ -621,10 +621,10 @@
         trap_tr: "Cömert sivi replasmani (K.O. - mortalitesi çok yüksek post-pnömonektomi akciğer ödemi!)",
       },
       speechIntro: "Bei einer 62-jährigen Patientin wird eine Pneumonektomie links durchgeführt. Warum ist das Flüssigkeitsreğime bei Pneumonektomie streng restriktiv zu halten und wie verhindern Sie eine postoperative Rechtsherzdekompensation?",
-      speechIntro_tr: "62 yaşında hastaya sol pnömonektomi uygulaniyor. Neden sivi tedavisi kesinlikle kisitli (restriktif) tutulmalidir ve ameliyat sonrasi sag kalp yetmezligini nasil önlersiniz?",
+      speechIntro_tr: "62 yaşında hastaya sol pnömonektomi uygulaniyor. Neden sivi tedavisi kesinlikle kisitli (restriktif) tutulmalidir ve ameliyat sonrası sag kalp yetmezliğini nasil önlersiniz?",
       crisis: {
         title: "⚡ Akutes Rechtsherzversagen nach Gefäßligatur!",
-        title_tr: "⚡ Damar Klemplenmesi Sonrasi Akut Sag Kalp Yetmezligi!",
+        title_tr: "⚡ Damar Klemplenmesi Sonrası Akut Sag Kalp Yetmezliği!",
         prompt_de: "Nach Abklemmen der Pulmonalarterie steigt der ZVD steil auf 18 mmHg, MAP fällt auf 50 mmHg ab. Was unternehmen Sie?",
         prompt_tr: "Pulmoner arter klemplendikten sonra CVP 18 mmHg ye firliyor, MAP 50 mmHg ye düşüyor. Ne yaparsiniz?",
         vitals: { spo2: "89%", bp: "75/45", map: "55 mmHg", hr: "115 /min", etco2: "30 mmHg", temp: "36.2 °C", rhythm: "Sinustachykardie", alert: true },
@@ -648,7 +648,7 @@
         trap_tr: "Masif kan aspirasyonu riski hazirligi olmadan hastayi düz sirtüstü uyutmak",
       },
       speechIntro: "Ein 3-jähriges Kind (14 kg) wird 4 Stunden nach Adenotomie mit Bluterbrechen und Schockzeichen vorgestellt. Schildern Sie das sekundengenaue Vorgehen: Vorbereitung, Lagerung, Einleitung und warum dieser Fall zu den gefährlichsten Kindernarkosen zählt.",
-      speechIntro_tr: "Adenotomi sonrasi 4. saatte hematemez ve sok bulgulariyla getirilen 3 yaşında çocuk (14 kg). Saniye saniye yaklasim: hazırlık, pozisyonlama, indüksiyon ve bu vaka neden çocuk anestezisinin en tehlikeli tablolarindandir?",
+      speechIntro_tr: "Adenotomi sonrası 4. saatte hematemez ve sok bulgulariyla getirilen 3 yaşında çocuk (14 kg). Saniye saniye yaklaşım: hazırlık, pozisyonlama, indüksiyon ve bu vaka neden çocuk anestezisinin en tehlikeli tablolarindandir?",
       crisis: {
         title: "⚡ Massives Bluterbrechen bei Einleitung!",
         title_tr: "⚡ Indüksiyonda Masif Kan Kusmasi!",
@@ -675,7 +675,7 @@
         trap_tr: "Koter nötr plâginin, akim kalp pilinin üzerinden geçecek sekilde yerlestirilmesi",
       },
       speechIntro: "Ein 72-jähriger schrittmacherabhängiger Patient wird zur TUR-Blase mit monopolarer Kauterisation vorgestellt. Wie verhält sich der Schrittmacher bei Magnetauflage, wo platzieren Sie die Neutralelektrode und wie schützen Sie den Patienten vor Asystolie?",
-      speechIntro_tr: "TUR-Mesane ameliyatinda monopolar koter kullanilacak pil bagimli 72 yaşında hasta. Mıknatıs konuldugunda pil nasil davranir, nötr elektrot nereye konur ve asistoliden nasil korunursunuz?",
+      speechIntro_tr: "TUR-Mesane ameliyatında monopolar koter kullanilacak pil bağımlı 72 yaşında hasta. Mıknatıs konuldugunda pil nasil davranir, nötr elektrot nereye konur ve asistoliden nasil korunursunuz?",
       crisis: {
         title: "⚡ Kauter-Inhibition führt zur Asystolie!",
         title_tr: "⚡ Koter Inhibisyonu Asistoliye Yol Açiyor!",
@@ -787,7 +787,7 @@
       crisis: {
         title: "⚡ Chirurg drängt auf sofortige Narkose!",
         title_tr: "⚡ Pilor Stenozunda Cerrahın Acil Ameliyat Baskısı!",
-        prompt_de: "Der Chirurg sagt: 'Das Kind verhungert, wir müssen jetzt schneiden!' Welches Narkoserisiko besteht bei unkorrigierter hypochlorämischer Alkalose und wie setzen Sie sich durch?",
+        prompt_de: "Der Chirurg sagt: 'Das Kind verhungert, wir müssen jetzt schneiden!' Welches Narkoserışıko besteht bei unkorrigierter hypochlorämischer Alkalose und wie setzen Sie sich durch?",
         prompt_tr: "Çocuk cerrahı: 'Bu çocuk açlıktan ölecek, hemen masaya almalıyız!' diyor. Ameliyatı kabul eder misiniz, anestezi açısından risk nedir?!",
         vitals: { spo2: "98%", bp: "70/40", map: "50 mmHg", hr: "155 /min", etco2: "48 mmHg", temp: "36.8 °C", rhythm: "Sinustachykardie", alert: true },
         targetAction: "OP strikt ablehnen! Pylorusstenose ist NIEMALS eine chirurgische Notfallindikation, sondern ein internistischer Ausgleichsnotfall! Voller Magen mit Magensonde absaugen, NaCl 0.9% + KCl bis Chlorid > 100 mmol/l!",
@@ -817,7 +817,7 @@
         prompt_de: "Nach Gabe von Neostigmin zur Reversierung klagt die Patientin über Speichelfluss, Bauchkrämpfe und zunehmende Muskelschwäche (TOF 40%). Liegt eine myasthene oder cholinerge Krise vor und wie handeln Sie?",
         prompt_tr: "Hasta sekresyon içinde boğuluyor, kas gücü sıfırlandı, bradikardi (40/dk)! Miyastenik kriz mi Kolinerjik kriz mi ve tedavisi nedir?!",
         vitals: { spo2: "87%", bp: "105/60", map: "75 mmHg", hr: "48 /min", etco2: "52 mmHg", temp: "36.7 °C", rhythm: "Bradykardie", alert: true },
-        targetAction: "Cholinerge Krise durch Neostigmin-Überdosierung! Re-Intubation/Beatmung sichern, Atropin i.v.; Sugammadex wäre das risikofreie Antidot der 1. Wahl bei Rocuronium gewesen!",
+        targetAction: "Cholinerge Krise durch Neostigmin-Überdosierung! Re-Intubation/Beatmung sichern, Atropin i.v.; Sugammadex wäre das rışıkofreie Antidot der 1. Wahl bei Rocuronium gewesen!",
         targetAction_tr: "KOLİNERJİK KRİZ (Aşırı asetilkolin uyarısı)! Havayolunu güvenceye al, derhal ATROPİN 1-2 mg İ.V. uygula (muskarinik etkileri bloke et); Roküronyum bloğu için Neostigmin yerine SUGAMMADEKS tercih edilmelidir!",
       },
       koCriteria: {

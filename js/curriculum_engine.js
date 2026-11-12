@@ -60,6 +60,57 @@
   function _computeMedicalGroundTruth(q) {
     const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.category || '')).toLowerCase();
 
+    
+    // Extrakorporale Membranoxygenierung (ECMO) / ARDS
+    if (/\b(ecmo|eolia)\b/i.test(text) || text.includes('extrakorporale membran') || (text.includes('ards') && (text.includes('vv-ecmo') || text.includes('va-ecmo') || text.includes('horovitz < 50')))) {
+      return {
+        topic: 'Extrakorporale Membranoxygenierung (ECMO) & EOLIA-Kriterien',
+        topic_tr: 'Ekstrakorporal Membran Oksijenasyonu (ECMO) & EOLIA Kriterleri',
+        firstDrugTR: 'Veno-venöz (V-V) ECMO Kanülasyonu & Ultra-Protektif Ventilasyon',
+        guideline: {
+          title: 'S3-Leitlinie Invasive Beatmung und Einsatz extrakorporaler Verfahren bei akuter respiratorischer Insuffizienz',
+          society: 'DGAI / DIVI / DGP & ELSO Guidelines',
+          awmf: 'AWMF-Registernummer 001-021',
+          year: '2024',
+          recommendation: 'Bei schwerem ARDS mit refraktärer Hypoxämie (Horovitz-Quotient < 80 mmHg über > 6h oder < 50 mmHg über > 3h trotz Bauchlagerung und PEEP-Optimierung) sofortige Indikationsprüfung für V-V-ECMO nach EOLIA-Kriterien.',
+          recommendation_tr: 'Yüzüstü pozisyonlama ve optimize PEEP e ragmen refrakter hipoksemisi olan agir ARDS de (PaO2/FiO2 < 80 mmHg > 6 saat veya < 50 mmHg > 3 saat) EOLIA kriterlerine göre derhal V-V ECMO degerlendirmesi yapilmalidir.'
+        },
+        dosages: [
+          { drug: 'V-V ECMO Kanülengröße', dose: 'Drainagefemoral 23–25 Fr, Rückgabe jugulär 17–19 Fr', route: 'perkutan / chirurgisch', maxDose: 'Blutfluss 4–6 l/min (angestrebt: SaO₂ > 85-88%)', limits: 'Strikte Ultraschall- & Röntgenlagekontrolle' },
+          { drug: 'Ultra-lungenprotektive Beatmung unter ECMO', dose: 'Vt 2–4 ml/kg PBW, Driving Pressure < 10–12 cmH₂O, PEEP 10–14 cmH₂O', route: 'Beatmung', maxDose: 'Atemfrequenz 4–10/min (Lung-Rest-Concept)', limits: 'Spitzenbeatmungsdruck Pmax ≤ 25 cmH₂O' },
+          { drug: 'Antikoagulation unter ECMO', dose: 'Unfraktioniertes Heparin (UFH) Ziel-aPTT 50–70s bzw. Anti-Xa 0,3–0,5 IE/ml', route: 'i.v. Perfusor', maxDose: 'Regelmäßiges Gerinnungs- und ROTEM-Monitoring', limits: 'Blutungs- und Thromboserisiko' }
+        ],
+        koPitfalls: [
+          { mistake: 'Anschluss einer V-A ECMO bei reinem hypoxämischem Lungenversagen ohne kardiogenen Schock', whyFatal: 'V-A ECMO erhöht unnötig die linksventrikuläre Nachlast und birgt das Risiko eines Harlekin-Syndroms (oberkörpernahe Hypoxie)!', correctAction: 'Bei isoliertem respiratorischem ARDS immer V-V ECMO als Goldstandard wählen.' }
+        ]
+      };
+    }
+
+    // Patient Blood Management (PBM)
+    if (/\b(pbm)\b/i.test(text) || text.includes('patient blood management') || (text.includes('anämie') && text.includes('ferric') && text.includes('präoperativ'))) {
+      return {
+        topic: 'Patient Blood Management (PBM) & Präoperative Anämieoptimierung',
+        topic_tr: 'Hasta Kan Yönetimi (PBM) & Preoperatif Anemi Optimizasyonu',
+        firstDrugTR: 'Ferrik Karboksimaltoz (i.v. Demir) & Restriktif Transfüzyon (Hb 7-8 g/dl)',
+        guideline: {
+          title: 'S3-Leitlinie Präoperative Anämie und Patient Blood Management',
+          society: 'DGAI / BDA / DGTI / AWMF',
+          awmf: 'AWMF-Registernummer 001-024',
+          year: '2023',
+          recommendation: 'PBM-3-Säulen-Konzept: 1. Präoperative Anämiediagnostik und Kausaltherapie (i.v. Eisen / EPO), 2. Minimierung von intraoperativem Blutverlust (TXA, Cell-Saver, Point-of-Care-Gerinnung), 3. Rationale, restriktive Transfusionstrigger (Hb 7–8 g/dl).',
+          recommendation_tr: 'PBM 3 Sütun Konsepti: 1. Preoperatif anemi tanisi ve nedene yönelik tedavi (i.v. demir / EPO), 2. Cerrahi kan kaybinin en aza indirilmesi (TXA, Cell-Saver, ROTEM), 3. Akilci ve kisitlayici transfüzyon esikleri (Hb 7-8 g/dl).'
+        },
+        dosages: [
+          { drug: 'Eisencarboxymaltose (i.v. Eisen)', dose: '500–1.000 mg i.v. Kurzinfusion (Ganz-Dosis-Schema nach Ganzoni)', route: 'i.v.', maxDose: 'Mindestens 2–4 Wochen vor elektiver Operation applizieren', limits: 'Ferritin < 100 ng/ml oder Ferritin < 300 ng/ml bei TSAT < 20%' },
+          { drug: 'Tranexamsäure (TXA)', dose: '1 g (10–15 mg/kg) i.v. Kurzinfusion bei Schnitt', route: 'i.v.', maxDose: 'Wiederholung nach 4–8h bei anhaltendem Blutverlust', limits: 'Gabe innerhalb der ersten 3 Stunden!' },
+          { drug: 'Maschinelle Autotransfusion (Cell-Saver)', dose: 'Aufbereitung von Wundblut bei erwartetem Blutverlust > 500–1.000 ml', route: 'i.v. Retransfusion', maxDose: 'Gewaschenes Erythrozytenkonzentrat (Hk ~50–60%)', limits: 'Kontraindikation: Infektionsherd im OP-Gebiet' }
+        ],
+        koPitfalls: [
+          { mistake: 'Liberale Bluttransfusion bei asymptomatischen Patienten mit Hb 8–9 g/dl', whyFatal: 'Unnötige allogene Transfusionen erhöhen Infektionsrate, TRALI/TACO-Risiko und Gesamtmortalität signifikant!', correctAction: 'Strikte Einhaltung restriktiver Transfusionsgrenzen (Hb 7 g/dl ohne KHK, 8 g/dl bei KHK/zerebrovaskulärer Erkrankung).' }
+        ]
+      };
+    }
+
     // Maligne Hyperthermie (MH)
     if (text.includes('maligne hyperthermie') || text.includes('dantrolen')) {
       return {
@@ -162,7 +213,7 @@
     }
 
     // Lokalanästhetika-Intoxikation (LAST)
-    if (text.includes('last') || text.includes('intralipid') || (text.includes('lokalanästhetik') && (text.includes('intoxikation') || text.includes('toxizität') || text.includes('krampfanfall') || text.includes('überdosierung')))) {
+    if (/\b(last|intralipid|lipidemulsion)\b/i.test(text) || (text.includes('lokalanästhetik') && (text.includes('intoxikation') || text.includes('toxizität') || text.includes('krampfanfall') || text.includes('überdosierung')))) {
       return {
         topic: 'Lokalanästhetika-Intoxikation (LAST)',
         topic_tr: 'Lokal Anestezik Sistemik Toksisitesi (LAST)',
@@ -240,7 +291,7 @@
     }
 
     // Anaphylaxie & Schock
-    if (text.includes('anaphylaxie') || text.includes('allergie') || text.includes('bronchospasmus')) {
+    if (text.includes('anaphylax') || text.includes('allergischer schock') || (text.includes('allergie') && (text.includes('schock') || text.includes('reaktion') || text.includes('grad ii') || text.includes('grad iii') || text.includes('mastzell'))) || text.includes('bronchospasmus') || text.includes('tryptase')) {
       return {
         topic: 'Perioperative Anaphylaxie',
         topic_tr: 'Perioperatif Anafilaksi ve Şok',
@@ -318,7 +369,7 @@
     }
 
     // Schädel-Hirn-Trauma & Neuroanästhesie (ICP / CPP)
-    if (text.includes('schädel-hirn') || text.includes('hirndruck') || text.includes('icp') || text.includes('cpp') || text.includes('mannitol') || text.includes('hyperton')) {
+    if (text.includes('schädel-hirn') || text.includes('hirndruck') || /\b(icp|cpp)\b/i.test(text) || text.includes('mannitol') || text.includes('hypertoner nacl') || text.includes('hypertone kochsalz') || text.includes('craniotomie') || text.includes('kraniotomie')) {
       return {
         topic: 'Schädel-Hirn-Trauma & Hirndruckmanagement',
         topic_tr: 'Travmatik Beyin Hasarı & KİBAS Yönetimi',
