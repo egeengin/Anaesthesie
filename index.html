@@ -588,7 +588,7 @@
           <span class="examiner-pill-icon">👨‍⚕️</span>
           <span class="examiner-pill-prefix">Prüfer:</span>
           <strong id="examiner-header-name">Prof. Dr. med. Thorsten Annecke</strong>
-          <span class="examiner-pill-tag">Profil / Jüri ℹ️</span>
+          <span class="examiner-pill-tag">Profil ℹ️</span>
         </div>
       </div>
 
@@ -625,10 +625,10 @@
       <!-- Yardımcı Kompakt Bar (Yan Yana 2 Küçük Buton) -->
       <div class="case-action-pills-row" id="case-action-pills-row">
         <button id="btn-toggle-spickzettel" class="case-action-pill pill-spickzettel" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">
-          <span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>
+          <span>📘 30-Sekunden-Spickzettel</span>
         </button>
         <button id="btn-toggle-redefluss-pill" class="case-action-pill pill-redefluss" type="button" title="Almanca giriş cümlesi kalıpları (Redefluss-Hilfe)">
-          <span>🗣️ Redefluss-Hilfe (Redemittel / Cümle Kalıpları)</span>
+          <span>🗣️ Redefluss-Hilfe</span>
         </button>
       </div>
 
@@ -637,7 +637,7 @@
         <div class="spickzettel-header">
           <div class="spickzettel-title">
             <span>📚</span> <strong>30-Sekunden-Spickzettel (Vorab-Wissen)</strong>
-            <small class="spickzettel-subtitle">Kurzübersicht &amp; Algorithmus vor der Antwort • Konu Özeti &amp; Algoritma: Önce oku, sonra sözlü cevapla!</small>
+            <small class="spickzettel-subtitle">Kurzübersicht &amp; Algorithmus vor der Antwort</small>
           </div>
           <button id="btn-close-spickzettel" class="btn-xs btn-close-spickzettel" type="button" title="Spickzettel schließen">✕ Schließen</button>
         </div>
@@ -649,13 +649,13 @@
       <!-- Step 1 Redefluss-Baukasten Chip (FAZ 3) -->
       <div class="redefluss-chip" id="redefluss-chip-step1" style="display: none;">
         <div class="redefluss-chip-header" id="btn-toggle-redefluss-step1" tabindex="0" role="button" aria-expanded="false">
-          <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 1: Vorstellung &amp; Strategie)</span>
+          <span>🗣️ Düsseldorfer Redemittel (Schritt 1: Vorstellung &amp; Strategie)</span>
           <span class="chip-caret">▾</span>
         </div>
         <div class="redefluss-chip-body" id="redefluss-body-step1" style="display: none;">
           <p class="redefluss-text-de" id="redefluss-de-step1">Zusammenfassend handelt es sich um einen Risikopatienten. Mein primäres anästhesiologisches Ziel ist...</p>
           <p class="redefluss-text-tr" id="redefluss-tr-step1">Özetle, acil müdahale gerektiren yüksek riskli bir hasta. Birincil anestezi hedefim...</p>
-          <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-1" data-step="1" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(1, this);">🔊 Kalıbı Dinle / Vorlesen</button>
+          <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-1" data-step="1" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(1, this);">🔊 Redemittel vorlesen</button>
         </div>
       </div>
 
@@ -743,20 +743,20 @@
 
         <!-- Step 1 Inline Action Bar & Revealable Answer -->
         <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 0.85rem;">
-          <button id="btn-toggle-step1-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zu Schritt 1 anzeigen / 1. Adım model cevabını gör">
-            <span>💡 Musterantwort anzeigen / Cevabı Gör</span>
+          <button id="btn-toggle-step1-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zu Schritt 1 anzeigen">
+            <span>💡 Musterantwort anzeigen</span>
           </button>
-          <button id="btn-audio-speak-step1-ans" class="btn-audio-action-sm" type="button" title="Musterantwort zu Schritt 1 vorlesen / 1. Adım cevabını dinle">
-            <span>🔊 Antwort vorlesen / Dinle</span>
+          <button id="btn-audio-speak-step1-ans" class="btn-audio-action-sm" type="button" title="Musterantwort zu Schritt 1 vorlesen">
+            <span>🔊 Antwort vorlesen</span>
           </button>
         </div>
 
         <!-- Inline Revealable Step 1 Answer Box -->
         <div id="step1-inline-answer-box" class="examiner-inline-answer-box step1-answer-box" style="display: none;">
           <div class="examiner-inline-header">
-            <strong>💡 ÄKNO-Musterantwort zur klinischen Fallpräsentation (Schritt 1) / Vaka Sunumu Model Cevabı:</strong>
-            <button id="btn-audio-speak-step1-box" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen / Cevabı dinle">
-              <span>🔊 Vorlesen / Dinle</span>
+            <strong>💡 ÄKNO-Musterantwort zur klinischen Fallpräsentation (Schritt 1)</strong>
+            <button id="btn-audio-speak-step1-box" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen">
+              <span>🔊 Vorlesen</span>
             </button>
           </div>
           <div id="step1-inline-answer-text" class="examiner-inline-answer-text">
@@ -858,25 +858,25 @@
 
           <!-- Interactive Crisis Solution Toggle & Dual-Language Card -->
           <div class="sim-crisis-actions-bar">
-            <button id="btn-sim-toggle-crisis-solution" class="btn-crisis-solution-toggle" type="button" title="Sofort-Lösung & Übersetzung zur Prüfer-Intervention anzeigen / Acil çözümü ve çeviriyi gör">
-              <span>💡</span> Sofort-Lösung & Übersetzung anzeigen / Acil Çözümü Gör
+            <button id="btn-sim-toggle-crisis-solution" class="btn-crisis-solution-toggle" type="button" title="Sofort-Lösung zur Prüfer-Intervention anzeigen">
+              <span>💡</span> Sofort-Lösung anzeigen
             </button>
           </div>
 
           <div id="sim-crisis-solution-card" class="sim-crisis-solution-card" style="display: none;">
             <div class="crisis-solution-header">
               <div class="crisis-sol-title">
-                <span>🎯</span> <strong>ÄKNO Sofort-Lösung / Acil Müdahale Algoritması:</strong>
+                <span>🎯</span> <strong>ÄKNO Sofort-Lösung:</strong>
               </div>
-              <button id="btn-audio-speak-crisis-solution" class="btn-xs btn-text" type="button" title="Lösung laut vorlesen / Çözümü dinle">
-                🔊 Vorlesen / Dinle
+              <button id="btn-audio-speak-crisis-solution" class="btn-xs btn-text" type="button" title="Lösung laut vorlesen">
+                🔊 Vorlesen
               </button>
             </div>
             <div id="sim-crisis-solution-text" class="crisis-sol-body">
               <!-- Dynamically populated target action in DE + TR -->
             </div>
             <div id="sim-crisis-ko-card" class="crisis-ko-trap-card">
-              <strong class="crisis-ko-title">⚠️ K.O.-Kriterium & Prüfungsfalle / Sınav Tuzağı:</strong>
+              <strong class="crisis-ko-title">⚠️ K.O.-Kriterium & Prüfungsfalle:</strong>
               <div id="sim-crisis-ko-text" class="crisis-ko-body">
                 <!-- Dynamically populated failureReason in DE + TR -->
               </div>
@@ -999,32 +999,32 @@
             <!-- Step 2 Redefluss-Baukasten Chip (FAZ 3) -->
             <div class="redefluss-chip" id="redefluss-chip-step2">
               <div class="redefluss-chip-header" id="btn-toggle-redefluss-step2" tabindex="0" role="button" aria-expanded="false">
-                <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 2: Vitalwerte &amp; BGA)</span>
+                <span>🗣️ Düsseldorfer Redemittel (Schritt 2: Vitalwerte &amp; BGA)</span>
                 <span class="chip-caret">▾</span>
               </div>
               <div class="redefluss-chip-body" id="redefluss-body-step2" style="display: none;">
                 <p class="redefluss-text-de" id="redefluss-de-step2">Bei der systematischen Inspektion des Monitors fällt unmittelbar auf...</p>
                 <p class="redefluss-text-tr" id="redefluss-tr-step2">Monitörün sistematik incelemesinde derhal göze çarpan bulgu...</p>
-                <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-2" data-step="2" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(2, this);">🔊 Kalıbı Dinle / Vorlesen</button>
+                <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-2" data-step="2" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(2, this);">🔊 Redemittel vorlesen</button>
               </div>
             </div>
 
             <!-- Step 2 Inline Action Bar & Revealable Answer -->
             <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 1rem;">
-              <button id="btn-toggle-step2-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Befund-Auswertung & therapeutische Konsequenz anzeigen / 2. Adım bulguları ve tedaviyi gör">
-                <span>💡 Befund-Auswertung & Sofortmaßnahmen anzeigen / Bulguları & Tedaviyi Gör</span>
+              <button id="btn-toggle-step2-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Befund-Auswertung & therapeutische Konsequenz anzeigen">
+                <span>💡 Befund-Auswertung & Sofortmaßnahmen</span>
               </button>
-              <button id="btn-audio-speak-step2-ans" class="btn-audio-action-sm" type="button" title="Befund-Auswertung vorlesen / Analizi dinle">
-                <span>🔊 Auswertung vorlesen / Dinle</span>
+              <button id="btn-audio-speak-step2-ans" class="btn-audio-action-sm" type="button" title="Befund-Auswertung vorlesen">
+                <span>🔊 Auswertung vorlesen</span>
               </button>
             </div>
 
             <!-- Inline Revealable Step 2 Answer Box -->
             <div id="step2-inline-answer-box" class="examiner-inline-answer-box step2-answer-box" style="display: none;">
               <div class="examiner-inline-header">
-                <strong>💡 ÄKNO-Befundauswertung & therapeutische Sofortmaßnahmen (Schritt 2) / 2. Adım Bulguların Analizi ve Tedavi:</strong>
-                <button id="btn-audio-speak-step2-box" class="btn-audio-action-sm" type="button" title="Auswertung vorlesen / Dinle">
-                  <span>🔊 Vorlesen / Dinle</span>
+                <strong>💡 ÄKNO-Befundauswertung (Schritt 2)</strong>
+                <button id="btn-audio-speak-step2-box" class="btn-audio-action-sm" type="button" title="Auswertung vorlesen">
+                  <span>🔊 Vorlesen</span>
                 </button>
               </div>
               <div id="step2-inline-answer-text" class="examiner-inline-answer-text">
@@ -1047,7 +1047,7 @@
         <button id="btn-step3-toggle" class="btn-stepper-expand" aria-expanded="false">
           <div class="expand-btn-left">
             <span class="step-tag-pill examiner-pill">Schritt 3</span>
-            <strong>👨‍⚕️ Prüfer-Nachfrage / Klinische Wendung einblenden</strong>
+            <strong>👨‍⚕️ Prüfer-Nachfrage (Klinische Wendung)</strong>
           </div>
           <span class="expand-chevron">▼</span>
         </button>
@@ -1056,7 +1056,7 @@
           <div class="examiner-dialogue-box">
             <div class="examiner-avatar-col">
               <div class="examiner-avatar">👨‍⚕️</div>
-              <span class="examiner-role">ÄKNO-Prüfer / Jüri</span>
+              <span class="examiner-role">ÄKNO-Prüfer</span>
             </div>
             <div class="examiner-speech-col">
               <div class="examiner-quote-bubble" id="examiner-quote-text">
@@ -1064,36 +1064,38 @@
               </div>
               <div class="examiner-audio-bar">
                 <button id="btn-audio-speak-examiner" class="btn-audio-action-sm" type="button" title="Prüfer-Frage laut vorlesen / Jüri sorusunu dinle">
-                  <span>🔊 Prüferfrage vorlesen / Soruyu Dinle</span>
+                  <span>🔊 Prüferfrage vorlesen</span>
                 </button>
-                <button id="btn-toggle-examiner-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort zur Prüfer-Intervention anzeigen / Model cevabı gör">
-                  <span>💡 Musterantwort anzeigen / Cevabı Gör</span>
+                <button id="btn-toggle-examiner-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Musterantwort anzeigen / Cevabı Gör">
+                  <span>💡 Musterantwort anzeigen</span>
                 </button>
               </div>
               <div class="candidate-directive">
-                👉 <strong>Ihre verbale Aufgabe / Sözlü Göreviniz:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die typischen Kardinalfehler & K.O.-Kriterien!
-                <div style="font-size:0.83rem; color:var(--text-muted); margin-top:3px;">🇹🇷 Cevabınızı yüksek sesle yapılandırın, nedensel tedaviyi gerekçelendirin ve K.O. kriterlerini belirtin!</div>
+                <div class="translatable-box" data-tr="Sözlü Göreviniz: Cevabınızı yüksek sesle yapılandırın, nedensel tedaviyi gerekçelendirin ve K.O. kriterlerini belirtin!" tabindex="0">
+                  <div class="de-text-block">👉 <strong>Ihre verbale Aufgabe:</strong> Strukturieren Sie Ihre Antwort laut. Begründen Sie die Kausaltherapie und benennen Sie die typischen Kardinalfehler &amp; K.O.-Kriterien!</div>
+                  <div class="hover-tr-preview" aria-hidden="true"><span class="hover-tr-badge">🇹🇷</span><span class="hover-tr-content">👉 <strong>Sözlü Göreviniz:</strong> Cevabınızı yüksek sesle yapılandırın, nedensel tedaviyi gerekçelendirin ve K.O. kriterlerini belirtin!</span></div>
+                </div>
               </div>
 
               <!-- Step 3 Redefluss-Baukasten Chip (FAZ 3) -->
               <div class="redefluss-chip" id="redefluss-chip-step3">
                 <div class="redefluss-chip-header" id="btn-toggle-redefluss-step3" tabindex="0" role="button" aria-expanded="false">
-                  <span>🗣️ Düsseldorfer Redemittel / Almanca Sözlü Kalıp (Schritt 3: Notfall &amp; Intervention)</span>
+                  <span>🗣️ Düsseldorfer Redemittel (Schritt 3: Notfall &amp; Intervention)</span>
                   <span class="chip-caret">▾</span>
                 </div>
                 <div class="redefluss-chip-body" id="redefluss-body-step3" style="display: none;">
                   <p class="redefluss-text-de" id="redefluss-de-step3">Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Als Sofortmaßnahme...</p>
                   <p class="redefluss-text-tr" id="redefluss-tr-step3">Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. İlk önlem olarak...</p>
-                  <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-3" data-step="3" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(3, this);">🔊 Kalıbı Dinle / Vorlesen</button>
+                  <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-3" data-step="3" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(3, this);">🔊 Redemittel vorlesen</button>
                 </div>
               </div>
 
               <!-- Inline Revealable Examiner Answer inside Step 3 -->
               <div id="examiner-inline-answer-box" class="examiner-inline-answer-box" style="display: none;">
                 <div class="examiner-inline-header">
-                  <strong>💡 ÄKNO-Musterantwort zur Prüfer-Intervention / Jüri Müdahalesi Model Cevabı:</strong>
-                  <button id="btn-audio-speak-examiner-ans" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen / Cevabı dinle">
-                    <span>🔊 Antwort vorlesen / Dinle</span>
+                  <strong>💡 ÄKNO-Musterantwort zur Prüfer-Intervention</strong>
+                  <button id="btn-audio-speak-examiner-ans" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen">
+                    <span>🔊 Antwort vorlesen</span>
                   </button>
                 </div>
                 <div id="examiner-inline-answer-text" class="examiner-inline-answer-text">
@@ -1108,7 +1110,7 @@
             <button id="badge-examiner-toggle" class="badge-examiner-toggle" type="button" aria-expanded="false">
               <div class="badge-examiner-left">
                 <span class="examiner-badge-icon">🏛️</span>
-                <span id="examiner-badge-title">ÄKNO Düsseldorfer Prüfer-Profil & Erwartungshorizont / Jüri Profili</span>
+                <span id="examiner-badge-title">ÄKNO Düsseldorfer Prüfer-Profil & Erwartungshorizont</span>
               </div>
               <span class="examiner-toggle-chevron">▾</span>
             </button>
@@ -1406,15 +1408,15 @@
             <!-- Block 0: Examiner Complication & Solution -->
             <div class="rubric-card examiner-solution-card" id="rubric-block-examiner-solution">
               <div class="rubric-card-header">
-                <div class="rubric-badge-title">
+                <div class="rubric-badge-title" title="Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü">
                   <span class="rubric-icon">👨‍⚕️</span>
-                  <h3>Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü (Klinische Wendung &amp; Soforttherapie)</h3>
+                  <h3>Lösung der Prüfer-Intervention (Klinische Wendung &amp; Soforttherapie)</h3>
                 </div>
                 <div class="rubric-header-actions">
-                  <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen / Jüri çözümünü dinle">
-                    <span>🔊 Prüfer-Lösung vorlesen / Çözümü Dinle</span>
+                  <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen">
+                    <span>🔊 Prüfer-Lösung vorlesen</span>
                   </button>
-                  <span class="rubric-tag-alert">ÄKNO Notfall-Lösung / Acil Çözüm</span>
+                  <span class="rubric-tag-alert" title="ÄKNO Notfall-Lösung / Acil Çözüm">ÄKNO Notfall-Lösung</span>
                 </div>
               </div>
               <div class="rubric-card-body">

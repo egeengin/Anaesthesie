@@ -2455,7 +2455,7 @@ document.addEventListener('DOMContentLoaded', () => {
       elSimCrisisSolutionCard.style.display = 'none';
     }
     if (elBtnSimToggleCrisisSolution) {
-      elBtnSimToggleCrisisSolution.innerHTML = '<span>💡</span> Sofort-Lösung & Übersetzung anzeigen / Acil Çözümü Gör';
+      elBtnSimToggleCrisisSolution.innerHTML = '<span>💡</span> Sofort-Lösung anzeigen';
     }
     if (elSimCrisisSolutionText) {
       elSimCrisisSolutionText.innerHTML = renderDualLanguageText(
@@ -2518,8 +2518,8 @@ document.addEventListener('DOMContentLoaded', () => {
       elSimCrisisSolutionCard.style.display = isHidden ? 'block' : 'none';
       if (elBtnSimToggleCrisisSolution) {
         elBtnSimToggleCrisisSolution.innerHTML = isHidden
-          ? '<span>✕</span> Sofort-Lösung verbergen / Çözümü Gizle'
-          : '<span>💡</span> Sofort-Lösung & Übersetzung anzeigen / Acil Çözümü Gör';
+          ? '<span>✕</span> Sofort-Lösung verbergen'
+          : '<span>💡</span> Sofort-Lösung anzeigen';
       }
     });
   }
@@ -2544,13 +2544,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const isHidden = (elSimExaminerDrawer.style.display === 'none' || !elSimExaminerDrawer.style.display);
     elSimExaminerDrawer.style.display = isHidden ? 'block' : 'none';
     if (elSimProfileBtnLabel) {
-      elSimProfileBtnLabel.textContent = isHidden ? 'Profil Schließen / Kapat' : 'Jüri Profili / Prüfer-Profil';
+      elSimProfileBtnLabel.textContent = isHidden ? '✕ Profil schließen' : 'Prüfer-Profil';
     }
     const elPillTrigger = document.getElementById('examiner-pill-trigger');
     if (elPillTrigger) {
       elPillTrigger.classList.toggle('active', isHidden);
       const tag = elPillTrigger.querySelector('.examiner-pill-tag');
-      if (tag) tag.textContent = isHidden ? '✕ Schließen / Kapat' : 'Profil / Jüri ℹ️';
+      if (tag) tag.textContent = isHidden ? '✕ Schließen' : 'Profil ℹ️';
     }
   }
 
@@ -4688,7 +4688,7 @@ Tedavi:
       elStep1InlineAnswerBox.style.display = 'none';
     }
     if (elBtnToggleStep1Answer) {
-      elBtnToggleStep1Answer.innerHTML = '<span>💡</span> Musterantwort anzeigen / Cevabı Gör';
+      elBtnToggleStep1Answer.innerHTML = '<span>💡</span> Musterantwort anzeigen';
     }
     if (elStep1InlineAnswerText) {
       elStep1InlineAnswerText.innerHTML = renderStep1InlineAnswer(parsedCase, currentQ);
@@ -4813,7 +4813,7 @@ Tedavi:
       elStep2InlineAnswerBox.style.display = 'none';
     }
     if (elBtnToggleStep2Answer) {
-      elBtnToggleStep2Answer.innerHTML = '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen anzeigen / Bulguları & Tedaviyi Gör';
+      elBtnToggleStep2Answer.innerHTML = '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen';
     }
     if (elStep2InlineAnswerText) {
       elStep2InlineAnswerText.innerHTML = renderStep2InlineAnswer(parsedCase);
@@ -4830,7 +4830,7 @@ Tedavi:
       elExaminerInlineAnswerBox.style.display = 'none';
     }
     if (elBtnToggleExaminerAnswer) {
-      elBtnToggleExaminerAnswer.innerHTML = '<span>💡</span> Musterantwort anzeigen / Cevabı Gör';
+      elBtnToggleExaminerAnswer.innerHTML = '<span>💡</span> Musterantwort anzeigen';
     }
 
     // Step 4: Populate Examiner Solution Card
@@ -7173,8 +7173,8 @@ Tedavi:
       const isVisible = (elStep1InlineAnswerBox.style.display !== 'none');
       elStep1InlineAnswerBox.style.display = isVisible ? 'none' : 'block';
       elBtnToggleStep1Answer.innerHTML = isVisible
-        ? '<span>💡</span> Musterantwort anzeigen / Cevabı Gör'
-        : '<span>💡</span> Musterantwort verbergen / Cevabı Gizle';
+        ? '<span>💡</span> Musterantwort anzeigen'
+        : '<span>💡</span> Musterantwort verbergen';
     });
   }
 
@@ -7200,8 +7200,8 @@ Tedavi:
       const isVisible = (elStep2InlineAnswerBox.style.display !== 'none');
       elStep2InlineAnswerBox.style.display = isVisible ? 'none' : 'block';
       elBtnToggleStep2Answer.innerHTML = isVisible
-        ? '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen anzeigen / Bulguları & Tedaviyi Gör'
-        : '<span>💡</span> Befund-Auswertung verbergen / Analizi Gizle';
+        ? '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen'
+        : '<span>💡</span> Befund-Auswertung verbergen';
     });
   }
 
@@ -7225,8 +7225,8 @@ Tedavi:
       const isVisible = (elExaminerInlineAnswerBox.style.display !== 'none');
       elExaminerInlineAnswerBox.style.display = isVisible ? 'none' : 'block';
       elBtnToggleExaminerAnswer.innerHTML = isVisible
-        ? '<span>💡</span> Musterantwort anzeigen / Cevabı Gör'
-        : '<span>💡</span> Musterantwort verbergen / Cevabı Gizle';
+        ? '<span>💡</span> Musterantwort anzeigen'
+        : '<span>💡</span> Musterantwort verbergen';
     });
   }
 
