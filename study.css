@@ -2149,3 +2149,19 @@ body.mode-german-only .trans-interactive {
   font-weight: 600;
 }
 
+/* 4. Unified Language/Reading Mode Toggle: hide redundant header button on study.html */
+#btn-quick-german-toggle {
+  display: none !important;
+}
+
+/* 5. Study Card "Okundu" compact/muted visual state so unread cards stand out */
+.study-card.is-read {
+  opacity: 0.78;
+  border-left: 3px solid var(--success, #16a34a);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.study-card.is-read:hover {
+  opacity: 1;
+}
+

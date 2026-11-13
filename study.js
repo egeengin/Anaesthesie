@@ -902,6 +902,12 @@
           btn.innerHTML = `<span>✓</span> Okundu`;
           if (card) card.classList.add('is-read');
           triggerHapticFeedback();
+          const nextCard = card ? card.nextElementSibling : null;
+          if (nextCard && nextCard.classList && nextCard.classList.contains('study-card')) {
+            setTimeout(() => {
+              nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 220);
+          }
         }
 
         localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(readStatus));

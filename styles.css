@@ -9891,3 +9891,149 @@ body.mode-german-only .trans-interactive {
   font-size: 0.95rem;
   letter-spacing: -0.01em;
 }
+
+/* ==========================================================================
+   5 STRUCTURAL UI/UX SIMPLIFICATIONS (v10.7)
+   ========================================================================== */
+
+/* 1. Unified Bottom Action Bar: eliminate duplicate desktop/mobile assessment rows */
+@media (min-width: 769px) {
+  #dock-self-assess {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #self-assess-container {
+    display: none !important;
+  }
+}
+
+#self-assess-container {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 14px;
+  gap: 0.55rem;
+}
+
+#main-action-bar {
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+}
+
+/* 2. Collapsible Personal Medical Notes Card */
+.user-note-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.user-note-details {
+  width: 100%;
+}
+
+.user-note-details > summary.note-header {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.user-note-details > summary.note-header::-webkit-details-marker {
+  display: none;
+}
+
+.user-note-details > summary.note-header::after {
+  content: '▾';
+  font-size: 0.78rem;
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.user-note-details[open] > summary.note-header::after {
+  transform: rotate(180deg);
+}
+
+.user-note-details > summary.note-header:hover {
+  background: rgba(141, 99, 70, 0.05);
+  color: var(--text-primary);
+}
+
+.note-header-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.note-saved-badge {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--success, #16a34a);
+  margin-left: auto;
+  margin-right: 0.6rem;
+}
+
+.user-note-body {
+  padding: 0 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* 3. Streamlined Top Tools Menu ("Weitere Werkzeuge" collapsible group) */
+.dropdown-more-group {
+  border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
+}
+
+.dropdown-more-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted, #64748b);
+  border-radius: 10px;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-more-summary::-webkit-details-marker {
+  display: none;
+}
+
+.dropdown-more-summary::after {
+  content: '▸';
+  margin-left: auto;
+  font-size: 0.75rem;
+  transition: transform 0.18s ease;
+}
+
+.dropdown-more-group[open] > .dropdown-more-summary::after {
+  transform: rotate(90deg);
+}
+
+.dropdown-more-summary:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-primary);
+}
+
+.dropdown-more-items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4. Unified Language/Reading Mode Toggle: hide redundant top-bar German toggle in Study View */
+body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-toggle {
+  display: none !important;
+}

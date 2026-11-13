@@ -4772,8 +4772,17 @@ Tedavi:
 
     // Personal Medical Note
     const elUserNoteText = document.getElementById('user-note-text');
+    const elUserNoteDetails = document.getElementById('user-note-details');
+    const elUserNoteBadge = document.getElementById('user-note-badge');
+    const savedNote = (state.userNotes && state.userNotes[currentQ.id]) ? state.userNotes[currentQ.id] : '';
     if (elUserNoteText) {
-      elUserNoteText.value = (state.userNotes && state.userNotes[currentQ.id]) ? state.userNotes[currentQ.id] : '';
+      elUserNoteText.value = savedNote;
+    }
+    if (elUserNoteDetails) {
+      elUserNoteDetails.open = !!(savedNote && savedNote.trim());
+    }
+    if (elUserNoteBadge) {
+      elUserNoteBadge.style.display = (savedNote && savedNote.trim()) ? 'inline-flex' : 'none';
     }
 
     // Question image
@@ -7791,6 +7800,10 @@ Tedavi:
       const currentQ = filteredQuestions[state.currentIndex];
       if (!state.userNotes) state.userNotes = {};
       state.userNotes[currentQ.id] = elUserNoteText.value;
+      const elUserNoteBadge = document.getElementById('user-note-badge');
+      if (elUserNoteBadge) {
+        elUserNoteBadge.style.display = elUserNoteText.value.trim() ? 'inline-flex' : 'none';
+      }
       saveState(); // Auto-saves to local & cloud on every keystroke!
     });
   }
