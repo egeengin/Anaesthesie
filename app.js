@@ -4278,8 +4278,12 @@ Tedavi:
 
   // --- Keyboard Shortcuts Engine ---
   document.addEventListener('keydown', (e) => {
-    // Ignore keypresses if typing in input fields or modal active
-    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+    // Ignore keypresses when modifier keys are held or typing in input/editable fields
+    if (e.ctrlKey || e.metaKey || e.altKey) {
+      return;
+    }
+    const activeEl = document.activeElement;
+    if (activeEl && (['INPUT', 'TEXTAREA', 'SELECT'].includes(activeEl.tagName) || activeEl.isContentEditable)) {
       return;
     }
     if (elAuthModal && elAuthModal.style.display !== 'none') {
@@ -4299,6 +4303,12 @@ Tedavi:
         stopMedicalSpeech();
         return;
       }
+    }
+
+    // Do not hijack Space/Enter/letter shortcuts when Study & Reading view is active
+    const examWrapper = document.getElementById('exam-view-wrapper');
+    if (examWrapper && examWrapper.style.display === 'none') {
+      return;
     }
 
     const key = e.key.toLowerCase();

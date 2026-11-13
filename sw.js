@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.4'; // upgraded from facharzt-cache-v7.7 / v12.3 for full-width layout across MacBook & desktop displays
+const CACHE_NAME = 'facharzt-cache-v12.5'; // upgraded from facharzt-cache-v7.7 / v12.4 for study/exam keyboard shortcut isolation & search '/' UX
 const CORE_ASSETS = [
   './',
   './index.html',

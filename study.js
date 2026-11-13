@@ -1492,6 +1492,28 @@
     };
   }
 
+  // Study view search keyboard UX: '/' focuses search, 'Escape' clears & blurs search
+  document.addEventListener('keydown', (e) => {
+    const studyWrapper = document.getElementById('study-view-wrapper');
+    if (studyWrapper && studyWrapper.style.display === 'none') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+    const activeEl = document.activeElement;
+    if (e.key === '/' && elSearchInput && (!activeEl || !['INPUT', 'TEXTAREA', 'SELECT'].includes(activeEl.tagName))) {
+      e.preventDefault();
+      elSearchInput.focus();
+      elSearchInput.select();
+    } else if (e.key === 'Escape' && elSearchInput && activeEl === elSearchInput) {
+      if (elSearchInput.value) {
+        elSearchInput.value = '';
+        state.searchQuery = '';
+        if (elBtnClearSearch) elBtnClearSearch.style.display = 'none';
+        renderFeed(true);
+      }
+      elSearchInput.blur();
+    }
+  });
+
   // Export refresh helper globally if needed
   window.refreshMelisStudyFeed = () => renderFeed(true);
 
