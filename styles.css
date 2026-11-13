@@ -10047,3 +10047,37 @@ body.mode-german-only .trans-interactive {
 body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-toggle {
   display: none !important;
 }
+
+/* ==========================================================================
+   MINIMALIST EXAM SIMULATOR HEADER & BADGE DECLUTTERING (v11.0)
+   ========================================================================== */
+#exam-view-wrapper .quiz-meta #badge-amboss-pillar,
+#exam-view-wrapper .quiz-meta #badge-type,
+#exam-view-wrapper .quiz-meta #badge-source {
+  display: none !important;
+}
+
+#exam-view-wrapper .active-path-bar {
+  padding: 0.38rem 0.75rem !important;
+  margin: 0.25rem 0 0.55rem 0 !important;
+  font-size: 0.8rem;
+}
+
+#exam-view-wrapper .active-path-left {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+#exam-view-wrapper .quiz-header {
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+#exam-view-wrapper .quiz-examiner-strip {
+  margin-bottom: 0.55rem;
+}
+
+#exam-view-wrapper .examiner-pill-trigger {
+  font-size: 0.78rem;
+  padding: 0.22rem 0.65rem;
+}
