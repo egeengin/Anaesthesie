@@ -10037,6 +10037,12 @@ body.mode-german-only .trans-interactive {
   flex-direction: column;
 }
 
+.pill-btn-german {
+  padding: 0.3rem 0.65rem !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.02em;
+}
+
 /* 4. Unified Language/Reading Mode Toggle: hide redundant top-bar German toggle in Study View */
 body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-toggle {
   display: none !important;

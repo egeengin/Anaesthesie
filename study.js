@@ -1210,12 +1210,12 @@
       b.classList.toggle('active', isGerman);
       const flagEl = b.querySelector('.pill-btn-flag');
       if (flagEl) {
-        flagEl.textContent = isGerman ? '🇩🇪' : '🇩🇪🇹🇷';
+        flagEl.textContent = isGerman ? '🇩🇪' : '🇩🇪 · 🇹🇷';
         return;
       }
       const label = b.querySelector('.btn-label') || b.querySelector('.pill-btn-text');
       if (label) {
-        label.textContent = isGerman ? '🇩🇪' : '🇩🇪🇹🇷';
+        label.textContent = isGerman ? '🇩🇪' : '🇩🇪 · 🇹🇷';
       }
     });
   }

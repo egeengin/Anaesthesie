@@ -21,8 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=10.8">
-  <link rel="stylesheet" href="study.css?v=10.6">
+  <link rel="stylesheet" href="styles.css?v=10.9">
+  <link rel="stylesheet" href="study.css?v=10.7">
 </head>
 <body>
 
@@ -69,8 +69,8 @@
           <a href="study.html" id="melis-study-link" class="pill-btn pill-btn-melis" title="Melis'in Çalışma & Okuma Sayfası (Hover & Dokun Türkçe Çeviri)">
             <span>📖</span> <span class="pill-btn-text">Çalışma Sayfası</span>
           </a>
-          <button id="btn-global-german-toggle" class="pill-btn pill-btn-german" type="button" title="Dil Modu: Sadece Almanca (🇩🇪) / Almanca + Türkçe (🇩🇪🇹🇷)">
-            <span class="pill-btn-flag">🇩🇪🇹🇷</span>
+          <button id="btn-global-german-toggle" class="pill-btn pill-btn-german" type="button" title="Dil Modu: Sadece Almanca (🇩🇪) / Almanca + Türkçe (🇩🇪 · 🇹🇷)">
+            <span class="pill-btn-flag">🇩🇪 · 🇹🇷</span>
           </button>
           <!-- 🛠️ Apple-Grade Tools & SOPs Dropdown Popover -->
           <div class="nav-dropdown-wrapper">
@@ -229,13 +229,13 @@
           <div class="toolbar-right-group">
             <div class="mode-pill-group" role="group" aria-label="Dil Modu">
               <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
-                <span>🇩🇪💡</span>
+                <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
               </button>
               <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
-                <span>🇩🇪🇹🇷</span>
+                <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
               </button>
               <button class="btn-mode-tab" data-mode="german" title="Sadece Almanca (Tek Alman)">
-                <span>🇩🇪</span>
+                <span class="mode-flags">🇩🇪</span>
               </button>
             </div>
 
@@ -2787,7 +2787,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=10.1"></script>
+  <script src="study.js?v=10.2"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');

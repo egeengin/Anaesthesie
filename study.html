@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css?v=10.6">
+  <link rel="stylesheet" href="study.css?v=10.7">
 </head>
 <body>
 
@@ -103,13 +103,13 @@
         <div class="toolbar-right-group">
           <div class="mode-pill-group" role="group" aria-label="Dil Modu">
             <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
-              <span>🇩🇪💡</span>
+              <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
             </button>
             <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
-              <span>🇩🇪🇹🇷</span>
+              <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
             </button>
             <button class="btn-mode-tab" data-mode="german" title="Sadece Almanca (Tek Alman)">
-              <span>🇩🇪</span>
+              <span class="mode-flags">🇩🇪</span>
             </button>
           </div>
 
@@ -268,7 +268,7 @@
   <script src="js/curriculum_engine.js?v=10.3"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
   <script src="questions.js?v=9.0"></script>
-  <script src="study.js?v=10.1"></script>
+  <script src="study.js?v=10.2"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
