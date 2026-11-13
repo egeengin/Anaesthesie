@@ -479,7 +479,7 @@
         ? `<span class="badge-dus-protocol">🏛️ ÄKNO</span>`
         : (q.is_amboss_curriculum
             ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS</span>`
-            : (q.is_high_yield ? `<span class="badge-hy-star">⭐ High-Yield</span>` : ''));
+            : (q.is_high_yield ? `<span class="badge-hy-star">⭐ Kritik Vaka</span>` : ''));
 
       const monitorHtml = monitorData ? `
         <div class="melis-monitor-strip">

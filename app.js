@@ -7501,7 +7501,7 @@ Tedavi:
       updateActiveFilterBadge('⚡ Smart-Session');
       saveState();
       renderCurrentQuestion();
-      showToast('⚡ Akıllı Günlük Antrenman (15-20 dk): Sadece zayıf noktalar ve fällige High-Yield vakalar!', 'success', 3500);
+      showToast('⚡ Akıllı Günlük Antrenman (15-20 dk): Sadece zayıf noktalar ve zamanı gelen kritik vakalar!', 'success', 3500);
     });
   }
 
