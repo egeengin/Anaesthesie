@@ -20,8 +20,8 @@
   class GeminiAIEvaluator {
     constructor() {
       this.storageKey = 'gemini_api_key';
-      this.model = 'gemini-2.5-flash';
-      this.fallbackModel = 'gemini-2.5-flash-lite';
+      this.model = 'gemini-3.8-flash';
+      this.fallbackModel = 'gemini-3.7-flash';
     }
 
     getUserKey() {
@@ -359,7 +359,7 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       }
 
       const runPromise = (async () => {
-        const ttsModel = 'gemini-2.5-flash-preview-tts';
+        const ttsModel = 'gemini-3.8-flash-tts';
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${ttsModel}:generateContent?key=${apiKey}`;
         const payload = {
           contents: [{

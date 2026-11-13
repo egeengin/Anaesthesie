@@ -7853,10 +7853,10 @@ Tedavi:
         : geminiEvaluator.getApiKey();
       elGeminiApiKeyInput.value = userKey ? userKey : '';
       if (elGeminiKeyMsg) {
-        if (userKey && userKey.length >= 20) {
+        if (geminiEvaluator.hasApiKey()) {
           elGeminiKeyMsg.style.display = 'block';
           elGeminiKeyMsg.style.color = '#10b981';
-          elGeminiKeyMsg.innerHTML = '✅ <strong>Gemini AI ist aktiv!</strong> Ihre mündlichen Antworten werden direkt von Google Gemini analysiert.';
+          elGeminiKeyMsg.innerHTML = '✅ <strong>Gemini 3.8 Flash ist aktiv!</strong> Ihre mündlichen Antworten werden direkt von Google Gemini analysiert.';
         } else {
           elGeminiKeyMsg.style.display = 'none';
         }
@@ -7900,7 +7900,7 @@ Tedavi:
         elGeminiKeyMsg.innerHTML = '⚡ Verbindung zu Google Gemini wird getestet...';
       }
       try {
-        const modelsToTry = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
+        const modelsToTry = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-flash-latest'];
         let testRes = null;
         let activeModel = modelsToTry[0];
         for (const m of modelsToTry) {
@@ -7916,7 +7916,9 @@ Tedavi:
           if (testRes.ok) break;
         }
         if (testRes && testRes.ok) {
-          geminiEvaluator.setApiKey(key);
+          if (elGeminiApiKeyInput.value.trim()) {
+            geminiEvaluator.setApiKey(key);
+          }
           if (elGeminiKeyMsg) {
             elGeminiKeyMsg.style.color = '#10b981';
             elGeminiKeyMsg.innerHTML = `🎉 <strong>Verbindungstest erfolgreich!</strong> ${activeModel} antwortet optimal.`;
