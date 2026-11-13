@@ -7900,20 +7900,29 @@ Tedavi:
         elGeminiKeyMsg.innerHTML = '⚡ Verbindung zu Google Gemini wird getestet...';
       }
       try {
-        const modelsToTry = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-flash-latest'];
+        const modelsToTry = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.5-flash', 'gemini-flash-latest'];
         let testRes = null;
         let activeModel = modelsToTry[0];
         for (const m of modelsToTry) {
           activeModel = m;
-          testRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${key}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ parts: [{ text: 'Antworte mit: {"status": "ok"}' }] }],
-              generationConfig: { responseMimeType: 'application/json' }
-            })
-          });
-          if (testRes.ok) break;
+          const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+          const timer = controller ? setTimeout(() => controller.abort(), 10000) : null;
+          try {
+            testRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${key}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              signal: controller ? controller.signal : undefined,
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: 'Antworte mit: {"status": "ok"}' }] }],
+                generationConfig: { responseMimeType: 'application/json' }
+              })
+            });
+          } catch (fetchErr) {
+            testRes = null;
+          } finally {
+            if (timer) clearTimeout(timer);
+          }
+          if (testRes && testRes.ok) break;
         }
         if (testRes && testRes.ok) {
           if (elGeminiApiKeyInput.value.trim()) {
