@@ -10164,3 +10164,33 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
   padding: 0.44rem 0.95rem !important;
   border-radius: 999px !important;
 }
+
+/* Study reading controls integrated into top navbar */
+.study-nav-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.study-nav-controls .stepper-label {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .nav-container {
+    flex-wrap: wrap;
+    row-gap: 0.45rem;
+  }
+  .nav-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 860px) {
+  .study-nav-controls {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}

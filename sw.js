@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v11.9'; // upgraded from facharzt-cache-v7.7 / v11.8 for compact examiner drawer close & Step 1 action bar sizing
+const CACHE_NAME = 'facharzt-cache-v12.0'; // upgraded from facharzt-cache-v7.7 / v11.9 for study controls in top navbar
 const CORE_ASSETS = [
   './',
   './index.html',

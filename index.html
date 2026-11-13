@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=11.9">
+  <link rel="stylesheet" href="styles.css?v=12.0">
   <link rel="stylesheet" href="study.css?v=10.8">
 </head>
 <body>
@@ -80,6 +80,47 @@
       <div class="nav-actions">
         <div id="cloud-sync-status" class="cloud-sync-badge" title="Automatischer Wolken-Sync aktiv" style="display: none;">
           <span class="cloud-icon">☁️</span> <span class="cloud-text">Synchronisiert</span>
+        </div>
+
+        <div id="study-nav-controls" class="study-nav-controls">
+          <div class="mode-pill-group" role="group" aria-label="Dil Modu">
+            <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
+              <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
+            </button>
+            <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
+              <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
+            </button>
+            <button class="btn-mode-tab" data-mode="german" title="Sadece Almanca (Tek Alman)">
+              <span class="mode-flags">🇩🇪</span>
+            </button>
+          </div>
+
+          <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
+            <span>⚡</span> Test Modu
+          </button>
+
+          <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
+            <button type="button" id="study-btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
+              <span class="stepper-glyph-small">A</span>
+            </button>
+            <button type="button" id="study-btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart" aria-label="Yazı boyutu">
+              <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
+              <span class="stepper-label" id="study-font-size-label">Standart</span>
+              <span class="stepper-dots" aria-hidden="true">
+                <span class="step-dot"></span>
+                <span class="step-dot active"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+              </span>
+            </button>
+            <button type="button" id="study-btn-font-inc" class="stepper-btn stepper-btn-inc" title="Yazı Boyutunu Büyüt (A⁺)" aria-label="Yazıyı büyüt">
+              <span class="stepper-glyph-large">A</span>
+            </button>
+          </div>
+
+          <button id="study-btn-theme-toggle" class="btn-icon-setting" title="Sepia (Sıcak Sarımsı Okuma)">
+            <span>📜</span>
+          </button>
         </div>
 
         <div class="nav-action-pill">
@@ -217,47 +258,6 @@
             </div>
             <button id="study-btn-toggle-categories" class="btn-toggle-category-drawer" type="button" aria-expanded="false" title="Konu Kategorilerini Aç/Kapat">
               <span>📂</span> <span class="category-drawer-label">Konular (60)</span> <span class="category-drawer-chevron">▾</span>
-            </button>
-          </div>
-
-          <div class="toolbar-right-group">
-            <div class="mode-pill-group" role="group" aria-label="Dil Modu">
-              <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
-                <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
-              </button>
-              <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
-                <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
-              </button>
-              <button class="btn-mode-tab" data-mode="german" title="Sadece Almanca (Tek Alman)">
-                <span class="mode-flags">🇩🇪</span>
-              </button>
-            </div>
-
-            <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
-              <span>⚡</span> Test Modu
-            </button>
-
-            <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
-              <button type="button" id="study-btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
-                <span class="stepper-glyph-small">A</span>
-              </button>
-              <button type="button" id="study-btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart" aria-label="Yazı boyutu">
-                <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
-                <span class="stepper-label" id="study-font-size-label">Standart</span>
-                <span class="stepper-dots" aria-hidden="true">
-                  <span class="step-dot"></span>
-                  <span class="step-dot active"></span>
-                  <span class="step-dot"></span>
-                  <span class="step-dot"></span>
-                </span>
-              </button>
-              <button type="button" id="study-btn-font-inc" class="stepper-btn stepper-btn-inc" title="Yazı Boyutunu Büyüt (A⁺)" aria-label="Yazıyı büyüt">
-                <span class="stepper-glyph-large">A</span>
-              </button>
-            </div>
-
-            <button id="study-btn-theme-toggle" class="btn-icon-setting" title="Sepia (Sıcak Sarımsı Okuma)">
-              <span>📜</span>
             </button>
           </div>
         </div>
@@ -2808,6 +2808,11 @@
 
         if (btnStudy) btnStudy.classList.toggle('active', isStudy);
         if (btnExam) btnExam.classList.toggle('active', !isStudy);
+
+        const studyNavControls = document.getElementById('study-nav-controls');
+        const globalGermanBtn = document.getElementById('btn-global-german-toggle');
+        if (studyNavControls) studyNavControls.style.display = isStudy ? 'inline-flex' : 'none';
+        if (globalGermanBtn) globalGermanBtn.style.display = isStudy ? 'none' : '';
 
         if (savePref) {
           localStorage.setItem('facharzt_melis_master_view', targetView);
