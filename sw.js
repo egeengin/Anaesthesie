@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.2'; // upgraded from facharzt-cache-v7.7 / v12.1 for unified oral-tools-bar, deduped status bar, and uniform rating buttons
+const CACHE_NAME = 'facharzt-cache-v12.3'; // upgraded from facharzt-cache-v7.7 / v12.2 for 1200px desktop width parity in study view
 const CORE_ASSETS = [
   './',
   './index.html',
