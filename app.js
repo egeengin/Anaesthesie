@@ -4109,16 +4109,16 @@ Tedavi:
     }
   }
 
+  const CLINICAL_UNIT_REGEX = /(?:(pH\s*\d+(?:[.,]\d+)?(?:\s*[–-]\s*\d+(?:[.,]\d+)?)?)|(\b\d+(?:[.,]\d+)?(?:\s*[–-]\s*\d+(?:[.,]\d+)?)?\s*(?:µg\/kg\/min|mg\/kg\/h|ml\/kg\/h|mmol\/l\/24h|mg\/kg|µg\/kg|µg|mg|g|ml\/kg|ml|mmol\/l|mmol|%|IE|cmH2O|mmHg|bar|l\/min|h|min|s|°C)))(?!\w)/gi;
+
   function highlightDosagesAndUnits(text) {
     if (!text) return '';
-    const unitRegex = /(?:(pH\s*\d+([.,]\d+)?)|(\b\d+([.,]\d+)?\s*(?:mg\/kg|µg\/kg|µg|mg|g|ml\/kg|ml|mmol\/l|mmol|%|IE|cmH2O|mmHg|bar|l\/min|h|min|s|°C)))(?!\w)/gi;
-    return text.replace(unitRegex, '<span class="dosage-highlight">$&</span>');
+    return text.replace(CLINICAL_UNIT_REGEX, '<span class="dosage-highlight">$&</span>');
   }
 
   function generateClozeMaskedHtml(text) {
     if (!text) return '';
-    const unitRegex = /(?:(pH\s*\d+([.,]\d+)?)|(\b\d+([.,]\d+)?\s*(?:mg\/kg|µg\/kg|µg|mg|g|ml\/kg|ml|mmol\/l|mmol|%|IE|cmH2O|mmHg|bar|l\/min|h|min|s|°C)))(?!\w)/gi;
-    return text.replace(unitRegex, '<span class="cloze-blur" data-cloze="$&" tabindex="0" title="Klicken zum Aufdecken">$&</span>');
+    return text.replace(CLINICAL_UNIT_REGEX, '<span class="cloze-blur" data-cloze="$&" tabindex="0" title="Klicken zum Aufdecken">$&</span>');
   }
 
   // --- Multi-Mode Study Switcher Controller ---
