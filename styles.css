@@ -8792,36 +8792,63 @@ body.view-mode-exam .full-reference-accordion {
 .oral-tools-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: var(--bg-tertiary);
   border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 0.55rem 0.85rem;
+  border-radius: 16px;
+  padding: 0.5rem 0.7rem;
   margin: 0.85rem 0;
-  gap: 0.65rem;
+  gap: 0.55rem;
   flex-wrap: wrap;
+}
+
+.oral-tools-bar .oral-tool-btn {
+  min-height: 38px;
+  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+.oral-tools-bar .voice-mic-btn {
+  padding: 0.45rem 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(141, 99, 70, 0.22);
 }
 
 .keyboard-toggle-btn,
 .audio-settings-btn {
-  background: transparent;
+  background: var(--card-bg);
   border: 1px solid var(--card-border);
-  color: var(--text-muted);
-  border-radius: 8px;
-  padding: 0.4rem 0.7rem;
-  font-size: 0.8rem;
+  color: var(--text-main);
+  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  min-height: 38px;
+  font-size: 0.83rem;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.15s ease;
+}
+
+.audio-settings-btn {
+  margin-left: auto;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+  color: var(--text-secondary);
 }
 
 .keyboard-toggle-btn:hover,
 .audio-settings-btn:hover {
-  background: var(--card-bg);
-  color: var(--text-main);
-  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(141, 99, 70, 0.35);
+  transform: translateY(-1px);
 }
 
 /* ─── ADIM 6: Sekmeli Çözüm ve Değerlendirme Alanı (3 Temiz Sekme) ─── */
@@ -10192,5 +10219,13 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
   .study-nav-controls {
     flex-wrap: wrap;
     justify-content: flex-end;
+  }
+}
+
+/* Uniform single-line confidence rating buttons on tablet/desktop */
+@media (min-width: 768px) {
+  .rating-btn {
+    min-height: 46px;
+    white-space: nowrap;
   }
 }
