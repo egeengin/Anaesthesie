@@ -1208,9 +1208,14 @@
     const allGermanBtns = document.querySelectorAll('#btn-quick-german-toggle, #btn-global-german-toggle, .pill-btn-german, .btn-header-german');
     allGermanBtns.forEach(b => {
       b.classList.toggle('active', isGerman);
+      const flagEl = b.querySelector('.pill-btn-flag');
+      if (flagEl) {
+        flagEl.textContent = isGerman ? '🇩🇪' : '🇩🇪🇹🇷';
+        return;
+      }
       const label = b.querySelector('.btn-label') || b.querySelector('.pill-btn-text');
       if (label) {
-        label.textContent = isGerman ? 'Nur Deutsch ✓' : 'Nur Deutsch';
+        label.textContent = isGerman ? '🇩🇪' : '🇩🇪🇹🇷';
       }
     });
   }
