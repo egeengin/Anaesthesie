@@ -2752,7 +2752,7 @@
   <script src="js/sm2.js"></script>
   <script src="js/voice.js"></script>
   <script src="config.local.js" onerror="void 0;"></script>
-  <script src="js/gemini_evaluator.js?v=7.7"></script>
+  <script src="js/gemini_evaluator.js?v=11.4"></script>
   <script src="js/abbreviations_data.js"></script>
   <script src="js/exam_simulation.js"></script>
   <script src="js/calculators.js"></script>
@@ -2766,7 +2766,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=11.3')
+        navigator.serviceWorker.register('./sw.js?v=11.4')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {

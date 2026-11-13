@@ -2193,7 +2193,11 @@ document.addEventListener('DOMContentLoaded', () => {
         elAiExaminerCommentBox.style.display = 'block';
         if (elAiExaminerName) elAiExaminerName.textContent = examinerProfile.name;
         if (elAiExaminerFeedbackDE) {
+        if (localStorage.getItem(AUTH_KEY) !== 'true') {
           elAiExaminerFeedbackDE.innerHTML = `💡 <strong>Tipp für KI-Facharztprüfer Noten:</strong> Hinterlegen Sie Ihren kostenlosen <em>Google Gemini API-Key</em> in den Einstellungen (dauert 30 Sek. bei Google AI Studio). Damit bewertet die KI Ihre klinische Logik direkt und unabhängig von Spracherkennungs-Tippfehlern!`;
+        } else {
+          elAiExaminerFeedbackDE.textContent = '✓ Lokale Facharzt-Rubrikbewertung aktiv.';
+        }
         }
         if (elAiExaminerFeedbackTR) {
           elAiExaminerFeedbackTR.innerHTML = `🇹🇷 <strong>İpucu:</strong> Ayarlar menüsünden ücretsiz Gemini API anahtarınızı girerek jürinin Türkçe/Almanca detaylı klinik yorum ve notunu anında alabilirsiniz.`;
@@ -7101,7 +7105,7 @@ Tedavi:
       state.ttsVoiceMode = mode;
       try { localStorage.setItem('facharzt_tts_voice_mode', mode); } catch (err) {}
       saveState();
-      if (mode.startsWith('gemini:') && (!geminiEvaluator || !geminiEvaluator.hasApiKey())) {
+      if (mode.startsWith('gemini:') && (!geminiEvaluator || !geminiEvaluator.hasApiKey()) && localStorage.getItem(AUTH_KEY) !== 'true') {
         showToast('💡 Tipp: Für Gemini Studio Stimmen bitte unter 🔑 KI-Key Ihren Gemini API-Key hinterlegen (sonst Gapless-Stream).', 'info', 4000);
       }
     });
@@ -7844,10 +7848,12 @@ Tedavi:
 
   function updateGeminiSettingsUI() {
     if (geminiEvaluator && elGeminiApiKeyInput) {
-      const key = geminiEvaluator.getApiKey();
-      elGeminiApiKeyInput.value = key ? key : '';
+      const userKey = (typeof geminiEvaluator.getUserKey === 'function')
+        ? geminiEvaluator.getUserKey()
+        : geminiEvaluator.getApiKey();
+      elGeminiApiKeyInput.value = userKey ? userKey : '';
       if (elGeminiKeyMsg) {
-        if (key && key.length >= 20) {
+        if (userKey && userKey.length >= 20) {
           elGeminiKeyMsg.style.display = 'block';
           elGeminiKeyMsg.style.color = '#10b981';
           elGeminiKeyMsg.innerHTML = '✅ <strong>Gemini AI ist aktiv!</strong> Ihre mündlichen Antworten werden direkt von Google Gemini analysiert.';
@@ -7894,27 +7900,34 @@ Tedavi:
         elGeminiKeyMsg.innerHTML = '⚡ Verbindung zu Google Gemini wird getestet...';
       }
       try {
-        const testRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: 'Antworte mit: {"status": "ok"}' }] }],
-            generationConfig: { responseMimeType: 'application/json' }
-          })
-        });
-        if (testRes.ok) {
+        const modelsToTry = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
+        let testRes = null;
+        let activeModel = modelsToTry[0];
+        for (const m of modelsToTry) {
+          activeModel = m;
+          testRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${key}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: 'Antworte mit: {"status": "ok"}' }] }],
+              generationConfig: { responseMimeType: 'application/json' }
+            })
+          });
+          if (testRes.ok) break;
+        }
+        if (testRes && testRes.ok) {
           geminiEvaluator.setApiKey(key);
           if (elGeminiKeyMsg) {
             elGeminiKeyMsg.style.color = '#10b981';
-            elGeminiKeyMsg.innerHTML = '🎉 <strong>Verbindungstest erfolgreich!</strong> Gemini 2.5 Flash antwortet optimal.';
+            elGeminiKeyMsg.innerHTML = `🎉 <strong>Verbindungstest erfolgreich!</strong> ${activeModel} antwortet optimal.`;
           }
           showToast('🎉 Gemini Verbindung erfolgreich getestet!', 'success');
         } else {
           if (elGeminiKeyMsg) {
             elGeminiKeyMsg.style.color = '#ef4444';
-            elGeminiKeyMsg.innerHTML = `❌ <strong>Fehler (${testRes.status}):</strong> Ungültiger Key oder API-Fehler.`;
+            elGeminiKeyMsg.innerHTML = `❌ <strong>Fehler (${testRes ? testRes.status : 'API'}):</strong> Ungültiger Key oder API-Fehler.`;
           }
-          showToast(`❌ Fehler beim Key-Test (${testRes.status})`, 'error');
+          showToast(`❌ Fehler beim Key-Test (${testRes ? testRes.status : 'API'})`, 'error');
         }
       } catch (err) {
         if (elGeminiKeyMsg) {

@@ -20,11 +20,11 @@
   class GeminiAIEvaluator {
     constructor() {
       this.storageKey = 'gemini_api_key';
-      this.model = 'gemini-3.5-flash';
-      this.fallbackModel = 'gemini-3.1-flash-lite';
+      this.model = 'gemini-2.5-flash';
+      this.fallbackModel = 'gemini-2.5-flash-lite';
     }
 
-    getApiKey() {
+    getUserKey() {
       try {
         if (typeof window !== 'undefined' && window.localStorage) {
           const stored = (window.localStorage.getItem(this.storageKey) || '').trim();
@@ -36,7 +36,11 @@
       if (typeof globalThis !== 'undefined' && globalThis.GEMINI_LOCAL_KEY) {
         return globalThis.GEMINI_LOCAL_KEY;
       }
-      return DEFAULT_GEMINI_KEY;
+      return '';
+    }
+
+    getApiKey() {
+      return this.getUserKey() || DEFAULT_GEMINI_KEY;
     }
 
     setApiKey(key) {
@@ -225,8 +229,7 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
           ]
         }],
         generationConfig: {
-          temperature: 0,
-          thinkingConfig: { thinkingLevel: 'minimal' }
+          temperature: 0
         }
       };
 

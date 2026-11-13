@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v11.3'; // upgraded from facharzt-cache-v7.7 / v11.2 for unified navbar switcher & flat tools dropdown
+const CACHE_NAME = 'facharzt-cache-v11.4'; // upgraded from facharzt-cache-v7.7 / v11.3 for Gemini 2.5 Flash model alignment & seamless egemelis fallback
 const CORE_ASSETS = [
   './',
   './index.html',
