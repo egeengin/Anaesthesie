@@ -718,7 +718,7 @@ assert(appCode.includes('ANESTHESIA_ABBREVIATIONS'), 'app.js must reference ANES
 // SW checks
 const swContent = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
 assert(swContent.includes('./js/abbreviations_data.js'), 'sw.js must cache ./js/abbreviations_data.js');
-assert(/facharzt-cache-v(?:4\.[6-9]|[5-9]\.[0-9])/.test(swContent), 'sw.js must be updated to v4.6 or newer');
+assert(/facharzt-cache-v(?:4\.[6-9]|[5-9]\.[0-9]|[1-9][0-9]+\.[0-9]+)/.test(swContent), 'sw.js must be updated to v4.6 or newer');
 
 console.log(`[PASS] Suite 30 passed! Verified ${abbreviationsData.length} dual-language abbreviations with complete metadata, UI, and service worker caching.`);
 

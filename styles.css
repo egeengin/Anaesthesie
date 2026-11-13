@@ -10049,11 +10049,21 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
 }
 
 /* ==========================================================================
-   MINIMALIST EXAM SIMULATOR HEADER & BADGE DECLUTTERING (v11.0)
+   MINIMALIST EXAM SIMULATOR HEADER & BADGE DECLUTTERING (v11.2)
    ========================================================================== */
+#exam-view-wrapper #hero-focus-card {
+  display: none !important;
+}
+
+#exam-view-wrapper .quiz-meta #badge-hy,
 #exam-view-wrapper .quiz-meta #badge-amboss-pillar,
 #exam-view-wrapper .quiz-meta #badge-type,
 #exam-view-wrapper .quiz-meta #badge-source {
+  display: none !important;
+}
+
+#exam-view-wrapper .examiner-pill-prefix,
+#exam-view-wrapper .examiner-pill-tag {
   display: none !important;
 }
 
@@ -10074,10 +10084,10 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
 }
 
 #exam-view-wrapper .quiz-examiner-strip {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
 }
 
 #exam-view-wrapper .examiner-pill-trigger {
   font-size: 0.78rem;
-  padding: 0.22rem 0.65rem;
+  padding: 0.2rem 0.6rem;
 }

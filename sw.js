@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v9.9'; // upgraded from facharzt-cache-v7.7 / v8.5 / v9.1 / v9.2 / v9.3 / v9.4 / v9.5 / v9.6 / v9.7 / v9.8 / v9.9 for BGA trainer modal expansion, responsive controls, sepia harmony & bilingual hover translations
+const CACHE_NAME = 'facharzt-cache-v11.2'; // upgraded from facharzt-cache-v7.7 / v9.9 for minimalist exam header, flag toggles, searchable category grid & instant cache refresh
 const CORE_ASSETS = [
   './',
   './index.html',
