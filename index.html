@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=11.3">
+  <link rel="stylesheet" href="styles.css?v=11.6">
   <link rel="stylesheet" href="study.css?v=10.8">
 </head>
 <body>
@@ -2766,7 +2766,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=11.5')
+        navigator.serviceWorker.register('./sw.js?v=11.6')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2791,7 +2791,7 @@
 
       function switchMasterView(targetView, savePref = true) {
         const thumbBar = document.getElementById("mobile-thumb-bar");
-        if (thumbBar) thumbBar.style.display = (targetView === "study") ? "none" : "flex";
+        if (thumbBar) thumbBar.style.display = (targetView === "study") ? "none" : "";
         if (!viewStudy || !viewExam) return;
         const isStudy = (targetView === 'study');
 

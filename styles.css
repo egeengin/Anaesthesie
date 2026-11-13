@@ -10089,3 +10089,15 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
   font-size: 0.78rem;
   padding: 0.2rem 0.6rem;
 }
+
+/* Hide mobile thumb bar strictly on desktop & keep kbd hints single-line */
+@media (min-width: 769px) {
+  #mobile-thumb-bar {
+    display: none !important;
+  }
+}
+
+.kbd-hint,
+.btn-assess-btn {
+  white-space: nowrap;
+}
