@@ -9879,3 +9879,15 @@ body.mode-german-only .trans-interactive {
 .redefluss-chip-body:hover .redefluss-text-de::after {
   opacity: 1;
 }
+
+/* Calm exam dashboard: keep only readiness & streak badges */
+#dashboard-compact .dash-badge-item:has(#stat-accuracy),
+#dashboard-compact .dash-badge-item:has(#stat-daily-goal) {
+  display: none;
+}
+
+/* Rubric cards: lighter, cleaner headers */
+.rubric-card-header h3 {
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}

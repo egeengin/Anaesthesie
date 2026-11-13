@@ -2414,7 +2414,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isHidden = (elQuestionText.style.display === 'none');
       elQuestionText.style.display = isHidden ? 'block' : 'none';
       if (elSimPeekLabel) {
-        elSimPeekLabel.textContent = isHidden ? 'Falltext verbergen (Hörtest)' : 'Falltext einblenden';
+        elSimPeekLabel.textContent = isHidden ? 'Text verbergen' : 'Text einblenden';
       }
     });
   }
@@ -2455,7 +2455,7 @@ document.addEventListener('DOMContentLoaded', () => {
       elSimCrisisSolutionCard.style.display = 'none';
     }
     if (elBtnSimToggleCrisisSolution) {
-      elBtnSimToggleCrisisSolution.innerHTML = '<span>💡</span> Sofort-Lösung anzeigen';
+      elBtnSimToggleCrisisSolution.innerHTML = '<span>💡</span> Lösung anzeigen';
     }
     if (elSimCrisisSolutionText) {
       elSimCrisisSolutionText.innerHTML = renderDualLanguageText(
@@ -2518,8 +2518,8 @@ document.addEventListener('DOMContentLoaded', () => {
       elSimCrisisSolutionCard.style.display = isHidden ? 'block' : 'none';
       if (elBtnSimToggleCrisisSolution) {
         elBtnSimToggleCrisisSolution.innerHTML = isHidden
-          ? '<span>✕</span> Sofort-Lösung verbergen'
-          : '<span>💡</span> Sofort-Lösung anzeigen';
+          ? '<span>✕</span> Lösung verbergen'
+          : '<span>💡</span> Lösung anzeigen';
       }
     });
   }
@@ -4658,7 +4658,7 @@ Tedavi:
         if (elMonDashboard) elMonDashboard.classList.remove('vital-crisis-flash');
 
         if (elQuestionText) elQuestionText.style.display = 'block';
-        if (elSimPeekLabel) elSimPeekLabel.textContent = 'Falltext verbergen (Hörtest)';
+        if (elSimPeekLabel) elSimPeekLabel.textContent = 'Text verbergen';
       }
     }
 
@@ -4821,7 +4821,7 @@ Tedavi:
       elStep2InlineAnswerBox.style.display = 'none';
     }
     if (elBtnToggleStep2Answer) {
-      elBtnToggleStep2Answer.innerHTML = '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen';
+      elBtnToggleStep2Answer.innerHTML = '<span>💡</span> Auswertung anzeigen';
     }
     if (elStep2InlineAnswerText) {
       elStep2InlineAnswerText.innerHTML = renderStep2InlineAnswer(parsedCase);
@@ -7235,8 +7235,8 @@ Tedavi:
       const isVisible = (elStep2InlineAnswerBox.style.display !== 'none');
       elStep2InlineAnswerBox.style.display = isVisible ? 'none' : 'block';
       elBtnToggleStep2Answer.innerHTML = isVisible
-        ? '<span>💡</span> Befund-Auswertung & Sofortmaßnahmen'
-        : '<span>💡</span> Befund-Auswertung verbergen';
+        ? '<span>💡</span> Auswertung anzeigen'
+        : '<span>💡</span> Auswertung verbergen';
     });
   }
 

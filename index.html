@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=10.5">
+  <link rel="stylesheet" href="styles.css?v=10.6">
   <link rel="stylesheet" href="study.css?v=10.5">
 </head>
 <body>
@@ -647,7 +647,7 @@
       <!-- Step 1 Redefluss-Baukasten Chip (FAZ 3) -->
       <div class="redefluss-chip" id="redefluss-chip-step1" style="display: none;">
         <div class="redefluss-chip-header" id="btn-toggle-redefluss-step1" tabindex="0" role="button" aria-expanded="false">
-          <span>🗣️ Düsseldorfer Redemittel (Schritt 1: Vorstellung &amp; Strategie)</span>
+          <span>🗣️ Redemittel</span>
           <span class="chip-caret">▾</span>
         </div>
         <div class="redefluss-chip-body" id="redefluss-body-step1" style="display: none;">
@@ -745,14 +745,14 @@
             <span>💡 Musterantwort anzeigen</span>
           </button>
           <button id="btn-audio-speak-step1-ans" class="btn-audio-action-sm" type="button" title="Musterantwort zu Schritt 1 vorlesen">
-            <span>🔊 Antwort vorlesen</span>
+            <span>🔊 Vorlesen</span>
           </button>
         </div>
 
         <!-- Inline Revealable Step 1 Answer Box -->
         <div id="step1-inline-answer-box" class="examiner-inline-answer-box step1-answer-box" style="display: none;">
           <div class="examiner-inline-header">
-            <strong>💡 ÄKNO-Musterantwort zur klinischen Fallpräsentation (Schritt 1)</strong>
+            <strong>💡 Musterantwort</strong>
             <button id="btn-audio-speak-step1-box" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen">
               <span>🔊 Vorlesen</span>
             </button>
@@ -765,7 +765,7 @@
         <!-- ADIM 4: Adımlar Arası Temiz Geçiş (1 -> 2) -->
         <div class="step-transition-bar" id="step1-transition-bar">
           <button id="btn-advance-to-step2" class="btn btn-step-advance" type="button">
-            <span>➡️ Weiter zu Schritt 2: Vitalparameter &amp; Befunde anfordern ▾</span>
+            <span>Weiter: Vitalparameter &amp; BGA →</span>
           </button>
         </div>
       </div>
@@ -789,15 +789,15 @@
           <div class="sim-examiner-actions">
             <button id="btn-sim-speak-stem" class="btn-sim-action btn-sim-speak" type="button" title="Prüfer liest den Fall laut vor">
               <span class="sim-btn-icon">🔊</span>
-              <span>Prüfer spricht Fall vor</span>
+              <span>Fall vorlesen</span>
             </button>
             <button id="btn-sim-peek-stem" class="btn-sim-action btn-sim-peek" type="button" title="Falltext verbergen oder einblenden für reines Hör-Verstehen">
               <span class="sim-btn-icon">👁️</span>
-              <span id="sim-peek-label">Falltext verbergen (Hörtest)</span>
+              <span id="sim-peek-label">Text verbergen</span>
             </button>
             <button id="btn-sim-trigger-crisis" class="btn-sim-action btn-sim-crisis" type="button" title="Prüfer unterbricht mit akutem Zwischenfall!">
               <span class="sim-btn-icon">⚡</span>
-              <span>Prüfer unterbricht: Akut-Zwischenfall!</span>
+              <span>Zwischenfall</span>
             </button>
             <button id="btn-sim-toggle-examiner-profile" class="btn-sim-action btn-sim-profile" type="button" title="ÄKNO Prüfer-Profil &amp; Erwartungshorizont anzeigen / Jüri profilini gör">
               <span class="sim-btn-icon">🏛️</span>
@@ -857,7 +857,7 @@
           <!-- Interactive Crisis Solution Toggle & Dual-Language Card -->
           <div class="sim-crisis-actions-bar">
             <button id="btn-sim-toggle-crisis-solution" class="btn-crisis-solution-toggle" type="button" title="Sofort-Lösung zur Prüfer-Intervention anzeigen">
-              <span>💡</span> Sofort-Lösung anzeigen
+              <span>💡</span> Lösung anzeigen
             </button>
           </div>
 
@@ -937,7 +937,7 @@
         <button id="btn-step2-toggle" class="btn-stepper-expand" aria-expanded="false">
           <div class="expand-btn-left">
             <span class="step-tag-pill">Schritt 2</span>
-            <strong>📊 Vitalparameter & Befunde anfordern (BGA, EKG, Monitoring)</strong>
+            <strong>📊 Vitalparameter &amp; BGA</strong>
           </div>
           <span class="expand-chevron">▼</span>
         </button>
@@ -997,7 +997,7 @@
             <!-- Step 2 Redefluss-Baukasten Chip (FAZ 3) -->
             <div class="redefluss-chip" id="redefluss-chip-step2">
               <div class="redefluss-chip-header" id="btn-toggle-redefluss-step2" tabindex="0" role="button" aria-expanded="false">
-                <span>🗣️ Düsseldorfer Redemittel (Schritt 2: Vitalwerte &amp; BGA)</span>
+                <span>🗣️ Redemittel</span>
                 <span class="chip-caret">▾</span>
               </div>
               <div class="redefluss-chip-body" id="redefluss-body-step2" style="display: none;">
@@ -1010,17 +1010,17 @@
             <!-- Step 2 Inline Action Bar & Revealable Answer -->
             <div class="examiner-audio-bar step-inline-action-bar" style="margin-top: 1rem;">
               <button id="btn-toggle-step2-answer" class="btn-audio-action-sm btn-examiner-ans-btn" type="button" title="Befund-Auswertung & therapeutische Konsequenz anzeigen">
-                <span>💡 Befund-Auswertung & Sofortmaßnahmen</span>
+                <span>💡 Auswertung anzeigen</span>
               </button>
               <button id="btn-audio-speak-step2-ans" class="btn-audio-action-sm" type="button" title="Befund-Auswertung vorlesen">
-                <span>🔊 Auswertung vorlesen</span>
+                <span>🔊 Vorlesen</span>
               </button>
             </div>
 
             <!-- Inline Revealable Step 2 Answer Box -->
             <div id="step2-inline-answer-box" class="examiner-inline-answer-box step2-answer-box" style="display: none;">
               <div class="examiner-inline-header">
-                <strong>💡 ÄKNO-Befundauswertung (Schritt 2)</strong>
+                <strong>💡 Befundauswertung</strong>
                 <button id="btn-audio-speak-step2-box" class="btn-audio-action-sm" type="button" title="Auswertung vorlesen">
                   <span>🔊 Vorlesen</span>
                 </button>
@@ -1033,7 +1033,7 @@
             <!-- ADIM 4: Adımlar Arası Temiz Geçiş (2 -> 3) -->
             <div class="step-transition-bar" id="step2-transition-bar">
               <button id="btn-advance-to-step3" class="btn btn-step-advance" type="button">
-                <span>➡️ Weiter zu Schritt 3: Prüfer-Intervention (Klinische Wendung) ▾</span>
+                <span>Weiter: Prüfer-Nachfrage →</span>
               </button>
             </div>
           </div>
@@ -1045,7 +1045,7 @@
         <button id="btn-step3-toggle" class="btn-stepper-expand" aria-expanded="false">
           <div class="expand-btn-left">
             <span class="step-tag-pill examiner-pill">Schritt 3</span>
-            <strong>👨‍⚕️ Prüfer-Nachfrage (Klinische Wendung)</strong>
+            <strong>👨‍⚕️ Prüfer-Nachfrage</strong>
           </div>
           <span class="expand-chevron">▼</span>
         </button>
@@ -1078,7 +1078,7 @@
               <!-- Step 3 Redefluss-Baukasten Chip (FAZ 3) -->
               <div class="redefluss-chip" id="redefluss-chip-step3">
                 <div class="redefluss-chip-header" id="btn-toggle-redefluss-step3" tabindex="0" role="button" aria-expanded="false">
-                  <span>🗣️ Düsseldorfer Redemittel (Schritt 3: Notfall &amp; Intervention)</span>
+                  <span>🗣️ Redemittel</span>
                   <span class="chip-caret">▾</span>
                 </div>
                 <div class="redefluss-chip-body" id="redefluss-body-step3" style="display: none;">
@@ -1091,9 +1091,9 @@
               <!-- Inline Revealable Examiner Answer inside Step 3 -->
               <div id="examiner-inline-answer-box" class="examiner-inline-answer-box" style="display: none;">
                 <div class="examiner-inline-header">
-                  <strong>💡 ÄKNO-Musterantwort zur Prüfer-Intervention</strong>
+                  <strong>💡 Musterantwort</strong>
                   <button id="btn-audio-speak-examiner-ans" class="btn-audio-action-sm" type="button" title="Musterantwort vorlesen">
-                    <span>🔊 Antwort vorlesen</span>
+                    <span>🔊 Vorlesen</span>
                   </button>
                 </div>
                 <div id="examiner-inline-answer-text" class="examiner-inline-answer-text">
@@ -1120,7 +1120,7 @@
           <!-- ADIM 4: Adımlar Arası Temiz Geçiş (3 -> 4) -->
           <div class="step-transition-bar" id="step3-transition-bar">
             <button id="btn-advance-to-step4" class="btn btn-step-advance btn-step-advance-primary" type="button">
-              <span>💡 Weiter zu Schritt 4: Musterantwort &amp; Auswertung freischalten ▾</span>
+              <span>Weiter: Musterantwort →</span>
             </button>
           </div>
         </div>
@@ -1162,7 +1162,6 @@
 
         <button id="btn-audio-settings-icon" class="oral-tool-btn audio-settings-btn" type="button" title="Audio- &amp; Mikrofon-Einstellungen (Diagnose &amp; Fehlerbehebung)">
           <span class="tool-icon">🛠️</span>
-          <span>Mikrofon-Diagnose / Hilfe</span>
         </button>
       </div>
 
@@ -1323,7 +1322,7 @@
         <div id="reveal-container" class="reveal-container">
           <button id="btn-reveal" class="btn btn-reveal-rubric">
             <span class="reveal-icon">👁️</span> 
-            <span class="reveal-text">Schritt 4: Musterantwort & Schlüsselbegriffe freischalten</span>
+            <span class="reveal-text">Musterantwort aufdecken</span>
             <kbd class="kbd-hint">Space</kbd>
           </button>
         </div>
@@ -1359,9 +1358,8 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title">
                   <span class="rubric-icon">📏</span>
-                  <h3>Exakte Dosierungen &amp; Grenzwerte (Leitlinien-Dosierungstabelle)</h3>
+                  <h3>Dosierungen &amp; Grenzwerte</h3>
                 </div>
-                <span class="rubric-tag-danger">Tödliche Dosis-Fallen</span>
               </div>
               <div class="rubric-card-body">
                 <div class="dosages-table-wrap" id="rubric-dosages-table-wrap">
@@ -1375,9 +1373,8 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title">
                   <span class="rubric-icon">📘</span>
-                  <h3>DGAI / AWMF Leitlinien-Anker (Deutscher Facharzt-Standard)</h3>
+                  <h3>Leitlinie (DGAI / AWMF)</h3>
                 </div>
-                <span class="rubric-tag">AWMF-Standard</span>
               </div>
               <div class="rubric-card-body" id="rubric-guidelines-content">
                 <!-- Dynamically populated guideline info -->
@@ -1392,9 +1389,8 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title">
                   <span class="rubric-icon">⚠️</span>
-                  <h3>Kritische Prüfungsfallen &amp; Kardinalfehler (K.O.-Kriterien)</h3>
+                  <h3>K.O.-Kriterien &amp; Prüfungsfallen</h3>
                 </div>
-                <span class="rubric-tag-danger">Tödliche Fehler</span>
               </div>
               <div class="rubric-card-body">
                 <div class="pitfall-content" id="rubric-pitfall-text">
@@ -1408,11 +1404,11 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title" title="Lösung der Prüfer-Intervention / Jüri Müdahalesi Çözümü">
                   <span class="rubric-icon">👨‍⚕️</span>
-                  <h3>Lösung der Prüfer-Intervention (Klinische Wendung &amp; Soforttherapie)</h3>
+                  <h3>Lösung der Prüfer-Intervention</h3>
                 </div>
                 <div class="rubric-header-actions">
                   <button id="btn-audio-speak-solution" class="btn-audio-action-sm" type="button" title="Lösung der Prüfer-Intervention laut vorlesen">
-                    <span>🔊 Prüfer-Lösung vorlesen</span>
+                    <span>🔊 Vorlesen</span>
                   </button>
                   <span class="rubric-tag-alert" title="ÄKNO Notfall-Lösung / Acil Çözüm">ÄKNO Notfall-Lösung</span>
                 </div>
@@ -1432,9 +1428,8 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title">
                   <span class="rubric-icon">⚖️</span>
-                  <h3>ÄKNO Rechtsfrage &amp; Aufklärung (NRW Medizinrecht)</h3>
+                  <h3>Rechtsfrage &amp; Aufklärung</h3>
                 </div>
-                <span class="rubric-tag">BGB &amp; Berufsordnung</span>
               </div>
               <div class="rubric-card-body" id="rubric-legal-content">
                 <!-- Dynamically populated legal checkpoint -->
@@ -1449,13 +1444,12 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title">
                   <span class="rubric-icon">🗣️</span>
-                  <h3>"Wie sage ich es?" (Strukturierte Formulierungshilfe &amp; Redemittel)</h3>
+                  <h3>Redemittel: „Wie sage ich es?“</h3>
                 </div>
                 <div class="rubric-header-actions">
                   <button id="btn-audio-speak-verbal" class="btn-audio-action-sm" type="button" title="Formulierungshilfe &amp; Redemittel laut vorlesen (Aussprache-Trainer)">
-                    <span>🔊 Redemittel vorlesen</span>
+                    <span>🔊 Vorlesen</span>
                   </button>
-                  <span class="rubric-tag">ÄKNO-Sprachmuster</span>
                 </div>
               </div>
               <div class="rubric-card-body">
@@ -1470,9 +1464,8 @@
               <div class="rubric-card-header">
                 <div class="rubric-badge-title">
                   <span class="rubric-icon">🎯</span>
-                  <h3>Schlüsselbegriffe &amp; Dosierungen (Prüfer-Checkliste)</h3>
+                  <h3>Prüfer-Checkliste</h3>
                 </div>
-                <span class="rubric-tag">High-Yield Fakten</span>
               </div>
               <div class="rubric-card-body">
                 <div class="checklist-items" id="rubric-checklist-items">
@@ -1483,7 +1476,7 @@
 
             <!-- Full Text Accordion for In-Depth Background Reading -->
             <details class="full-reference-accordion" id="full-reference-details">
-              <summary>📖 Vollständige Lehrbuch-Erklärung &amp; Hintergrund anzeigen</summary>
+              <summary>📖 Lehrbuch-Erklärung</summary>
               <div class="full-reference-body" id="full-reference-body">
                 <!-- Full textbook answer / explanation -->
               </div>
@@ -1496,9 +1489,9 @@
       <!-- Personal Medical Notes Card -->
       <div id="user-note-card" class="user-note-card">
         <div class="note-header">
-          <span>📝</span> Eigene Klinik-Notiz &amp; Eselbrücke:
+          <span>📝</span> Eigene Notiz
         </div>
-        <textarea id="user-note-text" class="user-note-textarea" placeholder="Schreiben Sie hier persönliche Notizen, Klinik-SOPs oder Eselbrücken zu dieser Frage..."></textarea>
+        <textarea id="user-note-text" class="user-note-textarea" placeholder="Notiz oder Eselsbrücke…"></textarea>
         <div class="note-actions">
           <button id="btn-save-note" class="btn btn-sm btn-primary">
             <span>💾</span> Notiz Speichern
@@ -1509,7 +1502,7 @@
 
       <!-- Self-Assessment Buttons (3-Stufen SM-2) (FAZ 5) -->
       <div id="self-assess-container" class="self-assess-container" style="display: none;">
-        <div class="self-assess-label">Wie prüfungssicher war Ihre mündliche Antwort? (ÄKNO Spaced Repetition)</div>
+        <div class="self-assess-label" title="🇹🇷 Cevabınız ne kadar sınava hazırdı?">Wie sicher waren Sie?</div>
         <div class="self-assess-buttons">
           <button id="btn-assess-unsicher" class="btn btn-assess-btn btn-assess-red" type="button" title="Unsicher / K.O.-Fehler (Wiederholung morgen)">
             <span>🔴</span> Unsicher / K.O.-Fehler <kbd class="kbd-hint">3 / F</kbd>
