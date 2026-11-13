@@ -3988,12 +3988,12 @@ footer {
 }
 
 #step1-container .question-body {
-  padding: 1rem 1.15rem 0.85rem 1.15rem;
+  padding: 0.9rem 1.1rem 0.8rem 1.1rem;
   margin-bottom: 0;
-  font-size: 1.02rem;
-  line-height: 1.7;
+  font-size: 0.96rem;
+  line-height: 1.62;
   color: var(--text-main);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
   white-space: normal;
 }
 
@@ -5871,12 +5871,12 @@ body.mode-simulation-active #step1-container .step-card-header {
 }
 
 body.mode-simulation-active #question-text {
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.6;
+  font-size: 0.96rem;
+  font-weight: 500;
+  line-height: 1.62;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
-  padding: 0.95rem 1.15rem;
+  letter-spacing: -0.005em;
+  padding: 0.9rem 1.1rem;
   margin: 0;
   white-space: normal;
 }
