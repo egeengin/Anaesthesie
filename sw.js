@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v11.6'; // upgraded from facharzt-cache-v7.7 / v11.5 for desktop mobile-thumb-bar fix & kbd-hint nowrap
+const CACHE_NAME = 'facharzt-cache-v11.7'; // upgraded from facharzt-cache-v7.7 / v11.6 for auto-refresh on SW controllerchange
 const CORE_ASSETS = [
   './',
   './index.html',

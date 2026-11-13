@@ -2765,8 +2765,16 @@
   <!-- Service Worker Registration for Offline PWA Mode -->
   <script>
     if ('serviceWorker' in navigator) {
+      let swRefreshing = false;
+      const hadController = Boolean(navigator.serviceWorker.controller);
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (hadController && !swRefreshing) {
+          swRefreshing = true;
+          window.location.reload();
+        }
+      });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=11.6')
+        navigator.serviceWorker.register('./sw.js?v=11.7')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
