@@ -303,7 +303,7 @@ body {
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: none;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -402,7 +402,7 @@ body {
 
 /* Melis Study Progress Bar (Unified Elegant Strip) */
 .study-progress-card {
-  max-width: 1200px;
+  max-width: none;
   margin: 10px auto 12px auto;
   padding: 10px 16px;
   background: var(--bg-card);
@@ -465,7 +465,7 @@ body {
 
 /* Control & Filter Strip */
 .controls-container {
-  max-width: 1200px;
+  max-width: none;
   margin: 0 auto 14px auto;
   display: flex;
   flex-direction: row;
@@ -891,7 +891,7 @@ body {
 
 /* Reading Feed Container */
 .study-feed {
-  max-width: 1200px;
+  max-width: none;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
