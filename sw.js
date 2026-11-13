@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v11.2'; // upgraded from facharzt-cache-v7.7 / v9.9 for minimalist exam header, flag toggles, searchable category grid & instant cache refresh
+const CACHE_NAME = 'facharzt-cache-v11.3'; // upgraded from facharzt-cache-v7.7 / v11.2 for unified navbar switcher & flat tools dropdown
 const CORE_ASSETS = [
   './',
   './index.html',

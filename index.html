@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=11.2">
+  <link rel="stylesheet" href="styles.css?v=11.3">
   <link rel="stylesheet" href="study.css?v=10.8">
 </head>
 <body>
@@ -59,6 +59,23 @@
           <span class="brand-subtitle">Intelligenter Prüfungstrainer (NRW)</span>
         </div>
       </a>
+
+      <!-- Dual-Mode Master Switcher integrated cleanly into top navbar -->
+      <div class="master-view-container" role="navigation" aria-label="Görünüm Seçici">
+        <button id="master-btn-study" class="master-tab-btn active" type="button" title="Almanca Oku, Üzerinde Durunca/Dokununca Türkçe Çeviri">
+          <span class="tab-icon">📖</span>
+          <span class="tab-label-group">
+            <strong>Çalışma &amp; Okuma</strong>
+          </span>
+        </button>
+
+        <button id="master-btn-exam" class="master-tab-btn" type="button" title="4-Adımlı Sınav Simülatörü (Vital/BGA Monitörü & 45-Dk Sözlü Sınav)">
+          <span class="tab-icon">🎯</span>
+          <span class="tab-label-group">
+            <strong>Sınav Simülatörü</strong>
+          </span>
+        </button>
+      </div>
       
       <div class="nav-actions">
         <div id="cloud-sync-status" class="cloud-sync-badge" title="Automatischer Wolken-Sync aktiv" style="display: none;">
@@ -107,39 +124,35 @@
                   <span class="item-sub">ÄKNO Hazırlık Skoru</span>
                 </span>
               </button>
-              <details class="dropdown-more-group">
-                <summary class="dropdown-more-summary"><span>⋯</span> Diğer Araçlar (4)</summary>
-                <div class="dropdown-more-items">
-                  <button id="aekno-guide-trigger" class="dropdown-item" type="button" role="menuitem" title="Ärztekammer Nordrhein (Düsseldorf) Jüri ve Protokol Rehberi">
-                    <span class="item-icon">🏛️</span>
-                    <span class="item-content">
-                      <span class="item-title">Düsseldorf Rehberi</span>
-                      <span class="item-sub">Jüri &amp; K.O. Kriterleri</span>
-                    </span>
-                  </button>
-                  <button id="grid-trigger" class="dropdown-item" type="button" role="menuitem" title="Tüm Sorular ve Hızlı Geçiş">
-                    <span class="item-icon">📑</span>
-                    <span class="item-content">
-                      <span class="item-title">Soru Matrisi (669)</span>
-                      <span class="item-sub">Tüm Vaka Navigasyonu</span>
-                    </span>
-                  </button>
-                  <button id="abbrev-trigger" class="dropdown-item" type="button" role="menuitem" title="Tıbbi Kısaltmalar ve Terimler Sözlüğü">
-                    <span class="item-icon">🔤</span>
-                    <span class="item-content">
-                      <span class="item-title">Tıbbi Kısaltmalar (DE/TR)</span>
-                      <span class="item-sub">73 Tıbbi Kısaltma</span>
-                    </span>
-                  </button>
-                  <button id="user-guide-trigger" class="dropdown-item" type="button" role="menuitem" title="Kullanım Kılavuzu ve Sınav İpuçları">
-                    <span class="item-icon">📖</span>
-                    <span class="item-content">
-                      <span class="item-title">Kullanım Kılavuzu</span>
-                      <span class="item-sub">Sınav Rehberi &amp; İpuçları</span>
-                    </span>
-                  </button>
-                </div>
-              </details>
+              <div class="dropdown-divider" role="separator"></div>
+              <button id="aekno-guide-trigger" class="dropdown-item" type="button" role="menuitem" title="Ärztekammer Nordrhein (Düsseldorf) Jüri ve Protokol Rehberi">
+                <span class="item-icon">🏛️</span>
+                <span class="item-content">
+                  <span class="item-title">Düsseldorf Rehberi</span>
+                  <span class="item-sub">Jüri &amp; K.O. Kriterleri</span>
+                </span>
+              </button>
+              <button id="grid-trigger" class="dropdown-item" type="button" role="menuitem" title="Tüm Sorular ve Hızlı Geçiş">
+                <span class="item-icon">📑</span>
+                <span class="item-content">
+                  <span class="item-title">Soru Matrisi (669)</span>
+                  <span class="item-sub">Tüm Vaka Navigasyonu</span>
+                </span>
+              </button>
+              <button id="abbrev-trigger" class="dropdown-item" type="button" role="menuitem" title="Tıbbi Kısaltmalar ve Terimler Sözlüğü">
+                <span class="item-icon">🔤</span>
+                <span class="item-content">
+                  <span class="item-title">Tıbbi Kısaltmalar (DE/TR)</span>
+                  <span class="item-sub">73 Tıbbi Kısaltma</span>
+                </span>
+              </button>
+              <button id="user-guide-trigger" class="dropdown-item" type="button" role="menuitem" title="Kullanım Kılavuzu ve Sınav İpuçları">
+                <span class="item-icon">📖</span>
+                <span class="item-content">
+                  <span class="item-title">Kullanım Kılavuzu</span>
+                  <span class="item-sub">Sınav Rehberi &amp; İpuçları</span>
+                </span>
+              </button>
             </div>
           </div>
           <button id="theme-toggle" class="pill-btn" title="Dunkelmodus umschalten">
@@ -152,25 +165,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- Dual-Mode Master Switcher (Melis'in Çalışma Sayfası vs Sınav Simülatörü) -->
-  <div class="master-view-switcher-bar" role="navigation" aria-label="Görünüm Seçici">
-    <div class="master-view-container">
-      <button id="master-btn-study" class="master-tab-btn active" type="button" title="Almanca Oku, Üzerinde Durunca/Dokununca Türkçe Çeviri">
-        <span class="tab-icon">📖</span>
-        <span class="tab-label-group">
-          <strong>Çalışma &amp; Okuma</strong>
-        </span>
-      </button>
-
-      <button id="master-btn-exam" class="master-tab-btn" type="button" title="4-Adımlı Sınav Simülatörü (Vital/BGA Monitörü & 45-Dk Sözlü Sınav)">
-        <span class="tab-icon">🎯</span>
-        <span class="tab-label-group">
-          <strong>Sınav Simülatörü</strong>
-        </span>
-      </button>
-    </div>
-  </div>
 
   <!-- Main Container -->
   <main class="container">
@@ -2772,7 +2766,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=11.2')
+        navigator.serviceWorker.register('./sw.js?v=11.3')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
