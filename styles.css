@@ -9871,3 +9871,40 @@ body.mode-german-only .trans-interactive {
   line-height: 1.45;
   background: var(--bg-card);
 }
+
+/* Hover-only Turkish translations for Redefluss & Rhetoric Prompter (Clean German-first layout) */
+.redefluss-chip-body .redefluss-text-tr,
+.sim-rhetoric-phase-hint #sim-rhetoric-hint-tr {
+  display: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(100, 116, 139, 0.25);
+}
+
+.redefluss-chip-body .redefluss-text-de {
+  cursor: help;
+}
+
+.redefluss-chip-body .redefluss-text-de::after {
+  content: " 🇹🇷";
+  font-size: 0.72em;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.sim-rhetoric-phase-hint {
+  cursor: help;
+}
+
+.redefluss-chip-body:hover .redefluss-text-tr,
+.redefluss-chip-body:focus-within .redefluss-text-tr,
+.sim-rhetoric-phase-hint:hover #sim-rhetoric-hint-tr,
+.sim-rhetoric-phase-hint:focus-within #sim-rhetoric-hint-tr {
+  display: block;
+}
+
+.redefluss-chip-body:hover .redefluss-text-de::after {
+  opacity: 1;
+}

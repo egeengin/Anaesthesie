@@ -500,8 +500,8 @@
 
           <!-- 👨‍⚕️ PRÜFER-FRAGE (Sözlü Sınav Sorusu & Fallvorstellung) -->
           <div class="oral-question-card-box">
-            <div class="oral-role-badge examiner-role-badge">
-              <span>👨‍⚕️</span> Prüfer-Frage / Fallvorstellung (Sözlü Sınav Sorusu)
+            <div class="oral-role-badge examiner-role-badge" title="🇹🇷 Sözlü Sınav Sorusu">
+              <span>👨‍⚕️</span> Prüfer-Frage / Fallvorstellung
             </div>
             <div class="oral-question-text">
               ${renderFormattedOralQuestion(questionDE, questionTR)}
@@ -576,10 +576,10 @@
                 🔊 Prüfer
               </button>
             </div>
-            <button type="button" class="btn-reveal-turn" data-card-id="${q.id}">
+            <button type="button" class="btn-reveal-turn" data-card-id="${q.id}" title="${isTurnHidden ? '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını & First-Principles Analizini Aç' : '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle'}">
               ${isTurnHidden
-                ? '🎯 İlk 3 Hamlemi Düşündüm — Uzman Cevabını &amp; First-Principles Analizini Aç (Erste 3 Maßnahmen aufdecken)'
-                : '🔒 Kendimi Test Etmek İçin Cevabı Gizle (Erste 3 Maßnahmen &amp; Musterantwort ausblenden)'}
+                ? '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken'
+                : '🔒 Erste 3 Maßnahmen &amp; Musterantwort ausblenden'}
             </button>
           </div>
           ` : ''}
@@ -590,8 +590,8 @@
           ${threeActionsChallenge ? `
           <!-- ✅ ERSTE 3 SOFORTMASSNAHMEN & PRÜFER-NACHFRAGE (FIRST PRINCIPLES) -->
           <div style="margin-bottom: 14px; padding: 12px 15px; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.28); border-radius: 12px;">
-            <div style="font-size: var(--font-xs); font-weight: 800; text-transform: uppercase; color: #047857; letter-spacing: 0.03em; margin-bottom: 6px;">
-              ✅ Erwartete Erste 3 Sofortmaßnahmen im OP / auf ITS (İlk 3 Acil Hamle &amp; Fizyolojik Gerekçe)
+            <div style="font-size: var(--font-xs); font-weight: 800; text-transform: uppercase; color: #047857; letter-spacing: 0.03em; margin-bottom: 6px;" title="🇹🇷 İlk 3 Acil Hamle &amp; Fizyolojik Gerekçe">
+              ✅ Erwartete Erste 3 Sofortmaßnahmen im OP / auf ITS
             </div>
             ${threeActionsChallenge.firstThreeActions.map(act => `
               <div class="melis-action-step-card">
@@ -626,8 +626,8 @@
           <!-- 🗣️ REDEEINSTIEG (Sınavda Söze Başlama Kalıbı) -->
           <div class="oral-redeeinstieg-box" style="margin-bottom: 14px; padding: 10px 14px; background: rgba(16, 185, 129, 0.06); border: 1px dashed rgba(16, 185, 129, 0.35); border-radius: 10px;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
-              <span style="font-size: var(--font-xs); font-weight: 700; text-transform: uppercase; color: #047857; letter-spacing: 0.03em;">
-                🗣️ Empfohlener Redeeinstieg (Sınavda Söze Başlama Kalıbı)
+              <span style="font-size: var(--font-xs); font-weight: 700; text-transform: uppercase; color: #047857; letter-spacing: 0.03em;" title="🇹🇷 Sınavda Söze Başlama Kalıbı">
+                🗣️ Empfohlener Redeeinstieg
               </span>
               <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(redeflussStep1.de || redeflussStep1.textDE || '')}">
                 🔊 Dinle
@@ -644,8 +644,8 @@
 
           <!-- 🩺 FACHARZT-MUSTERANTWORT (Doğrudan Model Uzman Yanıtı) -->
           <div class="oral-answer-card-box">
-            <div class="oral-role-badge candidate-role-badge">
-              <span>🩺</span> Facharzt-Musterantwort &amp; Leitlinien (Doğrudan Model Uzman Cevabı)
+            <div class="oral-role-badge candidate-role-badge" title="🇹🇷 Doğrudan Model Uzman Cevabı">
+              <span>🩺</span> Facharzt-Musterantwort &amp; Leitlinien
             </div>
             <div class="oral-answer-content">
               ${renderFormattedOralAnswer(answerDE, answerTR)}
@@ -693,9 +693,9 @@
 
         if (firstPrinciples) {
           html += `
-            <details class="melis-module-details" open>
-              <summary class="melis-module-summary">
-                <span>🧠 ${escapeHtml(firstPrinciples.titleDE)} <small style="color: var(--text-muted); font-weight: 500;">(${escapeHtml(firstPrinciples.titleTR)})</small></span>
+            <details class="melis-module-details">
+              <summary class="melis-module-summary" title="🇹🇷 ${escapeHtml(firstPrinciples.titleTR)}">
+                <span>🧠 ${escapeHtml(firstPrinciples.titleDE)}</span>
                 <span style="font-size: var(--font-xs); color: var(--primary);">First-Principles ▼</span>
               </summary>
               <div class="melis-module-body">
@@ -729,8 +729,8 @@
           };
           html += `
             <details class="melis-module-details">
-              <summary class="melis-module-summary">
-                <span>🎯 Strukturierte 3-Stufen Prüfungs-Synthese (Acil Müdahale · İkincil Tanı · Farmakolojik Nüanslar)</span>
+              <summary class="melis-module-summary" title="🇹🇷 Acil Müdahale · İkincil Tanı · Farmakolojik Nüanslar">
+                <span>🎯 Strukturierte 3-Stufen Prüfungs-Synthese</span>
                 <span style="font-size: var(--font-xs); color: var(--primary);">Prüfer-Bewertung ▼</span>
               </summary>
               <div class="melis-module-body">
@@ -761,7 +761,7 @@
               <div class="melis-module-body">
                 <div style="margin-bottom: 10px;">
                   <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: var(--primary);">🏥 Morgen-Übergabe / Frühbesprechung (Sabah Toplantısı &amp; Kıdemli Devri):</strong>
+                    <strong style="color: var(--primary);" title="🇹🇷 Sabah Toplantısı &amp; Kıdemli Devri">🏥 Morgen-Übergabe / Frühbesprechung:</strong>
                     <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
                   </div>
                   <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
@@ -769,14 +769,14 @@
                 </div>
                 <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
                   <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: var(--accent-emerald);">🤝 Prämedikations- &amp; Aufklärungsgespräch (Hasta/Yakını Aydınlatma Cümlesi):</strong>
+                    <strong style="color: var(--accent-emerald);" title="🇹🇷 Hasta/Yakını Aydınlatma Cümlesi">🤝 Prämedikations- &amp; Aufklärungsgespräch:</strong>
                     <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
                   </div>
                   <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
                   <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.praemedikationTR)}</div>
                 </div>
                 <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                  <strong style="color: #b45309; font-size: var(--font-base);">🔤 Idiomatischer Klinik-Jargon &amp; Abkürzungen (Hastane Kısaltmaları):</strong>
+                  <strong style="color: #b45309; font-size: var(--font-base);" title="🇹🇷 Hastane Kısaltmaları">🔤 Idiomatischer Klinik-Jargon &amp; Abkürzungen:</strong>
                   <div class="melis-jargon-grid">
                     ${(bedsideComm.jargonTerms || []).map(jt => `
                       <div class="melis-jargon-card">
@@ -804,9 +804,22 @@
               <span>🏛️</span> ÄKNO Düsseldorf Prüfer-Profil: ${escapeHtml(ep.name || 'Prüfungskommission')} (${escapeHtml(ep.hospital || 'Universitätsklinikum')})
             </div>
             <div style="font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.55;">
-              <div><strong>🎯 Prüfungsschwerpunkt:</strong> ${escapeHtml(ep.focus || '')}</div>
-              ${ep.trap ? `<div style="margin-top: 2px; color: #b45309;"><strong>⚠️ Typische Prüfungsfalle:</strong> ${escapeHtml(ep.trap)}</div>` : ''}
-              ${ep.keywords ? `<div style="margin-top: 2px; color: #047857;"><strong>⭐ Signalwörter:</strong> ${escapeHtml(ep.keywords)}</div>` : ''}
+              <div>
+                <strong>🎯 Prüfungsschwerpunkt:</strong> ${renderInteractiveGerman(ep.focus || '', ep.focus_tr)}
+                ${ep.focus_tr ? `<div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(ep.focus_tr)}</div>` : ''}
+              </div>
+              ${ep.trap ? `
+                <div style="margin-top: 2px; color: #b45309;">
+                  <strong>⚠️ Typische Prüfungsfalle:</strong> ${renderInteractiveGerman(ep.trap, ep.trap_tr)}
+                  ${ep.trap_tr ? `<div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(ep.trap_tr)}</div>` : ''}
+                </div>
+              ` : ''}
+              ${ep.keywords ? `
+                <div style="margin-top: 2px; color: #047857;">
+                  <strong>⭐ Signalwörter:</strong> ${renderInteractiveGerman(ep.keywords, ep.keywords_tr)}
+                  ${ep.keywords_tr ? `<div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(ep.keywords_tr)}</div>` : ''}
+                </div>
+              ` : ''}
             </div>
           </div>
         `;
@@ -930,12 +943,14 @@
         if (isCurrentlyHidden) {
           turnBox.classList.remove('melis-hidden-turn');
           state.revealedCards[cardId] = true;
-          btn.innerHTML = '🔒 Kendimi Test Etmek İçin Cevabı Gizle (Erste 3 Maßnahmen &amp; Musterantwort ausblenden)';
+          btn.innerHTML = '🔒 Erste 3 Maßnahmen &amp; Musterantwort ausblenden';
+          btn.title = '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle';
           triggerHapticFeedback();
         } else {
           turnBox.classList.add('melis-hidden-turn');
           delete state.revealedCards[cardId];
-          btn.innerHTML = '🎯 İlk 3 Hamlemi Düşündüm — Uzman Cevabını &amp; First-Principles Analizini Aç (Erste 3 Maßnahmen aufdecken)';
+          btn.innerHTML = '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken';
+          btn.title = '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını & First-Principles Analizini Aç';
         }
       });
     });

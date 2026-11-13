@@ -4708,7 +4708,7 @@ Tedavi:
     const elBtnToggleSpick = document.getElementById('btn-toggle-spickzettel');
     if (elVorabSpickBox) elVorabSpickBox.style.display = 'none';
     if (elBtnToggleSpick) {
-      elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>';
+      elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel</span>';
       elBtnToggleSpick.classList.remove('active');
     }
     if (elSpickzettelContent && typeof CurriculumEngine !== 'undefined') {
@@ -4856,7 +4856,7 @@ Tedavi:
       if (elBadgeExaminerToggle) elBadgeExaminerToggle.setAttribute('aria-expanded', 'false');
       if (elExaminerBadgeTitle) {
         const shortName = examinerProfile.name.split('/')[0].trim();
-        elExaminerBadgeTitle.textContent = `ÄKNO Düsseldorf: Prüfer-Profil (${shortName}) / Jüri Profili`;
+        elExaminerBadgeTitle.textContent = `ÄKNO Düsseldorf: Prüfer-Profil (${shortName})`;
       }
       renderExaminerCardContent(examinerProfile, currentQ);
     } else if (elExaminerRevealBox) {
@@ -7534,10 +7534,10 @@ Tedavi:
       const isVisible = elVorabSpickBox.style.display === 'block';
       elVorabSpickBox.style.display = isVisible ? 'none' : 'block';
       if (!isVisible) {
-        elBtnToggleSpick.innerHTML = '<span>✕ 30-Sekunden-Spickzettel schließen</span>';
+        elBtnToggleSpick.innerHTML = '<span>✕ Spickzettel schließen</span>';
         elBtnToggleSpick.classList.add('active');
       } else {
-        elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>';
+        elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel</span>';
         elBtnToggleSpick.classList.remove('active');
       }
     });
@@ -7546,7 +7546,7 @@ Tedavi:
     elBtnCloseSpick.addEventListener('click', () => {
       elVorabSpickBox.style.display = 'none';
       if (elBtnToggleSpick) {
-        elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel (Vorab-Wissen / Konu Özeti)</span>';
+        elBtnToggleSpick.innerHTML = '<span>📘 30-Sekunden-Spickzettel</span>';
         elBtnToggleSpick.classList.remove('active');
       }
     });

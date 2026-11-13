@@ -21,8 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=10.3">
-  <link rel="stylesheet" href="study.css?v=10.3">
+  <link rel="stylesheet" href="styles.css?v=10.4">
+  <link rel="stylesheet" href="study.css?v=10.4">
 </head>
 <body>
 
@@ -361,7 +361,7 @@
           </div>
         </div>
         <div class="guide-strip-header" style="justify-content:flex-end; margin-top: 0.5rem; margin-bottom: 0;">
-          <button id="btn-dismiss-onboarding" class="btn-xs btn-dismiss-guide" type="button" title="Anleitung einklappen / Rehberi Daralt">▲ Einklappen / Daralt</button>
+          <button id="btn-dismiss-onboarding" class="btn-xs btn-dismiss-guide" type="button" title="Anleitung einklappen / Rehberi Daralt">▲ Einklappen</button>
         </div>
       </details>
 
@@ -695,7 +695,7 @@
 
               <div id="audio-speed-dropdown" class="audio-speed-dropdown" style="display: none;" role="dialog" aria-label="Wiedergabegeschwindigkeit &amp; Stimme">
                 <div class="speed-dropdown-header">
-                  <span class="speed-header-title">⚡ Geschwindigkeit / Hız</span>
+                  <span class="speed-header-title" title="🇹🇷 Okuma Hızı">⚡ Geschwindigkeit</span>
                   <span id="speed-slider-val-badge" class="speed-val-badge">1.15x</span>
                 </div>
                 
@@ -718,7 +718,7 @@
 
                 <!-- Voice Engine Selector (Gemini Neural Studio vs. Gapless Stream vs. Siri) -->
                 <div class="voice-engine-selector-box" style="margin-top: 0.65rem; padding-top: 0.55rem; border-top: 1px solid var(--card-border);">
-                  <label for="tts-voice-mode-select" style="display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">🎙️ Stimme / Ses Motoru:</label>
+                  <label for="tts-voice-mode-select" title="🇹🇷 Ses Motoru" style="display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">🎙️ Stimme:</label>
                   <select id="tts-voice-mode-select" style="width: 100%; font-size: 0.8rem; padding: 0.35rem 0.5rem; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg-secondary); color: var(--text-main);">
                     <option value="gemini:Charon">🤖 Gemini Studio: Prof. Charon (Prüfer, Natürlich)</option>
                     <option value="gemini:Kore">🤖 Gemini Studio: OÄ Kore (Weiblich, Klar)</option>
@@ -803,7 +803,7 @@
             </button>
             <button id="btn-sim-toggle-examiner-profile" class="btn-sim-action btn-sim-profile" type="button" title="ÄKNO Prüfer-Profil &amp; Erwartungshorizont anzeigen / Jüri profilini gör">
               <span class="sim-btn-icon">🏛️</span>
-              <span id="sim-profile-btn-label">Jüri Profili / Prüfer-Profil</span>
+              <span id="sim-profile-btn-label">Prüfer-Profil</span>
             </button>
           </div>
         </div>
@@ -812,7 +812,7 @@
         <div class="sim-rhetoric-prompter" id="sim-rhetoric-prompter">
           <div class="sim-rhetoric-header">
             <span class="rhetoric-title">🗣️ Düsseldorfer 4-Stufen-Prüfungsrhetorik:</span>
-            <span class="rhetoric-sub">Strukturieren Sie Ihre mündliche Antwort nach diesem Schema / Sözlü cevabınızı bu 4 adımla kurun:</span>
+            <span class="rhetoric-sub" title="🇹🇷 Sözlü cevabınızı bu 4 adımla kurun">Strukturieren Sie Ihre mündliche Antwort nach diesem Schema:</span>
           </div>
           <div class="sim-rhetoric-grid">
             <button class="sim-rhetoric-phase active" data-phase="1" type="button">
@@ -832,9 +832,9 @@
               <span class="phase-label">Notfall &amp; Komplikationsplan</span>
             </button>
           </div>
-          <div id="sim-rhetoric-phase-hint" class="sim-rhetoric-phase-hint" style="margin-top: 0.55rem; padding: 0.55rem 0.75rem; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--card-border); font-size: 0.84rem; line-height: 1.45;">
+          <div id="sim-rhetoric-phase-hint" class="sim-rhetoric-phase-hint" tabindex="0" style="margin-top: 0.55rem; padding: 0.55rem 0.75rem; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--card-border); font-size: 0.84rem; line-height: 1.45;">
             <span id="sim-rhetoric-hint-de" style="display: block; font-weight: 600; color: var(--text-main);">🇩🇪 „Zusammenfassend handelt es sich um einen Hochrisikopatienten mit akuter Gefährdung durch Hypoxie und hämodynamische Instabilität.“</span>
-            <span id="sim-rhetoric-hint-tr" style="display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px;">🇹🇷 „Özetle, hipoksi ve hemodinamik instabilite açısından akut hayati tehlike altında olan yüksek riskli bir hasta söz konusudur.“</span>
+            <span id="sim-rhetoric-hint-tr" class="sim-rhetoric-hint-tr">🇹🇷 „Özetle, hipoksi ve hemodinamik instabilite açısından akut hayati tehlike altında olan yüksek riskli bir hasta söz konusudur.“</span>
           </div>
         </div>
 
@@ -923,8 +923,8 @@
         <h4 class="mcq-oral-title">Mündlicher Kurzfall (Schnelle mündliche Stellungnahme)</h4>
         <p class="mcq-oral-desc">Der Prüfer bittet um eine kurze mündliche Stellungnahme zu den Kernaussagen. Formulieren Sie Ihre Einschätzung frei heraus!</p>
         <div class="mcq-oral-actions">
-          <button id="btn-reveal-mcq-options" class="btn btn-sm btn-outline-primary" type="button">
-            <span>💡</span> Aussagen &amp; Prüfungs-Fakten zur Selbstkontrolle einblenden / İpuçlarını Gör
+          <button id="btn-reveal-mcq-options" class="btn btn-sm btn-outline-primary" type="button" title="🇹🇷 İpuçlarını Gör">
+            <span>💡</span> Aussagen &amp; Prüfungs-Fakten zur Selbstkontrolle einblenden
           </button>
         </div>
       </div>
@@ -2784,7 +2784,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=9.7"></script>
+  <script src="study.js?v=9.8"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');
