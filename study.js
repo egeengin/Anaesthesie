@@ -1458,10 +1458,19 @@
 
     document.querySelectorAll('.btn-type-filter').forEach(btn => {
       const t = btn.getAttribute('data-type');
-      if (t === 'all') btn.textContent = `Tüm Sözlü Sınav Arşivi (${totalCount})`;
-      else if (t === 'dus') btn.textContent = `🏛️ ÄKNO Düsseldorf & AMBOSS Vaka Protokolleri (${dusCount})`;
-      else if (t === 'open') btn.textContent = `🏥 Klinik Vaka Soruları — Annecke & Hohn (${openCount})`;
-      else if (t === 'options') btn.textContent = `📚 Konu Bazlı Sözlü Soru-Cevap (${optionsCount})`;
+      if (t === 'all') {
+        btn.textContent = `Tümü (${totalCount})`;
+        btn.title = `Tüm Sözlü Sınav Arşivi (${totalCount})`;
+      } else if (t === 'dus') {
+        btn.textContent = `🏛️ ÄKNO (${dusCount})`;
+        btn.title = `ÄKNO Düsseldorf & AMBOSS Vaka Protokolleri (${dusCount})`;
+      } else if (t === 'open') {
+        btn.textContent = `🏥 Vaka (${openCount})`;
+        btn.title = `Klinik Vaka Soruları — Annecke & Hohn (${openCount})`;
+      } else if (t === 'options') {
+        btn.textContent = `📚 Konu (${optionsCount})`;
+        btn.title = `Konu Bazlı Sözlü Soru-Cevap (${optionsCount})`;
+      }
     });
   }
 

@@ -466,10 +466,12 @@ body {
 /* Control & Filter Strip */
 .controls-container {
   max-width: 900px;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 14px auto;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
 }
 
 /* Search Input */
@@ -477,20 +479,26 @@ body {
   position: relative;
   display: flex;
   align-items: center;
+  flex: 1 1 220px;
+  min-width: 200px;
 }
 
 .search-input {
   width: 100%;
-  padding: 12px 16px 12px 42px;
-  border-radius: var(--radius-md);
+  padding: 8px 14px 8px 36px;
+  border-radius: var(--radius-full, 999px);
   border: 1px solid var(--border-color);
   background: var(--bg-card);
   color: var(--text-primary);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--shadow-sm);
+}
+
+.controls-container .category-filter-scroll {
+  flex-basis: 100%;
 }
 
 .search-input:focus {
