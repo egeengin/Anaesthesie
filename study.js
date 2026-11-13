@@ -1082,27 +1082,13 @@
       cats[c] = (cats[c] || 0) + 1;
     });
 
-    let html = `<button class="btn-cat-chip active" data-cat="all">Alle Themen (${allQuestions.length})</button>`;
-    
-    const sortedCats = Object.keys(cats).sort((a, b) => b.length - a.length);
+    const sortedCats = Object.keys(cats).sort((a, b) => cats[b] - cats[a] || a.localeCompare(b, 'de'));
+
+    let chipsHtml = `<button class="btn-cat-chip cat-grid-item active" data-cat="all" data-search="tüm konular alle themen"><span class="cat-name">Tüm Konular</span><span class="cat-count">${allQuestions.length}</span></button>`;
     sortedCats.forEach(cat => {
-      html += `<button class="btn-cat-chip" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)} (${cats[cat]})</button>`;
+      chipsHtml += `<button class="btn-cat-chip cat-grid-item" data-cat="${escapeHtml(cat)}" data-search="${escapeHtml(cat.toLowerCase())}"><span class="cat-name">${escapeHtml(cat)}</span><span class="cat-count">${cats[cat]}</span></button>`;
     });
 
-    if (elCategoryScroll) {
-      elCategoryScroll.innerHTML = html;
-      elCategoryScroll.querySelectorAll('.btn-cat-chip').forEach(btn => {
-        btn.addEventListener('click', () => {
-          elCategoryScroll.querySelectorAll('.btn-cat-chip').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          state.activeCategory = btn.getAttribute('data-cat');
-          updateCategoryToggleLabel();
-          renderFeed(true);
-        });
-      });
-    }
-
-    // Toggle button for category drawer (Clean Apple layout)
     const elToggleCats = document.getElementById('study-btn-toggle-categories') || document.getElementById('btn-toggle-categories');
     function updateCategoryToggleLabel() {
       if (!elToggleCats) return;
@@ -1114,6 +1100,49 @@
         const shortName = state.activeCategory.length > 18 ? state.activeCategory.slice(0, 16) + '…' : state.activeCategory;
         labelSpan.textContent = `${shortName} ✕`;
       }
+    }
+
+    function collapseCategoryDrawer() {
+      if (!elCategoryScroll) return;
+      elCategoryScroll.classList.add('collapsed');
+      elCategoryScroll.classList.remove('expanded');
+      if (elToggleCats) {
+        elToggleCats.classList.remove('active');
+        elToggleCats.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (elCategoryScroll) {
+      elCategoryScroll.innerHTML = `
+        <div class="cat-drawer-search-row">
+          <input type="search" class="cat-drawer-search-input" placeholder="🔍 Konu ara (${sortedCats.length} konu)..." aria-label="Konu ara" autocomplete="off" />
+        </div>
+        <div class="cat-drawer-grid">${chipsHtml}</div>
+      `;
+
+      const catSearchInput = elCategoryScroll.querySelector('.cat-drawer-search-input');
+      const catChips = elCategoryScroll.querySelectorAll('.btn-cat-chip');
+
+      if (catSearchInput) {
+        catSearchInput.addEventListener('input', (e) => {
+          const term = e.target.value.trim().toLowerCase();
+          catChips.forEach(chip => {
+            const hay = chip.getAttribute('data-search') || '';
+            chip.style.display = (!term || hay.includes(term)) ? '' : 'none';
+          });
+        });
+      }
+
+      catChips.forEach(btn => {
+        btn.addEventListener('click', () => {
+          catChips.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.activeCategory = btn.getAttribute('data-cat');
+          updateCategoryToggleLabel();
+          collapseCategoryDrawer();
+          renderFeed(true);
+        });
+      });
     }
 
     if (elToggleCats && !elToggleCats.dataset.drawerBound) {
@@ -1140,11 +1169,10 @@
           elCategoryScroll.classList.add('expanded');
           elToggleCats.classList.add('active');
           elToggleCats.setAttribute('aria-expanded', 'true');
+          const searchInp = elCategoryScroll.querySelector('.cat-drawer-search-input');
+          if (searchInp) setTimeout(() => searchInp.focus(), 60);
         } else {
-          elCategoryScroll.classList.add('collapsed');
-          elCategoryScroll.classList.remove('expanded');
-          elToggleCats.classList.remove('active');
-          elToggleCats.setAttribute('aria-expanded', 'false');
+          collapseCategoryDrawer();
         }
       });
     }
