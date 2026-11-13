@@ -475,190 +475,106 @@
       }
 
       const isTurnHidden = state.activeRecallMode && !state.revealedCards[q.id];
+      const priorityBadge = isDus
+        ? `<span class="badge-dus-protocol">🏛️ ÄKNO</span>`
+        : (q.is_amboss_curriculum
+            ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS</span>`
+            : (q.is_high_yield ? `<span class="badge-hy-star">⭐ High-Yield</span>` : ''));
 
-      html += `
-        <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}">
-          <div class="card-header-bar">
-            <div class="card-badges">
-              <span class="badge-case-number">Frage #${globalIndex || (idx + 1)}</span>
-              <span class="badge-category">${escapeHtml(q.category || 'Anästhesie')}</span>
-              ${isDus ? `<span class="badge-dus-protocol">🏛️ ÄKNO Düsseldorf Protokoll</span>` : ''}
-              ${q.is_amboss_curriculum ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS / DGAI Leitlinie</span>` : ''}
-              ${isAnnecke ? `<span class="badge-pillar">🏥 Annecke &amp; Hohn Fall</span>` : ''}
-              ${q.is_high_yield ? `<span class="badge-hy-star">⭐ High-Yield</span>` : ''}
+      const monitorHtml = monitorData ? `
+        <div class="melis-monitor-strip">
+          <div class="melis-monitor-header">
+            <span>📟 ${renderInteractiveGerman(monitorData.scenarioBadgeDE, monitorData.scenarioBadgeTR)}</span>
+            <span class="inline-bilingual-tr" style="color: #94a3b8; font-size: var(--font-xs); text-transform: none;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
+          </div>
+          <div class="melis-vitals-grid">
+            <div class="melis-vital-tile">
+              <div class="melis-vital-label">HF / Frequenz</div>
+              <div class="melis-vital-value melis-val-hr">♥ ${escapeHtml(monitorData.vitals.hr)}</div>
             </div>
-
-            <div class="card-actions-top">
-              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(questionDE + '\n\n' + answerDE)}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
-                <span>🔊</span> Telaffuz
-              </button>
-              <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
-                <span>${isRead ? '✓' : '○'}</span> ${isRead ? 'Gelesen' : 'Als gelesen'}
-              </button>
+            <div class="melis-vital-tile">
+              <div class="melis-vital-label">RR / MAP</div>
+              <div class="melis-vital-value melis-val-bp">${escapeHtml(monitorData.vitals.bp)} <small style="font-size: var(--font-xs); opacity:0.85;">(${escapeHtml(monitorData.vitals.map)})</small></div>
+            </div>
+            <div class="melis-vital-tile">
+              <div class="melis-vital-label">SpO₂</div>
+              <div class="melis-vital-value melis-val-spo2">${escapeHtml(monitorData.vitals.spo2)}</div>
+            </div>
+            <div class="melis-vital-tile">
+              <div class="melis-vital-label">EtCO₂</div>
+              <div class="melis-vital-value melis-val-etco2">${escapeHtml(monitorData.vitals.etco2)}</div>
+            </div>
+            <div class="melis-vital-tile">
+              <div class="melis-vital-label">Temp.</div>
+              <div class="melis-vital-value melis-val-temp">${escapeHtml(monitorData.vitals.temp)}</div>
             </div>
           </div>
-
-          <!-- 👨‍⚕️ PRÜFER-FRAGE (Sözlü Sınav Sorusu & Fallvorstellung) -->
-          <div class="oral-question-card-box">
-            <div class="oral-role-badge examiner-role-badge" title="🇹🇷 Sözlü Sınav Sorusu">
-              <span>👨‍⚕️</span> Prüfer-Frage / Fallvorstellung
+          <div class="melis-bga-strip">
+            <div><strong>📈 EKG:</strong> ${renderInteractiveGerman(monitorData.vitals.rhythmDE, monitorData.vitals.rhythmTR)}</div>
+            <div style="margin-top: 4px;">
+              <strong>🩸 BGA:</strong>
+              pH <strong>${escapeHtml(monitorData.bga.ph)}</strong> ·
+              PaCO₂ <strong>${escapeHtml(monitorData.bga.pco2)}</strong> ·
+              PaO₂ <strong>${escapeHtml(monitorData.bga.po2)}</strong> ·
+              HCO₃⁻ <strong>${escapeHtml(monitorData.bga.hco3)}</strong> ·
+              BE <strong>${escapeHtml(monitorData.bga.be)}</strong> ·
+              Laktat <strong>${escapeHtml(monitorData.bga.lactate)}</strong> ·
+              Hb <strong>${escapeHtml(monitorData.bga.hb)}</strong> ·
+              ${escapeHtml(monitorData.bga.electrolytes)}
             </div>
-            <div class="oral-question-text">
-              ${renderFormattedOralQuestion(questionDE, questionTR)}
+            ${monitorData.advanced ? `
+            <div style="margin-top: 4px;">
+              <strong>🔬 ${escapeHtml(monitorData.advanced.labelDE)}:</strong>
+              ${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}
             </div>
+            ` : ''}
           </div>
-
-          ${monitorData ? `
-          <!-- 📟 1. DATA-FIRST KLINISCHER MONITOR, BGA, EKG & TREND-STRIP -->
-          <div class="melis-monitor-strip">
-            <div class="melis-monitor-header">
-              <span>📟 ${renderInteractiveGerman(monitorData.scenarioBadgeDE, monitorData.scenarioBadgeTR)}</span>
-              <span class="inline-bilingual-tr" style="color: #94a3b8; font-size: var(--font-xs); text-transform: none;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
-            </div>
-            <div class="melis-vitals-grid">
-              <div class="melis-vital-tile">
-                <div class="melis-vital-label">HF / Frequenz</div>
-                <div class="melis-vital-value melis-val-hr">♥ ${escapeHtml(monitorData.vitals.hr)}</div>
-              </div>
-              <div class="melis-vital-tile">
-                <div class="melis-vital-label">RR / MAP (Invasiv)</div>
-                <div class="melis-vital-value melis-val-bp">${escapeHtml(monitorData.vitals.bp)} <small style="font-size: var(--font-xs); opacity:0.85;">(${escapeHtml(monitorData.vitals.map)})</small></div>
-              </div>
-              <div class="melis-vital-tile">
-                <div class="melis-vital-label">SpO₂ (Pulsoxy)</div>
-                <div class="melis-vital-value melis-val-spo2">${escapeHtml(monitorData.vitals.spo2)}</div>
-              </div>
-              <div class="melis-vital-tile">
-                <div class="melis-vital-label">EtCO₂ (Kapno)</div>
-                <div class="melis-vital-value melis-val-etco2">${escapeHtml(monitorData.vitals.etco2)}</div>
-              </div>
-              <div class="melis-vital-tile">
-                <div class="melis-vital-label">Temperatur</div>
-                <div class="melis-vital-value melis-val-temp">${escapeHtml(monitorData.vitals.temp)}</div>
-              </div>
-            </div>
-            <div class="melis-bga-strip">
-              <div><strong>📈 EKG &amp; Rhythmus:</strong> ${renderInteractiveGerman(monitorData.vitals.rhythmDE, monitorData.vitals.rhythmTR)}</div>
-              <div style="margin-top: 4px;">
-                <strong>🩸 Arterielle BGA:</strong>
-                pH <strong>${escapeHtml(monitorData.bga.ph)}</strong> ·
-                PaCO₂ <strong>${escapeHtml(monitorData.bga.pco2)}</strong> ·
-                PaO₂ <strong>${escapeHtml(monitorData.bga.po2)}</strong> ·
-                HCO₃⁻ <strong>${escapeHtml(monitorData.bga.hco3)}</strong> ·
-                BE <strong>${escapeHtml(monitorData.bga.be)}</strong> ·
-                Laktat <strong>${escapeHtml(monitorData.bga.lactate)}</strong> ·
-                Hb <strong>${escapeHtml(monitorData.bga.hb)}</strong> ·
-                ${escapeHtml(monitorData.bga.electrolytes)}
-              </div>
-              ${monitorData.advanced ? `
-              <div style="margin-top: 4px;">
-                <strong>🔬 ${escapeHtml(monitorData.advanced.labelDE)}:</strong>
-                ${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}
-              </div>
-              ` : ''}
-            </div>
-            <div class="melis-monitor-pattern">
-              <strong>⚡ Data-First Reflex:</strong> ${renderInteractiveGerman(monitorData.patternDE, monitorData.patternTR)}
-              <div class="inline-bilingual-tr" style="color: #a7f3d0; margin-top: 3px;">🇹🇷 ${escapeHtml(monitorData.patternTR)}</div>
-            </div>
+          <div class="melis-monitor-pattern">
+            <strong>⚡ Data-First Reflex:</strong> ${renderInteractiveGerman(monitorData.patternDE, monitorData.patternTR)}
+            <div class="inline-bilingual-tr" style="color: #a7f3d0; margin-top: 3px;">🇹🇷 ${escapeHtml(monitorData.patternTR)}</div>
           </div>
-          ` : ''}
+        </div>
+      ` : '';
 
-          ${threeActionsChallenge ? `
-          <!-- ⚡ 2. PRÜFER-IMPULS: ERSTE 3 SOFORTMASSNAHMEN VOR DEM NÄCHSTEN TURN -->
-          <div class="melis-three-actions-box">
-            <div class="melis-three-actions-prompt">
-              <div>
-                <span>⚡ ${renderInteractiveGerman(threeActionsChallenge.vignetteTriggerDE, threeActionsChallenge.vignetteTriggerTR)}</span>
-                <div class="inline-bilingual-tr" style="margin-top: 3px; font-weight: 500;">🇹🇷 ${escapeHtml(threeActionsChallenge.vignetteTriggerTR)}</div>
-              </div>
-              <button class="btn-card-action btn-pronounce-card" style="padding: 3px 9px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.vignetteTriggerDE)}">
-                🔊 Prüfer
-              </button>
-            </div>
-            <button type="button" class="btn-reveal-turn" data-card-id="${q.id}" title="${isTurnHidden ? '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını & First-Principles Analizini Aç' : '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle'}">
-              ${isTurnHidden
-                ? '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken'
-                : '🔒 Erste 3 Maßnahmen &amp; Musterantwort ausblenden'}
-            </button>
+      const threeActionsHtml = threeActionsChallenge ? `
+        <div class="melis-three-actions-detail" style="padding: 12px 14px; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.22); border-radius: 12px;">
+          <div style="font-size: var(--font-xs); font-weight: 800; text-transform: uppercase; color: #047857; letter-spacing: 0.03em; margin-bottom: 6px;" title="🇹🇷 İlk 3 Acil Hamle &amp; Fizyolojik Gerekçe">
+            ✅ Erste 3 Sofortmaßnahmen
           </div>
-          ` : ''}
-
-          <!-- REVEALABLE CLINICAL TURN CONTAINER -->
-          <div id="turn-reveal-${q.id}" class="${isTurnHidden ? 'melis-hidden-turn' : ''}">
-
-          ${threeActionsChallenge ? `
-          <!-- ✅ ERSTE 3 SOFORTMASSNAHMEN & PRÜFER-NACHFRAGE (FIRST PRINCIPLES) -->
-          <div style="margin-bottom: 14px; padding: 12px 15px; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.28); border-radius: 12px;">
-            <div style="font-size: var(--font-xs); font-weight: 800; text-transform: uppercase; color: #047857; letter-spacing: 0.03em; margin-bottom: 6px;" title="🇹🇷 İlk 3 Acil Hamle &amp; Fizyolojik Gerekçe">
-              ✅ Erwartete Erste 3 Sofortmaßnahmen im OP / auf ITS
-            </div>
-            ${threeActionsChallenge.firstThreeActions.map(act => `
-              <div class="melis-action-step-card">
-                <div style="font-weight: 700; color: var(--text-primary);">
-                  <span style="color: var(--primary);">#${act.step}:</span> ${renderInteractiveGerman(act.actionDE, act.actionTR)}
-                </div>
-                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(act.actionTR)}</div>
-                <div class="melis-action-rationale">
-                  <strong>Warum (First Principle)?</strong> ${renderInteractiveGerman(act.whyDE, act.whyTR)}
-                  <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(act.whyTR)}</div>
-                </div>
+          ${threeActionsChallenge.firstThreeActions.map(act => `
+            <div class="melis-action-step-card">
+              <div style="font-weight: 700; color: var(--text-primary);">
+                <span style="color: var(--primary);">#${act.step}:</span> ${renderInteractiveGerman(act.actionDE, act.actionTR)}
               </div>
-            `).join('')}
-
-            <div class="melis-followup-probe">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-                <strong style="color: var(--primary);">👨‍⚕️ ${renderInteractiveGerman(threeActionsChallenge.examinerFollowupDE, threeActionsChallenge.examinerFollowupTR)}</strong>
-                <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.examinerFollowupDE + ' ' + threeActionsChallenge.examinerJustificationDE)}">
-                  🔊 Dinle
-                </button>
-              </div>
-              <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerFollowupTR)}</div>
-              <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-subtle);">
-                ${renderInteractiveGerman(threeActionsChallenge.examinerJustificationDE, threeActionsChallenge.examinerJustificationTR)}
-                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerJustificationTR)}</div>
+              <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(act.actionTR)}</div>
+              <div class="melis-action-rationale">
+                <strong>Warum?</strong> ${renderInteractiveGerman(act.whyDE, act.whyTR)}
+                <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(act.whyTR)}</div>
               </div>
             </div>
-          </div>
-          ` : ''}
+          `).join('')}
 
-          ${redeflussStep1 ? `
-          <!-- 🗣️ REDEEINSTIEG (Sınavda Söze Başlama Kalıbı) -->
-          <div class="oral-redeeinstieg-box" style="margin-bottom: 14px; padding: 10px 14px; background: rgba(16, 185, 129, 0.06); border: 1px dashed rgba(16, 185, 129, 0.35); border-radius: 10px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
-              <span style="font-size: var(--font-xs); font-weight: 700; text-transform: uppercase; color: #047857; letter-spacing: 0.03em;" title="🇹🇷 Sınavda Söze Başlama Kalıbı">
-                🗣️ Empfohlener Redeeinstieg
-              </span>
-              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(redeflussStep1.de || redeflussStep1.textDE || '')}">
+          <div class="melis-followup-probe">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <strong style="color: var(--primary);">👨‍⚕️ ${renderInteractiveGerman(threeActionsChallenge.examinerFollowupDE, threeActionsChallenge.examinerFollowupTR)}</strong>
+              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.examinerFollowupDE + ' ' + threeActionsChallenge.examinerJustificationDE)}">
                 🔊 Dinle
               </button>
             </div>
-            <div style="font-size: var(--font-base); font-style: italic; color: var(--text-primary); line-height: 1.55;">
-              „${renderInteractiveGerman(redeflussStep1.de || redeflussStep1.textDE, redeflussStep1.tr || redeflussStep1.textTR)}“
-            </div>
-            <div class="inline-bilingual-tr" style="margin-top: 4px;">
-              🇹🇷 "${escapeHtml(redeflussStep1.tr || redeflussStep1.textTR || '')}"
-            </div>
-          </div>
-          ` : ''}
-
-          <!-- 🩺 FACHARZT-MUSTERANTWORT (Doğrudan Model Uzman Yanıtı) -->
-          <div class="oral-answer-card-box">
-            <div class="oral-role-badge candidate-role-badge" title="🇹🇷 Doğrudan Model Uzman Cevabı">
-              <span>🩺</span> Facharzt-Musterantwort &amp; Leitlinien
-            </div>
-            <div class="oral-answer-content">
-              ${renderFormattedOralAnswer(answerDE, answerTR)}
+            <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerFollowupTR)}</div>
+            <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-subtle);">
+              ${renderInteractiveGerman(threeActionsChallenge.examinerJustificationDE, threeActionsChallenge.examinerJustificationTR)}
+              <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerJustificationTR)}</div>
             </div>
           </div>
-      `;
+        </div>
+      ` : '';
 
-      // Ground-Truth Dosages & Guideline Box (if high-yield emergency match)
-      if (groundTruth && groundTruth.dosages && groundTruth.dosages.length > 0) {
-        const gTitleDE = `${groundTruth.guideline.title} (${groundTruth.guideline.awmf}) — Wichtigste Prüfungs-Dosierungen:`;
-        const gTitleTR = `${groundTruth.guideline.title_tr || groundTruth.guideline.title} (${groundTruth.guideline.awmf}) — En Önemli Sınav Dozları:`;
-        html += `
-          <div class="study-guideline-dosage-box" style="margin-top: 12px; padding: 12px 14px; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.22); border-radius: 10px;">
+      const dosagesHtml = (groundTruth && groundTruth.dosages && groundTruth.dosages.length > 0) ? (() => {
+        const gTitleDE = `${groundTruth.guideline.title} (${groundTruth.guideline.awmf}) — Wichtigste Dosierungen:`;
+        const gTitleTR = `${groundTruth.guideline.title_tr || groundTruth.guideline.title} (${groundTruth.guideline.awmf}) — En Önemli Dozlar:`;
+        return `
+          <div class="study-guideline-dosage-box" style="margin-top: 0;">
             <div style="font-size: var(--font-xs); font-weight: 700; color: var(--primary); margin-bottom: 6px;">
               💊 ${renderInteractiveGerman(gTitleDE, gTitleTR)}
               <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(gTitleTR)}</div>
@@ -669,148 +585,71 @@
                 const doseTr = d.dose_tr || d.dose;
                 const limDE = d.maxDose || d.limits || '';
                 const limTr = d.maxDose_tr || d.limits_tr || limDE;
-                const rowDE = `${d.drug}: ${d.dose}${limDE ? ` (${limDE})` : ''}`;
                 const rowTR = `${drugTr}: ${doseTr}${limTr ? ` (${limTr})` : ''}`;
                 return `
-                <div style="padding: 6px 10px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-color);">
-                  <div>
-                    <strong style="color: var(--text-primary);">${renderInteractiveGerman(d.drug, drugTr)}:</strong>
-                    <span style="color: var(--primary); font-weight: 700;"> ${renderInteractiveGerman(d.dose, doseTr)}</span>
-                    ${limDE ? `<span style="color: var(--text-muted); font-size: var(--font-sm);"> (${renderInteractiveGerman(limDE, limTr)})</span>` : ''}
+                  <div style="padding: 6px 10px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-color);">
+                    <div>
+                      <strong style="color: var(--text-primary);">${renderInteractiveGerman(d.drug, drugTr)}:</strong>
+                      <span style="color: var(--primary); font-weight: 700;"> ${renderInteractiveGerman(d.dose, doseTr)}</span>
+                      ${limDE ? `<span style="color: var(--text-muted); font-size: var(--font-sm);"> (${renderInteractiveGerman(limDE, limTr)})</span>` : ''}
+                    </div>
+                    <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(rowTR)}</div>
                   </div>
-                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(rowTR)}</div>
-                </div>
-              `;
+                `;
               }).join('')}
             </div>
           </div>
         `;
-      }
+      })() : '';
 
-      // Melis Deep-Dive Modules: 3) First-Principles Physiology & Pharmacology, 4) 3-Tier Exam Synthesis, 5) St. Antonius Eschweiler Bedside Communication & Klinik-Jargon
-      if (firstPrinciples || examSynthesis || bedsideComm) {
-        html += `<div class="melis-deep-dive-grid">`;
-
-        if (firstPrinciples) {
-          html += `
-            <details class="melis-module-details">
-              <summary class="melis-module-summary" title="🇹🇷 ${escapeHtml(firstPrinciples.titleTR)}">
-                <span>🧠 ${escapeHtml(firstPrinciples.titleDE)}</span>
-                <span style="font-size: var(--font-xs); color: var(--primary);">First-Principles ▼</span>
-              </summary>
-              <div class="melis-module-body">
-                <div class="melis-formula-pill">📐 ${escapeHtml(firstPrinciples.formulaOrPrinciple)}</div>
-                <div style="margin-bottom: 10px;">
-                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: var(--primary);">⚙️ Pathophysiologisches Prinzip (Warum im Körper?):</strong>
-                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.mechanismDE)}">🔊 Dinle</button>
-                  </div>
-                  <div>${renderInteractiveGerman(firstPrinciples.mechanismDE, firstPrinciples.mechanismTR)}</div>
-                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.mechanismTR)}</div>
-                </div>
-                <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: var(--text-primary);">💊 Pharmakologische Kinetik &amp; Rezeptor-Logik (Warum genau dieses Medikament?):</strong>
-                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.pharmacologyDE)}">🔊 Dinle</button>
-                  </div>
-                  <div>${renderInteractiveGerman(firstPrinciples.pharmacologyDE, firstPrinciples.pharmacologyTR)}</div>
-                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.pharmacologyTR)}</div>
-                </div>
+      const interventionHtml = q.examiner_intervention ? `
+        <div class="study-examiner-intervention-box">
+          <div class="study-examiner-intervention-title">
+            <span>⚡</span> Prüfer-Intervention (Akute Krise):
+          </div>
+          <div class="answer-body-text">
+            ${renderInteractiveGerman(q.examiner_intervention, q.examiner_intervention_tr)}
+          </div>
+          <div class="inline-bilingual-tr">🇹🇷 ${escapeHtml(q.examiner_intervention_tr || '')}</div>
+          ${q.examiner_answer ? `
+            <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(245, 158, 11, 0.3);">
+              <strong style="color: var(--text-primary); font-size: var(--font-base);">🎯 Sofort-Antwort:</strong>
+              <div class="answer-body-text" style="margin-top: 4px;">
+                ${renderInteractiveGerman(q.examiner_answer, q.examiner_answer_tr)}
               </div>
-            </details>
-          `;
-        }
+              <div class="inline-bilingual-tr">🇹🇷 ${escapeHtml(q.examiner_answer_tr || '')}</div>
+            </div>
+          ` : ''}
+        </div>
+      ` : '';
 
-        if (examSynthesis) {
-          const renderTierItem = (it) => {
-            const plainDE = (it.de || '').replace(/<[^>]+>/g, '');
-            const plainTR = (it.tr || '').replace(/<[^>]+>/g, '');
-            return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${plainDE}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${it.tr}</div></div>`;
-          };
-          html += `
-            <details class="melis-module-details">
-              <summary class="melis-module-summary" title="🇹🇷 Acil Müdahale · İkincil Tanı · Farmakolojik Nüanslar">
-                <span>🎯 Strukturierte 3-Stufen Prüfungs-Synthese</span>
-                <span style="font-size: var(--font-xs); color: var(--primary);">Prüfer-Bewertung ▼</span>
-              </summary>
-              <div class="melis-module-body">
-                <div class="melis-tier-block" style="border-left: 3px solid var(--accent-rose);">
-                  <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${renderInteractiveGerman(examSynthesis.tier1Immediate.titleDE, examSynthesis.tier1Immediate.titleTR)}</div>
-                  ${examSynthesis.tier1Immediate.items.map(renderTierItem).join('')}
-                </div>
-                <div class="melis-tier-block" style="border-left: 3px solid var(--primary);">
-                  <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${renderInteractiveGerman(examSynthesis.tier2Diagnostics.titleDE, examSynthesis.tier2Diagnostics.titleTR)}</div>
-                  ${examSynthesis.tier2Diagnostics.items.map(renderTierItem).join('')}
-                </div>
-                <div class="melis-tier-block" style="border-left: 3px solid var(--accent-emerald);">
-                  <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${renderInteractiveGerman(examSynthesis.tier3Pharmacology.titleDE, examSynthesis.tier3Pharmacology.titleTR)}</div>
-                  ${examSynthesis.tier3Pharmacology.items.map(renderTierItem).join('')}
-                </div>
-              </div>
-            </details>
-          `;
-        }
+      const tipHtml = q.examiner_tip ? `
+        <div class="study-examiner-tip-box">
+          <div class="study-examiner-tip-title">
+            <span>💡</span> Prüfer-Tipp &amp; K.O.-Kriterium:
+          </div>
+          <div class="answer-body-text">
+            ${renderInteractiveGerman(q.examiner_tip, q.examiner_tip_tr)}
+          </div>
+          <div class="inline-bilingual-tr">🇹🇷 ${escapeHtml(q.examiner_tip_tr || '')}</div>
+        </div>
+      ` : '';
 
-        if (bedsideComm) {
-          html += `
-            <details class="melis-module-details">
-              <summary class="melis-module-summary">
-                <span>🗣️ St. Antonius-Hospital Eschweiler: Frühbesprechung, Prämedikationsgespräch &amp; Klinik-Jargon</span>
-                <span style="font-size: var(--font-xs); color: var(--primary);">Klinik-Deutsch ▼</span>
-              </summary>
-              <div class="melis-module-body">
-                <div style="margin-bottom: 10px;">
-                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: var(--primary);" title="🇹🇷 Sabah Toplantısı &amp; Kıdemli Devri">🏥 Morgen-Übergabe / Frühbesprechung:</strong>
-                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
-                  </div>
-                  <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
-                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.fruehbesprechungTR)}</div>
-                </div>
-                <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                    <strong style="color: var(--accent-emerald);" title="🇹🇷 Hasta/Yakını Aydınlatma Cümlesi">🤝 Prämedikations- &amp; Aufklärungsgespräch:</strong>
-                    <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
-                  </div>
-                  <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
-                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.praemedikationTR)}</div>
-                </div>
-                <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                  <strong style="color: #b45309; font-size: var(--font-base);" title="🇹🇷 Hastane Kısaltmaları">🔤 Idiomatischer Klinik-Jargon &amp; Abkürzungen:</strong>
-                  <div class="melis-jargon-grid">
-                    ${(bedsideComm.jargonTerms || []).map(jt => `
-                      <div class="melis-jargon-card">
-                        <div><strong style="color: var(--primary);">${escapeHtml(jt.abbr)}</strong> — <strong>${escapeHtml(jt.termDE)}</strong></div>
-                        <div style="margin-top: 2px; color: var(--text-secondary);">${renderInteractiveGerman(jt.meaningDE, jt.meaningTR)}</div>
-                        <div class="inline-bilingual-tr" style="margin-top: 2px; color: var(--text-muted); font-size: var(--font-sm);">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
-                      </div>
-                    `).join('')}
-                  </div>
-                </div>
-              </div>
-            </details>
-          `;
-        }
-
-        html += `</div>`;
-      }
-
-      // Examiner Profile Box (if available)
-      if (q.examiner_profile) {
+      const examinerProfileHtml = q.examiner_profile ? (() => {
         const ep = q.examiner_profile;
-        html += `
+        return `
           <div class="study-examiner-profile-box">
             <div class="study-examiner-profile-header">
-              <span>🏛️</span> ÄKNO Düsseldorf Prüfer-Profil: ${escapeHtml(ep.name || 'Prüfungskommission')} (${escapeHtml(ep.hospital || 'Universitätsklinikum')})
+              <span>🏛️</span> ${escapeHtml(ep.name || 'Prüfungskommission')} (${escapeHtml(ep.hospital || 'Universitätsklinikum')})
             </div>
             <div style="font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.55;">
               <div>
-                <strong>🎯 Prüfungsschwerpunkt:</strong> ${renderInteractiveGerman(ep.focus || '', ep.focus_tr)}
+                <strong>🎯 Schwerpunkt:</strong> ${renderInteractiveGerman(ep.focus || '', ep.focus_tr)}
                 ${ep.focus_tr ? `<div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(ep.focus_tr)}</div>` : ''}
               </div>
               ${ep.trap ? `
                 <div style="margin-top: 2px; color: #b45309;">
-                  <strong>⚠️ Typische Prüfungsfalle:</strong> ${renderInteractiveGerman(ep.trap, ep.trap_tr)}
+                  <strong>⚠️ Prüfungsfalle:</strong> ${renderInteractiveGerman(ep.trap, ep.trap_tr)}
                   ${ep.trap_tr ? `<div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(ep.trap_tr)}</div>` : ''}
                 </div>
               ` : ''}
@@ -823,54 +662,210 @@
             </div>
           </div>
         `;
-      }
+      })() : '';
 
-      // Examiner Intervention & Steering
-      if (q.examiner_intervention) {
-        html += `
-          <div class="study-examiner-intervention-box">
-            <div class="study-examiner-intervention-title">
-              <span>⚡</span> Prüfer-Intervention &amp; Zwischenfrage im Saal (Akute Krise):
+      const hasDrawer2 = !!(dosagesHtml || interventionHtml || tipHtml || examinerProfileHtml);
+      const hasDrawer3 = !!(firstPrinciples || examSynthesis || bedsideComm);
+
+      html += `
+        <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}">
+          <div class="card-header-bar">
+            <div class="card-badges">
+              <span class="badge-case-number">#${globalIndex || (idx + 1)}</span>
+              <span class="badge-category">${escapeHtml(q.category || 'Anästhesie')}</span>
+              ${priorityBadge}
             </div>
-            <div class="answer-body-text">
-              ${renderInteractiveGerman(q.examiner_intervention, q.examiner_intervention_tr)}
+
+            <div class="card-actions-top">
+              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(questionDE + '\n\n' + answerDE)}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
+                <span>🔊</span> Dinle
+              </button>
+              <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
+                <span>${isRead ? '✓' : '○'}</span> ${isRead ? 'Okundu' : 'Okundu İşaretle'}
+              </button>
             </div>
-            <div class="inline-bilingual-tr">
-              🇹🇷 ${escapeHtml(q.examiner_intervention_tr || '')}
+          </div>
+
+          <!-- 👨‍⚕️ PRÜFER-FRAGE -->
+          <div class="oral-question-card-box">
+            <div class="oral-role-badge examiner-role-badge" title="🇹🇷 Sözlü Sınav Sorusu">
+              <span>👨‍⚕️</span> Prüfer-Frage
             </div>
-            ${q.examiner_answer ? `
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(245, 158, 11, 0.3);">
-                <strong style="color: var(--text-primary); font-size: var(--font-base);">🎯 Optimale Sofort-Antwort auf die Zwischenfrage:</strong>
-                <div class="answer-body-text" style="margin-top: 4px;">
-                  ${renderInteractiveGerman(q.examiner_answer, q.examiner_answer_tr)}
+            <div class="oral-question-text">
+              ${renderFormattedOralQuestion(questionDE, questionTR)}
+            </div>
+          </div>
+
+          ${state.activeRecallMode && (monitorData || threeActionsChallenge) ? `
+            ${monitorHtml}
+            ${threeActionsChallenge ? `
+              <div class="melis-three-actions-box">
+                <div class="melis-three-actions-prompt">
+                  <div>
+                    <span>⚡ ${renderInteractiveGerman(threeActionsChallenge.vignetteTriggerDE, threeActionsChallenge.vignetteTriggerTR)}</span>
+                    <div class="inline-bilingual-tr" style="margin-top: 3px; font-weight: 500;">🇹🇷 ${escapeHtml(threeActionsChallenge.vignetteTriggerTR)}</div>
+                  </div>
+                  <button class="btn-card-action btn-pronounce-card" style="padding: 3px 9px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.vignetteTriggerDE)}">
+                    🔊 Prüfer
+                  </button>
                 </div>
-                <div class="inline-bilingual-tr">
-                  🇹🇷 ${escapeHtml(q.examiner_answer_tr || '')}
-                </div>
+                <button type="button" class="btn-reveal-turn" data-card-id="${q.id}" title="${isTurnHidden ? '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını Aç' : '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle'}">
+                  ${isTurnHidden
+                    ? '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken'
+                    : '🔒 Erste 3 Maßnahmen &amp; Musterantwort ausblenden'}
+                </button>
               </div>
             ` : ''}
-          </div>
-        `;
-      }
+          ` : ''}
 
-      // Examiner Tip & K.O. Traps
-      if (q.examiner_tip) {
-        html += `
-          <div class="study-examiner-tip-box">
-            <div class="study-examiner-tip-title">
-              <span>💡</span> Prüfer-Tipp &amp; K.O.-Kriterium (Vermeidung von Durchfall-Fehlern):
-            </div>
-            <div class="answer-body-text">
-              ${renderInteractiveGerman(q.examiner_tip, q.examiner_tip_tr)}
-            </div>
-            <div class="inline-bilingual-tr">
-              🇹🇷 ${escapeHtml(q.examiner_tip_tr || '')}
-            </div>
-          </div>
-        `;
-      }
+          <!-- REVEALABLE CLINICAL TURN CONTAINER -->
+          <div id="turn-reveal-${q.id}" class="${isTurnHidden ? 'melis-hidden-turn' : ''}">
 
-      html += `</div></article>`;
+            ${state.activeRecallMode && threeActionsHtml ? `<div style="margin-top: 12px;">${threeActionsHtml}</div>` : ''}
+
+            <!-- 🩺 FACHARZT-MUSTERANTWORT -->
+            <div class="oral-answer-card-box">
+              <div class="oral-role-badge candidate-role-badge" title="🇹🇷 Doğrudan Model Uzman Cevabı">
+                <span>🩺</span> Facharzt-Musterantwort
+              </div>
+              ${redeflussStep1 ? `
+                <div class="melis-inline-redeeinstieg">
+                  <span>🗣️ „${renderInteractiveGerman(redeflussStep1.de || redeflussStep1.textDE, redeflussStep1.tr || redeflussStep1.textTR)}“</span>
+                  <button class="btn-card-action btn-pronounce-card" style="padding: 2px 7px; font-size: var(--font-xs); flex-shrink: 0;" data-text="${escapeHtml(redeflussStep1.de || redeflussStep1.textDE || '')}" title="Redeeinstieg dinle">🔊</button>
+                </div>
+                <div class="inline-bilingual-tr" style="margin-bottom: 10px;">
+                  🇹🇷 "${escapeHtml(redeflussStep1.tr || redeflussStep1.textTR || '')}"
+                </div>
+              ` : ''}
+              <div class="oral-answer-content">
+                ${renderFormattedOralAnswer(answerDE, answerTR)}
+              </div>
+            </div>
+
+            ${((!state.activeRecallMode && (monitorData || threeActionsChallenge)) || hasDrawer2 || hasDrawer3) ? `
+              <div class="melis-deep-dive-grid">
+                ${!state.activeRecallMode && (monitorData || threeActionsChallenge) ? `
+                  <details class="melis-module-details">
+                    <summary class="melis-module-summary" title="🇹🇷 Monitör, Kan Gazı (BGA) ve İlk 3 Acil Hamle">
+                      <span>📟 Monitor, BGA &amp; Erste 3 Maßnahmen</span>
+                      <span class="melis-drawer-caret">▾</span>
+                    </summary>
+                    <div class="melis-module-body">
+                      ${monitorHtml}
+                      ${threeActionsHtml}
+                    </div>
+                  </details>
+                ` : ''}
+
+                ${hasDrawer2 ? `
+                  <details class="melis-module-details">
+                    <summary class="melis-module-summary" title="🇹🇷 Kılavuz Dozları, Jüri Müdahalesi & K.O. İpucu">
+                      <span>💊 Dosierungen, K.O.-Tipp &amp; Prüfer-Profil</span>
+                      <span class="melis-drawer-caret">▾</span>
+                    </summary>
+                    <div class="melis-module-body">
+                      ${dosagesHtml}
+                      ${interventionHtml}
+                      ${tipHtml}
+                      ${examinerProfileHtml}
+                    </div>
+                  </details>
+                ` : ''}
+
+                ${hasDrawer3 ? `
+                  <details class="melis-module-details">
+                    <summary class="melis-module-summary" title="🇹🇷 Patofizyoloji, 3 Kademeli Sınav Sentezi ve Klinik Almanca">
+                      <span>🧠 First-Principles, 3-Stufen-Synthese &amp; Klinik-Deutsch</span>
+                      <span class="melis-drawer-caret">▾</span>
+                    </summary>
+                    <div class="melis-module-body">
+                      ${firstPrinciples ? `
+                        <div class="melis-sub-section">
+                          <div class="melis-formula-pill">📐 ${escapeHtml(firstPrinciples.formulaOrPrinciple)}</div>
+                          <div style="margin-bottom: 10px;">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                              <strong style="color: var(--primary);">⚙️ Pathophysiologisches Prinzip:</strong>
+                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.mechanismDE)}">🔊 Dinle</button>
+                            </div>
+                            <div>${renderInteractiveGerman(firstPrinciples.mechanismDE, firstPrinciples.mechanismTR)}</div>
+                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.mechanismTR)}</div>
+                          </div>
+                          <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                              <strong style="color: var(--text-primary);">💊 Pharmakologische Kinetik:</strong>
+                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.pharmacologyDE)}">🔊 Dinle</button>
+                            </div>
+                            <div>${renderInteractiveGerman(firstPrinciples.pharmacologyDE, firstPrinciples.pharmacologyTR)}</div>
+                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.pharmacologyTR)}</div>
+                          </div>
+                        </div>
+                      ` : ''}
+
+                      ${examSynthesis ? (() => {
+                        const renderTierItem = (it) => {
+                          const plainDE = (it.de || '').replace(/<[^>]+>/g, '');
+                          const plainTR = (it.tr || '').replace(/<[^>]+>/g, '');
+                          return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${plainDE}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${it.tr}</div></div>`;
+                        };
+                        return `
+                          <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
+                            <div class="melis-tier-block" style="border-left: 3px solid var(--accent-rose);">
+                              <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${renderInteractiveGerman(examSynthesis.tier1Immediate.titleDE, examSynthesis.tier1Immediate.titleTR)}</div>
+                              ${examSynthesis.tier1Immediate.items.map(renderTierItem).join('')}
+                            </div>
+                            <div class="melis-tier-block" style="border-left: 3px solid var(--primary);">
+                              <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${renderInteractiveGerman(examSynthesis.tier2Diagnostics.titleDE, examSynthesis.tier2Diagnostics.titleTR)}</div>
+                              ${examSynthesis.tier2Diagnostics.items.map(renderTierItem).join('')}
+                            </div>
+                            <div class="melis-tier-block" style="border-left: 3px solid var(--accent-emerald);">
+                              <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${renderInteractiveGerman(examSynthesis.tier3Pharmacology.titleDE, examSynthesis.tier3Pharmacology.titleTR)}</div>
+                              ${examSynthesis.tier3Pharmacology.items.map(renderTierItem).join('')}
+                            </div>
+                          </div>
+                        `;
+                      })() : ''}
+
+                      ${bedsideComm ? `
+                        <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
+                          <div style="margin-bottom: 10px;">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                              <strong style="color: var(--primary);" title="🇹🇷 Sabah Toplantısı &amp; Kıdemli Devri">🏥 Frühbesprechung:</strong>
+                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
+                            </div>
+                            <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
+                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.fruehbesprechungTR)}</div>
+                          </div>
+                          <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                              <strong style="color: var(--accent-emerald);" title="🇹🇷 Hasta/Yakını Aydınlatma Cümlesi">🤝 Prämedikationsgespräch:</strong>
+                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
+                            </div>
+                            <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
+                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.praemedikationTR)}</div>
+                          </div>
+                          <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                            <strong style="color: #b45309; font-size: var(--font-base);" title="🇹🇷 Hastane Kısaltmaları">🔤 Klinik-Jargon &amp; Abkürzungen:</strong>
+                            <div class="melis-jargon-grid">
+                              ${(bedsideComm.jargonTerms || []).map(jt => `
+                                <div class="melis-jargon-card">
+                                  <div><strong style="color: var(--primary);">${escapeHtml(jt.abbr)}</strong> — <strong>${escapeHtml(jt.termDE)}</strong></div>
+                                  <div style="margin-top: 2px; color: var(--text-secondary);">${renderInteractiveGerman(jt.meaningDE, jt.meaningTR)}</div>
+                                  <div class="inline-bilingual-tr" style="margin-top: 2px; color: var(--text-muted); font-size: var(--font-sm);">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
+                                </div>
+                              `).join('')}
+                            </div>
+                          </div>
+                        </div>
+                      ` : ''}
+                    </div>
+                  </details>
+                ` : ''}
+              </div>
+            ` : ''}
+
+          </div>
+        </article>
+      `;
     });
 
     elFeed.innerHTML = html;
@@ -899,12 +894,12 @@
         if (current) {
           delete readStatus[id];
           btn.classList.remove('active-read');
-          btn.innerHTML = `<span>○</span> Als gelesen`;
+          btn.innerHTML = `<span>○</span> Okundu İşaretle`;
           if (card) card.classList.remove('is-read');
         } else {
           readStatus[id] = true;
           btn.classList.add('active-read');
-          btn.innerHTML = `<span>✓</span> Gelesen`;
+          btn.innerHTML = `<span>✓</span> Okundu`;
           if (card) card.classList.add('is-read');
           triggerHapticFeedback();
         }
@@ -1070,8 +1065,8 @@
 
     if (elProgressBarFill) elProgressBarFill.style.width = `${percentage}%`;
     if (elProgressPercentage) elProgressPercentage.textContent = `%${percentage}`;
-    if (elProgressText) elProgressText.textContent = `${readCount} / ${total} Vaka Okundu`;
-    if (elStreakBadge) elStreakBadge.textContent = `🎯 ${readCount} Tamamlandı`;
+    if (elProgressText) elProgressText.textContent = `${readCount} / ${total} Vaka`;
+    if (elStreakBadge) elStreakBadge.textContent = `🎯 ${readCount}`;
   }
 
   function initCategories() {

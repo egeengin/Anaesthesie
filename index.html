@@ -21,8 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=10.4">
-  <link rel="stylesheet" href="study.css?v=10.4">
+  <link rel="stylesheet" href="styles.css?v=10.5">
+  <link rel="stylesheet" href="study.css?v=10.5">
 </head>
 <body>
 
@@ -151,20 +151,17 @@
   <!-- Dual-Mode Master Switcher (Melis'in Çalışma Sayfası vs Sınav Simülatörü) -->
   <div class="master-view-switcher-bar" role="navigation" aria-label="Görünüm Seçici">
     <div class="master-view-container">
-      <button id="master-btn-study" class="master-tab-btn active" type="button" title="Melis'in Çalışma Sayfası (Almanca Oku, Üzerinde Durunca/Dokununca Türkçe Çeviri)">
+      <button id="master-btn-study" class="master-tab-btn active" type="button" title="Almanca Oku, Üzerinde Durunca/Dokununca Türkçe Çeviri">
         <span class="tab-icon">📖</span>
         <span class="tab-label-group">
-          <strong>Melis'in Çalışma Sayfası</strong>
-          <small>Almanca Oku • Dokun/Üzerinde Dur Türkçe • Sesli Telaffuz</small>
+          <strong>Çalışma &amp; Okuma</strong>
         </span>
-        <span class="tab-badge-new">Önerilen</span>
       </button>
 
       <button id="master-btn-exam" class="master-tab-btn" type="button" title="4-Adımlı Sınav Simülatörü (Vital/BGA Monitörü & 45-Dk Sözlü Sınav)">
         <span class="tab-icon">🎯</span>
         <span class="tab-label-group">
           <strong>Sınav Simülatörü</strong>
-          <small>4-Stufen ÄKNO Cockpit & 45-Min Prüfung</small>
         </span>
       </button>
     </div>
@@ -189,9 +186,10 @@
       <section class="study-progress-card">
         <div class="progress-header">
           <div class="progress-status">
-            <span>🩺 Melis'in İlerlemesi:</span>
-            <strong id="study-progress-status-text">0 / 669 Vaka Okundu</strong>
-            <span id="study-progress-streak" class="progress-streak-badge">🎯 0 Tamamlandı</span>
+            <span>🩺 Dr. Melis · St. Antonius-Hospital Eschweiler</span>
+            <span class="progress-sep">·</span>
+            <strong id="study-progress-status-text">0 / 669 Vaka</strong>
+            <span id="study-progress-streak" class="progress-streak-badge" style="display: none;">🎯 0</span>
           </div>
           <div id="study-progress-percentage" style="font-weight: 700; color: var(--primary);">%0</div>
         </div>
@@ -205,7 +203,7 @@
         <!-- Live Search Bar -->
         <div class="search-bar-wrapper">
           <span class="search-icon">🔍</span>
-          <input type="text" id="study-search-input" class="search-input" placeholder="İlaç, vaka, sendrom veya kılavuz ara (örn. Dantrolen, Sugammadex, Laringospazm, Koniotomi)..." autocomplete="off" />
+          <input type="text" id="study-search-input" class="search-input" placeholder="Vaka, ilaç veya kılavuz ara (örn. Dantrolen, CICO, Sepsis)..." autocomplete="off" />
           <button id="study-btn-clear-search" class="btn-clear-search" title="Aramayı Temizle">✕</button>
         </div>
 
@@ -2784,7 +2782,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=9.8"></script>
+  <script src="study.js?v=9.9"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');
