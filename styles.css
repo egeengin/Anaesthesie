@@ -10101,3 +10101,66 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
 .btn-assess-btn {
   white-space: nowrap;
 }
+
+/* Examiner Drawer compact sizing & close button */
+.sim-examiner-drawer {
+  padding: 0.7rem 0.9rem !important;
+  margin-bottom: 0.65rem;
+}
+
+.sim-examiner-drawer .examiner-drawer-name {
+  font-size: 0.95rem !important;
+}
+
+.sim-examiner-drawer .examiner-drawer-clinic {
+  font-size: 0.78rem !important;
+}
+
+.sim-examiner-drawer .examiner-profile-item {
+  font-size: 0.8rem !important;
+  padding: 0.55rem 0.7rem !important;
+  line-height: 1.45 !important;
+}
+
+.sim-examiner-drawer .examiner-profile-item strong {
+  font-size: 0.7rem !important;
+}
+
+.btn-close-examiner-drawer {
+  background: var(--bg-secondary, rgba(0, 0, 0, 0.06));
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+  color: var(--text-muted);
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn-close-examiner-drawer:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+/* Step 1/2/3 inline Musterantwort & Vorlesen bar spacing & sizing */
+.step-inline-action-bar {
+  padding: 0.25rem 1.1rem 0.95rem 1.1rem !important;
+  margin-top: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.step-inline-action-bar .btn-audio-action-sm,
+.step-inline-action-bar .btn-examiner-ans-btn {
+  font-size: 0.84rem !important;
+  padding: 0.44rem 0.95rem !important;
+  border-radius: 999px !important;
+}

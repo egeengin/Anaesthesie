@@ -4625,25 +4625,26 @@ Tedavi:
         const profKeywordsDE = prof.keywords || (reg && reg.koCriteria && reg.koCriteria.mandatoryKeywords ? reg.koCriteria.mandatoryKeywords.join(', ') : '');
         const profKeywordsTR = prof.keywords_tr || profKeywordsDE;
         elSimExaminerDrawerContent.innerHTML = `
-          <div class="examiner-drawer-header">
+          <div class="examiner-drawer-header" style="display:flex; align-items:flex-start; justify-content:space-between; gap:0.5rem;">
             <div class="examiner-drawer-title">
-              <span class="examiner-drawer-badge">🏛️ ÄKNO Düsseldorf Fachprüfer / Sınav Jürisi</span>
+              <span class="examiner-drawer-badge">🏛️ ÄKNO Düsseldorf Prüfer</span>
               <h4 class="examiner-drawer-name">👨‍⚕️ ${prof.name}</h4>
               <p class="examiner-drawer-clinic">📍 ${prof.hospital}</p>
             </div>
+            <button type="button" class="btn-close-examiner-drawer" onclick="var d=document.getElementById('sim-examiner-drawer');if(d)d.style.display='none';var p=document.getElementById('examiner-pill-trigger');if(p)p.classList.remove('active');" title="Kapat">✕</button>
           </div>
           <div class="examiner-drawer-grid">
             <div class="examiner-profile-item">
-              <strong>🎯 Prüfungsschwerpunkt / Sınav Odak Noktası</strong>
+              <strong>🎯 Prüfungsschwerpunkt</strong>
               <div>${renderDualLanguageText(prof.focus, prof.focus_tr)}</div>
             </div>
             <div class="examiner-profile-item alert-trap">
-              <strong>⚠️ Typische Prüfungsfalle / Sınav Tuzağı (K.O.-Kriterium)</strong>
+              <strong>⚠️ Typische Prüfungsfalle (K.O.)</strong>
               <div>${renderDualLanguageText(prof.trap, prof.trap_tr)}</div>
             </div>
             ${profKeywordsDE ? `
             <div class="examiner-profile-item alert-pass">
-              <strong>⭐ Signalwörter für Bestnote / Başarı Anahtarları</strong>
+              <strong>⭐ Signalwörter</strong>
               <div>${renderDualLanguageText(profKeywordsDE, profKeywordsTR)}</div>
             </div>` : ''}
           </div>
