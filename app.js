@@ -4909,56 +4909,21 @@ Tedavi:
           if (!term || typeof term !== 'string') return '';
           const clean = term.trim();
           const map = {
-            'Noradrenalin (Vasopressor der 1. Wahl)': 'Noradrenalin (1. Tercih Vazopressör)',
-            '2–10 µg i.v. Boli oder 0,02–0,2 µg/kg/min Perfusor': '2–10 µg i.v. bolus veya 0,02–0,2 µg/kg/dk perfüzör',
-            'Ziel-MAP ≥ 75–80 mmHg': 'Hedef MAP ≥ 75–80 mmHg',
-            'Periphere Vasokonstriktion sichert Koronardurchblutung': 'Periferik vazokonstriksiyon koroner perfüzyonu güvenceye alır',
-            'Phenylephrin (reiner Alpha-1-Agonist)': 'Fenilefrin (Saf Alfa-1 Agonisti)',
-            '50–100 µg i.v. Boli': '50–100 µg i.v. bolus',
-            'Reflexbradykardie beachten': 'Refleks bradikardiye dikkat edilmeli',
-            'Günstig bei Tachyarrhythmie': 'Taşiaritmi varlığında tercih edilir',
-            'Volumenbelastung (Vorlastsicherung)': 'Volüm yüklemesi (Ön yükün korunması)',
-            'Vollelektrolytlösung 250–500 ml Boli': 'Dengeli tam elektrolit solüsyonu 250–500 ml bolus',
-            'Hypovolämie führt sofort zum Kreislaufzusammenbruch': 'Hipovolemi derhal dolaşım kollapsına yol açar',
-            'Starrer hypertrophierter Ventrikel braucht Füllungsdruck': 'Sert hipertrofik ventrikül yüksek dolum basıncına ihtiyaç duyar',
-            'Adrenalin i.m. (Grad II–III, Spontanatmung)': 'Adrenalin i.m. (Evre II–III, Spontan Solunum)',
-            '0,5 mg i.m. (ungestreckt 1:1000)': '0,5 mg i.m. (sulandırılmamış 1:1000)',
-            'Wiederholung alle 5–10 min bei Persistenz': 'Semptomlar sürerse 5–10 dakikada bir tekrarlanır',
-            'Schnellste Resorption und sicherster Weg': 'En hızlı emilim ve en güvenli uygulama yolu',
-            'Adrenalin i.v. titriert (Narkose / Kreislaufkollaps)': 'Adrenalin i.v. titre (Anestezi / Dolaşım Kollapsı)',
-            '10–50 µg i.v. Boli (1:10.000 oder 1:100.000 verdünnt)': '10–50 µg i.v. bolus (1:10.000 veya 1:100.000 seyreltilmiş)',
-            'Perfusor 0,05–0,5 µg/kg/min nach Ansprechen': 'Yanıt sonrası perfüzör 0,05–0,5 µg/kg/dk',
-            'Nur verdünnt titrieren bei liegendem Monitoring': 'Yalnızca monitörize hastada seyreltilerek titre edilmelidir',
-            'Kristalloide Infusion': 'Kristalloid İnfüzyon',
-            'Vollelektrolytlösung 1000–2000 ml Druckinfusion': 'Dengeli tam elektrolit solüsyonu 1000–2000 ml basınçlı infüzyon',
-            'Bis zu 30–50 ml/kg in der ersten Stunde': 'İlk 1 saatte 30–50 ml/kg a kadar',
-            'Kompensiert kapilläres Leck & Vasodilatation': 'Kapiller kaçak ve vazodilatasyonu dengeler',
-            'Zweitlinien-Therapie (erst nach Adrenalin)': 'İkinci basamak tedavi (YALNIZCA Adrenalinden SONRA)',
-            'Dimetinden 0,1 mg/kg + Prednisolon 250–500 mg i.v.': 'Dimetinden 0,1 mg/kg + Prednizolon 250–500 mg i.v.',
-            'Wirkeintritt erst nach 20–30 min': 'Etki başlangıcı ancak 20–30 dakika sonradır',
-            'Verzögern Sie NIEMALS die Adrenalingabe dafür!': 'Bunun için Adrenalin uygulamasını ASLA geciktirmeyin!',
-            'Ziel-MAP ≥ 65 mmHg': 'Hedef MAP ≥ 65 mmHg'
+            'Substanz': 'İlaç / Etken Madde',
+            'Siehe Klinik-SOP': 'Klinik SOP ye göre',
+            'Gemäß Klinik-SOP': 'Klinik SOP rehberliğinde',
+            'Strikte Leitlinienüberwachung': 'Sıkı kılavuz takibi'
           };
-          if (map[clean]) return map[clean];
-          return clean
-            .replace(/Boli/g, 'bolus')
-            .replace(/Bolus/g, 'bolus')
-            .replace(/Perfusor/g, 'perfüzör')
-            .replace(/oder/g, 'veya')
-            .replace(/Ziel-MAP/g, 'Hedef MAP')
-            .replace(/beachten/g, 'dikkat edilmeli')
-            .replace(/Gemäß Klinik-SOP/g, 'Klinik SOP rehberliğinde')
-            .replace(/Siehe Klinik-SOP/g, 'Klinik SOP ye göre')
-            .replace(/Strikte Leitlinienüberwachung/g, 'Sıkı kılavuz takibi');
+          return map[clean] || '';
         }
 
         let dosHtml = `<table class="dosages-table">
           <thead>
             <tr>
-              <th>Substanz / Notfall-Intervention</th>
-              <th>Exakte Bolus-Dosierung</th>
-              <th>Kritischer Grenzwert / Perfusor</th>
-              <th>Klinische Indikation & Sicherheitshinweis</th>
+              <th title="🇹🇷 İlaç / Acil Müdahale">Substanz / Notfall-Intervention</th>
+              <th title="🇹🇷 Tam Bolus Dozu">Exakte Bolus-Dosierung</th>
+              <th title="🇹🇷 Kritik Sınır Değer / Perfüzör">Kritischer Grenzwert / Perfusor</th>
+              <th title="🇹🇷 Klinik Endikasyon & Güvenlik Uyarısı">Klinische Indikation &amp; Sicherheitshinweis</th>
             </tr>
           </thead>
           <tbody>`;
@@ -4971,7 +4936,7 @@ Tedavi:
           const drugTr = d.drug_tr || translateDosageTermTR(drugName);
           const doseTr = d.dose_tr || translateDosageTermTR(doseVal);
           const maxDoseTr = d.maxDose_tr || d.limit_tr || translateDosageTermTR(maxDoseText);
-          const limitsTr = d.limits_tr || d.note_tr || translateDosageTermTR(limitsText);
+          const limitsTr = d.limits_tr || d.note_tr || (d.route && !d.limits && !d.note ? `Uygulama yolu: ${d.route}` : translateDosageTermTR(limitsText));
 
           dosHtml += `<tr>
             <td><strong>${renderDualLanguageText(drugName, drugTr)}</strong></td>
@@ -4987,15 +4952,18 @@ Tedavi:
       const elGuidelinesContent = document.getElementById('rubric-guidelines-content');
       if (elGuidelinesContent && gt && gt.guideline) {
         const guidelineTitle = gt.guideline.title || 'DGAI / BDA Facharzt-Leitlinie';
+        const guidelineTitleTR = gt.guideline.title_tr || 'DGAI / BDA Uzmanlık Kılavuzu';
         const guidelineOrg = gt.guideline.society || gt.guideline.org || 'DGAI / BDA';
         const guidelineAwmf = gt.guideline.awmf ? ` · ${gt.guideline.awmf}` : '';
         const guidelineYear = gt.guideline.year ? ` (${gt.guideline.year})` : '';
         const guidelineRec = gt.guideline.recommendation || gt.guideline.coreStatement || '';
         const guidelineRecTR = gt.guideline.recommendation_tr || gt.guideline.coreStatement_tr || '';
-        let gHtml = `<div class="guideline-ref-badge">📘 <strong>Offizielle Referenz:</strong> ${guidelineTitle} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]</div>`;
+        const refDE = `📘 Offizielle Referenz: ${guidelineTitle} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]`;
+        const refTR = `📘 Resmi Kılavuz Referansı: ${guidelineTitleTR} [${guidelineOrg}${guidelineAwmf}${guidelineYear}]`;
+        let gHtml = `<div class="guideline-ref-badge">${renderDualLanguageText(refDE, refTR)}</div>`;
         if (guidelineRec) {
           gHtml += `<div class="guideline-recommendation-box" style="margin-top: 0.6rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.5;">
-            <div style="font-weight: 700; color: #0284c7; margin-bottom: 0.25rem;">📌 Kernaussage / DGAI-Empfehlung:</div>
+            <div style="font-weight: 700; color: #0284c7; margin-bottom: 0.25rem;" title="🇹🇷 Temel Mesaj / DGAI Önerisi">📌 Kernaussage / DGAI-Empfehlung:</div>
             ${renderDualLanguageText(guidelineRec, guidelineRecTR)}
           </div>`;
         }
@@ -5011,7 +4979,9 @@ Tedavi:
       if (legal && elLegalBlock && elLegalContent) {
         elLegalBlock.style.display = 'block';
         const legalTitle = legal.title || legal.topic || 'ÄKNO Rechtsfrage & Aufklärung (NRW Medizinrecht)';
+        const legalTitleTR = legal.titleTR || '';
         const legalScenario = legal.scenario || 'Klinische Entscheidungssituation';
+        const legalScenarioTR = legal.scenarioTR || '';
         const legalRuleDE = legal.ruleDE || legal.rule || 'Gemäß Berufsordnung und Patientenrechtegesetz (§ 630 BGB).';
         const legalRuleTR = legal.ruleTR || '';
         const legalParagraph = legal.paragraph || legal.guideline || '';
@@ -5019,12 +4989,12 @@ Tedavi:
 
         elLegalContent.innerHTML = `
           <div style="font-weight: 700; color: #d97706; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem;">
-            <span>⚖️ ${escapeHtml(legalTitle)}</span>
+            <span>⚖️ ${legalTitleTR ? renderDualLanguageText(legalTitle, legalTitleTR) : escapeHtml(legalTitle)}</span>
             ${pBadge}
           </div>
-          <p style="margin-bottom: 0.45rem; font-size: 0.87rem; line-height: 1.45;"><strong>Fallkonstellation:</strong> ${escapeHtml(legalScenario)}</p>
+          <p style="margin-bottom: 0.45rem; font-size: 0.87rem; line-height: 1.45;"><strong>Fallkonstellation:</strong> ${legalScenarioTR ? renderDualLanguageText(legalScenario, legalScenarioTR) : escapeHtml(legalScenario)}</p>
           <div style="background: rgba(217, 119, 6, 0.08); padding: 0.65rem 0.8rem; border-radius: 6px; font-size: 0.85rem; border-left: 3px solid #d97706; line-height: 1.5;">
-            <strong style="color: #b45309; display: block; margin-bottom: 0.25rem;">ÄKNO Rechts-Grundsatz:</strong>
+            <strong style="color: #b45309; display: block; margin-bottom: 0.25rem;" title="🇹🇷 ÄKNO Hukuk İlkesi">ÄKNO Rechts-Grundsatz:</strong>
             <div>${renderDualLanguageText(legalRuleDE, legalRuleTR)}</div>
           </div>
         `;

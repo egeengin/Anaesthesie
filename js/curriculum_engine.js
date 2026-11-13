@@ -69,6 +69,7 @@
         firstDrugTR: 'Veno-venöz (V-V) ECMO Kanülasyonu & Ultra-Protektif Ventilasyon',
         guideline: {
           title: 'S3-Leitlinie Invasive Beatmung und Einsatz extrakorporaler Verfahren bei akuter respiratorischer Insuffizienz',
+          title_tr: 'Akut Solunum Yetmezliğinde İnvaziv Ventilasyon ve Ekstrakorporal Yöntemler S3 Kılavuzu',
           society: 'DGAI / DIVI / DGP & ELSO Guidelines',
           awmf: 'AWMF-Registernummer 001-021',
           year: '2024',
@@ -76,12 +77,12 @@
           recommendation_tr: 'Yüzüstü pozisyonlama ve optimize PEEP e ragmen refrakter hipoksemisi olan agir ARDS de (PaO2/FiO2 < 80 mmHg > 6 saat veya < 50 mmHg > 3 saat) EOLIA kriterlerine göre derhal V-V ECMO degerlendirmesi yapilmalidir.'
         },
         dosages: [
-          { drug: 'V-V ECMO Kanülengröße', dose: 'Drainagefemoral 23–25 Fr, Rückgabe jugulär 17–19 Fr', route: 'perkutan / chirurgisch', maxDose: 'Blutfluss 4–6 l/min (angestrebt: SaO₂ > 85-88%)', limits: 'Strikte Ultraschall- & Röntgenlagekontrolle' },
-          { drug: 'Ultra-lungenprotektive Beatmung unter ECMO', dose: 'Vt 2–4 ml/kg PBW, Driving Pressure < 10–12 cmH₂O, PEEP 10–14 cmH₂O', route: 'Beatmung', maxDose: 'Atemfrequenz 4–10/min (Lung-Rest-Concept)', limits: 'Spitzenbeatmungsdruck Pmax ≤ 25 cmH₂O' },
-          { drug: 'Antikoagulation unter ECMO', dose: 'Unfraktioniertes Heparin (UFH) Ziel-aPTT 50–70s bzw. Anti-Xa 0,3–0,5 IE/ml', route: 'i.v. Perfusor', maxDose: 'Regelmäßiges Gerinnungs- und ROTEM-Monitoring', limits: 'Blutungs- und Thromboserisiko' }
+          { drug: 'V-V ECMO Kanülengröße', drug_tr: 'V-V ECMO Kanül Boyutu', dose: 'Drainagefemoral 23–25 Fr, Rückgabe jugulär 17–19 Fr', dose_tr: 'Femoral drenaj 23–25 Fr, juguler dönüş 17–19 Fr', route: 'perkutan / chirurgisch', maxDose: 'Blutfluss 4–6 l/min (angestrebt: SaO₂ > 85-88%)', maxDose_tr: 'Kan akımı 4–6 l/dk (hedef: SaO₂ > %85–88)', limits: 'Strikte Ultraschall- & Röntgenlagekontrolle', limits_tr: 'Kesin ultrason ve akciğer grafisi ile yerleşim kontrolü' },
+          { drug: 'Ultra-lungenprotektive Beatmung unter ECMO', drug_tr: 'ECMO Altında Ultra-Akciğer Koruyucu Ventilasyon', dose: 'Vt 2–4 ml/kg PBW, Driving Pressure < 10–12 cmH₂O, PEEP 10–14 cmH₂O', dose_tr: 'Vt 2–4 ml/kg PBW, Driving Pressure < 10–12 cmH₂O, PEEP 10–14 cmH₂O', route: 'Beatmung', maxDose: 'Atemfrequenz 4–10/min (Lung-Rest-Concept)', maxDose_tr: 'Solunum sayısı 4–10/dk (Akciğer İstirahati / Lung-Rest Konsepti)', limits: 'Spitzenbeatmungsdruck Pmax ≤ 25 cmH₂O', limits_tr: 'Tepe inspiratuar basınç Pmax ≤ 25 cmH₂O' },
+          { drug: 'Antikoagulation unter ECMO', drug_tr: 'ECMO Altında Antikoagülasyon', dose: 'Unfraktioniertes Heparin (UFH) Ziel-aPTT 50–70s bzw. Anti-Xa 0,3–0,5 IE/ml', dose_tr: 'Fraksiyone olmayan Heparin (UFH) hedef aPTT 50–70 sn veya Anti-Xa 0,3–0,5 IU/ml', route: 'i.v. Perfusor', maxDose: 'Regelmäßiges Gerinnungs- und ROTEM-Monitoring', maxDose_tr: 'Düzenli koagülasyon ve ROTEM takibi', limits: 'Blutungs- und Thromboserisiko', limits_tr: 'Kanama ve devre trombozu riski' }
         ],
         koPitfalls: [
-          { mistake: 'Anschluss einer V-A ECMO bei reinem hypoxämischem Lungenversagen ohne kardiogenen Schock', whyFatal: 'V-A ECMO erhöht unnötig die linksventrikuläre Nachlast und birgt das Risiko eines Harlekin-Syndroms (oberkörpernahe Hypoxie)!', correctAction: 'Bei isoliertem respiratorischem ARDS immer V-V ECMO als Goldstandard wählen.' }
+          { mistake: 'Anschluss einer V-A ECMO bei reinem hypoxämischem Lungenversagen ohne kardiogenen Schock', mistake_tr: 'Kardiyojenik şok olmaksızın saf hipoksemik solunum yetmezliğinde V-A ECMO bağlanması', whyFatal: 'V-A ECMO erhöht unnötig die linksventrikuläre Nachlast und birgt das Risiko eines Harlekin-Syndroms (oberkörpernahe Hypoxie)!', whyFatal_tr: 'V-A ECMO sol ventrikül ard yükünü (afterload) gereksiz yere artırır ve Harlequin sendromu (üst vücut hipoksisi) riskine yol açar!', correctAction: 'Bei isoliertem respiratorischem ARDS immer V-V ECMO als Goldstandard wählen.', correctAction_tr: 'İzole solunumsal ARDS tablosunda altın standart olarak daima V-V ECMO seçilmelidir.' }
         ]
       };
     }
@@ -94,6 +95,7 @@
         firstDrugTR: 'Ferrik Karboksimaltoz (i.v. Demir) & Restriktif Transfüzyon (Hb 7-8 g/dl)',
         guideline: {
           title: 'S3-Leitlinie Präoperative Anämie und Patient Blood Management',
+          title_tr: 'Preoperatif Anemi ve Hasta Kan Yönetimi (PBM) S3 Kılavuzu',
           society: 'DGAI / BDA / DGTI / AWMF',
           awmf: 'AWMF-Registernummer 001-024',
           year: '2023',
@@ -101,12 +103,12 @@
           recommendation_tr: 'PBM 3 Sütun Konsepti: 1. Preoperatif anemi tanisi ve nedene yönelik tedavi (i.v. demir / EPO), 2. Cerrahi kan kaybinin en aza indirilmesi (TXA, Cell-Saver, ROTEM), 3. Akilci ve kisitlayici transfüzyon esikleri (Hb 7-8 g/dl).'
         },
         dosages: [
-          { drug: 'Eisencarboxymaltose (i.v. Eisen)', dose: '500–1.000 mg i.v. Kurzinfusion (Ganz-Dosis-Schema nach Ganzoni)', route: 'i.v.', maxDose: 'Mindestens 2–4 Wochen vor elektiver Operation applizieren', limits: 'Ferritin < 100 ng/ml oder Ferritin < 300 ng/ml bei TSAT < 20%' },
-          { drug: 'Tranexamsäure (TXA)', dose: '1 g (10–15 mg/kg) i.v. Kurzinfusion bei Schnitt', route: 'i.v.', maxDose: 'Wiederholung nach 4–8h bei anhaltendem Blutverlust', limits: 'Gabe innerhalb der ersten 3 Stunden!' },
-          { drug: 'Maschinelle Autotransfusion (Cell-Saver)', dose: 'Aufbereitung von Wundblut bei erwartetem Blutverlust > 500–1.000 ml', route: 'i.v. Retransfusion', maxDose: 'Gewaschenes Erythrozytenkonzentrat (Hk ~50–60%)', limits: 'Kontraindikation: Infektionsherd im OP-Gebiet' }
+          { drug: 'Eisencarboxymaltose (i.v. Eisen)', drug_tr: 'Ferrik Karboksimaltoz (i.v. Demir)', dose: '500–1.000 mg i.v. Kurzinfusion (Ganz-Dosis-Schema nach Ganzoni)', dose_tr: '500–1.000 mg i.v. kısa infüzyon (Ganzoni formülüne göre tam doz şeması)', route: 'i.v.', maxDose: 'Mindestens 2–4 Wochen vor elektiver Operation applizieren', maxDose_tr: 'Elektif operasyondan en az 2–4 hafta önce uygulanmalıdır', limits: 'Ferritin < 100 ng/ml oder Ferritin < 300 ng/ml bei TSAT < 20%', limits_tr: 'Ferritin < 100 ng/ml veya TSAT < %20 iken Ferritin < 300 ng/ml' },
+          { drug: 'Tranexamsäure (TXA)', drug_tr: 'Traneksamik Asit (TXA)', dose: '1 g (10–15 mg/kg) i.v. Kurzinfusion bei Schnitt', dose_tr: '1 g (10–15 mg/kg) i.v. cilt kesisinde kısa infüzyon', route: 'i.v.', maxDose: 'Wiederholung nach 4–8h bei anhaltendem Blutverlust', maxDose_tr: 'Devam eden kanamada 4–8 saat sonra tekrar', limits: 'Gabe innerhalb der ersten 3 Stunden!', limits_tr: 'İlk 3 saat içinde uygulanmalıdır!' },
+          { drug: 'Maschinelle Autotransfusion (Cell-Saver)', drug_tr: 'Ototransfüzyon (Cell-Saver)', dose: 'Aufbereitung von Wundblut bei erwartetem Blutverlust > 500–1.000 ml', dose_tr: 'Beklenen kan kaybı > 500–1.000 ml olduğunda yara kanının yıkanıp geri verilmesi', route: 'i.v. Retransfusion', maxDose: 'Gewaschenes Erythrozytenkonzentrat (Hk ~50–60%)', maxDose_tr: 'Yıkanmış eritrosit süspansiyonu (Hkt ~%50–60)', limits: 'Kontraindikation: Infektionsherd im OP-Gebiet', limits_tr: 'Kontrendikasyon: Cerrahi alanda enfeksiyon odağı veya malignite (ışınlamasız)' }
         ],
         koPitfalls: [
-          { mistake: 'Liberale Bluttransfusion bei asymptomatischen Patienten mit Hb 8–9 g/dl', whyFatal: 'Unnötige allogene Transfusionen erhöhen Infektionsrate, TRALI/TACO-Risiko und Gesamtmortalität signifikant!', correctAction: 'Strikte Einhaltung restriktiver Transfusionsgrenzen (Hb 7 g/dl ohne KHK, 8 g/dl bei KHK/zerebrovaskulärer Erkrankung).' }
+          { mistake: 'Liberale Bluttransfusion bei asymptomatischen Patienten mit Hb 8–9 g/dl', mistake_tr: 'Hb 8–9 g/dl olan asemptomatik hastalarda liberal kan transfüzyonu yapılması', whyFatal: 'Unnötige allogene Transfusionen erhöhen Infektionsrate, TRALI/TACO-Risiko und Gesamtmortalität signifikant!', whyFatal_tr: 'Gereksiz allojenik transfüzyonlar enfeksiyon oranını, TRALI/TACO riskini ve toplam mortaliteyi anlamlı şekilde artırır!', correctAction: 'Strikte Einhaltung restriktiver Transfusionsgrenzen (Hb 7 g/dl ohne KHK, 8 g/dl bei KHK/zerebrovaskulärer Erkrankung).', correctAction_tr: 'Kısıtlayıcı transfüzyon eşiklerine sıkı uyum (KAH yoksa Hb 7 g/dl, KAH/serebrovasküler hastalıkta 8 g/dl).' }
         ]
       };
     }
@@ -119,6 +121,7 @@
         firstDrugTR: 'Dantrolen (2,5 mg/kg i.v. Bolus)',
         guideline: {
           title: 'S2k-Leitlinie Diagnostik und Therapie der Malignen Hyperthermie',
+          title_tr: 'Malign Hipertermi Tanı ve Tedavisi S2k Kılavuzu',
           society: 'DGAI / BDA & European Malignant Hyperthermia Group (EMHG)',
           awmf: 'AWMF-Registernummer 001-036',
           year: '2023',
@@ -126,13 +129,13 @@
           recommendation_tr: 'Tetikleyicilerin derhal kesilmesi (uçucu anestezikleri DURDUR, vaporizatörü ayır), maksimum akımla %100 O2, hiperventilasyon (dakika hacminin 2-3 katı), nedene yönelik tedavi olarak Dantrolen i.v.'
         },
         dosages: [
-          { drug: 'Dantrolen (Ryanodex / Dantrolen i.v.)', dose: '2,5 mg/kg i.v. Bolus', route: 'i.v.', maxDose: 'Bis zu 10 mg/kg (Titration bis Abfall von EtCO₂ & Tachykardie)', limits: 'EtCO₂ Normalisierung, T < 38,5°C' },
-          { drug: 'Kühlung (Eispacks, kalte Infusionen)', dose: 'Kalte Ringer-Laktat 4°C', route: 'i.v. / extern', maxDose: 'Stopp bei Kerntemperatur 38,5°C', limits: 'Rebound-Hypothermie vermeiden' },
-          { drug: 'Forcierte Diurese', dose: 'Furosemid 0,5–1 mg/kg + Mannitol 20%', route: 'i.v.', maxDose: 'Urin-Ausscheidung > 1,5–2 ml/kg/h', limits: 'Prävention von Myoglobinurie-Nierenversagen' }
+          { drug: 'Dantrolen (Ryanodex / Dantrolen i.v.)', drug_tr: 'Dantrolen (Ryanodex / Dantrolen i.v.)', dose: '2,5 mg/kg i.v. Bolus', dose_tr: '2,5 mg/kg i.v. hızlı bolus', route: 'i.v.', maxDose: 'Bis zu 10 mg/kg (Titration bis Abfall von EtCO₂ & Tachykardie)', maxDose_tr: '10 mg/kg a kadar (EtCO₂ düşüşü ve taşikardi gerileyene dek titrasyon)', limits: 'EtCO₂ Normalisierung, T < 38,5°C', limits_tr: 'EtCO₂ normalleşmesi, vücut ısısı < 38,5°C' },
+          { drug: 'Kühlung (Eispacks, kalte Infusionen)', drug_tr: 'Aktif Soğutma (Buz paketleri, soğuk infüzyonlar)', dose: 'Kalte Ringer-Laktat 4°C', dose_tr: '4°C soğuk dengeli kristalloid solüsyonu', route: 'i.v. / extern', maxDose: 'Stopp bei Kerntemperatur 38,5°C', maxDose_tr: 'Çekirdek ısı 38,5°C ye indiğinde soğutmayı durdur', limits: 'Rebound-Hypothermie vermeiden', limits_tr: 'Rebound hipotermiden kaçınılmalıdır' },
+          { drug: 'Forcierte Diurese', drug_tr: 'Zorlu Diürez (Rabdomiyoliz Koruması)', dose: 'Furosemid 0,5–1 mg/kg + Mannitol 20%', dose_tr: 'Furosemid 0,5–1 mg/kg + Mannitol %20', route: 'i.v.', maxDose: 'Urin-Ausscheidung > 1,5–2 ml/kg/h', maxDose_tr: 'İdrar çıkışı > 1,5–2 ml/kg/saat hedeflenir', limits: 'Prävention von Myoglobinurie-Nierenversagen', limits_tr: 'Miyoglobinüriye bağlı akut böbrek yetmezliğinin önlenmesi' }
         ],
         koPitfalls: [
-          { mistake: 'Gabe von Kalziumkanalblockern (z.B. Verapamil / Diltiazem)', whyFatal: 'Führt bei MH in Kombination mit Dantrolen zu therapierefraktärer Hyperkaliämie, myokardialem Kreislaufkollaps und Asystolie!', correctAction: 'Kalziumantagonisten sind STRENG KONTRAINDIZIERT! Hyperkaliämie mit Glukose-Insulin, Kalziumchlorid und ggf. Dialyse behandeln.' },
-          { mistake: 'Zuwarten mit Dantrolen bis zum Fieberanstieg', whyFatal: 'Hyperthermie ist ein Spätsymptom! Hauptfrühzeichen sind unbegründeter EtCO₂-Anstieg und Tachykardie / Masseterspasmus.', correctAction: 'Dantrolen sofort bei begründetem Verdacht (steigendes EtCO₂) ohne Zögern applizieren.' }
+          { mistake: 'Gabe von Kalziumkanalblockern (z.B. Verapamil / Diltiazem)', mistake_tr: 'Kalsiyum kanal blokerlerinin (örn. Verapamil / Diltiazem) verilmesi', whyFatal: 'Führt bei MH in Kombination mit Dantrolen zu therapierefraktärer Hyperkaliämie, myokardialem Kreislaufkollaps und Asystolie!', whyFatal_tr: 'MH tablosunda Dantrolen ile kombinasyonu tedaviye dirençli ağır hiperkalemi, miyokardiyal kollaps ve asistoliye yol açar!', correctAction: 'Kalziumantagonisten sind STRENG KONTRAINDIZIERT! Hyperkaliämie mit Glukose-Insulin, Kalziumchlorid und ggf. Dialyse behandeln.', correctAction_tr: 'Kalsiyum antagonistleri KESİNLİKLE KONTRENDİKEDİR! Hiperkalemiyi glukoz-insülin, kalsiyum klorür ve gerekirse diyaliz ile tedavi edin.' },
+          { mistake: 'Zuwarten mit Dantrolen bis zum Fieberanstieg', mistake_tr: 'Dantrolen vermek için ateşin yükselmesini beklemek', whyFatal: 'Hyperthermie ist ein Spätsymptom! Hauptfrühzeichen sind unbegründeter EtCO₂-Anstieg und Tachykardie / Masseterspasmus.', whyFatal_tr: 'Hipertermi geç bir bulgudur! En erken temel bulgular açıklanamayan EtCO₂ artışı, taşikardi ve masseter spazmıdır.', correctAction: 'Dantrolen sofort bei begründetem Verdacht (steigendes EtCO₂) ohne Zögern applizieren.', correctAction_tr: 'Haklı şüphe (yükselen EtCO₂) anında tereddüt etmeden derhal Dantrolen uygulayın.' }
         ]
       };
     }
@@ -146,6 +149,7 @@
         firstDrugTR: 'Mide Ultrasonu (POCUS) + Hızlı Seri İndüksiyon (RSI)',
         guideline: {
           title: 'DGAI / ESAIC / ASA Konsensus-Leitlinie Perioperatives Management GLP-1-Agonisten',
+          title_tr: 'GLP-1 Agonistlerinin Perioperatif Yönetimi DGAI / ESAIC / ASA Uzlaşı Kılavuzu',
           society: 'DGAI / ESAIC / ASA Taskforce',
           awmf: 'ESAIC Consensus 2024 GLP-1 Receptor Agonists',
           year: '2024',
@@ -153,12 +157,12 @@
           recommendation_tr: 'Belirgin gastroparezi nedeniyle 6 saatlik açlığa rağmen ameliyatta dolu mide riski mevcuttur. Günlük ilaç ameliyat günü, haftalık ilaç 1 hafta önce kesilir. Yetersiz aralıkta mide POCUS ve kesin RSI uygulanır.'
         },
         dosages: [
-          { drug: 'Präoperative Karenz wöchentlicher Substanzen', dose: '1 Dosisintervall auslassen (7 Tage vor OP)', route: 's.c.', maxDose: 'Elektive Eingriffe bei Völlegefühl/Erbrechen verschieben', limits: 'Ozempic / Wegovy / Mounjaro' },
-          { drug: 'Magen-Sonographie (POCUS)', dose: 'Antrum-Querschnitt im Rechtsseitenlage (Perlas 0-2)', route: 'Ultraschall', maxDose: 'Flüssigkeit > 1,5 ml/kg oder Feststoffe = Magen voll', limits: 'Grad 2 = Hohes Aspirationsrisiko' },
-          { drug: 'Narkoseeinleitung bei vollem Magen', dose: 'RSI mit Videolaryngoskop + Magensonde nach Intubation', route: 'i.v.', maxDose: 'Rocuronium 1,0–1,2 mg/kg oder Succinylcholin 1,0 mg/kg', limits: 'Keine Zwischenbeatmung!' }
+          { drug: 'Präoperative Karenz wöchentlicher Substanzen', drug_tr: 'Haftalık İlaçların Preoperatif Kesilmesi', dose: '1 Dosisintervall auslassen (7 Tage vor OP)', dose_tr: '1 doz aralığı atlanır (Ameliyattan 7 gün önce kesilir)', route: 's.c.', maxDose: 'Elektive Eingriffe bei Völlegefühl/Erbrechen verschieben', maxDose_tr: 'Dolgunluk hissi/kusma varsa elektif vakalar ertelenir', limits: 'Ozempic / Wegovy / Mounjaro', limits_tr: 'Ozempic / Wegovy / Mounjaro' },
+          { drug: 'Magen-Sonographie (POCUS)', drug_tr: 'Mide Ultrasonografisi (POCUS)', dose: 'Antrum-Querschnitt im Rechtsseitenlage (Perlas 0-2)', dose_tr: 'Sağ yan pozisyonda antrum kesit alanı ölçümü (Perlas 0–2)', route: 'Ultraschall', maxDose: 'Flüssigkeit > 1,5 ml/kg oder Feststoffe = Magen voll', maxDose_tr: 'Sıvı > 1,5 ml/kg veya katı gıda = Dolu mide', limits: 'Grad 2 = Hohes Aspirationsrisiko', limits_tr: 'Evre 2 = Yüksek aspirasyon riski' },
+          { drug: 'Narkoseeinleitung bei vollem Magen', drug_tr: 'Dolu Midede Anestezi İndüksiyonu', dose: 'RSI mit Videolaryngoskop + Magensonde nach Intubation', dose_tr: 'Videolaringoskop ile RSI + entübasyon sonrası nazogastrik sonda', route: 'i.v.', maxDose: 'Rocuronium 1,0–1,2 mg/kg oder Succinylcholin 1,0 mg/kg', maxDose_tr: 'Roküronyum 1,0–1,2 mg/kg veya Süksinilkolin 1,0 mg/kg', limits: 'Keine Zwischenbeatmung!', limits_tr: 'Ara maske ventilasyonu yapılmaz!' }
         ],
         koPitfalls: [
-          { mistake: 'Annahme, 6 Stunden Nüchternheit reichten bei Semaglutid aus', whyFatal: 'GLP-1-Agonisten führen zu stark verzögerter Magenmotilität; Patienten aspirieren trotz 10 Stunden Nüchternheit massive Feststoffmengen (Mendelson-Syndrom)!', correctAction: 'Immer nach GLP-1 fragen, Magen-Sonographie durchführen und bei Unklarheit RSI indizieren.' }
+          { mistake: 'Annahme, 6 Stunden Nüchternheit reichten bei Semaglutid aus', mistake_tr: 'Semaglutid kullanan hastada 6 saatlik açlığın yeterli olduğunu varsaymak', whyFatal: 'GLP-1-Agonisten führen zu stark verzögerter Magenmotilität; Patienten aspirieren trotz 10 Stunden Nüchternheit massive Feststoffmengen (Mendelson-Syndrom)!', whyFatal_tr: 'GLP-1 agonistleri mide boşalmasını ciddi şekilde geciktirir; hastalar 10 saatlik açlığa rağmen masif katı mide içeriği aspire edebilir (Mendelson sendromu)!', correctAction: 'Immer nach GLP-1 fragen, Magen-Sonographie durchführen und bei Unklarheit RSI indizieren.', correctAction_tr: 'Her zaman GLP-1 kullanımını sorgulayın, mide ultrasonu (POCUS) yapın ve şüphede kesin RSI uygulayın.' }
         ]
       };
     }
@@ -171,6 +175,7 @@
         firstDrugTR: 'Glukoz-İnsülin İnfüzyonu + Agresif Sıvı Tedavisi',
         guideline: {
           title: 'ESAIC / FDA / EMA Safety Warning & Guidelines on SGLT2-Inhibitor euDKA',
+          title_tr: 'SGLT2 İnhibitörü Öglisemik Ketoasidoz (euDKA) ESAIC / FDA / EMA Güvenlik Kılavuzu',
           society: 'ESAIC & DGAI Empfehlungen Perioperativer Diabetes',
           awmf: 'ESAIC Guideline Perioperative Glycemic Management',
           year: '2023',
@@ -178,12 +183,12 @@
           recommendation_tr: 'SGLT2 inhibitörleri elektif ameliyattan 3 gün önce kesilmelidir. Normal kan şekeri varlığında derin metabolik asidoz gelişirse öglisemik DKA düşünülmeli, keton ölçülmeli ve insülin-glukoz infüzyonu başlanmalıdır.'
         },
         dosages: [
-          { drug: 'Präoperatives Absetzen', dose: 'Mindestens 72 Stunden (3 Tage) vor Op-Tag', route: 'p.o.', maxDose: 'Notfall-OP: Perioperatives Keton-Monitoring obligat', limits: 'Forxiga, Jardiance' },
-          { drug: 'Therapie der euDKA', dose: 'Insulin i.v. (0,05–0,1 IE/kg/h) + Glukose 10% (100–150 ml/h)', route: 'i.v.', maxDose: 'Stoppt Ketogenese ohne Hypoglykämie zu induzieren', limits: 'Kalium engmaschig kontrollieren!' },
-          { drug: 'Volumensubstitution', dose: 'Vollelektrolytlösung 1.000–2.000 ml i.v.', route: 'i.v.', maxDose: 'Korrektur des osmotischen Flüssigkeitsdefizits', limits: 'Keine HES' }
+          { drug: 'Präoperatives Absetzen', drug_tr: 'Preoperatif İlaç Kesimi', dose: 'Mindestens 72 Stunden (3 Tage) vor Op-Tag', dose_tr: 'Ameliyat gününden en az 72 saat (3 gün) önce kesilmelidir', route: 'p.o.', maxDose: 'Notfall-OP: Perioperatives Keton-Monitoring obligat', maxDose_tr: 'Acil ameliyatlarda perioperatif keton takibi zorunludur', limits: 'Forxiga, Jardiance', limits_tr: 'Forxiga (Dapagliflozin), Jardiance (Empagliflozin)' },
+          { drug: 'Therapie der euDKA', drug_tr: 'euDKA Nedensel Tedavisi', dose: 'Insulin i.v. (0,05–0,1 IE/kg/h) + Glukose 10% (100–150 ml/h)', dose_tr: 'İnsülin i.v. (0,05–0,1 IU/kg/saat) + %10 Glukoz (100–150 ml/saat)', route: 'i.v.', maxDose: 'Stoppt Ketogenese ohne Hypoglykämie zu induzieren', maxDose_tr: 'Hipoglisemiye yol açmadan ketogenezi baskılar', limits: 'Kalium engmaschig kontrollieren!', limits_tr: 'Potasyum (K⁺) yakından takip edilmelidir!' },
+          { drug: 'Volumensubstitution', drug_tr: 'Volüm Replasmanı', dose: 'Vollelektrolytlösung 1.000–2.000 ml i.v.', dose_tr: 'Dengeli tam elektrolit solüsyonu 1.000–2.000 ml i.v.', route: 'i.v.', maxDose: 'Korrektur des osmotischen Flüssigkeitsdefizits', maxDose_tr: 'Osmotik diüreze bağlı sıvı açığının kapatılması', limits: 'Keine HES', limits_tr: 'HES (kolloid) kullanılmaz' }
         ],
         koPitfalls: [
-          { mistake: 'Ausschluss einer Ketoazidose wegen normalem Blutzucker (< 200 mg/dl)', whyFatal: 'SGLT2-Hemmer führen über renale Glukoseausscheidung zu normalen Glukosewerten trotz lebensbedrohlicher Ketoazidose!', correctAction: 'BGA-Anionenlücke berechnen und Serum-Ketonkörper (Beta-Hydroxybutyrat) bestimmen.' }
+          { mistake: 'Ausschluss einer Ketoazidose wegen normalem Blutzucker (< 200 mg/dl)', mistake_tr: 'Kan şekeri normal (< 200 mg/dl) olduğu için ketoasidozu dışlamak', whyFatal: 'SGLT2-Hemmer führen über renale Glukoseausscheidung zu normalen Glukosewerten trotz lebensbedrohlicher Ketoazidose!', whyFatal_tr: 'SGLT2 inhibitörleri renal glukozüri yoluyla hayatı tehdit eden ketoasidoza rağmen kan şekerini normal tutar!', correctAction: 'BGA-Anionenlücke berechnen und Serum-Ketonkörper (Beta-Hydroxybutyrat) bestimmen.', correctAction_tr: 'Kan gazında anyon açığını hesaplayın ve kanda keton cisimciklerini (Beta-hidroksibütirat) ölçün.' }
         ]
       };
     }
@@ -196,6 +201,7 @@
         firstDrugTR: 'Epidural Kan Yaması (EBP) (15-20 ml otolog kan)',
         guideline: {
           title: 'S1-Leitlinie Diagnostik und Therapie des postpunktionellen Kopfschmerzes',
+          title_tr: 'Postpunksiyonel Baş Ağrısı (PDPH) Tanı ve Tedavisi S1 Kılavuzu',
           society: 'DGAI / BDA / DGN',
           awmf: 'AWMF-Registernummer 030-113',
           year: '2023',
@@ -203,11 +209,11 @@
           recommendation_tr: 'Konservatif tedavi en fazla 24-48 saat denenir. Devam eden ortostatik baş ağrısında altın standart otolog epidural kan yamasıdır (EBP, %85-90 başarı).'
         },
         dosages: [
-          { drug: 'Autologer Epiduraler Blutpatch (EBP)', dose: '15–20 ml patienteneigenes Venenblut (steril abgenommen)', route: 'epidural', maxDose: 'Injektion stoppen bei Druckgefühl im Rücken/Beinen', limits: 'Strikte Asepsis; Kontraindikation: Lokale Infektion, Sepsis, Gerinnungsstörung' },
-          { drug: 'Koffein i.v. / p.o.', dose: 'Koffein 200–300 mg p.o. / Koffeincitrat i.v.', route: 'p.o. / i.v.', maxDose: 'Zerebrale Vasokonstriktion mildert Liquorunterdruck', limits: 'Nur vorübergehende Symptomlinderung' }
+          { drug: 'Autologer Epiduraler Blutpatch (EBP)', drug_tr: 'Otolog Epidural Kan Yaması (EBP)', dose: '15–20 ml patienteneigenes Venenblut (steril abgenommen)', dose_tr: '15–20 ml hastanın kendi venöz kanı (tam steril şartlarda alınmış)', route: 'epidural', maxDose: 'Injektion stoppen bei Druckgefühl im Rücken/Beinen', maxDose_tr: 'Sırtta veya bacaklarda basınç/ağrı hissedildiğinde enjeksiyonu durdur', limits: 'Strikte Asepsis; Kontraindikation: Lokale Infektion, Sepsis, Gerinnungsstörung', limits_tr: 'Mutlak asepsi; Kontrendikasyon: Lokal enfeksiyon, sepsis, koagülopati' },
+          { drug: 'Koffein i.v. / p.o.', drug_tr: 'Kafein i.v. / p.o.', dose: 'Koffein 200–300 mg p.o. / Koffeincitrat i.v.', dose_tr: 'Kafein 200–300 mg p.o. veya Kafein sitrat i.v.', route: 'p.o. / i.v.', maxDose: 'Zerebrale Vasokonstriktion mildert Liquorunterdruck', maxDose_tr: 'Serebral vazokonstriksiyon ile BOS düşük basıncı semptomlarını hafifletir', limits: 'Nur vorübergehende Symptomlinderung', limits_tr: 'Yalnızca geçici semptomatik rahatlama sağlar' }
         ],
         koPitfalls: [
-          { mistake: 'Verkennen von Red Flags (Fieber, Nackensteife, fokal-neurologische Ausfälle)', whyFatal: 'Es droht eine Verwechslung von PDPH mit epiduralem Hämatom, Abszess oder Meningitis mit irreversibler Lähmung!', correctAction: 'Bei neurologischen Defiziten oder Fieber sofortiges Notfall-MRT der Wirbelsäule.' }
+          { mistake: 'Verkennen von Red Flags (Fieber, Nackensteife, fokal-neurologische Ausfälle)', mistake_tr: 'Kırmızı Bayrak (Red Flags: Ateş, ense sertliği, fokal nörolojik defisit) bulgularını gözden kaçırmak', whyFatal: 'Es droht eine Verwechslung von PDPH mit epiduralem Hämatom, Abszess oder Meningitis mit irreversibler Lähmung!', whyFatal_tr: 'PDPH nin epidural hematom, apse veya menenjit ile karıştırılması kalıcı parapleji veya ölüme yol açar!', correctAction: 'Bei neurologischen Defiziten oder Fieber sofortiges Notfall-MRT der Wirbelsäule.', correctAction_tr: 'Nörolojik defisit veya ateş varlığında derhal acil spinal MRG çekilmelidir.' }
         ]
       };
     }
@@ -220,6 +226,7 @@
         firstDrugTR: 'Lipid Emülsiyonu %20 (İntralipid) (1,5 ml/kg i.v. bolus 1 dakikada)',
         guideline: {
           title: 'DGAI-Handlungsempfehlung: Systemische Toxizität von Lokalanästhetika (LAST)',
+          title_tr: 'Lokal Anestezik Sistemik Toksisitesi (LAST) DGAI Uygulama Kılavuzu',
           society: 'DGAI / BDA / ESAIC / ASRA-Standard',
           awmf: 'DGAI SOP Lokalanästhetika-Intoxikation',
           year: '2023',
@@ -227,13 +234,13 @@
           recommendation_tr: 'Enjeksiyonu derhal durdur, yardım çağır, havayolunu emniyete al (asidozu önlemek için %100 O2), nöbeti benzodiazepin/propofol ile sonlandır, erken lipid kurtarma tedavisi (%20 İntralipid).'
         },
         dosages: [
-          { drug: 'Lipidemulsion 20% (Intralipid)', dose: '1,5 ml/kg i.v. Bolus über 1 min (~100 ml bei 70 kg)', route: 'i.v.', maxDose: 'Bolus max. 2x wdh. alle 5 min, anschl. 0,25–0,5 ml/kg/min; Max: 10–12 ml/kg', limits: 'Propofol ist KEIN Lipidersatz!' },
-          { drug: 'Adrenalin (bei Reanimation/Kollaps)', dose: 'Niedrig dosiert: 10–50 µg i.v. Boli (≤ 1 µg/kg)', route: 'i.v.', maxDose: 'KEINE Standard-1-mg-Boli (Arrhythmiegefahr & Lungenödem!)', limits: 'Vasopressin, Ca-Blocker und Lidocain KONTRAINDIZIERT' },
-          { drug: 'Krampfkupierung', dose: 'Midazolam 0,05–0,1 mg/kg i.v.', route: 'i.v.', maxDose: 'Propofol nur niedrig dosiert bei stabilen Kreislaufverhältnissen', limits: 'Azidose drastisch verschlechtert LAST' }
+          { drug: 'Lipidemulsion 20% (Intralipid)', drug_tr: '%20 Lipid Emülsiyonu (İntralipid)', dose: '1,5 ml/kg i.v. Bolus über 1 min (~100 ml bei 70 kg)', dose_tr: '1 dk içinde 1,5 ml/kg i.v. bolus (70 kg hastada ~100 ml)', route: 'i.v.', maxDose: 'Bolus max. 2x wdh. alle 5 min, anschl. 0,25–0,5 ml/kg/min; Max: 10–12 ml/kg', maxDose_tr: 'Bolus 5 dk arayla maks. 2 kez tekrarlanabilir, ardından 0,25–0,5 ml/kg/dk infüzyon; Maks: 10–12 ml/kg', limits: 'Propofol ist KEIN Lipidersatz!', limits_tr: 'Propofol KESİNLİKLE lipid emülsiyonu yerine geçmez!' },
+          { drug: 'Adrenalin (bei Reanimation/Kollaps)', drug_tr: 'Adrenalin (KPR / Kollaps durumunda)', dose: 'Niedrig dosiert: 10–50 µg i.v. Boli (≤ 1 µg/kg)', dose_tr: 'Düşük dozda: 10–50 µg i.v. bolus (≤ 1 µg/kg)', route: 'i.v.', maxDose: 'KEINE Standard-1-mg-Boli (Arrhythmiegefahr & Lungenödem!)', maxDose_tr: 'Standart 1 mg bolus YAPILMAZ (Ağır aritmi ve akciğer ödemi tehlikesi!)', limits: 'Vasopressin, Ca-Blocker und Lidocain KONTRAINDIZIERT', limits_tr: 'Vazopressin, Kalsiyum kanal blokerleri ve Lidokain KONTRENDİKEDİR' },
+          { drug: 'Krampfkupierung', drug_tr: 'Konvülziyon (Nöbet) Kontrolü', dose: 'Midazolam 0,05–0,1 mg/kg i.v.', dose_tr: 'Midazolam 0,05–0,1 mg/kg i.v.', route: 'i.v.', maxDose: 'Propofol nur niedrig dosiert bei stabilen Kreislaufverhältnissen', maxDose_tr: 'Propofol yalnızca dolaşım stabilse düşük dozda kullanılabilir', limits: 'Azidose drastisch verschlechtert LAST', limits_tr: 'Asidoz ve hipoksi LAST tablosunu dramatik şekilde ağırlaştırır' }
         ],
         koPitfalls: [
-          { mistake: 'Gabe von Lidocain oder anderen Antiarrhythmika der Klasse I', whyFatal: 'Addiert zusätzliche Natriumkanal-Blockade und führt zu irreversiblem Asystolie-Kreislaufstillstand!', correctAction: 'Ausschließlich Lipid 20%, Amiodaron bei ventrikulären Rhythmusstörungen, Reanimation nach modifiziertem ALS.' },
-          { mistake: 'Standard-Adrenalin-Bolus von 1 mg i.v.', whyFatal: 'Erhöht den myokardialen Sauerstoffverbrauch und triggert therapierefraktäre Kammerrhythmusstörungen.', correctAction: 'Adrenalin streng titriert in Mini-Boli (< 1 µg/kg, d.h. 10–50 µg).' }
+          { mistake: 'Gabe von Lidocain oder anderen Antiarrhythmika der Klasse I', mistake_tr: 'Lidokain veya diğer Sınıf I antiaritmiklerin verilmesi', whyFatal: 'Addiert zusätzliche Natriumkanal-Blockade und führt zu irreversiblem Asystolie-Kreislaufstillstand!', whyFatal_tr: 'Ek sodyum kanal blokajı yaratarak geri dönüşümsüz asistoli ve kardiyak arreste yol açar!', correctAction: 'Ausschließlich Lipid 20%, Amiodaron bei ventrikulären Rhythmusstörungen, Reanimation nach modifiziertem ALS.', correctAction_tr: 'Yalnızca %20 Lipid emülsiyonu, ventriküler aritmilerde Amiodaron ve modifiye ALS ile uzamış KPR uygulanır.' },
+          { mistake: 'Standard-Adrenalin-Bolus von 1 mg i.v.', mistake_tr: 'Standart 1 mg i.v. Adrenalin bolusu uygulanması', whyFatal: 'Erhöht den myokardialen Sauerstoffverbrauch und triggert therapierefraktäre Kammerrhythmusstörungen.', whyFatal_tr: 'Miyokardiyal oksijen tüketimini artırır, lipid resüsitasyonunu bozar ve dirençli ventriküler aritmilere neden olur.', correctAction: 'Adrenalin streng titriert in Mini-Boli (< 1 µg/kg, d.h. 10–50 µg).', correctAction_tr: 'Adrenalin mutlaka düşük mini-boluslar (< 1 µg/kg, yani 10–50 µg) halinde titre edilmelidir.' }
         ]
       };
     }
@@ -246,6 +253,7 @@
         firstDrugTR: 'Sugammadex (Roküronyumda CICO kurtarma için 16 mg/kg i.v. ani bolus)',
         guideline: {
           title: 'S1-Leitlinie Atemwegsmanagement (Präoperativ, Notfall, CICO)',
+          title_tr: 'Havayolu Yönetimi S1 Kılavuzu (Preoperatif, Acil, CICO)',
           society: 'DGAI / BDA Arbeitskreis Atemwegsmanagement',
           awmf: 'AWMF-Registernummer 001-028',
           year: '2023',
@@ -253,13 +261,13 @@
           recommendation_tr: 'Katı DGAI 4 basamaklı planı: Plan A (Maske & Videolaringoskopi, en fazla 3 deneme), Plan B (Supraglottik havayolu / 2. nesil LMA), Plan C (Uyandırma / Balon-Maske), Plan D (eFONA: Skalpel-Buji-Tüp).'
         },
         dosages: [
-          { drug: 'Sugammadex (CICO-Rescue bei Rocuronium)', dose: '16 mg/kg i.v. Notfall-Sofortbolus', route: 'i.v.', maxDose: 'Vollständige Aufhebung der neuromuskulären Blockade in < 3 min', limits: 'Funktioniert nur bei Rocuronium/Vecuronium' },
-          { drug: 'eFONA (Emergency Front of Neck Airway)', dose: 'Skalpell Nr. 10 (horizontaler Schnitt) + Bougie + Ch. 6.0 Tubus', route: 'Koniotomie', maxDose: 'Keine Nadelpunktion bei Erwachsenen (Versagerquote > 60%)', limits: 'Durchführung bei SpO₂-Abfall < 80% im CICO' },
-          { drug: 'Sauerstoff-Insufflation', dose: '100% FiO2 High-Flow (bis 60 l/min)', route: 'Nasal / Maske', maxDose: 'Apnoische Oxygenierung während Intubationsversuchen', limits: 'Voroxygenierung mit EtO2 > 90%' }
+          { drug: 'Sugammadex (CICO-Rescue bei Rocuronium)', drug_tr: 'Sugammadex (Roküronyumda CICO Kurtarma)', dose: '16 mg/kg i.v. Notfall-Sofortbolus', dose_tr: '16 mg/kg i.v. acil ani bolus', route: 'i.v.', maxDose: 'Vollständige Aufhebung der neuromuskulären Blockade in < 3 min', maxDose_tr: '< 3 dakikada nöromüsküler blokajın tam geri döndürülmesi', limits: 'Funktioniert nur bei Rocuronium/Vecuronium', limits_tr: 'Yalnızca Roküronyum/Veküronyum blokajında etkilidir' },
+          { drug: 'eFONA (Emergency Front of Neck Airway)', drug_tr: 'eFONA (Acil Cerrahi Koniotomi)', dose: 'Skalpell Nr. 10 (horizontaler Schnitt) + Bougie + Ch. 6.0 Tubus', dose_tr: 'No. 10 Bistüri (yatay kesi) + Buji + İç çapı 6.0 mm kaflı tüp', route: 'Koniotomie', maxDose: 'Keine Nadelpunktion bei Erwachsenen (Versagerquote > 60%)', maxDose_tr: 'Yetişkinde iğne koniotomisi önerilmez (başarısızlık oranı > %60)', limits: 'Durchführung bei SpO₂-Abfall < 80% im CICO', limits_tr: 'CICO tablosunda SpO₂ < %80 altına düşerken derhal uygulanır' },
+          { drug: 'Sauerstoff-Insufflation', drug_tr: 'Oksijen İnsüflasyonu', dose: '100% FiO2 High-Flow (bis 60 l/min)', dose_tr: '%100 FiO₂ Yüksek Akım (60 l/dk ya kadar)', route: 'Nasal / Maske', maxDose: 'Apnoische Oxygenierung während Intubationsversuchen', maxDose_tr: 'Entübasyon denemeleri sırasında apneik oksijenasyon sağlar', limits: 'Voroxygenierung mit EtO2 > 90%', limits_tr: 'EtO₂ > %90 olana dek preoksijenasyon' }
         ],
         koPitfalls: [
-          { mistake: 'Mehr als 3 Intubationsversuche ohne Verfahrenswechsel', whyFatal: 'Verursacht Schwellung, Blutung und konvertiert eine "Can-Ventilate"-Situation in ein tödliches CICO!', correctAction: 'Maximal 3 Versuche (nur 1 mit direkter Laryngoskopie, sofortiger Wechsel auf Videolaryngoskop & Plan B Larynxmaske).' },
-          { mistake: 'Zögern bei der chirurgischen Koniotomie (eFONA) im CICO-Fall', whyFatal: 'Führt zu hypoxischem Hirnschaden und Herzkreislaufstillstand innerhalb von 3-4 Minuten.', correctAction: 'Sofortige Ansage: "CICO-Notfall - Koniotomie-Besteck öffnen!" Skalpell-Bougie-Tubus-Technik.' }
+          { mistake: 'Mehr als 3 Intubationsversuche ohne Verfahrenswechsel', mistake_tr: 'Yöntem değiştirmeden 3 ten fazla entübasyon denemesi yapmak', whyFatal: 'Verursacht Schwellung, Blutung und konvertiert eine "Can-Ventilate"-Situation in ein tödliches CICO!', whyFatal_tr: 'Larenkste ödem ve kanamaya yol açarak "havalandırılabilir" hastayı ölümcül CICO tablosuna dönüştürür!', correctAction: 'Maximal 3 Versuche (nur 1 mit direkter Laryngoskopie, sofortiger Wechsel auf Videolaryngoskop & Plan B Larynxmaske).', correctAction_tr: 'Maksimum 3 deneme (direkt laringoskopi ile en fazla 1 deneme, derhal videolaringoskop ve Plan B LMA ya geçiş).' },
+          { mistake: 'Zögern bei der chirurgischen Koniotomie (eFONA) im CICO-Fall', mistake_tr: 'CICO durumunda cerrahi koniotomi (eFONA) için tereddüt etmek', whyFatal: 'Führt zu hypoxischem Hirnschaden und Herzkreislaufstillstand innerhalb von 3-4 Minuten.', whyFatal_tr: '3–4 dakika içinde hipoksik beyin hasarı ve kardiyak arreste yol açar.', correctAction: 'Sofortige Ansage: "CICO-Notfall - Koniotomie-Besteck öffnen!" Skalpell-Bougie-Tubus-Technik.', correctAction_tr: 'Net komut: "CICO acil durumu – Koniotomi setini açın!" Bistüri-Buji-Tüp tekniği uygulanır.' }
         ]
       };
     }
@@ -272,6 +280,7 @@
         firstDrugTR: 'Noradrenalin (1. seçenek: 2-10 µg i.v. bolus veya 0,02-0,2 µg/kg/dk)',
         guideline: {
           title: 'DGAI / ESC Leitlinie Perioperatives Management kardialer Risikopatienten',
+          title_tr: 'Kardiyak Riskli Hastaların Perioperatif Yönetimi DGAI / ESC Kılavuzu',
           society: 'DGAI / BDA / ESC / ESAIC',
           awmf: 'AWMF-Registernummer 001-016',
           year: '2023',
@@ -279,13 +288,13 @@
           recommendation_tr: 'Hemodinamik Triad: SVR yüksek-normal, Sinüs ritmi 60–80/dk, Ön yük yüksek-normal. Anestezi indüksiyonundan önce invaziv arteriyel kan basıncı ölçümü şarttır.'
         },
         dosages: [
-          { drug: 'Noradrenalin (Vasopressor der 1. Wahl)', dose: '2–10 µg i.v. Boli oder 0,02–0,2 µg/kg/min Perfusor', route: 'i.v.', maxDose: 'Ziel-MAP ≥ 75–80 mmHg', limits: 'Periphere Vasokonstriktion sichert Koronardurchblutung' },
-          { drug: 'Phenylephrin (reiner Alpha-1-Agonist)', dose: '50–100 µg i.v. Boli', route: 'i.v.', maxDose: 'Reflexbradykardie beachten', limits: 'Günstig bei Tachyarrhythmie' },
-          { drug: 'Volumenbelastung (Vorlastsicherung)', dose: 'Vollelektrolytlösung 250–500 ml Boli', route: 'i.v.', maxDose: 'Hypovolämie führt sofort zum Kreislaufzusammenbruch', limits: 'Starrer hypertrophierter Ventrikel braucht Füllungsdruck' }
+          { drug: 'Noradrenalin (Vasopressor der 1. Wahl)', drug_tr: 'Noradrenalin (1. Tercih Vazopressör)', dose: '2–10 µg i.v. Boli oder 0,02–0,2 µg/kg/min Perfusor', dose_tr: '2–10 µg i.v. bolus veya 0,02–0,2 µg/kg/dk perfüzör', route: 'i.v.', maxDose: 'Ziel-MAP ≥ 75–80 mmHg', maxDose_tr: 'Hedef MAP ≥ 75–80 mmHg', limits: 'Periphere Vasokonstriktion sichert Koronardurchblutung', limits_tr: 'Periferik vazokonstriksiyon koroner perfüzyonu güvenceye alır' },
+          { drug: 'Phenylephrin (reiner Alpha-1-Agonist)', drug_tr: 'Fenilefrin (Saf Alfa-1 Agonisti)', dose: '50–100 µg i.v. Boli', dose_tr: '50–100 µg i.v. bolus', route: 'i.v.', maxDose: 'Reflexbradykardie beachten', maxDose_tr: 'Refleks bradikardiye dikkat edilmeli', limits: 'Günstig bei Tachyarrhythmie', limits_tr: 'Taşiaritmi varlığında tercih edilir' },
+          { drug: 'Volumenbelastung (Vorlastsicherung)', drug_tr: 'Volüm Yüklemesi (Ön Yükün Korunması)', dose: 'Vollelektrolytlösung 250–500 ml Boli', dose_tr: 'Dengeli tam elektrolit solüsyonu 250–500 ml bolus', route: 'i.v.', maxDose: 'Hypovolämie führt sofort zum Kreislaufzusammenbruch', maxDose_tr: 'Hipovolemi derhal dolaşım kollapsına yol açar', limits: 'Starrer hypertrophierter Ventrikel braucht Füllungsdruck', limits_tr: 'Sert hipertrofik ventrikül yüksek dolum basıncına ihtiyaç duyar' }
         ],
         koPitfalls: [
-          { mistake: 'Durchführung einer Spinalanästhesie (SPA)', whyFatal: 'Die akute Sympathikolyse führt zum SVR-Kollaps. Da das Schlagvolumen über der fixierten Stenose nicht steigen kann, bricht die Koronarperfusion zusammen -> Asystolie!', correctAction: 'Spinalanästhesie ist absolut KONTRAINDIZIERT. Schonende Allgemeinanästhesie mit Etomidat/Sufentanil oder vorsichtige, langsam aufdosierte Epiduralanästhesie.' },
-          { mistake: 'Tolerieren von Tachykardie (> 90/min)', whyFatal: 'Verkürzt die Diastolendauer drastisch und erzeugt tödliche Myokardischämie des hypertrophierten linken Ventrikels.', correctAction: 'Sinusrhythmus strikt bei 60–80/min halten. Tachyarrhythmie sofort kardiovertieren.' }
+          { mistake: 'Durchführung einer Spinalanästhesie (SPA)', mistake_tr: 'Spinal anestezi (SPA) uygulanması', whyFatal: 'Die akute Sympathikolyse führt zum SVR-Kollaps. Da das Schlagvolumen über der fixierten Stenose nicht steigen kann, bricht die Koronarperfusion zusammen -> Asystolie!', whyFatal_tr: 'Akut sempatikoliz SVR kollapsına yol açar; sabit darlık nedeniyle atım hacmi artamayacağından koroner perfüzyon çöker -> Asistoli!', correctAction: 'Spinalanästhesie ist absolut KONTRAINDIZIERT. Schonende Allgemeinanästhesie mit Etomidat/Sufentanil oder vorsichtige, langsam aufdosierte Epiduralanästhesie.', correctAction_tr: 'Spinal anestezi KESİNLİKLE KONTRENDİKEDİR. İnvaziv arter monitörizasyonu altında Etomidat/Sufentanil ile nazik genel anestezi uygulanır.' },
+          { mistake: 'Tolerieren von Tachykardie (> 90/min)', mistake_tr: 'Taşikardiye (> 90/dk) izin verilmesi', whyFatal: 'Verkürzt die Diastolendauer drastisch und erzeugt tödliche Myokardischämie des hypertrophierten linken Ventrikels.', whyFatal_tr: 'Diyastol süresini kısaltarak hipertrofik sol ventrikülde ölümcül subendokardiyal miyokard iskemisine yol açar.', correctAction: 'Sinusrhythmus strikt bei 60–80/min halten. Tachyarrhythmie sofort kardiovertieren.', correctAction_tr: 'Sinüs ritmi sıkı şekilde 60–80/dk arasında tutulmalı, yeni taşiaritmi derhal kardiyoverte edilmelidir.' }
         ]
       };
     }
@@ -298,6 +307,7 @@
         firstDrugTR: 'Adrenalin (0,5 mg i.m. veya 10-50 µg i.v. titre)',
         guideline: {
           title: 'S2k-Leitlinie Akuttherapie und Management anaphylaktischer Reaktionen',
+          title_tr: 'Anafilaktik Reaksiyonların Akut Tedavisi ve Yönetimi S2k Kılavuzu',
           society: 'DGAI / BDA / DGAKI / AWMF',
           awmf: 'AWMF-Registernummer 061-025',
           year: '2023',
@@ -305,13 +315,13 @@
           recommendation_tr: 'Tüm şüpheli ajanların derhal kesilmesi, %100 O2, ilk tercih olarak derhal Adrenalin, kristalloid solüsyonlarla agresif volüm replasmanı.'
         },
         dosages: [
-          { drug: 'Adrenalin i.m. (Grad II–III, Spontanatmung)', dose: '0,5 mg i.m. (ungestreckt 1:1000)', route: 'i.m. M. vastus lat.', maxDose: 'Wiederholung alle 5–10 min bei Persistenz', limits: 'Schnellste Resorption und sicherster Weg' },
-          { drug: 'Adrenalin i.v. titriert (Narkose / Kreislaufkollaps)', dose: '10–50 µg i.v. Boli (1:10.000 oder 1:100.000 verdünnt)', route: 'i.v.', maxDose: 'Perfusor 0,05–0,5 µg/kg/min nach Ansprechen', limits: 'Nur verdünnt titrieren bei liegendem Monitoring' },
-          { drug: 'Kristalloide Infusion', dose: 'Vollelektrolytlösung 1000–2000 ml Druckinfusion', route: 'i.v.', maxDose: 'Bis zu 30–50 ml/kg in der ersten Stunde', limits: 'Kompensiert kapilläres Leck & Vasodilatation' },
-          { drug: 'Zweitlinien-Therapie (erst nach Adrenalin)', dose: 'Dimetinden 0,1 mg/kg + Prednisolon 250–500 mg i.v.', route: 'i.v.', maxDose: 'Wirkeintritt erst nach 20–30 min', limits: 'Verzögern Sie NIEMALS die Adrenalingabe dafür!' }
+          { drug: 'Adrenalin i.m. (Grad II–III, Spontanatmung)', drug_tr: 'Adrenalin i.m. (Evre II–III, Spontan Solunum)', dose: '0,5 mg i.m. (ungestreckt 1:1000)', dose_tr: '0,5 mg i.m. (sulandırılmamış 1:1000)', route: 'i.m. M. vastus lat.', maxDose: 'Wiederholung alle 5–10 min bei Persistenz', maxDose_tr: 'Semptomlar sürerse 5–10 dakikada bir tekrarlanır', limits: 'Schnellste Resorption und sicherster Weg', limits_tr: 'En hızlı emilim ve en güvenli uygulama yolu' },
+          { drug: 'Adrenalin i.v. titriert (Narkose / Kreislaufkollaps)', drug_tr: 'Adrenalin i.v. titre (Anestezi / Dolaşım Kollapsı)', dose: '10–50 µg i.v. Boli (1:10.000 oder 1:100.000 verdünnt)', dose_tr: '10–50 µg i.v. bolus (1:10.000 veya 1:100.000 seyreltilmiş)', route: 'i.v.', maxDose: 'Perfusor 0,05–0,5 µg/kg/min nach Ansprechen', maxDose_tr: 'Yanıt sonrası perfüzör 0,05–0,5 µg/kg/dk', limits: 'Nur verdünnt titrieren bei liegendem Monitoring', limits_tr: 'Yalnızca monitörize hastada seyreltilerek titre edilmelidir' },
+          { drug: 'Kristalloide Infusion', drug_tr: 'Kristalloid İnfüzyon', dose: 'Vollelektrolytlösung 1000–2000 ml Druckinfusion', dose_tr: 'Dengeli tam elektrolit solüsyonu 1000–2000 ml basınçlı infüzyon', route: 'i.v.', maxDose: 'Bis zu 30–50 ml/kg in der ersten Stunde', maxDose_tr: 'İlk 1 saatte 30–50 ml/kg a kadar', limits: 'Kompensiert kapilläres Leck & Vasodilatation', limits_tr: 'Kapiller kaçak ve vazodilatasyonu dengeler' },
+          { drug: 'Zweitlinien-Therapie (erst nach Adrenalin)', drug_tr: 'İkinci Basamak Tedavi (Yalnızca Adrenalinden Sonra)', dose: 'Dimetinden 0,1 mg/kg + Prednisolon 250–500 mg i.v.', dose_tr: 'Dimetinden 0,1 mg/kg + Prednizolon 250–500 mg i.v.', route: 'i.v.', maxDose: 'Wirkeintritt erst nach 20–30 min', maxDose_tr: 'Etki başlangıcı ancak 20–30 dakika sonradır', limits: 'Verzögern Sie NIEMALS die Adrenalingabe dafür!', limits_tr: 'Bunun için Adrenalin uygulamasını ASLA geciktirmeyin!' }
         ],
         koPitfalls: [
-          { mistake: 'Zuwarten mit Adrenalin und primäre Gabe von Kortison oder Antihistaminika', whyFatal: 'Kortikoide und Antihistaminika stoppen den akuten Kreislaufkollaps und Bronchospasmus NICHT! Der Patient stirbt im Asphyxie-Schock.', correctAction: 'Adrenalin ist das EINZIGE lebensrettende Kausaltherapeutikum und MUSS sofort gegeben werden.' }
+          { mistake: 'Zuwarten mit Adrenalin und primäre Gabe von Kortison oder Antihistaminika', mistake_tr: 'Adrenalini geciktirip öncelikle kortizon veya antihistaminik verilmesi', whyFatal: 'Kortikoide und Antihistaminika stoppen den akuten Kreislaufkollaps und Bronchospasmus NICHT! Der Patient stirbt im Asphyxie-Schock.', whyFatal_tr: 'Kortikosteroidler ve antihistaminikler akut dolaşım kollapsını ve bronkospazmı DURDURMAZ! Hasta asfiksi ve şoktan kaybedilir.', correctAction: 'Adrenalin ist das EINZIGE lebensrettende Kausaltherapeutikum und MUSS sofort gegeben werden.', correctAction_tr: 'Adrenalin hayat kurtaran TEK nedensel tedavidir ve derhal uygulanmalıdır.' }
         ]
       };
     }
@@ -324,6 +334,7 @@
         firstDrugTR: 'Noradrenalin (0,05-0,5 µg/kg/dk titre)',
         guideline: {
           title: 'S3-Leitlinie Sepsis - Prävention, Diagnose, Therapie und Nachsorge',
+          title_tr: 'Sepsis – Önleme, Tanı, Tedavi ve İzlem S3 Kılavuzu',
           society: 'DGAI / DIVI / DSG / AWMF',
           awmf: 'AWMF-Registernummer 079-001',
           year: '2023',
@@ -331,12 +342,12 @@
           recommendation_tr: 'Surviving Sepsis 1 Saat Paketi: Antibiyotikten ÖNCE kan kültürü, 60 dk içinde geniş spektrumlu antibiyotik, 30 ml/kg kristalloid, hedef MAP ≥ 65 mmHg için Noradrenalin, laktat klirensi.'
         },
         dosages: [
-          { drug: 'Noradrenalin (Vasopressor 1. Wahl)', dose: '0,05–0,5 µg/kg/min titriert', route: 'i.v. (ZVK / Perfusor)', maxDose: 'Ziel-MAP ≥ 65 mmHg (bei chronischer Hypertonie 70–75 mmHg)', limits: 'Frühzeitig parallel zur Volumengabe starten' },
-          { drug: 'Vasopressin (Argipressin / Second-Line)', dose: '0,03 IE/min fixer Perfusor', route: 'i.v.', maxDose: 'Keine Dosissteigerung > 0,04 IE/min', limits: 'Additiv bei hohem Noradrenalin-Bedarf' },
-          { drug: 'Kristalloide Flüssigkeitstherapie', dose: '30 ml/kg balancierte Vollelektrolyte in 3h', route: 'i.v.', maxDose: 'Dynamische Parameter (SVV/PPV) zur Steuerung nutzen', limits: 'Überwässerung und Lungenödem vermeiden' }
+          { drug: 'Noradrenalin (Vasopressor 1. Wahl)', drug_tr: 'Noradrenalin (1. Tercih Vazopressör)', dose: '0,05–0,5 µg/kg/min titriert', dose_tr: '0,05–0,5 µg/kg/dk titre edilerek', route: 'i.v. (ZVK / Perfusor)', maxDose: 'Ziel-MAP ≥ 65 mmHg (bei chronischer Hypertonie 70–75 mmHg)', maxDose_tr: 'Hedef MAP ≥ 65 mmHg (kronik hipertansiyonda 70–75 mmHg)', limits: 'Frühzeitig parallel zur Volumengabe starten', limits_tr: 'Sıvı resüsitasyonuna paralel olarak erken dönemde başlanır' },
+          { drug: 'Vasopressin (Argipressin / Second-Line)', drug_tr: 'Vazopressin (Argipressin / İkinci Basamak)', dose: '0,03 IE/min fixer Perfusor', dose_tr: '0,03 IU/dk sabit hızlı perfüzör', route: 'i.v.', maxDose: 'Keine Dosissteigerung > 0,04 IE/min', maxDose_tr: 'Doz > 0,04 IU/dk üzerine çıkarılmaz (iskemi riski)', limits: 'Additiv bei hohem Noradrenalin-Bedarf', limits_tr: 'Yüksek Noradrenalin ihtiyacında ek (additif) olarak başlanır' },
+          { drug: 'Kristalloide Flüssigkeitstherapie', drug_tr: 'Kristalloid Sıvı Tedavisi', dose: '30 ml/kg balancierte Vollelektrolyte in 3h', dose_tr: 'İlk 3 saatte 30 ml/kg dengeli tam elektrolit solüsyonu', route: 'i.v.', maxDose: 'Dynamische Parameter (SVV/PPV) zur Steuerung nutzen', maxDose_tr: 'Yönetimde dinamik parametreler (SVV/PPV, PLR) kullanılır', limits: 'Überwässerung und Lungenödem vermeiden', limits_tr: 'Aşırı sıvı yüklenmesi ve akciğer ödeminden kaçınılmalıdır' }
         ],
         koPitfalls: [
-          { mistake: 'Verzögerung der kalkulierten Antibiose (> 1 Stunde nach Diagnosestellung)', whyFatal: 'Jede Stunde Verzögerung erhöht die Letalität im septischen Schock um bis zu 7%!', correctAction: 'Breitspektrum-Antibiotikum innerhalb von 60 Minuten infundieren (nach zügiger Blutkulturentnahme).' }
+          { mistake: 'Verzögerung der kalkulierten Antibiose (> 1 Stunde nach Diagnosestellung)', mistake_tr: 'Ampirik antibiyotik tedavisinin geciktirilmesi (tanıdan > 1 saat sonra)', whyFatal: 'Jede Stunde Verzögerung erhöht die Letalität im septischen Schock um bis zu 7%!', whyFatal_tr: 'Septik şokta antibiyotikteki her 1 saatlik gecikme mortaliteyi yaklaşık %7 artırır!', correctAction: 'Breitspektrum-Antibiotikum innerhalb von 60 Minuten infundieren (nach zügiger Blutkulturentnahme).', correctAction_tr: 'Geniş spektrumlu antibiyotik (hızlı kan kültürü alındıktan hemen sonra) 60 dakika içinde infüze edilmelidir.' }
         ]
       };
     }
@@ -349,6 +360,7 @@
         firstDrugTR: 'Oksitosin (3-5 IU yavaş i.v. 2 dakikada) + Traneksamik Asit (1 g i.v.)',
         guideline: {
           title: 'S2k-Leitlinie Peripartale Blutungen (Diagnostik und Therapie)',
+          title_tr: 'Peripartum Kanamalar (PPH) Tanı ve Tedavisi S2k Kılavuzu',
           society: 'DGAI / DGGG / OEGGG / SGGG',
           awmf: 'AWMF-Registernummer 015-063',
           year: '2023',
@@ -356,14 +368,14 @@
           recommendation_tr: 'Basamaklı yaklaşım (4T: Tonus, Travma, Doku, Trombin). Uterotonikler, erken Traneksamik asit, hedef Fibrinojen ≥ 2 g/l, Bakri balonu / cerrahi kompresyon.'
         },
         dosages: [
-          { drug: 'Oxytocin (Syntocinon)', dose: '3–5 IE langsam i.v. über 1–2 min, dann Perfusor 10–20 IE in 500 ml', route: 'i.v.', maxDose: 'KEIN schneller Bolus (Hypotonie & Tachykardie!)', limits: '1. Wahl bei Uterusatonie' },
-          { drug: 'Sulproston (Nalador / Prostaglandin E2)', dose: '500 µg in 500 ml NaCl (initial 100–500 µg/h)', route: 'i.v. Perfusor', maxDose: 'Max. 500 µg in 4 Stunden / 1500 µg in 24h', limits: 'Kontraindikation: schweres Asthma bronchiale!' },
-          { drug: 'Tranexamsäure (TXA)', dose: '1 g i.v. Kurzinfusion (100 ml über 10 min)', route: 'i.v.', maxDose: 'Wiederholung von 1 g nach 30 min bei fortbestehender Blutung', limits: 'Gabe MUSS innerhalb von 3 Stunden nach Geburt erfolgen' },
-          { drug: 'Fibrinogen-Konzentrat', dose: '2–4 g i.v. nach ROTEM (FIBTEM A10 < 10 mm)', route: 'i.v.', maxDose: 'Zielwert Fibrinogen ≥ 2 g/l (200 mg/dl)', limits: 'Fibrinogen ist der erste verbrauchte Gerinnungsfaktor bei PPH' }
+          { drug: 'Oxytocin (Syntocinon)', drug_tr: 'Oksitosin (Syntocinon)', dose: '3–5 IE langsam i.v. über 1–2 min, dann Perfusor 10–20 IE in 500 ml', dose_tr: '1–2 dk içinde 3–5 IU yavaş i.v., ardından 500 ml içinde 10–20 IU infüzyon', route: 'i.v.', maxDose: 'KEIN schneller Bolus (Hypotonie & Tachykardie!)', maxDose_tr: 'Hızlı i.v. bolus YAPILMAZ (Ağır hipotansiyon ve taşikardi!)', limits: '1. Wahl bei Uterusatonie', limits_tr: 'Uterus atonisinde 1. tercih ilaç' },
+          { drug: 'Sulproston (Nalador / Prostaglandin E2)', drug_tr: 'Sulproston (Nalador / Prostaglandin E2)', dose: '500 µg in 500 ml NaCl (initial 100–500 µg/h)', dose_tr: '500 ml NaCl içinde 500 µg (başlangıç 100–500 µg/saat)', route: 'i.v. Perfusor', maxDose: 'Max. 500 µg in 4 Stunden / 1500 µg in 24h', maxDose_tr: '4 saatte maks. 500 µg / 24 saatte maks. 1500 µg', limits: 'Kontraindikation: schweres Asthma bronchiale!', limits_tr: 'Kontrendikasyon: Ağır bronşiyal astım!' },
+          { drug: 'Tranexamsäure (TXA)', drug_tr: 'Traneksamik Asit (TXA)', dose: '1 g i.v. Kurzinfusion (100 ml über 10 min)', dose_tr: '1 g i.v. kısa infüzyon (100 ml içinde 10 dakikada)', route: 'i.v.', maxDose: 'Wiederholung von 1 g nach 30 min bei fortbestehender Blutung', maxDose_tr: 'Kanama devam ederse 30 dk sonra 1 g tekrarlanır', limits: 'Gabe MUSS innerhalb von 3 Stunden nach Geburt erfolgen', limits_tr: 'Doğumdan sonraki ilk 3 saat içinde verilmelidir' },
+          { drug: 'Fibrinogen-Konzentrat', drug_tr: 'Fibrinojen Konsantresi', dose: '2–4 g i.v. nach ROTEM (FIBTEM A10 < 10 mm)', dose_tr: 'ROTEM e göre 2–4 g i.v. (FIBTEM A10 < 10 mm ise)', route: 'i.v.', maxDose: 'Zielwert Fibrinogen ≥ 2 g/l (200 mg/dl)', maxDose_tr: 'Hedef Fibrinojen ≥ 2 g/l (200 mg/dl)', limits: 'Fibrinogen ist der erste verbrauchte Gerinnungsfaktor bei PPH', limits_tr: 'PPH tablosunda ilk tükenen pıhtılaşma faktörü fibrinojendir' }
         ],
         koPitfalls: [
-          { mistake: 'Verabreichung von Oxytocin als unverdünnter schneller i.v.-Bolus', whyFatal: 'Löst akuten systemischen Gefäßwiderstandsabfall mit schwerer Hypotonie, Koronarspasmen und Kreislaufstillstand aus!', correctAction: 'Oxytocin streng fraktioniert und langsam über 2 Minuten i.v. verabreichen.' },
-          { mistake: 'Vergessen der 15–30° Linksseitenkippung bei Schwangeren', whyFatal: 'Aortokavales Kompressionssyndrom mit drastischem Abfall des venösen Rückstroms und fetaler Asphyxie.', correctAction: 'Obligate Linksseitenlagerung des Beckens / Keilkissen bis zur Kindsentwicklung.' }
+          { mistake: 'Verabreichung von Oxytocin als unverdünnter schneller i.v.-Bolus', mistake_tr: 'Oksitosinin sulandırılmadan hızlı i.v. bolus olarak verilmesi', whyFatal: 'Löst akuten systemischen Gefäßwiderstandsabfall mit schwerer Hypotonie, Koronarspasmen und Kreislaufstillstand aus!', whyFatal_tr: 'Akut sistemik vazodilatasyon ile ağır hipotansiyon, koroner spazm ve kardiyak arreste yol açar!', correctAction: 'Oxytocin streng fraktioniert und langsam über 2 Minuten i.v. verabreichen.', correctAction_tr: 'Oksitosin mutlaka fraksiyone ve en az 2 dakika içinde yavaş i.v. infüzyonla verilmelidir.' },
+          { mistake: 'Vergessen der 15–30° Linksseitenkippung bei Schwangeren', mistake_tr: 'Gebede 15–30° sol yan eğimin (Linksseitenkippung) unutulması', whyFatal: 'Aortokavales Kompressionssyndrom mit drastischem Abfall des venösen Rückstroms und fetaler Asphyxie.', whyFatal_tr: 'Aortokaval kompresyon sendromu nedeniyle venöz dönüş dramatik düşer ve fetal asfiksi gelişir.', correctAction: 'Obligate Linksseitenlagerung des Beckens / Keilkissen bis zur Kindsentwicklung.', correctAction_tr: 'Bebek çıkana dek pelvisin 15–30° sola eğilmesi (kama yastık / masa eğimi) zorunludur.' }
         ]
       };
     }
@@ -376,6 +388,7 @@
         firstDrugTR: 'NaCl %3 (2 ml/kg i.v. bolus) veya Mannitol %20 (0,5–1 g/kg)',
         guideline: {
           title: 'DGN / DGAI S2k-Leitlinie Schädel-Hirn-Trauma & Neurotrauma',
+          title_tr: 'Travmatik Beyin Hasarı ve Nörotravma DGN / DGAI S2k Kılavuzu',
           society: 'DGAI / DGN / DGNC / Brain Trauma Foundation (BTF)',
           awmf: 'AWMF-Registernummer 008-001',
           year: '2024',
@@ -383,13 +396,13 @@
           recommendation_tr: 'Hedef CPP ≥ 60–70 mmHg (MAP ≥ 80–90 mmHg), ICP < 20–22 mmHg, kesin normokapni (PaCO2 35–38 mmHg). 30° baş yukarı pozisyon, hipertonik NaCl %3 veya Mannitol ile osmotik tedavi.'
         },
         dosages: [
-          { drug: 'NaCl 3% hyperton', dose: '2 ml/kg i.v. Kurzinfusion über 15 min (ca. 150 ml)', route: 'i.v. (ZVK bevorzugt)', maxDose: 'Serum-Osmolarität max. 320 mosm/kg, Na max. 155 mmol/l', limits: 'Keine Hypovolämie induzierend' },
-          { drug: 'Mannitol 20%', dose: '0,5–1,0 g/kg i.v. über 15–30 min', route: 'i.v.', maxDose: 'Osmolaritätslücke überwachen (< 10 mosm/kg)', limits: 'Gefahr der osmotischen Hypovolämie & Nierenversagen' },
-          { drug: 'Noradrenalin (CPP-Sicherung)', dose: '0,05–0,5 µg/kg/min Perfusor', route: 'i.v.', maxDose: 'Ziel: MAP ≥ 80–90 mmHg bei ICP 20 mmHg (CPP = MAP - ICP)', limits: 'Permissive Hypotonie STRENG KONTRAINDIZIERT!' }
+          { drug: 'NaCl 3% hyperton', drug_tr: 'Hipertonik NaCl %3', dose: '2 ml/kg i.v. Kurzinfusion über 15 min (ca. 150 ml)', dose_tr: '15 dk içinde 2 ml/kg i.v. kısa infüzyon (~150 ml)', route: 'i.v. (ZVK bevorzugt)', maxDose: 'Serum-Osmolarität max. 320 mosm/kg, Na max. 155 mmol/l', maxDose_tr: 'Serum osmolaritesi maks. 320 mosm/kg, Na⁺ maks. 155 mmol/l', limits: 'Keine Hypovolämie induzierend', limits_tr: 'Hipovolemiye yol açmadan ICP yi düşürür' },
+          { drug: 'Mannitol 20%', drug_tr: 'Mannitol %20', dose: '0,5–1,0 g/kg i.v. über 15–30 min', dose_tr: '15–30 dk içinde 0,5–1,0 g/kg i.v.', route: 'i.v.', maxDose: 'Osmolaritätslücke überwachen (< 10 mosm/kg)', maxDose_tr: 'Osmolarite açığı takip edilmelidir (< 10 mosm/kg)', limits: 'Gefahr der osmotischen Hypovolämie & Nierenversagen', limits_tr: 'Osmotik diüreze bağlı hipovolemi ve böbrek hasarı riski' },
+          { drug: 'Noradrenalin (CPP-Sicherung)', drug_tr: 'Noradrenalin (CPP Güvencesi)', dose: '0,05–0,5 µg/kg/min Perfusor', dose_tr: '0,05–0,5 µg/kg/dk perfüzör', route: 'i.v.', maxDose: 'Ziel: MAP ≥ 80–90 mmHg bei ICP 20 mmHg (CPP = MAP - ICP)', maxDose_tr: 'Hedef: ICP 20 mmHg iken MAP ≥ 80–90 mmHg (CPP = MAP − ICP)', limits: 'Permissive Hypotonie STRENG KONTRAINDIZIERT!', limits_tr: 'Permissif hipotansiyon KESİNLİKLE KONTRENDİKEDİR!' }
         ],
         koPitfalls: [
-          { mistake: 'Permissive Hypotonie beim Schädel-Hirn-Trauma tolerieren', whyFatal: 'Bricht den zerebralen Perfusionsdruck (CPP < 50 mmHg) zusammen und verursacht irreversible sekundäre ischämische Hirnschäden (K.O.-Kriterium!).', correctAction: 'Strikte CPP-Führung: MAP durch Noradrenalin und balancierte Kristalloide ≥ 80–90 mmHg halten!' },
-          { mistake: 'Dauerhafte prophylaktische Hyperventilation (PaCO2 < 30 mmHg)', whyFatal: 'Führt über zerebrale Vasokonstriktion zur drastischen Minderperfusion und fokalen Hirninfarkten.', correctAction: 'Normokapnie (PaCO2 35–38 mmHg) anstreben; milde Hyperventilation (PaCO2 30–35) nur als Notfallüberbrückung bei akuter Herniation.' }
+          { mistake: 'Permissive Hypotonie beim Schädel-Hirn-Trauma tolerieren', mistake_tr: 'Travmatik beyin hasarında permissif hipotansiyona izin verilmesi', whyFatal: 'Bricht den zerebralen Perfusionsdruck (CPP < 50 mmHg) zusammen und verursacht irreversible sekundäre ischämische Hirnschäden (K.O.-Kriterium!).', whyFatal_tr: 'Serebral perfüzyon basıncını (CPP < 50 mmHg) çökertir ve geri dönüşümsüz ikincil iskemik beyin hasarına yol açar (K.O. kriteri!).', correctAction: 'Strikte CPP-Führung: MAP durch Noradrenalin und balancierte Kristalloide ≥ 80–90 mmHg halten!', correctAction_tr: 'Sıkı CPP yönetimi: Noradrenalin ve dengeli kristalloidlerle MAP ≥ 80–90 mmHg tutulmalıdır!' },
+          { mistake: 'Dauerhafte prophylaktische Hyperventilation (PaCO2 < 30 mmHg)', mistake_tr: 'Sürekli profilaktik hiperventilasyon (PaCO₂ < 30 mmHg) uygulanması', whyFatal: 'Führt über zerebrale Vasokonstriktion zur drastischen Minderperfusion und fokalen Hirninfarkten.', whyFatal_tr: 'Serebral vazokonstriksiyon yoluyla ciddi hipoperfüzyon ve fokal beyin enfarktlarına neden olur.', correctAction: 'Normokapnie (PaCO2 35–38 mmHg) anstreben; milde Hyperventilation (PaCO2 30–35) nur als Notfallüberbrückung bei akuter Herniation.', correctAction_tr: 'Normokapni (PaCO₂ 35–38 mmHg) hedeflenmeli; hafif hiperventilasyon (PaCO₂ 30–35) yalnızca akut herniasyonda köprüleme amacıyla kullanılmalıdır.' }
         ]
       };
     }
@@ -402,6 +415,7 @@
         firstDrugTR: 'Traneksamik Asit (1 g i.v. ilk 3 saatte) + Fibrinojen Konsantresi (2–4 g i.v.)',
         guideline: {
           title: 'S3-Leitlinie Polytrauma / Schwerverletzten-Behandlung & European Trauma Guidelines',
+          title_tr: 'Politravma / Ağır Yaralı Tedavisi S3 Kılavuzu & Avrupa Travma Rehberi',
           society: 'DGU / DGAI / DIVI / ESAIC Trauma Taskforce',
           awmf: 'AWMF-Registernummer 187-023',
           year: '2023',
@@ -409,14 +423,14 @@
           recommendation_tr: 'İlk 3 saatte erken Traneksamik asit (TXA 1 g bolus), ROTEM/TEG rehberliğinde hedefe yönelik faktör konsantresi (Fibrinojen, PCC), ölümcül triadın (hipotermi, asidoz, hipokalsemi) engellenmesi.'
         },
         dosages: [
-          { drug: 'Tranexamsäure (TXA)', dose: '1 g i.v. Bolus über 10 min, gefolgt von 1 g über 8h', route: 'i.v.', maxDose: 'Gabe MUSS innerhalb von 3 Stunden nach Trauma erfolgen', limits: 'CRASH-2: Nach > 3h erhöht TXA die Mortalität!' },
-          { drug: 'Fibrinogen-Konzentrat', dose: '2–4 g i.v. bei FIBTEM A10 < 10 mm (bzw. A5 < 9 mm)', route: 'i.v.', maxDose: 'Ziel: FIBTEM A10 ≥ 10–12 mm (Fibrinogen > 200 mg/dl)', limits: 'Erster verbrauchter Faktor im schweren Schock' },
-          { drug: 'Prothrombinkomplex (PPSB / PCC)', dose: '20–30 IE/kg i.v. bei EXTEM CT > 80–100 s', route: 'i.v.', maxDose: 'Nur bei gesichertem Fibrinogenspiegel applizieren', limits: 'Gefahr von Mikrothromben ohne Fibrinogen-Substrat' },
-          { drug: 'Kalziumchlorid 10%', dose: '10–20 ml i.v. (1–2 g)', route: 'i.v.', maxDose: 'Ziel: ionisiertes Kalzium > 1,1–1,2 mmol/l', limits: 'Citrat-Toxizität durch EK-Transfusionen neutralisieren' }
+          { drug: 'Tranexamsäure (TXA)', drug_tr: 'Traneksamik Asit (TXA)', dose: '1 g i.v. Bolus über 10 min, gefolgt von 1 g über 8h', dose_tr: '10 dk içinde 1 g i.v. bolus, ardından 8 saatte 1 g infüzyon', route: 'i.v.', maxDose: 'Gabe MUSS innerhalb von 3 Stunden nach Trauma erfolgen', maxDose_tr: 'Travmadan sonraki ilk 3 saat içinde uygulanmalıdır', limits: 'CRASH-2: Nach > 3h erhöht TXA die Mortalität!', limits_tr: 'CRASH-2: 3 saatten sonra verilen TXA mortaliteyi artırır!' },
+          { drug: 'Fibrinogen-Konzentrat', drug_tr: 'Fibrinojen Konsantresi', dose: '2–4 g i.v. bei FIBTEM A10 < 10 mm (bzw. A5 < 9 mm)', dose_tr: 'FIBTEM A10 < 10 mm (veya A5 < 9 mm) ise 2–4 g i.v.', route: 'i.v.', maxDose: 'Ziel: FIBTEM A10 ≥ 10–12 mm (Fibrinogen > 200 mg/dl)', maxDose_tr: 'Hedef: FIBTEM A10 ≥ 10–12 mm (Fibrinojen > 200 mg/dl)', limits: 'Erster verbrauchter Faktor im schweren Schock', limits_tr: 'Ağır şokta ilk tükenen pıhtılaşma faktörüdür' },
+          { drug: 'Prothrombinkomplex (PPSB / PCC)', drug_tr: 'Protrombin Kompleks Konsantresi (PPSB / PCC)', dose: '20–30 IE/kg i.v. bei EXTEM CT > 80–100 s', dose_tr: 'EXTEM CT > 80–100 sn ise 20–30 IU/kg i.v.', route: 'i.v.', maxDose: 'Nur bei gesichertem Fibrinogenspiegel applizieren', maxDose_tr: 'Yalnızca yeterli fibrinojen düzeyi sağlandıktan sonra verilir', limits: 'Gefahr von Mikrothromben ohne Fibrinogen-Substrat', limits_tr: 'Fibrinojen substratı olmadan tromboz tehlikesi' },
+          { drug: 'Kalziumchlorid 10%', drug_tr: 'Kalsiyum Klorür %10', dose: '10–20 ml i.v. (1–2 g)', dose_tr: '10–20 ml i.v. (1–2 g)', route: 'i.v.', maxDose: 'Ziel: ionisiertes Kalzium > 1,1–1,2 mmol/l', maxDose_tr: 'Hedef: İyonize kalsiyum (Ca²⁺) > 1,1–1,2 mmol/l', limits: 'Citrat-Toxizität durch EK-Transfusionen neutralisieren', limits_tr: 'Kan transfüzyonuna bağlı sitrat toksisitesini nötralize eder' }
         ],
         koPitfalls: [
-          { mistake: 'Ungezielte Gabe von FFP (Fresh Frozen Plasma) statt Faktorkonzentraten', whyFatal: 'Verursacht massive Volumenüberladung, Dilutionskoagulopathie und erhöht das Risiko für TACO und TRALI erheblich.', correctAction: 'Zielgerichtete Hämostase mit TXA, Fibrinogen und PCC nach ROTEM/TEG-Algorithmus.' },
-          { mistake: 'Missachtung von Hypothermie (< 35°C) und Hypokalzämie (< 1,1 mmol/l)', whyFatal: 'Gerinnungsenzyme sind temperatur- und kalziumabhängig; unterhalb 35°C versagen alle Gerinnungsfaktoren.', correctAction: 'Konsequentes Wärmemanagement (Wärmedecken, Fluid-Warmer 41°C) und Kalziumsubstitution nach jedem 2. EK.' }
+          { mistake: 'Ungezielte Gabe von FFP (Fresh Frozen Plasma) statt Faktorkonzentraten', mistake_tr: 'Faktör konsantreleri yerine hedef gözetmeden TDP (FFP) verilmesi', whyFatal: 'Verursacht massive Volumenüberladung, Dilutionskoagulopathie und erhöht das Risiko für TACO und TRALI erheblich.', whyFatal_tr: 'Masif volüm yüklenmesi, dilüsyonel koagülopati ve yüksek TACO/TRALI riskine yol açar.', correctAction: 'Zielgerichtete Hämostase mit TXA, Fibrinogen und PCC nach ROTEM/TEG-Algorithmus.', correctAction_tr: 'ROTEM/TEG algoritmasına göre TXA, Fibrinojen ve PCC ile hedefe yönelik hemostaz sağlanmalıdır.' },
+          { mistake: 'Missachtung von Hypothermie (< 35°C) und Hypokalzämie (< 1,1 mmol/l)', mistake_tr: 'Hipotermi (< 35°C) ve hipokalseminin (< 1,1 mmol/l) göz ardı edilmesi', whyFatal: 'Gerinnungsenzyme sind temperatur- und kalziumabhängig; unterhalb 35°C versagen alle Gerinnungsfaktoren.', whyFatal_tr: 'Pıhtılaşma enzimleri ısıya ve kalsiyuma bağımlıdır; 35°C altında tüm koagülasyon kaskadı durur.', correctAction: 'Konsequentes Wärmemanagement (Wärmedecken, Fluid-Warmer 41°C) und Kalziumsubstitution nach jedem 2. EK.', correctAction_tr: 'Aktif ısıtma (ısıtıcı battaniye, 41°C sıvı ısıtıcı) ve her 2 ES sonrası kalsiyum replasmanı şarttır.' }
         ]
       };
     }
@@ -429,6 +443,7 @@
         firstDrugTR: 'Kalsiyum Glukonat %10 (10 ml i.v. membran stabilizasyonu) + Glukoz-İnsülin',
         guideline: {
           title: 'ERC / DGAI / DIVI Empfehlungen Elektrolytstörungen im Notfall & Intensivmedizin',
+          title_tr: 'Acil ve Yoğun Bakımda Elektrolit Bozuklukları ERC / DGAI / DIVI Önerileri',
           society: 'DGAI / ERC / DIVI / DGIM',
           awmf: 'SOP Notfall-Elektrolytmanagement',
           year: '2023',
@@ -436,14 +451,14 @@
           recommendation_tr: 'Hiperkalemide 3 basamak: 1. Membran stabilizasyonu (Kalsiyum), 2. Hücre içine kaydırma (Glukoz-İnsülin, Salbutamol, Bikarbonat), 3. Eliminasyon (Diyaliz). TURP: Sodyum < 120 mmol/l ve nörolojik semptomda %3 NaCl (maks. 8-10 mmol/l/24saat).'
         },
         dosages: [
-          { drug: 'Calciumgluconat 10%', dose: '10 ml i.v. langsam über 3–5 min (oder CaCl2 10% 5–10 ml über ZVK)', route: 'i.v.', maxDose: 'Wiederholung nach 5–10 min bei persistierenden EKG-Zeichen', limits: 'Membranstabilisierung hält nur 30–60 min an; senkt Kalium NICHT!' },
-          { drug: 'Glukose 20% + Alt-Insulin', dose: '50 ml Glukose 20% + 10 IE Normalinsulin i.v. über 15–30 min', route: 'i.v.', maxDose: 'Blutzuckerkontrollen engmaschig alle 30–60 min', limits: 'Senkt Serumkalium um ca. 0,5–1,2 mmol/l' },
-          { drug: 'Salbutamol (Inhalation / i.v.)', dose: '10–20 mg vernebelt oder 0,5 mg i.v. über 15 min', route: 'Inhalativ / i.v.', maxDose: 'Beta-2-vermittelte Na-K-ATPase Aktivierung', limits: 'Vorsicht bei schwerer koronarer Herzkrankheit' },
-          { drug: 'NaCl 3% hyperton (bei TURP / Na < 120)', dose: '100 ml i.v. Kurzinfusion über 10–15 min', route: 'i.v.', maxDose: 'Max. Anstieg 8–10 mmol/l in 24h (Prävention der ODS / Myelinolyse)', limits: 'Stopp bei Sistieren von Krämpfen und Koma' }
+          { drug: 'Calciumgluconat 10%', drug_tr: 'Kalsiyum Glukonat %10', dose: '10 ml i.v. langsam über 3–5 min (oder CaCl2 10% 5–10 ml über ZVK)', dose_tr: '3–5 dk içinde 10 ml yavaş i.v. (veya SVK dan %10 CaCl₂ 5–10 ml)', route: 'i.v.', maxDose: 'Wiederholung nach 5–10 min bei persistierenden EKG-Zeichen', maxDose_tr: 'EKG bulguları sürerse 5–10 dk sonra tekrarlanır', limits: 'Membranstabilisierung hält nur 30–60 min an; senkt Kalium NICHT!', limits_tr: 'Membran stabilizasyonu yalnızca 30–60 dk sürer; potasyumu DÜŞÜRMEZ!' },
+          { drug: 'Glukose 20% + Alt-Insulin', drug_tr: '%20 Glukoz + Regüler İnsülin', dose: '50 ml Glukose 20% + 10 IE Normalinsulin i.v. über 15–30 min', dose_tr: '50 ml %20 Glukoz + 10 IU kristalize insülin 15–30 dk içinde i.v.', route: 'i.v.', maxDose: 'Blutzuckerkontrollen engmaschig alle 30–60 min', maxDose_tr: '30–60 dakikada bir sıkı kan şekeri kontrolü', limits: 'Senkt Serumkalium um ca. 0,5–1,2 mmol/l', limits_tr: 'Serum potasyumunu yaklaşık 0,5–1,2 mmol/l düşürür' },
+          { drug: 'Salbutamol (Inhalation / i.v.)', drug_tr: 'Salbutamol (İnhalasyon / i.v.)', dose: '10–20 mg vernebelt oder 0,5 mg i.v. über 15 min', dose_tr: '10–20 mg nebül veya 15 dk içinde 0,5 mg i.v.', route: 'Inhalativ / i.v.', maxDose: 'Beta-2-vermittelte Na-K-ATPase Aktivierung', maxDose_tr: 'Beta-2 aracılı Na⁺/K⁺-ATPaz aktivasyonu sağlar', limits: 'Vorsicht bei schwerer koronarer Herzkrankheit', limits_tr: 'Ağır koroner arter hastalığında taşikardiye dikkat' },
+          { drug: 'NaCl 3% hyperton (bei TURP / Na < 120)', drug_tr: 'Hipertonik NaCl %3 (TURP / Na⁺ < 120 mmol/l)', dose: '100 ml i.v. Kurzinfusion über 10–15 min', dose_tr: '10–15 dk içinde 100 ml i.v. kısa infüzyon', route: 'i.v.', maxDose: 'Max. Anstieg 8–10 mmol/l in 24h (Prävention der ODS / Myelinolyse)', maxDose_tr: '24 saatte maks. 8–10 mmol/l artış (Osmotik demiyelinizasyon / ODS önlemi)', limits: 'Stopp bei Sistieren von Krämpfen und Koma', limits_tr: 'Konvülziyon ve koma gerilediğinde hipertonik infüzyon durdurulur' }
         ],
         koPitfalls: [
-          { mistake: 'Gabe von Succinylcholin bei Dialysepatienten oder vorbestehender Hyperkaliämie', whyFatal: 'Succinylcholin steigert das Serumkalium akut um 0,5–1,0 mmol/l und führt unmittelbar zur Kammerasystolie!', correctAction: 'Succinylcholin ist strikt kontraindiziert. RSI mit Rocuronium 1,2 mg/kg durchführen (Reversierung mit Sugammadex).' },
-          { mistake: 'Zu rascher Ausgleich einer chronischen Hyponatriämie (> 10–12 mmol/l/24h)', whyFatal: 'Führt zur gefürchteten osmotischen Demyelinisierung (pontine Myelinolyse) mit irreversibler spastischer Tetraplegie und Locked-in-Syndrom.', correctAction: 'Streng limitierter Ausgleich: maximal 8–10 mmol/l innerhalb der ersten 24 Stunden!' }
+          { mistake: 'Gabe von Succinylcholin bei Dialysepatienten oder vorbestehender Hyperkaliämie', mistake_tr: 'Diyaliz hastasında veya mevcut hiperkalemide Süksinilkolin verilmesi', whyFatal: 'Succinylcholin steigert das Serumkalium akut um 0,5–1,0 mmol/l und führt unmittelbar zur Kammerasystolie!', whyFatal_tr: 'Süksinilkolin serum potasyumunu akut olarak 0,5–1,0 mmol/l artırır ve doğrudan ventriküler fibrilasyon/asistoliye yol açar!', correctAction: 'Succinylcholin ist strikt kontraindiziert. RSI mit Rocuronium 1,2 mg/kg durchführen (Reversierung mit Sugammadex).', correctAction_tr: 'Süksinilkolin kesinlikle kontrendikedir. RSI Roküronyum 1,2 mg/kg ile yapılmalıdır (geri döndürme: Sugammadex).' },
+          { mistake: 'Zu rascher Ausgleich einer chronischen Hyponatriämie (> 10–12 mmol/l/24h)', mistake_tr: 'Kronik hiponatremide sodyumun çok hızlı düzeltilmesi (> 10–12 mmol/l/24 saat)', whyFatal: 'Führt zur gefürchteten osmotischen Demyelinisierung (pontine Myelinolyse) mit irreversibler spastischer Tetraplegie und Locked-in-Syndrom.', whyFatal_tr: 'Korkulan osmotik demiyelinizasyon sendromuna (santral pontin miyelinozis) ve kalıcı kuadripleji / Locked-in sendromuna yol açar.', correctAction: 'Streng limitierter Ausgleich: maximal 8–10 mmol/l innerhalb der ersten 24 Stunden!', correctAction_tr: 'Sıkı kontrollü düzeltme: İlk 24 saat içinde maksimum 8–10 mmol/l artış!' }
         ]
       };
     }
@@ -456,6 +471,7 @@
         firstDrugTR: 'Halka Mıknatıs (Ringmagnet) + Harici Defibrilatör Pedleri',
         guideline: {
           title: 'DGAI / DGK Konsensusempfehlung Perioperatives Management kardialer Implantate (CIED)',
+          title_tr: 'Kardiyak İmplantların (CIED) Perioperatif Yönetimi DGAI / DGK Uzlaşı Önerisi',
           society: 'DGAI / BDA / Deutsche Gesellschaft für Kardiologie (DGK)',
           awmf: 'Kardiologie Leitlinien CIED Perioperativ',
           year: '2023',
@@ -463,13 +479,13 @@
           recommendation_tr: 'İCD: Mıknatıs SADECE şok fonksiyonunu devre dışı bırakır (koter girişimini şok sanmayı engeller), pili asenkron moda geçirmez! Kalp pili: Mıknatıs asenkron sabit hıza (VOO/DOO 85-100/dk) geçirir. Harici pedler indüksiyondan ÖNCE yapıştırılmalıdır.'
         },
         dosages: [
-          { drug: 'Externe Defibrillations-Pads', dose: 'Anterior-posterior vor Narkoseeinleitung kleben', route: 'Kutan', maxDose: 'Immer einsatzbereit bei deaktiviertem ICD', limits: 'Pflichtstandard bei jeder ICD-Operation' },
-          { drug: 'Bipolare Diathermie / Kauter', dose: 'Kurze Impulse (< 2 s), Neutralelektrode am Oberschenkel', route: 'Chirurgisch', maxDose: 'Strompfad darf niemals über das Aggregat oder die Sonden fließen', limits: 'Abstand Kauter zu Aggregat > 15 cm' },
-          { drug: 'Atropin / Adrenalin / Isoprenalin', dose: 'Atropin 0,5–1 mg, Adrenalin 10–50 µg bei Ausfall', route: 'i.v.', maxDose: 'Pharmakologische Notfall-Frequenzstützung', limits: 'Temporäre transkutane Schrittmacherbereitschaft' }
+          { drug: 'Externe Defibrillations-Pads', drug_tr: 'Harici Defibrilasyon Pedleri', dose: 'Anterior-posterior vor Narkoseeinleitung kleben', dose_tr: 'Anestezi indüksiyonundan önce anterior-posterior yapıştırılır', route: 'Kutan', maxDose: 'Immer einsatzbereit bei deaktiviertem ICD', maxDose_tr: 'İCD devre dışı bırakıldığında daima kullanıma hazır tutulmalıdır', limits: 'Pflichtstandard bei jeder ICD-Operation', limits_tr: 'Her İCD hastasının ameliyatında zorunlu güvenlik standardıdır' },
+          { drug: 'Bipolare Diathermie / Kauter', drug_tr: 'Bipolar Koter / Diyatermi', dose: 'Kurze Impulse (< 2 s), Neutralelektrode am Oberschenkel', dose_tr: 'Kısa akım darbeleri (< 2 sn), nötr elektrot uyluk bölgesine', route: 'Chirurgisch', maxDose: 'Strompfad darf niemals über das Aggregat oder die Sonden fließen', maxDose_tr: 'Akım yolu asla batarya veya elektrotlar üzerinden geçmemelidir', limits: 'Abstand Kauter zu Aggregat > 15 cm', limits_tr: 'Koter ile cihaz arasındaki mesafe > 15 cm olmalıdır' },
+          { drug: 'Atropin / Adrenalin / Isoprenalin', drug_tr: 'Atropin / Adrenalin / İzoprenalin', dose: 'Atropin 0,5–1 mg, Adrenalin 10–50 µg bei Ausfall', dose_tr: 'Pil kaybında Atropin 0,5–1 mg, Adrenalin 10–50 µg i.v.', route: 'i.v.', maxDose: 'Pharmakologische Notfall-Frequenzstützung', maxDose_tr: 'Farmakolojik acil kalp hızı desteği', limits: 'Temporäre transkutane Schrittmacherbereitschaft', limits_tr: 'Geçici transkütan pacing hazırlığı şarttır' }
         ],
         koPitfalls: [
-          { mistake: 'Annahme, dass ein Ringmagnet den ICD in einen asynchronen Schrittmachermodus versetzt', whyFatal: 'Kardinaler Denkfehler! Der Magnet deaktiviert beim ICD ausschließlich die Schocktherapie. Ist der Patient schrittmacherabhängig, kann Kauter-EMI zur Asystolie führen.', correctAction: 'Schrittmacherabhängige ICD-Patienten müssen präoperativ durch Kardiotechnik/Programmiergerät in VOO/DOO umprogrammiert werden.' },
-          { mistake: 'Verzicht auf externe Defibrillationselektroden bei deaktiviertem ICD', whyFatal: 'Tritt intraoperativ Kammerflimmern auf, kann der Patient nicht sofort defibrilliert werden -> anoxischer Hirnschaden.', correctAction: 'Vor Schnittbeginn Defibrillator-Pads kleben und Defibrillator betriebsbereit im Saal vorhalten.' }
+          { mistake: 'Annahme, dass ein Ringmagnet den ICD in einen asynchronen Schrittmachermodus versetzt', mistake_tr: 'Halka mıknatısın İCD yi asenkron pil moduna (VOO) geçirdiğini sanmak', whyFatal: 'Kardinaler Denkfehler! Der Magnet deaktiviert beim ICD ausschließlich die Schocktherapie. Ist der Patient schrittmacherabhängig, kann Kauter-EMI zur Asystolie führen.', whyFatal_tr: 'Kritik bilgi hatası! Mıknatıs İCD de yalnızca şok tedavisini kapatır. Hasta pil bağımlıysa koter paraziti (EMI) inhibisyon ve asistoliye yol açar.', correctAction: 'Schrittmacherabhängige ICD-Patienten müssen präoperativ durch Kardiotechnik/Programmiergerät in VOO/DOO umprogrammiert werden.', correctAction_tr: 'Pil bağımlı İCD hastaları ameliyat öncesinde programlayıcı cihaz ile VOO/DOO moduna alınmalıdır.' },
+          { mistake: 'Verzicht auf externe Defibrillationselektroden bei deaktiviertem ICD', mistake_tr: 'İCD devre dışıyken harici defibrilatör pedlerinin takılmaması', whyFatal: 'Tritt intraoperativ Kammerflimmern auf, kann der Patient nicht sofort defibrilliert werden -> anoxischer Hirnschaden.', whyFatal_tr: 'İntraoperatif ventriküler fibrilasyon gelişirse hasta anında defibrile edilemez -> anoksik beyin hasarı.', correctAction: 'Vor Schnittbeginn Defibrillator-Pads kleben und Defibrillator betriebsbereit im Saal vorhalten.', correctAction_tr: 'Cerrahi kesi başlamadan önce harici pedler yapıştırılmalı ve defibrilatör odada açık hazır tutulmalıdır.' }
         ]
       };
     }
@@ -482,6 +498,7 @@
         firstDrugTR: '%100 FiO2 -> Kollebe Akciğere CPAP (1-5 cmH2O) -> İki Akciğer Ventilasyonu',
         guideline: {
           title: 'DGAI / EACTAIC Empfehlungen zur Thoraxanästhesie & Einlungenventilation',
+          title_tr: 'Toraks Anestezisi ve Tek Akciğer Ventilasyonu (OLV) DGAI / EACTAIC Önerileri',
           society: 'DGAI / Arbeitskreis Thoraxanästhesie / EACTAIC',
           awmf: 'Leitlinie Thoraxanästhesie & Lungenisolation',
           year: '2023',
@@ -489,13 +506,13 @@
           recommendation_tr: 'Akciğer koruyucu OLV: Vt 4-5 ml/kg PBW, PEEP 5-8 cmH2O, Driving pressure <= 14. Hipoksemide 5 basamak: 1. %100 FiO2, 2. Fiberoptik DLT kontrolü, 3. Ventilasyon akciğerine PEEP, 4. Kollabe akciğere CPAP (1-5 cmH2O O2), 5. İki akciğeri tekrar havalandır.'
         },
         dosages: [
-          { drug: 'Sauerstoff-Insufflation (FiO2 1.0)', dose: '100% O2 bei akutem SpO2-Abfall', route: 'Beatmung', maxDose: 'Reduktion nach Stabilisierung auf FiO2 0,6–0,8', limits: 'Resorptionsatelektasen beachten' },
-          { drug: 'CPAP-System an kollabierte Lunge', dose: '1–5 cmH2O kontinuierlicher O2-Flow (2–5 l/min)', route: 'Kollabierter DLT-Schenkel', maxDose: 'Sehr effektiv zur Shunt-Reduktion ohne Sichtbehinderung für Operateur', limits: 'Operateur vorab informieren' },
-          { drug: 'Protektive Ventilation (PBW)', dose: 'Vt 4–5 ml/kg bezogen auf Idealgewicht (PBW) + PEEP 5–8 cmH2O', route: 'Ventilator', maxDose: 'Spitzendruck < 25–30 mbar, Driving Pressure < 14 mbar', limits: 'Hyperkapnie permissiv tolerieren (pH ≥ 7,20)' }
+          { drug: 'Sauerstoff-Insufflation (FiO2 1.0)', drug_tr: 'Oksijen İnsüflasyonu (FiO₂ 1,0)', dose: '100% O2 bei akutem SpO2-Abfall', dose_tr: 'Akut SpO₂ düşüşünde %100 O₂', route: 'Beatmung', maxDose: 'Reduktion nach Stabilisierung auf FiO2 0,6–0,8', maxDose_tr: 'Stabilizasyon sonrası FiO₂ 0,6–0,8 düzeyine çekilir', limits: 'Resorptionsatelektasen beachten', limits_tr: 'Rezorpsiyon atelektazilerine dikkat edilmelidir' },
+          { drug: 'CPAP-System an kollabierte Lunge', drug_tr: 'Kollabe Akciğere CPAP Uygulaması', dose: '1–5 cmH2O kontinuierlicher O2-Flow (2–5 l/min)', dose_tr: '1–5 cmH₂O sürekli O₂ akımı (2–5 l/dk)', route: 'Kollabierter DLT-Schenkel', maxDose: 'Sehr effektiv zur Shunt-Reduktion ohne Sichtbehinderung für Operateur', maxDose_tr: 'Cerrahın görüşünü bozmadan şantı azaltmada çok etkilidir', limits: 'Operateur vorab informieren', limits_tr: 'Uygulamadan önce cerrah bilgilendirilmelidir' },
+          { drug: 'Protektive Ventilation (PBW)', drug_tr: 'Akciğer Koruyucu Ventilasyon (PBW)', dose: 'Vt 4–5 ml/kg bezogen auf Idealgewicht (PBW) + PEEP 5–8 cmH2O', dose_tr: 'İdeal kiloya (PBW) göre Vt 4–5 ml/kg + PEEP 5–8 cmH₂O', route: 'Ventilator', maxDose: 'Spitzendruck < 25–30 mbar, Driving Pressure < 14 mbar', maxDose_tr: 'Tepe basınç < 25–30 mbar, Driving Pressure < 14 mbar', limits: 'Hyperkapnie permissiv tolerieren (pH ≥ 7,20)', limits_tr: 'Permissif hiperkapni tolere edilir (pH ≥ 7,20)' }
         ],
         koPitfalls: [
-          { mistake: 'Blindes Weiterprobieren ohne fiberoptische DLT-Lagekontrolle bei Hypoxie', whyFatal: 'Die häufigste Ursache einer akuten intraoperativen Hypoxie während OLV ist eine Dislokation des DLT (z.B. durch Umlagerung). Blindes Erhöhen von Beatmungsdrücken führt zum Barotrauma.', correctAction: 'Sofortige fiberoptische Kontrolle der Tubusspitze und der Karina über beide Schenkel!' },
-          { mistake: 'Ventilation der operierten Einzellunge mit Normal-Tidalvolumen (8–10 ml/kg)', whyFatal: 'Erzeugt massives Volu- und Barotrauma mit tödlichem akutem Lungenschaden (ARDS / ALI nach Thorakotomie).', correctAction: 'Tidalvolumen strikt auf 4–5 ml/kg PBW der Einzellunge reduzieren!' }
+          { mistake: 'Blindes Weiterprobieren ohne fiberoptische DLT-Lagekontrolle bei Hypoxie', mistake_tr: 'Hipokside fiberoptik DLT yerleşim kontrolü yapmadan körlemesine müdahale etmek', whyFatal: 'Die häufigste Ursache einer akuten intraoperativen Hypoxie während OLV ist eine Dislokation des DLT (z.B. durch Umlagerung). Blindes Erhöhen von Beatmungsdrücken führt zum Barotrauma.', whyFatal_tr: 'OLV sırasında akut hipoksinin en sık nedeni DLT dislokasyonudur (örn. yan pozisyon verme sonrası). Körlemesine basınç artırmak barotravmaya yol açar.', correctAction: 'Sofortige fiberoptische Kontrolle der Tubusspitze und der Karina über beide Schenkel!', correctAction_tr: 'Her iki lümenden tüp ucunun ve karinanın derhal fiberoptik bronkoskop ile kontrol edilmesi!' },
+          { mistake: 'Ventilation der operierten Einzellunge mit Normal-Tidalvolumen (8–10 ml/kg)', mistake_tr: 'Tek akciğerin normal tidal volümle (8–10 ml/kg) havalandırılması', whyFatal: 'Erzeugt massives Volu- und Barotrauma mit tödlichem akutem Lungenschaden (ARDS / ALI nach Thorakotomie).', whyFatal_tr: 'Masif volü- ve barotravma yaratarak torakotomi sonrası ölümcül akut akciğer hasarına (ARDS / ALI) yol açar.', correctAction: 'Tidalvolumen strikt auf 4–5 ml/kg PBW der Einzellunge reduzieren!', correctAction_tr: 'Tek akciğer ventilasyonunda tidal volüm kesinlikle 4–5 ml/kg PBW düzeyine indirilmelidir!' }
         ]
       };
     }
@@ -508,6 +525,7 @@
         firstDrugTR: '%100 O2 CPAP + Larson Manevrası -> Propofol (0,5-1 mg/kg) veya Süksinilkolin + Atropin',
         guideline: {
           title: 'DGAI / ESPA Handlungsempfehlung Pädiatrisches Atemwegsmanagement',
+          title_tr: 'Pediyatrik Havayolu Yönetimi DGAI / ESPA Uygulama Önerisi',
           society: 'DGAI / Arbeitskreis Kinderanästhesie & ESPA',
           awmf: 'Leitlinie Pädiatrisches Atemwegsmanagement',
           year: '2023',
@@ -515,14 +533,14 @@
           recommendation_tr: 'Laringospazm basamakları: 1. %100 O2, maskeyle sıkı CPAP (10-15 cmH2O), 2. Larson manevrası (çene köşesi arkasına bası), 3. Propofol (0.5-1 mg/kg), 4. Süksinilkolin (0.5-1 mg/kg i.v. + Atropin 0.02 mg/kg). Kafli tüp: (Yaş/4) + 3.5 mm.'
         },
         dosages: [
-          { drug: 'Sauerstoff-CPAP', dose: '100% O2 mit PEEP/CPAP 10–15 cmH2O via dichte Maske', route: 'Maske', maxDose: 'Überwindet leichten bis mäßigen Glottisschluss', limits: 'Vorsicht vor Magenüberblähung' },
-          { drug: 'Propofol (Krampflösung)', dose: '0,5–1,0 mg/kg i.v. Bolus', route: 'i.v.', maxDose: 'Durchbricht Laryngospasmus oft ohne Relaxierung', limits: 'Nur bei stabiler Hämodynamik' },
-          { drug: 'Succinylcholin (Notfall-Rescue)', dose: '0,5–1,0 mg/kg i.v. (oder 3–4 mg/kg i.m. bei fehlendem ZVK/Viggo)', route: 'i.v. / i.m.', maxDose: 'Zwingend zusammen mit Atropin 0,02 mg/kg i.v.!', limits: 'Verhindert vagale Asystolie des hypoxischen Kindes' },
-          { drug: 'Atropin (Bradykardieschutz)', dose: '0,02 mg/kg i.v. (Mindestdosis 0,1 mg)', route: 'i.v.', maxDose: 'Max. 0,5 mg Einzeldosis', limits: 'Essentiell bei pädiatrischer Hypoxie-Bradykardie' }
+          { drug: 'Sauerstoff-CPAP', drug_tr: 'Oksijen-CPAP', dose: '100% O2 mit PEEP/CPAP 10–15 cmH2O via dichte Maske', dose_tr: 'Yüze tam oturan maske ile %100 O₂ ve 10–15 cmH₂O PEEP/CPAP', route: 'Maske', maxDose: 'Überwindet leichten bis mäßigen Glottisschluss', maxDose_tr: 'Hafif ve orta dereceli glottik spazmı çözer', limits: 'Vorsicht vor Magenüberblähung', limits_tr: 'Mide distansiyonuna dikkat edilmelidir' },
+          { drug: 'Propofol (Krampflösung)', drug_tr: 'Propofol (Spazm Çözücü)', dose: '0,5–1,0 mg/kg i.v. Bolus', dose_tr: '0,5–1,0 mg/kg i.v. bolus', route: 'i.v.', maxDose: 'Durchbricht Laryngospasmus oft ohne Relaxierung', maxDose_tr: 'Kas gevşeticiye gerek kalmadan laringospazmı sıklıkla kırar', limits: 'Nur bei stabiler Hämodynamik', limits_tr: 'Yalnızca hemodinami stabilse uygulanır' },
+          { drug: 'Succinylcholin (Notfall-Rescue)', drug_tr: 'Süksinilkolin (Acil Kurtarma)', dose: '0,5–1,0 mg/kg i.v. (oder 3–4 mg/kg i.m. bei fehlendem ZVK/Viggo)', dose_tr: '0,5–1,0 mg/kg i.v. (damar yolu yoksa 3–4 mg/kg i.m.)', route: 'i.v. / i.m.', maxDose: 'Zwingend zusammen mit Atropin 0,02 mg/kg i.v.!', maxDose_tr: 'Mutlaka Atropin 0,02 mg/kg i.v. ile BİRLİKTE!', limits: 'Verhindert vagale Asystolie des hypoxischen Kindes', limits_tr: 'Hipoksik çocukta vagal asistoliyi önler' },
+          { drug: 'Atropin (Bradykardieschutz)', drug_tr: 'Atropin (Bradikardi Koruması)', dose: '0,02 mg/kg i.v. (Mindestdosis 0,1 mg)', dose_tr: '0,02 mg/kg i.v. (Minimum doz 0,1 mg)', route: 'i.v.', maxDose: 'Max. 0,5 mg Einzeldosis', maxDose_tr: 'Maksimum tek doz 0,5 mg', limits: 'Essentiell bei pädiatrischer Hypoxie-Bradykardie', limits_tr: 'Pediyatrik hipoksi-bradikardi kısır döngüsünü önlemek için şarttır' }
         ],
         koPitfalls: [
-          { mistake: 'Gabe von Succinylcholin beim hypoxischen Kind OHNE Atropin', whyFatal: 'Führt bei vorbestehendem Vagotonus und Hypoxie zur unmittelbaren, letalen bradykarden Asystolie (K.O.-Fehler!).', correctAction: 'Succinylcholin und Atropin müssen beim Kind immer gemeinsam aufgezogen und gespritzt werden!' },
-          { mistake: 'Blinde Überdruckbeatmung bei vermuteter Fremdkörperaspiration', whyFatal: 'Keilt den Fremdkörper tiefer im Bronchialbaum ein und konvertiert einen partiellen Verschluss in einen totalen Ventilpneumothorax.', correctAction: 'Spontanatmung unter Sevofluran erhalten; starre Bronchoskopie im OP durchführen.' }
+          { mistake: 'Gabe von Succinylcholin beim hypoxischen Kind OHNE Atropin', mistake_tr: 'Hipoksik çocukta Atropin OLMADAN Süksinilkolin verilmesi', whyFatal: 'Führt bei vorbestehendem Vagotonus und Hypoxie zur unmittelbaren, letalen bradykarden Asystolie (K.O.-Fehler!).', whyFatal_tr: 'Mevcut yüksek vagal tonus ve hipoksi zemininde doğrudan ölümcül bradikardik asistoliye yol açar (K.O. hatası!).', correctAction: 'Succinylcholin und Atropin müssen beim Kind immer gemeinsam aufgezogen und gespritzt werden!', correctAction_tr: 'Çocuklarda Süksinilkolin ve Atropin daima birlikte çekilmeli ve uygulanmalıdır!' },
+          { mistake: 'Blinde Überdruckbeatmung bei vermuteter Fremdkörperaspiration', mistake_tr: 'Yabancı cisim aspirasyonu şüphesinde körlemesine pozitif basınçlı ventilasyon yapılması', whyFatal: 'Keilt den Fremdkörper tiefer im Bronchialbaum ein und konvertiert einen partiellen Verschluss in einen totalen Ventilpneumothorax.', whyFatal_tr: 'Yabancı cismi bronş ağacında daha derine iter ve kısmi tıkanıklığı tam tıkanıklığa / tansiyon pnömotoraksa çevirir.', correctAction: 'Spontanatmung unter Sevofluran erhalten; starre Bronchoskopie im OP durchführen.', correctAction_tr: 'Sevofluran ile spontan solunum korunmalı ve ameliyathanede rijit bronchoskopi yapılmalıdır.' }
         ]
       };
     }
@@ -535,6 +553,7 @@
         firstDrugTR: 'GEDI/SVV ile Volüm Yanıtlılığı Analizi + ELWI ile Akciğer Ödemi Ayrımı',
         guideline: {
           title: 'S3-Leitlinie Intravasale Volumentherapie & Hämodynamisches Monitoring auf der Intensivstation',
+          title_tr: 'Yoğun Bakımda İntravasküler Volüm Tedavisi ve Hemodinamik Monitörizasyon S3 Kılavuzu',
           society: 'DGAI / DIVI',
           awmf: 'AWMF-Registernummer 001-020',
           year: '2023',
@@ -542,12 +561,12 @@
           recommendation_tr: 'Sıvı tedavisinin yönetiminde dinamik ön yük parametreleri (SVV/PPV > %12–13) ve volümetrik termodilüsyon indeksleri (GEDI, ITBI), statik dolum basınçlarına (SVB/ZVD) göre açıkça üstündür. ELWI yatak başında ekstravasküler akciğer suyunu ölçer.'
         },
         dosages: [
-          { drug: 'GEDI (Globaler Enddiastolischer Volumenindex)', dose: 'Normwert: 680–800 ml/m² (ITBI Norm: 850–1000 ml/m²)', route: 'Thermodilution', maxDose: '< 680 ml/m² = Volumetrischer Vorlastmangel', limits: 'Unabhängig vom intrathorakalen Beatmungsdruck' },
-          { drug: 'ELWI (Extravaskulärer Lungenwasserindex)', dose: 'Normwert: 3–7 ml/kg PBW (> 10 ml/kg = manifestes Lungenödem)', route: 'Thermodilution', maxDose: 'PVPI > 3,0 spricht für Permeabilitätsödem (ARDS) statt kardiales Ödem', limits: 'Steuert restriktive Flüssigkeitsbilanz / Negativbilanzierung' },
-          { drug: 'SVV / PPV (Schlagvolumen-/Pulsdruckvariation)', dose: '> 12–13 % = Volumenreagibilität positiv (Fluid Responder)', route: 'Pulskonturanalyse', maxDose: 'Passive Leg Raising (PLR) Test als Alternative bei Vorhofflimmern', limits: 'Voraussetzung: Sinusrhythmus, kontrollierte Beatmung Vt ≥ 8 ml/kg, geschlossener Thorax!' }
+          { drug: 'GEDI (Globaler Enddiastolischer Volumenindex)', drug_tr: 'GEDI (Global Enddiyastolik Volüm İndeksi)', dose: 'Normwert: 680–800 ml/m² (ITBI Norm: 850–1000 ml/m²)', dose_tr: 'Normal değer: 680–800 ml/m² (ITBI Normal: 850–1000 ml/m²)', route: 'Thermodilution', maxDose: '< 680 ml/m² = Volumetrischer Vorlastmangel', maxDose_tr: '< 680 ml/m² = Volümetrik ön yük (preload) eksikliği', limits: 'Unabhängig vom intrathorakalen Beatmungsdruck', limits_tr: 'İntratorasik ventilasyon basıncından bağımsızdır' },
+          { drug: 'ELWI (Extravaskulärer Lungenwasserindex)', drug_tr: 'ELWI (Ekstravasküler Akciğer Suyu İndeksi)', dose: 'Normwert: 3–7 ml/kg PBW (> 10 ml/kg = manifestes Lungenödem)', dose_tr: 'Normal değer: 3–7 ml/kg PBW (> 10 ml/kg = aşikar akciğer ödemi)', route: 'Thermodilution', maxDose: 'PVPI > 3,0 spricht für Permeabilitätsödem (ARDS) statt kardiales Ödem', maxDose_tr: 'PVPI > 3,0 kardiyojenik ödem yerine permeabilite ödemini (ARDS) gösterir', limits: 'Steuert restriktive Flüssigkeitsbilanz / Negativbilanzierung', limits_tr: 'Restriktif sıvı dengesi / negatif balans yönetimini yönlendirir' },
+          { drug: 'SVV / PPV (Schlagvolumen-/Pulsdruckvariation)', drug_tr: 'SVV / PPV (Atım Hacmi / Nabız Basıncı Varyasyonu)', dose: '> 12–13 % = Volumenreagibilität positiv (Fluid Responder)', dose_tr: '> %12–13 = Pozitif sıvı yanıtlılığı (Fluid Responder)', route: 'Pulskonturanalyse', maxDose: 'Passive Leg Raising (PLR) Test als Alternative bei Vorhofflimmern', maxDose_tr: 'Atriyal fibrilasyonda alternatif olarak Pasif Bacak Kaldırma (PLR) testi kullanılır', limits: 'Voraussetzung: Sinusrhythmus, kontrollierte Beatmung Vt ≥ 8 ml/kg, geschlossener Thorax!', limits_tr: 'Ön koşul: Sinüs ritmi, kontrollü ventilasyon Vt ≥ 8 ml/kg, kapalı toraks!' }
         ],
         koPitfalls: [
-          { mistake: 'Steuerung der Volumentherapie anhand von SVV/PPV bei Vorhofflimmern oder Spontanatmung', whyFatal: 'Unter Arrhythmie oder Spontanatmung schwankt das Schlagvolumen Schlag-zu-Schlag unabhängig vom Volumenstatus -> falsch-positive SVV führt zu massiver Überwässerung und Lungenödem!', correctAction: 'Bei Vorhofflimmern oder Spontanatmung GEDI/ITBI aus der Thermodilution oder den Passive-Leg-Raising-Test (PLR mit HZV-Anstieg > 10%) nutzen.' }
+          { mistake: 'Steuerung der Volumentherapie anhand von SVV/PPV bei Vorhofflimmern oder Spontanatmung', mistake_tr: 'Atriyal fibrilasyon veya spontan solunumda SVV/PPV ye göre sıvı tedavisi yönetmek', whyFatal: 'Unter Arrhythmie oder Spontanatmung schwankt das Schlagvolumen Schlag-zu-Schlag unabhängig vom Volumenstatus -> falsch-positive SVV führt zu massiver Überwässerung und Lungenödem!', whyFatal_tr: 'Aritmi veya spontan solunumda atım hacmi volüm durumundan bağımsız dalgalanır -> yanlış pozitif SVV masif sıvı yüklenmesi ve akciğer ödemine yol açar!', correctAction: 'Bei Vorhofflimmern oder Spontanatmung GEDI/ITBI aus der Thermodilution oder den Passive-Leg-Raising-Test (PLR mit HZV-Anstieg > 10%) nutzen.', correctAction_tr: 'Atriyal fibrilasyon veya spontan solunumda termodilüsyon GEDI/ITBI değerini veya Pasif Bacak Kaldırma (PLR ile kalp debisinde > %10 artış) testini kullanın.' }
         ]
       };
     }
@@ -560,6 +579,7 @@
         firstDrugTR: 'Permissif Hipotansiyon (RRsyst 70–90 mmHg) + Steril Örtüm Sonrası RSI ("Schnittbereit")',
         guideline: {
           title: 'S3-Leitlinie Bauchaortenaneurysma & ESVS Vascular Surgery Guidelines',
+          title_tr: 'Abdominal Aort Anevrizması S3 Kılavuzu & ESVS Damar Cerrahisi Rehberi',
           society: 'DGG / DGAI / ESVS',
           awmf: 'AWMF-Registernummer 004-014',
           year: '2024',
@@ -567,14 +587,14 @@
           recommendation_tr: 'rBAA da aort klemplenmeden önce pıhtının kopmasını ("Popping the clot") önlemek için sıkı permissif hipotansiyon (bilinç açıkken sistolik TA 70–90 mmHg) uygulanır. Anestezi indüksiyonu (RSI) yalnızca hasta steril boyanıp örtüldükten ve cerrah kesmeye hazır olduğunda ("Schnittbereit") yapılır! Klemp açılmadan (Declamping) önce reperfüzyon şokuna karşı volüm doldurulur ve Noradrenalin artırılır.'
         },
         dosages: [
-          { drug: 'Permissive Hypotonie (vor Klemme)', dose: 'Ziel-RRsyst 70–90 mmHg (MAP 50–65 mmHg)', route: 'Hämodynamik', maxDose: 'Restriktive Volumengabe bis Aortenklemme sitzt', limits: 'Verhindert freie Ruptur aus retroperitonealem Hämatom' },
-          { drug: 'RSI am schnittbereiten Patienten', dose: 'Etomidat 0,2–0,3 mg/kg (oder Ketamin/Sufentanil) + Rocuronium 1,2 mg/kg', route: 'i.v.', maxDose: 'Chirurg steht mit Skalpell schnittbereit am Tisch', limits: 'Relaxierung hebt Bauchdeckentamponade sofort auf!' },
-          { drug: 'Unfraktioniertes Heparin (vor Clamping Elektiv)', dose: '3.000–5.000 IE i.v. (ca. 70–100 IE/kg) 3–5 min vor Klemme', route: 'i.v.', maxDose: 'Ziel-ACT > 200–250 s (bei freier Ruptur individuell nach Chirurg)', limits: 'Mindestens 1h Abstand zu vorangehender PDK-Anlage!' },
-          { drug: 'Declamping-Management', dose: 'Noradrenalin-Perfusor steigern + Kalziumchlorid 10% 10 ml + Vollelektrolyt-Bolus', route: 'i.v.', maxDose: 'Schrittweises Öffnen der Aortenklemme durch Operateur', limits: 'Fängt Laktat-/Kalium-/H+-Washout aus unterer Körperhälfte ab' }
+          { drug: 'Permissive Hypotonie (vor Klemme)', drug_tr: 'Permissif Hipotansiyon (Klemp Öncesi)', dose: 'Ziel-RRsyst 70–90 mmHg (MAP 50–65 mmHg)', dose_tr: 'Hedef Sistolik TA 70–90 mmHg (MAP 50–65 mmHg)', route: 'Hämodynamik', maxDose: 'Restriktive Volumengabe bis Aortenklemme sitzt', maxDose_tr: 'Aort klempi konana dek restriktif sıvı yönetimi', limits: 'Verhindert freie Ruptur aus retroperitonealem Hämatom', limits_tr: 'Retroperitoneal hematomun serbest rüptüre dönüşmesini önler' },
+          { drug: 'RSI am schnittbereiten Patienten', drug_tr: 'Cerrahiye Hazır Hastada ("Schnittbereit") RSI', dose: 'Etomidat 0,2–0,3 mg/kg (oder Ketamin/Sufentanil) + Rocuronium 1,2 mg/kg', dose_tr: 'Etomidat 0,2–0,3 mg/kg (veya Ketamin/Sufentanil) + Roküronyum 1,2 mg/kg', route: 'i.v.', maxDose: 'Chirurg steht mit Skalpell schnittbereit am Tisch', maxDose_tr: 'Cerrah elinde bistüri ile masada kesmeye hazır bekler', limits: 'Relaxierung hebt Bauchdeckentamponade sofort auf!', limits_tr: 'Kas gevşemesi karın duvarı tamponadını anında ortadan kaldırır!' },
+          { drug: 'Unfraktioniertes Heparin (vor Clamping Elektiv)', drug_tr: 'Fraksiyone Olmayan Heparin (Elektif Klemp Öncesi)', dose: '3.000–5.000 IE i.v. (ca. 70–100 IE/kg) 3–5 min vor Klemme', dose_tr: 'Klempten 3–5 dk önce 3.000–5.000 IU i.v. (~70–100 IU/kg)', route: 'i.v.', maxDose: 'Ziel-ACT > 200–250 s (bei freier Ruptur individuell nach Chirurg)', maxDose_tr: 'Hedef ACT > 200–250 sn (serbest rüptürde cerrahla bireysel karar)', limits: 'Mindestens 1h Abstand zu vorangehender PDK-Anlage!', limits_tr: 'Öncesinde epidural kateter takıldıysa en az 1 saat ara verilmelidir!' },
+          { drug: 'Declamping-Management', drug_tr: 'Declamping (Klemp Açma) Yönetimi', dose: 'Noradrenalin-Perfusor steigern + Kalziumchlorid 10% 10 ml + Vollelektrolyt-Bolus', dose_tr: 'Noradrenalin perfüzörünü artır + %10 Kalsiyum klorür 10 ml + Kristalloid bolusu', route: 'i.v.', maxDose: 'Schrittweises Öffnen der Aortenklemme durch Operateur', maxDose_tr: 'Cerrah tarafından aort klempinin kademeli olarak açılması', limits: 'Fängt Laktat-/Kalium-/H+-Washout aus unterer Körperhälfte ab', limits_tr: 'Alt vücut yarısından gelen laktat, potasyum ve H⁺ washout şokunu karşılar' }
         ],
         koPitfalls: [
-          { mistake: 'Narkoseeinleitung und Muskelrelaxierung im Einleitungsraum VOR sterilem Abwaschen beim rBAA', whyFatal: 'Die Muskelrelaxierung nimmt den kompensatorischen intraabdominellen Gegendruck (Bauchdeckentamponade) weg -> sofortige freie Massenblutung und pulslose elektrische Aktivität (PEA) noch vor Schnitt!', correctAction: 'Patient wach im OP lagern, großlumige Zugänge + Arterie legen, steril abwaschen/abdecken und erst bei „Schnittbereit“-Ansage des Operateurs RSI durchführen!' },
-          { mistake: 'Aggressives Anheben des Blutdrucks auf Normwerte (> 120 mmHg systolisch) vor Aortenklemme', whyFatal: 'Erhöht nach dem Laplace-Gesetz die Wandspannung exponentiell und sprengt den schützenden Thrombus („Popping the clot“).', correctAction: 'Permissive Hypotonie (RRsyst 70–90 mmHg) bis zum Setzen der Aortenklemme strikt einhalten.' }
+          { mistake: 'Narkoseeinleitung und Muskelrelaxierung im Einleitungsraum VOR sterilem Abwaschen beim rBAA', mistake_tr: 'rBAA hastasında steril boyama ve örtüm ÖNCESİNDE hazırlık odasında anestezi indüksiyonu ve kas gevşetici yapılması', whyFatal: 'Die Muskelrelaxierung nimmt den kompensatorischen intraabdominellen Gegendruck (Bauchdeckentamponade) weg -> sofortige freie Massenblutung und pulslose elektrische Aktivität (PEA) noch vor Schnitt!', whyFatal_tr: 'Kas gevşemesi kompensatuar karın içi karşı basıncı (karın duvarı tamponadını) ortadan kaldırır -> daha kesi yapılmadan serbest masif kanama ve NEA arresti gelişir!', correctAction: 'Patient wach im OP lagern, großlumige Zugänge + Arterie legen, steril abwaschen/abdecken und erst bei „Schnittbereit“-Ansage des Operateurs RSI durchführen!', correctAction_tr: 'Hastayı ameliyat masasına uyanık yatırın, geniş damar yolları ve arter takın, steril boyayıp örtün ve yalnızca cerrah "kesmeye hazır" dediğinde RSI yapın!' },
+          { mistake: 'Aggressives Anheben des Blutdrucks auf Normwerte (> 120 mmHg systolisch) vor Aortenklemme', mistake_tr: 'Aort klempi öncesinde kan basıncının agresif şekilde normal değerlere (> 120 mmHg sistolik) çıkarılması', whyFatal: 'Erhöht nach dem Laplace-Gesetz die Wandspannung exponentiell und sprengt den schützenden Thrombus („Popping the clot“).', whyFatal_tr: 'Laplace yasasına göre damar duvar gerilimini katlayarak koruyucu pıhtıyı patlatır ("Popping the clot").', correctAction: 'Permissive Hypotonie (RRsyst 70–90 mmHg) bis zum Setzen der Aortenklemme strikt einhalten.', correctAction_tr: 'Aort klempi yerleşene kadar permissif hipotansiyona (Sistolik TA 70–90 mmHg) sıkı şekilde uyulmalıdır.' }
         ]
       };
     }
@@ -587,6 +607,7 @@
         firstDrugTR: 'Yüksek Kaliteli KPR + Şoklanabilir Ritimde Erken Defibrilasyon + Adrenalin 1 mg / Amiodaron 300 mg',
         guideline: {
           title: 'ERC / GRC Leitlinien zur Reanimation (Adult Advanced Life Support)',
+          title_tr: 'Reanimasyon ERC / GRC Kılavuzları (Erişkin İleri Yaşam Desteği / ALS)',
           society: 'European Resuscitation Council (ERC) / GRC / DGAI',
           awmf: 'ERC Guidelines ALS 2021/2025',
           year: '2024',
@@ -594,12 +615,12 @@
           recommendation_tr: 'Kesintisiz göğüs kompresyonu (derinlik 5–6 cm, hız 100–120/dk), kapnografi takibi (kaliteli KPR için EtCO2 > 15–20 mmHg ve ROSC anında ani sıçrama). VF/nVT de derhal defibrilasyon; 3. şoktan sonra Adrenalin 1 mg ve Amiodaron 300 mg. Asistoli/NEA da Adrenalin 1 mg derhal verilir; 4H ve HITS nedenleri sistematik taranır.'
         },
         dosages: [
-          { drug: 'Adrenalin 1 mg i.v./i.o. (ALS)', dose: '1 mg alle 3–5 min (jeder 2. Zyklus)', route: 'i.v. / i.o.', maxDose: 'VF/pVT: erst NACH dem 3. erfolglosen Schock! Asystolie/PEA: SOFORT!', limits: 'Sichert koronaren und zerebralen Perfusionsdruck über Alpha-1' },
-          { drug: 'Amiodaron i.v./i.o.', dose: '300 mg Bolus nach dem 3. Schock, weitere 150 mg nach dem 5. Schock', route: 'i.v. / i.o.', maxDose: 'Alternativ Lidocain 100 mg (1–1,5 mg/kg) nach 3. Schock', limits: 'Nur bei schockbarem Rhythmus (VF / pVT)' },
-          { drug: 'Systemische Thrombolyse (bei LAE-Reanimation)', dose: 'Alteplase (rt-PA) 50–100 mg i.v. Bolus/Kurzinfusion', route: 'i.v.', maxDose: 'Zwingend mindestens 60–90 Minuten CPR nach Lysegabe fortführen!', limits: 'Bei „T“ = Thrombose (Lungenembolie / Koronarthrombose)' }
+          { drug: 'Adrenalin 1 mg i.v./i.o. (ALS)', drug_tr: 'Adrenalin 1 mg i.v./i.o. (ALS)', dose: '1 mg alle 3–5 min (jeder 2. Zyklus)', dose_tr: '3–5 dakikada bir 1 mg (her 2. siklusta bir)', route: 'i.v. / i.o.', maxDose: 'VF/pVT: erst NACH dem 3. erfolglosen Schock! Asystolie/PEA: SOFORT!', maxDose_tr: 'VF/nVT: Yalnızca 3. başarısız şoktan SONRA! Asistoli/NEA: DERHAL!', limits: 'Sichert koronaren und zerebralen Perfusionsdruck über Alpha-1', limits_tr: 'Alfa-1 etki ile koroner ve serebral perfüzyon basıncını sağlar' },
+          { drug: 'Amiodaron i.v./i.o.', drug_tr: 'Amiodaron i.v./i.o.', dose: '300 mg Bolus nach dem 3. Schock, weitere 150 mg nach dem 5. Schock', dose_tr: '3. şoktan sonra 300 mg bolus, 5. şoktan sonra ek 150 mg', route: 'i.v. / i.o.', maxDose: 'Alternativ Lidocain 100 mg (1–1,5 mg/kg) nach 3. Schock', maxDose_tr: 'Alternatif olarak 3. şoktan sonra Lidokain 100 mg (1–1,5 mg/kg)', limits: 'Nur bei schockbarem Rhythmus (VF / pVT)', limits_tr: 'Yalnızca şoklanabilir ritimlerde (VF / nabızsız VT)' },
+          { drug: 'Systemische Thrombolyse (bei LAE-Reanimation)', drug_tr: 'Sistemik Tromboliz (Akciğer Embolisi KPR)', dose: 'Alteplase (rt-PA) 50–100 mg i.v. Bolus/Kurzinfusion', dose_tr: 'Alteplaz (rt-PA) 50–100 mg i.v. bolus / kısa infüzyon', route: 'i.v.', maxDose: 'Zwingend mindestens 60–90 Minuten CPR nach Lysegabe fortführen!', maxDose_tr: 'Trombolitik verildikten sonra KPR ye en az 60–90 dakika devam edilmelidir!', limits: 'Bei „T“ = Thrombose (Lungenembolie / Koronarthrombose)', limits_tr: '"T" = Tromboz (Masif pulmoner emboli / koroner tromboz) varlığında' }
         ],
         koPitfalls: [
-          { mistake: 'Gabe von 1 mg Adrenalin und 300 mg Amiodaron direkt nach dem 1. Schock bei Kammerflimmern', whyFatal: 'Widerspricht dem ERC-Algorithmus! Frühe Katecholamingabe bei primärem Kammerflimmern verschlechtert die Mikrozirkulation und erhöht post-ROSC-Arrhythmien.', correctAction: 'Bei VF/pVT werden Adrenalin 1 mg und Amiodaron 300 mg erst NACH dem 3. erfolglosen Defibrillationsversuch appliziert!' }
+          { mistake: 'Gabe von 1 mg Adrenalin und 300 mg Amiodaron direkt nach dem 1. Schock bei Kammerflimmern', mistake_tr: 'Ventriküler fibrilasyonda 1. şoktan hemen sonra 1 mg Adrenalin ve 300 mg Amiodaron verilmesi', whyFatal: 'Widerspricht dem ERC-Algorithmus! Frühe Katecholamingabe bei primärem Kammerflimmern verschlechtert die Mikrozirkulation und erhöht post-ROSC-Arrhythmien.', whyFatal_tr: 'ERC algoritmasına aykırıdır! Primer VF de erken katekolamin verilmesi mikrosirkülasyonu bozar ve ROSC sonrası aritmileri artırır.', correctAction: 'Bei VF/pVT werden Adrenalin 1 mg und Amiodaron 300 mg erst NACH dem 3. erfolglosen Defibrillationsversuch appliziert!', correctAction_tr: 'VF/nVT tablosunda Adrenalin 1 mg ve Amiodaron 300 mg yalnızca 3. başarısız defibrilasyondan SONRA uygulanır!' }
         ]
       };
     }
@@ -612,6 +633,7 @@
         firstDrugTR: 'Kan/Gaz Dağılım Katsayısı (Desfluran 0,42 vs Sevofluran 0,65) + MAC Titrasyonu',
         guideline: {
           title: 'DGAI Empfehlungen zur Inhalationsanästhesie, TIVA & EEG-Monitoring',
+          title_tr: 'İnhalasyon Anestezisi, TİVA ve EEG Monitörizasyonu DGAI Önerileri',
           society: 'DGAI / BDA',
           awmf: 'DGAI S2e / Klinische Pharmakologie',
           year: '2023',
@@ -619,13 +641,13 @@
           recommendation_tr: 'Uçucu anesteziklerin indüksiyon ve uyanma hızı öncelikle kan-gaz dağılım katsayısı (λ_B/G) ve kardiyak debi ile belirlenirken, anestezik güç (potens) yağda çözünürlük (yağ-gaz katsayısı / Meyer-Overton kuralı) üzerinden MAC değeri ile koreledir.'
         },
         dosages: [
-          { drug: 'Sevofluran', dose: 'MAC₅₀ ≈ 2,0 Vol-% (Blut-Gas-Koeffizient λ_B/G = 0,65)', route: 'Inhalativ', maxDose: 'Nicht-irritierend -> ideal zur Maskeneinleitung beim Kind', limits: 'Flussrate & FGF beachten; epileptogene Potenziale bei hoher Konzentration' },
-          { drug: 'Desfluran', dose: 'MAC₅₀ ≈ 6,0 Vol-% (Blut-Gas-Koeffizient λ_B/G = 0,42)', route: 'Inhalativ (Spezial-Siedeverdampfer 39°C / 2 bar)', maxDose: 'Schnellstes An-/Abfluten aller volatilen Gase', limits: 'Kontraindiziert zur Maskeneinleitung (Atemwegsreizung, Laryngospasmus, Sympathikusaktivierung bei > 1 MAC Sprung)!' },
-          { drug: 'Remifentanil (TIVA)', dose: '0,1–0,5 µg/kg/min Perfusor', route: 'i.v.', maxDose: 'Kontextsensitive Halbwertszeit (CSHT) konstant 3–4 Minuten unabhängig von Infusionsdauer!', limits: 'Unspezifische Plasma-/Gewebeesterasen; rechtzeitige postoperative Übergangsanalgesie (Piritramid/Morphin) zwingend!' }
+          { drug: 'Sevofluran', drug_tr: 'Sevofluran', dose: 'MAC₅₀ ≈ 2,0 Vol-% (Blut-Gas-Koeffizient λ_B/G = 0,65)', dose_tr: 'MAC₅₀ ≈ %2,0 Vol (Kan-Gaz Dağılım Katsayısı λ_B/G = 0,65)', route: 'Inhalativ', maxDose: 'Nicht-irritierend -> ideal zur Maskeneinleitung beim Kind', maxDose_tr: 'Havayolunu irrite etmez -> çocukta maske indüksiyonu için idealdir', limits: 'Flussrate & FGF beachten; epileptogene Potenziale bei hoher Konzentration', limits_tr: 'Taze gaz akımına dikkat; yüksek konsantrasyonda epileptojenik potansiyel' },
+          { drug: 'Desfluran', drug_tr: 'Desfluran', dose: 'MAC₅₀ ≈ 6,0 Vol-% (Blut-Gas-Koeffizient λ_B/G = 0,42)', dose_tr: 'MAC₅₀ ≈ %6,0 Vol (Kan-Gaz Dağılım Katsayısı λ_B/G = 0,42)', route: 'Inhalativ (Spezial-Siedeverdampfer 39°C / 2 bar)', maxDose: 'Schnellstes An-/Abfluten aller volatilen Gase', maxDose_tr: 'Tüm uçucu gazlar içinde en hızlı uyuma ve uyanma kinetiği', limits: 'Kontraindiziert zur Maskeneinleitung (Atemwegsreizung, Laryngospasmus, Sympathikusaktivierung bei > 1 MAC Sprung)!', limits_tr: 'Maske indüksiyonunda KONTRENDİKEDİR (Havayolu irritasyonu, laringospazm, > 1 MAC sıçramada sempatik fırtına)!' },
+          { drug: 'Remifentanil (TIVA)', drug_tr: 'Remifentanil (TİVA)', dose: '0,1–0,5 µg/kg/min Perfusor', dose_tr: '0,1–0,5 µg/kg/dk perfüzör', route: 'i.v.', maxDose: 'Kontextsensitive Halbwertszeit (CSHT) konstant 3–4 Minuten unabhängig von Infusionsdauer!', maxDose_tr: 'Bağlama duyarlı yarı ömür (CSHT) infüzyon süresinden bağımsız sabit 3–4 dakikadır!', limits: 'Unspezifische Plasma-/Gewebeesterasen; rechtzeitige postoperative Übergangsanalgesie (Piritramid/Morphin) zwingend!', limits_tr: 'Non-spesifik plazma/doku esterazlarıyla yıkılır; ekstübasyon öncesi geçiş analjezisi (Piritramid/Morfin) şarttır!' }
         ],
         koPitfalls: [
-          { mistake: 'Inhalative Maskeneinleitung eines Kindes mit Desfluran wegen des niedrigen Blut-Gas-Koeffizienten', whyFatal: 'Desfluran wirkt stark stechend/atemwegsreizend und löst bei wachen Kindern sofortigen schweren Laryngospasmus, Bronchospasmus und Hustenstöße bis zur Hypoxie aus!', correctAction: 'Zur inhalativen Einleitung ausschließlich Sevofluran verwenden; Desfluran nur zur Narkoseaufrechterhaltung über gesicherten Atemweg.' },
-          { mistake: 'Verwechslung von Blut-Gas-Koeffizient (Geschwindigkeit) und Öl-Gas-Koeffizient (Potenz / MAC)', whyFatal: 'Klassische Prüfungsfalle: Ein hoher Blut-Gas-Koeffizient bedeutet hohe Löslichkeit im Blut = großer Speicher = LANGSAME Einleitung, da der alveoläre Partialdruck (P_A/P_I) langsamer ansteigt.', correctAction: 'Merksatz für die Prüfung: Niedriges λ_B/G (Desfluran 0,42 < Sevofluran 0,65 < Isofluran 1,4) = rascher alveolärer Partialdruckaufbau = schnelles Einschlafen und Aufwachen!' }
+          { mistake: 'Inhalative Maskeneinleitung eines Kindes mit Desfluran wegen des niedrigen Blut-Gas-Koeffizienten', mistake_tr: 'Düşük kan-gaz katsayısı nedeniyle çocukta Desfluran ile inhalasyon maske indüksiyonu yapılması', whyFatal: 'Desfluran wirkt stark stechend/atemwegsreizend und löst bei wachen Kindern sofortigen schweren Laryngospasmus, Bronchospasmus und Hustenstöße bis zur Hypoxie aus!', whyFatal_tr: 'Desfluran keskin kokulu ve şiddetli havayolu irritanıdır; uyanık çocukta anında ağır laringospazm, bronkospazm ve hipoksiye yol açar!', correctAction: 'Zur inhalativen Einleitung ausschließlich Sevofluran verwenden; Desfluran nur zur Narkoseaufrechterhaltung über gesicherten Atemweg.', correctAction_tr: 'İnhalasyon indüksiyonunda yalnızca Sevofluran kullanılır; Desfluran sadece güvenli havayolu sağlandıktan sonra idamede kullanılır.' },
+          { mistake: 'Verwechslung von Blut-Gas-Koeffizient (Geschwindigkeit) und Öl-Gas-Koeffizient (Potenz / MAC)', mistake_tr: 'Kan-Gaz katsayısı (hız) ile Yağ-Gaz katsayısının (potens / MAC) karıştırılması', whyFatal: 'Klassische Prüfungsfalle: Ein hoher Blut-Gas-Koeffizient bedeutet hohe Löslichkeit im Blut = großer Speicher = LANGSAME Einleitung, da der alveoläre Partialdruck (P_A/P_I) langsamer ansteigt.', whyFatal_tr: 'Klasik sınav tuzağı: Yüksek kan-gaz katsayısı kanda yüksek çözünürlük = büyük rezervuar = YAVAŞ indüksiyon demektir, çünkü alveoler parsiyel basınç (P_A/P_I) daha yavaş yükselir.', correctAction: 'Merksatz für die Prüfung: Niedriges λ_B/G (Desfluran 0,42 < Sevofluran 0,65 < Isofluran 1,4) = rascher alveolärer Partialdruckaufbau = schnelles Einschlafen und Aufwachen!', correctAction_tr: 'Sınav kuralı: Düşük λ_B/G (Desfluran 0,42 < Sevofluran 0,65 < İzofluran 1,4) = hızlı alveoler parsiyel basınç artışı = hızlı uyuma ve uyanma!' }
         ]
       };
     }
@@ -637,6 +659,7 @@
       firstDrugTR: 'Adrenalin (10-50 µg i.v. titre / CPR için 1 mg)',
       guideline: {
         title: 'DGAI / BDA Empfehlungen & S3-Leitlinien Standards',
+        title_tr: 'DGAI / BDA Önerileri & S3 Kılavuz Standartları',
         society: 'Deutsche Gesellschaft für Anästhesiologie und Intensivmedizin (DGAI)',
         awmf: 'AWMF Leitlinienportal Anästhesie & Intensivmedizin',
         year: '2023',
@@ -644,13 +667,13 @@
         recommendation_tr: 'ABCDE şemasına göre yapılandırılmış önceliklendirme, detay bilgiden önce hasta güvenliği ve kanıta dayalı DGAI algoritmaları.'
       },
       dosages: [
-        { drug: 'Adrenalin (Notfall-Rescue)', dose: '10–50 µg i.v. titriert / 1 mg bei ALS-CPR', route: 'i.v. / i.o.', maxDose: 'Ziel-MAP ≥ 65 mmHg', limits: 'Titration nach Wirkung' },
-        { drug: 'Atropin (Symptomatische Bradykardie)', dose: '0,5 mg i.v. Bolus', route: 'i.v.', maxDose: 'Wiederholung bis max. 3 mg', limits: 'Paradoxer Effekt bei Dosis < 0,5 mg' },
-        { drug: 'Kristalloide Infusion', dose: 'Vollelektrolytlösung 500–1000 ml Bolus', route: 'i.v.', maxDose: 'Normovolämie sichern', limits: 'Balancierte Lösungen bevorzugen' }
+        { drug: 'Adrenalin (Notfall-Rescue)', drug_tr: 'Adrenalin (Acil Kurtarma)', dose: '10–50 µg i.v. titriert / 1 mg bei ALS-CPR', dose_tr: '10–50 µg i.v. titre / ALS-KPR de 1 mg', route: 'i.v. / i.o.', maxDose: 'Ziel-MAP ≥ 65 mmHg', maxDose_tr: 'Hedef MAP ≥ 65 mmHg', limits: 'Titration nach Wirkung', limits_tr: 'Etkiye göre dikkatli titrasyon' },
+        { drug: 'Atropin (Symptomatische Bradykardie)', drug_tr: 'Atropin (Semptomatik Bradikardi)', dose: '0,5 mg i.v. Bolus', dose_tr: '0,5 mg i.v. bolus', route: 'i.v.', maxDose: 'Wiederholung bis max. 3 mg', maxDose_tr: 'Maks. 3 mg a kadar tekrarlanabilir', limits: 'Paradoxer Effekt bei Dosis < 0,5 mg', limits_tr: '< 0,5 mg dozlarda paradoksal bradikardi etkisi' },
+        { drug: 'Kristalloide Infusion', drug_tr: 'Kristalloid İnfüzyon', dose: 'Vollelektrolytlösung 500–1000 ml Bolus', dose_tr: 'Dengeli tam elektrolit solüsyonu 500–1000 ml bolus', route: 'i.v.', maxDose: 'Normovolämie sichern', maxDose_tr: 'Normovoleminin sağlanması', limits: 'Balancierte Lösungen bevorzugen', limits_tr: 'Dengeli (balanse) solüsyonlar tercih edilir' }
       ],
       koPitfalls: [
-        { mistake: 'Unstrukturiertes Agieren ohne ABCDE-Priorisierung bei vitaler Gefährdung', whyFatal: 'Führt zum Übersehen lebensbedrohlicher Basiskomplikationen (Hypoxie, Spannungspneu, Verblutung).', correctAction: 'Immer laut und klar: "Ich arbeite strikt nach ABCDE. Punkt A ist gesichert..."' },
-        { mistake: 'Unterlassen von Hilfeanforderung (Team-Kommunikation)', whyFatal: 'Überlastung in kritischen Notfallsituationen ist einer der häufigsten Durchfallgründe in der ÄKNO.', correctAction: 'Sofortige Ansage: "Ich rufe den Oberarzt hinzu und weise die Pflege im Closed-Loop an."' }
+        { mistake: 'Unstrukturiertes Agieren ohne ABCDE-Priorisierung bei vitaler Gefährdung', mistake_tr: 'Hayati tehlike altında ABCDE önceliklendirmesi olmadan düzensiz hareket etmek', whyFatal: 'Führt zum Übersehen lebensbedrohlicher Basiskomplikationen (Hypoxie, Spannungspneu, Verblutung).', whyFatal_tr: 'Hayatı tehdit eden temel komplikasyonların (hipoksi, tansiyon pnömotoraks, masif kanama) gözden kaçmasına yol açar.', correctAction: 'Immer laut und klar: "Ich arbeite strikt nach ABCDE. Punkt A ist gesichert..."', correctAction_tr: 'Daima yüksek sesle ve net: "ABCDE şemasına göre ilerliyorum. A (Havayolu) güvende..."' },
+        { mistake: 'Unterlassen von Hilfeanforderung (Team-Kommunikation)', mistake_tr: 'Yardım çağırmamak (Ekip İletişimi Eksikliği)', whyFatal: 'Überlastung in kritischen Notfallsituationen ist einer der häufigsten Durchfallgründe in der ÄKNO.', whyFatal_tr: 'Kritik acil durumlarda tek başına kalmak ÄKNO sözlü sınavında en sık kalma nedenlerinden biridir.', correctAction: 'Sofortige Ansage: "Ich rufe den Oberarzt hinzu und weise die Pflege im Closed-Loop an."', correctAction_tr: 'Derhal net ifade: "Kıdemli/uzman hekimi (Oberarzt) çağırıyorum ve ekibe Closed-Loop talimat veriyorum."' }
       ]
     };
   }
@@ -663,13 +686,18 @@
         ...d,
         limit: d.maxDose || d.limit || 'Gemäß Klinik-SOP',
         maxDose: d.maxDose || d.limit || 'Gemäß Klinik-SOP',
+        limit_tr: d.maxDose_tr || d.limit_tr || '',
+        maxDose_tr: d.maxDose_tr || d.limit_tr || '',
         note: d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung'),
-        limits: d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung')
+        limits: d.limits || d.note || (d.route ? `Applikation: ${d.route}` : 'Strikte Leitlinienüberwachung'),
+        note_tr: d.limits_tr || d.note_tr || '',
+        limits_tr: d.limits_tr || d.note_tr || ''
       }));
     }
     if (res.guideline) {
       res.guideline.org = res.guideline.society || res.guideline.org || 'DGAI / BDA';
       res.guideline.society = res.guideline.society || res.guideline.org || 'DGAI / BDA';
+      res.guideline.title_tr = res.guideline.title_tr || 'DGAI / BDA Uzmanlık Kılavuzu';
       res.guideline.coreStatement = res.guideline.recommendation || res.guideline.coreStatement || '';
       res.guideline.recommendation = res.guideline.recommendation || res.guideline.coreStatement || '';
       res.guideline.recommendation_tr = res.guideline.recommendation_tr || res.guideline.recommendation;
@@ -1284,8 +1312,10 @@
     if (text.includes('zeugen jehova') || (text.includes('transfusion') && text.includes('ablehn'))) {
       return {
         title: 'Zeugen Jehovas & Ablehnung von Blutprodukten',
+        titleTR: 'Yehova Şahitleri & Kan Ürünlerinin Reddi',
         topic: 'Zeugen Jehovas & Ablehnung von Blutprodukten',
         scenario: 'Der Patient verweigert schriftlich die Gabe allogener Bluttransfusionen.',
+        scenarioTR: 'Hasta allojenik kan transfüzyonunu yazılı olarak reddetmektedir.',
         rule: 'Das Selbstbestimmungsrecht des einwilligungsfähigen Patienten steht über der ärztlichen Lebensrettungspflicht (Art. 2 Abs. 1 GG). Eine schriftliche, spezifische Ablehnung ist rechtlich bindend. Bei Verstoß droht dem Arzt Strafbarkeit wegen Körperverletzung (§ 223 StGB)!',
         ruleDE: 'Das Selbstbestimmungsrecht des einwilligungsfähigen Patienten steht über der ärztlichen Lebensrettungspflicht (Art. 2 Abs. 1 GG). Eine schriftliche, spezifische Ablehnung ist rechtlich bindend. Bei Verstoß droht dem Arzt Strafbarkeit wegen Körperverletzung (§ 223 StGB)!',
         ruleTR: 'Temyiz kudretine sahip hastanın kendi kaderini tayin hakkı hekimin hayat kurtarma görevinin önündedir (Art. 2 GG). Yazılı ve spesifik kan reddi beyanı hukuken bağlayıcıdır. İhlali halinde hekime müessir fiil davası açılır (§ 223 StGB)!',
@@ -1297,8 +1327,10 @@
     if (text.includes('notsectio') || text.includes('eez') || text.includes('eilige sectio')) {
       return {
         title: 'Aufklärung bei Notsectio (EEZ ≤ 20 min)',
+        titleTR: 'Acil Sezaryende Aydınlatma ve Onam (EEZ ≤ 20 dk)',
         topic: 'Aufklärung bei Notsectio (EEZ ≤ 20 min)',
         scenario: 'Akute fetale Bradykardie, Notsectio-Alarm im Kreißsaal.',
+        scenarioTR: 'Akut fetal bradikardi, doğumhanede acil sezaryen alarmı.',
         rule: 'Bei vitaler Bedrohung von Mutter oder Kind entfällt eine ausführliche schriftliche Aufklärung zugunsten des mutmaßlichen Willens (§ 630d Abs. 1 BGB - Notfallindikation). Dokumentation erfolgt unverzüglich postoperativ.',
         ruleDE: 'Bei vitaler Bedrohung von Mutter oder Kind entfällt eine ausführliche schriftliche Aufklärung zugunsten des mutmaßlichen Willens (§ 630d Abs. 1 BGB - Notfallindikation). Dokumentation erfolgt unverzüglich postoperativ.',
         ruleTR: 'Anne veya bebek için hayati tehlike anında acil durum karinesi (§ 630d BGB) geçerlidir; ayrıntılı yazılı aydınlatma operasyonu geciktirmemelidir. Aydınlatma ve gerekçe operasyon sonrasında hemen belgelenir.',
@@ -1310,8 +1342,10 @@
     if (text.includes('patientenverfügung') || text.includes('therapiebegrenz') || text.includes('palliativ')) {
       return {
         title: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1901a BGB)',
+        titleTR: 'Hasta Vasiyeti & Sağlık Vekaletnamesi (§ 1827 / § 1901a BGB)',
         topic: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1901a BGB)',
         scenario: 'Schwerstkranker Intensivpatient mit schriftlicher Patientenverfügung zum Verzicht auf Reanimation und Beatmung.',
+        scenarioTR: 'Reanimasyon ve mekanik ventilasyonu reddeden yazılı hasta vasiyeti bulunan kritik yoğun bakım hastası.',
         rule: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
         ruleDE: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
         ruleTR: 'Yazılı hasta vasiyeti, mevcut klinik duruma uyuyorsa bağlayıcıdır (§ 1827 BGB, eski § 1901a BGB). Hekim ile vekil arasında tedavi sınırlandırması konusunda fikir birliği varsa vesayet mahkemesi iznine gerek yoktur.',
@@ -1323,8 +1357,10 @@
     if (text.includes('delir') || text.includes('fixier') || text.includes('unruhe')) {
       return {
         title: 'Fixierung & Unterbringungsrecht in NRW (§ 1831 BGB / PsychKG NRW)',
+        titleTR: 'Fiziksel Tespit & NRW Alıkoyma Hukuku (§ 1831 BGB / PsychKG NRW)',
         topic: 'Fixierung & Unterbringungsrecht in NRW (§ 1831 BGB / PsychKG NRW)',
         scenario: 'Akut delirianter, fremdgefährdender Patient zieht an Kathetern und Tubus.',
+        scenarioTR: 'Kateterlerini ve endotrakeal tüpünü çekmeye çalışan akut deliryumdaki ajite hasta.',
         rule: 'Jede mechanische Fixierung (> 30 Minuten) stellt eine freiheitsentziehende Maßnahme dar und bedarf einer richterlichen Genehmigung (§ 1831 Abs. 4 BGB, ehemals § 1906 BGB / PsychKG NRW). Im akuten Notfall ist eine vorläufige Fixierung durch den Arzt zulässig, der richterliche Beschluss muss unverzüglich nachgefordert werden.',
         ruleDE: 'Jede mechanische Fixierung (> 30 Minuten) stellt eine freiheitsentziehende Maßnahme dar und bedarf einer richterlichen Genehmigung (§ 1831 Abs. 4 BGB, ehemals § 1906 BGB / PsychKG NRW). Im akuten Notfall ist eine vorläufige Fixierung durch den Arzt zulässig, der richterliche Beschluss muss unverzüglich nachgefordert werden.',
         ruleTR: 'Mekanik tespit/bağlama (> 30 dakika) hürriyeti kısıtlayıcı önlemdir ve hakim onayı gerektirir (§ 1831 BGB / PsychKG NRW). Acil durumda hekim geçici tespit kararı verebilir, ancak mahkeme onayı ivedilikle talep edilmelidir.',
@@ -1336,8 +1372,10 @@
     if (text.includes('hirntod') || text.includes('organspende') || text.includes('transplantationsgesetz') || text.includes('iha')) {
       return {
         title: 'Irreversibler Hirnfunktionsausfall (IHA) & Organspende (TPG)',
+        titleTR: 'Geri Dönüşümsüz Beyin Fonksiyon Kaybı (IHA) & Organ Bağışı (TPG)',
         topic: 'Irreversibler Hirnfunktionsausfall (IHA) & Organspende (TPG)',
         scenario: 'Feststellung des Hirntodes bei potenziellem Organspender auf der Intensivstation.',
+        scenarioTR: 'Yoğun bakımda potansiyel organ donöründe beyin ölümünün tespiti.',
         rule: 'Diagnostik des IHA nach Richtlinie der Bundesärztekammer durch zwei unabhängige, erfahrene Fachärzte (mind. ein Neurologe/Neurochirurg). Bei Organspende gilt in Deutschland die erweiterte Entscheidungslösung (§ 3 TPG, schriftliche Einwilligung oder mutmaßlicher Wille der Angehörigen).',
         ruleDE: 'Diagnostik des IHA nach Richtlinie der Bundesärztekammer durch zwei unabhängige, erfahrene Fachärzte (mind. ein Neurologe/Neurochirurg). Bei Organspende gilt in Deutschland die erweiterte Entscheidungslösung (§ 3 TPG, schriftliche Einwilligung oder mutmaßlicher Wille der Angehörigen).',
         ruleTR: 'BÄK yönergesine göre beyin ölümü tespiti iki bağımsız uzman hekim tarafından yapılır (en az biri nörolog/beyin cerrahı). Almanya\'da genişletilmiş rıza modeli (§ 3 TPG) geçerlidir: Organ bağışı için hastanın yazılı rızası veya yakınlarının beyan ettiği muhtemel irade şarttır.',
@@ -1349,8 +1387,10 @@
     if (text.includes('schweigepflicht') || text.includes('§ 203') || text.includes('polizei')) {
       return {
         title: 'Ärztliche Schweigepflicht & Offenbarungsbefugnis (§ 203 StGB)',
+        titleTR: 'Hekim Sır Saklama Yükümlülüğü & Bildirim Yetkisi (§ 203 StGB)',
         topic: 'Ärztliche Schweigepflicht & Offenbarungsbefugnis (§ 203 StGB)',
         scenario: 'Polizeiliche Ermittler verlangen auf der Intensivstation Auskunft oder Blutproben eines intoxikierten Patienten.',
+        scenarioTR: 'Polis memurları yoğun bakımda entoksikasyonlu bir hastanın bilgilerini veya kan örneğini talep etmektedir.',
         rule: 'Die ärztliche Schweigepflicht (§ 203 StGB) gilt ausnahmslos gegenüber jedermann, einschließlich der Polizei. Auskunftserteilung ist nur bei Patienteneinwilligung, richterlichem Beschluss oder rechtfertigendem Notstand (§ 34 StGB zur Abwendung schwerer Straftaten) erlaubt!',
         ruleDE: 'Die ärztliche Schweigepflicht (§ 203 StGB) gilt ausnahmslos gegenüber jedermann, einschließlich der Polizei. Auskunftserteilung ist nur bei Patienteneinwilligung, richterlichem Beschluss oder rechtfertigendem Notstand (§ 34 StGB zur Abwendung schwerer Straftaten) erlaubt!',
         ruleTR: 'Hekim sır saklama yükümlülüğü (§ 203 StGB) istisnasız herkese, polise karşı da geçerlidir. Bilgi paylaşımı sadece hastanın rızası, hakim kararı veya meşru müdafaa/acil durum hallerinde (§ 34 StGB) mümkündür.',
@@ -1368,11 +1408,13 @@
     return {
       ...res,
       title: res.title || res.topic || 'ÄKNO Rechtsfrage & Aufklärung',
+      titleTR: res.titleTR || '',
       topic: res.topic || res.title || 'ÄKNO Rechtsfrage & Aufklärung',
       rule: res.rule || res.ruleDE || 'Gemäß Berufsordnung & BGB',
       ruleDE: res.ruleDE || res.rule || 'Gemäß Berufsordnung & BGB',
       ruleTR: res.ruleTR || '',
       scenario: res.scenario || 'Klinische Entscheidungssituation',
+      scenarioTR: res.scenarioTR || '',
       guideline: res.guideline || res.paragraph || 'Ärztekammer Nordrhein (ÄKNO) Rechtsstandard',
       paragraph: res.paragraph || res.guideline || 'BGB & Berufsordnung'
     };
@@ -2109,9 +2151,14 @@
 
     // Tailored fallback for all other profiles using Ground Truth + Profile logic
     const step1Drug = gt.dosages && gt.dosages[0] ? `${gt.dosages[0].drug} (${gt.dosages[0].dose})` : 'Adrenalin / Noradrenalin nach Wirkung';
+    const step1DrugTR = gt.dosages && gt.dosages[0] ? `${gt.dosages[0].drug_tr || gt.dosages[0].drug} (${gt.dosages[0].dose_tr || gt.dosages[0].dose})` : 'Etkiye göre Adrenalin / Noradrenalin';
     const step2Drug = gt.dosages && gt.dosages[1] ? `${gt.dosages[1].drug} (${gt.dosages[1].dose})` : 'Differenzierte Volumen- & Organprotektion';
+    const step2DrugTR = gt.dosages && gt.dosages[1] ? `${gt.dosages[1].drug_tr || gt.dosages[1].drug} (${gt.dosages[1].dose_tr || gt.dosages[1].dose})` : 'Hedefe yönelik volüm ve organ koruma';
     const koMistake = gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].mistake : 'Verzögerung der Kausaltherapie';
+    const koMistakeTR = gt.koPitfalls && gt.koPitfalls[0] ? (gt.koPitfalls[0].mistake_tr || gt.koPitfalls[0].mistake) : 'Nedensel tedavinin geciktirilmesi';
     const koReason = gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].whyFatal : 'Führt zur raschen kardiopulmonalen Dekompensation.';
+    const koReasonTR = gt.koPitfalls && gt.koPitfalls[0] ? (gt.koPitfalls[0].whyFatal_tr || gt.koPitfalls[0].whyFatal) : 'Hızlı kardiyopulmoner dekompansasyona yol açar.';
+    const koCorrectTR = gt.koPitfalls && gt.koPitfalls[0] ? (gt.koPitfalls[0].correctAction_tr || gt.guideline.recommendation_tr) : gt.guideline.recommendation_tr;
 
     return {
       vignetteTriggerDE: `Prüfer-Impuls (St. Antonius-Hospital Eschweiler · ${gt.topic}): Blick auf Vitalparameter & BGA – nennen Sie Ihre ERSTEN 3 SOFORTMASSNAHMEN in den nächsten 60 Sekunden!`,
@@ -2127,22 +2174,22 @@
         {
           step: 2,
           actionDE: `Unmittelbare leitliniengerechte Kausaltherapie einleiten: ${step1Drug}.`,
-          actionTR: `Kılavuza uygun nedensel ilk tedaviyi derhal başlat: ${gt.firstDrugTR || step1Drug}.`,
+          actionTR: `Kılavuza uygun nedensel ilk tedaviyi derhal başlat: ${gt.firstDrugTR || step1DrugTR}.`,
           whyDE: `${gt.guideline.recommendation}`,
           whyTR: `${gt.guideline.recommendation_tr || gt.guideline.recommendation}`
         },
         {
           step: 3,
           actionDE: `Erweiterte Stabilisierung & Trend-Steuerung (${step2Drug}) sowie Vorbereitung der strukturierten Intensivübernahme.`,
-          actionTR: `İleri stabilizasyon ve trend takibi (${step2Drug}) ile yoğun bakım devrini organize et.`,
+          actionTR: `İleri stabilizasyon ve trend takibi (${step2DrugTR}) ile yoğun bakım devrini organize et.`,
           whyDE: `Verhindert Sekundärschäden, Rebound-Phänomene und das K.O.-Risiko („${koMistake}“).`,
-          whyTR: `İkincil organ hasarını, rebound fenomenini ve K.O. hatasını ("${koMistake}") önler.`
+          whyTR: `İkincil organ hasarını, rebound fenomenini ve K.O. hatasını ("${koMistakeTR}") önler.`
         }
       ],
       examinerFollowupDE: `Prüfer-Nachfrage: „Frau Kollegin, warum wäre in genau dieser Situation ‚${koMistake}‘ ein schwerer pathophysiologischer Fehler?“`,
-      examinerFollowupTR: `Jüri Takip Sorusu: "Meslektaşım, tam bu klinik tabloda '${koMistake}' neden ağır bir patofizyolojik hata olurdu?"`,
+      examinerFollowupTR: `Jüri Takip Sorusu: "Meslektaşım, tam bu klinik tabloda '${koMistakeTR}' neden ağır bir patofizyolojik hata olurdu?"`,
       examinerJustificationDE: `Antwort ab First Principles: „${koReason} Deshalb handeln wir strikt nach ${gt.guideline.title}: ${gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].correctAction : gt.guideline.recommendation}“`,
-      examinerJustificationTR: `İlk İlkelerden Yanıt: "${koReason} Bu nedenle ${gt.guideline.title} kılavuzuna göre hareket ediyoruz: ${gt.guideline.recommendation_tr || gt.guideline.recommendation}"`
+      examinerJustificationTR: `İlk İlkelerden Yanıt: "${koReasonTR} Bu nedenle ${gt.guideline.title_tr || gt.guideline.title} kılavuzuna göre hareket ediyoruz: ${koCorrectTR || gt.guideline.recommendation_tr || gt.guideline.recommendation}"`
     };
   }
 
@@ -2286,14 +2333,14 @@
 
     return {
       fruehbesprechungDE: `„Guten Morgen in die Runde (Frühbesprechung St. Antonius-Hospital Eschweiler): Ich berichte über einen Patienten mit akutem Komplikationsverlauf im Bereich ${gt.topic}. Wir haben unmittelbar nach ABCDE priorisiert, ${gt.dosages[0].drug} (${gt.dosages[0].dose}) leitliniengerecht nach ${gt.guideline.society} appliziert und den Patienten nach hämodynamischer sowie respiratorischer Stabilisierung strukturiert nach SBAR auf die Intensivstation übergeben.“`,
-      fruehbesprechungTR: `"Günaydın arkadaşlar (St. Antonius-Hospital Eschweiler Sabah Toplantısı): ${gt.topic_tr} gelişen hastamızı devrediyorum. ABCDE şemasına göre önceliklendirerek ${gt.guideline.society} kılavuzuna uygun şekilde ${gt.dosages[0].drug} (${gt.dosages[0].dose}) uyguladık ve hemodinamik/solunumsal stabilizasyon sonrası SBAR protokolüyle yoğun bakıma devrettik."`,
+      fruehbesprechungTR: `"Günaydın arkadaşlar (St. Antonius-Hospital Eschweiler Sabah Toplantısı): ${gt.topic_tr} gelişen hastamızı devrediyorum. ABCDE şemasına göre önceliklendirerek ${gt.guideline.society} kılavuzuna uygun şekilde ${gt.dosages[0].drug_tr || gt.dosages[0].drug} (${gt.dosages[0].dose_tr || gt.dosages[0].dose}) uyguladık ve hemodinamik/solunumsal stabilizasyon sonrası SBAR protokolüyle yoğun bakıma devrettik."`,
       praemedikationDE: `„Im Rahmen unseres Prämedikationsgesprächs kläre ich Sie heute verständlich und individuell über das geplante Narkoseverfahren, das erweiterte Kreislaufmonitoring sowie unsere Sicherheitsmaßnahmen (${gt.topic}) auf und dokumentiere Ihre Fragen schriftlich auf dem Aufklärungsbogen.“`,
       praemedikationTR: `"Premedikasyon görüşmemiz kapsamında bugün size planlanan anestezi yöntemini, ileri monitörizasyonumuzu ve güvenlik önlemlerimizi (${gt.topic_tr}) anlaşılır şekilde açıklıyor ve sorularınızı onam formuna kaydediyorum."`,
       jargonTerms: [
         { abbr: 'RSI ("Blitzeinleitung")', termDE: 'Rapid Sequence Induction', meaningDE: 'Aspirationsgeschützte Narkoseeinleitung ohne Zwischenbeatmung nach 3–5 min Präoxygenierung (EtO₂ ≥ 90 %)', meaningTR: '3–5 dk preoksijenasyon (EtO₂ ≥ %90) sonrası ara maske ventilasyonu yapmadan hızlı seri entübasyon' },
         { abbr: 'ZVK & Arterie', termDE: 'Zentraler Venenkatheter & Invasive Blutdruckmessung', meaningDE: 'Katecholamin-Applikationsweg + Schlag-zu-Schlag-Blutdruck & arterielle BGA-Kontrolle', meaningTR: 'Katekolamin infüzyon yolu + atımdan atıma invaziv tansiyon ve arteriyel kan gazı takibi' },
         { abbr: 'Closed-Loop & SBAR', termDE: 'Geschlossene Teamkommunikation & Übergabestandard', meaningDE: 'Situation – Background – Assessment – Recommendation (Standard im OP & auf ITS)', meaningTR: 'Durum – Arka Plan – Değerlendirme – Öneri (Ameliyathane ve YBÜ devir standardı)' },
-        { abbr: 'K.O.-Kriterium', termDE: 'Prüfungsrelevanter Behandlungsfehler (ÄKNO)', meaningDE: gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].mistake : 'Gefährdung der Patientensicherheit', meaningTR: gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].whyFatal : 'Hasta güvenliğini tehlikeye atan kritik sınav hatası' }
+        { abbr: 'K.O.-Kriterium', termDE: 'Prüfungsrelevanter Behandlungsfehler (ÄKNO)', meaningDE: gt.koPitfalls && gt.koPitfalls[0] ? gt.koPitfalls[0].mistake : 'Gefährdung der Patientensicherheit', meaningTR: gt.koPitfalls && gt.koPitfalls[0] ? (gt.koPitfalls[0].whyFatal_tr || gt.koPitfalls[0].mistake_tr || 'Hasta güvenliğini tehlikeye atan kritik sınav hatası') : 'Hasta güvenliğini tehlikeye atan kritik sınav hatası' }
       ]
     };
   }
@@ -2320,19 +2367,19 @@
       },
       {
         de: `<strong>Leitlinien-Referenz (${gt.guideline.society}):</strong> ${gt.guideline.title} (${gt.guideline.awmf}) – ${gt.guideline.recommendation}`,
-        tr: `<strong>Kılavuz Referansı (${gt.guideline.society}):</strong> ${gt.guideline.title} – ${gt.guideline.recommendation_tr || gt.guideline.recommendation}`
+        tr: `<strong>Kılavuz Referansı (${gt.guideline.society}):</strong> ${gt.guideline.title_tr || gt.guideline.title} (${gt.guideline.awmf}) – ${gt.guideline.recommendation_tr || gt.guideline.recommendation}`
       }
     ];
 
     const tier3Items = (gt.dosages || []).map(d => ({
       de: `<strong>${d.drug}:</strong> ${d.dose} (${d.route || 'i.v.'}) — <em>Limit/Cave: ${d.maxDose || d.limits}</em>`,
-      tr: `<strong>${d.drug}:</strong> ${d.dose} (${d.route || 'i.v.'}) — <em>Sınır/Dikkat: ${d.limits || d.maxDose}</em>`
+      tr: `<strong>${d.drug_tr || d.drug}:</strong> ${d.dose_tr || d.dose} (${d.route || 'i.v.'}) — <em>Sınır/Dikkat: ${d.maxDose_tr || d.limits_tr || d.limits || d.maxDose}</em>`
     }));
 
     if (gt.koPitfalls && gt.koPitfalls[0]) {
       tier3Items.push({
         de: `<strong>⛔ ÄKNO K.O.-Falle vermeiden:</strong> ${gt.koPitfalls[0].mistake} -> <em>${gt.koPitfalls[0].correctAction}</em>`,
-        tr: `<strong>⛔ ÄKNO K.O. Tuzağından Kaçın:</strong> ${gt.koPitfalls[0].mistake} -> <em>${gt.koPitfalls[0].whyFatal}</em>`
+        tr: `<strong>⛔ ÄKNO K.O. Tuzağından Kaçın:</strong> ${gt.koPitfalls[0].mistake_tr || gt.koPitfalls[0].mistake} -> <em>${gt.koPitfalls[0].correctAction_tr || gt.koPitfalls[0].whyFatal_tr || gt.koPitfalls[0].whyFatal}</em>`
       });
     }
 

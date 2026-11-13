@@ -512,8 +512,8 @@
           <!-- 📟 1. DATA-FIRST KLINISCHER MONITOR, BGA, EKG & TREND-STRIP -->
           <div class="melis-monitor-strip">
             <div class="melis-monitor-header">
-              <span>📟 ${escapeHtml(monitorData.scenarioBadgeDE)}</span>
-              <span style="color: #94a3b8; font-size: var(--font-xs); text-transform: none;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
+              <span>📟 ${renderInteractiveGerman(monitorData.scenarioBadgeDE, monitorData.scenarioBadgeTR)}</span>
+              <span class="inline-bilingual-tr" style="color: #94a3b8; font-size: var(--font-xs); text-transform: none;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
             </div>
             <div class="melis-vitals-grid">
               <div class="melis-vital-tile">
@@ -655,19 +655,33 @@
 
       // Ground-Truth Dosages & Guideline Box (if high-yield emergency match)
       if (groundTruth && groundTruth.dosages && groundTruth.dosages.length > 0) {
+        const gTitleDE = `${groundTruth.guideline.title} (${groundTruth.guideline.awmf}) — Wichtigste Prüfungs-Dosierungen:`;
+        const gTitleTR = `${groundTruth.guideline.title_tr || groundTruth.guideline.title} (${groundTruth.guideline.awmf}) — En Önemli Sınav Dozları:`;
         html += `
           <div class="study-guideline-dosage-box" style="margin-top: 12px; padding: 12px 14px; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.22); border-radius: 10px;">
             <div style="font-size: var(--font-xs); font-weight: 700; color: var(--primary); margin-bottom: 6px;">
-              💊 ${escapeHtml(groundTruth.guideline.title)} (${escapeHtml(groundTruth.guideline.awmf)}) — Wichtigste Prüfungs-Dosierungen:
+              💊 ${renderInteractiveGerman(gTitleDE, gTitleTR)}
+              <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(gTitleTR)}</div>
             </div>
             <div style="display: grid; gap: 6px; font-size: var(--font-base);">
-              ${groundTruth.dosages.map(d => `
+              ${groundTruth.dosages.map(d => {
+                const drugTr = d.drug_tr || d.drug;
+                const doseTr = d.dose_tr || d.dose;
+                const limDE = d.maxDose || d.limits || '';
+                const limTr = d.maxDose_tr || d.limits_tr || limDE;
+                const rowDE = `${d.drug}: ${d.dose}${limDE ? ` (${limDE})` : ''}`;
+                const rowTR = `${drugTr}: ${doseTr}${limTr ? ` (${limTr})` : ''}`;
+                return `
                 <div style="padding: 6px 10px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-color);">
-                  <strong style="color: var(--text-primary);">${escapeHtml(d.drug)}:</strong>
-                  <span style="color: var(--primary); font-weight: 700;"> ${escapeHtml(d.dose)}</span>
-                  <span style="color: var(--text-muted); font-size: var(--font-sm);"> (${escapeHtml(d.maxDose || d.limits || '')})</span>
+                  <div>
+                    <strong style="color: var(--text-primary);">${renderInteractiveGerman(d.drug, drugTr)}:</strong>
+                    <span style="color: var(--primary); font-weight: 700;"> ${renderInteractiveGerman(d.dose, doseTr)}</span>
+                    ${limDE ? `<span style="color: var(--text-muted); font-size: var(--font-sm);"> (${renderInteractiveGerman(limDE, limTr)})</span>` : ''}
+                  </div>
+                  <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(rowTR)}</div>
                 </div>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
           </div>
         `;
@@ -708,6 +722,11 @@
         }
 
         if (examSynthesis) {
+          const renderTierItem = (it) => {
+            const plainDE = (it.de || '').replace(/<[^>]+>/g, '');
+            const plainTR = (it.tr || '').replace(/<[^>]+>/g, '');
+            return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${plainDE}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${it.tr}</div></div>`;
+          };
           html += `
             <details class="melis-module-details">
               <summary class="melis-module-summary">
@@ -716,16 +735,16 @@
               </summary>
               <div class="melis-module-body">
                 <div class="melis-tier-block" style="border-left: 3px solid var(--accent-rose);">
-                  <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${escapeHtml(examSynthesis.tier1Immediate.titleDE)}</div>
-                  ${examSynthesis.tier1Immediate.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:var(--font-sm);">— 🇹🇷 ${it.tr}</span></div>`).join('')}
+                  <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${renderInteractiveGerman(examSynthesis.tier1Immediate.titleDE, examSynthesis.tier1Immediate.titleTR)}</div>
+                  ${examSynthesis.tier1Immediate.items.map(renderTierItem).join('')}
                 </div>
                 <div class="melis-tier-block" style="border-left: 3px solid var(--primary);">
-                  <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${escapeHtml(examSynthesis.tier2Diagnostics.titleDE)}</div>
-                  ${examSynthesis.tier2Diagnostics.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:var(--font-sm);">— 🇹🇷 ${it.tr}</span></div>`).join('')}
+                  <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${renderInteractiveGerman(examSynthesis.tier2Diagnostics.titleDE, examSynthesis.tier2Diagnostics.titleTR)}</div>
+                  ${examSynthesis.tier2Diagnostics.items.map(renderTierItem).join('')}
                 </div>
                 <div class="melis-tier-block" style="border-left: 3px solid var(--accent-emerald);">
-                  <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${escapeHtml(examSynthesis.tier3Pharmacology.titleDE)}</div>
-                  ${examSynthesis.tier3Pharmacology.items.map(it => `<div style="margin-bottom:3px;">• ${it.de} <span style="color:var(--text-muted); font-size:var(--font-sm);">— 🇹🇷 ${it.tr}</span></div>`).join('')}
+                  <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${renderInteractiveGerman(examSynthesis.tier3Pharmacology.titleDE, examSynthesis.tier3Pharmacology.titleTR)}</div>
+                  ${examSynthesis.tier3Pharmacology.items.map(renderTierItem).join('')}
                 </div>
               </div>
             </details>
@@ -762,8 +781,8 @@
                     ${(bedsideComm.jargonTerms || []).map(jt => `
                       <div class="melis-jargon-card">
                         <div><strong style="color: var(--primary);">${escapeHtml(jt.abbr)}</strong> — <strong>${escapeHtml(jt.termDE)}</strong></div>
-                        <div style="margin-top: 2px; color: var(--text-secondary);">${escapeHtml(jt.meaningDE)}</div>
-                        <div style="margin-top: 2px; color: var(--text-muted); font-size: var(--font-sm);">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
+                        <div style="margin-top: 2px; color: var(--text-secondary);">${renderInteractiveGerman(jt.meaningDE, jt.meaningTR)}</div>
+                        <div class="inline-bilingual-tr" style="margin-top: 2px; color: var(--text-muted); font-size: var(--font-sm);">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
                       </div>
                     `).join('')}
                   </div>
