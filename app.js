@@ -7856,7 +7856,7 @@ Tedavi:
         if (geminiEvaluator.hasApiKey()) {
           elGeminiKeyMsg.style.display = 'block';
           elGeminiKeyMsg.style.color = '#10b981';
-          elGeminiKeyMsg.innerHTML = '✅ <strong>Gemini 3.8 Flash ist aktiv!</strong> Ihre mündlichen Antworten werden direkt von Google Gemini analysiert.';
+          elGeminiKeyMsg.innerHTML = '✅ <strong>Gemini 3.6 Flash ist aktiv!</strong> Ihre mündlichen Antworten werden direkt von Google Gemini analysiert.';
         } else {
           elGeminiKeyMsg.style.display = 'none';
         }
@@ -7900,7 +7900,7 @@ Tedavi:
         elGeminiKeyMsg.innerHTML = '⚡ Verbindung zu Google Gemini wird getestet...';
       }
       try {
-        const modelsToTry = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.5-flash', 'gemini-flash-latest'];
+        const modelsToTry = ['gemini-3.6-flash', 'gemini-flash-lite-latest', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
         let testRes = null;
         let activeModel = modelsToTry[0];
         for (const m of modelsToTry) {
@@ -7934,11 +7934,15 @@ Tedavi:
           }
           showToast('🎉 Gemini Verbindung erfolgreich getestet!', 'success');
         } else {
+          const status = testRes ? testRes.status : 'Timeout';
+          const errDetail = status === 503
+            ? 'Google-Server vorübergehend ausgelastet (503). Bitte in wenigen Sekunden erneut testen.'
+            : 'Ungültiger Key oder API-Fehler.';
           if (elGeminiKeyMsg) {
             elGeminiKeyMsg.style.color = '#ef4444';
-            elGeminiKeyMsg.innerHTML = `❌ <strong>Fehler (${testRes ? testRes.status : 'API'}):</strong> Ungültiger Key oder API-Fehler.`;
+            elGeminiKeyMsg.innerHTML = `❌ <strong>Fehler (${status}):</strong> ${errDetail}`;
           }
-          showToast(`❌ Fehler beim Key-Test (${testRes ? testRes.status : 'API'})`, 'error');
+          showToast(`❌ Fehler beim Key-Test (${status})`, 'error');
         }
       } catch (err) {
         if (elGeminiKeyMsg) {

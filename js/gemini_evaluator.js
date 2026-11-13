@@ -20,8 +20,8 @@
   class GeminiAIEvaluator {
     constructor() {
       this.storageKey = 'gemini_api_key';
-      this.model = 'gemini-3.8-flash';
-      this.fallbackModel = 'gemini-3.7-flash';
+      this.model = 'gemini-3.6-flash';
+      this.fallbackModel = 'gemini-flash-lite-latest';
     }
 
     getUserKey() {
@@ -164,11 +164,19 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
         }
       };
 
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timer = controller ? setTimeout(() => controller.abort(), 18000) : null;
+      let res;
+      try {
+        res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller ? controller.signal : undefined,
+          body: JSON.stringify(payload)
+        });
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
 
       if (!res.ok) {
         const errorText = await res.text();

@@ -1696,7 +1696,7 @@
           <div class="settings-box highlight-box gemini-settings-box" id="gemini-settings-box" style="border-color: #8b5cf6; background: rgba(139, 92, 246, 0.05);">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
               <h3 style="margin: 0; color: #7c3aed;">🤖 Google Gemini AI Facharzt-Prüfer</h3>
-              <span id="gemini-status-pill" class="badge" style="background: rgba(139, 92, 246, 0.15); color: #7c3aed; font-weight: 700; font-size: 0.75rem; padding: 3px 8px; border-radius: 12px;">Gemini 3.8 Flash</span>
+              <span id="gemini-status-pill" class="badge" style="background: rgba(139, 92, 246, 0.15); color: #7c3aed; font-weight: 700; font-size: 0.75rem; padding: 3px 8px; border-radius: 12px;">Gemini 3.6 Flash</span>
             </div>
             <p style="margin-top: 6px;">Bewertet mündliche Antworten wie ein echter Düsseldorfer ÄKNO-Facharztprüfer. Erkennt den klinischen Sinn, toleriert Tippfehler der Spracherkennung (z.B. <em>"Vier auf 100%"</em> als FiO2 100%) und vergibt Facharztnoten samt ausführlichem Feedback.</p>
             
@@ -2752,7 +2752,7 @@
   <script src="js/sm2.js"></script>
   <script src="js/voice.js"></script>
   <script src="config.local.js" onerror="void 0;"></script>
-  <script src="js/gemini_evaluator.js?v=11.5"></script>
+  <script src="js/gemini_evaluator.js?v=11.8"></script>
   <script src="js/abbreviations_data.js"></script>
   <script src="js/exam_simulation.js"></script>
   <script src="js/calculators.js"></script>
@@ -2774,7 +2774,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=11.7')
+        navigator.serviceWorker.register('./sw.js?v=11.8')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
