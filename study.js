@@ -185,6 +185,14 @@
     return 50;
   }
   const allQuestions = rawQuestions.sort((a, b) => getQuestionPriorityWeight(a) - getQuestionPriorityWeight(b));
+  allQuestions.forEach(item => {
+    item._searchIndex = [
+      item.stem_de, item.question_de, item.stem_tr, item.question_tr,
+      item.answer_de, item.answer_tr, item.category,
+      item.oral_question_de, item.oral_question_tr,
+      item.oral_answer_de, item.oral_answer_tr
+    ].filter(Boolean).join('\n').toLowerCase();
+  });
 
   // --- Sentence-Level Text Processing ---
   function splitIntoSentences(text) {
@@ -270,21 +278,7 @@
 
     if (state.searchQuery && state.searchQuery.trim()) {
       const q = state.searchQuery.trim().toLowerCase();
-      list = list.filter(item => {
-        const stemDe = (item.stem_de || item.question_de || '').toLowerCase();
-        const stemTr = (item.stem_tr || item.question_tr || '').toLowerCase();
-        const ansDe = (item.answer_de || '').toLowerCase();
-        const ansTr = (item.answer_tr || '').toLowerCase();
-        const cat = (item.category || '').toLowerCase();
-        const oralQDe = (item.oral_question_de || '').toLowerCase();
-        const oralQTr = (item.oral_question_tr || '').toLowerCase();
-        const oralADe = (item.oral_answer_de || '').toLowerCase();
-        const oralATr = (item.oral_answer_tr || '').toLowerCase();
-
-        return stemDe.includes(q) || stemTr.includes(q) || ansDe.includes(q) || ansTr.includes(q) || 
-               oralQDe.includes(q) || oralQTr.includes(q) || oralADe.includes(q) || oralATr.includes(q) || 
-               cat.includes(q);
-      });
+      list = list.filter(item => item._searchIndex && item._searchIndex.includes(q));
     }
 
     if (state.activeCategory !== 'all') {
@@ -1503,14 +1497,24 @@
       e.preventDefault();
       elSearchInput.focus();
       elSearchInput.select();
-    } else if (e.key === 'Escape' && elSearchInput && activeEl === elSearchInput) {
-      if (elSearchInput.value) {
-        elSearchInput.value = '';
-        state.searchQuery = '';
-        if (elBtnClearSearch) elBtnClearSearch.style.display = 'none';
-        renderFeed(true);
+    } else if (e.key === 'Escape') {
+      if (elModalNotebook && elModalNotebook.style.display === 'flex') {
+        elModalNotebook.style.display = 'none';
+        return;
       }
-      elSearchInput.blur();
+      if (elMobileSheet && elMobileSheet.classList.contains('open')) {
+        elMobileSheet.classList.remove('open');
+        return;
+      }
+      if (elSearchInput && activeEl === elSearchInput) {
+        if (elSearchInput.value) {
+          elSearchInput.value = '';
+          state.searchQuery = '';
+          if (elBtnClearSearch) elBtnClearSearch.style.display = 'none';
+          renderFeed(true);
+        }
+        elSearchInput.blur();
+      }
     }
   });
 
