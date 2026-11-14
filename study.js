@@ -17,7 +17,7 @@
   const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
   if (localStorage.getItem(AUTH_KEY) !== 'true' && !isLocal && !document.getElementById('auth-modal')) {
     const entered = prompt('Giriş Şifresi (Standard-Passwort):', '');
-    if (entered && (entered.trim().toLowerCase() === 'egemelis' || entered.trim() === '1234')) {
+    if (entered && entered.trim().toLowerCase() === 'egemelis') {
       localStorage.setItem(AUTH_KEY, 'true');
     } else {
       alert('Şifre hatalı veya giriş yapılmadı.');

@@ -46,13 +46,24 @@
       if (localState.flagged[id]) robustFlagged[id] = true;
     });
 
-    // 3. Notes union: preserve whichever note is present or longer
+    // 3. Notes union: prefer newer timestamp when available, otherwise preserve present or longer note
     const robustNotes = { ...(cloudState.notes || {}) };
+    const cloudNotesTs = cloudState.notesUpdatedAt || {};
+    const localNotesTs = localState.notesUpdatedAt || {};
+    const robustNotesTs = { ...cloudNotesTs };
     Object.keys(localState.notes || {}).forEach(id => {
       const lNote = localState.notes[id];
       const cNote = robustNotes[id];
-      if (!cNote || (lNote && lNote.length >= cNote.length)) {
+      const lTs = Number(localNotesTs[id] || 0);
+      const cTs = Number(cloudNotesTs[id] || 0);
+      if (lTs && cTs) {
+        if (lTs >= cTs) {
+          robustNotes[id] = lNote;
+          robustNotesTs[id] = lTs;
+        }
+      } else if (!cNote || (lNote && lNote.length >= cNote.length)) {
         robustNotes[id] = lNote;
+        if (lTs) robustNotesTs[id] = lTs;
       }
     });
 
@@ -82,6 +93,7 @@
     merged.answers = robustAnswers;
     merged.flagged = robustFlagged;
     merged.notes = robustNotes;
+    merged.notesUpdatedAt = robustNotesTs;
     merged.sm2Cards = robustSm2;
     merged.dailyReviews = robustDaily;
         merged.streak = Math.max(cloudState.streak || 0, localState.streak || 0);

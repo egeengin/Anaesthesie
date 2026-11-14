@@ -8,7 +8,7 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
 
 ## 🌟 Hauptfunktionen & Features
 
-1. **Vollständiger, klinisch validierter Fragenkatalog (654 Prüfungsfragen)**:
+1. **Vollständiger, klinisch validierter Fragenkatalog (669 Prüfungsfragen)**:
    - **332 strukturierte MCQs / Mehrfachaussagen** (*Kehl & Wilke*).
    - **322 komplexe klinische Kasuistiken** (*Annecke & Hohn, Winterhalter*).
    - **54 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_54`) mit detaillierten Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler, Prof. Kindgen-Milles*).
@@ -72,4 +72,4 @@ Anwendung im Browser öffnen: **`http://localhost:8080`** (oder port 8085).
 ```bash
 node test_oral_exam_suite.js
 ```
-✅ **25 von 25 Test-Suites bestanden (100% Coverage)**.
+✅ **42 von 42 Test-Suites bestanden (100% Coverage)**.
