@@ -1319,8 +1319,51 @@ body {
   color: var(--text-secondary);
 }
 
-body.mode-bilingual .inline-bilingual-tr {
+body.mode-bilingual span.inline-bilingual-tr {
+  display: inline-block;
+}
+
+body.mode-bilingual div.inline-bilingual-tr {
+  display: none;
+}
+
+body.mode-bilingual div.inline-bilingual-tr.is-open {
   display: block;
+}
+
+.btn-toggle-tr-inline {
+  display: none;
+  margin-top: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+body.mode-bilingual .btn-toggle-tr-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-toggle-tr-inline:hover,
+.btn-toggle-tr-inline[aria-expanded="true"] {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: var(--accent-amber);
+  color: var(--text-primary);
+}
+
+body.mode-bilingual .trans-interactive {
+  cursor: text;
+}
+
+body.mode-bilingual .trans-interactive:hover {
+  background-color: transparent;
 }
 
 body.mode-german-only .trans-interactive {

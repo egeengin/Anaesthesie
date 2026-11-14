@@ -2779,7 +2779,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.7')
+        navigator.serviceWorker.register('./sw.js?v=12.9')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2794,7 +2794,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=10.6"></script>
+  <script src="study.js?v=10.8"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');

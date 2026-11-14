@@ -954,7 +954,7 @@
 
     document.querySelectorAll('.trans-interactive').forEach(el => {
       el.addEventListener('mouseenter', () => {
-        if (state.viewMode === 'german') return;
+        if (state.viewMode !== 'hover') return;
         if (isTouchDevice) return;
         const tr = el.getAttribute('data-tr');
         if (!tr) return;
@@ -966,7 +966,7 @@
       });
 
       el.addEventListener('click', (e) => {
-        if (state.viewMode === 'german') return;
+        if (state.viewMode !== 'hover') return;
         e.stopPropagation();
 
         const tr = el.getAttribute('data-tr');
@@ -981,6 +981,26 @@
         showMobileSheet(de, tr);
         triggerHapticFeedback();
       });
+    });
+
+    // Collapsible Turkish translation blocks (like Exam Mode)
+    document.querySelectorAll('.study-card div.inline-bilingual-tr').forEach(trBox => {
+      if (trBox.dataset.trCollapsibleInit) return;
+      if (!trBox.textContent || !trBox.textContent.trim()) return;
+      trBox.dataset.trCollapsibleInit = '1';
+
+      const toggleBtn = document.createElement('button');
+      toggleBtn.type = 'button';
+      toggleBtn.className = 'btn-toggle-tr-inline';
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.textContent = '🇹🇷 Türkçe Çeviri ▾';
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = trBox.classList.toggle('is-open');
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        toggleBtn.textContent = isOpen ? '🇹🇷 Çeviriyi Gizle ▴' : '🇹🇷 Türkçe Çeviri ▾';
+      });
+      trBox.parentNode.insertBefore(toggleBtn, trBox);
     });
   }
 
