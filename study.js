@@ -1498,6 +1498,11 @@
       elSearchInput.focus();
       elSearchInput.select();
     } else if (e.key === 'Escape') {
+      if (elAaDropdown && elAaDropdown.classList.contains('open')) {
+        elAaDropdown.classList.remove('open');
+        if (elAaBtn) elAaBtn.setAttribute('aria-expanded', 'false');
+        return;
+      }
       if (elModalNotebook && elModalNotebook.style.display === 'flex') {
         elModalNotebook.style.display = 'none';
         return;
@@ -1517,6 +1522,23 @@
       }
     }
   });
+
+  // Minimalist "Aa" Reader Settings Popover Controller
+  const elAaBtn = document.getElementById('study-aa-menu-btn');
+  const elAaDropdown = document.getElementById('study-aa-dropdown');
+  if (elAaBtn && elAaDropdown) {
+    elAaBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = elAaDropdown.classList.toggle('open');
+      elAaBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (elAaDropdown.classList.contains('open') && !elAaDropdown.contains(e.target) && !elAaBtn.contains(e.target)) {
+        elAaDropdown.classList.remove('open');
+        elAaBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   // Export refresh helper globally if needed
   window.refreshMelisStudyFeed = () => renderFeed(true);

@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.6'; // upgraded from facharzt-cache-v7.7 / v12.5 for study.html SW sync, note timestamp merge, and auth alignment
+const CACHE_NAME = 'facharzt-cache-v12.7'; // upgraded from facharzt-cache-v7.7 / v12.6 for minimalist UI & Aa reader popover
 const CORE_ASSETS = [
   './',
   './index.html',

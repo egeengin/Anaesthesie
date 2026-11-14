@@ -901,21 +901,21 @@ body {
 /* Reading Card Component */
 .study-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 22px 24px;
-  box-shadow: var(--shadow-sm);
+  padding: 24px 28px;
+  box-shadow: none;
   position: relative;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 
 .study-card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   border-color: var(--border-color);
 }
 
 .study-card.is-read {
-  border-left: 4px solid var(--accent-emerald);
+  border-left: 3px solid var(--accent-emerald);
 }
 
 /* Card Header */
@@ -1035,15 +1035,13 @@ body {
   cursor: pointer;
   border-radius: 4px;
   padding: 1px 2px;
-  transition: background-color 0.15s ease, text-decoration-color 0.15s ease;
-  text-decoration: underline dotted transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 /* Desktop Hover Visual Clue */
 @media (hover: hover) and (pointer: fine) {
   .trans-interactive:hover {
     background-color: var(--trans-highlight);
-    text-decoration: underline dotted var(--trans-highlight-border);
     color: var(--text-primary);
   }
 }
@@ -1697,6 +1695,11 @@ body.mode-german-only .trans-interactive {
   box-shadow: var(--shadow-sm);
 }
 
+.oral-question-text,
+.oral-answer-content {
+  max-width: 72ch;
+}
+
 .oral-answer-content {
   display: flex;
   flex-direction: column;
@@ -1708,8 +1711,8 @@ body.mode-german-only .trans-interactive {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed var(--border-subtle, rgba(0,0,0,0.06));
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle, rgba(0,0,0,0.05));
 }
 
 .oral-answer-bullet-row:last-child {
@@ -2271,4 +2274,77 @@ body.mode-german-only .trans-interactive {
 .study-card.is-read:hover {
   opacity: 1;
 }
+
+/* ==========================================================================
+   MINIMALIST "Aa" READER SETTINGS POPOVER
+   ========================================================================== */
+.study-aa-wrapper {
+  position: relative;
+}
+
+.pill-btn-aa {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.pill-btn-aa:hover,
+.pill-btn-aa[aria-expanded="true"] {
+  background: var(--bg-secondary);
+  border-color: var(--primary);
+}
+
+.study-aa-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 280px;
+  padding: 14px;
+  background: var(--bg-elevated, #ffffff);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1200;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.study-aa-dropdown-menu.open {
+  display: flex;
+}
+
+.aa-popover-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aa-popover-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.aa-popover-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
 
