@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.5'; // upgraded from facharzt-cache-v7.7 / v12.4 for study/exam keyboard shortcut isolation & search '/' UX
+const CACHE_NAME = 'facharzt-cache-v12.6'; // upgraded from facharzt-cache-v7.7 / v12.5 for 4 Melis clinical profiles, 2-stage examiner follow-up, 3-step self-check & quick unread/starred filters
 const CORE_ASSETS = [
   './',
   './index.html',

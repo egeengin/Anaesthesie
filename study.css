@@ -2272,3 +2272,134 @@ body.mode-german-only .trans-interactive {
   opacity: 1;
 }
 
+/* 6. Melis 2-Stage Examiner Follow-Up, 3-Action Scratchpad & Quick Unread/Starred Filters */
+.melis-followup-details {
+  margin-top: 8px;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 8px;
+}
+
+.melis-followup-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--primary);
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(141, 99, 70, 0.08);
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.melis-followup-summary::-webkit-details-marker {
+  display: none;
+}
+
+.melis-followup-summary:hover {
+  background: rgba(141, 99, 70, 0.14);
+}
+
+.melis-followup-details[open] .melis-drawer-caret {
+  transform: rotate(180deg);
+}
+
+.melis-followup-answer-body {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  font-size: var(--font-sm);
+  line-height: 1.55;
+}
+
+.melis-self-check-details {
+  margin-bottom: 10px;
+}
+
+.melis-self-check-summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+  background: var(--bg-card);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.melis-self-check-summary::-webkit-details-marker {
+  display: none;
+}
+
+.melis-self-check-summary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.melis-self-check-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+@media (max-width: 780px) {
+  .melis-self-check-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.melis-step-input {
+  width: 100%;
+  padding: 8px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.melis-step-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(141, 99, 70, 0.15);
+}
+
+.btn-study-quick-filter.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.btn-star-card {
+  opacity: 0.55;
+  transition: opacity 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+
+.btn-star-card:hover {
+  opacity: 0.95;
+  transform: scale(1.06);
+}
+
+.btn-star-card.starred {
+  opacity: 1;
+  background: rgba(245, 158, 11, 0.16);
+  border-color: rgba(245, 158, 11, 0.55);
+  color: #b45309;
+}
+
+[data-theme="dark"] .btn-star-card.starred {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fbbf24;
+}
+

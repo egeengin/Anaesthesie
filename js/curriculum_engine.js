@@ -1518,6 +1518,18 @@
     if (text.includes('sepsis') || text.includes('septisch') || text.includes('ards') || text.includes('lungenembolie') || text.includes('anionenlücke') || text.includes('ketoazidose') || text.includes('säure-base')) {
       return 'icu_sepsis';
     }
+    if (text.includes('einlungenventilation') || text.includes('doppellumentubus') || /\bdlt\b/.test(text) || text.includes('thoraxchirurg') || text.includes('hypoxische pulmonale vasokonstriktion') || text.includes('pneumothorax') || text.includes('spannungspneumothorax') || text.includes('thoraxdrainage') || text.includes('bronchusblocker')) {
+      return 'thorax';
+    }
+    if (text.includes('aortenklappenstenose') || text.includes('mitralklappen') || text.includes('karotis') || text.includes('carotis') || /\bkhk\b/.test(text) || text.includes('koronar') || text.includes('phäochromozytom') || text.includes('perikardtamponade') || text.includes('herzinsuffizienz')) {
+      return 'cardiac_valve';
+    }
+    if (text.includes('hyperkaliämie') || text.includes('hyponatriämie') || text.includes('niereninsuffizienz') || text.includes('dialyse') || text.includes('leberzirrhose') || text.includes('leberinsuffizienz') || text.includes('pontine myelinolyse')) {
+      return 'electrolyte_renal';
+    }
+    if (text.includes('schmerztherapie') || text.includes('who-stufenschema') || /\bpca\b/.test(text) || text.includes('delir') || /\bponv\b/.test(text) || text.includes('palliativ') || /\bcrps\b/.test(text)) {
+      return 'pain_delirium';
+    }
     if (text.includes('peridural') || text.includes('pdk') || text.includes('spinalanästhesie') || text.includes('regionalanästhesie') || text.includes('epidural')) {
       return 'regional';
     }
@@ -2009,6 +2021,134 @@
         patternDE: 'Mustererkennung: Neuroaxialer Sympathikusblock führt zu venösem Pooling (Vorlast ↓) und bei Ausbreitung auf Th1–Th4 zum Ausfall der kardialen Nn. accelerantes mit Bezold-Jarisch-Reflex (Bradykardie + Hypotonie).',
         patternTR: 'Patern Tanıma: Nöroaksiyel sempatik blok venöz göllenmeye (ön yük ↓) ve Th1–Th4 seviyesine ulaştığında kardiyak Nn. accelerantes blokajıyla Bezold-Jarisch refleksine (bradikardi + hipotansiyon) yol açar.'
       },
+      thorax: {
+        scenarioBadgeDE: 'OP-Saal · Thoraxchirurgie & Einlungenventilation (DLT / HPV)',
+        scenarioBadgeTR: 'Ameliyathane · Göğüs Cerrahisi & Tek Akciğer Ventilasyonu (DLT / HPV)',
+        vitals: {
+          hr: '116 /min',
+          bp: '98/58 mmHg',
+          map: '71 mmHg',
+          spo2: '84 % (unter ELV bei FiO₂ 0,80!)',
+          etco2: '43 mmHg',
+          temp: '36,1 °C',
+          rhythmDE: 'Sinustachykardie nach Seitenlagerung & Beginn der Einlungenventilation',
+          rhythmTR: 'Yan pozisyon ve tek akciğer ventilasyonu başlangıcında sinüs taşikardisi'
+        },
+        bga: {
+          ph: '7,29',
+          pco2: '51 mmHg',
+          po2: '54 mmHg (kritische Hypoxämie unter ELV!)',
+          hco3: '24 mmol/l',
+          be: '-1,2 mmol/l',
+          lactate: '2,1 mmol/l',
+          hb: '11,6 g/dl',
+          electrolytes: 'Peak-Druck P_peak: 36 mbar · Na⁺ 139 mmol/l · K⁺ 4,2 mmol/l'
+        },
+        advanced: {
+          labelDE: 'DLT-Lagekontrolle, Shunt-Management & Beatmungsdrücke',
+          labelTR: 'Çift Lümenli Tüp (DLT) Kontrolü, Şant Yönetimi & Basınçlar',
+          valuesDE: 'Fiberoptische Bronchoskopie-Pflicht bei jeder Umlagerung! · Rechts-Links-Shunt durch nicht-ventilierte Lunge · ELV-Ziel: Vt 4–6 ml/kg PBW, PEEP 5–8 mbar · CPAP 2–5 mbar O₂ auf der operierten (oberen) Lunge',
+          valuesTR: 'Her pozisyon değişiminde fiberoptik bronkoskopi şart! · Ventile edilmeyen akciğerde sağ-sol şant · ELV hedefi: Vt 4–6 ml/kg PBW, PEEP 5–8 mbar · Opere edilen (üstteki) akciğere CPAP 2–5 mbar O₂'
+        },
+        patternDE: 'Mustererkennung: Akute Desaturierung (SpO₂ 84 %) + Spitzendruckanstieg (36 mbar) nach Seitenlagerung unter Doppellumentubus = klassische DLT-Dislokation oder Spannungspneumothorax der abhängigen Lunge bis zum bronchoskopischen Beweis des Gegenteils!',
+        patternTR: 'Patern Tanıma: Çift lümenli tüp (DLT) ile yan pozisyon sonrası ani desatürasyon (SpO₂ %84) + tepe basınç artışı (36 mbar) = bronkoskopi ile aksi kanıtlanana kadar DLT dislokasyonu veya alttaki akciğerde tansiyon pnömotoraks!'
+      },
+      cardiac_valve: {
+        scenarioBadgeDE: 'OP-Saal · Hochgradige Aortenklappenstenose & Kardiovaskuläres Risiko',
+        scenarioBadgeTR: 'Ameliyathane · İleri Aort Darlığı & Kardiyovasküler Risk Yönetimi',
+        vitals: {
+          hr: '62 /min (strikter Sinusrhythmus — Ziel 60–80 /min!)',
+          bp: '104/66 mmHg',
+          map: '79 mmHg (Ziel ≥ 70–80 mmHg für Koronarperfusion!)',
+          spo2: '97 %',
+          etco2: '35 mmHg',
+          temp: '36,4 °C',
+          rhythmDE: 'Normofrequenter Sinusrhythmus (Vorhofkontraktion liefert ~30 % der LV-Füllung!)',
+          rhythmTR: 'Normofrekanslı sinüs ritmi (Atriyal kasılma sol ventrikül dolumunun ~%30 unu sağlar!)'
+        },
+        bga: {
+          ph: '7,38',
+          pco2: '39 mmHg',
+          po2: '132 mmHg',
+          hco3: '23 mmol/l',
+          be: '-0,6 mmol/l',
+          lactate: '1,4 mmol/l',
+          hb: '11,2 g/dl',
+          electrolytes: 'KÖF 0,7 cm² · ΔP_mean 52 mmHg · K⁺ 4,4 mmol/l · Mg²⁺ 0,9 mmol/l'
+        },
+        advanced: {
+          labelDE: 'Koronarperfusionsdruck (CPP) & Hämodynamische Säulen',
+          labelTR: 'Koroner Perfüzyon Basıncı (CPP) & Hemodinamik İlkeler',
+          valuesDE: 'CPP = Ao_diastolisch − LVEDP · Fixierter Ausflusstrakt (KÖF < 1,0 cm²) -> HZV kann bei SVR-Abfall NICHT gesteigert werden! · Normovolämie + hohe Nachlast (Noradrenalin/Phenylephrin) + Sinusrhythmus strikt halten!',
+          valuesTR: 'CPP = Aort diyastolik − LVEDP · Fiks çıkış yolu darlığı (KÖF < 1,0 cm²) -> SVR düşerse kalp debisi artırılamaz! · Normovolemi + yüksek ard yük (Noradrenalin/Fenilefrin) + Sinüs ritmini koru!'
+        },
+        patternDE: 'Mustererkennung: Schwere konzentrische LV-Hypertrophie mit massiv reduziertem Compliance-Reserve. Tachykardie verkürzt die Diastole (Koronarperfusion ↓), Hypotonie senkt Ao_diastolisch (subendokardiale Ischämie -> Kammerflimmern)! Spinalanästhesie = absolutes K.O.!',
+        patternTR: 'Patern Tanıma: İleri konsantrik sol ventrikül hipertrofisi ve düşük diyastolik kompliyans. Taşikardi diyastolü kısaltır (koroner perfüzyon ↓), hipotansiyon aort diyastolik basıncını düşürür (subendokardiyal iskemi -> VF)! Spinal anestezi = mutlak K.O.!'
+      },
+      electrolyte_renal: {
+        scenarioBadgeDE: 'ITS / Notaufnahme · Schwere Elektrolyt- & Organinsuffizienz',
+        scenarioBadgeTR: 'Yoğun Bakım / Acil · Ağır Elektrolit & Organ Yetmezliği',
+        vitals: {
+          hr: '44 /min (breiter QRS-Komplex!)',
+          bp: '92/52 mmHg',
+          map: '65 mmHg',
+          spo2: '96 %',
+          etco2: '34 mmHg',
+          temp: '36,5 °C',
+          rhythmDE: 'EKG: Spitzes zeltförmiges T, P-Abflachung, QRS-Verbreiterung > 120 ms (Sinuswellen-Gefahr!)',
+          rhythmTR: 'EKG: Sivri çadır T dalgası, P düzleşmesi, QRS genişlemesi > 120 ms (Sinüs dalgası tehlikesi!)'
+        },
+        bga: {
+          ph: '7,28',
+          pco2: '34 mmHg',
+          po2: '98 mmHg',
+          hco3: '16 mmol/l',
+          be: '-9,5 mmol/l',
+          lactate: '2,6 mmol/l',
+          hb: '9,8 g/dl',
+          electrolytes: 'K⁺ 6,8 mmol/l (Notfall!) · oder Na⁺ 114 mmol/l (Schwere Hyponatriämie!)'
+        },
+        advanced: {
+          labelDE: 'Membranstabilisierung, Shift & Korrekturlimits',
+          labelTR: 'Membran Stabilizasyonu, Hücre İçi Shift & Düzeltme Sınırları',
+          valuesDE: 'Hyperkaliämie-Trias: 1. Kalziumgluconat 10 % 10–30 ml i.v. (sofortige Membranstabilisierung) · 2. Insulin-Glukose + Salbutamol (Shift) · 3. Furosemid / Dialyse (Elimination) · Hyponatriämie-Limit: max. ΔNa⁺ ≤ 8–10 mmol/l in 24 h!',
+          valuesTR: 'Hiperkalemi 3 lü yönetim: 1. Kalsiyum glukonat %10 10–30 ml i.v. (anında membran stabilizasyonu) · 2. İnsülin-Dekstroz + Salbutamol (Shift) · 3. Furosemid / Diyaliz (Eliminasyon) · Hiponatremi sınırı: 24 saatte maks. ΔNa⁺ ≤ 8–10 mmol/l!'
+        },
+        patternDE: 'Mustererkennung: Lebensbedrohliche Elektrolyt-Notfälle mit akutem Arrhythmie- oder Hirnödemrisiko. Bei Hyperkaliämie ≥ 6,0 mmol/l oder EKG-Veränderungen ist Succinylcholin (K⁺-Anstieg +0,5–1,0 mmol/l) streng kontraindiziert!',
+        patternTR: 'Patern Tanıma: Akut aritmi veya beyin ödemi riski taşıyan yaşamı tehdit eden elektrolit krizi. K⁺ ≥ 6,0 mmol/l veya EKG değişikliği varsa Süksinilkolin (K⁺ artışı +0,5–1,0 mmol/l) kesinlikle kontrendikedir!'
+      },
+      pain_delirium: {
+        scenarioBadgeDE: 'Aufwachraum / Station · Akutschmerz, PONV & Postoperatives Delir',
+        scenarioBadgeTR: 'Derlenme / Servis · Akut Ağrı, PONV & Postoperatif Deliryum',
+        vitals: {
+          hr: '104 /min',
+          bp: '154/92 mmHg',
+          map: '113 mmHg',
+          spo2: '94 % (unter Raumluft nach Opioidgabe)',
+          etco2: '42 mmHg (AF 10 /min — Atemdepression prüfen!)',
+          temp: '36,6 °C',
+          rhythmDE: 'Sinusrhythmus mit schmerz- oder agitationsbedingter Tachykardie',
+          rhythmTR: 'Ağrı veya ajitasyona sekonder sinüs taşikardisi'
+        },
+        bga: {
+          ph: '7,34',
+          pco2: '46 mmHg',
+          po2: '78 mmHg',
+          hco3: '24 mmol/l',
+          be: '-0,5 mmol/l',
+          lactate: '1,2 mmol/l',
+          hb: '11,8 g/dl',
+          electrolytes: 'NRS 8/10 · CAM-ICU / Nu-DESC positiv · Apfel-Score: 3/4 Risikofaktoren'
+        },
+        advanced: {
+          labelDE: 'Multimodale Analgesie, PONV-Prophylaxe & Delir-Prävention',
+          labelTR: 'Multimodal Analjezi, PONV Profilaksisi & Deliryum Yönetimi',
+          valuesDE: 'WHO-Schema + Nicht-Opioide (Paracetamol, Metamizol, COX-2/NSAR) + Regional/PCA · PONV bei Apfel ≥ 2–3: TIVA + Dexamethason 4 mg + Ondansetron 4 mg · Delir: Schmerz/Hypoxie/Harnverhalt ausschließen, anticholinerge Trigger meiden!',
+          valuesTR: 'DSÖ basamak + Non-opioidler (Parasetamol, Metamizol, NSAİİ) + Rejyonel/PCA · Apfel ≥ 2–3 ise PONV: TİVA + Deksametazon 4 mg + Ondansetron 4 mg · Deliryum: Önce ağrı/hipoksi/idrar retansiyonunu dışla, antikolinerjiklerden kaçın!'
+        },
+        patternDE: 'Mustererkennung: Postoperative Agitation im Aufwachraum ist bis zum Beweis des Gegenteils eine Hypoxie, Hyperkapnie, ein voller Harnblasenkatheter-Stau oder unzureichende Analgesie – niemals blind mit Benzodiazepinen sedieren!',
+        patternTR: 'Patern Tanıma: Derlenme odasında postoperatif ajitasyon aksi kanıtlanana kadar hipoksi, hiperkapni, idrar globu veya yetersiz analjezidir — asla körlemesine benzodiazepin ile sedatize edilmemelidir!'
+      },
       general: {
         scenarioBadgeDE: 'OP / Intensivstation · Perioperatives Akut- & Risikomanagement',
         scenarioBadgeTR: 'Ameliyathane / Yoğun Bakım · Perioperatif Akut & Risk Yönetimi',
@@ -2144,6 +2284,130 @@
         examinerFollowupTR: 'Jüri Takip Sorusu: "Peki aynı halka mıknatısı implante kardiyoverter-defibrilatör (ICD) üzerine koyarsanız ne olur? ICD de VOO asenkron pacing moduna geçer mi?"',
         examinerJustificationDE: 'Antwort ab First Principles: „Nein, das ist eine klassische Prüfungsfalle! Bei einem ICD deaktiviert die Magnetauflage AUSSCHLIESSLICH die antitachykarde Erkennung und Schockabgabe (damit EMI keinen inadäquaten Schock auslöst). Die antibradykarde Schrittmacherfunktion eines ICD bleibt unter Magnetauflage unverändert im synchronen Bedarfsmodus (VVI/DDD)! Ist ein ICD-Patient zusätzlich schrittmacherabhängig, muss der ICD vor OP mit dem Programmiergerät auf VOO/DOO umprogrammiert werden.“',
         examinerJustificationTR: 'İlk İlkelerden Yanıt: "Hayır, bu klasik bir sınav tuzağıdır! ICD üzerine mıknatıs konduğunda SADECE antitakikardi algılaması ve şok verme özelliği devre dışı kalır (koter paraziti yanlış şok çaktırmasın diye). ICD nin antibradikardik pil fonksiyonu ise mıknatısa rağmen senkron modda (VVI/DDD) kalır! ICD hastası aynı zamanda pil bağımlıysa, ameliyat öncesi programlayıcı cihazla VOO/DOO moduna alınmalıdır."'
+      },
+      thorax: {
+        vignetteTriggerDE: 'Prüfer-Impuls (OP-Saal): Nach Umlagerung in Seitenlage und Start der Einlungenventilation (DLT links) fällt SpO₂ auf 84 % und der Spitzendruck steigt auf 36 mbar. Ihre ERSTEN 3 SOFORTMASSNAHMEN?',
+        vignetteTriggerTR: 'Jüri Sorusu (Ameliyathane): Yan pozisyona çevirip tek akciğer ventilasyonuna (sol DLT) geçtikten sonra SpO₂ %84 e düşüyor ve tepe basıncı 36 mbar a çıkıyor. İLK 3 ACİL ADIMINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Sofort FiO₂ auf 1,0 (100 % O₂) erhöhen, beide Lungen vorübergehend über DLT wieder zweilumig ventilieren (Doppel-Lungen-Ventilation) und Hämodynamik prüfen.',
+            actionTR: 'Derhal FiO₂ yi 1,0 (%100 O₂) yap, çift lümenli tüp üzerinden geçici olarak iki akciğeri birden ventile et ve hemodinamiyi kontrol et.',
+            whyDE: 'Bricht die lebensbedrohliche Hypoxämie sofort und verifiziert rasch, ob der DLT verlegt/disloziert ist.',
+            whyTR: 'Hayatı tehdit eden hipoksemiyi hemen kırar ve sorunun tüp kaymasından/tıkanmasından kaynaklanıp kaynaklanmadığını gösterir.'
+          },
+          {
+            step: 2,
+            actionDE: 'Sofortige fiberoptische Bronchoskopie durch beide DLT-Lumina (Kontrolle von Trachealkarinen-Sitz und bronchialer Blockung nach Umlagerung) + Absaugen von Sekret/Blut.',
+            actionTR: 'Her iki DLT lümeninden derhal fiberoptik bronkoskopi yap (pozisyon sonrası karina ve bronş balon yerleşimini doğrula) + sekresyon/kanı aspire et.',
+            whyDE: 'Bis zu 40 % der DLT dislozieren beim Drehen in Seitenlage und verlegen den Oberlappenbronchus.',
+            whyTR: 'Yan pozisyona çevirirken DLT lerin %40 a varan oranda yerinden oynayıp üst lob bronşunu tıkadığı görülür.'
+          },
+          {
+            step: 3,
+            actionDE: 'Falls DLT korrekt liegt: Rekrutierung der abhängigen Lunge + PEEP-Optimierung (5–8 mbar), zusätzlich CPAP 2–5 mbar mit O₂ auf der operierten oberen Lunge & HZV sichern.',
+            actionTR: 'DLT yerindeyse: Alttaki akciğeri rekruit et + PEEP i (5–8 mbar) optimize et, opere edilen üstteki akciğere 2–5 mbar O₂-CPAP uygula ve kalp debisini koru.',
+            whyDE: 'CPAP oxygeniert das Shuntblut der nicht-ventilierten Lunge; exzessiver PEEP unten würde jedoch Blut zurück in die Shunt-Lunge drücken!',
+            whyTR: 'CPAP ventile edilmeyen üst akciğerdeki şant kanını oksijenler; alttaki akciğere aşırı PEEP vermek ise kanı tekrar şant akciğerine iter!'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Warum erhöht eine unnötige Gabe von Nitroglycerin oder hochdosierten volatilen Anästhetika (> 1,5 MAC) während der Einlungenventilation die Hypoxämie?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "Tek akciğer ventilasyonu sırasında gereksiz Nitrogliserin veya yüksek doz uçucu anestezik (> 1,5 MAC) verilmesi hipoksemiyi neden derinleştirir?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Beide Substanzen hemmen die hypoxische pulmonale Vasokonstriktion (HPV / Euler-Liljestrand-Mechanismus). Normalerweise drosselt die HPV die Durchblutung der nicht-ventilierten Lunge um ca. 50 %, sodass der Rechts-Links-Shunt (Qs/Qt) begrenzt bleibt. Fällt die HPV weg, fließt wieder venöses Blut unoxygeniert durch die atelektatische Lunge!“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "Her iki ajan da hipoksik pulmoner vazokonstriksiyonu (HPV / Euler-Liljestrand refleksi) baskılar. Normalde HPV ventile olmayan akciğerin kan akımını %50 kısarak sağ-sol şantı (Qs/Qt) sınırlar. HPV bozulursa oksijenlenmemiş venöz kan atelektatik akciğerden geçip arteryel PaO₂ yi düşürür!"'
+      },
+      cardiac_valve: {
+        vignetteTriggerDE: 'Prüfer-Impuls (Düsseldorf / OP-Saal): 76-jähriger Patient mit hochgradiger Aortenklappenstenose (KÖF 0,7 cm², ΔP_mean 52 mmHg) soll dringlich laparoskopisch operiert werden. Der Chirurg fragt nach Spinalanästhesie. Ihre ERSTEN 3 MASSNAHMEN / ENTSCHEIDUNGEN?',
+        vignetteTriggerTR: 'Jüri Sorusu (Düsseldorf / Ameliyathane): 76 yaşında ileri aort darlığı (KÖF 0,7 cm², ΔP_mean 52 mmHg) hastası acil laparoskopik cerrahiye alınıyor. Cerrah "Spinal daha güvenli olmaz mı?" diyor. İLK 3 KARARINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Spinalanästhesie wegen abrupter Sympathikolyse und SVR-Abfall strikt ablehnen; balancierte Allgemeinanästhesie mit wacher arterieller Kanülierung VOR Einleitung wählen.',
+            actionTR: 'Ani sempatikoliz ve SVR düşüşü nedeniyle spinal anesteziyi kesin reddet; indüksiyon ÖNCESİ uyanık arter kanülasyonu ile genel anestezi uygula.',
+            whyDE: 'Bei fixer Ausflusstraktobstruktion fällt bei SVR-Sturz sofort der diastolische Aortendruck (Koronarperfusion ↓) -> kardiales Pumpversagen!',
+            whyTR: 'Fiks çıkış darlığında SVR düşerse aort diyastolik basıncı aniden çöker, koroner perfüzyon durur ve miyokard iskemisi gelişir!'
+          },
+          {
+            step: 2,
+            actionDE: 'Noradrenalin- oder Phenylephrin-Perfusor VOR Narkoseeinleitung anschließen und auf eine hämodynamische Zielzone einstellen: MAP ≥ 70–80 mmHg, HF 60–80 /min im Sinusrhythmus.',
+            actionTR: 'Anestezi indüksiyonu ÖNCESİ Noradrenalin veya Fenilefrin infüzyonunu bağla ve hemodinamik hedefe kilitle: MAP ≥ 70–80 mmHg, sinüs ritminde KAH 60–80 /dk.',
+            whyDE: 'Reine α- bzw. α₁-dominante Vasokonstriktion erhält Nachlast und Koronarperfusionsdruck ohne Tachykardie auszulösen.',
+            whyTR: 'α₁-baskın vazokonstriksiyon taşikardi yapmadan ard yükü ve koroner perfüzyon basıncını korur.'
+          },
+          {
+            step: 3,
+            actionDE: 'Externe Defibrillator-Pads (bei schwerem Aortenvitium schwer zu reanimieren!) aufkleben, Vorlast normovoläm halten und Laparoskopie-Pneumoperitoneum langsam aufbauen lassen.',
+            actionTR: 'Eksternal defibrilatör pedlerini yapıştır (ileri aort darlığında KPR verimi düşüktür), ön yükü normovolemik tut ve laparoskopide pnömoperitonyumu yavaş kurdur.',
+            whyDE: 'Vorhofkontraktion (Sinusrhythmus) und ausreichende Vorlast sind Pflicht für die Füllung des hypertrophen, steifen linken Ventrikels.',
+            whyTR: 'Hipertrofik sert sol ventrikülün dolumu için atriyal katkı (sinüs ritmi) ve yeterli ön yük hayati önem taşır.'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Warum ist eine herkömmliche Herzdruckmassage im Falle eines Kreislaufstillstands bei hochgradiger Aortenstenose oft frustran, und was bedeutet das für Ihre Narkoseführung?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "İleri aort darlığı olan hastada arrest gelişirse standart göğüs basısı neden çoğu zaman yetersiz kalır ve bu anestezi yönetiminizi nasıl etkiler?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Durch die extrem enge Klappenöffnung (KÖF 0,7 cm²) erzeugt eine externe Thoraxkompression kaum ausreichendes Vorwärts-Schlagvolumen in die Aorta und die Koronarien (CPP = Ao_diast − LVEDP bleibt kritisch niedrig). Deshalb darf eine Hypotonie oder ein Verlust des Sinusrhythmus bei Einleitung gar nicht erst entstehen!“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "Aşırı daralmış kapak açıklığından (KÖF 0,7 cm²) eksternal göğüs kompresyonu ile aortaya ve koronerlere yeterli atım hacmi geçemez (CPP = Aort_diyast − LVEDP kritik düşük kalır). Bu yüzden daha en baştan indüksiyonda hipotansiyona veya sinüs ritmi kaybına asla izin verilmemelidir!"'
+      },
+      electrolyte_renal: {
+        vignetteTriggerDE: 'Prüfer-Impuls (ITS / Schockraum): Ein dialysepflichtiger Patient zeigt im EKG spitze T-Wellen und verbreiterte QRS-Komplexe (HF 44/min, BGA-Kalium 6,8 mmol/l) bzw. akute Symptomatik bei Elektrolytentgleisung. Ihre ERSTEN 3 SOFORTMASSNAHMEN?',
+        vignetteTriggerTR: 'Jüri Sorusu (Yoğun Bakım / Acil): Diyaliz hastasının EKG sinde sivri T dalgaları ve geniş QRS var (KAH 44/dk, Kan gazı K⁺ 6,8 mmol/l). İLK 3 ACİL ADIMINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Sofortige myokardiale Membranstabilisierung mit Kalziumgluconat 10 % 10–30 ml langsam i.v. über 3–5 min unter kontinuierlichem EKG-Monitoring (Wirkung in 1–3 min, senkt K⁺ NICHT!).',
+            actionTR: 'Sürekli EKG takibi altında derhal Kalsiyum glukonat %10 10–30 ml i.v. (3–5 dk da) ile miyokard membranını stabilize et (1–3 dk da etki eder, K⁺ u düşürmez!).',
+            whyDE: 'Hebt das Schwellenpotenzial der Kardiomyozyten und stellt die Natriumkanal-Erregbarkeit wieder her, bevor Kammerflimmern entsteht.',
+            whyTR: 'Kardiyomiyosit eşik potansiyelini yükselterek ventriküler fibrilasyon gelişmeden Na⁺ kanal uyarılabilirliğini geri kazandırır.'
+          },
+          {
+            step: 2,
+            actionDE: 'Intrazellulärer Kalium-Shift einleiten: 10 IE Normalinsulin i.v. + 25–50 g Glukose (z.B. 50–100 ml G50 % oder 250 ml G20 %) sowie Salbutamol 10–20 mg inhalativ (+ NaHCO₃ 8,4 % nur bei schwerer metabolischer Azidose).',
+            actionTR: 'Hücre içi potasyum shift i başlat: 10 Ü regüler insülin i.v. + 25–50 g glukoz (ve gerekirse inhale Salbutamol 10–20 mg; ağır asidoz varsa NaHCO₃ %8,4).',
+            whyDE: 'Aktiviert die Na⁺/K⁺-ATPase an der Zellmembran und senkt das Serum-K⁺ innerhalb von 15–30 min um ~0,8–1,2 mmol/l.',
+            whyTR: 'Hücre zarındaki Na⁺/K⁺-ATPaz pompasını uyararak 15–30 dk içinde serum K⁺ düzeyini ~0,8–1,2 mmol/l düşürür.'
+          },
+          {
+            step: 3,
+            actionDE: 'Kalium-Elimination aus dem Körper sichern (Furosemid bei Restdiurese oder sofortige Akut-Hämodialyse anmelden) und Succinylcholin sowie kaliumreiche Lösungen strikt meiden!',
+            actionTR: 'Vücuttan potasyum atılımını sağla (idrar varsa Furosemid, yoksa acil hemodiyaliz organize et) ve Süksinilkolin ile potasyumlu sıvılardan kesin kaçın!',
+            whyDE: 'Membranstabilisierung und Shift sind nur temporär (~30–60 min); nur Elimination senkt den Gesamtkörper-Kaliumbestand.',
+            whyTR: 'Membran stabilizasyonu ve shift geçicidir (30–60 dk); toplam vücut potasyumunu yalnızca eliminasyon düşürür.'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Und wie grenzen Sie beim Elektrolyt-Notfall ‚schwere chronische Hyponatriämie‘ (Na⁺ 114 mmol/l) den Sofort-Bolus gegen die maximale 24-Stunden-Korrekturgrenze ab?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "Peki ağır kronik hiponatremide (Na⁺ 114 mmol/l) akut semptomdaki hızlı bolusu 24 saatlik maksimum düzeltme sınırıyla nasıl dengelersiniz?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Bei akuten schweren neurologischen Symptomen (Krampfanfall, Koma -> drohende Einklemmung) geben wir initial bis zu 2× 100–150 ml NaCl 3 % i.v. über 10–20 min, um Na⁺ rasch um 4–5 mmol/l anzuheben. Danach MUSS die Korrektur strikt auf maximal 8 mmol/l pro 24 Stunden begrenzt werden, sonst folgt durch osmotischen Wasserentzug eine irreversible zentrale pontine Myelinolyse (ODS)!“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "Akut ağır nörolojik semptom (nöbet, koma -> herniasyon riski) varsa başta 10–20 dk içinde 1–2 kez 100–150 ml %3 hipertonik NaCl ile Na⁺ hızlıca 4–5 mmol/l yükseltilir. Sonrasında 24 saatlik toplam artış KESİNLİKLE maks. 8 mmol/l ile sınırlandırılmalıdır; aksi halde geri dönüşsüz santral pontin miyelinolizis (ODS) gelişir!"'
+      },
+      pain_delirium: {
+        vignetteTriggerDE: 'Prüfer-Impuls (Aufwachraum): Eine 78-jährige Patientin nach Hüft-TEP ist postoperativ stark agitiert, unruhig (NRS nicht erhebbar, SpO₂ 91 %, AF 24/min). Der Pfleger fragt nach Midazolam. Ihre ERSTEN 3 MASSNAHMEN?',
+        vignetteTriggerTR: 'Jüri Sorusu (Derlenme Odası): Kalça protezi sonrası 78 yaşında kadın hasta yoğun ajite ve huzursuz (SpO₂ %91, SS 24/dk). Hemşire Midazolam soruyor. İLK 3 ADIMINIZ nedir?',
+        firstThreeActions: [
+          {
+            step: 1,
+            actionDE: 'Midazolam ablehnen! Zuerst somatische Lebensgefahren nach ABCDE ausschließen: 100 % O₂-Gabe + BGA (Hypoxie/Hyperkapnie?), Hypoglykämie, Harnverhalt (Blasenscan!) und akuten Schmerz prüfen.',
+            actionTR: 'Midazolamı reddet! Önce ABCDE ile organik nedenleri dışla: %100 O₂ + kan gazı (hipoksi/hiperkapni?), hipoglisemi, idrar retansiyonu (mesane USG!) ve akut ağrıyı kontrol et.',
+            whyDE: 'Benzodiazepine sind ein Hauptauslöser für postoperatives Delir beim geriatrischen Patienten und verschleiern eine Hypoxie!',
+            whyTR: 'Benzodiazepinler yaşlı hastada postoperatif deliryumu doğrudan tetikler ve altta yatan hipoksiyi maskeler!'
+          },
+          {
+            step: 2,
+            actionDE: 'Multimodale Analgesie optimieren (Paracetamol / Metamizol i.v., ggf. fraktioniertes Piritramid oder Regionalblockade-Check) und anticholinerge Trigger stoppen.',
+            actionTR: 'Multimodal analjeziyi optimize et (Parasetamol / Metamizol i.v., gerekirse titre Piritramid veya rejyonel blok kontrolü) ve antikolinerjik ilaçları kes.',
+            whyDE: 'Unbehandelter Schmerz triggert Stresskatecholamine und Agitation; strukturierte nicht-opioide Basistherapie spart Opioide.',
+            whyTR: 'Tedavi edilmemiş ağrı stres yanıtını ve ajitasyonu tetikler; non-opioid bazal tedavi opioid ihtiyacını azaltır.'
+          },
+          {
+            step: 3,
+            actionDE: 'Strukturiertes Delir-Screening (Nu-DESC / CAM-ICU) durchführen, nicht-pharmakologische Reorientierung (Brille/Hörgerät/Ruhige Ansprache) + bei Eigengefährdung niedrigdosiertes Haloperidol (0,5–1 mg) oder Clonidin/Dexmedetomidin.',
+            actionTR: 'Yapılandırılmış deliryum taraması (Nu-DESC / CAM-ICU) yap, reoryantasyon sağla (gözlük/işitme cihazı); zarar riski varsa düşük doz Haloperidol (0,5–1 mg) veya Klonidin/Deksmedetomidin ver.',
+            whyDE: 'Reorientierung und Vermeidung delirogener Substanzen senken Dauer, Sturzrate und Mortalität des postoperativen Delirs.',
+            whyTR: 'Reoryantasyon ve deliryum tetikleyicilerinden kaçınma postoperatif deliryum süresini ve mortaliteyi azaltır.'
+          }
+        ],
+        examinerFollowupDE: 'Prüfer-Nachfrage: „Wie strukturieren Sie gleichzeitig eine leitliniengerechte PONV-Prophylaxe nach Apfel-Score bei Hochrisikopatienten (Apfel 4/4)?“',
+        examinerFollowupTR: 'Jüri Takip Sorusu: "Yüksek riskli (Apfel 4/4) bir hastada kılavuza uygun PONV profilaksisini nasıl kurgularsınız?"',
+        examinerJustificationDE: 'Antwort ab First Principles: „Vier Apfel-Faktoren sind weiblich, Nichtraucher, PONV-/Reisekrankheit-Anamnese und postoperative Opioide. Bei hohem Risiko (3–4 Faktoren) setzen wir auf multimodale 3–4-fach-Prophylaxe über verschiedene Rezeptorwege: Verzicht auf volatile Anästhetika (TIVA mit Propofol), Dexamethason 4 mg i.v. nach Einleitung, 5-HT₃-Antagonist Ondansetron 4 mg i.v. vor OP-Ende sowie ggf. Droperidol/Dimenhydrinat oder Regionalanästhesie zur Opioideinsparung!“',
+        examinerJustificationTR: 'İlk İlkelerden Yanıt: "Dört Apfel kriteri: kadın cinsiyet, sigara içmeme, PONV/taşıt tutması öyküsü ve postoperatif opioidlerdir. Yüksek riskte (3–4 puan) farklı reseptör yolaklarından 3–4 lü multimodal profilaksi uygularız: uçucu gaz yerine Propofol TİVA + indüksiyon sonrası Deksametazon 4 mg i.v. + operasyon sonuna doğru Ondansetron 4 mg i.v. (ve gerekirse Droperidol/Dimenhidrinat veya rejyonel ile opioid azaltma)!"'
       }
     };
 
@@ -2269,6 +2533,42 @@
         mechanismTR: 'Stewart modeline göre pH ı üç bağımsız değişken belirler: 1. PaCO₂, 2. Zayıf asitler (A_tot, özellikle Albümin ve Fosfat) ve 3. Güçlü İyon Farkı (SID ≈ 40 mmol/l). SID nin daralması (örn. %0,9 NaCl ile aşırı klor yükü veya şokta laktat artışı) elektroneutralite yasası gereği suyun ayrışmasını (H₂O -> H⁺ + OH⁻) zorlayarak metabolik asidoz yaratır. Tersine yoğun bakım hastasındaki hipoalbüminemi metabolik alkaloz yaratarak eşlik eden laktik asidozu gizleyebilir!',
         pharmacologyDE: 'In der ARDS-Beatmung („Baby Lung“-Konzept nach Gattinoni) ist das belüftete Restlungenvolumen stark geschrumpft. Der Driving Pressure (ΔP = Pplat − PEEP = Vt / C_RS, Ziel < 15 mbar) repräsentiert die zyklische Dehnung (Strain) bezogen auf die funktionelle Lungengröße (Compliance C_RS) und korreliert direkter mit dem Baro-/Volutrauma als das reine Atemzugvolumen pro kg Idealgewicht.',
         pharmacologyTR: 'ARDS ventilasyonunda ("Baby Lung" konsepti) havalanan fonksiyonel akciğer hacmi küçülmüştür. Driving Pressure (ΔP = Pplat − PEEP = Vt / Kompliyans, Hedef < 15 mbar) fonksiyonel akciğer büyüklüğüne düşen siklik gerilimi (strain) gösterir ve sağkalımla en güçlü korelasyona sahiptir.'
+      },
+      thorax: {
+        titleDE: 'First Principles: Hypoxische Pulmonale Vasokonstriktion (Euler-Liljestrand) & Shunt-Fraktion',
+        titleTR: 'İlk İlkeler: Hipoksik Pulmoner Vazokonstriksiyon (Euler-Liljestrand) & Şant Fraksiyonu',
+        formulaOrPrinciple: 'Q_s / Q_t = (C_cO₂ − C_aO₂) / (C_cO₂ − C_vO₂) · HPV reduziert Perfusion der Atelektase um ~50 %',
+        mechanismDE: 'Während der Einlungenventilation entsteht an der oberen, nicht-ventilierten Lunge ein obligater Rechts-Links-Shunt. Der Euler-Liljestrand-Reflex (HPV) konstringiert präkapilläre pulmonale Arteriolen direkt bei fallendem alveolärem Sauerstoffpartialdruck (PAO₂ < 70 mmHg) über spannungsabhängige Kaliumkanäle (Kv) glatter Gefäßmuskelzellen und lenkt ~50 % des Blutes in die belüftete untere Lunge um.',
+        mechanismTR: 'Tek akciğer ventilasyonunda üstteki ventile edilmeyen akciğerde zorunlu bir sağ-sol şant oluşur. Euler-Liljestrand refleksi (HPV) alveoler pO₂ düştüğünde (< 70 mmHg) prekapiller pulmoner arteriyolleri daraltarak kan akımının ~%50 sini alttaki havalanan akciğere yönlendirir.',
+        pharmacologyDE: 'Hochdosierte volatile Anästhetika (> 1,0–1,5 MAC) sowie Vasodilatatoren (Nitroglycerin, Nitropussid, Kalziumantagonisten) hemmen die HPV dosisabhängig und vergrößern den Rechts-Links-Shunt; Propofol-TIVA lässt den HPV-Reflex vollständig intakt. Hoher PEEP in der unteren Lunge komprimiert dortige Alveolarkapillaren und verdrängt Blut mechanisch zurück in die obere Shunt-Lunge.',
+        pharmacologyTR: 'Yüksek doz uçucu anestezikler (> 1,0–1,5 MAC) ve vazodilatatörler (Nitrogliserin, Kalsiyum kanal blokerleri) HPV yi baskılayarak şantı artırırken Propofol TİVA HPV yi korur. Alttaki akciğerde aşırı PEEP ise kapillerleri sıkıştırıp kanı mekanik olarak üstteki şant akciğerine geri iter.'
+      },
+      cardiac_valve: {
+        titleDE: 'First Principles: Druck-Volumen-Schleife bei Ausflusstraktstenose & Koronarperfusionsdruck',
+        titleTR: 'İlk İlkeler: Çıkış Darlığında Basınç-Hacim Döngüsü & Koroner Perfüzyon Basıncı',
+        formulaOrPrinciple: 'CPP_LV = P_Aorta,diastolisch − LVEDP · Fixierter Widerstand (KÖF < 1,0 cm²) -> HZV proportional zu Nachlast-Stabilität',
+        mechanismDE: 'Bei schwerer Aortenklappenstenose (KÖF < 0,8–1,0 cm²) zwingt die chronische Druckbelastung den linken Ventrikel zur konzentrischen Hypertrophie mit steifer Wand und hohem enddiastolischem Druck (LVEDP ↑ -> diastolische Dysfunktion). Das Schlagvolumen ist über die verengte Klappe weitgehend fixiert und stark abhängig vom aktiven „Atrial Kick“ (bis zu 30–40 % der Füllung). Gleichzeitig sinkt die subendokardiale Koronarreserve dramatisch.',
+        mechanismTR: 'İleri aort darlığında (KÖF < 0,8–1,0 cm²) kronik basınç yükü konsantrik hipertrofi ve yüksek diyastol sonu basıncı (LVEDP ↑) yapar. Atım hacmi dar kapak nedeniyle sabitlenmiştir ve atriyal kasılmaya (%30–40 dolum katkısı) bağımlıdır. Aynı anda subendokardiyal koroner rezerv ciddi şekilde daralır.',
+        pharmacologyDE: 'Jede Senkung des systemischen Gefäßwiderstands (Spinalanästhesie, Propofol-Bolus!) reduziert sofort P_Aorta,diastolisch, während die kompensatorische HZV-Steigerung durch die enge Klappe unmöglich ist -> steiler Abfall des Koronarperfusionsdrucks (CPP) und letaler Circulus vitiosus aus Myokardischämie und Pumpversagen. Ziel: reine α₁-Vasokonstriktoren (Phenylephrin/Noradrenalin), Etomidat zur Einleitung, konsequente Sinusrhythmus-Sicherung.',
+        pharmacologyTR: 'SVR nin ani düşmesi (Spinal anestezi, hızlı Propofol bolusu!) kalp debisi artırılamadığı için doğrudan aort diyastolik basıncını çökerterek koroner iskemisi başlatır. Tedavi: saf α₁-vazokonstriktörler (Fenilefrin/Noradrenalin), hemodinamik nötr indüksiyon (Etomidat) ve sinüs ritminin korunması.'
+      },
+      electrolyte_renal: {
+        titleDE: 'First Principles: Nernst-Ruhemembranpotenzial & Osmotische Demyelinisierung',
+        titleTR: 'İlk İlkeler: Nernst Dinlenim Potansiyeli & Osmotik Demiyelinizasyon',
+        formulaOrPrinciple: 'E_K = −61,5 × log([K⁺]_intra / [K⁺]_extra) · Na⁺-Korrekturlimit: max. 8 mmol/l / 24 h (ODS-Prophylaxe)',
+        mechanismDE: 'Nach der Nernst-Gleichung hängt das Ruhemembranpotenzial (−90 mV) direkt vom Verhältnis [K⁺]_intra/[K⁺]_extra ab. Akute Hyperkaliämie hebt [K⁺]_extra und depolarisiert das Ruhepotenzial Richtung −70 mV: Anfangs nähert sich das Potenzial der Schwelle (spitzes T), doch anschließend werden schnelle spannungsabhängige Na⁺-Kanäle dauerhaft inaktiviert -> QRS-Verbreiterung bis zur tödlichen Sinuswelle/Asystolie. Bei chronischer Hyponatriämie regulieren Astrozyten ihr intrazelluläres Volumen über Osmolyte herunter; zu rasche Na⁺-Anhebung schrumpft diese Zellen gewaltsam (ODS).',
+        mechanismTR: 'Nernst denklemine göre dinlenim membran potansiyeli (−90 mV) doğrudan [K⁺]_içi/[K⁺]_dışı oranına bağlıdır. Akut hiperkalemi potansiyeli depolarize ederek hızlı Na⁺ kanallarını inaktive eder (QRS genişlemesi ve sinüs dalgası). Kronik hiponatremide beyin hücreleri ozmolit atarak adapte olmuştur; Na⁺ hızlı yükseltilirse hücreler büzüşüp miyelin kılıfını parçalar (ODS).',
+        pharmacologyDE: 'Kalziumgluconat 10 % verschiebt das Schwellenpotenzial nach oben (weg vom depolarisierten Ruhepotenzial) und stellt innerhalb von 1–3 min das Aktionspotenzial wieder her, ohne K⁺ zu senken. Insulin + β₂-Agonisten treiben die Na⁺/K⁺-ATPase an; bei chronischer Hyponatriämie dienen Arginin-Vasopressin-Pausen oder D5W-Re-Lowering bei Überschießen als Notbremse.',
+        pharmacologyTR: 'Kalsiyum glukonat %10 eşik potansiyelini yukarı çekerek K⁺ u düşürmeden 1–3 dakikada aksiyon potansiyelini kurtarır. İnsülin + β₂-agonist Na⁺/K⁺-ATPaz pompasını çalıştırır; kronik hiponatremide aşırı düzeltme olursa %5 Dekstroz veya Desmopressin ile Na⁺ tekrar yavaşlatılır.'
+      },
+      pain_delirium: {
+        titleDE: 'First Principles: Multimodale Nozizeption, NMDA-Wind-Up & Neuroinflammation',
+        titleTR: 'İlk İlkeler: Multimodal Nosisepsiyon, NMDA Wind-Up & Nöroinflamasyon',
+        formulaOrPrinciple: 'Apfel-PONV-Score (0–4): Frau · Nichtraucher · PONV-Anamnese · Postop. Opioide -> 0/1/2/3/4 Risikofaktoren',
+        mechanismDE: 'Chirurgisches Gewebetrauma setzt Prostaglandine, Bradykinin und Substanz P frei und erzeugt im Hinterhorn über anhaltende Glutamat-/NMDA-Aktivierung eine zentrale Sensitivierung („Wind-Up“-Phänomen). Gleichzeitig stören anticholinerge Medikation, Hypoxie, Schmerz und Schlafentzug die cholinerge Transmission im zentralen Nervensystem und triggern bei älteren Patienten ein postoperatives Delir.',
+        mechanismTR: 'Cerrahi doku travması prostaglandin ve bradikinin salarak arka boynuzda NMDA aracılı santral sensitizasyon ("Wind-up") başlatır. Aynı anda antikolinerjik ilaçlar, hipoksi, ağrı ve uyku bölünmesi santral kolinerjik iletimi bozarak yaşlı hastada postoperatif deliryumu tetikler.',
+        pharmacologyDE: 'Die Kombination unterschiedlicher Analgetika-Klassen (Metamizol/NSAR hemmend an COX, Paracetamol zentral, Ketamin als NMDA-Antagonist, Regionalanästhesie am Na⁺-Kanal) blockiert mehrere Schaltstellen gleichzeitig („opioidsparende multimodale Analgesie“) und senkt zugleich atemdepressive sowie PONV-Nebenwirkungen nach dem Apfel-Algorithmus.',
+        pharmacologyTR: 'Farklı analjezik sınıflarının kombinasyonu (COX inhibitörleri, Parasetamol, NMDA antagonisti Ketamin ve Na⁺ kanalı blokajı yapan rejyonel anestezi) birden fazla ağrı basamağını aynı anda keserek opioid gereksinimini, solunum depresyonunu ve PONV riskini düşürür.'
       }
     };
 
@@ -2325,6 +2625,54 @@
           { abbr: 'VOO / DOO', termDE: 'Asynchroner Stimulationsmodus', meaningDE: 'Starre Stimulation ohne Wahrnehmung (Sensing = O) unter Magnetauflage beim Schrittmacher', meaningTR: 'Kalp piline mıknatıs konduğunda algılama olmadan sabit hızda asenkron uyarım' },
           { abbr: 'Loss of Capture', termDE: 'Stimulationsverlust / Exit-Block', meaningDE: 'Schrittmacher-Spike im EKG ohne nachfolgende Kammerdepolarisation (z.B. bei Hyperkaliämie/Ischämie)', meaningTR: 'EKG de pil dikeni olmasına rağmen QRS oluşmaması (örn. hiperkalemi/iskemi)' },
           { abbr: 'ATP', termDE: 'Antitachykardes Pacing (Überstimulation)', meaningDE: 'Schmerzlose Überstimulation von VT durch den ICD (wird durch Magnetauflage ebenfalls deaktiviert)', meaningTR: 'ICD nin VT yi şoksuz sonlandırma fonksiyonu (mıknatıs ile devre dışı kalır)' }
+        ]
+      },
+      thorax: {
+        fruehbesprechungDE: '„Aus dem OP-Saal 4 Thoraxchirurgie: 65-jähriger Patient zur Lobektomie unter linksseitigem Doppellumentubus und Propofol-TIVA (zum Erhalt der HPV). Nach Seitenlagerung trat eine kurze Desaturierung bei leicht disloziertem DLT auf, die wir sofort per fiberoptischer Bronchoskopie korrigiert und unter ELV + 3 mbar O₂-CPAP auf der operierten Lunge stabilisiert haben.“',
+        fruehbesprechungTR: '"Salon 4 Göğüs Cerrahisinden devir: Lobektomi yapılan 65 yaş hastada HPV yi korumak için Propofol TİVA ve sol DLT kullandık. Yan pozisyon sonrası tüp kaymasına bağlı kısa desatürasyonu derhal fiberoptik bronkoskopiyle düzelttik ve opere akciğere 3 mbar O₂-CPAP ile stabil devam ettik."',
+        praemedikationDE: '„Für die Lungenoperation legen wir nach dem Einschlafen einen speziellen zweigeteilten Beatmungsschlauch ein, damit der Operateur die zu operierende Seite ruhigstellen kann, während die andere Lunge Sie zuverlässig mit Sauerstoff versorgt.“',
+        praemedikationTR: '"Akciğer ameliyatınız için uyuduktan sonra özel çift yollu bir solunum tüpü yerleştireceğiz; böylece diğer akciğeriniz sizi güvenle oksijenlerken cerrah ameliyat edilecek tarafta rahat çalışabilecektir."',
+        jargonTerms: [
+          { abbr: 'ELV / OLV', termDE: 'Einlungenventilation', meaningDE: 'Selektive Beatmung nur einer Lunge über DLT oder Bronchusblocker', meaningTR: 'DLT veya bronş blokeri ile tek akciğer ventilasyonu' },
+          { abbr: 'HPV', termDE: 'Hypoxische pulmonale Vasokonstriktion', meaningDE: 'Euler-Liljestrand-Reflex: drosselt Durchblutung unbelüfteter Alveolen (~50 % Shuntreduktion)', meaningTR: 'Euler-Liljestrand refleksi: havalanmayan akciğere giden kan akımını kısar' },
+          { abbr: 'DLT', termDE: 'Doppellumentubus', meaningDE: 'Getrennte tracheale & bronchiale Beatmungskanäle; nach jeder Umlagerung bronchoskopisch kontrollieren!', meaningTR: 'Trakeal ve bronşiyal ayrı kanallı tüp; her pozisyonda bronkoskopiyle doğrulanmalı!' },
+          { abbr: 'CPAP auf operierte Lunge', termDE: 'Kontinuierlicher positiver Druck (2–5 mbar O₂)', meaningDE: 'Erste kausale Therapiestufe bei Hypoxämie unter ELV nach DLT-Lageprüfung', meaningTR: 'DLT yeri doğrulandıktan sonra ELV hipoksemisinde üstteki akciğere ilk çözüm' }
+        ]
+      },
+      cardiac_valve: {
+        fruehbesprechungDE: '„Vom Gefäß-/Viszeral-OP gestern: Patient mit schwerer symptomatischer Aortenklappenstenose (KÖF 0,7 cm²). Wir haben strikt auf eine Spinalanästhesie verzichtet, präoperativ unter Lokalanästhesie eine invasive Arterie gelegt, Noradrenalin als Perfusor vorab gestartet und ihn streng im Sinusrhythmus (HF ~68/min, MAP 75–85 mmHg) sicher durch den Eingriff geführt.“',
+        fruehbesprechungTR: '"Dünkü vasküler/visseral ameliyattan devir: İleri semptomatik aort darlıklı (KÖF 0,7 cm²) hastada spinal anesteziden kesinlikle kaçındık, indüksiyon öncesi lokal anesteziyle arter açtık, Noradrenalin infüzyonunu önden başlatıp hastayı sinüs ritminde (KAH ~68/dk, MAP 75–85 mmHg) güvenle tamamladık."',
+        praemedikationDE: '„Wegen Ihrer verengten Herzklappe überwachen wir Ihren Blutdruck Schlag für Schlag schon vor dem Einschlafen über eine kleine Kanüle am Handgelenk und halten den Kreislauf kontinuierlich mit einem fein steuerbaren Medikament stabil.“',
+        praemedikationTR: '"Kalp kapağınızdaki darlık nedeniyle daha siz uyumadan bileğinizden taktığımız ince kateterle tansiyonunuzu her kalp atımında izleyecek ve özel bir damla ilaçla dolaşımınızı sabit tutacağız."',
+        jargonTerms: [
+          { abbr: 'KÖF & ΔP_mean', termDE: 'Klappenöffnungsfläche & Mittlerer Gradient', meaningDE: 'Schwere Aortenstenose: KÖF < 1,0 cm² (bzw. < 0,6 cm²/m²) und ΔP_mean > 40 mmHg', meaningTR: 'İleri aort darlığı: Kapak alanı < 1,0 cm² ve ortalama gradiyent > 40 mmHg' },
+          { abbr: 'Atrial Kick', termDE: 'Aktive Vorhofkontraktion', meaningDE: 'Liefert beim steifen hypertrophen Ventrikel ~30–40 % des Schlagvolumens -> Sinusrhythmus Pflicht!', meaningTR: 'Sert hipertrofik ventrikül dolumunun %30–40 ını sağlar -> Sinüs ritmi şart!' },
+          { abbr: 'CPP (Koronar)', termDE: 'Koronarperfusionsdruck', meaningDE: 'CPP_LV = Ao_diast − LVEDP; sinkt sofort bei Tachykardie oder SVR-Abfall', meaningTR: 'Koroner perfüzyon basıncı = Aort diyastolik − LVEDP; taşikardi ve hipotansiyonda çöker' },
+          { abbr: 'Noradrenalin / Phenylephrin', termDE: 'α₁-dominante Vasopressoren', meaningDE: 'Mittel 1. Wahl bei Aortenstenose zur Erhaltung der Nachlast ohne Tachykardie', meaningTR: 'Aort darlığında taşikardi yapmadan ard yükü koruyan ilk seçenek vazopresörler' }
+        ]
+      },
+      electrolyte_renal: {
+        fruehbesprechungDE: '„Intensivübernahme Schockraum: Dialysepatient mit akutem K⁺ von 6,8 mmol/l und beginnender QRS-Verbreiterung. Wir haben umgehend 20 ml Kalziumgluconat 10 % zur Membranstabilisierung verabreicht, mit Insulin-Glukose + Salbutamol geshiftet und direkt die Akut-Hämodialyse eingeleitet.“',
+        fruehbesprechungTR: '"Şok odasından yoğun bakıma devir: K⁺ 6,8 mmol/l ve QRS genişlemesi saptanan diyaliz hastasına anında membran stabilizasyonu için 20 ml %10 Kalsiyum glukonat verdik, İnsülin-Dekstroz + Salbutamol ile shift yapıp acil hemodiyalizi başlattık."',
+        praemedikationDE: '„Da Ihre Nierenfunktion eingeschränkt ist, achten wir besonders auf Ihre Blutsalze wie Kalium, verwenden speziell verträgliche Medikamente ohne Muskelkalium-Anstieg und prüfen vor Narkosebeginn eine frische Blutgasanalyse.“',
+        praemedikationTR: '"Böbrek fonksiyonunuz kısıtlı olduğu için potasyum başta olmak üzere kan tuzlarınızı yakından izleyeceğiz, kaslardan potasyum salmayan ilaçlar seçip anestezi öncesi taze kan gazı kontrolü yapacağız."',
+        jargonTerms: [
+          { abbr: 'Kalziumgluconat 10 %', termDE: 'Sofortige Membranstabilisierung', meaningDE: '10–30 ml i.v. wirkt in 1–3 min am Herzen, verändert den Kalium-Messwert aber NICHT', meaningTR: '10–30 ml i.v. 1–3 dk da kalp zarını korur ancak serum K⁺ düzeyini düşürmez' },
+          { abbr: 'Shift vs. Elimination', termDE: 'Intrazelluläre Verschiebung vs. Ausscheidung', meaningDE: 'Insulin/Salbutamol verschieben nur (~60 min); erst Diurese oder Dialyse entfernt Kalium', meaningTR: 'İnsülin/Salbutamol geçici shift yapar; kalıcı temizlik diürez veya diyalizle olur' },
+          { abbr: 'ODS-Limit', termDE: 'Osmotisches Demyelinisierungssyndrom-Limit', meaningDE: 'Chronische Hyponatriämie maximal 8 mmol/l pro 24 h anheben!', meaningTR: 'Kronik hiponatremiyi 24 saatte en fazla 8 mmol/l yükselt!' },
+          { abbr: 'Succinylcholin-K.O.', termDE: 'Kaliumanstieg unter Depolarisation', meaningDE: 'Normale Muskulatur +0,5 mmol/l, bei Verbrennung/Immobilisation bis +3–5 mmol/l (Asystolie)!', meaningTR: 'Normalde +0,5 mmol/l, yanık/immobilizasyonda +3–5 mmol/l ölümcül K⁺ artışı!' }
+        ]
+      },
+      pain_delirium: {
+        fruehbesprechungDE: '„Aus dem Aufwachraum: Ältere Patientin nach Hüft-TEP zeigte akute Agitation bei SpO₂ 91 % und Harnverhalt (650 ml). Nach Oxygenierung, Blasenkatheterisierung sowie nicht-opioider Analgesie (Paracetamol/Metamizol) klarte die Patientin komplett auf — kein Benzodiazepin nötig.“',
+        fruehbesprechungTR: '"Derlenme odasından devir: Kalça protezi sonrası ajitasyon gelişen yaşlı hastada SpO₂ %91 ve 650 ml idrar retansiyonu saptandı. Oksijen, sonda ve non-opioid analjezi sonrası hasta tamamen açıldı — benzodiazepine gerek kalmadı."',
+        praemedikationDE: '„Wir kombinieren nach der Operation mehrere sanfte Schmerzmedikamente und beugen gezielt Übelkeit sowie postoperativer Verwirrtheit vor. Bitte bringen Sie Ihre Brille und Hörgeräte direkt bis in den Aufwachraum mit.“',
+        praemedikationTR: '"Ameliyat sonrası farklı ağrı kesicileri dengeli biçimde kombine edip bulantı ve ameliyat sonrası kafa karışıklığını önleyeceğiz. Lütfen gözlüğünüzü ve işitme cihazınızı derlenme odasında takabilmemiz için yanınızda bulundurun."',
+        jargonTerms: [
+          { abbr: 'CAM-ICU / Nu-DESC', termDE: 'Delir-Screening-Instrumente', meaningDE: 'Strukturierte Bewertung von Aufmerksamkeit, Bewusstsein und fluktuierendem Verlauf', meaningTR: 'Dikkat ve bilinç dalgalanmasını ölçen standart deliryum tarama testleri' },
+          { abbr: 'Apfel-Score', termDE: 'PONV-Risikovorhersage (0–4)', meaningDE: 'Frau, Nichtraucher, PONV-Anamnese, postop. Opioide (ab ≥ 2 multimodale Prophylaxe)', meaningTR: 'Kadın, sigarasız, PONV öyküsü, postop opioid (≥ 2 puanda çoklu profilaksi)' },
+          { abbr: 'PCA', termDE: 'Patient-Controlled Analgesia', meaningDE: 'Bedarfsgesteuerte Schmerzpumpe mit programmierter Sperrzeit (Lockout 5–10 min)', meaningTR: 'Kilitlenme süreli (lockout) hasta kontrollü analjezi pompası' },
+          { abbr: 'Non-Opioid-Basis', termDE: 'WHO-Multimodalprinzip', meaningDE: 'Paracetamol/Metamizol/NSAR senken Opioidverbrauch und Atemdepression um ~30 %', meaningTR: 'Non-opioid bazal tedavi opioid ihtiyacını ve yan etkileri ~%30 azaltır' }
         ]
       }
     };

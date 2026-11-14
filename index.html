@@ -22,7 +22,7 @@
   
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="styles.css?v=12.2">
-  <link rel="stylesheet" href="study.css?v=11.1">
+  <link rel="stylesheet" href="study.css?v=11.2">
 </head>
 <body>
 
@@ -251,6 +251,12 @@
             </div>
             <button id="study-btn-toggle-categories" class="btn-toggle-category-drawer" type="button" aria-expanded="false" title="Konu Kategorilerini Aç/Kapat">
               <span>📂</span> <span class="category-drawer-label">Konular (60)</span> <span class="category-drawer-chevron">▾</span>
+            </button>
+            <button type="button" class="btn-toggle-category-drawer btn-study-quick-filter" data-quick-filter="unread" title="Sadece Henüz Okunmamış Vakaları Göster">
+              <span>🎯</span> <span class="quick-filter-label">Okunmamış</span>
+            </button>
+            <button type="button" class="btn-toggle-category-drawer btn-study-quick-filter" data-quick-filter="starred" title="Yıldızlı / Kritik Vakalarımı Göster">
+              <span>⭐</span> <span class="quick-filter-label">Kritik</span>
             </button>
           </div>
         </div>
@@ -2751,7 +2757,7 @@
   <script src="js/calculators.js"></script>
   <script src="js/storage_sync.js"></script>
   <script src="js/speech_engine.js?v=7.7"></script>
-  <script src="js/curriculum_engine.js?v=10.3"></script>
+  <script src="js/curriculum_engine.js?v=10.4"></script>
   <script src="questions.js?v=9.0"></script>
   <script src="app.js?v=7.7"></script>
 
@@ -2782,7 +2788,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=10.5"></script>
+  <script src="study.js?v=10.6"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');
