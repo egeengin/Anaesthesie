@@ -9305,7 +9305,10 @@ body.mode-german-only .inline-bilingual-tr,
 body.mode-german-only .step-translation-box,
 body.mode-german-only .turkish-subtext,
 body.mode-german-only .hover-tr-badge,
-body.mode-german-only .inline-tr {
+body.mode-german-only .inline-tr,
+body.mode-german-only .btn-toggle-tr-inline,
+body.mode-german-only #ai-examiner-feedback-tr,
+body.mode-german-only .ai-examiner-text.tr {
   display: none !important;
   max-height: 0 !important;
   opacity: 0 !important;

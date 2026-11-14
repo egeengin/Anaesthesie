@@ -1366,6 +1366,12 @@ body.mode-bilingual .trans-interactive:hover {
   background-color: transparent;
 }
 
+body.mode-german-only .inline-bilingual-tr,
+body.mode-german-only .turkish-subtext,
+body.mode-german-only .btn-toggle-tr-inline {
+  display: none !important;
+}
+
 body.mode-german-only .trans-interactive {
   pointer-events: none;
   text-decoration: none;

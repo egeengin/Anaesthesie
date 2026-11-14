@@ -2447,7 +2447,7 @@ document.addEventListener('DOMContentLoaded', () => {
       elSimCrisisBanner.style.display = 'block';
       if (elSimCrisisTitle) {
         elSimCrisisTitle.innerHTML = crisisObj.title_tr 
-          ? `<span>${escapeHtml(crisisObj.title)}</span> <span style="font-size:0.8rem; font-weight:normal; opacity:0.85; margin-left:8px;">🇹🇷 ${escapeHtml(crisisObj.title_tr)}</span>`
+          ? `<span>${escapeHtml(crisisObj.title)}</span> <span class="turkish-subtext" style="font-size:0.8rem; font-weight:normal; opacity:0.85; margin-left:8px;">🇹🇷 ${escapeHtml(crisisObj.title_tr)}</span>`
           : escapeHtml(crisisObj.title);
       }
       if (elSimCrisisPrompt) {
