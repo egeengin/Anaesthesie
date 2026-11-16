@@ -229,11 +229,7 @@
       <section class="study-progress-card">
         <div class="progress-header">
           <div class="progress-status">
-            <span>🩺 Dr. Melis · St. Antonius-Hospital Eschweiler</span>
-            <span class="progress-sep">·</span>
             <strong id="study-progress-status-text">0 / 669 Vaka</strong>
-            <span class="progress-sep">·</span>
-            <span class="status-hint">💡 Dokun / Hover: Anında Çeviri</span>
             <span id="study-progress-streak" class="progress-streak-badge" style="display: none;">🎯 0</span>
           </div>
           <div id="study-progress-percentage" style="font-weight: 700; color: var(--primary);">%0</div>
@@ -2779,7 +2775,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.10')
+        navigator.serviceWorker.register('./sw.js?v=12.11')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2794,7 +2790,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=10.8"></script>
+  <script src="study.js?v=10.9"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');

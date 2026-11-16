@@ -675,7 +675,7 @@
                 <span>🔊</span> Dinle
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
-                <span>${isRead ? '✓' : '○'}</span> ${isRead ? 'Okundu' : 'Okundu İşaretle'}
+                <span>${isRead ? '✓' : '○'}</span> Okundu
               </button>
             </div>
           </div>
@@ -888,7 +888,7 @@
         if (current) {
           delete readStatus[id];
           btn.classList.remove('active-read');
-          btn.innerHTML = `<span>○</span> Okundu İşaretle`;
+          btn.innerHTML = `<span>○</span> Okundu`;
           if (card) card.classList.remove('is-read');
         } else {
           readStatus[id] = true;

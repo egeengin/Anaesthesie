@@ -34,16 +34,12 @@
         <div class="brand-titles">
           <h1>Facharzt Anästhesie</h1>
           <div class="brand-sub">
-            <span class="brand-tag-melis">Dr. Melis · St. Antonius Eschweiler</span>
-            <span>İnteraktif Lesemappe (ÄKNO)</span>
+            <span class="brand-tag-melis">Dr. Melis · St. Antonius-Hospital Eschweiler</span>
           </div>
         </div>
       </a>
 
       <div class="header-actions">
-        <button id="btn-quick-german-toggle" class="btn-header btn-header-german" type="button" title="Sınav Modu: Sadece Almanca (Nur Deutsch) Aç/Kapat">
-          <span>🇩🇪</span> <span class="btn-label">Nur Deutsch</span>
-        </button>
         <a href="index.html" class="btn-header btn-header-primary" title="Soru Çözme & Sınav Simülasyonuna Geç">
           <span>🎯</span> <span class="btn-label">Simülatör</span>
         </a>
@@ -56,11 +52,7 @@
     <section class="study-progress-card">
       <div class="progress-header">
         <div class="progress-status">
-          <span>🩺 Dr. Melis · St. Antonius-Hospital Eschweiler</span>
-          <span class="progress-sep">·</span>
           <strong id="progress-status-text">0 / 669 Vaka</strong>
-          <span class="progress-sep">·</span>
-          <span class="status-hint">💡 Dokun / Hover: Anında Çeviri</span>
           <span id="progress-streak" class="progress-streak-badge" style="display: none;">🎯 0</span>
         </div>
         <div id="progress-percentage" style="font-weight: 700; color: var(--primary);">%0</div>
@@ -261,7 +253,7 @@
   <script src="js/curriculum_engine.js?v=10.3"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
   <script src="questions.js?v=9.0"></script>
-  <script src="study.js?v=10.8"></script>
+  <script src="study.js?v=10.9"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let swRefreshing = false;
@@ -272,7 +264,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.10')
+        navigator.serviceWorker.register('./sw.js?v=12.11')
           .then(reg => {
             if (typeof reg.update === 'function') {
               reg.update();
