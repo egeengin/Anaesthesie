@@ -10,7 +10,9 @@
 
   // --- State Management ---
   const STORAGE_KEY_PROGRESS = 'facharzt_melis_read_status_v1';
+  const STORAGE_KEY_STARRED = 'facharzt_melis_starred_v1';
   const STORAGE_KEY_SETTINGS = 'facharzt_melis_study_settings_v1';
+  const APP_STATE_KEY = 'facharzt_anaesthesie_state_v2';
   const AUTH_KEY = 'facharzt_auth_logged_in';
 
   // Check auth
@@ -28,6 +30,15 @@
 
   const savedSettings = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || '{}');
   const readStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '{}');
+  const starredStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_STARRED) || '{}');
+  try {
+    const appSaved = JSON.parse(localStorage.getItem(APP_STATE_KEY) || '{}');
+    if (appSaved && appSaved.flagged && typeof appSaved.flagged === 'object') {
+      Object.keys(appSaved.flagged).forEach(k => {
+        if (appSaved.flagged[k]) starredStatus[k] = true;
+      });
+    }
+  } catch (e) {}
 
   const state = {
     theme: (savedSettings.theme && savedSettings.theme !== 'light') ? savedSettings.theme : 'sepia', // Default to warm sepia, or user's explicit preference
@@ -297,6 +308,8 @@
       list = list.filter(item => !!readStatus[item.id]);
     } else if (state.activeStatusFilter === 'unread') {
       list = list.filter(item => !readStatus[item.id]);
+    } else if (state.activeStatusFilter === 'starred') {
+      list = list.filter(item => !!starredStatus[item.id]);
     }
 
     return list;
@@ -424,6 +437,7 @@
 
     visibleItems.forEach((q, idx) => {
       const isRead = !!readStatus[q.id];
+      const isStarred = !!starredStatus[q.id];
       const isDus = q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'));
       const isAnnecke = q.source_book && q.source_book.includes('Annecke');
       const globalIndex = allQuestions.findIndex(x => x.id === q.id) + 1;
@@ -556,10 +570,16 @@
               </button>
             </div>
             <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerFollowupTR)}</div>
-            <div style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-subtle);">
-              ${renderInteractiveGerman(threeActionsChallenge.examinerJustificationDE, threeActionsChallenge.examinerJustificationTR)}
-              <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerJustificationTR)}</div>
-            </div>
+            <details class="melis-followup-details">
+              <summary class="melis-followup-summary" title="🇹🇷 Önce kendin savunmaya çalış, sonra İlk İlkelerden Jüri Yanıtını aç">
+                <span>💡 First-Principles-Antwort aufdecken (Jüri Yanıtını Göster)</span>
+                <span class="melis-drawer-caret">▾</span>
+              </summary>
+              <div class="melis-followup-answer-body">
+                ${renderInteractiveGerman(threeActionsChallenge.examinerJustificationDE, threeActionsChallenge.examinerJustificationTR)}
+                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerJustificationTR)}</div>
+              </div>
+            </details>
           </div>
         </div>
       ` : '';
@@ -671,6 +691,9 @@
             </div>
 
             <div class="card-actions-top">
+              <button class="btn-card-action btn-star-card ${isStarred ? 'starred' : ''}" data-id="${q.id}" title="Kritik Vaka Olarak Yıldızla">
+                <span>⭐</span>
+              </button>
               <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(questionDE + '\n\n' + answerDE)}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
                 <span>🔊</span> Dinle
               </button>
@@ -703,6 +726,14 @@
                     🔊 Prüfer
                   </button>
                 </div>
+                <details class="melis-self-check-details">
+                  <summary class="melis-self-check-summary">✍️ Kendi İlk 3 Hamlemi Yaz / Kontrol Et (İsteğe Bağlı)</summary>
+                  <div class="melis-self-check-inputs">
+                    <input type="text" class="melis-step-input" placeholder="1. Acil Hamle (örn. 100% O₂, Kauter Stopp, ABCDE)..." />
+                    <input type="text" class="melis-step-input" placeholder="2. Acil Hamle (örn. Nedensel ilaç / Doz)..." />
+                    <input type="text" class="melis-step-input" placeholder="3. Acil Hamle (örn. Monitörizasyon / K.O. önlemi)..." />
+                  </div>
+                </details>
                 <button type="button" class="btn-reveal-turn" data-card-id="${q.id}" title="${isTurnHidden ? '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını Aç' : '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle'}">
                   ${isTurnHidden
                     ? '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken'
@@ -916,6 +947,35 @@
         } catch (e) {
           console.warn('[StudySync] Background sync to appState failed:', e);
         }
+      });
+    });
+
+    document.querySelectorAll('.btn-star-card').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-id');
+        const nextVal = !starredStatus[id];
+        if (nextVal) {
+          starredStatus[id] = true;
+          btn.classList.add('starred');
+          triggerHapticFeedback();
+        } else {
+          delete starredStatus[id];
+          btn.classList.remove('starred');
+        }
+        localStorage.setItem(STORAGE_KEY_STARRED, JSON.stringify(starredStatus));
+        try {
+          const appState = JSON.parse(localStorage.getItem(APP_STATE_KEY) || '{}');
+          appState.flagged = appState.flagged || {};
+          appState.flagged[id] = nextVal;
+          localStorage.setItem(APP_STATE_KEY, JSON.stringify(appState));
+          if (window.StorageSync && typeof window.StorageSync.pushToCloud === 'function') {
+            window.StorageSync.pushToCloud(appState);
+          }
+        } catch (err) {
+          console.warn('[StudySync] Star sync failed:', err);
+        }
+        if (state.activeStatusFilter === 'starred') renderFeed(false);
       });
     });
 
@@ -1228,6 +1288,29 @@
     });
   }
 
+  const elQuickFilters = document.querySelectorAll('.btn-study-quick-filter');
+  function syncQuickFilterButtons() {
+    elQuickFilters.forEach(b => {
+      const target = b.getAttribute('data-quick-filter');
+      b.classList.toggle('active', state.activeStatusFilter === target);
+    });
+    if (elBtnBottomUnread) {
+      elBtnBottomUnread.innerHTML = state.activeStatusFilter === 'unread'
+        ? `<span class="nav-icon">🎯</span><span>Okunmayanlar</span>`
+        : `<span class="nav-icon">📖</span><span>Tümü</span>`;
+    }
+  }
+  if (elQuickFilters.length > 0) {
+    elQuickFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-quick-filter');
+        state.activeStatusFilter = (state.activeStatusFilter === target) ? 'all' : target;
+        syncQuickFilterButtons();
+        renderFeed(true);
+      });
+    });
+  }
+
   if (elModeTabs) {
     elModeTabs.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1427,9 +1510,7 @@
   if (elBtnBottomUnread) {
     elBtnBottomUnread.addEventListener('click', () => {
       state.activeStatusFilter = state.activeStatusFilter === 'unread' ? 'all' : 'unread';
-      elBtnBottomUnread.innerHTML = state.activeStatusFilter === 'unread'
-        ? `<span class="nav-icon">🎯</span><span>Okunmayanlar</span>`
-        : `<span class="nav-icon">📖</span><span>Tümü</span>`;
+      syncQuickFilterButtons();
       renderFeed(true);
     });
   }
@@ -1447,10 +1528,12 @@
     if (!elActiveRecallToggle) return;
     if (enabled) {
       elActiveRecallToggle.classList.add('active');
-      elActiveRecallToggle.innerHTML = '<span>⚡</span> İlk 3 Hamle Test Modu: AÇIK';
+      elActiveRecallToggle.innerHTML = '<span>⚡</span> Test Modu';
+      elActiveRecallToggle.title = 'İlk 3 Hamle Test Modu: AÇIK (Tıkla ve Kapat)';
     } else {
       elActiveRecallToggle.classList.remove('active');
-      elActiveRecallToggle.innerHTML = '<span>⚡</span> İlk 3 Hamle Test Modu';
+      elActiveRecallToggle.innerHTML = '<span>⚡</span> Test Modu';
+      elActiveRecallToggle.title = 'Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç';
     }
   }
 
