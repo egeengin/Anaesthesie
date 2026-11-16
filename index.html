@@ -2730,10 +2730,7 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      Facharztprüfung Anästhesiologie NRW &bull;
-      <button id="study-btn-notebook-trigger" type="button" style="background: none; border: none; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; opacity: 0.8;" title="Google NotebookLM Dosyaları &amp; Podcast Rehberi">
-        🎙️ NotebookLM Entegrasyonu
-      </button>
+      Facharztprüfung Anästhesiologie NRW
     </div>
   </footer>
 
@@ -2764,7 +2761,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.12')
+        navigator.serviceWorker.register('./sw.js?v=12.13')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
