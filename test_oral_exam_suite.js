@@ -1439,7 +1439,143 @@ assert(studyCssCode.includes('.melis-monitor-strip'), 'study.css must style .mel
 
 console.log('[PASS] Suite 42 passed! Verified all 5 Melis Pedagogical Engine modules across all 669 questions.');
 
-console.log('\n🎉 ALL 42 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 43. StorageSync Union-Merge & Timestamped Note Conflict Resolution
+console.log('Testing Suite 43: StorageSync Union-Merge & Timestamped Note Conflict Resolution...');
+const StorageSync = require('./js/storage_sync.js');
+assert.strictEqual(typeof StorageSync.mergeCloudState, 'function', 'StorageSync must export mergeCloudState');
+assert.strictEqual(typeof StorageSync.createBackupData, 'function', 'StorageSync must export createBackupData');
+
+const mergedState = StorageSync.mergeCloudState(
+  {
+    answers: { q_1: { submitted: true, value: 'local' }, q_2: { submitted: false } },
+    flagged: { q_1: true },
+    notes: { q_1: 'short', q_2: 'local longer note' },
+    notesUpdatedAt: { q_1: 2000 },
+    sm2Cards: { q_1: { repetition: 2, lastReviewed: 2000 } },
+    dailyReviews: { '2026-11-15': 12 },
+    streak: 5,
+    studyReadStatus: { q_1: true }
+  },
+  {
+    answers: { q_1: { submitted: true, value: 'cloud' }, q_2: { submitted: true, value: 'cloud2' }, q_3: { revealed: true } },
+    flagged: { q_3: true },
+    notes: { q_1: 'older much longer cloud note', q_2: 'old', q_3: 'cloud only' },
+    notesUpdatedAt: { q_1: 1000 },
+    sm2Cards: { q_1: { repetition: 1, lastReviewed: 1000 }, q_3: { repetition: 3, lastReviewed: 1500 } },
+    dailyReviews: { '2026-11-15': 8, '2026-11-14': 10 },
+    streak: 7,
+    studyReadStatus: { q_3: true }
+  }
+);
+
+assert.strictEqual(mergedState.answers.q_1.value, 'local', 'Submitted local answer should be preserved');
+assert.strictEqual(mergedState.answers.q_2.value, 'cloud2', 'Unsubmitted local should yield to submitted cloud answer');
+assert.strictEqual(mergedState.answers.q_3.revealed, true, 'Cloud-only answer should be merged');
+assert.strictEqual(mergedState.flagged.q_1 && mergedState.flagged.q_3, true, 'Flags from both devices must union-merge');
+assert.strictEqual(mergedState.notes.q_1, 'short', 'Newer timestamped note must win even when shorter');
+assert.strictEqual(mergedState.notes.q_2, 'local longer note', 'Untimestamped note fallback should preserve longer note');
+assert.strictEqual(mergedState.notes.q_3, 'cloud only', 'Cloud-only note must be preserved');
+assert.strictEqual(mergedState.sm2Cards.q_1.repetition, 2, 'Newer SM-2 review must win');
+assert.strictEqual(mergedState.sm2Cards.q_3.repetition, 3, 'Cloud-only SM-2 card must be preserved');
+assert.strictEqual(mergedState.dailyReviews['2026-11-15'], 12, 'Max daily review count must win');
+assert.strictEqual(mergedState.dailyReviews['2026-11-14'], 10, 'Other dates must be preserved');
+assert.strictEqual(mergedState.streak, 7, 'Max streak must win');
+assert.strictEqual(mergedState.studyReadStatus.q_1 && mergedState.studyReadStatus.q_3, true, 'Study read status must union-merge');
+
+const backup = StorageSync.createBackupData(mergedState);
+assert(backup.version && backup.timestamp && backup.state === mergedState, 'createBackupData must wrap state cleanly');
+console.log('[PASS] Suite 43 passed! Verified StorageSync union-merge and timestamped note conflict resolution.');
+
+// 44. SM-2 Spaced Repetition Engine Unit Tests
+console.log('Testing Suite 44: SM-2 Spaced Repetition Algorithm Unit Tests...');
+const SM2Unit = require('./js/sm2.js');
+assert.strictEqual(typeof SM2Unit.calculateSM2, 'function', 'SM2Engine must export calculateSM2');
+assert.strictEqual(typeof SM2Unit.isDueToday, 'function', 'SM2Engine must export isDueToday');
+assert.strictEqual(typeof SM2Unit.getDueQuestions, 'function', 'SM2Engine must export getDueQuestions');
+assert.strictEqual(typeof SM2Unit.formatDueDate, 'function', 'SM2Engine must export formatDueDate');
+
+const step1 = SM2Unit.calculateSM2(4, { repetition: 0, interval: 1, easeFactor: 2.5 });
+assert.strictEqual(step1.repetition, 1, 'First passing review sets repetition=1');
+assert.strictEqual(step1.interval, 1, 'First passing review sets interval=1');
+
+const step2 = SM2Unit.calculateSM2(4, step1);
+assert.strictEqual(step2.repetition, 2, 'Second passing review sets repetition=2');
+assert.strictEqual(step2.interval, 6, 'Second passing review sets interval=6');
+
+const step3 = SM2Unit.calculateSM2(5, step2);
+assert.strictEqual(step3.repetition, 3, 'Third passing review sets repetition=3');
+assert(step3.interval > 6, 'Third passing review scales interval by easeFactor');
+
+const failed = SM2Unit.calculateSM2(1, { repetition: 4, interval: 20, easeFactor: 1.35 });
+assert.strictEqual(failed.repetition, 0, 'Failing review (q<3) resets repetition to 0');
+assert.strictEqual(failed.interval, 1, 'Failing review (q<3) resets interval to 1');
+assert(failed.easeFactor >= 1.3, 'Ease factor must never drop below 1.3');
+
+assert.strictEqual(SM2Unit.isDueToday(null), true, 'New item without SM-2 state must be due today');
+assert.strictEqual(SM2Unit.isDueToday({ dueDate: Date.now() - 1000 }), true, 'Past dueDate must be due today');
+assert.strictEqual(SM2Unit.isDueToday({ dueDate: Date.now() + 86400000 * 3 }), false, 'Future dueDate must not be due today');
+assert.strictEqual(SM2Unit.formatDueDate(Date.now() - 500), 'Heute fällig', 'Past due date formats as Heute fällig');
+assert(SM2Unit.formatDueDate(Date.now() + 86400000 * 2 - 1000).includes('Tagen'), 'Future due date formats with Tagen');
+console.log('[PASS] Suite 44 passed! Verified SM-2 intervals, ease floor, due filtering, and date formatting.');
+
+// 45. Strict Language Consistency, Collapsible Turkish, Minimalist UI & Version Sync
+console.log('Testing Suite 45: Strict Language Consistency, Minimalist UI & PWA Version Sync...');
+const stylesCssCode = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+const swJsCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
+const currEngineCode = fs.readFileSync(path.join(__dirname, 'js/curriculum_engine.js'), 'utf8');
+const appJsCode = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
+
+assert(stylesCssCode.includes('body.mode-german-only #ai-examiner-feedback-tr'), 'styles.css must hide #ai-examiner-feedback-tr in German-only mode');
+assert(stylesCssCode.includes('body.mode-german-only .btn-toggle-tr-inline'), 'styles.css must hide .btn-toggle-tr-inline in German-only mode');
+assert(studyCssCode.includes('body.mode-german-only .turkish-subtext'), 'study.css must hide .turkish-subtext in German-only mode');
+assert(studyCssCode.includes('body.mode-bilingual .trans-interactive'), 'study.css must disable hover highlight in bilingual mode');
+assert(currEngineCode.includes('<div class="turkish-subtext"'), 'curriculum_engine.js Spickzettel TR summary must have turkish-subtext');
+assert(currEngineCode.includes('<span class="turkish-subtext"'), 'curriculum_engine.js 4-step TR notes must have turkish-subtext');
+assert(appJsCode.includes('<span class="turkish-subtext"'), 'app.js crisis title TR must have turkish-subtext');
+
+assert(studyJsCode.includes("if (state.viewMode !== 'hover') return;"), 'study.js must disable hover/click tooltip outside hover mode');
+assert(studyJsCode.includes('btn-toggle-tr-inline'), 'study.js must attach collapsible Turkish toggle buttons');
+assert(freshIndexHtml.includes('id="study-aa-menu-btn"'), 'index.html must include Aa reader settings popover button');
+assert(!freshIndexHtml.includes('id="melis-study-link"'), 'index.html must not contain duplicate study link');
+assert(!freshIndexHtml.includes('Tek Alman'), 'index.html must not contain awkward Tek Alman phrasing');
+assert(!studyHtmlCode.includes('Tek Alman'), 'study.html must not contain awkward Tek Alman phrasing');
+assert(!freshIndexHtml.includes('study-btn-notebook-trigger'), 'index.html must not show NotebookLM button');
+assert(!studyHtmlCode.includes('btn-notebooklm-trigger'), 'study.html must not show NotebookLM button');
+
+const swCacheMatch = swJsCode.match(/facharzt-cache-v([\d.]+)/);
+assert(swCacheMatch, 'sw.js must define CACHE_NAME');
+const swVer = swCacheMatch[1];
+assert(freshIndexHtml.includes(`sw.js?v=${swVer}`), `index.html must register sw.js?v=${swVer}`);
+assert(studyHtmlCode.includes(`sw.js?v=${swVer}`), `study.html must register sw.js?v=${swVer}`);
+console.log(`[PASS] Suite 45 passed! Verified German-only isolation, collapsible Turkish, minimalist UI, and SW v${swVer} parity.`);
+
+// 46. Dataset Hygiene, Punctuation & Image Asset Integrity
+console.log('Testing Suite 46: Dataset Hygiene, Punctuation & Image Asset Integrity...');
+const allTextFields = ['stem_de','stem_tr','question_de','question_tr','answer_de','answer_tr','oral_question_de','oral_question_tr','oral_answer_de','oral_answer_tr','examiner_intervention_de','examiner_intervention_tr','examiner_answer_de','examiner_answer_tr','examiner_tip_de','examiner_tip_tr'];
+questions.forEach(q => {
+  allTextFields.forEach(k => {
+    const v = q[k];
+    if (!v || typeof v !== 'string') return;
+    assert(!/([^\s\n]) +([,;!?])(?!\.)/.test(v), `${q.id}.${k} must not have space before punctuation`);
+    assert(!/([^\s\n]) +\.(?!\d|\.)/.test(v), `${q.id}.${k} must not have space before period`);
+    assert(!/([!?])\./.test(v), `${q.id}.${k} must not have double punctuation (!. or ?.)`);
+    if (k.endsWith('_de')) {
+      assert(!/[ğşİıĞŞ]/.test(v), `${q.id}.${k} must not contain Turkish characters`);
+      assert(!/paradoxicales Atemmuster|\bHypotension\b/.test(v), `${q.id}.${k} must use standard German medical terms`);
+    }
+    if (k.endsWith('_tr')) {
+      assert(!/Seri Seri İndüksiyon/.test(v), `${q.id}.${k} must not contain Seri Seri typo`);
+    }
+  });
+  if (q.image) {
+    const imgPath = path.join(__dirname, q.image);
+    assert(fs.existsSync(imgPath), `${q.id} referenced image must exist: ${q.image}`);
+    assert(fs.statSync(imgPath).size > 0, `${q.id} referenced image must be non-empty: ${q.image}`);
+  }
+});
+console.log(`[PASS] Suite 46 passed! Verified 0 punctuation/calque/encoding errors and 100% valid image assets across all ${questions.length} items.`);
+
+console.log('\n🎉 ALL 46 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

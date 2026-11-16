@@ -72,4 +72,4 @@ Anwendung im Browser öffnen: **`http://localhost:8080`** (oder port 8085).
 ```bash
 node test_oral_exam_suite.js
 ```
-✅ **42 von 42 Test-Suites bestanden (100% Coverage)**.
+✅ **46 von 46 Test-Suites bestanden (100% Coverage)**.
