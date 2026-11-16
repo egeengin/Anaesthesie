@@ -6092,7 +6092,7 @@ Tedavi:
   if (elBtnCloudSyncNow) {
     elBtnCloudSyncNow.addEventListener('click', async () => {
       await syncFromCloud();
-      showToast('☁️ Wolken-Synchronisation erfolgreich ausgeführt!', 'success', 3500);
+      showToast('☁️ Cloud-Synchronisation erfolgreich ausgeführt!', 'success', 3500);
     });
   }
 

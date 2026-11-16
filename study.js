@@ -113,7 +113,7 @@
             </a>
             <a href="notebooklm_export/NOTEBOOKLM_REHBERI_VE_PROMPTLAR.md" download="NOTEBOOKLM_REHBERI_VE_PROMPTLAR.md" class="btn-download-file" style="background: var(--primary-light); border-color: var(--primary);">
               <div>
-                <div style="font-weight: 700; color: var(--primary);">📋 4. Adım Adım Kurulum Rehberi & Sınav Prompts</div>
+                <div style="font-weight: 700; color: var(--primary);">📋 4. Adım Adım Kurulum Rehberi ve Sınav Komutları</div>
                 <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">Kopyala-yapıştır yapay zeka sözlü sınav komutları</div>
               </div>
               <span style="font-size: 1.2rem;">📖</span>
@@ -719,7 +719,7 @@
 
             <!-- 🩺 FACHARZT-MUSTERANTWORT -->
             <div class="oral-answer-card-box">
-              <div class="oral-role-badge candidate-role-badge" title="🇹🇷 Doğrudan Model Uzman Cevabı">
+              <div class="oral-role-badge candidate-role-badge" title="🇹🇷 Örnek Uzman Cevabı">
                 <span>🩺</span> Facharzt-Musterantwort
               </div>
               ${redeflussStep1 ? `

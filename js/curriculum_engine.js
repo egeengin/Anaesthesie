@@ -815,11 +815,11 @@
     // 1. Airway / CICO / Laryngospasm
     if (text.includes('atemweg') || text.includes('intubation') || text.includes('cico') || text.includes('koniotomie') || text.includes('laryngospasmus')) {
       s1de = 'Herr Prüfungsvorsitzender, wir stehen vor einem kritischen Atemwegsnotfall. Meine oberste Priorität ist die lückenlose Oxygenierung nach dem DGAI-Stufenplan: Plan A Videolaryngoskopie, Plan B Larynxmaske, und bei CICO unverzüglich Plan D eFONA.';
-      s1tr = 'Sayın jüri başkanı, kritik bir havayolu acili ile karşı karşıyayız. En yüksek önceliğim DGAI basamaklı planına göre kesintisiz oksijenasyondur: Plan A Videolaringoskopi, Plan B LMA, ve CICO tablosunda derhal Plan D eFONA krikotiroidotomi.';
+      s1tr = 'Sayın jüri başkanı, kritik bir havayolu acili ile karşı karşıyayız. En yüksek önceliğim DGAI basamaklı planına göre kesintisiz oksijenasyondur: Plan A Videolaringoskopi, Plan B laringeal maske (LMA) ve CICO tablosunda derhal Plan D eFONA krikotiroidotomi.';
       s2de = 'Der Monitor zeigt eine rasante Entsättigung mit SpO2 unter 80% und reflektorischer Bradykardie. Die Kapnografie bestätigt das Fehlen eines Beatmungshubs (No-Flow-Situation).';
-      s2tr = 'Monitör SpO2 nin hızla %80 in altına düştüğünü ve refleks bradikardi geliştiğini gösteriyor. Kapnografi havalanmanın tamamen durduğunu doğruluyor.';
+      s2tr = 'Monitör SpO₂\'nin hızla %80\'in altına düştüğünü ve refleks bradikardi geliştiğini gösteriyor. Kapnografi havalanmanın tamamen durduğunu doğruluyor.';
       s3de = 'Ich deklariere laut im Saal: "Cannot Intubate, Cannot Oxygenate!" Ich fordere das Koniotomie-Set, verabreiche 16 mg/kg Sugammadex bei Rocuronium und führe bei persistierender Hypoxie den Skalpell-Bougie-Schnitt durch.';
-      s3tr = 'Salonda yüksek sesle duyuruyorum: "Cannot Intubate, Cannot Oxygenate!" Krikotiroidotomi setini getirtiyor, Roküronyum için 16 mg/kg Sugammadeks veriyor ve hipoksemi devam ederse skalpel-buji kesisi yapıyorum.';
+      s3tr = 'Ameliyathanede yüksek sesle bildiriyorum: "Cannot Intubate, Cannot Oxygenate!" Krikotiroidotomi setini istiyor, roküronyum için 16 mg/kg sugammadeks uyguluyor ve hipoksemi sürerse skalpel-buji kesisi yapıyorum.';
       s4de = 'Nach Etablierung des chirurgischen Atemwegs und Erreichen einer stabilen Sättigung plane ich die definitive operative Versorgung und den Transfer auf die Intensivstation.';
       s4tr = 'Cerrahi havayolu sağlandıktan ve satürasyon normale döndükten sonra kesin cerrahi onarımı ve yoğun bakıma transferi planlıyorum.';
     }
