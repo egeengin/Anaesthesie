@@ -56,7 +56,6 @@
         <div class="brand-icon">💉</div>
         <div class="brand-text">
           <h1>Facharzt Anästhesie</h1>
-          <span class="brand-subtitle">Intelligenter Prüfungstrainer (NRW)</span>
         </div>
       </a>
 
@@ -293,7 +292,6 @@
       <div class="hero-focus-main">
         <div class="hero-focus-left">
           <div class="hero-focus-tag-row">
-            <span class="hero-focus-tag">🎯 Heutiger Fokus</span>
             <span class="hero-focus-stage-badge" id="hero-focus-stage-badge">Stufe 1: Top-50 Überlebensfälle</span>
           </div>
           <h2 class="hero-focus-title" id="hero-focus-title">Aktueller Fokus: 1. Klinische Notfälle &amp; Düsseldorfer Prüfungsprotokolle</h2>
@@ -311,9 +309,6 @@
           <button id="btn-hero-start-session" class="btn-hero-cta" type="button" style="display: none !important;" title="15-Min Smart-Training starten — 🇹🇷 15-Dakikalık Akıllı Seansı Başlat">
             <span class="cta-play-icon">▶️</span>
             <span id="hero-cta-label">15-Min Smart-Training starten</span>
-          </button>
-          <button id="btn-toggle-onboarding-guide" class="btn-hero-help-pill" type="button" title="So funktioniert's — 🇹🇷 Nasıl Çalışılır? Rehberini Aç" aria-label="Anleitung">
-            <span>❓ So funktioniert's</span>
           </button>
         </div>
       </div>
@@ -430,10 +425,6 @@
               <!-- Smart-Session Quick Launch Button -->
               <button id="btn-smart-session" class="btn-smart-session" type="button" title="15-20 Min Smart-Session: Nur Schwachstellen &amp; fällige Fälle">
                 <span>⚡ Akıllı Günlük Seans (15-20 dk)</span>
-              </button>
-              <!-- BGA-Trainer Launch Button -->
-              <button id="btn-bga-trainer-trigger" class="btn-bga-trainer-trigger" type="button" title="BGA-Trainer: 4 Adımda Kan Gazı Analizi">
-                <span>🧪 BGA-Trainer</span>
               </button>
             </div>
           </div>
@@ -2739,12 +2730,10 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      Facharztprüfung Anästhesiologie NRW &bull; Von Ege Engin liebevoll entwickelt für seine wunderbare Ehefrau Melis 💖
-      <div style="margin-top: 0.5rem;">
-        <button id="study-btn-notebook-trigger" type="button" style="background: none; border: none; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; opacity: 0.75;" title="Google NotebookLM Dosyaları &amp; Podcast Rehberi">
-          🎙️ NotebookLM Entegrasyonu
-        </button>
-      </div>
+      Facharztprüfung Anästhesiologie NRW &bull;
+      <button id="study-btn-notebook-trigger" type="button" style="background: none; border: none; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; opacity: 0.8;" title="Google NotebookLM Dosyaları &amp; Podcast Rehberi">
+        🎙️ NotebookLM Entegrasyonu
+      </button>
     </div>
   </footer>
 
@@ -2775,7 +2764,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.11')
+        navigator.serviceWorker.register('./sw.js?v=12.12')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {

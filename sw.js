@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.11'; // upgraded from facharzt-cache-v7.7 / v12.10 for further UI decluttering
+const CACHE_NAME = 'facharzt-cache-v12.12'; // upgraded from facharzt-cache-v7.7 / v12.11 for exam hero, BGA & footer decluttering
 const CORE_ASSETS = [
   './',
   './index.html',
