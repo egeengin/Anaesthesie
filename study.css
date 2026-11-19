@@ -436,15 +436,45 @@ body {
 .progress-streak-badge {
   background: #fef3c7;
   color: #b45309;
-  padding: 2px 8px;
+  padding: 2px 9px;
   border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.progress-streak-badge.goal-met {
+  background: rgba(5, 150, 105, 0.14);
+  color: #047857;
+  border-color: rgba(5, 150, 105, 0.35);
+}
+
+[data-theme="sepia"] .progress-streak-badge {
+  background: rgba(180, 83, 9, 0.12);
+  color: #92400e;
+  border-color: rgba(180, 83, 9, 0.25);
+}
+
+[data-theme="sepia"] .progress-streak-badge.goal-met {
+  background: rgba(21, 128, 61, 0.14);
+  color: #15803d;
+  border-color: rgba(21, 128, 61, 0.32);
 }
 
 [data-theme="dark"] .progress-streak-badge {
   background: rgba(245, 158, 11, 0.2);
   color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+[data-theme="dark"] .progress-streak-badge.goal-met {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 .progress-bar-track {
@@ -2525,5 +2555,143 @@ body.mode-german-only .trans-interactive {
 [data-theme="dark"] .btn-star-card.starred {
   background: rgba(245, 158, 11, 0.22);
   color: #fbbf24;
+}
+
+/* 7. 30-Second Scannable Cheat Strip inside Answer Box */
+.melis-30sec-cheat-strip {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(2, 132, 199, 0.06);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.melis-30sec-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--text-primary);
+}
+
+.melis-30sec-tag {
+  font-weight: 800;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.melis-30sec-actions-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.melis-30sec-sep {
+  opacity: 0.55;
+  font-weight: 700;
+}
+
+.melis-30sec-ko-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(225, 29, 72, 0.28);
+  color: #be123c;
+  font-weight: 600;
+}
+
+.melis-30sec-ko-badge {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.melis-30sec-tr {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+[data-theme="sepia"] .melis-30sec-cheat-strip {
+  background: rgba(180, 83, 9, 0.07);
+  border-color: rgba(180, 83, 9, 0.24);
+}
+
+[data-theme="sepia"] .melis-30sec-ko-row {
+  color: #9f1239;
+  border-top-color: rgba(159, 18, 57, 0.25);
+}
+
+[data-theme="dark"] .melis-30sec-cheat-strip {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+[data-theme="dark"] .melis-30sec-ko-row {
+  color: #fda4af;
+  border-top-color: rgba(251, 113, 133, 0.28);
+}
+
+/* 8. Active Speech Toggle Button (.is-speaking) */
+.btn-pronounce-card.is-speaking,
+.btn-sheet-action.is-speaking {
+  background: var(--accent-rose);
+  color: #ffffff;
+  border-color: var(--accent-rose);
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.28);
+}
+
+[data-theme="sepia"] .btn-pronounce-card.is-speaking,
+[data-theme="sepia"] .btn-sheet-action.is-speaking {
+  background: #b91c1c;
+  border-color: #b91c1c;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn-pronounce-card.is-speaking,
+[data-theme="dark"] .btn-sheet-action.is-speaking {
+  background: #e11d48;
+  border-color: #fb7185;
+  color: #ffffff;
+}
+
+/* 9. Lightweight Non-Blocking Daily Goal Celebration Toast */
+.melis-study-toast {
+  position: fixed;
+  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translate(-50%, 16px);
+  z-index: 9999;
+  max-width: min(92vw, 480px);
+  padding: 12px 18px;
+  border-radius: var(--radius-full);
+  background: #065f46;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.melis-study-toast.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+[data-theme="sepia"] .melis-study-toast {
+  background: #78350f;
+  color: #fef3c7;
+}
+
+[data-theme="dark"] .melis-study-toast {
+  background: #059669;
+  color: #ecfdf5;
 }
 

@@ -12,6 +12,7 @@
   const STORAGE_KEY_PROGRESS = 'facharzt_melis_read_status_v1';
   const STORAGE_KEY_STARRED = 'facharzt_melis_starred_v1';
   const STORAGE_KEY_SETTINGS = 'facharzt_melis_study_settings_v1';
+  const STORAGE_KEY_DAILY = 'facharzt_melis_daily_log_v1';
   const APP_STATE_KEY = 'facharzt_anaesthesie_state_v2';
   const AUTH_KEY = 'facharzt_auth_logged_in';
 
@@ -39,6 +40,131 @@
       });
     }
   } catch (e) {}
+
+  let dailyLog = { days: {}, lastDate: null, streakDays: 0 };
+  try {
+    const parsedDaily = JSON.parse(localStorage.getItem(STORAGE_KEY_DAILY) || '{}');
+    if (parsedDaily && typeof parsedDaily === 'object') {
+      dailyLog = {
+        days: (parsedDaily.days && typeof parsedDaily.days === 'object') ? parsedDaily.days : {},
+        lastDate: parsedDaily.lastDate || null,
+        streakDays: Number.isFinite(parsedDaily.streakDays) ? parsedDaily.streakDays : 0
+      };
+    }
+  } catch (e) {}
+
+  function getLocalDateKey(dateObj = new Date()) {
+    const yr = dateObj.getFullYear();
+    const mo = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const da = String(dateObj.getDate()).padStart(2, '0');
+    return `${yr}-${mo}-${da}`;
+  }
+
+  function getYesterdayDateKey() {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    return getLocalDateKey(d);
+  }
+
+  function getTodayReadCount() {
+    const list = dailyLog.days[getLocalDateKey()];
+    return Array.isArray(list) ? list.length : 0;
+  }
+
+  function getCurrentStreakDays() {
+    const todayKey = getLocalDateKey();
+    const yesterdayKey = getYesterdayDateKey();
+    const todayCount = getTodayReadCount();
+    if (dailyLog.lastDate === todayKey) {
+      return Math.max(dailyLog.streakDays || 0, todayCount > 0 ? 1 : 0);
+    }
+    if (dailyLog.lastDate === yesterdayKey) {
+      return dailyLog.streakDays || 0;
+    }
+    return 0;
+  }
+
+  let toastHideTimer = null;
+  function showStudyToast(message) {
+    if (!message) return;
+    let toastEl = document.getElementById('melis-study-toast');
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.id = 'melis-study-toast';
+      toastEl.className = 'melis-study-toast';
+      toastEl.setAttribute('role', 'status');
+      toastEl.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = message;
+    toastEl.classList.add('visible');
+    clearTimeout(toastHideTimer);
+    toastHideTimer = setTimeout(() => {
+      toastEl.classList.remove('visible');
+    }, 4500);
+  }
+
+  function isDusItem(item) {
+    return item.study_tier === 1 || item.is_dus_protocol || item.is_amboss_curriculum;
+  }
+  function isOpenItem(item) {
+    return item.question_type === 'open' || item.study_tier === 1 || item.study_tier === 2;
+  }
+  function isOptionItem(item) {
+    return item.question_type === 'options' || item.study_tier === 3;
+  }
+
+  function recordDailyRead(id, isMarkingRead) {
+    if (!id) return;
+    const todayKey = getLocalDateKey();
+    const yesterdayKey = getYesterdayDateKey();
+    if (!Array.isArray(dailyLog.days[todayKey])) {
+      dailyLog.days[todayKey] = [];
+    }
+
+    if (isMarkingRead) {
+      if (!dailyLog.days[todayKey].includes(id)) {
+        dailyLog.days[todayKey].push(id);
+      }
+      if (dailyLog.lastDate !== todayKey) {
+        dailyLog.streakDays = (dailyLog.lastDate === yesterdayKey)
+          ? (dailyLog.streakDays || 0) + 1
+          : 1;
+        dailyLog.lastDate = todayKey;
+      } else if (!dailyLog.streakDays) {
+        dailyLog.streakDays = 1;
+      }
+
+      const dayKeys = Object.keys(dailyLog.days).sort();
+      if (dayKeys.length > 90) {
+        dayKeys.slice(0, dayKeys.length - 90).forEach(k => delete dailyLog.days[k]);
+      }
+
+      try {
+        localStorage.setItem(STORAGE_KEY_DAILY, JSON.stringify(dailyLog));
+      } catch (e) {}
+
+      const todayCount = dailyLog.days[todayKey].length;
+      const dusItems = allQuestions.filter(isDusItem);
+      const dusDone = dusItems.length > 0 && dusItems.every(item => !!readStatus[item.id]);
+      if (dusDone && dusItems.some(item => item.id === id)) {
+        showStudyToast('✅ Aşama 1 (91 ÄKNO Protokolü) %100 Tamam! Düsseldorf sınavına başvurabilirsin.');
+      } else if (todayCount >= 5 && todayCount % 5 === 0) {
+        const msg = todayCount === 5
+          ? '☕ Bugünün 5 Vakası Tamam! ÄKNO Düsseldorf hazırlığın hızla ilerliyor.'
+          : `🔥 Harika tempo! Bugün ${todayCount} vaka tamamladın — hedefin çok yakın.`;
+        showStudyToast(msg);
+      }
+    } else {
+      const idx = dailyLog.days[todayKey].indexOf(id);
+      if (idx !== -1) {
+        dailyLog.days[todayKey].splice(idx, 1);
+      }
+      try {
+        localStorage.setItem(STORAGE_KEY_DAILY, JSON.stringify(dailyLog));
+      } catch (e) {}
+    }
+  }
 
   const state = {
     theme: (savedSettings.theme && savedSettings.theme !== 'light') ? savedSettings.theme : 'sepia', // Default to warm sepia, or user's explicit preference
@@ -297,11 +423,11 @@
     }
 
     if (state.activeType === 'dus') {
-      list = list.filter(item => item.study_tier === 1 || item.is_dus_protocol || item.is_amboss_curriculum);
+      list = list.filter(isDusItem);
     } else if (state.activeType === 'open') {
-      list = list.filter(item => item.question_type === 'open' || item.study_tier === 1 || item.study_tier === 2);
+      list = list.filter(isOpenItem);
     } else if (state.activeType === 'options') {
-      list = list.filter(item => item.question_type === 'options' || item.study_tier === 3);
+      list = list.filter(isOptionItem);
     }
 
     if (state.activeStatusFilter === 'read') {
@@ -681,6 +807,43 @@
       const hasDrawer2 = !!(dosagesHtml || interventionHtml || tipHtml || examinerProfileHtml);
       const hasDrawer3 = !!(firstPrinciples || examSynthesis || bedsideComm);
 
+      const hasQuickActions = !!(threeActionsChallenge && Array.isArray(threeActionsChallenge.firstThreeActions) && threeActionsChallenge.firstThreeActions.length > 0);
+      const trapDE = (q.examiner_profile && q.examiner_profile.trap) ? q.examiner_profile.trap : (q.examiner_tip || '');
+      const trapTR = (q.examiner_profile && q.examiner_profile.trap) ? (q.examiner_profile.trap_tr || '') : (q.examiner_tip_tr || '');
+
+      const cheatStripHtml = (hasQuickActions || trapDE) ? `
+        <div class="melis-30sec-cheat-strip">
+          ${hasQuickActions ? `
+            <div class="melis-30sec-actions-row">
+              <span class="melis-30sec-tag">⚡ 30s-Fokus:</span>
+              <span class="melis-30sec-actions-text">
+                ${threeActionsChallenge.firstThreeActions.map((act, i) => `
+                  <span class="melis-30sec-step"><strong>${i + 1}.</strong> ${renderInteractiveGerman(act.actionDE, act.actionTR)}</span>
+                `).join('<span class="melis-30sec-sep"> · </span>')}
+              </span>
+            </div>
+            <div class="inline-bilingual-tr melis-30sec-tr">
+              🇹🇷 ${threeActionsChallenge.firstThreeActions.map((act, i) => `${i + 1}. ${escapeHtml(act.actionTR || act.actionDE)}`).join(' · ')}
+            </div>
+          ` : ''}
+          ${trapDE ? `
+            <div class="melis-30sec-ko-row">
+              <span class="melis-30sec-ko-badge">⚠️ K.O.:</span>
+              <span>${renderInteractiveGerman(trapDE, trapTR)}</span>
+            </div>
+            ${trapTR ? `<div class="inline-bilingual-tr melis-30sec-tr">🇹🇷 ${escapeHtml(trapTR)}</div>` : ''}
+          ` : ''}
+        </div>
+      ` : '';
+
+      const redTextDE = redeflussStep1 ? (redeflussStep1.de || redeflussStep1.textDE || '') : '';
+      const mainCardAudioText = [
+        questionDE ? `Prüferfrage: ${questionDE}` : '',
+        redTextDE ? `Redeeinstieg: ${redTextDE}` : '',
+        answerDE ? `Musterantwort: ${answerDE}` : '',
+        trapDE ? `K.O.-Tipp: ${trapDE}` : ''
+      ].filter(Boolean).join('\n\n');
+
       html += `
         <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}">
           <div class="card-header-bar">
@@ -694,7 +857,7 @@
               <button class="btn-card-action btn-star-card ${isStarred ? 'starred' : ''}" data-id="${q.id}" title="Kritik Vaka Olarak Yıldızla">
                 <span>⭐</span>
               </button>
-              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(questionDE + '\n\n' + answerDE)}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
+              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Redeeinstieg, Model Cevap ve K.O.-İpucunu Sesli Dinle">
                 <span>🔊</span> Dinle
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
@@ -762,6 +925,7 @@
                   🇹🇷 "${escapeHtml(redeflussStep1.tr || redeflussStep1.textTR || '')}"
                 </div>
               ` : ''}
+              ${cheatStripHtml}
               <div class="oral-answer-content">
                 ${renderFormattedOralAnswer(answerDE, answerTR)}
               </div>
@@ -921,11 +1085,13 @@
           btn.classList.remove('active-read');
           btn.innerHTML = `<span>○</span> Okundu`;
           if (card) card.classList.remove('is-read');
+          recordDailyRead(id, false);
         } else {
           readStatus[id] = true;
           btn.classList.add('active-read');
           btn.innerHTML = `<span>✓</span> Okundu`;
           if (card) card.classList.add('is-read');
+          recordDailyRead(id, true);
           triggerHapticFeedback();
           const nextCard = card ? card.nextElementSibling : null;
           if (nextCard && nextCard.classList && nextCard.classList.contains('study-card')) {
@@ -983,7 +1149,7 @@
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const text = btn.getAttribute('data-text');
-        speakGerman(text);
+        speakGerman(text, btn);
       });
     });
 
@@ -1113,23 +1279,226 @@
 
   if (elBtnSheetPronounce) {
     elBtnSheetPronounce.addEventListener('click', () => {
-      if (activeUtteranceText) speakGerman(activeUtteranceText);
+      if (activeUtteranceText) speakGerman(activeUtteranceText, elBtnSheetPronounce);
     });
   }
 
-  function speakGerman(text) {
-    if (!('speechSynthesis' in window) || !text) return;
-    window.speechSynthesis.cancel();
+  function normalizeMedicalGermanForTTS(rawText) {
+    if (!rawText) return '';
+    let text = String(rawText);
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'de-DE';
-    utterance.rate = 0.92;
+    // Strip HTML, markdown, graphic symbols, and emojis
+    text = text.replace(/<[^>]*>/g, ' ');
+    text = text.replace(/\*\*([^*]+)\*\*/g, '$1');
+    text = text.replace(/\*([^*]+)\*/g, '$1');
+    text = text.replace(/__([^_]+)__/g, '$1');
+    text = text.replace(/`([^`]+)`/g, '$1');
+    text = text.replace(/->|→|=>|▸|•/g, ' ');
+    text = text.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ' ');
+
+    // Normalize Unicode subscripts/superscripts & chemical ions
+    text = text
+      .replace(/SpO₂/g, 'SpO2')
+      .replace(/SaO₂/g, 'SaO2')
+      .replace(/[Ee]tCO₂/g, 'etCO2')
+      .replace(/PaCO₂/g, 'PaCO2')
+      .replace(/pCO₂/g, 'pCO2')
+      .replace(/PaO₂/g, 'PaO2')
+      .replace(/pO₂/g, 'pO2')
+      .replace(/FiO₂/g, 'FiO2')
+      .replace(/cmH₂O/g, 'cmH2O')
+      .replace(/NaHCO₃/g, 'Natriumbikarbonat')
+      .replace(/HCO₃⁻/g, 'Bikarbonat')
+      .replace(/CO₂/g, 'CO2')
+      .replace(/O₂/g, 'O2')
+      .replace(/H₂O/g, 'H2O')
+      .replace(/K⁺/g, 'Kalium')
+      .replace(/Na⁺/g, 'Natrium')
+      .replace(/Ca²⁺/g, 'Kalzium')
+      .replace(/Mg²⁺/g, 'Magnesium')
+      .replace(/Cl⁻/g, 'Chlorid')
+      .replace(/H⁺/g, 'Wasserstoffionen');
+
+    // Ratios, decimals, ranges
+    text = text.replace(/\b1\s*:\s*10\.?000\b/g, 'eins zu zehntausend');
+    text = text.replace(/\b1\s*:\s*100\.?000\b/g, 'eins zu einhunderttausend');
+    text = text.replace(/\b1\s*:\s*200\.?000\b/g, 'eins zu zweihunderttausend');
+    text = text.replace(/\b1\s*:\s*1\b/g, 'eins zu eins');
+    text = text.replace(/(\d)\.(\d)/g, '$1,$2');
+    text = text.replace(/(\d+(?:,\d+)?)\s*[–—-]\s*(\d+(?:,\d+)?)/g, '$1 bis $2');
+
+    // Blood pressure & hemodynamics
+    text = text.replace(/\b(?:RR|Blutdruck)\s*[:=]?\s*(\d{2,3})\s*[/\\]\s*(\d{2,3})\s*(?:mmHg)?\b/gi, 'Blutdruck $1 zu $2 Millimeter Quecksilbersäule');
+    text = text.replace(/\bRR\s*[:=]?\s*(\d{2,3})\b/gi, 'Blutdruck $1');
+    text = text.replace(/\bRR\b/g, 'Blutdruck');
+    text = text.replace(/\bMAP\b/g, 'mittlerer arterieller Druck');
+    text = text.replace(/\bZVD\b/g, 'zentraler Venendruck');
+    text = text.replace(/\bSVR\b/g, 'systemischer Gefäßwiderstand');
+    text = text.replace(/\bHZV\b/g, 'Herzzeitvolumen');
+    text = text.replace(/\bHF\b/g, 'Herzfrequenz');
+    text = text.replace(/(\d+)\s*\/\s*min\b/gi, '$1 pro Minute');
+
+    // Ventilation & BGA
+    text = text.replace(/\b(?:SpO2|SaO2)\b/gi, 'Sauerstoffsättigung');
+    text = text.replace(/\betCO2\b/gi, 'endexspiratorisches CO2');
+    text = text.replace(/\bFiO2\b/gi, 'F i O zwei');
+    text = text.replace(/\b(?:PaCO2|pCO2)\b/gi, 'P C O zwei');
+    text = text.replace(/\b(?:PaO2|pO2)\b/gi, 'P O zwei');
+    text = text.replace(/\bBGA\b/gi, 'Blutgasanalyse');
+    text = text.replace(/\bBE\b/g, 'Base Excess');
+    text = text.replace(/\bAF\b/g, 'Atemfrequenz');
+
+    // Dosages & units (longest patterns first)
+    text = text.replace(/(\d+(?:,\d+)?)\s*(?:µg|mcg)\s*\/\s*kg\s*\/\s*min\b/gi, '$1 Mikrogramm pro Kilogramm pro Minute');
+    text = text.replace(/(\d+(?:,\d+)?)\s*mg\s*\/\s*kg\s*\/\s*h\b/gi, '$1 Milligramm pro Kilogramm pro Stunde');
+    text = text.replace(/(\d+(?:,\d+)?)\s*mg\s*\/\s*kg(?:\s*KG)?\b/gi, '$1 Milligramm pro Kilogramm Körpergewicht');
+    text = text.replace(/(\d+(?:,\d+)?)\s*(?:µg|mcg)\s*\/\s*kg(?:\s*KG)?\b/gi, '$1 Mikrogramm pro Kilogramm Körpergewicht');
+    text = text.replace(/(\d+(?:,\d+)?)\s*ml\s*\/\s*kg(?:\s*KG)?\b/gi, '$1 Milliliter pro Kilogramm Körpergewicht');
+    text = text.replace(/\b(?:µg|mcg)\s*\/\s*kg\s*\/\s*min\b/gi, 'Mikrogramm pro Kilogramm pro Minute');
+    text = text.replace(/\bmg\s*\/\s*kg\s*\/\s*h\b/gi, 'Milligramm pro Kilogramm pro Stunde');
+    text = text.replace(/\bmg\s*\/\s*kg(?:\s*KG)?\b/gi, 'Milligramm pro Kilogramm');
+    text = text.replace(/\b(?:µg|mcg)\s*\/\s*kg(?:\s*KG)?\b/gi, 'Mikrogramm pro Kilogramm');
+    text = text.replace(/\bmmol\s*\/\s*l\b/gi, 'Millimol pro Liter');
+    text = text.replace(/\bmg\s*\/\s*dl\b/gi, 'Milligramm pro Deziliter');
+    text = text.replace(/\bg\s*\/\s*dl\b/gi, 'Gramm pro Deziliter');
+    text = text.replace(/\bmmHg\b/gi, 'Millimeter Quecksilbersäule');
+    text = text.replace(/\bcmH2O\b/gi, 'Zentimeter Wassersäule');
+    text = text.replace(/(\d+(?:,\d+)?)\s*(?:µg|mcg)\b/gi, '$1 Mikrogramm');
+    text = text.replace(/(\d+(?:,\d+)?)\s*mg\b/gi, '$1 Milligramm');
+    text = text.replace(/(\d+(?:,\d+)?)\s*ml\b/gi, '$1 Milliliter');
+    text = text.replace(/(\d+(?:,\d+)?)\s*kg(?:\s*KG)?\b/gi, '$1 Kilogramm');
+    text = text.replace(/\b(?:µg|mcg)\b/gi, 'Mikrogramm');
+    text = text.replace(/\bkg\s+KG\b/gi, 'Kilogramm Körpergewicht');
+    text = text.replace(/\bIE\b/g, 'Internationale Einheiten');
+
+    // Routes & clinical abbreviations
+    text = text.replace(/\bi\.\s*v\./gi, 'intravenös');
+    text = text.replace(/\bi\.\s*m\./gi, 'intramuskulär');
+    text = text.replace(/\bs\.\s*c\./gi, 'subkutan');
+    text = text.replace(/\bp\.\s*o\./gi, 'per os');
+    text = text.replace(/\bi\.\s*a\./gi, 'intraarteriell');
+    text = text.replace(/\bi\.\s*o\./gi, 'intraossär');
+    text = text.replace(/\bz\.\s*B\./gi, 'zum Beispiel');
+    text = text.replace(/\bu\.\s*a\./gi, 'unter anderem');
+    text = text.replace(/\bd\.\s*h\./gi, 'das heißt');
+    text = text.replace(/\bbzw\./gi, 'beziehungsweise');
+    text = text.replace(/\bggf\./gi, 'gegebenenfalls');
+    text = text.replace(/\bca\./gi, 'circa');
+    text = text.replace(/\bV\.\s*a\./gi, 'Verdacht auf');
+    text = text.replace(/\bZ\.\s*n\./gi, 'Zustand nach');
+    text = text.replace(/\bSHT\b/g, 'Schädel-Hirn-Trauma');
+    text = text.replace(/\bLAE\b/g, 'Lungenarterienembolie');
+    text = text.replace(/\bLAST\b/g, 'Lokalanästhetika-Intoxikation');
+    text = text.replace(/\bMH\b/g, 'Maligne Hyperthermie');
+    text = text.replace(/\bCICO\b/g, 'Cannot Intubate Cannot Oxygenate');
+    text = text.replace(/\bSPA\b/g, 'Spinalanästhesie');
+    text = text.replace(/\bEDA\b/g, 'Epiduralanästhesie');
+    text = text.replace(/\bPDK\b/g, 'Periduralkatheter');
+    text = text.replace(/\bZVK\b/g, 'zentraler Venenkatheter');
+    text = text.replace(/\bITN\b/g, 'Intubationsnarkose');
+    text = text.replace(/\bKÖF\b/g, 'Klappenöffnungsfläche');
+
+    // Smooth pauses & whitespace
+    text = text.replace(/\n+/g, '. ');
+    text = text.replace(/([A-Za-zÄÖÜäöüß])\/([A-Za-zÄÖÜäöüß])/g, '$1 oder $2');
+    text = text.replace(/\.{2,}/g, '.');
+    text = text.replace(/\s+/g, ' ');
+    return text.trim();
+  }
+
+  function chunkGermanForTTS(text, maxLen = 220) {
+    if (!text) return [];
+    const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+    const chunks = [];
+    let current = '';
+    for (const s of sentences) {
+      if (!current) {
+        current = s;
+      } else if ((current + ' ' + s).length <= maxLen) {
+        current += ' ' + s;
+      } else {
+        chunks.push(current);
+        current = s;
+      }
+    }
+    if (current) chunks.push(current);
+    return chunks.length ? chunks : [text];
+  }
+
+  let currentSpeakingBtn = null;
+  let speechSessionId = 0;
+
+  function resetSpeakingButton(btn) {
+    if (!btn) return;
+    btn.classList.remove('is-speaking');
+    if (btn.dataset.origHtml) {
+      btn.innerHTML = btn.dataset.origHtml;
+    }
+  }
+
+  function speakGerman(text, btnEl = null) {
+    if (!('speechSynthesis' in window) || !text) return;
+
+    const isSameBtnActive = !!(
+      btnEl &&
+      currentSpeakingBtn === btnEl &&
+      (window.speechSynthesis.speaking || window.speechSynthesis.pending || btnEl.classList.contains('is-speaking'))
+    );
+
+    if (isSameBtnActive) {
+      speechSessionId++;
+      window.speechSynthesis.cancel();
+      resetSpeakingButton(currentSpeakingBtn);
+      currentSpeakingBtn = null;
+      return;
+    }
+
+    const mySession = ++speechSessionId;
+    window.speechSynthesis.cancel();
+    if (currentSpeakingBtn) {
+      resetSpeakingButton(currentSpeakingBtn);
+      currentSpeakingBtn = null;
+    }
+
+    const normalized = normalizeMedicalGermanForTTS(text);
+    const chunks = chunkGermanForTTS(normalized);
+    if (!chunks.length) return;
+
+    if (btnEl) {
+      if (!btnEl.dataset.origHtml) {
+        btnEl.dataset.origHtml = btnEl.innerHTML;
+      }
+      currentSpeakingBtn = btnEl;
+      btnEl.classList.add('is-speaking');
+      btnEl.innerHTML = '<span>🔊</span> Durdur';
+    }
 
     const voices = window.speechSynthesis.getVoices();
     const deVoice = voices.find(v => v.lang.startsWith('de') && (v.name.includes('Google') || v.name.includes('Anna') || v.name.includes('Martin') || v.name.includes('Natural')));
-    if (deVoice) utterance.voice = deVoice;
 
-    window.speechSynthesis.speak(utterance);
+    let chunkIdx = 0;
+    const finishPlayback = () => {
+      if (mySession !== speechSessionId) return;
+      if (btnEl) resetSpeakingButton(btnEl);
+      if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
+    };
+
+    const speakNextChunk = () => {
+      if (mySession !== speechSessionId) return;
+      if (chunkIdx >= chunks.length) {
+        finishPlayback();
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+      utterance.lang = 'de-DE';
+      utterance.rate = 0.94;
+      if (deVoice) utterance.voice = deVoice;
+      utterance.onend = speakNextChunk;
+      utterance.onerror = finishPlayback;
+      window.speechSynthesis.speak(utterance);
+    };
+
+    speakNextChunk();
   }
 
   function triggerHapticFeedback() {
@@ -1140,13 +1509,61 @@
 
   function updateProgressBar() {
     const total = allQuestions.length;
-    const readCount = Object.keys(readStatus).length;
-    const percentage = total > 0 ? Math.round((readCount / total) * 100) : 0;
+    const readCount = allQuestions.filter(item => !!readStatus[item.id]).length;
+
+    const dusItems = allQuestions.filter(isDusItem);
+    const dusTotal = dusItems.length;
+    const dusRead = dusItems.filter(item => !!readStatus[item.id]).length;
+
+    const openItems = allQuestions.filter(isOpenItem);
+    const openTotal = openItems.length;
+    const openRead = openItems.filter(item => !!readStatus[item.id]).length;
+
+    const optItems = allQuestions.filter(isOptionItem);
+    const optTotal = optItems.length;
+    const optRead = optItems.filter(item => !!readStatus[item.id]).length;
+
+    let percentage = 0;
+    let statusText = `${readCount} / ${total} Vaka`;
+
+    if (state.activeType === 'options') {
+      percentage = optTotal > 0 ? Math.round((optRead / optTotal) * 100) : 0;
+      statusText = `📚 Aşama 3 Konu: ${optRead} / ${optTotal} · Toplam: ${readCount}/${total}`;
+    } else if (state.activeType === 'open') {
+      percentage = openTotal > 0 ? Math.round((openRead / openTotal) * 100) : 0;
+      statusText = `🏥 Çekirdek Vakalar: ${openRead} / ${openTotal} · Toplam: ${readCount}/${total}`;
+    } else if (state.activeType === 'dus' || dusRead < dusTotal) {
+      percentage = dusTotal > 0 ? Math.round((dusRead / dusTotal) * 100) : 0;
+      if (dusTotal > 0 && dusRead >= dusTotal) {
+        statusText = `✅ ÄKNO Aşama 1 Tamam (${dusRead}/${dusTotal}) · Sınav Başvurusuna Hazırsın!`;
+      } else {
+        statusText = `🏛️ ÄKNO Aşama 1: ${dusRead} / ${dusTotal} · Toplam: ${readCount}/${total}`;
+      }
+    } else if (openRead < openTotal) {
+      percentage = openTotal > 0 ? Math.round((openRead / openTotal) * 100) : 0;
+      statusText = `✅ ÄKNO Tamam · 🏥 Aşama 2 Vaka: ${openRead} / ${openTotal}`;
+    } else {
+      percentage = total > 0 ? Math.round((readCount / total) * 100) : 0;
+      statusText = `🎓 Tüm Vaka & Konular: ${readCount} / ${total}`;
+    }
 
     if (elProgressBarFill) elProgressBarFill.style.width = `${percentage}%`;
     if (elProgressPercentage) elProgressPercentage.textContent = `%${percentage}`;
-    if (elProgressText) elProgressText.textContent = `${readCount} / ${total} Vaka`;
-    if (elStreakBadge) elStreakBadge.textContent = `🎯 ${readCount}`;
+    if (elProgressText) elProgressText.textContent = statusText;
+
+    if (elStreakBadge) {
+      const todayCount = getTodayReadCount();
+      const streakDays = getCurrentStreakDays();
+      const remainingCore = Math.max(0, openTotal - openRead);
+      const daysLeft = Math.ceil(remainingCore / 8);
+      const goalPrefix = todayCount >= 5 ? '✅' : '☕';
+      const etaText = remainingCore > 0 ? `⏳ ~${daysLeft} gün` : '🎓 Sınav Hazır!';
+      const streakText = streakDays >= 2 ? ` · 🔥 ${streakDays}g` : '';
+      elStreakBadge.style.display = 'inline-flex';
+      elStreakBadge.classList.toggle('goal-met', todayCount >= 5);
+      elStreakBadge.textContent = `${goalPrefix} Bugün: ${todayCount}/5 · ${etaText}${streakText}`;
+      elStreakBadge.title = `Günlük mikro hedef: 5 vaka (Bugün: ${todayCount}). Çekirdek sözlü vakalar (${openRead}/${openTotal}) günde 8 vaka hızıyla tahmini kalan süre: ${remainingCore > 0 ? daysLeft + ' gün' : 'Tamamlandı'}.`;
+    }
   }
 
   function initCategories() {
@@ -1549,9 +1966,9 @@
 
   function updateDynamicQuestionCounts() {
     const totalCount = allQuestions.length;
-    const dusCount = allQuestions.filter(item => item.study_tier === 1 || item.is_dus_protocol || item.is_amboss_curriculum).length;
-    const openCount = allQuestions.filter(item => item.question_type === 'open' || item.study_tier === 1 || item.study_tier === 2).length;
-    const optionsCount = allQuestions.filter(item => item.question_type === 'options' || item.study_tier === 3).length;
+    const dusCount = allQuestions.filter(isDusItem).length;
+    const openCount = allQuestions.filter(isOpenItem).length;
+    const optionsCount = allQuestions.filter(isOptionItem).length;
 
     document.querySelectorAll('.btn-type-filter').forEach(btn => {
       const t = btn.getAttribute('data-type');
