@@ -78,6 +78,8 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
   const cleanPrompt = `Read the following text aloud: ${text}`;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    let dailyExhaustedCount = 0;
+
     for (const model of models) {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
       try {
@@ -104,6 +106,7 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
           const isDaily = errData?.error?.message?.includes('per day limit exceeded');
           if (isDaily) {
             console.warn(`[Daily Quota Exceeded] on ${model} (Free Tier limit: 10 requests/day). Skipping model.`);
+            dailyExhaustedCount++;
             continue;
           }
           const waitSec = 10 + attempt * 5;
@@ -132,6 +135,12 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
         console.warn(`[Fetch error] on ${model}: ${err.message}`);
       }
     }
+
+    if (dailyExhaustedCount >= models.length) {
+      const err = new Error('ALL_MODELS_DAILY_QUOTA_EXHAUSTED');
+      err.code = 'ALL_MODELS_DAILY_QUOTA_EXHAUSTED';
+      throw err;
+    }
     if (attempt < maxRetries) {
       console.log(`Retrying attempt ${attempt + 1}...`);
       await new Promise(r => setTimeout(r, 4000));
@@ -145,10 +154,11 @@ function updateManifestFile() {
   const manifest = {};
 
   for (const f of files) {
-    if (f.endsWith('.m4a') || f.endsWith('.wav') || f.endsWith('.mp3')) {
-      const match = f.match(/^(.+?)_fall_stem\.(m4a|wav|mp3)$/);
-      if (match) {
-        const qId = match[1];
+    const match = f.match(/^(.+?)_fall_stem\.(m4a|wav|mp3)$/);
+    if (match) {
+      const qId = match[1];
+      // Always prioritize Gemini Studio .m4a over .mp3
+      if (!manifest[qId] || f.endsWith('.m4a')) {
         manifest[qId] = `audio/cases/${f}`;
       }
     }
@@ -229,6 +239,10 @@ async function main() {
       const wavBuf = await synthesizeText(cleanSpeech, voice);
       fs.writeFileSync(wavPath, wavBuf);
       convertWavToM4a(wavPath, m4aPath);
+      const mp3Path = path.join(AUDIO_DIR, `${baseName}.mp3`);
+      if (fs.existsSync(mp3Path)) {
+        try { fs.unlinkSync(mp3Path); } catch (e) {}
+      }
       count++;
       console.log(`  ✓ Saved ${baseName}`);
       updateManifestFile();
@@ -236,6 +250,11 @@ async function main() {
       // Polite delay between requests to stay safely within RPM rate limits
       await new Promise(r => setTimeout(r, delayMs));
     } catch (err) {
+      if (err.code === 'ALL_MODELS_DAILY_QUOTA_EXHAUSTED' || err.message.includes('DAILY_QUOTA')) {
+        console.warn(`\n[Free Tier Daily Limit Reached] All free Gemini TTS models have reached their daily request limit today.`);
+        console.warn(`Saved ${count} new files in today's batch. Will continue with the next batch on the next run/tomorrow!\n`);
+        break;
+      }
       console.error(`  ✗ Error for ${q.id}:`, err.message);
     }
   }
