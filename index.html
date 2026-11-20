@@ -93,38 +93,28 @@
               <span class="mode-flags">🇩🇪</span>
             </button>
           </div>
+          <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
+            <button type="button" id="study-btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
+              <span class="stepper-glyph-small">A⁻</span>
+            </button>
+            <button type="button" id="study-btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart" aria-label="Yazı boyutu">
+              <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
+              <span class="stepper-label" id="study-font-size-label">Standart</span>
+              <span class="stepper-dots" aria-hidden="true">
+                <span class="step-dot"></span>
+                <span class="step-dot active"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+              </span>
+            </button>
+            <button type="button" id="study-btn-font-inc" class="stepper-btn stepper-btn-inc" title="Yazı Boyutunu Büyüt (A⁺)" aria-label="Yazıyı büyüt">
+              <span class="stepper-glyph-large">A⁺</span>
+            </button>
+          </div>
           <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
             <span>⚡</span> Test Modu
           </button>
-          <div class="nav-dropdown-wrapper study-aa-wrapper">
-            <button id="study-aa-menu-btn" class="pill-btn pill-btn-aa" type="button" aria-haspopup="true" aria-expanded="false" title="Schriftgröße / Yazı Boyutu">
-              <span class="aa-glyph">Aa</span>
-              <span class="dropdown-chevron">▾</span>
-            </button>
-            <div id="study-aa-dropdown" class="study-aa-dropdown-menu" role="dialog" aria-label="Schriftgröße">
-              <div class="aa-popover-section">
-                <div class="aa-popover-label">Yazı Boyutu</div>
-                <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
-                  <button type="button" id="study-btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
-                    <span class="stepper-glyph-small">A</span>
-                  </button>
-                  <button type="button" id="study-btn-font-toggle" class="stepper-current-pill" title="Yazı Boyutu: Standart" aria-label="Yazı boyutu">
-                    <span class="stepper-aa-icon"><span class="aa-s">a</span><span class="aa-l">A</span></span>
-                    <span class="stepper-label" id="study-font-size-label">Standart</span>
-                    <span class="stepper-dots" aria-hidden="true">
-                      <span class="step-dot"></span>
-                      <span class="step-dot active"></span>
-                      <span class="step-dot"></span>
-                      <span class="step-dot"></span>
-                    </span>
-                  </button>
-                  <button type="button" id="study-btn-font-inc" class="stepper-btn stepper-btn-inc" title="Yazı Boyutunu Büyüt (A⁺)" aria-label="Yazıyı büyüt">
-                    <span class="stepper-glyph-large">A</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <button id="study-aa-menu-btn" style="display: none;" type="button" aria-hidden="true"></button>
         </div>
 
         <div class="nav-action-pill">
@@ -2744,7 +2734,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.19')
+        navigator.serviceWorker.register('./sw.js?v=12.20')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2780,9 +2770,11 @@
         if (btnExam) btnExam.classList.toggle('active', !isStudy);
 
         const studyNavControls = document.getElementById('study-nav-controls');
+        const activeRecallBtn = document.getElementById('study-btn-active-recall-toggle');
         const globalGermanBtn = document.getElementById('btn-global-german-toggle');
-        if (studyNavControls) studyNavControls.style.display = isStudy ? 'inline-flex' : 'none';
-        if (globalGermanBtn) globalGermanBtn.style.display = isStudy ? 'none' : '';
+        if (studyNavControls) studyNavControls.style.display = 'inline-flex';
+        if (activeRecallBtn) activeRecallBtn.style.display = isStudy ? '' : 'none';
+        if (globalGermanBtn) globalGermanBtn.style.display = 'none';
 
         if (savePref) {
           localStorage.setItem('facharzt_melis_master_view', targetView);

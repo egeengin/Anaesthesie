@@ -264,7 +264,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.19')
+        navigator.serviceWorker.register('./sw.js?v=12.20')
           .then(reg => {
             if (typeof reg.update === 'function') {
               reg.update();
