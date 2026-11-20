@@ -3874,22 +3874,162 @@ footer {
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.45);
 }
 
-/* Direct Quick Speed Pills (1x, 1.15x, 1.25x, 1.5x) */
+/* --- Interactive Scrubbable Speed Slider with Magnetic Snap Dots (0.5x - 3.0x) --- */
 .quick-speed-pills {
   display: inline-flex;
   align-items: center;
-  background: var(--bg-tertiary, rgba(0, 0, 0, 0.04));
-  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+  background: var(--bg-tertiary, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 20px;
-  padding: 2px;
-  gap: 2px;
+  padding: 3px 10px 4px 10px;
+  gap: 8px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  vertical-align: middle;
+  user-select: none;
 }
 
 [data-theme="dark"] .quick-speed-pills {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
+.quick-speed-val-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0284c7;
+  min-width: 44px;
+  text-align: center;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+[data-theme="dark"] .quick-speed-val-badge {
+  color: #38bdf8;
+}
+
+.quick-speed-slider-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 130px;
+}
+
+.quick-speed-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  background: #cbd5e1;
+  outline: none;
+  cursor: pointer;
+  margin: 4px 0 2px 0;
+  transition: background 0.15s ease;
+}
+
+[data-theme="dark"] .quick-speed-slider {
+  background: #475569;
+}
+
+.quick-speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0284c7;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.quick-speed-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #0369a1;
+}
+
+[data-theme="dark"] .quick-speed-slider::-webkit-slider-thumb {
+  background: #38bdf8;
+  border-color: #0f172a;
+}
+
+.quick-speed-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0284c7;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.quick-speed-snap-track {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1px;
+}
+
+.quick-speed-btn.snap-dot {
+  position: relative;
+  background: transparent;
+  border: none;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0 2px;
+  color: var(--text-muted, #94a3b8);
+  cursor: pointer;
+  line-height: 1.1;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quick-speed-btn.snap-dot:hover {
+  color: var(--text-primary, #0f172a);
+}
+
+[data-theme="dark"] .quick-speed-btn.snap-dot:hover {
+  color: #f8fafc;
+}
+
+.quick-speed-btn.snap-dot.active {
+  color: #0284c7 !important;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .quick-speed-btn.snap-dot.active {
+  color: #38bdf8 !important;
+}
+
+/* Snap dot indicator marker (1.0, 1.5, 2.0) */
+.snap-point-marker {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #94a3b8;
+  margin-top: 1px;
+  transition: all 0.15s ease;
+}
+
+.quick-speed-btn.snap-dot.active .snap-point-marker {
+  background: #0284c7;
+  transform: scale(1.5);
+}
+
+[data-theme="dark"] .quick-speed-btn.snap-dot.active .snap-point-marker {
+  background: #38bdf8;
+}
+
+/* Standard quick speed btn fallback */
 .quick-speed-btn {
   background: transparent;
   border: none;

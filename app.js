@@ -7277,7 +7277,7 @@ Tedavi:
   }
 
   function setPlaybackSpeed(rate, updateSlider = true) {
-    const clampedRate = Math.min(1.75, Math.max(0.75, parseFloat(rate.toFixed(2))));
+    const clampedRate = Math.min(3.0, Math.max(0.5, parseFloat(rate.toFixed(2))));
     state.speechRate = clampedRate;
     saveState();
 
@@ -7285,7 +7285,13 @@ Tedavi:
     if (elSpeedSliderValBadge) elSpeedSliderValBadge.textContent = `${clampedRate}x`;
     if (updateSlider && elAudioSpeedSlider) elAudioSpeedSlider.value = clampedRate;
 
-    // Live update active stream playback rate (just like YouTube!)
+    const elQuickSpeedBadge = document.getElementById('quick-speed-badge');
+    if (elQuickSpeedBadge) elQuickSpeedBadge.textContent = `⚡ ${clampedRate}x`;
+
+    const elQuickSpeedSlider = document.getElementById('quick-speed-slider');
+    if (updateSlider && elQuickSpeedSlider) elQuickSpeedSlider.value = clampedRate;
+
+    // Live update active stream or local audio playback rate (just like YouTube!)
     if (naturalAudioPlayer) {
       try { naturalAudioPlayer.playbackRate = clampedRate; } catch (e) {}
     }
@@ -7298,12 +7304,12 @@ Tedavi:
       });
     }
 
-    // Highlight matching quick speed button on bar
+    // Highlight matching quick speed snap button on bar
     const elQuickSpeedPills = document.getElementById('quick-speed-pills');
     if (elQuickSpeedPills) {
       elQuickSpeedPills.querySelectorAll('.quick-speed-btn').forEach(btn => {
         const btnSpeed = parseFloat(btn.getAttribute('data-speed'));
-        btn.classList.toggle('active', Math.abs(btnSpeed - clampedRate) < 0.04);
+        btn.classList.toggle('active', Math.abs(btnSpeed - clampedRate) < 0.06);
       });
     }
   }
@@ -7313,8 +7319,29 @@ Tedavi:
     setPlaybackSpeed(state.speechRate, true);
   }
 
-  // Direct Quick Speed Pills (1x, 1.15x, 1.25x, 1.5x)
+  // Interactive Scrubbable Speed Slider & Magnetic Snap Points (0.5x - 3.0x)
   const elQuickSpeedPills = document.getElementById('quick-speed-pills');
+  const elQuickSpeedSlider = document.getElementById('quick-speed-slider');
+  const elQuickSpeedBadge = document.getElementById('quick-speed-badge');
+
+  if (elQuickSpeedSlider) {
+    const SNAP_TARGETS = [1.0, 1.5, 2.0];
+    const SNAP_THRESHOLD = 0.08;
+
+    elQuickSpeedSlider.addEventListener('input', (e) => {
+      let rawVal = parseFloat(e.target.value);
+      // Magnetic snapping to 1.0x, 1.5x, 2.0x per user requirement
+      for (const snap of SNAP_TARGETS) {
+        if (Math.abs(rawVal - snap) <= SNAP_THRESHOLD) {
+          rawVal = snap;
+          elQuickSpeedSlider.value = snap;
+          break;
+        }
+      }
+      setPlaybackSpeed(rawVal, false);
+    });
+  }
+
   if (elQuickSpeedPills) {
     elQuickSpeedPills.querySelectorAll('.quick-speed-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -7325,6 +7352,20 @@ Tedavi:
           if (typeof playAudioTone === 'function') playAudioTone(520, 'sine', 0.08);
         }
       });
+    });
+  }
+
+  if (elQuickSpeedBadge) {
+    elQuickSpeedBadge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const current = state.speechRate || 1.5;
+      let next = 1.5;
+      if (Math.abs(current - 1.0) < 0.08) next = 1.5;
+      else if (Math.abs(current - 1.5) < 0.08) next = 2.0;
+      else if (Math.abs(current - 2.0) < 0.08) next = 1.0;
+      else next = 1.5;
+      setPlaybackSpeed(next, true);
+      if (typeof playAudioTone === 'function') playAudioTone(580, 'sine', 0.08);
     });
   }
 
