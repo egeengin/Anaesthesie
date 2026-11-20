@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.26'; // upgraded from facharzt-cache-v7.7 - split BGA electrolyte chips & stepped CPR/advanced list
+const CACHE_NAME = 'facharzt-cache-v12.27'; // upgraded from facharzt-cache-v7.7 - inline BGA label with chips
 const CORE_ASSETS = [
   './',
   './index.html',

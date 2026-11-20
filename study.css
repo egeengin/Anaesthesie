@@ -2030,11 +2030,15 @@ body.mode-german-only .trans-interactive {
   color: var(--text-primary, #0f172a);
 }
 
-.melis-bga-chips {
+.melis-bga-row {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 4px;
+}
+
+.melis-bga-chips {
+  display: contents;
 }
 
 .melis-bga-chip {

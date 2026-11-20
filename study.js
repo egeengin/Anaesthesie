@@ -693,7 +693,7 @@
           </div>
           <div class="melis-bga-strip">
             <div><strong>EKG:</strong> ${renderInteractiveGerman(String(monitorData.vitals.rhythmDE || '').replace(/^EKG:\s*/i, ''), String(monitorData.vitals.rhythmTR || '').replace(/^EKG:\s*/i, ''))}</div>
-            <div>
+            <div class="melis-bga-row">
               <strong>BGA:</strong>
               <div class="melis-bga-chips">
                 <span class="melis-bga-chip">pH <strong>${escapeHtml(monitorData.bga.ph)}</strong></span>
