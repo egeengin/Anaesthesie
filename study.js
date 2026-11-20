@@ -1073,50 +1073,121 @@
     attachCardEventListeners();
   }
 
+  let autoReadObserver = null;
+  const autoReadTimers = new Map();
+
+  function setCardReadStatus(id, isRead, opts = {}) {
+    const card = document.getElementById(`card-${id}`);
+    const btn = card ? card.querySelector('.btn-toggle-read') : document.querySelector(`.btn-toggle-read[data-id="${id}"]`);
+    const label = state.viewMode === 'german' ? 'Gelesen' : 'Okundu';
+
+    if (isRead) {
+      readStatus[id] = true;
+      if (btn) {
+        btn.classList.add('active-read');
+        btn.innerHTML = `<span>✓</span> ${label}`;
+      }
+      if (card) card.classList.add('is-read');
+      recordDailyRead(id, true);
+      if (opts.haptic) triggerHapticFeedback();
+      if (opts.autoScroll && card) {
+        const nextCard = card.nextElementSibling;
+        if (nextCard && nextCard.classList && nextCard.classList.contains('study-card')) {
+          setTimeout(() => {
+            nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 220);
+        }
+      }
+    } else {
+      delete readStatus[id];
+      if (btn) {
+        btn.classList.remove('active-read');
+        btn.innerHTML = `<span>○</span> ${label}`;
+      }
+      if (card) card.classList.remove('is-read');
+      recordDailyRead(id, false);
+    }
+
+    localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(readStatus));
+    updateProgressBar();
+    try {
+      const appState = JSON.parse(localStorage.getItem('facharzt_anaesthesie_state_v2') || '{}');
+      appState.studyReadStatus = readStatus;
+      localStorage.setItem('facharzt_anaesthesie_state_v2', JSON.stringify(appState));
+      if (window.StorageSync && typeof window.StorageSync.pushToCloud === 'function') {
+        window.StorageSync.pushToCloud(appState);
+      }
+    } catch (e) {
+      console.warn('[StudySync] Background sync to appState failed:', e);
+    }
+  }
+
+  function setupAutoReadObserver() {
+    if (autoReadObserver) {
+      autoReadObserver.disconnect();
+      autoReadObserver = null;
+    }
+    autoReadTimers.forEach(t => clearTimeout(t));
+    autoReadTimers.clear();
+
+    if (typeof IntersectionObserver === 'undefined') return;
+    const studyWrapper = document.getElementById('study-view-wrapper');
+
+    autoReadObserver = new IntersectionObserver((entries) => {
+      if (studyWrapper && studyWrapper.style.display === 'none') return;
+      entries.forEach(entry => {
+        const card = entry.target;
+        const id = card.id ? card.id.replace(/^card-/, '') : '';
+        if (!id || readStatus[id]) {
+          autoReadObserver.unobserve(card);
+          return;
+        }
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+          if (!autoReadTimers.has(id)) {
+            const timer = setTimeout(() => {
+              autoReadTimers.delete(id);
+              if (studyWrapper && studyWrapper.style.display === 'none') return;
+              if (!readStatus[id] && document.body.contains(card)) {
+                setCardReadStatus(id, true, { autoScroll: false, haptic: false });
+                if (autoReadObserver) autoReadObserver.unobserve(card);
+              }
+            }, 2500);
+            autoReadTimers.set(id, timer);
+          }
+        } else if (autoReadTimers.has(id)) {
+          clearTimeout(autoReadTimers.get(id));
+          autoReadTimers.delete(id);
+        }
+      });
+    }, { threshold: [0.45] });
+
+    document.querySelectorAll('.study-card').forEach(card => {
+      const id = card.id ? card.id.replace(/^card-/, '') : '';
+      if (id && !readStatus[id]) {
+        autoReadObserver.observe(card);
+      }
+    });
+  }
+
   // --- Attach Interactive Event Listeners to Rendered Cards ---
   function attachCardEventListeners() {
     document.querySelectorAll('.btn-toggle-read').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const id = btn.getAttribute('data-id');
-        const card = document.getElementById(`card-${id}`);
-        const current = !!readStatus[id];
-        
-        if (current) {
-          delete readStatus[id];
-          btn.classList.remove('active-read');
-          btn.innerHTML = `<span>○</span> ${state.viewMode === 'german' ? 'Gelesen' : 'Okundu'}`;
-          if (card) card.classList.remove('is-read');
-          recordDailyRead(id, false);
-        } else {
-          readStatus[id] = true;
-          btn.classList.add('active-read');
-          btn.innerHTML = `<span>✓</span> ${state.viewMode === 'german' ? 'Gelesen' : 'Okundu'}`;
-          if (card) card.classList.add('is-read');
-          recordDailyRead(id, true);
-          triggerHapticFeedback();
-          const nextCard = card ? card.nextElementSibling : null;
-          if (nextCard && nextCard.classList && nextCard.classList.contains('study-card')) {
-            setTimeout(() => {
-              nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 220);
-          }
+        const nextRead = !readStatus[id];
+        if (autoReadTimers.has(id)) {
+          clearTimeout(autoReadTimers.get(id));
+          autoReadTimers.delete(id);
         }
-
-        localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(readStatus));
-        updateProgressBar();
-        try {
-          const appState = JSON.parse(localStorage.getItem('facharzt_anaesthesie_state_v2') || '{}');
-          appState.studyReadStatus = readStatus;
-          localStorage.setItem('facharzt_anaesthesie_state_v2', JSON.stringify(appState));
-          if (window.StorageSync && typeof window.StorageSync.pushToCloud === 'function') {
-            window.StorageSync.pushToCloud(appState);
-          }
-        } catch (e) {
-          console.warn('[StudySync] Background sync to appState failed:', e);
+        if (!nextRead && autoReadObserver) {
+          const card = document.getElementById(`card-${id}`);
+          if (card) autoReadObserver.unobserve(card);
         }
+        setCardReadStatus(id, nextRead, { autoScroll: nextRead, haptic: nextRead });
       });
     });
+    setupAutoReadObserver();
 
     document.querySelectorAll('.btn-star-card').forEach(btn => {
       btn.addEventListener('click', (e) => {
