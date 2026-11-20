@@ -1591,7 +1591,8 @@
       }
       currentSpeakingBtn = btnEl;
       btnEl.classList.add('is-speaking');
-      btnEl.innerHTML = '<span>🔊</span> Durdur';
+      const isDeSpeak = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
+      btnEl.innerHTML = `<span>🔊</span> ${isDeSpeak ? 'Stopp' : 'Durdur'}`;
     }
 
     const voices = window.speechSynthesis.getVoices();
@@ -1926,6 +1927,7 @@
     setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="unread"] .quick-filter-label', 'Ungelesen', 'Okunmamış');
     setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="starred"] .quick-filter-label', 'Markiert', 'Kritik');
     setText('#study-btn-load-more', 'Mehr anzeigen', 'Daha Fazla Göster');
+    setText('#audio-restart-text', 'Neustart', 'Baştan');
     setText('#study-btn-prev-bottom', '← Zurück', '← Önceki');
     setText('#study-btn-next-bottom', 'Weiter →', 'Sonraki →');
 
