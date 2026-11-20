@@ -2046,6 +2046,15 @@ body.mode-german-only .trans-interactive {
   white-space: nowrap;
 }
 
+.melis-advanced-steps {
+  margin: 4px 0 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1.5;
+}
+
 [data-theme="dark"] .melis-bga-strip {
   background: transparent;
   border-top-color: rgba(148, 163, 184, 0.16);

@@ -635,6 +635,29 @@
       const vEtco2 = monitorData ? splitVital(monitorData.vitals.etco2) : null;
       const vTemp = monitorData ? splitVital(monitorData.vitals.temp) : null;
 
+      const formatBgaChip = (raw) => {
+        const s = String(raw || '').trim();
+        const m = s.match(/^([^\d\-+<>=]+?)\s+([\-+<>=]?\d.*)$/);
+        if (m) {
+          return `<span class="melis-bga-chip">${escapeHtml(m[1].trim())} <strong>${escapeHtml(m[2].trim())}</strong></span>`;
+        }
+        return `<span class="melis-bga-chip">${escapeHtml(s)}</span>`;
+      };
+      const electrolyteChipsHtml = String(monitorData && monitorData.bga && monitorData.bga.electrolytes || '')
+        .split(/\s*·\s*/)
+        .filter(Boolean)
+        .map(formatBgaChip)
+        .join('');
+      const advancedStepsDE = String(monitorData && monitorData.advanced && monitorData.advanced.valuesDE || '')
+        .split(/\s*·\s*/)
+        .filter(Boolean);
+      const advancedStepsTR = String(monitorData && monitorData.advanced && monitorData.advanced.valuesTR || '')
+        .split(/\s*·\s*/)
+        .filter(Boolean);
+      const advancedStepsHtml = advancedStepsDE.length > 1
+        ? `<ul class="melis-advanced-steps">${advancedStepsDE.map((step, i) => `<li>${renderInteractiveGerman(step, advancedStepsTR[i] || '')}</li>`).join('')}</ul>`
+        : (monitorData && monitorData.advanced ? `<span>${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}</span>` : '');
+
       const monitorHtml = monitorData ? `
         <div class="melis-monitor-strip">
           <div class="melis-monitor-header">
@@ -680,13 +703,13 @@
                 <span class="melis-bga-chip">BE <strong>${escapeHtml(monitorData.bga.be)}</strong></span>
                 <span class="melis-bga-chip">Laktat <strong>${escapeHtml(monitorData.bga.lactate)}</strong></span>
                 <span class="melis-bga-chip">Hb <strong>${escapeHtml(monitorData.bga.hb)}</strong></span>
-                <span class="melis-bga-chip">${escapeHtml(monitorData.bga.electrolytes)}</span>
+                ${electrolyteChipsHtml}
               </div>
             </div>
             ${monitorData.advanced ? `
             <div>
               <strong>${escapeHtml(monitorData.advanced.labelDE)}:</strong>
-              ${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}
+              ${advancedStepsHtml}
             </div>
             ` : ''}
           </div>
