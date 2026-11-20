@@ -907,7 +907,7 @@
               <button class="btn-card-action btn-star-card ${isStarred ? 'starred' : ''}" data-id="${q.id}" title="Kritik Vaka Olarak Yıldızla">
                 <span>⭐</span>
               </button>
-              <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Redeeinstieg, Model Cevap ve K.O.-İpucunu Sesli Dinle">
+              <button class="btn-card-action btn-pronounce-card" data-card-id="${q.id}" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Redeeinstieg, Model Cevap ve K.O.-İpucunu Sesli Dinle">
                 <span>🔊</span> ${state.viewMode === 'german' ? 'Anhören' : 'Dinle'}
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
@@ -1270,7 +1270,8 @@
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const text = btn.getAttribute('data-text');
-        speakGerman(text, btn);
+        const cardId = btn.getAttribute('data-card-id') || btn.closest('.study-card')?.getAttribute('data-id');
+        speakGerman(text, btn, cardId);
       });
     });
 
@@ -1557,7 +1558,15 @@
     }
   }
 
-  function speakGerman(text, btnEl = null) {
+  function speakGerman(text, btnEl = null, cardId = null) {
+    if (typeof window.speakText === 'function') {
+      const localAudio = (typeof window.LOCAL_AUDIO_MANIFEST !== 'undefined' && cardId && window.LOCAL_AUDIO_MANIFEST[cardId])
+        ? window.LOCAL_AUDIO_MANIFEST[cardId]
+        : null;
+      window.speakText(text, btnEl, null, localAudio);
+      return;
+    }
+
     if (!('speechSynthesis' in window) || !text) return;
 
     const isSameBtnActive = !!(

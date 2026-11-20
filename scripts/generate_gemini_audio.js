@@ -159,13 +159,17 @@ async function main() {
 
   const args = process.argv.slice(2);
   let limit = Infinity;
-  let delayMs = 3500;
+  let delayMs = 4500;
   let voice = 'Charon';
+  let prefix = '';
+  let force = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--limit' && args[i + 1]) limit = parseInt(args[++i], 10);
     if (args[i] === '--delay' && args[i + 1]) delayMs = parseInt(args[++i], 10);
     if (args[i] === '--voice' && args[i + 1]) voice = args[++i];
+    if (args[i] === '--prefix' && args[i + 1]) prefix = args[++i];
+    if (args[i] === '--force') force = true;
   }
 
   // Load questions
@@ -176,8 +180,12 @@ async function main() {
     process.exit(1);
   }
 
-  const questions = eval(match[1]);
-  console.log(`Loaded ${questions.length} total questions. Processing up to ${limit}...`);
+  let questions = eval(match[1]);
+  if (prefix) {
+    questions = questions.filter(q => q.id.startsWith(prefix));
+    console.log(`Filtered ${questions.length} questions matching prefix "${prefix}".`);
+  }
+  console.log(`Processing up to ${limit} questions with delay ${delayMs}ms...`);
 
   let count = 0;
   let skipped = 0;
@@ -189,7 +197,7 @@ async function main() {
     const m4aPath = path.join(AUDIO_DIR, `${baseName}.m4a`);
     const wavPath = path.join(AUDIO_DIR, `${baseName}.wav`);
 
-    if (fs.existsSync(m4aPath) || fs.existsSync(wavPath)) {
+    if (!force && (fs.existsSync(m4aPath) || fs.existsSync(wavPath))) {
       skipped++;
       continue;
     }
@@ -201,7 +209,7 @@ async function main() {
       continue;
     }
 
-    console.log(`[${count + 1}/${limit}] Generating audio for ${q.id} (${cleanSpeech.length} chars)...`);
+    console.log(`[${count + 1}] Generating audio for ${q.id} (${cleanSpeech.length} chars)...`);
     try {
       const wavBuf = await synthesizeText(cleanSpeech, voice);
       fs.writeFileSync(wavPath, wavBuf);
