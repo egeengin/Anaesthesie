@@ -97,10 +97,9 @@ function convertWavToM4a(wavPath, m4aPath) {
 }
 
 async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
+  // Pin strictly to the highest-fidelity Gemini 2.5 model (Charon studio voice)
   const models = [
-    'gemini-3.1-flash-tts-preview',
-    'gemini-2.5-flash-preview-tts',
-    'gemini-3.8-flash-tts'
+    'gemini-2.5-flash-preview-tts'
   ];
   // Direct text without English intro to prevent the model from pronouncing English instructions
   const cleanPrompt = text;
