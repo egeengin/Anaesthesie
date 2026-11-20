@@ -625,16 +625,28 @@
           <div class="step-header-audio-controls">
             <!-- Audio Speech & Dedicated Stop / Interrupt Controls -->
             <div class="audio-speak-group" id="audio-speak-group">
-              <button id="btn-audio-speak" class="oral-tool-btn audio-listen-pill btn-audio" title="Fall & Fragetext laut vorlesen (Taste P)">
+              <button id="btn-audio-speak" class="oral-tool-btn audio-listen-pill btn-audio" title="Fall & Fragetext laut vorlesen / pausieren (Taste P)">
                 <span class="tool-icon audio-speaker-icon">🔊</span>
                 <span id="audio-speak-text">Vorlesen</span>
                 <kbd class="kbd-hint">P</kbd>
               </button>
-              <button id="btn-audio-stop" class="oral-tool-btn audio-stop-pill" style="display: none;" title="Vorlesen sofort stoppen (Taste Esc)" aria-label="Vorlesen stoppen">
+              <button id="btn-audio-restart" class="oral-tool-btn audio-restart-pill" style="display: none;" title="Von vorne beginnen / Baştan başla" aria-label="Von vorne beginnen">
+                <span class="tool-icon">⏮️</span>
+                <span id="audio-restart-text">Baştan</span>
+              </button>
+              <button id="btn-audio-stop" class="oral-tool-btn audio-stop-pill" style="display: none;" title="Vorlesen sofort stoppen & zurücksetzen (Taste Esc)" aria-label="Vorlesen stoppen">
                 <span class="tool-icon">⏹️</span>
                 <span>Stopp</span>
                 <kbd class="kbd-hint">Esc</kbd>
               </button>
+            </div>
+
+            <!-- Direct Quick Speed Pills (1x, 1.15x, 1.25x, 1.5x) -->
+            <div class="quick-speed-pills" id="quick-speed-pills" title="Wiedergabegeschwindigkeit schnell wählen / Hızlı oynatma hızı">
+              <button type="button" class="quick-speed-btn" data-speed="1.0">1.0x</button>
+              <button type="button" class="quick-speed-btn active" data-speed="1.15">1.15x</button>
+              <button type="button" class="quick-speed-btn" data-speed="1.25">1.25x</button>
+              <button type="button" class="quick-speed-btn" data-speed="1.5">1.5x</button>
             </div>
 
             <!-- YouTube-Style Playback Speed & Natural Voice Engine Menu -->
@@ -2708,6 +2720,7 @@
   <script src="js/storage_sync.js"></script>
   <script src="js/speech_engine.js?v=7.7"></script>
   <script src="js/curriculum_engine.js?v=10.4"></script>
+  <script src="js/audio_manifest.js?v=1.0"></script>
   <script src="questions.js?v=9.0"></script>
   <script src="app.js?v=7.7"></script>
 
@@ -2723,7 +2736,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.27')
+        navigator.serviceWorker.register('./sw.js?v=12.28')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2738,7 +2751,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=12.27"></script>
+  <script src="study.js?v=12.28"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');

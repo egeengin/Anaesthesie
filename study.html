@@ -253,7 +253,7 @@
   <script src="js/curriculum_engine.js?v=10.4"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
   <script src="questions.js?v=9.0"></script>
-  <script src="study.js?v=12.27"></script>
+  <script src="study.js?v=12.28"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let swRefreshing = false;
@@ -264,7 +264,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.27')
+        navigator.serviceWorker.register('./sw.js?v=12.28')
           .then(reg => {
             if (typeof reg.update === 'function') {
               reg.update();

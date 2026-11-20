@@ -1901,12 +1901,31 @@
     setHtml('#study-btn-active-recall-toggle', '<span>🙈</span> Antworten ausblenden', '<span>🙈</span> Cevapları Gizle');
     setText('#study-aa-dropdown .aa-popover-label', 'Schriftgröße', 'Yazı Boyutu');
 
+    // Tools dropdown items
+    setText('#nav-tools-dropdown .dropdown-header', 'Klinische Werkzeuge & Prüfung', 'Klinik Araçlar & Sınav');
+    setText('#pocket-trigger .item-title', 'Notfallkarten & SOP', 'Acil Kartlar & SOP');
+    setText('#calc-trigger .item-title', 'Klinischer Rechner', 'Klinik Hesaplayıcı');
+    setText('#calc-trigger .item-sub', 'Pädiatrie, ARDS, LA, Na', 'Pediatri, ARDS, LA, Na');
+    setText('#mock-exam-trigger .item-title', '45-Min-Prüfungssimulation', '45-Dk Sınav Simülasyonu');
+    setText('#mock-exam-trigger .item-sub', 'Realistische mündliche Prüfung', 'Gerçekçi Sözlü Sınav');
+    setText('#readiness-trigger .item-title', 'Prüfungs-Readiness-Radar', 'Sınav Hazırlık Radarı');
+    setText('#readiness-trigger .item-sub', 'ÄKNO-Vorbereitungsscore', 'ÄKNO Hazırlık Skoru');
+    setText('#aekno-guide-trigger .item-title', 'Düsseldorf-Leitfaden', 'Düsseldorf Rehberi');
+    setText('#aekno-guide-trigger .item-sub', 'Prüfer & K.O.-Kriterien', 'Jüri & K.O. Kriterleri');
+    setText('#grid-trigger .item-title', 'Fragenmatrix (669)', 'Soru Matrisi (669)');
+    setText('#grid-trigger .item-sub', 'Alle Fälle im Überblick', 'Tüm Vaka Navigasyonu');
+    setText('#abbrev-trigger .item-title', 'Med. Abkürzungen', 'Tıbbi Kısaltmalar (DE/TR)');
+    setText('#abbrev-trigger .item-sub', '73 Abkürzungen', '73 Tıbbi Kısaltma');
+    setText('#user-guide-trigger .item-title', 'Benutzerhandbuch', 'Kullanım Kılavuzu');
+    setText('#user-guide-trigger .item-sub', 'Prüfungsleitfaden & Tipps', 'Sınav Rehberi & İpuçları');
+
     const searchInp = document.getElementById('study-search-input');
     if (searchInp) searchInp.placeholder = isGerman ? 'Fall oder Medikament suchen...' : 'Vaka veya ilaç ara...';
 
-    setText('#study-btn-toggle-categories', isGerman ? '📂 Themen ▾' : '📂 Konular ▾', '📂 Konular ▾');
-    setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="unread"]', '○ Ungelesen', '○ Okunmamış');
-    setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="starred"]', '⭐ Markiert', '⭐ Yıldızlı');
+    setText('#study-btn-toggle-categories .category-drawer-label', 'Themen', 'Konular (60)');
+    setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="unread"] .quick-filter-label', 'Ungelesen', 'Okunmamış');
+    setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="starred"] .quick-filter-label', 'Markiert', 'Kritik');
+    setText('#study-btn-load-more', 'Mehr anzeigen', 'Daha Fazla Göster');
     setText('#study-btn-prev-bottom', '← Zurück', '← Önceki');
     setText('#study-btn-next-bottom', 'Weiter →', 'Sonraki →');
 

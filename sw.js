@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.27'; // upgraded from facharzt-cache-v7.7 - inline BGA label with chips
+const CACHE_NAME = 'facharzt-cache-v12.28'; // upgraded from facharzt-cache-v7.7 - full German UI in tools dropdown & filters
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -20,6 +20,7 @@ const CORE_ASSETS = [
   './js/storage_sync.js',
   './js/speech_engine.js',
   './js/curriculum_engine.js',
+  './js/audio_manifest.js',
   './manifest.json',
   './favicon.svg',
   './study.html',
