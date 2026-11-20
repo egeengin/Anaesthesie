@@ -1850,7 +1850,7 @@
     setText('#master-btn-study strong', 'Lernen & Lesen', 'Çalışma & Okuma');
     setText('#master-btn-exam strong', 'Prüfungssimulator', 'Sınav Simülatörü');
     setText('#nav-tools-menu-btn .pill-btn-text', 'Werkzeuge', 'Araçlar');
-    setHtml('#study-btn-active-recall-toggle', '<span>⚡</span> ' + (isGerman ? 'Testmodus' : 'Test Modu'), '<span>⚡</span> Test Modu');
+    setHtml('#study-btn-active-recall-toggle', '<span>🙈</span> Antworten ausblenden', '<span>🙈</span> Cevapları Gizle');
     setText('#study-aa-dropdown .aa-popover-label', 'Schriftgröße', 'Yazı Boyutu');
 
     const searchInp = document.getElementById('study-search-input');

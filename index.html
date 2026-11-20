@@ -22,7 +22,7 @@
   
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="styles.css?v=12.3">
-  <link rel="stylesheet" href="study.css?v=11.7">
+  <link rel="stylesheet" href="study.css?v=11.8">
 </head>
 <body>
 
@@ -111,9 +111,6 @@
               <span class="stepper-glyph-large">A⁺</span>
             </button>
           </div>
-          <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
-            <span>⚡</span> Test Modu
-          </button>
           <button id="study-aa-menu-btn" style="display: none;" type="button" aria-hidden="true"></button>
         </div>
 
@@ -244,6 +241,9 @@
             </button>
             <button type="button" class="btn-toggle-category-drawer btn-study-quick-filter" data-quick-filter="starred" title="Yıldızlı / Kritik Vakalarımı Göster">
               <span>⭐</span> <span class="quick-filter-label">Kritik</span>
+            </button>
+            <button id="study-btn-active-recall-toggle" type="button" class="btn-toggle-category-drawer" title="Cevapları gizleyip kendini test et (Aktif Hatırlama)">
+              <span>🙈</span> Cevapları Gizle
             </button>
           </div>
         </div>
@@ -2734,7 +2734,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.22')
+        navigator.serviceWorker.register('./sw.js?v=12.23')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
