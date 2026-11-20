@@ -22,7 +22,7 @@
   
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="styles.css?v=12.3">
-  <link rel="stylesheet" href="study.css?v=11.6">
+  <link rel="stylesheet" href="study.css?v=11.7">
 </head>
 <body>
 
@@ -2734,7 +2734,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.20')
+        navigator.serviceWorker.register('./sw.js?v=12.21')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {

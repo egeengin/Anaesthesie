@@ -177,40 +177,40 @@
 }
 
 [data-theme="sepia"] .melis-monitor-strip {
-  background: #231c16;
-  border-color: #3d3024;
-  border-left-color: #d97706;
-  color: #faf3e8;
+  background: #f5ede0;
+  border-color: #dfd4c0;
+  border-left-color: #b45309;
+  color: #2c2219;
 }
 
 [data-theme="sepia"] .melis-monitor-header {
-  color: #fbbf24;
-  border-bottom-color: rgba(223, 212, 192, 0.2);
+  color: #92400e;
+  border-bottom-color: rgba(146, 64, 14, 0.16);
 }
 
 [data-theme="sepia"] .melis-vital-tile {
-  background: #2d241c !important;
-  border-color: #42362a !important;
+  background: #fcf8f2 !important;
+  border-color: #e4d8c6 !important;
 }
 
 [data-theme="sepia"] .melis-vital-label {
-  color: #c4b5a0 !important;
+  color: #7c6a58 !important;
 }
 
 [data-theme="sepia"] .melis-bga-strip {
-  background: #1c1611;
-  border-color: rgba(217, 119, 6, 0.35);
-  color: #f5ebe0;
+  background: #faf5ec;
+  border-color: #e4d8c6;
+  color: #3d3024;
 }
 
 [data-theme="sepia"] .melis-bga-strip strong {
-  color: #fbbf24;
+  color: #92400e;
 }
 
 [data-theme="sepia"] .melis-monitor-pattern {
-  background: rgba(180, 83, 9, 0.14);
-  border-left-color: #d97706;
-  color: #fef3c7;
+  background: rgba(180, 83, 9, 0.08);
+  border-left-color: #b45309;
+  color: #451a03;
 }
 
 [data-theme="sepia"] .oral-role-badge.examiner-role-badge {
@@ -1883,16 +1883,16 @@ body.mode-german-only .trans-interactive {
   border-color: #f59e0b;
 }
 
-/* 1. Data-First Clinical Monitor & BGA Strip */
+/* 1. Data-First Clinical Monitor & BGA Strip (Theme-Adaptive, Elite & Clean) */
 .melis-monitor-strip {
   margin-top: 12px;
   margin-bottom: 14px;
-  background: #0f172a;
-  color: #f8fafc;
-  border: 1px solid #1e293b;
-  border-left: 4px solid #10b981;
+  background: var(--bg-secondary, #f8fafc);
+  color: var(--text-primary, #1e293b);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-left: 3px solid var(--primary, #8d6346);
   border-radius: var(--radius-md);
-  padding: 12px 14px;
+  padding: 14px 16px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1903,27 +1903,33 @@ body.mode-german-only .trans-interactive {
   flex-wrap: wrap;
   gap: 8px;
   padding-bottom: 8px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-  font-size: 0.78rem;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.07));
+  font-size: 0.76rem;
   font-weight: 700;
-  color: #38bdf8;
-  letter-spacing: 0.03em;
+  color: var(--primary, #8d6346);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .melis-vitals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 760px) {
+  .melis-vitals-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .melis-vital-tile {
-  background: #141e2e !important;
-  border: 1px solid #1e293b !important;
+  background: var(--bg-card, #ffffff) !important;
+  border: 1px solid var(--border-color, #e2e8f0) !important;
   border-radius: 8px !important;
-  padding: 8px 10px !important;
+  padding: 9px 11px !important;
   box-shadow: none !important;
 }
 
@@ -1932,16 +1938,17 @@ body.mode-german-only .trans-interactive {
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.04em !important;
-  color: #94a3b8 !important;
+  color: var(--text-muted, #64748b) !important;
   margin-bottom: 3px !important;
 }
 
 .melis-vital-value {
-  font-size: 0.95rem !important;
-  font-weight: 800 !important;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, monospace, sans-serif !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
   margin-top: 2px !important;
   line-height: 1.35 !important;
+  color: var(--text-primary, #0f172a) !important;
   background: transparent !important;
   background-image: none !important;
   border: none !important;
@@ -1949,11 +1956,38 @@ body.mode-german-only .trans-interactive {
   padding: 0 !important;
 }
 
-.melis-val-hr { color: #22c55e !important; text-shadow: 0 0 12px rgba(34, 197, 94, 0.35) !important; }
-.melis-val-bp { color: #f43f5e !important; text-shadow: 0 0 12px rgba(244, 63, 94, 0.35) !important; }
-.melis-val-spo2 { color: #38bdf8 !important; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35) !important; }
-.melis-val-etco2 { color: #facc15 !important; text-shadow: 0 0 12px rgba(250, 204, 21, 0.35) !important; }
-.melis-val-temp { color: #c084fc !important; text-shadow: 0 0 12px rgba(192, 132, 252, 0.35) !important; }
+.melis-val-hr { color: #15803d !important; text-shadow: none !important; }
+.melis-val-bp { color: #b91c1c !important; text-shadow: none !important; }
+.melis-val-spo2 { color: #0369a1 !important; text-shadow: none !important; }
+.melis-val-etco2 { color: #b45309 !important; text-shadow: none !important; }
+.melis-val-temp { color: #6d28d9 !important; text-shadow: none !important; }
+
+[data-theme="dark"] .melis-monitor-strip {
+  background: #0f172a;
+  color: #f8fafc;
+  border-color: #1e293b;
+  border-left-color: #10b981;
+}
+
+[data-theme="dark"] .melis-monitor-header {
+  color: #38bdf8;
+  border-bottom-color: rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="dark"] .melis-vital-tile {
+  background: #141e2e !important;
+  border-color: #1e293b !important;
+}
+
+[data-theme="dark"] .melis-vital-label {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .melis-val-hr { color: #4ade80 !important; }
+[data-theme="dark"] .melis-val-bp { color: #fb7185 !important; }
+[data-theme="dark"] .melis-val-spo2 { color: #38bdf8 !important; }
+[data-theme="dark"] .melis-val-etco2 { color: #facc15 !important; }
+[data-theme="dark"] .melis-val-temp { color: #c084fc !important; }
 
 /* In case any parent or third-party class adds gradients, forcefully clear backgrounds */
 .melis-vital-tile * {
@@ -1969,27 +2003,67 @@ body.mode-german-only .trans-interactive {
 }
 
 .melis-bga-strip {
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px dashed rgba(56, 189, 248, 0.35);
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   font-size: var(--font-sm);
-  line-height: 1.5;
-  color: #e2e8f0;
-  margin-bottom: 8px;
+  line-height: 1.6;
+  color: var(--text-secondary, #334155);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .melis-bga-strip strong {
+  color: var(--text-primary, #0f172a);
+}
+
+.melis-bga-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.melis-bga-chip {
+  background: var(--bg-secondary, #f1f5f9);
+  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08));
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .melis-bga-strip {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(56, 189, 248, 0.25);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .melis-bga-strip strong {
   color: #38bdf8;
+}
+
+[data-theme="dark"] .melis-bga-chip {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(148, 163, 184, 0.2);
 }
 
 .melis-monitor-pattern {
   font-size: var(--font-sm);
-  line-height: 1.5;
-  padding: 7px 10px;
-  background: rgba(16, 185, 129, 0.12);
-  border-left: 3px solid #10b981;
+  line-height: 1.55;
+  padding: 9px 12px;
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 3px solid #059669;
   border-radius: 6px;
+  color: var(--text-primary, #064e3b);
+}
+
+[data-theme="dark"] .melis-monitor-pattern {
+  background: rgba(16, 185, 129, 0.12);
+  border-left-color: #10b981;
   color: #ecfdf5;
 }
 

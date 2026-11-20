@@ -619,7 +619,7 @@
         <div class="melis-monitor-strip">
           <div class="melis-monitor-header">
             <span>📟 ${renderInteractiveGerman(monitorData.scenarioBadgeDE, monitorData.scenarioBadgeTR)}</span>
-            <span class="inline-bilingual-tr" style="color: #94a3b8; font-size: var(--font-xs); text-transform: none;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
+            <span class="inline-bilingual-tr" style="font-size: var(--font-xs); text-transform: none; opacity: 0.85;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
           </div>
           <div class="melis-vitals-grid">
             <div class="melis-vital-tile">
@@ -644,28 +644,30 @@
             </div>
           </div>
           <div class="melis-bga-strip">
-            <div><strong>📈 EKG:</strong> ${renderInteractiveGerman(monitorData.vitals.rhythmDE, monitorData.vitals.rhythmTR)}</div>
-            <div style="margin-top: 4px;">
+            <div><strong>📈 EKG:</strong> ${renderInteractiveGerman(String(monitorData.vitals.rhythmDE || '').replace(/^EKG:\s*/i, ''), String(monitorData.vitals.rhythmTR || '').replace(/^EKG:\s*/i, ''))}</div>
+            <div>
               <strong>🩸 BGA:</strong>
-              pH <strong>${escapeHtml(monitorData.bga.ph)}</strong> ·
-              PaCO₂ <strong>${escapeHtml(monitorData.bga.pco2)}</strong> ·
-              PaO₂ <strong>${escapeHtml(monitorData.bga.po2)}</strong> ·
-              HCO₃⁻ <strong>${escapeHtml(monitorData.bga.hco3)}</strong> ·
-              BE <strong>${escapeHtml(monitorData.bga.be)}</strong> ·
-              Laktat <strong>${escapeHtml(monitorData.bga.lactate)}</strong> ·
-              Hb <strong>${escapeHtml(monitorData.bga.hb)}</strong> ·
-              ${escapeHtml(monitorData.bga.electrolytes)}
+              <div class="melis-bga-chips">
+                <span class="melis-bga-chip">pH <strong>${escapeHtml(monitorData.bga.ph)}</strong></span>
+                <span class="melis-bga-chip">PaCO₂ <strong>${escapeHtml(monitorData.bga.pco2)}</strong></span>
+                <span class="melis-bga-chip">PaO₂ <strong>${escapeHtml(monitorData.bga.po2)}</strong></span>
+                <span class="melis-bga-chip">HCO₃⁻ <strong>${escapeHtml(monitorData.bga.hco3)}</strong></span>
+                <span class="melis-bga-chip">BE <strong>${escapeHtml(monitorData.bga.be)}</strong></span>
+                <span class="melis-bga-chip">Laktat <strong>${escapeHtml(monitorData.bga.lactate)}</strong></span>
+                <span class="melis-bga-chip">Hb <strong>${escapeHtml(monitorData.bga.hb)}</strong></span>
+                <span class="melis-bga-chip">${escapeHtml(monitorData.bga.electrolytes)}</span>
+              </div>
             </div>
             ${monitorData.advanced ? `
-            <div style="margin-top: 4px;">
+            <div>
               <strong>🔬 ${escapeHtml(monitorData.advanced.labelDE)}:</strong>
               ${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}
             </div>
             ` : ''}
           </div>
           <div class="melis-monitor-pattern">
-            <strong>⚡ Data-First Reflex:</strong> ${renderInteractiveGerman(monitorData.patternDE, monitorData.patternTR)}
-            <div class="inline-bilingual-tr" style="color: #a7f3d0; margin-top: 3px;">🇹🇷 ${escapeHtml(monitorData.patternTR)}</div>
+            <strong>⚡ Klinisches Muster:</strong> ${renderInteractiveGerman(String(monitorData.patternDE || '').replace(/^Mustererkennung:\s*/i, ''), String(monitorData.patternTR || '').replace(/^Örüntü Tanıma:\s*/i, ''))}
+            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(monitorData.patternTR)}</div>
           </div>
         </div>
       ` : '';
