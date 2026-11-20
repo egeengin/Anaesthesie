@@ -82,27 +82,26 @@
         </div>
 
         <div id="study-nav-controls" class="study-nav-controls">
+          <div class="mode-pill-group" role="group" aria-label="Dil Modu">
+            <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
+              <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
+            </button>
+            <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
+              <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
+            </button>
+            <button class="btn-mode-tab" data-mode="german" title="Nur Deutsch / Sadece Almanca">
+              <span class="mode-flags">🇩🇪</span>
+            </button>
+          </div>
+          <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
+            <span>⚡</span> Test Modu
+          </button>
           <div class="nav-dropdown-wrapper study-aa-wrapper">
-            <button id="study-aa-menu-btn" class="pill-btn pill-btn-aa" type="button" aria-haspopup="true" aria-expanded="false" title="Okuma Ayarları: Dil, Test Modu, Yazı Boyutu ve Tema">
+            <button id="study-aa-menu-btn" class="pill-btn pill-btn-aa" type="button" aria-haspopup="true" aria-expanded="false" title="Schriftgröße / Yazı Boyutu">
               <span class="aa-glyph">Aa</span>
               <span class="dropdown-chevron">▾</span>
             </button>
-            <div id="study-aa-dropdown" class="study-aa-dropdown-menu" role="dialog" aria-label="Okuma Ayarları">
-              <div class="aa-popover-section">
-                <div class="aa-popover-label">Dil Modu</div>
-                <div class="mode-pill-group" role="group" aria-label="Dil Modu">
-                  <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
-                    <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
-                  </button>
-                  <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
-                    <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
-                  </button>
-                  <button class="btn-mode-tab" data-mode="german" title="Sadece Almanca">
-                    <span class="mode-flags">🇩🇪</span>
-                  </button>
-                </div>
-              </div>
-
+            <div id="study-aa-dropdown" class="study-aa-dropdown-menu" role="dialog" aria-label="Schriftgröße">
               <div class="aa-popover-section">
                 <div class="aa-popover-label">Yazı Boyutu</div>
                 <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
@@ -123,15 +122,6 @@
                     <span class="stepper-glyph-large">A</span>
                   </button>
                 </div>
-              </div>
-
-              <div class="aa-popover-row">
-                <button id="study-btn-active-recall-toggle" class="btn-active-recall-toggle" title="Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç">
-                  <span>⚡</span> Test Modu
-                </button>
-                <button id="study-btn-theme-toggle" class="btn-icon-setting" title="Sepia (Sıcak Sarımsı Okuma)">
-                  <span>📜</span>
-                </button>
               </div>
             </div>
           </div>
@@ -207,6 +197,9 @@
               </button>
             </div>
           </div>
+          <button id="study-btn-theme-toggle" class="pill-btn" title="Sepia (Sıcak Sarımsı Okuma)">
+            <span>📜</span>
+          </button>
           <button id="theme-toggle" class="pill-btn" title="Dunkelmodus umschalten">
             <span>🌙</span>
           </button>
@@ -2754,7 +2747,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.17')
+        navigator.serviceWorker.register('./sw.js?v=12.18')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {

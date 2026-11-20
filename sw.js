@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.17'; // upgraded from facharzt-cache-v7.7 - full-width responsive oral question/answer text
+const CACHE_NAME = 'facharzt-cache-v12.18'; // upgraded from facharzt-cache-v7.7 - inline reader controls & full German UI mode
 const CORE_ASSETS = [
   './',
   './index.html',

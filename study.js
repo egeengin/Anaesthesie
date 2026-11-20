@@ -692,13 +692,13 @@
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
               <strong style="color: var(--primary);">👨‍⚕️ ${renderInteractiveGerman(threeActionsChallenge.examinerFollowupDE, threeActionsChallenge.examinerFollowupTR)}</strong>
               <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.examinerFollowupDE + ' ' + threeActionsChallenge.examinerJustificationDE)}">
-                🔊 Dinle
+                🔊 ${state.viewMode === 'german' ? 'Anhören' : 'Dinle'}
               </button>
             </div>
             <div class="inline-bilingual-tr" style="margin-top: 2px;">🇹🇷 ${escapeHtml(threeActionsChallenge.examinerFollowupTR)}</div>
             <details class="melis-followup-details">
-              <summary class="melis-followup-summary" title="🇹🇷 Önce kendin savunmaya çalış, sonra İlk İlkelerden Jüri Yanıtını aç">
-                <span>💡 First-Principles-Antwort aufdecken (Jüri Yanıtını Göster)</span>
+              <summary class="melis-followup-summary" title="First-Principles-Antwort aufdecken">
+                <span>💡 ${state.viewMode === 'german' ? 'First-Principles-Antwort aufdecken' : 'First-Principles-Antwort aufdecken (Jüri Yanıtını Göster)'}</span>
                 <span class="melis-drawer-caret">▾</span>
               </summary>
               <div class="melis-followup-answer-body">
@@ -858,10 +858,10 @@
                 <span>⭐</span>
               </button>
               <button class="btn-card-action btn-pronounce-card" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Redeeinstieg, Model Cevap ve K.O.-İpucunu Sesli Dinle">
-                <span>🔊</span> Dinle
+                <span>🔊</span> ${state.viewMode === 'german' ? 'Anhören' : 'Dinle'}
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
-                <span>${isRead ? '✓' : '○'}</span> Okundu
+                <span>${isRead ? '✓' : '○'}</span> ${state.viewMode === 'german' ? 'Gelesen' : 'Okundu'}
               </button>
             </div>
           </div>
@@ -1083,13 +1083,13 @@
         if (current) {
           delete readStatus[id];
           btn.classList.remove('active-read');
-          btn.innerHTML = `<span>○</span> Okundu`;
+          btn.innerHTML = `<span>○</span> ${state.viewMode === 'german' ? 'Gelesen' : 'Okundu'}`;
           if (card) card.classList.remove('is-read');
           recordDailyRead(id, false);
         } else {
           readStatus[id] = true;
           btn.classList.add('active-read');
-          btn.innerHTML = `<span>✓</span> Okundu`;
+          btn.innerHTML = `<span>✓</span> ${state.viewMode === 'german' ? 'Gelesen' : 'Okundu'}`;
           if (card) card.classList.add('is-read');
           recordDailyRead(id, true);
           triggerHapticFeedback();
@@ -1526,29 +1526,42 @@
     let percentage = 0;
     let statusText = `${readCount} / ${total} Vaka`;
 
+    const isDe = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
     if (state.activeType === 'options') {
       percentage = optTotal > 0 ? Math.round((optRead / optTotal) * 100) : 0;
-      statusText = `📚 Aşama 3 Konu: ${optRead} / ${optTotal} · Toplam: ${readCount}/${total}`;
+      statusText = isDe
+        ? `📚 Stufe 3 Themen: ${optRead} / ${optTotal} · Gesamt: ${readCount}/${total}`
+        : `📚 Aşama 3 Konu: ${optRead} / ${optTotal} · Toplam: ${readCount}/${total}`;
     } else if (state.activeType === 'open') {
       percentage = openTotal > 0 ? Math.round((openRead / openTotal) * 100) : 0;
-      statusText = `🏥 Çekirdek Vakalar: ${openRead} / ${openTotal} · Toplam: ${readCount}/${total}`;
+      statusText = isDe
+        ? `🏥 Kernfälle: ${openRead} / ${openTotal} · Gesamt: ${readCount}/${total}`
+        : `🏥 Çekirdek Vakalar: ${openRead} / ${openTotal} · Toplam: ${readCount}/${total}`;
     } else if (state.activeType === 'dus' || dusRead < dusTotal) {
       percentage = dusTotal > 0 ? Math.round((dusRead / dusTotal) * 100) : 0;
       if (dusTotal > 0 && dusRead >= dusTotal) {
-        statusText = `✅ ÄKNO Aşama 1 Tamam (${dusRead}/${dusTotal}) · Sınav Başvurusuna Hazırsın!`;
+        statusText = isDe
+          ? `✅ ÄKNO Stufe 1 Fertig (${dusRead}/${dusTotal}) · Prüfungsbereit!`
+          : `✅ ÄKNO Aşama 1 Tamam (${dusRead}/${dusTotal}) · Sınav Başvurusuna Hazırsın!`;
       } else {
-        statusText = `🏛️ ÄKNO Aşama 1: ${dusRead} / ${dusTotal} · Toplam: ${readCount}/${total}`;
+        statusText = isDe
+          ? `🏛️ ÄKNO Stufe 1: ${dusRead} / ${dusTotal} · Gesamt: ${readCount}/${total}`
+          : `🏛️ ÄKNO Aşama 1: ${dusRead} / ${dusTotal} · Toplam: ${readCount}/${total}`;
       }
     } else if (openRead < openTotal) {
       percentage = openTotal > 0 ? Math.round((openRead / openTotal) * 100) : 0;
-      statusText = `✅ ÄKNO Tamam · 🏥 Aşama 2 Vaka: ${openRead} / ${openTotal}`;
+      statusText = isDe
+        ? `✅ ÄKNO Fertig · 🏥 Stufe 2 Fälle: ${openRead} / ${openTotal}`
+        : `✅ ÄKNO Tamam · 🏥 Aşama 2 Vaka: ${openRead} / ${openTotal}`;
     } else {
       percentage = total > 0 ? Math.round((readCount / total) * 100) : 0;
-      statusText = `🎓 Tüm Vaka & Konular: ${readCount} / ${total}`;
+      statusText = isDe
+        ? `🎓 Alle Fälle & Themen: ${readCount} / ${total}`
+        : `🎓 Tüm Vaka & Konular: ${readCount} / ${total}`;
     }
 
     if (elProgressBarFill) elProgressBarFill.style.width = `${percentage}%`;
-    if (elProgressPercentage) elProgressPercentage.textContent = `%${percentage}`;
+    if (elProgressPercentage) elProgressPercentage.textContent = isDe ? `${percentage}%` : `%${percentage}`;
     if (elProgressText) elProgressText.textContent = statusText;
 
     if (elStreakBadge) {
@@ -1557,11 +1570,15 @@
       const remainingCore = Math.max(0, openTotal - openRead);
       const daysLeft = Math.ceil(remainingCore / 8);
       const goalPrefix = todayCount >= 5 ? '✅' : '☕';
-      const etaText = remainingCore > 0 ? `⏳ ~${daysLeft} gün` : '🎓 Sınav Hazır!';
-      const streakText = streakDays >= 2 ? ` · 🔥 ${streakDays}g` : '';
+      const etaText = remainingCore > 0
+        ? (isDe ? `⏳ ~${daysLeft} Tage` : `⏳ ~${daysLeft} gün`)
+        : (isDe ? '🎓 Prüfungsreif!' : '🎓 Sınav Hazır!');
+      const streakText = streakDays >= 2 ? ` · 🔥 ${streakDays}${isDe ? 'T' : 'g'}` : '';
       elStreakBadge.style.display = 'inline-flex';
       elStreakBadge.classList.toggle('goal-met', todayCount >= 5);
-      elStreakBadge.textContent = `${goalPrefix} Bugün: ${todayCount}/5 · ${etaText}${streakText}`;
+      elStreakBadge.textContent = isDe
+        ? `${goalPrefix} Heute: ${todayCount}/5 · ${etaText}${streakText}`
+        : `${goalPrefix} Bugün: ${todayCount}/5 · ${etaText}${streakText}`;
       elStreakBadge.title = `Günlük mikro hedef: 5 vaka (Bugün: ${todayCount}). Çekirdek sözlü vakalar (${openRead}/${openTotal}) günde 8 vaka hızıyla tahmini kalan süre: ${remainingCore > 0 ? daysLeft + ' gün' : 'Tamamlandı'}.`;
     }
   }
@@ -1741,9 +1758,41 @@
         if (mode === 'bilingual') document.body.classList.add('mode-bilingual');
         if (mode === 'german') document.body.classList.add('mode-german-only');
         updateGermanOnlyButtonState();
+        syncUILanguage(mode === 'german');
+        renderFeed(true);
       });
     });
   }
+
+  function syncUILanguage(isGerman) {
+    const setText = (sel, de, tr) => {
+      const el = document.querySelector(sel);
+      if (el) el.textContent = isGerman ? de : tr;
+    };
+    const setHtml = (sel, de, tr) => {
+      const el = document.querySelector(sel);
+      if (el) el.innerHTML = isGerman ? de : tr;
+    };
+
+    setText('#master-btn-study strong', 'Lernen & Lesen', 'Çalışma & Okuma');
+    setText('#master-btn-exam strong', 'Prüfungssimulator', 'Sınav Simülatörü');
+    setText('#nav-tools-menu-btn .pill-btn-text', 'Werkzeuge', 'Araçlar');
+    setHtml('#study-btn-active-recall-toggle', '<span>⚡</span> ' + (isGerman ? 'Testmodus' : 'Test Modu'), '<span>⚡</span> Test Modu');
+    setText('#study-aa-dropdown .aa-popover-label', 'Schriftgröße', 'Yazı Boyutu');
+
+    const searchInp = document.getElementById('study-search-input');
+    if (searchInp) searchInp.placeholder = isGerman ? 'Fall oder Medikament suchen...' : 'Vaka veya ilaç ara...';
+
+    setText('#study-btn-toggle-categories', isGerman ? '📂 Themen ▾' : '📂 Konular ▾', '📂 Konular ▾');
+    setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="unread"]', '○ Ungelesen', '○ Okunmamış');
+    setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="starred"]', '⭐ Markiert', '⭐ Yıldızlı');
+    setText('#study-btn-prev-bottom', '← Zurück', '← Önceki');
+    setText('#study-btn-next-bottom', 'Weiter →', 'Sonraki →');
+
+    if (typeof updateDynamicQuestionCounts === 'function') updateDynamicQuestionCounts();
+    if (typeof updateProgressBar === 'function') updateProgressBar();
+  }
+  window.syncUILanguage = syncUILanguage;
 
   function updateGermanOnlyButtonState() {
     const isGerman = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
@@ -1782,6 +1831,8 @@
     }
 
     updateGermanOnlyButtonState();
+    syncUILanguage(newMode === 'german');
+    renderFeed(true);
   }
 
   document.querySelectorAll('#btn-quick-german-toggle, #btn-global-german-toggle, .pill-btn-german, .btn-header-german').forEach(b => {
@@ -1965,6 +2016,7 @@
   }
 
   function updateDynamicQuestionCounts() {
+    const isDe = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
     const totalCount = allQuestions.length;
     const dusCount = allQuestions.filter(isDusItem).length;
     const openCount = allQuestions.filter(isOpenItem).length;
@@ -1973,17 +2025,17 @@
     document.querySelectorAll('.btn-type-filter').forEach(btn => {
       const t = btn.getAttribute('data-type');
       if (t === 'all') {
-        btn.textContent = `Tümü (${totalCount})`;
-        btn.title = `Tüm Sözlü Sınav Arşivi (${totalCount})`;
+        btn.textContent = isDe ? `Alle (${totalCount})` : `Tümü (${totalCount})`;
+        btn.title = isDe ? `Gesamtes Prüfungsarchiv (${totalCount})` : `Tüm Sözlü Sınav Arşivi (${totalCount})`;
       } else if (t === 'dus') {
         btn.textContent = `🏛️ ÄKNO (${dusCount})`;
-        btn.title = `ÄKNO Düsseldorf & AMBOSS Vaka Protokolleri (${dusCount})`;
+        btn.title = isDe ? `ÄKNO Düsseldorf & AMBOSS Fallprotokolle (${dusCount})` : `ÄKNO Düsseldorf & AMBOSS Vaka Protokolleri (${dusCount})`;
       } else if (t === 'open') {
-        btn.textContent = `🏥 Vaka (${openCount})`;
-        btn.title = `Klinik Vaka Soruları — Annecke & Hohn (${openCount})`;
+        btn.textContent = isDe ? `🏥 Fälle (${openCount})` : `🏥 Vaka (${openCount})`;
+        btn.title = isDe ? `Klinische Fallfragen — Annecke & Hohn (${openCount})` : `Klinik Vaka Soruları — Annecke & Hohn (${openCount})`;
       } else if (t === 'options') {
-        btn.textContent = `📚 Konu (${optionsCount})`;
-        btn.title = `Konu Bazlı Sözlü Soru-Cevap (${optionsCount})`;
+        btn.textContent = isDe ? `📚 Themen (${optionsCount})` : `📚 Konu (${optionsCount})`;
+        btn.title = isDe ? `Themenbasierte Prüfungsfragen (${optionsCount})` : `Konu Bazlı Sözlü Soru-Cevap (${optionsCount})`;
       }
     });
   }
@@ -1995,6 +2047,7 @@
   if (state.viewMode === 'bilingual') document.body.classList.add('mode-bilingual');
   if (state.viewMode === 'german') document.body.classList.add('mode-german-only');
   updateGermanOnlyButtonState();
+  syncUILanguage(state.viewMode === 'german');
 
   updateDynamicQuestionCounts();
   initCategories();
