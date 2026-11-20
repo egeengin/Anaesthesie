@@ -21,6 +21,7 @@ const CORE_ASSETS = [
   './js/speech_engine.js',
   './js/curriculum_engine.js',
   './js/audio_manifest.js',
+  './js/podcast_manifest.js',
   './manifest.json',
   './favicon.svg',
   './study.html',

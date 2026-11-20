@@ -1549,6 +1549,7 @@
 
   let currentSpeakingBtn = null;
   let speechSessionId = 0;
+  let studyAudioPlayer = null;
 
   function resetSpeakingButton(btn) {
     if (!btn) return;
@@ -1564,6 +1565,42 @@
         ? window.LOCAL_AUDIO_MANIFEST[cardId]
         : null;
       window.speakText(text, btnEl, null, localAudio);
+      return;
+    }
+
+    // Direct pre-rendered high-fidelity studio audio support in Lernen & Lesen (study.html)
+    const localAudioSrc = (typeof window.LOCAL_AUDIO_MANIFEST !== 'undefined' && cardId && window.LOCAL_AUDIO_MANIFEST[cardId])
+      ? window.LOCAL_AUDIO_MANIFEST[cardId]
+      : null;
+
+    if (localAudioSrc) {
+      if (studyAudioPlayer && !studyAudioPlayer.paused) {
+        studyAudioPlayer.pause();
+        studyAudioPlayer.currentTime = 0;
+        const wasSame = (currentSpeakingBtn === btnEl);
+        if (currentSpeakingBtn) resetSpeakingButton(currentSpeakingBtn);
+        currentSpeakingBtn = null;
+        if (wasSame) return;
+      }
+      if (currentSpeakingBtn) resetSpeakingButton(currentSpeakingBtn);
+      currentSpeakingBtn = btnEl;
+      if (btnEl) {
+        if (!btnEl.dataset.origHtml) btnEl.dataset.origHtml = btnEl.innerHTML;
+        btnEl.classList.add('is-speaking');
+        btnEl.innerHTML = `<span>🔊</span> Stopp`;
+      }
+      if (!studyAudioPlayer) studyAudioPlayer = new Audio();
+      studyAudioPlayer.src = localAudioSrc;
+      studyAudioPlayer.playbackRate = 1.15;
+      studyAudioPlayer.onended = () => {
+        if (btnEl) resetSpeakingButton(btnEl);
+        if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
+      };
+      studyAudioPlayer.onerror = () => {
+        if (btnEl) resetSpeakingButton(btnEl);
+        if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
+      };
+      studyAudioPlayer.play().catch(() => {});
       return;
     }
 

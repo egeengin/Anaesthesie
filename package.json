@@ -4,7 +4,8 @@
   "description": "Facharztprüfung Anästhesiologie - Interaktiver ÄKNO Simulator & Smart Study System",
   "scripts": {
     "test": "node test_oral_exam_suite.js && node test_unit_coverage.js",
-    "audio:gemini": "node scripts/generate_gemini_audio.js"
+    "audio:gemini": "node scripts/generate_gemini_audio.js",
+    "build:podcasts": "node scripts/build_exam_podcast.js"
   },
   "keywords": [
     "anaesthesie",
