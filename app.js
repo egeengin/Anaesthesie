@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentIndex: 0,
     answers: {},       // { questionId: { selected: [indices], submitted: true/false, isCorrect: true/false, revealed: true/false } }
     flagged: {},       // { questionId: true/false }
-    theme: 'light',
+    theme: 'sepia',
     subtitleMode: false, // Default collapsed so page is clean & uncluttered; user can click small button directly below or press U
     viewMode: 'learn',  // 'learn' (Sakin Çalışma) vs 'exam' (Düsseldorf Simülasyonu)
     filterMode: 'all',  // 'all', 'stage_1', 'stage_2', 'smart_session', 'unanswered', 'incorrect', 'review'
@@ -7819,17 +7819,26 @@ Tedavi:
   }
 
   if (elThemeToggle) {
-    // Restore saved theme on load
-    if (state.theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      elThemeToggle.querySelector('span').textContent = '☀️';
-      elThemeToggle.classList.add('active');
-    }
+    const themeIcons = { sepia: '📜', light: '☀️', dark: '🌙' };
+    const themeTitles = {
+      sepia: 'Sepia (Sıcak Sarımsı Okuma)',
+      light: 'Heller Modus (Aydınlık)',
+      dark: 'Dunkler Modus (Gece)'
+    };
+    const applyAppTheme = (themeName) => {
+      const t = ['sepia', 'light', 'dark'].includes(themeName) ? themeName : 'sepia';
+      state.theme = t;
+      document.documentElement.setAttribute('data-theme', t);
+      const span = elThemeToggle.querySelector('span');
+      if (span) span.textContent = themeIcons[t];
+      elThemeToggle.title = themeTitles[t];
+      elThemeToggle.classList.toggle('active', t === 'dark');
+    };
+    applyAppTheme(state.theme || 'sepia');
     elThemeToggle.addEventListener('click', () => {
-      state.theme = state.theme === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', state.theme);
-      elThemeToggle.querySelector('span').textContent = state.theme === 'dark' ? '☀️' : '🌙';
-      elThemeToggle.classList.toggle('active', state.theme === 'dark');
+      const themes = ['sepia', 'light', 'dark'];
+      const nextIdx = (themes.indexOf(state.theme) + 1) % themes.length;
+      applyAppTheme(themes[nextIdx]);
       saveState();
     });
   }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="light">
+<html lang="de" data-theme="sepia">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
@@ -197,11 +197,8 @@
               </button>
             </div>
           </div>
-          <button id="study-btn-theme-toggle" class="pill-btn" title="Sepia (Sıcak Sarımsı Okuma)">
+          <button id="theme-toggle" class="pill-btn" title="Sepia (Sıcak Sarımsı Okuma) / Aydınlık / Gece">
             <span>📜</span>
-          </button>
-          <button id="theme-toggle" class="pill-btn" title="Dunkelmodus umschalten">
-            <span>🌙</span>
           </button>
           <button id="settings-trigger" class="pill-btn" title="Einstellungen & Datensicherung">
             <span>⚙️</span>
@@ -2747,7 +2744,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.18')
+        navigator.serviceWorker.register('./sw.js?v=12.19')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
