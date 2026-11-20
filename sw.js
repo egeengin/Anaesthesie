@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.13'; // upgraded from facharzt-cache-v7.7 / v12.12 for removing NotebookLM footer triggers
+const CACHE_NAME = 'facharzt-cache-v12.14'; // upgraded from facharzt-cache-v7.7 - clean merge conflict markers & compact exam header/buttons
 const CORE_ASSETS = [
   './',
   './index.html',

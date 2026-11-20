@@ -4607,16 +4607,11 @@ Tedavi:
     }
 
     if (elQuestionNumber) {
-      if (isSimMode) {
-        elQuestionNumber.textContent = `🏛️ ÄKNO Düsseldorf: Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
-      } else {
-        const globalIdx = EXAM_QUESTIONS.findIndex(q => q.id === currentQ.id) + 1;
-        elQuestionNumber.textContent = `Fall ${globalIdx} von ${EXAM_QUESTIONS.length} (${state.currentIndex + 1}/${filteredQuestions.length})`;
-      }
+      elQuestionNumber.textContent = `Fall ${state.currentIndex + 1} / ${filteredQuestions.length}`;
     }
 
     if (elSimCaseCounter) {
-      elSimCaseCounter.textContent = `🏛️ ÄKNO Düsseldorf: Fall ${state.currentIndex + 1} von ${filteredQuestions.length}`;
+      elSimCaseCounter.textContent = `Fall ${state.currentIndex + 1} / ${filteredQuestions.length}`;
     }
 
     // Populate Examiner Profile Drawer universally (works in Simulation, Guideline, and Flashcard modes)
@@ -8716,7 +8711,7 @@ Tedavi:
     else if (state.studyMode === 'guideline') modeLabel = 'Leitlinien-Modus';
     else if (state.studyMode === 'simulation') modeLabel = 'Prüfer-Simulation';
 
-    elSummary.textContent = `📚 Aktiver Pfad: [${stageLabel}] • [${modeLabel}]`;
+    elSummary.textContent = `📚 ${stageLabel}`;
   }
 
   function switchRubricTab(tabName) {

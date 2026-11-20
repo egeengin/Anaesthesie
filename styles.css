@@ -10091,13 +10091,14 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
 }
 
 #exam-view-wrapper .examiner-pill-prefix,
-#exam-view-wrapper .examiner-pill-tag {
+#exam-view-wrapper .examiner-pill-tag,
+#exam-view-wrapper #active-filter-badge {
   display: none !important;
 }
 
 #exam-view-wrapper .active-path-bar {
-  padding: 0.38rem 0.75rem !important;
-  margin: 0.25rem 0 0.55rem 0 !important;
+  padding: 0.35rem 0.75rem !important;
+  margin: 0.25rem 0 0.5rem 0 !important;
   font-size: 0.8rem;
 }
 
@@ -10107,17 +10108,50 @@ body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-t
 }
 
 #exam-view-wrapper .quiz-header {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.55rem;
   padding-bottom: 0.45rem;
+  align-items: center;
+}
+
+#exam-view-wrapper .quiz-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
 #exam-view-wrapper .quiz-examiner-strip {
-  margin-bottom: 0.45rem;
+  margin: 0;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  width: auto;
+  display: inline-flex;
 }
 
 #exam-view-wrapper .examiner-pill-trigger {
+  font-size: 0.76rem;
+  padding: 0;
+  width: auto;
+  gap: 0.35rem;
+}
+
+#exam-view-wrapper #step1-container .step-card-header {
+  padding: 0.45rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#exam-view-wrapper .case-action-pills-row {
+  margin: 0;
+  gap: 0.4rem;
+}
+
+#exam-view-wrapper .case-action-pill {
+  padding: 0.28rem 0.65rem;
   font-size: 0.78rem;
-  padding: 0.2rem 0.6rem;
 }
 
 /* Hide mobile thumb bar strictly on desktop & keep kbd hints single-line */

@@ -21,12 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=12.2">
-<<<<<<< HEAD
-  <link rel="stylesheet" href="study.css?v=11.4">
-=======
-  <link rel="stylesheet" href="study.css?v=11.2">
->>>>>>> origin/master
+  <link rel="stylesheet" href="styles.css?v=12.3">
+  <link rel="stylesheet" href="study.css?v=11.5">
 </head>
 <body>
 
@@ -397,8 +393,7 @@
     <!-- ADIM 2: Aktif Durumu Gösteren Temiz Bar & Çekmece Tetikleyici -->
     <section class="active-path-bar" id="active-path-bar">
       <div class="active-path-left">
-        <span class="active-path-icon">📚</span>
-        <span class="active-path-text" id="active-path-summary">Aktiver Pfad: <strong>Stufe 1: Top-50</strong> • Fallbasiert</span>
+        <span class="active-path-text" id="active-path-summary">📚 Stufe 1: Top-50</span>
       </div>
       <div class="active-path-right">
         <button id="btn-toggle-filters" class="btn-toggle-filters" type="button" aria-expanded="false" title="Arama çubuğunu ve tüm filtreleri aç/kapat">
@@ -572,19 +567,17 @@
           <span id="badge-type" class="badge badge-type">Prüfungsformat</span>
           <span id="badge-source" class="badge badge-source">Quelle</span>
           <span id="badge-review" class="badge badge-review" style="display: none;">★ Wiederholen</span>
+          <div class="quiz-examiner-strip" id="quiz-examiner-strip">
+            <div class="examiner-pill-trigger" id="examiner-pill-trigger" tabindex="0" role="button" title="Prüfer-Profil anzeigen / Jüri profilini gör">
+              <span class="examiner-pill-icon">👨‍⚕️</span>
+              <span class="examiner-pill-prefix">Prüfer:</span>
+              <strong id="examiner-header-name">Prof. Dr. med. Thorsten Annecke</strong>
+              <span class="examiner-pill-tag">Profil ℹ️</span>
+            </div>
+          </div>
         </div>
         <div class="quiz-header-right">
-          <div id="question-number" class="question-number">Frage 1 von 669</div>
-        </div>
-      </div>
-
-      <!-- ADIM 4: Şık Tek Satırlık Jüri Üyesi Şeridi (Prof. Dr. Annecke vb.) -->
-      <div class="quiz-examiner-strip" id="quiz-examiner-strip">
-        <div class="examiner-pill-trigger" id="examiner-pill-trigger" tabindex="0" role="button" title="Prüfer-Profil anzeigen / Jüri profilini gör">
-          <span class="examiner-pill-icon">👨‍⚕️</span>
-          <span class="examiner-pill-prefix">Prüfer:</span>
-          <strong id="examiner-header-name">Prof. Dr. med. Thorsten Annecke</strong>
-          <span class="examiner-pill-tag">Profil ℹ️</span>
+          <div id="question-number" class="question-number">Fall 1 / 530</div>
         </div>
       </div>
 
@@ -618,16 +611,6 @@
         </div>
       </div>
 
-      <!-- Yardımcı Kompakt Bar (Yan Yana 2 Küçük Buton) -->
-      <div class="case-action-pills-row" id="case-action-pills-row">
-        <button id="btn-toggle-spickzettel" class="case-action-pill pill-spickzettel" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">
-          <span>📘 30-Sekunden-Spickzettel</span>
-        </button>
-        <button id="btn-toggle-redefluss-pill" class="case-action-pill pill-redefluss" type="button" title="Almanca giriş cümlesi kalıpları (Redefluss-Hilfe)">
-          <span>🗣️ Redefluss-Hilfe</span>
-        </button>
-      </div>
-
       <!-- 30-Sekunden-Spickzettel Drawer / Card (FAZ 3) -->
       <div id="vorab-spickzettel-box" class="vorab-spickzettel-box" style="display: none;">
         <div class="spickzettel-header">
@@ -659,9 +642,13 @@
       <div id="step1-container" class="dialogue-step-card step-active">
         <div class="step-card-header">
           <div class="step-card-header-left">
-            <span class="step-tag-pill">Schritt 1: Klinische Präsentation</span>
-            <div class="step-callout-hint">
-              <span>🗣️</span> <em>Erstbeurteilung nach ABCDE-Schema formulieren</em>
+            <div class="case-action-pills-row" id="case-action-pills-row">
+              <button id="btn-toggle-spickzettel" class="case-action-pill pill-spickzettel" type="button" title="30-Sekunden Vorab-Wissen &amp; Algorithmus (Spickzettel)">
+                <span>📘 Spickzettel</span>
+              </button>
+              <button id="btn-toggle-redefluss-pill" class="case-action-pill pill-redefluss" type="button" title="Almanca giriş cümlesi kalıpları (Redefluss-Hilfe)">
+                <span>🗣️ Redefluss</span>
+              </button>
             </div>
           </div>
 
@@ -2771,7 +2758,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.13')
+        navigator.serviceWorker.register('./sw.js?v=12.14')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {

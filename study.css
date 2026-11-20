@@ -2418,7 +2418,14 @@ body.mode-german-only .trans-interactive {
 }
 
 .aa-popover-row {
-=======
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
 /* 6. Melis 2-Stage Examiner Follow-Up, 3-Action Scratchpad & Quick Unread/Starred Filters */
 .melis-followup-details {
   margin-top: 8px;
@@ -2428,17 +2435,10 @@ body.mode-german-only .trans-interactive {
 
 .melis-followup-summary {
   list-style: none;
->>>>>>> origin/master
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-<<<<<<< HEAD
-  padding-top: 8px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-=======
   cursor: pointer;
   font-size: var(--font-sm);
   font-weight: 700;
