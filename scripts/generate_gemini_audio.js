@@ -69,7 +69,7 @@ function convertWavToM4a(wavPath, m4aPath) {
   return false;
 }
 
-async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
+async function synthesizeText(text, voiceName = 'Charon', maxRetries = 5) {
   const models = ['gemini-2.5-flash-preview-tts', 'gemini-3.8-flash-lite-tts'];
   const cleanPrompt = `Read the following text aloud: ${text}`;
 
@@ -96,8 +96,9 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
         });
 
         if (res.status === 429) {
-          console.warn(`[429 Rate Limit] on ${model}, waiting 8s before retry...`);
-          await new Promise(r => setTimeout(r, 8000));
+          const waitSec = 15 + attempt * 10;
+          console.warn(`[429 Rate Limit] on ${model}, waiting ${waitSec}s before retry...`);
+          await new Promise(r => setTimeout(r, waitSec * 1000));
           continue;
         }
 
