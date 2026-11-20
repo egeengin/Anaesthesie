@@ -107,6 +107,9 @@
           <button id="btn-global-german-toggle" class="pill-btn pill-btn-german" type="button" title="Dil Modu: Sadece Almanca (🇩🇪) / Almanca + Türkçe (🇩🇪 · 🇹🇷)">
             <span class="pill-btn-flag">🇩🇪 · 🇹🇷</span>
           </button>
+          <button id="btn-podcast-hub" class="pill-btn pill-btn-podcast" type="button" title="🎧 20-Minuten Audio-Podcasts (Unterwegs Lernen)">
+            <span>🎧</span> <span class="pill-btn-text">Podcast</span>
+          </button>
           <!-- 🛠️ Apple-Grade Tools & SOPs Dropdown Popover -->
           <div class="nav-dropdown-wrapper">
             <button id="nav-tools-menu-btn" class="pill-btn pill-btn-tools" type="button" aria-haspopup="true" aria-expanded="false" title="Klinik Araçlar, SOP ve Sınav Sistemleri">
@@ -114,6 +117,13 @@
             </button>
             <div id="nav-tools-dropdown" class="nav-tools-dropdown-menu" role="menu">
               <div class="dropdown-header">Klinik Araçlar &amp; Sınav</div>
+              <button id="podcast-trigger" class="dropdown-item" type="button" role="menuitem" title="20-Minuten Audio-Podcasts (Unterwegs Lernen)">
+                <span class="item-icon">🎧</span>
+                <span class="item-content">
+                  <span class="item-title">Audio-Podcasts (20 Min.)</span>
+                  <span class="item-sub">Unterwegs &amp; Yolda Dinle</span>
+                </span>
+              </button>
               <button id="pocket-trigger" class="dropdown-item" type="button" role="menuitem" title="Acil Durum ve İlaç Cep Kartları">
                 <span class="item-icon">📇</span>
                 <span class="item-content">
@@ -2708,6 +2718,81 @@
     </div>
   </div>
 
+  <!-- 🎧 Audio-Podcasts (Unterwegs Lernen / 20 Min.) Modal -->
+  <div id="podcast-modal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="podcast-modal-title">
+    <div class="modal podcast-modal-content" style="max-width: 680px; width: 94vw; border-radius: 16px;">
+      <div class="modal-header">
+        <div class="modal-title-group" style="display: flex; align-items: center; gap: 0.65rem;">
+          <span class="modal-title-icon" style="font-size: 1.5rem;">🎧</span>
+          <div>
+            <h2 id="podcast-modal-title" class="modal-title" style="margin: 0; font-size: 1.15rem; font-weight: 700;">Audio-Podcasts • Unterwegs Lernen</h2>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Facharztprüfung Anästhesiologie • 15-20 Min. Thematische Episoden</div>
+          </div>
+        </div>
+        <button id="podcast-modal-close" class="btn-icon" title="Schließen (Esc)" aria-label="Schließen">✕</button>
+      </div>
+
+      <div class="modal-body podcast-modal-body" style="padding: 1.1rem 1.25rem; max-height: 78vh; overflow-y: auto;">
+        <!-- Episode Selector Tabs -->
+        <div class="podcast-tabs-bar" id="podcast-tabs-bar">
+          <button type="button" class="podcast-tab-btn active" data-episode-idx="0">
+            <strong>Folge 1</strong>
+            <span>Notfall-SOPs (10.8m)</span>
+          </button>
+          <button type="button" class="podcast-tab-btn" data-episode-idx="1">
+            <strong>Folge 2</strong>
+            <span>Intensiv &amp; Sepsis (14.9m)</span>
+          </button>
+          <button type="button" class="podcast-tab-btn" data-episode-idx="2">
+            <strong>Folge 3</strong>
+            <span>Hochrisiko (18.1m)</span>
+          </button>
+        </div>
+
+        <!-- Active Episode Header Card -->
+        <div class="podcast-episode-card" id="podcast-episode-card">
+          <div class="podcast-ep-meta">
+            <span class="podcast-ep-badge" id="podcast-ep-badge">ÄKNO Düsseldorf</span>
+            <span class="podcast-ep-duration" id="podcast-ep-duration">10 Min. 48 Sek.</span>
+          </div>
+          <h3 class="podcast-ep-title" id="podcast-ep-title">Folge 1: Notfall-SOPs &amp; Hämodynamische Krisen</h3>
+          <p class="podcast-ep-desc" id="podcast-ep-desc">Aortenklappenstenose, Spannungspneumothorax, MH, LAST, CICO, Anaphylaxie, Polytrauma &amp; Massivtransfusion.</p>
+        </div>
+
+        <!-- Dedicated Audio Player Widget -->
+        <div class="podcast-player-widget">
+          <div class="podcast-player-controls-row">
+            <button type="button" id="podcast-btn-skip-back" class="podcast-ctl-btn" title="15 Sekunden zurück">⏪ 15s</button>
+            <button type="button" id="podcast-btn-play-pause" class="podcast-play-btn" title="Abspielen / Anhalten">▶️</button>
+            <button type="button" id="podcast-btn-skip-fwd" class="podcast-ctl-btn" title="15 Sekunden vor">15s ⏩</button>
+            
+            <div class="podcast-speed-wrapper">
+              <button type="button" id="podcast-speed-btn" class="podcast-speed-btn" title="Wiedergabegeschwindigkeit">1.15x</button>
+            </div>
+          </div>
+
+          <!-- Scrub Slider Bar -->
+          <div class="podcast-scrub-row">
+            <span id="podcast-time-cur" class="podcast-time-label">0:00</span>
+            <input type="range" id="podcast-scrub-slider" class="podcast-scrub-slider" min="0" max="100" value="0" step="0.5" aria-label="Podcast Fortschritt">
+            <span id="podcast-time-dur" class="podcast-time-label">10:48</span>
+          </div>
+        </div>
+
+        <!-- Interactive Chapter Navigation -->
+        <div class="podcast-chapters-section">
+          <div class="podcast-chapters-header">
+            <h4 style="margin: 0; font-size: 0.88rem; font-weight: 700;">📑 Fälle in dieser Folge (Zum Anhören anklicken)</h4>
+            <span class="podcast-chapters-count" id="podcast-chapters-count">15 Fälle</span>
+          </div>
+          <div class="podcast-chapters-list" id="podcast-chapters-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -2728,6 +2813,7 @@
   <script src="js/speech_engine.js?v=7.7"></script>
   <script src="js/curriculum_engine.js?v=10.4"></script>
   <script src="js/audio_manifest.js?v=1.0"></script>
+  <script src="js/podcast_manifest.js?v=1.0"></script>
   <script src="questions.js?v=9.0"></script>
   <script src="app.js?v=7.7"></script>
 

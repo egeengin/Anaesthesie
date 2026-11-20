@@ -9412,6 +9412,213 @@ Tedavi:
     updateActivePathSummary();
   }
 
+  // =========================================================================
+  // 🎧 Facharztprüfung 20-Minuten Audio-Podcast Hub Controller
+  // =========================================================================
+  function initPodcastHub() {
+    const elModal = document.getElementById('podcast-modal');
+    const elClose = document.getElementById('podcast-modal-close');
+    const elTriggerDropdown = document.getElementById('podcast-trigger');
+    const elTriggerHub = document.getElementById('btn-podcast-hub');
+
+    if (!elModal) return;
+
+    let podcastAudio = null;
+    let activeEpisodeIdx = 0;
+    let currentSpeed = 1.15;
+    let isDraggingSlider = false;
+    const episodes = (typeof window.PODCAST_MANIFEST !== 'undefined') ? window.PODCAST_MANIFEST : [];
+
+    const elTabsBar = document.getElementById('podcast-tabs-bar');
+    const elTitle = document.getElementById('podcast-ep-title');
+    const elDesc = document.getElementById('podcast-ep-desc');
+    const elBadge = document.getElementById('podcast-ep-badge');
+    const elDur = document.getElementById('podcast-ep-duration');
+    const elPlayBtn = document.getElementById('podcast-btn-play-pause');
+    const elSkipBack = document.getElementById('podcast-btn-skip-back');
+    const elSkipFwd = document.getElementById('podcast-btn-skip-fwd');
+    const elSpeedBtn = document.getElementById('podcast-speed-btn');
+    const elTimeCur = document.getElementById('podcast-time-cur');
+    const elTimeDur = document.getElementById('podcast-time-dur');
+    const elSlider = document.getElementById('podcast-scrub-slider');
+    const elChaptersList = document.getElementById('podcast-chapters-list');
+    const elChaptersCount = document.getElementById('podcast-chapters-count');
+
+    function openPodcastModal(epIdx = 0) {
+      elModal.style.display = 'flex';
+      loadEpisode(epIdx);
+    }
+
+    function closePodcastModal() {
+      elModal.style.display = 'none';
+      if (podcastAudio && !podcastAudio.paused) {
+        podcastAudio.pause();
+        if (elPlayBtn) elPlayBtn.textContent = '▶️';
+      }
+    }
+
+    if (elTriggerDropdown) elTriggerDropdown.addEventListener('click', () => openPodcastModal(0));
+    if (elTriggerHub) elTriggerHub.addEventListener('click', () => openPodcastModal(0));
+    if (elClose) elClose.addEventListener('click', closePodcastModal);
+
+    elModal.addEventListener('click', (e) => {
+      if (e.target === elModal) closePodcastModal();
+    });
+
+    function formatTime(sec) {
+      if (!sec || isNaN(sec)) return '0:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function loadEpisode(idx) {
+      if (!episodes[idx]) return;
+      activeEpisodeIdx = idx;
+      const ep = episodes[idx];
+
+      if (elTitle) elTitle.textContent = ep.title;
+      if (elDesc) elDesc.textContent = ep.description;
+      if (elBadge) elBadge.textContent = ep.category || 'ÄKNO';
+      if (elDur) elDur.textContent = ep.durationFormatted;
+
+      if (elTabsBar) {
+        elTabsBar.querySelectorAll('.podcast-tab-btn').forEach(btn => {
+          btn.classList.toggle('active', parseInt(btn.getAttribute('data-episode-idx'), 10) === idx);
+        });
+      }
+
+      if (elChaptersList) {
+        elChaptersList.innerHTML = '';
+        if (elChaptersCount) elChaptersCount.textContent = `${ep.chapters.length} Fälle`;
+
+        ep.chapters.forEach(ch => {
+          const item = document.createElement('div');
+          item.className = 'podcast-chapter-item';
+          item.setAttribute('data-start-sec', ch.startSec);
+          item.innerHTML = `
+            <span class="podcast-chapter-title">Fall ${ch.number}: ${ch.caseId}</span>
+            <span class="podcast-chapter-time">${ch.formattedTime}</span>
+          `;
+          item.addEventListener('click', () => {
+            seekTo(ch.startSec);
+            if (podcastAudio && podcastAudio.paused) {
+              podcastAudio.play().then(() => {
+                if (elPlayBtn) elPlayBtn.textContent = '⏸️';
+              }).catch(() => {});
+            }
+          });
+          elChaptersList.appendChild(item);
+        });
+      }
+
+      if (!podcastAudio) {
+        podcastAudio = new Audio();
+        podcastAudio.addEventListener('timeupdate', updateProgress);
+        podcastAudio.addEventListener('ended', () => {
+          if (elPlayBtn) elPlayBtn.textContent = '▶️';
+        });
+      }
+      podcastAudio.src = ep.filePath;
+      podcastAudio.playbackRate = currentSpeed;
+      if (elPlayBtn) elPlayBtn.textContent = '▶️';
+      if (elTimeCur) elTimeCur.textContent = '0:00';
+      if (elTimeDur) elTimeDur.textContent = formatTime(ep.durationSec || 0);
+      if (elSlider) {
+        elSlider.value = 0;
+        elSlider.max = ep.durationSec || 100;
+      }
+    }
+
+    function updateProgress() {
+      if (!podcastAudio) return;
+      const cur = podcastAudio.currentTime;
+      const dur = podcastAudio.duration || (episodes[activeEpisodeIdx]?.durationSec || 1);
+      if (elTimeCur) elTimeCur.textContent = formatTime(cur);
+      if (elSlider && !isDraggingSlider) {
+        elSlider.value = cur;
+        elSlider.max = dur;
+      }
+
+      if (elChaptersList) {
+        const ep = episodes[activeEpisodeIdx];
+        if (ep && ep.chapters) {
+          let activeChIdx = -1;
+          for (let i = 0; i < ep.chapters.length; i++) {
+            if (cur >= ep.chapters[i].startSec) activeChIdx = i;
+            else break;
+          }
+          elChaptersList.querySelectorAll('.podcast-chapter-item').forEach((item, i) => {
+            item.classList.toggle('active', i === activeChIdx);
+          });
+        }
+      }
+    }
+
+    function seekTo(sec) {
+      if (podcastAudio) {
+        podcastAudio.currentTime = Math.max(0, Math.min(sec, podcastAudio.duration || 9999));
+      }
+    }
+
+    if (elSlider) {
+      elSlider.addEventListener('input', (e) => {
+        isDraggingSlider = true;
+        if (elTimeCur) elTimeCur.textContent = formatTime(parseFloat(e.target.value));
+      });
+      elSlider.addEventListener('change', (e) => {
+        isDraggingSlider = false;
+        seekTo(parseFloat(e.target.value));
+      });
+    }
+
+    if (elPlayBtn) {
+      elPlayBtn.addEventListener('click', () => {
+        if (!podcastAudio) return;
+        if (podcastAudio.paused) {
+          podcastAudio.play().then(() => {
+            elPlayBtn.textContent = '⏸️';
+          }).catch(() => {});
+        } else {
+          podcastAudio.pause();
+          elPlayBtn.textContent = '▶️';
+        }
+      });
+    }
+
+    if (elSkipBack) {
+      elSkipBack.addEventListener('click', () => {
+        if (podcastAudio) seekTo(podcastAudio.currentTime - 15);
+      });
+    }
+
+    if (elSkipFwd) {
+      elSkipFwd.addEventListener('click', () => {
+        if (podcastAudio) seekTo(podcastAudio.currentTime + 15);
+      });
+    }
+
+    if (elSpeedBtn) {
+      const speeds = [1.0, 1.15, 1.25, 1.5, 2.0];
+      elSpeedBtn.addEventListener('click', () => {
+        let idx = speeds.indexOf(currentSpeed);
+        idx = (idx + 1) % speeds.length;
+        currentSpeed = speeds[idx];
+        elSpeedBtn.textContent = `${currentSpeed}x`;
+        if (podcastAudio) podcastAudio.playbackRate = currentSpeed;
+      });
+    }
+
+    if (elTabsBar) {
+      elTabsBar.querySelectorAll('.podcast-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const epIdx = parseInt(btn.getAttribute('data-episode-idx'), 10);
+          loadEpisode(epIdx);
+        });
+      });
+    }
+  }
+
   // Initializing App
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
@@ -9420,6 +9627,7 @@ Tedavi:
   initImageLightbox();
   initHoverTranslationHUD();
   initBgaTrainer();
+  initPodcastHub();
   initSeniorUXEnhancements();
   if (state.viewMode) applyViewMode(state.viewMode);
   updateAnalytics();
