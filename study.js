@@ -1868,31 +1868,44 @@
   window.syncUILanguage = syncUILanguage;
 
   function updateGermanOnlyButtonState() {
-    const isGerman = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
+    const mode = document.body.classList.contains('mode-german-only')
+      ? 'german'
+      : (document.body.classList.contains('mode-bilingual') ? 'bilingual' : (state.viewMode || 'hover'));
+    const isGerman = mode === 'german';
+    const flagText = mode === 'german' ? '🇩🇪' : (mode === 'bilingual' ? '🇩🇪 · 🇹🇷' : '🇩🇪💡');
+    const titleText = mode === 'german'
+      ? 'Nur Deutsch (Sadece Almanca)'
+      : (mode === 'bilingual' ? 'Zweisprachig (Almanca + Türkçe)' : 'Hover Çeviri (Dokununca Türkçe)');
     const allGermanBtns = document.querySelectorAll('#btn-quick-german-toggle, #btn-global-german-toggle, .pill-btn-german, .btn-header-german');
     allGermanBtns.forEach(b => {
       b.classList.toggle('active', isGerman);
+      b.title = titleText;
       const flagEl = b.querySelector('.pill-btn-flag');
       if (flagEl) {
-        flagEl.textContent = isGerman ? '🇩🇪' : '🇩🇪 · 🇹🇷';
+        flagEl.textContent = flagText;
         return;
       }
       const label = b.querySelector('.btn-label') || b.querySelector('.pill-btn-text');
       if (label) {
-        label.textContent = isGerman ? '🇩🇪' : '🇩🇪 · 🇹🇷';
+        label.textContent = flagText;
       }
     });
   }
 
   function toggleGermanOnlyMode() {
-    const isCurrentlyGerman = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
-    const newMode = isCurrentlyGerman ? 'hover' : 'german';
+    const modes = ['hover', 'bilingual', 'german'];
+    const curMode = document.body.classList.contains('mode-german-only')
+      ? 'german'
+      : (document.body.classList.contains('mode-bilingual') ? 'bilingual' : (state.viewMode || 'hover'));
+    const newMode = modes[(modes.indexOf(curMode) + 1) % modes.length];
     state.viewMode = newMode;
     saveSettings();
 
     document.body.classList.remove('mode-hover', 'mode-bilingual', 'mode-german-only');
     if (newMode === 'german') {
       document.body.classList.add('mode-german-only');
+    } else if (newMode === 'bilingual') {
+      document.body.classList.add('mode-bilingual');
     } else {
       document.body.classList.add('mode-hover');
     }

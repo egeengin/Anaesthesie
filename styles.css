@@ -10085,10 +10085,8 @@ body.mode-german-only .trans-interactive {
   letter-spacing: 0.02em;
 }
 
-/* 4. Unified Language/Reading Mode Toggle: hide redundant top-bar German toggle in Study View */
-body:has(#study-view-wrapper:not([style*="display: none"])) #btn-global-german-toggle {
-  display: none !important;
-}
+/* 4. Unified Language/Reading Mode Toggle */
+/* #btn-global-german-toggle stays visible in both Study and Exam views */
 
 /* ==========================================================================
    MINIMALIST EXAM SIMULATOR HEADER & BADGE DECLUTTERING (v11.2)

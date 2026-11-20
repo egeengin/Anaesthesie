@@ -82,17 +82,6 @@
         </div>
 
         <div id="study-nav-controls" class="study-nav-controls">
-          <div class="mode-pill-group" role="group" aria-label="Dil Modu">
-            <button class="btn-mode-tab active" data-mode="hover" title="Almanca görünür; dokununca/üzerinde durunca Türkçe çeviri açılır">
-              <span class="mode-flags">🇩🇪<span class="mode-hint-dot">💡</span></span>
-            </button>
-            <button class="btn-mode-tab" data-mode="bilingual" title="Almanca ve Türkçe alt alta (Çift Dil)">
-              <span class="mode-flags">🇩🇪<span class="mode-sep">·</span>🇹🇷</span>
-            </button>
-            <button class="btn-mode-tab" data-mode="german" title="Nur Deutsch / Sadece Almanca">
-              <span class="mode-flags">🇩🇪</span>
-            </button>
-          </div>
           <div class="reader-font-stepper" role="group" aria-label="Okuma Yazı Boyutu">
             <button type="button" id="study-btn-font-dec" class="stepper-btn stepper-btn-dec" title="Yazı Boyutunu Küçült (A⁻)" aria-label="Yazıyı küçült">
               <span class="stepper-glyph-small">A⁻</span>
@@ -2734,7 +2723,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.23')
+        navigator.serviceWorker.register('./sw.js?v=12.24')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2770,11 +2759,9 @@
         if (btnExam) btnExam.classList.toggle('active', !isStudy);
 
         const studyNavControls = document.getElementById('study-nav-controls');
-        const activeRecallBtn = document.getElementById('study-btn-active-recall-toggle');
         const globalGermanBtn = document.getElementById('btn-global-german-toggle');
         if (studyNavControls) studyNavControls.style.display = 'inline-flex';
-        if (activeRecallBtn) activeRecallBtn.style.display = isStudy ? '' : 'none';
-        if (globalGermanBtn) globalGermanBtn.style.display = 'none';
+        if (globalGermanBtn) globalGermanBtn.style.display = '';
 
         if (savePref) {
           localStorage.setItem('facharzt_melis_master_view', targetView);
