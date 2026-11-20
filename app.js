@@ -4405,7 +4405,7 @@ Tedavi:
         allPreviews.forEach(p => p.classList.toggle('force-visible', !isAnyOpen));
       }
     }
-    // P: Audio pronunciation
+    // P: Audio pronunciation (Vorlesen / Pause / Weiter)
     else if (key === 'p') {
       e.preventDefault();
       const verbalBtn = document.getElementById('btn-audio-speak-verbal');
@@ -4414,6 +4414,14 @@ Tedavi:
         verbalBtn.click();
       } else if (audioBtn) {
         audioBtn.click();
+      }
+    }
+    // R: Audio restart (Baştan Başla)
+    else if (key === 'r') {
+      const restartBtn = document.getElementById('btn-audio-restart');
+      if (restartBtn && restartBtn.style.display !== 'none') {
+        e.preventDefault();
+        restartBtn.click();
       }
     }
     // V: Voice Recording Toggle
@@ -6658,6 +6666,8 @@ Tedavi:
   let naturalAudioQueue = [];
   let currentChunkIndex = 0;
   let isSpeakingMedical = false;
+  let isPausedMedical = false;
+  let activeMedicalText = '';
   let activeMedicalTriggerBtn = null;
   let onSpeechCompleteCallback = null;
   let _speakSessionId = 0;
@@ -6896,8 +6906,146 @@ Tedavi:
     window.speechSynthesis.onvoiceschanged = updateGermanVoice;
   }
 
+  function updateSpeechUiState(mode = null) {
+    const effective = mode || (isPausedMedical ? 'paused' : (isSpeakingMedical ? 'speaking' : 'idle'));
+
+    const elBtnAudioStop = document.getElementById('btn-audio-stop');
+    const elBtnAudioRestart = document.getElementById('btn-audio-restart');
+    const elAudioSpeakText = document.getElementById('audio-speak-text');
+    const elBtnAudioSpeak = document.getElementById('btn-audio-speak');
+    const tbListen = document.getElementById('tb-listen');
+
+    if (effective === 'speaking') {
+      if (elBtnAudioStop) elBtnAudioStop.style.display = 'inline-flex';
+      if (elBtnAudioRestart) elBtnAudioRestart.style.display = 'inline-flex';
+      if (elAudioSpeakText) elAudioSpeakText.textContent = 'Pause';
+      if (elBtnAudioSpeak) {
+        elBtnAudioSpeak.classList.add('speaking');
+        elBtnAudioSpeak.classList.remove('is-paused');
+        const icon = elBtnAudioSpeak.querySelector('.audio-speaker-icon');
+        if (icon) icon.textContent = '⏸️';
+      }
+      if (activeMedicalTriggerBtn && activeMedicalTriggerBtn !== elBtnAudioSpeak) {
+        activeMedicalTriggerBtn.classList.add('speaking');
+        activeMedicalTriggerBtn.classList.remove('is-paused');
+      }
+      if (tbListen) {
+        tbListen.classList.add('is-active');
+        const small = tbListen.querySelector('small');
+        if (small) small.textContent = 'Pause';
+      }
+    } else if (effective === 'paused') {
+      if (elBtnAudioStop) elBtnAudioStop.style.display = 'inline-flex';
+      if (elBtnAudioRestart) elBtnAudioRestart.style.display = 'inline-flex';
+      if (elAudioSpeakText) elAudioSpeakText.textContent = 'Weiter';
+      if (elBtnAudioSpeak) {
+        elBtnAudioSpeak.classList.remove('speaking');
+        elBtnAudioSpeak.classList.add('is-paused');
+        const icon = elBtnAudioSpeak.querySelector('.audio-speaker-icon');
+        if (icon) icon.textContent = '▶️';
+      }
+      if (activeMedicalTriggerBtn && activeMedicalTriggerBtn !== elBtnAudioSpeak) {
+        activeMedicalTriggerBtn.classList.remove('speaking');
+        activeMedicalTriggerBtn.classList.add('is-paused');
+      }
+      if (tbListen) {
+        tbListen.classList.add('is-active');
+        const small = tbListen.querySelector('small');
+        if (small) small.textContent = 'Weiter';
+      }
+    } else { // idle
+      if (elBtnAudioStop) elBtnAudioStop.style.display = 'none';
+      if (elBtnAudioRestart) elBtnAudioRestart.style.display = 'none';
+      if (elAudioSpeakText) elAudioSpeakText.textContent = 'Vorlesen';
+      if (elBtnAudioSpeak) {
+        elBtnAudioSpeak.classList.remove('speaking', 'is-paused');
+        const icon = elBtnAudioSpeak.querySelector('.audio-speaker-icon');
+        if (icon) icon.textContent = '🔊';
+      }
+      document.querySelectorAll('.speaking, .is-paused').forEach(el => {
+        el.classList.remove('speaking');
+        el.classList.remove('is-paused');
+      });
+      if (tbListen) {
+        tbListen.classList.remove('is-active');
+        const small = tbListen.querySelector('small');
+        if (small) small.textContent = 'Vorlesen';
+      }
+    }
+  }
+
+  function pauseMedicalSpeech() {
+    if (!isSpeakingMedical || isPausedMedical) return;
+    isPausedMedical = true;
+    if (naturalAudioPlayer && !naturalAudioPlayer.paused) {
+      try { naturalAudioPlayer.pause(); } catch (e) {}
+    }
+    if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+      try { window.speechSynthesis.pause(); } catch (e) {}
+    }
+    updateSpeechUiState('paused');
+  }
+
+  function resumeMedicalSpeech() {
+    if (!isPausedMedical) return;
+    isPausedMedical = false;
+    isSpeakingMedical = true;
+    updateSpeechUiState('speaking');
+
+    if (naturalAudioPlayer && naturalAudioPlayer.src && naturalAudioPlayer.paused && !naturalAudioPlayer.ended) {
+      try {
+        const p = naturalAudioPlayer.play();
+        if (p !== undefined) {
+          p.catch(() => playCurrentAudioChunk());
+        }
+        return;
+      } catch (e) {}
+    }
+    if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+      try {
+        window.speechSynthesis.resume();
+        return;
+      } catch (e) {}
+    }
+    playCurrentAudioChunk();
+  }
+
+  function restartMedicalSpeech() {
+    _speakSessionId++;
+
+    // If playing a direct pre-rendered local audio file
+    if (naturalAudioPlayer && naturalAudioPlayer.src && (!naturalAudioQueue || !naturalAudioQueue.length)) {
+      try {
+        naturalAudioPlayer.currentTime = 0;
+        const p = naturalAudioPlayer.play();
+        if (p !== undefined) p.catch(() => {});
+        isSpeakingMedical = true;
+        isPausedMedical = false;
+        updateSpeechUiState('speaking');
+        return;
+      } catch (e) {}
+    }
+
+    if (naturalAudioPlayer) {
+      try {
+        naturalAudioPlayer.onended = null;
+        naturalAudioPlayer.onerror = null;
+        naturalAudioPlayer.pause();
+      } catch (e) {}
+    }
+    if ('speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+    }
+    currentChunkIndex = 0;
+    isSpeakingMedical = true;
+    isPausedMedical = false;
+    updateSpeechUiState('speaking');
+    playCurrentAudioChunk();
+  }
+
   function stopMedicalSpeech() {
     isSpeakingMedical = false;
+    isPausedMedical = false;
     _speakSessionId++; // Invalidate any pending 'ended' or async TTS events from the old session
     isFallbackSpeaking = false;
 
@@ -6932,27 +7080,16 @@ Tedavi:
       } catch (e) {}
     }
 
-    document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+    document.querySelectorAll('.speaking, .is-paused').forEach(el => {
+      el.classList.remove('speaking');
+      el.classList.remove('is-paused');
+    });
     activeMedicalTriggerBtn = null;
     naturalAudioQueue = [];
     currentChunkIndex = 0;
 
-    // Reset Stop Button and Vorlesen text
-    const elBtnAudioStop = document.getElementById('btn-audio-stop');
-    if (elBtnAudioStop) {
-      elBtnAudioStop.style.display = 'none';
-    }
-    const elAudioSpeakText = document.getElementById('audio-speak-text');
-    if (elAudioSpeakText) {
-      elAudioSpeakText.textContent = 'Vorlesen';
-    }
-
-    const tbListen = document.getElementById('tb-listen');
-    if (tbListen) {
-      tbListen.classList.remove('is-active');
-      const small = tbListen.querySelector('small');
-      if (small) small.textContent = 'Vorlesen';
-    }
+    // Reset UI state to idle
+    updateSpeechUiState('idle');
 
     if (typeof onSpeechCompleteCallback === 'function') {
       const cb = onSpeechCompleteCallback;
@@ -7028,39 +7165,57 @@ Tedavi:
     speakNextFallbackChunk();
   }
 
-  function speakMedicalText(textOrElement, triggerBtn = null, onEnd = null) {
-    // Toggle stop if user clicks the button currently speaking
-    if (isSpeakingMedical && triggerBtn && triggerBtn === activeMedicalTriggerBtn) {
-      stopMedicalSpeech();
+  function speakMedicalText(textOrElement, triggerBtn = null, onEnd = null, directAudioSrc = null) {
+    const cleanText = getCleanSpeechText(textOrElement);
+
+    // If currently speaking and user clicks the active button -> PAUSE!
+    if (isSpeakingMedical && !isPausedMedical && triggerBtn && triggerBtn === activeMedicalTriggerBtn) {
+      pauseMedicalSpeech();
+      return;
+    }
+    // If currently paused and user clicks the active button -> RESUME!
+    if (isPausedMedical && triggerBtn && triggerBtn === activeMedicalTriggerBtn) {
+      resumeMedicalSpeech();
       return;
     }
 
+    // New text or different trigger button -> stop prior session and start fresh
     stopMedicalSpeech();
 
-    const cleanText = getCleanSpeechText(textOrElement);
     if (!cleanText || !cleanText.trim()) return;
 
+    activeMedicalText = cleanText;
     isSpeakingMedical = true;
+    isPausedMedical = false;
     activeMedicalTriggerBtn = triggerBtn;
     onSpeechCompleteCallback = onEnd;
-    if (triggerBtn) triggerBtn.classList.add('speaking');
 
-    // Show dedicated stop button whenever speech begins
-    const elBtnAudioStop = document.getElementById('btn-audio-stop');
-    if (elBtnAudioStop) {
-      elBtnAudioStop.style.display = 'inline-flex';
-    }
-    const elAudioSpeakText = document.getElementById('audio-speak-text');
-    if (elAudioSpeakText && triggerBtn && triggerBtn.id === 'btn-audio-speak') {
-      elAudioSpeakText.textContent = 'Stoppen';
-    }
+    updateSpeechUiState('speaking');
 
-    // Live feedback on mobile thumb bar Vorlesen button
-    const tbListen = document.getElementById('tb-listen');
-    if (tbListen) {
-      tbListen.classList.add('is-active');
-      const small = tbListen.querySelector('small');
-      if (small) small.textContent = 'Stopp';
+    // Priority 0: Pre-rendered high-fidelity local studio audio (English learning app model)
+    if (directAudioSrc) {
+      const player = ensureUnlockedAudioPlayer();
+      player.onended = () => {
+        stopMedicalSpeech();
+      };
+      player.onerror = () => {
+        // Fallback to streaming/WebSpeech if file fails
+        naturalAudioQueue = chunkTextForTTS(cleanText, 180);
+        currentChunkIndex = 0;
+        playCurrentAudioChunk();
+      };
+      try { player.referrerPolicy = 'no-referrer'; } catch (e) {}
+      player.src = directAudioSrc;
+      player.playbackRate = state.speechRate || 1.15;
+      const p = player.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          naturalAudioQueue = chunkTextForTTS(cleanText, 180);
+          currentChunkIndex = 0;
+          playCurrentAudioChunk();
+        });
+      }
+      return;
     }
 
     const isOnline = (typeof navigator !== 'undefined' && navigator.onLine !== false);
@@ -7088,8 +7243,12 @@ Tedavi:
     playCurrentAudioChunk();
   }
 
-  // Global alias so all cockpit / emergency / simulation calls use the natural medical engine
+  // Global aliases so all cockpit / emergency / simulation calls use the natural medical engine
   window.speakText = speakMedicalText;
+  window.pauseMedicalSpeech = pauseMedicalSpeech;
+  window.resumeMedicalSpeech = resumeMedicalSpeech;
+  window.restartMedicalSpeech = restartMedicalSpeech;
+  window.stopMedicalSpeech = stopMedicalSpeech;
 
   // --- YouTube-Style Playback Speed Menu, Range Slider & Gemini Voice Controller ---
   const elBtnAudioSpeed = document.getElementById('btn-audio-speed');
@@ -7138,11 +7297,35 @@ Tedavi:
         btn.classList.toggle('active', Math.abs(btnRate - clampedRate) < 0.02);
       });
     }
+
+    // Highlight matching quick speed button on bar
+    const elQuickSpeedPills = document.getElementById('quick-speed-pills');
+    if (elQuickSpeedPills) {
+      elQuickSpeedPills.querySelectorAll('.quick-speed-btn').forEach(btn => {
+        const btnSpeed = parseFloat(btn.getAttribute('data-speed'));
+        btn.classList.toggle('active', Math.abs(btnSpeed - clampedRate) < 0.04);
+      });
+    }
   }
 
   // Initialize UI with saved speechRate
   if (state.speechRate) {
     setPlaybackSpeed(state.speechRate, true);
+  }
+
+  // Direct Quick Speed Pills (1x, 1.15x, 1.25x, 1.5x)
+  const elQuickSpeedPills = document.getElementById('quick-speed-pills');
+  if (elQuickSpeedPills) {
+    elQuickSpeedPills.querySelectorAll('.quick-speed-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetRate = parseFloat(btn.getAttribute('data-speed'));
+        if (!isNaN(targetRate)) {
+          setPlaybackSpeed(targetRate, true);
+          if (typeof playAudioTone === 'function') playAudioTone(520, 'sine', 0.08);
+        }
+      });
+    });
   }
 
   if (elBtnAudioSpeed && elAudioSpeedDropdown) {
@@ -7198,7 +7381,8 @@ Tedavi:
       if (!filteredQuestions.length) return;
       const currentQ = filteredQuestions[state.currentIndex];
       const textToRead = currentQ.stem_de || currentQ.question_de || '';
-      speakMedicalText(textToRead, elBtnAudioSpeak);
+      const localAudioFile = (typeof LOCAL_AUDIO_MANIFEST !== 'undefined' && currentQ && LOCAL_AUDIO_MANIFEST[currentQ.id]) ? LOCAL_AUDIO_MANIFEST[currentQ.id] : null;
+      speakMedicalText(textToRead, elBtnAudioSpeak, null, localAudioFile);
     });
   }
 
@@ -7208,6 +7392,15 @@ Tedavi:
     elBtnAudioStop.addEventListener('click', (e) => {
       e.stopPropagation();
       stopMedicalSpeech();
+    });
+  }
+
+  // --- Audio Pronunciation: Restart Button (Baştan Başla) ---
+  const elBtnAudioRestart = document.getElementById('btn-audio-restart');
+  if (elBtnAudioRestart) {
+    elBtnAudioRestart.addEventListener('click', (e) => {
+      e.stopPropagation();
+      restartMedicalSpeech();
     });
   }
 

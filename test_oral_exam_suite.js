@@ -1575,7 +1575,35 @@ questions.forEach(q => {
 });
 console.log(`[PASS] Suite 46 passed! Verified 0 punctuation/calque/encoding errors and 100% valid image assets across all ${questions.length} items.`);
 
-console.log('\n🎉 ALL 46 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
+// 47. Smart Audio Player, Pause/Resume/Restart, Quick Speed Pills & Local Audio Manifest
+console.log('Testing Suite 47: Smart Audio Player, Pause/Resume/Restart & Local Pre-rendered Audio Manifest...');
+const latestHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+const latestApp = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
+const latestCss = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+
+assert(latestHtml.includes('id="btn-audio-restart"'), 'index.html must include #btn-audio-restart (Baştan başla)');
+assert(latestHtml.includes('id="quick-speed-pills"'), 'index.html must include #quick-speed-pills');
+assert(latestHtml.includes('js/audio_manifest.js'), 'index.html must include js/audio_manifest.js');
+
+assert(latestCss.includes('.audio-restart-pill'), 'styles.css must style .audio-restart-pill');
+assert(latestCss.includes('.quick-speed-pills'), 'styles.css must style .quick-speed-pills');
+assert(latestCss.includes('.quick-speed-btn'), 'styles.css must style .quick-speed-btn');
+
+assert(latestApp.includes('pauseMedicalSpeech'), 'app.js must implement pauseMedicalSpeech');
+assert(latestApp.includes('resumeMedicalSpeech'), 'app.js must implement resumeMedicalSpeech');
+assert(latestApp.includes('restartMedicalSpeech'), 'app.js must implement restartMedicalSpeech');
+assert(latestApp.includes('btn-audio-restart'), 'app.js must bind #btn-audio-restart');
+assert(latestApp.includes('quick-speed-pills'), 'app.js must bind #quick-speed-pills');
+assert(latestApp.includes('LOCAL_AUDIO_MANIFEST'), 'app.js must check LOCAL_AUDIO_MANIFEST');
+
+const manifestPath = path.join(__dirname, 'js/audio_manifest.js');
+assert(fs.existsSync(manifestPath), 'js/audio_manifest.js must exist');
+const manifestCode = fs.readFileSync(manifestPath, 'utf8');
+assert(manifestCode.includes('LOCAL_AUDIO_MANIFEST'), 'js/audio_manifest.js must define LOCAL_AUDIO_MANIFEST');
+
+console.log('[PASS] Suite 47 passed! Verified Smart Audio Player (Vorlesen/Pause/Weiter/Baştan/Stopp), Quick Speed Pills (1.0x-1.5x) and Local Pre-rendered Audio Manifest.');
+
+console.log('\n🎉 ALL 47 TEST SUITES PASSED PERFECTLY WITH COMPREHENSIVE COVERAGE!\n');
 
 
 

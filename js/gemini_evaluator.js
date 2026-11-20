@@ -367,12 +367,11 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       }
 
       const runPromise = (async () => {
-        const ttsModel = 'gemini-3.8-flash-tts';
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${ttsModel}:generateContent?key=${apiKey}`;
+        const candidateModels = ['gemini-2.5-flash-preview-tts', 'gemini-3.8-flash-lite-tts', 'gemini-3.8-flash-tts'];
         const payload = {
           contents: [{
             parts: [{
-              text: clean
+              text: `Read the following text aloud: ${clean}`
             }]
           }],
           generationConfig: {
@@ -387,41 +386,51 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
           }
         };
 
-        const controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
-        const timerId = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
-        let res;
-        try {
-          res = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            signal: controller ? controller.signal : undefined
-          });
-        } finally {
-          if (timerId) clearTimeout(timerId);
-        }
-        if (!res.ok) {
-          const errTxt = await res.text();
-          throw new Error(`TTS HTTP ${res.status}: ${errTxt}`);
-        }
-        const data = await res.json();
-        const parts = data?.candidates?.[0]?.content?.parts || [];
-        const audioPart = parts.find(p => p.inlineData && p.inlineData.data);
-        if (!audioPart) {
-          throw new Error('NO_AUDIO_DATA');
-        }
+        let lastErr = null;
+        for (const ttsModel of candidateModels) {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${ttsModel}:generateContent?key=${apiKey}`;
+          const controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+          const timerId = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+          let res;
+          try {
+            res = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              signal: controller ? controller.signal : undefined
+            });
+          } catch (netErr) {
+            lastErr = netErr;
+            continue;
+          } finally {
+            if (timerId) clearTimeout(timerId);
+          }
+          if (!res.ok) {
+            const errTxt = await res.text();
+            lastErr = new Error(`TTS HTTP ${res.status} on ${ttsModel}: ${errTxt}`);
+            continue;
+          }
+          const data = await res.json();
+          const parts = data?.candidates?.[0]?.content?.parts || [];
+          const audioPart = parts.find(p => p.inlineData && p.inlineData.data);
+          if (!audioPart) {
+            lastErr = new Error(`NO_AUDIO_DATA on ${ttsModel}`);
+            continue;
+          }
 
-        const mime = (audioPart.inlineData.mimeType || '').toLowerCase();
-        const rateMatch = mime.match(/rate=(\d+)/);
-        const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
-        const wavBlob = GeminiAIEvaluator.pcm16Base64ToWavBlob(audioPart.inlineData.data, sampleRate);
+          const mime = (audioPart.inlineData.mimeType || '').toLowerCase();
+          const rateMatch = mime.match(/rate=(\d+)/);
+          const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
+          const wavBlob = GeminiAIEvaluator.pcm16Base64ToWavBlob(audioPart.inlineData.data, sampleRate);
 
-        if (this.ttsCache.size > 80) {
-          const firstKey = this.ttsCache.keys().next().value;
-          this.ttsCache.delete(firstKey);
+          if (this.ttsCache.size > 80) {
+            const firstKey = this.ttsCache.keys().next().value;
+            this.ttsCache.delete(firstKey);
+          }
+          this.ttsCache.set(cacheKey, wavBlob);
+          return wavBlob;
         }
-        this.ttsCache.set(cacheKey, wavBlob);
-        return wavBlob;
+        throw lastErr || new Error('TTS_FAILED_ALL_MODELS');
       })();
 
       this.ttsInFlight.set(cacheKey, runPromise);
