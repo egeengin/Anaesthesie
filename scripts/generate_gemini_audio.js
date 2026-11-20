@@ -69,8 +69,12 @@ function convertWavToM4a(wavPath, m4aPath) {
   return false;
 }
 
-async function synthesizeText(text, voiceName = 'Charon', maxRetries = 5) {
-  const models = ['gemini-2.5-flash-preview-tts', 'gemini-3.8-flash-lite-tts'];
+async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
+  const models = [
+    'gemini-3.1-flash-tts-preview',
+    'gemini-2.5-flash-preview-tts',
+    'gemini-3.8-flash-tts'
+  ];
   const cleanPrompt = `Read the following text aloud: ${text}`;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -96,7 +100,13 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 5) {
         });
 
         if (res.status === 429) {
-          const waitSec = 15 + attempt * 10;
+          const errData = await res.json().catch(() => ({}));
+          const isDaily = errData?.error?.message?.includes('per day limit exceeded');
+          if (isDaily) {
+            console.warn(`[Daily Quota Exceeded] on ${model} (Free Tier limit: 10 requests/day). Skipping model.`);
+            continue;
+          }
+          const waitSec = 10 + attempt * 5;
           console.warn(`[429 Rate Limit] on ${model}, waiting ${waitSec}s before retry...`);
           await new Promise(r => setTimeout(r, waitSec * 1000));
           continue;
@@ -112,8 +122,12 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 5) {
         const audioPart = data?.candidates?.[0]?.content?.parts?.find(p => p.inlineData && p.inlineData.data);
         if (!audioPart) continue;
 
-        const pcmBuffer = Buffer.from(audioPart.inlineData.data, 'base64');
-        return createWavBuffer(pcmBuffer, 24000);
+        const mime = audioPart.inlineData.mimeType || '';
+        const rawBuf = Buffer.from(audioPart.inlineData.data, 'base64');
+        if (mime.includes('wav')) {
+          return rawBuf;
+        }
+        return createWavBuffer(rawBuf, 24000);
       } catch (err) {
         console.warn(`[Fetch error] on ${model}: ${err.message}`);
       }
@@ -131,8 +145,8 @@ function updateManifestFile() {
   const manifest = {};
 
   for (const f of files) {
-    if (f.endsWith('.m4a') || f.endsWith('.wav')) {
-      const match = f.match(/^(.+?)_fall_stem\.(m4a|wav)$/);
+    if (f.endsWith('.m4a') || f.endsWith('.wav') || f.endsWith('.mp3')) {
+      const match = f.match(/^(.+?)_fall_stem\.(m4a|wav|mp3)$/);
       if (match) {
         const qId = match[1];
         manifest[qId] = `audio/cases/${f}`;
