@@ -7654,28 +7654,28 @@ Tedavi:
 
     const elDisplay = document.getElementById('bga-monitor-display');
     if (elDisplay) {
-      const vitalGlossaryTR = {
-        'ph': { lbl: 'pH', desc: 'Asit-Baz Durumu (Normal: 7,35 - 7,45)' },
-        'pco2': { lbl: 'pCO₂', desc: 'Parsiyel Karbondioksit Basıncı (Normal: 35 - 45 mmHg)' },
-        'po2': { lbl: 'pO₂', desc: 'Parsiyel Oksijen Basıncı (Normal: 75 - 100 mmHg)' },
-        'hco3': { lbl: 'HCO₃⁻', desc: 'Aktüel Bikarbonat (Normal: 22 - 26 mmol/l)' },
-        'be': { lbl: 'Base Excess (BE)', desc: 'Baz Fazlalığı / Sapması (Normal: -2 ila +2 mmol/l)' },
-        'lactate': { lbl: 'Laktat', desc: 'Doku Hipoperfüzyonu (Normal: < 2,0 mmol/l)' },
-        'na': { lbl: 'Sodyum (Na⁺)', desc: 'Ekstraselüler Osmolalite (Normal: 135 - 145 mmol/l)' },
-        'k': { lbl: 'Potasyum (K⁺)', desc: 'Kardiyak Membran Potansiyeli (Normal: 3,5 - 5,0 mmol/l)' },
-        'cl': { lbl: 'Klor (Cl⁻)', desc: 'Anyon Açığı Hesabı (Normal: 98 - 106 mmol/l)' },
-        'hb': { lbl: 'Hemoglobin (Hb)', desc: 'Oksijen Taşıma Kapasitesi (Normal: 12 - 16 g/dl)' }
+      const vitalGlossaryDE = {
+        'ph':      { lbl: 'pH',     hint: 'Norm: 7,35–7,45',    desc: 'Säure-Basen-Status (Norm: 7,35–7,45)' },
+        'pco2':    { lbl: 'pCO₂',   hint: 'Norm: 35–45 mmHg',   desc: 'CO₂-Partialdruck (Norm: 35–45 mmHg)' },
+        'po2':     { lbl: 'pO₂',    hint: 'Norm: 75–100 mmHg',  desc: 'O₂-Partialdruck (Norm: 75–100 mmHg)' },
+        'hco3':    { lbl: 'HCO₃⁻',  hint: 'Norm: 22–26 mmol/l', desc: 'Aktuelles Bikarbonat (Norm: 22–26 mmol/l)' },
+        'be':      { lbl: 'BE',     hint: 'Norm: -2 bis +2',    desc: 'Basenabweichung (Norm: -2 bis +2 mmol/l)' },
+        'lactate': { lbl: 'Laktat', hint: 'Norm: < 2,0 mmol/l', desc: 'Laktat / Gewebeperfusion (Norm: < 2,0 mmol/l)' },
+        'na':      { lbl: 'Na⁺',    hint: 'Norm: 135–145',      desc: 'Natrium (Norm: 135–145 mmol/l)' },
+        'k':       { lbl: 'K⁺',     hint: 'Norm: 3,5–5,0',      desc: 'Kalium (Norm: 3,5–5,0 mmol/l)' },
+        'cl':      { lbl: 'Cl⁻',    hint: 'Norm: 98–106',       desc: 'Chlorid (Norm: 98–106 mmol/l)' },
+        'hb':      { lbl: 'Hb',     hint: 'Norm: 12–16 g/dl',   desc: 'Hämoglobin (Norm: 12–16 g/dl)' }
       };
 
       let tilesHtml = '';
       for (const [k, v] of Object.entries(bCase.vitals)) {
         const keyLower = k.toLowerCase().trim();
-        const info = vitalGlossaryTR[keyLower] || { lbl: k.toUpperCase(), desc: 'Klinischer Vitalwert' };
+        const info = vitalGlossaryDE[keyLower] || { lbl: k.toUpperCase(), hint: 'Klinischer Wert', desc: 'Klinischer Vitalwert' };
         tilesHtml += `
-          <div class="bga-tile" title="${info.lbl}: ${info.desc}" tabindex="0">
-            <div class="bga-tile-lbl">${k}</div>
+          <div class="bga-tile" title="${info.desc}" tabindex="0">
+            <div class="bga-tile-lbl">${info.lbl}</div>
             <div class="bga-tile-val">${v}</div>
-            <div class="bga-tile-tr-hint" style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${info.desc.split('(')[0].trim()}</div>
+            <div class="bga-tile-hint">${info.hint}</div>
           </div>
         `;
       }
@@ -7687,19 +7687,19 @@ Tedavi:
       const stepsTr = bCase.systematicSteps_tr || {};
       elSteps.innerHTML = `
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 1</span><strong>1. Oxygenierung (Oksijenasyon):</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 1</span><strong>1. Oxygenierung:</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step1_oxygenation, stepsTr.step1_oxygenation || '')}</div>
         </div>
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 2</span><strong>2. Säure-Basen-Status (Asit-Baz Durumu):</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 2</span><strong>2. Säure-Basen-Status:</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step2_acidBase, stepsTr.step2_acidBase || '')}</div>
         </div>
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 3</span><strong>3. Kompensation (Kompanzasyon):</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 3</span><strong>3. Kompensation:</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step3_compensation, stepsTr.step3_compensation || '')}</div>
         </div>
         <div class="bga-step-item">
-          <div class="bga-step-header"><span class="bga-step-badge">Schritt 4</span><strong>4. Anionenlücke & Elektrolyte (Anyon Açığı):</strong></div>
+          <div class="bga-step-header"><span class="bga-step-badge">Schritt 4</span><strong>4. Anionenlücke &amp; Elektrolyte:</strong></div>
           <div class="bga-step-content">${renderDualLanguageText(bCase.systematicSteps.step4_anionGap, stepsTr.step4_anionGap || '')}</div>
         </div>
       `;
@@ -7710,7 +7710,7 @@ Tedavi:
       const actionTr = bCase.clinicalAction_tr || '';
       elAction.innerHTML = `
         <div style="font-weight: 700; color: #dc2626; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
-          <span>🚨</span> <strong>Konsequenz &amp; ÄKNO Intervention (Klinik Müdahale):</strong>
+          <span>🚨</span> <strong>Konsequenz &amp; ÄKNO Intervention:</strong>
         </div>
         ${renderDualLanguageText(bCase.clinicalAction, actionTr)}
       `;

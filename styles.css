@@ -8053,10 +8053,10 @@ body.mode-simulation-active #step3-container {
 
 .bga-monitor-display {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.65rem;
   background: #f7f3ec !important;
-  padding: 1rem 1.15rem !important;
+  padding: 0.9rem 1rem !important;
   border-radius: 12px !important;
   margin-bottom: 1.25rem !important;
   border: 1.5px solid #e5dbcd !important;
@@ -8064,11 +8064,17 @@ body.mode-simulation-active #step3-container {
   transition: all 0.25s ease;
 }
 
+@media (max-width: 720px) {
+  .bga-monitor-display {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .bga-tile {
   background: #ffffff !important;
   border: 1px solid #e8dfd5 !important;
   border-radius: 8px !important;
-  padding: 0.55rem 0.75rem !important;
+  padding: 0.55rem 0.65rem !important;
   text-align: center !important;
   box-shadow: 0 1px 3px rgba(45, 36, 30, 0.05) !important;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease !important;
@@ -8091,10 +8097,18 @@ body.mode-simulation-active #step3-container {
 }
 
 .bga-tile-val {
-  font-size: 1.18rem !important;
+  font-size: 1.05rem !important;
   font-weight: 800 !important;
   color: #2d241e !important;
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  white-space: nowrap;
+}
+
+.bga-tile-hint {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  margin-top: 0.18rem;
+  white-space: nowrap;
 }
 
 /* 📜 Warm Sepia Harmony: Never show harsh dark navy in Sepia theme! */
