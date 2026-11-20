@@ -1776,7 +1776,8 @@ body.mode-german-only .trans-interactive {
 
 .oral-question-text,
 .oral-answer-content {
-  max-width: 72ch;
+  width: 100%;
+  max-width: none;
 }
 
 .oral-answer-content {
