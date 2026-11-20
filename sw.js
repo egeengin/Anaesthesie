@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.24'; // upgraded from facharzt-cache-v7.7 - unified compact language pill across both views
+const CACHE_NAME = 'facharzt-cache-v12.25'; // upgraded from facharzt-cache-v7.7 - ultra-clean borderless monitor strip + cache-busted study.js
 const CORE_ASSETS = [
   './',
   './index.html',

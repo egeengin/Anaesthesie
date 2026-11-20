@@ -615,6 +615,26 @@
             ? `<span class="badge-category" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🩺 AMBOSS</span>`
             : (q.is_high_yield ? `<span class="badge-hy-star">⭐ Kritik Vaka</span>` : ''));
 
+      const splitVital = (raw) => {
+        const str = String(raw || '').trim();
+        const parenIdx = str.indexOf('(');
+        const arrowIdx = str.indexOf('unter ');
+        let cut = -1;
+        if (parenIdx > 0) cut = parenIdx;
+        else if (arrowIdx > 0) cut = arrowIdx;
+        if (cut > 0) {
+          const main = str.slice(0, cut).trim();
+          const note = str.slice(cut).replace(/^\((.*)\)$/, '$1').trim();
+          return { main, note, full: str };
+        }
+        return { main: str, note: '', full: str };
+      };
+      const vHr = monitorData ? splitVital(monitorData.vitals.hr) : null;
+      const vBp = monitorData ? splitVital(monitorData.vitals.bp) : null;
+      const vSpo2 = monitorData ? splitVital(monitorData.vitals.spo2) : null;
+      const vEtco2 = monitorData ? splitVital(monitorData.vitals.etco2) : null;
+      const vTemp = monitorData ? splitVital(monitorData.vitals.temp) : null;
+
       const monitorHtml = monitorData ? `
         <div class="melis-monitor-strip">
           <div class="melis-monitor-header">
@@ -622,31 +642,36 @@
             <span class="inline-bilingual-tr" style="font-size: var(--font-xs); text-transform: none; opacity: 0.85;">🇹🇷 ${escapeHtml(monitorData.scenarioBadgeTR)}</span>
           </div>
           <div class="melis-vitals-grid">
-            <div class="melis-vital-tile">
+            <div class="melis-vital-tile" title="${escapeHtml(vHr.full)}">
               <div class="melis-vital-label">HF / Frequenz</div>
-              <div class="melis-vital-value melis-val-hr">♥ ${escapeHtml(monitorData.vitals.hr)}</div>
+              <div class="melis-vital-value melis-val-hr">♥ ${escapeHtml(vHr.main)}</div>
+              ${vHr.note ? `<div class="melis-vital-note">${escapeHtml(vHr.note)}</div>` : ''}
             </div>
-            <div class="melis-vital-tile">
+            <div class="melis-vital-tile" title="${escapeHtml(vBp.full)} (${escapeHtml(monitorData.vitals.map)})">
               <div class="melis-vital-label">RR / MAP</div>
-              <div class="melis-vital-value melis-val-bp">${escapeHtml(monitorData.vitals.bp)} <small style="font-size: var(--font-xs); opacity:0.85;">(${escapeHtml(monitorData.vitals.map)})</small></div>
+              <div class="melis-vital-value melis-val-bp">${escapeHtml(vBp.main)}</div>
+              ${vBp.note ? `<div class="melis-vital-note">${escapeHtml(vBp.note)}</div>` : ''}
             </div>
-            <div class="melis-vital-tile">
+            <div class="melis-vital-tile" title="${escapeHtml(vSpo2.full)}">
               <div class="melis-vital-label">SpO₂</div>
-              <div class="melis-vital-value melis-val-spo2">${escapeHtml(monitorData.vitals.spo2)}</div>
+              <div class="melis-vital-value melis-val-spo2">${escapeHtml(vSpo2.main)}</div>
+              ${vSpo2.note ? `<div class="melis-vital-note">${escapeHtml(vSpo2.note)}</div>` : ''}
             </div>
-            <div class="melis-vital-tile">
+            <div class="melis-vital-tile" title="${escapeHtml(vEtco2.full)}">
               <div class="melis-vital-label">EtCO₂</div>
-              <div class="melis-vital-value melis-val-etco2">${escapeHtml(monitorData.vitals.etco2)}</div>
+              <div class="melis-vital-value melis-val-etco2">${escapeHtml(vEtco2.main)}</div>
+              ${vEtco2.note ? `<div class="melis-vital-note">${escapeHtml(vEtco2.note)}</div>` : ''}
             </div>
-            <div class="melis-vital-tile">
+            <div class="melis-vital-tile" title="${escapeHtml(vTemp.full)}">
               <div class="melis-vital-label">Temp.</div>
-              <div class="melis-vital-value melis-val-temp">${escapeHtml(monitorData.vitals.temp)}</div>
+              <div class="melis-vital-value melis-val-temp">${escapeHtml(vTemp.main)}</div>
+              ${vTemp.note ? `<div class="melis-vital-note">${escapeHtml(vTemp.note)}</div>` : ''}
             </div>
           </div>
           <div class="melis-bga-strip">
-            <div><strong>📈 EKG:</strong> ${renderInteractiveGerman(String(monitorData.vitals.rhythmDE || '').replace(/^EKG:\s*/i, ''), String(monitorData.vitals.rhythmTR || '').replace(/^EKG:\s*/i, ''))}</div>
+            <div><strong>EKG:</strong> ${renderInteractiveGerman(String(monitorData.vitals.rhythmDE || '').replace(/^EKG:\s*/i, ''), String(monitorData.vitals.rhythmTR || '').replace(/^EKG:\s*/i, ''))}</div>
             <div>
-              <strong>🩸 BGA:</strong>
+              <strong>BGA:</strong>
               <div class="melis-bga-chips">
                 <span class="melis-bga-chip">pH <strong>${escapeHtml(monitorData.bga.ph)}</strong></span>
                 <span class="melis-bga-chip">PaCO₂ <strong>${escapeHtml(monitorData.bga.pco2)}</strong></span>
@@ -660,7 +685,7 @@
             </div>
             ${monitorData.advanced ? `
             <div>
-              <strong>🔬 ${escapeHtml(monitorData.advanced.labelDE)}:</strong>
+              <strong>${escapeHtml(monitorData.advanced.labelDE)}:</strong>
               ${renderInteractiveGerman(monitorData.advanced.valuesDE, monitorData.advanced.valuesTR)}
             </div>
             ` : ''}

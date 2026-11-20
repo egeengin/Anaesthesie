@@ -1956,6 +1956,15 @@ body.mode-german-only .trans-interactive {
   padding: 0 !important;
 }
 
+.melis-vital-note {
+  font-size: 0.7rem;
+  color: var(--text-muted, #64748b);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .melis-val-hr { color: #15803d !important; text-shadow: none !important; }
 .melis-val-bp { color: #b91c1c !important; text-shadow: none !important; }
 .melis-val-spo2 { color: #0369a1 !important; text-shadow: none !important; }
@@ -2003,17 +2012,18 @@ body.mode-german-only .trans-interactive {
 }
 
 .melis-bga-strip {
-  background: var(--bg-card, #ffffff);
-  border: 1px solid var(--border-color, #e2e8f0);
-  border-radius: 8px;
-  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.07));
+  border-radius: 0;
+  padding: 10px 0 6px 0;
   font-size: var(--font-sm);
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--text-secondary, #334155);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .melis-bga-strip strong {
@@ -2024,21 +2034,21 @@ body.mode-german-only .trans-interactive {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .melis-bga-chip {
-  background: var(--bg-secondary, #f1f5f9);
-  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08));
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 6px;
-  padding: 2px 7px;
+  padding: 2px 8px;
   font-size: 0.78rem;
   white-space: nowrap;
 }
 
 [data-theme="dark"] .melis-bga-strip {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(56, 189, 248, 0.25);
+  background: transparent;
+  border-top-color: rgba(148, 163, 184, 0.16);
   color: #e2e8f0;
 }
 
@@ -2054,17 +2064,18 @@ body.mode-german-only .trans-interactive {
 .melis-monitor-pattern {
   font-size: var(--font-sm);
   line-height: 1.55;
-  padding: 9px 12px;
-  background: rgba(16, 185, 129, 0.08);
-  border-left: 3px solid #059669;
-  border-radius: 6px;
-  color: var(--text-primary, #064e3b);
+  padding: 9px 0 0 0;
+  background: transparent;
+  border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.07));
+  border-left: none;
+  border-radius: 0;
+  color: var(--text-secondary, #334155);
 }
 
 [data-theme="dark"] .melis-monitor-pattern {
-  background: rgba(16, 185, 129, 0.12);
-  border-left-color: #10b981;
-  color: #ecfdf5;
+  background: transparent;
+  border-top-color: rgba(148, 163, 184, 0.16);
+  color: #cbd5e1;
 }
 
 /* 2. Immediate First 3 Actions Challenge Box */
