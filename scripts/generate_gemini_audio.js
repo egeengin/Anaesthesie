@@ -31,11 +31,37 @@ function ensureDirectories() {
 }
 
 function createWavBuffer(pcmBuffer, sampleRate = 24000) {
+  // Audio hygiene: trim any trailing digital noise/burst output by TTS model
+  const totalSamples = Math.floor(pcmBuffer.length / 2);
+  let spikeStart = totalSamples;
+
+  for (let i = totalSamples - 1; i >= Math.max(0, totalSamples - 15000); i--) {
+    const s = Math.abs(pcmBuffer.readInt16LE(i * 2));
+    if (s > 3000) {
+      spikeStart = i;
+    }
+  }
+
+  const cutPoint = (spikeStart < totalSamples) ? Math.max(0, spikeStart - 200) : totalSamples;
+  const fadeLen = 480; // 20ms fade out
+  const fadeStart = Math.max(0, cutPoint - fadeLen);
+  const silenceSamples = 2400; // 100ms pure zero padding
+  const cleanLength = cutPoint + silenceSamples;
+  const cleanPcm = Buffer.alloc(cleanLength * 2);
+
+  for (let i = 0; i < cutPoint; i++) {
+    let s = pcmBuffer.readInt16LE(i * 2);
+    if (i >= fadeStart) {
+      s = Math.round(s * ((cutPoint - i) / fadeLen));
+    }
+    cleanPcm.writeInt16LE(s, i * 2);
+  }
+
   const numChannels = 1;
   const bitsPerSample = 16;
   const byteRate = (sampleRate * numChannels * bitsPerSample) / 8;
   const blockAlign = (numChannels * bitsPerSample) / 8;
-  const dataSize = pcmBuffer.length;
+  const dataSize = cleanPcm.length;
   const header = Buffer.alloc(44);
 
   header.write('RIFF', 0);
@@ -52,11 +78,12 @@ function createWavBuffer(pcmBuffer, sampleRate = 24000) {
   header.write('data', 36);
   header.writeUInt32LE(dataSize, 40);
 
-  return Buffer.concat([header, pcmBuffer]);
+  return Buffer.concat([header, cleanPcm]);
 }
 
 function convertWavToM4a(wavPath, m4aPath) {
   try {
+    if (fs.existsSync(m4aPath)) fs.unlinkSync(m4aPath);
     execSync(`/usr/bin/afconvert -f m4af -d aac -b 64000 "${wavPath}" "${m4aPath}"`, { stdio: 'ignore' });
     // Remove uncompressed wav if m4a was created successfully to save space
     if (fs.existsSync(m4aPath) && fs.statSync(m4aPath).size > 1000) {
@@ -75,7 +102,8 @@ async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
     'gemini-2.5-flash-preview-tts',
     'gemini-3.8-flash-tts'
   ];
-  const cleanPrompt = `Read the following text aloud: ${text}`;
+  // Direct text without English intro to prevent the model from pronouncing English instructions
+  const cleanPrompt = text;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     let dailyExhaustedCount = 0;
