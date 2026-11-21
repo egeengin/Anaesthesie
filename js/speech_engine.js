@@ -22,8 +22,16 @@
 
     let text = String(rawText);
 
-    // 1. Strip HTML tags
-    text = text.replace(/<[^>]*>/g, ' ');
+    // 1. Strip actual HTML tags while preserving clinical '<' / '>' inequalities & '->' arrows
+    text = text.replace(/<\/?[a-zA-Z][^>]*>/g, ' ');
+    text = text.replace(/->|→/g, ', ');
+    text = text.replace(/<=\s*(\d)/g, 'maximal $1');
+    text = text.replace(/>=\s*(\d)/g, 'mindestens $1');
+    text = text.replace(/<\s*(\d)/g, 'unter $1');
+    text = text.replace(/>\s*(\d)/g, 'über $1');
+
+    // Normalize Unicode subscripts/superscripts (SpO₂ -> SpO2, cmH₂O -> cmH2O, NaHCO₃ -> NaHCO3)
+    text = text.replace(/₂/g, '2').replace(/₃/g, '3').replace(/⁺/g, '+').replace(/⁻/g, '-');
 
     // 2. Strip Markdown formatting
     text = text.replace(/\*\*([^*]+)\*\*/g, '$1'); // bold **text**
@@ -51,10 +59,10 @@
     text = text.replace(/(\d)\.(\d)/g, '$1,$2');
     text = text.replace(/(\d+)\s*[-–—]\s*(\d+)\s*([a-zA-Z%]+)/g, '$1 bis $2 $3');
 
-    // 6. Blood Pressure & Hemodynamics
-    text = text.replace(/\b(?:RR|Blutdruck)?\s*(\d{2,3})\s*[\/\\]\s*(\d{2,3})\s*(?:mmHg)?\b/gi, 'Blutdruck $1 zu $2 Millimeter Quecksilbersäule');
+    // 6. Blood Pressure & Hemodynamics (require RR/Blutdruck prefix OR mmHg suffix so ratios like 15/15 or 16/18 G are untouched)
+    text = text.replace(/\b(?:RR|Blutdruck)\s*[:=]?\s*(\d{2,3})\s*[\/\\]\s*(\d{2,3})\s*(?:mmHg)?\b/gi, 'Blutdruck $1 zu $2 Millimeter Quecksilbersäule');
+    text = text.replace(/\b(\d{2,3})\s*[\/\\]\s*(\d{2,3})\s*mmHg\b/gi, 'Blutdruck $1 zu $2 Millimeter Quecksilbersäule');
     text = text.replace(/\bRR\s*[:=]?\s*(\d{2,3})\b/gi, 'Blutdruck $1');
-    text = text.replace(/\b(\d{2,3})\s*[\/\\]\s*(\d{2,3})\b/g, '$1 zu $2');
 
     // Heart Rate & Frequency
     text = text.replace(/\b(?:HF|Herzfrequenz)\s*[:=]?\s*(\d{2,3})\s*(?:\/\s*min|bpm|min[-⁻]¹)?\b/gi, 'Herzfrequenz $1 pro Minute');
@@ -81,8 +89,10 @@
     text = text.replace(/\bBase Excess\s*-\s*(\d+)/gi, 'Base Excess minus $1');
     text = text.replace(/\bLaktat\s*[:=]?\s*(\d+[,.]?\d*)\s*(?:mmol\/l)?\b/gi, 'Laktat $1 Millimol pro Liter');
 
-    // 8. Dosages & Body Weight
-    text = text.replace(/\b(\d{1,3})\s*J\.?(?=\s|,|;|\)|$)/g, '$1 Jahre');
+    // 8. Dosages, Energy (Joule vs Jahre) & Body Weight
+    text = text.replace(/\b(\d{1,3})\s*J\b(?=\s*(?:biphas|monophas|Schock|Defib|Kardioversion))/gi, '$1 Joule');
+    text = text.replace(/\b(\d{1,3})\s*J\s*\/\s*kg\b/gi, '$1 Joule pro Kilogramm');
+    text = text.replace(/\b(\d{1,2})\s*J\.?(?=\s|,|;|\)|$)/g, '$1 Jahre');
     text = text.replace(/\b(\d+[,.]?\d*)\s*mg\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Milligramm pro Kilogramm Körpergewicht ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg\s*[\/\\]\s*min\b/gi, '$1 Mikrogramm pro Kilogramm pro Minute ');
     text = text.replace(/\b(\d+[,.]?\d*)\s*(?:µg|mcg)\s*[\/\\]\s*kg(?:\s*KG)?\b/gi, '$1 Mikrogramm pro Kilogramm Körpergewicht ');

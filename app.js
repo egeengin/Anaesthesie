@@ -293,10 +293,14 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (type === 'warning') icon = '⚠️';
     else if (type === 'error' || type === 'danger') icon = '🚨';
 
-    toast.innerHTML = `
-      <span class="app-toast-icon">${icon}</span>
-      <div class="app-toast-content">${message}</div>
-    `;
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'app-toast-icon';
+    iconSpan.textContent = icon;
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'app-toast-content';
+    contentDiv.textContent = String(message ?? '');
+    toast.appendChild(iconSpan);
+    toast.appendChild(contentDiv);
 
     elToastContainer.appendChild(toast);
 
@@ -332,82 +336,52 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Password Authentication Gate ---
-  function checkAuthentication() {
+  function isUserAuthenticated() {
     const host = window.location.hostname;
     const isLocalhost = host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0' || host.startsWith('192.168.') || host.startsWith('10.') || window.location.protocol === 'file:';
-    const isAuthed = localStorage.getItem(AUTH_KEY) === 'true' || isLocalhost;
+    try {
+      return isLocalhost || localStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem('facharzt_auth_logged_in') === 'true';
+    } catch (e) {
+      return isLocalhost;
+    }
+  }
+
+  function checkAuthentication() {
+    const isAuthed = isUserAuthenticated();
     if (isAuthed) {
       if (elAuthModal) elAuthModal.style.display = 'none';
     } else {
       if (elAuthModal) elAuthModal.style.display = 'flex';
       if (elAuthPassword) elAuthPassword.focus();
     }
+    return isAuthed;
   }
 
-  // --- Security & IP Access Logger Engine ---
-  const AUDIT_LOG_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdac6f09e07e8';
-
-  async function logSecurityAccess(statusStr, attemptedPass = '') {
-    try {
-      const geoRes = await fetch('https://ipapi.co/json/').catch(() => null);
-      let geoData = {};
-      if (geoRes && geoRes.ok) {
-        geoData = await geoRes.json();
-      }
-
-      const logEntry = {
-        timestamp: new Date().toISOString(),
-        ip: geoData.ip || 'Unknown',
-        city: geoData.city || '',
-        region: geoData.region || '',
-        country: geoData.country_name || '',
-        isp: geoData.org || '',
-        status: statusStr + (attemptedPass ? ` [Attempt: "${attemptedPass}"]` : ''),
-        device: navigator.userAgent ? navigator.userAgent.slice(0, 45) : 'Browser'
-      };
-
-      const existingRes = await fetch(AUDIT_LOG_ENDPOINT).catch(() => null);
-      let logsList = [];
-      if (existingRes && existingRes.ok) {
-        const existingData = await existingRes.json();
-        if (existingData && existingData.data && existingData.data.logs) {
-          logsList = existingData.data.logs;
-        }
-      }
-
-      logsList.push(logEntry);
-      if (logsList.length > 100) {
-        logsList = logsList.slice(logsList.length - 100);
-      }
-
-      await fetch(AUDIT_LOG_ENDPOINT, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: 'facharzt_login_audit_logs',
-          data: { logs: logsList }
-        })
-      }).catch(() => null);
-    } catch (e) {
-      console.log('Security log error:', e);
-    }
+  // --- Security Access Logger (Local-only; no external IP or plaintext password transmission) ---
+  async function logSecurityAccess(_statusStr) {
+    // Intentionally a no-op to protect user IP/location and prevent password leakage to public endpoints.
   }
 
   function handleAuthSubmit() {
     if (!elAuthPassword) return;
     const enteredPass = elAuthPassword.value.trim();
+    if (!enteredPass) return;
     if (enteredPass.toLowerCase() === 'egemelis' || enteredPass === CORRECT_PASS) {
-      localStorage.setItem(AUTH_KEY, 'true');
+      try {
+        localStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem('facharzt_auth_logged_in', 'true');
+      } catch (e) {}
       if (elAuthError) elAuthError.style.display = 'none';
       if (elAuthModal) elAuthModal.style.display = 'none';
       logSecurityAccess('SUCCESS');
+      syncFromCloud();
     } else {
       if (elAuthError) elAuthError.style.display = 'block';
       if (elAuthCardBox) {
         elAuthCardBox.classList.add('shake');
         setTimeout(() => elAuthCardBox.classList.remove('shake'), 450);
       }
-      logSecurityAccess('FAILED_ATTEMPT', enteredPass);
+      logSecurityAccess('FAILED_ATTEMPT');
     }
   }
 
@@ -644,10 +618,9 @@ document.addEventListener('DOMContentLoaded', () => {
     elCategoryFilter.value = state.categoryFilter || 'all';
   }
 
-  // Load state from LocalStorage
-  loadState();
+  // Check authentication and load state from LocalStorage
   checkAuthentication();
-  initCategoryDropdown();
+  loadState();
 
   // Active question pool based on filters
   filteredQuestions = getFilteredQuestions();
@@ -684,8 +657,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   // --- 45-Minute Total Exam Simulation Timer ---
@@ -727,11 +705,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 60-Second Exam Step Timer Engine ---
+  let sharedToneAudioCtx = null;
   function playAudioTone(frequency = 780, type = 'sine', duration = 0.22) {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
-      const ctx = new AudioCtx();
+      if (!sharedToneAudioCtx || sharedToneAudioCtx.state === 'closed') {
+        sharedToneAudioCtx = new AudioCtx();
+      }
+      if (sharedToneAudioCtx.state === 'suspended') {
+        sharedToneAudioCtx.resume().catch(() => {});
+      }
+      const ctx = sharedToneAudioCtx;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = type;
@@ -1662,7 +1647,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stop MediaRecorder and flush final buffer (resolves once onstop has built recordedAudioBlob)
     const recorderStopped = new Promise((resolve) => {
       if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-        mediaRecorderStopResolver = resolve;
+        let safetyTimer = null;
+        const finishStop = () => {
+          if (safetyTimer) {
+            clearTimeout(safetyTimer);
+            safetyTimer = null;
+          }
+          resolve();
+        };
+        mediaRecorderStopResolver = finishStop;
         try {
           if (typeof mediaRecorder.requestData === 'function') {
             mediaRecorder.requestData();
@@ -1671,11 +1664,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) {
           console.warn('MediaRecorder stop error:', e);
           stopMicrophoneHardware();
-          resolve();
+          finishStop();
+          return;
         }
-        setTimeout(() => {
+        safetyTimer = setTimeout(() => {
           stopMicrophoneHardware();
-          resolve();
+          finishStop();
         }, 2000); // safety net
       } else {
         stopMicrophoneHardware();
@@ -4291,11 +4285,19 @@ Tedavi:
     }
 
     // Escape: Close any open modal backdrop first, or stop medical speech
+    const activeModal = document.querySelector('.modal-backdrop.active');
     if (e.key === 'Escape') {
-      const activeModal = document.querySelector('.modal-backdrop.active');
       if (activeModal) {
         e.preventDefault();
-        closeModal(activeModal);
+        if (activeModal.id === 'mock-exam-modal' && elMockExamClose) {
+          elMockExamClose.click();
+        } else if (activeModal.id === 'podcast-modal') {
+          const podClose = document.getElementById('podcast-modal-close');
+          if (podClose) podClose.click();
+          else closeModal(activeModal);
+        } else {
+          closeModal(activeModal);
+        }
         return;
       }
       if (isSpeakingMedical) {
@@ -4303,6 +4305,11 @@ Tedavi:
         stopMedicalSpeech();
         return;
       }
+    }
+
+    // Do not fire underlying exam shortcuts while a modal is open
+    if (activeModal) {
+      return;
     }
 
     // Do not hijack Space/Enter/letter shortcuts when Study & Reading view is active
@@ -4313,8 +4320,11 @@ Tedavi:
 
     const key = e.key.toLowerCase();
 
-    // Space: Advance Stepper / Reveal / Unmask Cloze / Check answers
+    // Space: Advance Stepper / Reveal / Unmask Cloze / Check answers (do not hijack focused buttons/links)
     if (e.code === 'Space' || key === 'enter') {
+      if (activeEl && (['BUTTON', 'A', 'SUMMARY'].includes(activeEl.tagName) || activeEl.getAttribute('role') === 'button')) {
+        return;
+      }
       e.preventDefault();
 
       if (state.studyMode === 'flashcard') {
@@ -4388,8 +4398,8 @@ Tedavi:
     else if (key === '4') {
       revealAnswer();
     }
-    // K, G, R: Prüfungssicher (self assessment pass)
-    else if (key === 'k' || key === 'g' || key === 'r') {
+    // K, G: Prüfungssicher (self assessment pass; 'r' reserved for audio restart below)
+    else if (key === 'k' || key === 'g') {
       selfAssess(true, 5);
     }
     // F: Unsicher / K.O.-Fehler (self assessment fail)
@@ -5972,16 +5982,20 @@ Tedavi:
         renderCurrentQuestion();
         pushToCloudDebounced();
         updateCloudSyncBadge('synced');
+        return true;
       } else {
         updateCloudSyncBadge('offline');
+        return false;
       }
     } catch (e) {
       updateCloudSyncBadge('offline');
+      return false;
     }
   }
 
   // Push local state to cloud with 600ms debounce
   function pushToCloudDebounced() {
+    if (!isUserAuthenticated()) return;
     updateCloudSyncBadge('syncing');
     if (cloudSyncTimer) clearTimeout(cloudSyncTimer);
     cloudSyncTimer = setTimeout(() => {
@@ -5990,6 +6004,7 @@ Tedavi:
   }
 
   async function pushToCloud() {
+    if (!isUserAuthenticated()) return;
     try {
       const ok = (typeof StorageSync !== 'undefined' && typeof StorageSync.pushToCloud === 'function')
         ? await StorageSync.pushToCloud(state, CLOUD_SYNC_ENDPOINT)
@@ -6001,6 +6016,29 @@ Tedavi:
   }
 
   function saveStateLocalOnly() {
+    // Synchronize dual-named keys and preserve Study view read progress before persisting
+    if (state.userNotes || state.notes) {
+      const mergedNotes = { ...(state.notes || {}), ...(state.userNotes || {}) };
+      state.userNotes = mergedNotes;
+      state.notes = mergedNotes;
+    }
+    if (state.sm2Data || state.sm2Cards) {
+      const mergedSm2 = { ...(state.sm2Cards || {}), ...(state.sm2Data || {}) };
+      state.sm2Data = mergedSm2;
+      state.sm2Cards = mergedSm2;
+    }
+    if (state.dailyCount || state.dailyReviews) {
+      const mergedDaily = { ...(state.dailyReviews || {}), ...(state.dailyCount || {}) };
+      state.dailyCount = mergedDaily;
+      state.dailyReviews = mergedDaily;
+    }
+    try {
+      const latestStudyRead = JSON.parse(localStorage.getItem('facharzt_melis_read_status_v1') || '{}');
+      if (latestStudyRead && typeof latestStudyRead === 'object') {
+        state.studyReadStatus = { ...(state.studyReadStatus || {}), ...latestStudyRead };
+      }
+    } catch (e) {}
+
     if (typeof StorageSync !== 'undefined' && typeof StorageSync.saveLocal === 'function') {
       StorageSync.saveLocal(state, STORAGE_KEY);
     } else {
@@ -6088,14 +6126,20 @@ Tedavi:
       if (elBadge) elBadge.textContent = activeChipLabel;
     }
 
-    // Trigger cloud auto-sync asynchronously
-    syncFromCloud();
+    // Trigger cloud auto-sync asynchronously only when authenticated
+    if (isUserAuthenticated()) {
+      syncFromCloud();
+    }
   }
 
   if (elBtnCloudSyncNow) {
     elBtnCloudSyncNow.addEventListener('click', async () => {
-      await syncFromCloud();
-      showToast('☁️ Cloud-Synchronisation erfolgreich ausgeführt!', 'success', 3500);
+      const ok = await syncFromCloud();
+      if (ok) {
+        showToast('☁️ Cloud-Synchronisation erfolgreich ausgeführt!', 'success', 3500);
+      } else {
+        showToast('⚠️ Cloud-Synchronisation fehlgeschlagen oder offline.', 'warning', 3500);
+      }
     });
   }
 
@@ -6132,8 +6176,12 @@ Tedavi:
       reader.onload = (event) => {
         try {
           const imported = JSON.parse(event.target.result);
-          if (imported && imported.state) {
-            state = { ...state, ...imported.state };
+          if (imported && imported.state && typeof imported.state === 'object' && !Array.isArray(imported.state)) {
+            const safeState = { ...imported.state };
+            delete safeState.__proto__;
+            delete safeState.constructor;
+            delete safeState.prototype;
+            state = { ...state, ...safeState };
             saveState();
             renderCurrentQuestion();
             showToast('✅ Lernfortschritt erfolgreich importiert!', 'success', 3500);
@@ -6143,6 +6191,8 @@ Tedavi:
           }
         } catch (err) {
           showToast('❌ Fehler beim Lesen der Sicherungsdatei.', 'error', 3500);
+        } finally {
+          elImportFileInput.value = '';
         }
       };
       reader.readAsText(file);
@@ -7195,25 +7245,26 @@ Tedavi:
     // Priority 0: Pre-rendered high-fidelity local studio audio (English learning app model)
     if (directAudioSrc) {
       const player = ensureUnlockedAudioPlayer();
-      player.onended = () => {
-        stopMedicalSpeech();
-      };
-      player.onerror = () => {
-        // Fallback to streaming/WebSpeech if file fails
+      const sessionAtStart = _speakSessionId;
+      let fallbackTriggered = false;
+      const triggerChunkFallback = () => {
+        if (fallbackTriggered || sessionAtStart !== _speakSessionId || !isSpeakingMedical) return;
+        fallbackTriggered = true;
+        player.onerror = null;
         naturalAudioQueue = chunkTextForTTS(cleanText, 180);
         currentChunkIndex = 0;
         playCurrentAudioChunk();
       };
+      player.onended = () => {
+        stopMedicalSpeech();
+      };
+      player.onerror = triggerChunkFallback;
       try { player.referrerPolicy = 'no-referrer'; } catch (e) {}
       player.src = directAudioSrc;
       player.playbackRate = state.speechRate || 1.15;
       const p = player.play();
       if (p !== undefined) {
-        p.catch(() => {
-          naturalAudioQueue = chunkTextForTTS(cleanText, 180);
-          currentChunkIndex = 0;
-          playCurrentAudioChunk();
-        });
+        p.catch(triggerChunkFallback);
       }
       return;
     }
@@ -7612,13 +7663,14 @@ Tedavi:
       `;
 
       flaggedQuestions.forEach((q, idx) => {
-        const stem = q.stem_de || q.question_de || '';
-        const ans = q.answer_de || q.explanation_de || '';
-        const note = state.userNotes ? state.userNotes[q.id] : '';
+        const stem = escapeHtml(q.stem_de || q.question_de || '');
+        const ans = escapeHtml(q.answer_de || q.explanation_de || '');
+        const note = escapeHtml(state.userNotes ? state.userNotes[q.id] : '');
+        const cat = escapeHtml(q.category || '');
 
         printHtml += `
           <div class="q-box">
-            <div class="q-title">${idx + 1}. [${q.category}] ${stem}</div>
+            <div class="q-title">${idx + 1}. [${cat}] ${stem}</div>
             <div class="q-ans"><strong>Antwort:</strong> ${ans}</div>
             ${note ? `<div class="q-note"><strong>Eigene Notiz:</strong> ${note}</div>` : ''}
           </div>
@@ -7628,6 +7680,10 @@ Tedavi:
       printHtml += `</body></html>`;
 
       const printWin = window.open('', '_blank');
+      if (!printWin) {
+        showToast('⚠️ Pop-up wurde vom Browser blockiert. Bitte Pop-ups für das Drucken erlauben.', 'warning', 4000);
+        return;
+      }
       printWin.document.write(printHtml);
       printWin.document.close();
       printWin.focus();
@@ -7638,21 +7694,13 @@ Tedavi:
   // --- Navigation & UI Handlers ---
   if (elBtnNext) {
     elBtnNext.addEventListener('click', () => {
-      if (state.currentIndex < filteredQuestions.length - 1) {
-        state.currentIndex++;
-        saveState();
-        renderCurrentQuestion();
-      }
+      navigateToNextQuestion();
     });
   }
 
   if (elBtnPrev) {
     elBtnPrev.addEventListener('click', () => {
-      if (state.currentIndex > 0) {
-        state.currentIndex--;
-        saveState();
-        renderCurrentQuestion();
-      }
+      navigateToPrevQuestion();
     });
   }
 
@@ -7753,7 +7801,7 @@ Tedavi:
   const elBtnViewModeLearn = document.getElementById('btn-view-mode-learn');
   const elBtnViewModeExam = document.getElementById('btn-view-mode-exam');
 
-  function applyViewMode(mode) {
+  function applyViewMode(mode, shouldSave = true) {
     state.viewMode = mode || 'learn';
     if (state.viewMode === 'exam') {
       document.body.classList.add('view-mode-exam');
@@ -7763,7 +7811,9 @@ Tedavi:
         elExamSimulationBar.style.display = 'flex';
         startExamSimulationTimer();
       }
-      showToast('⏱️ Prüfungs-Modus aktiviert: Alle Hilfen ausgeblendet. Volle Konzentration auf Fall & Vitalwerte!', 'info', 2800);
+      if (shouldSave) {
+        showToast('⏱️ Prüfungs-Modus aktiviert: Alle Hilfen ausgeblendet. Volle Konzentration auf Fall & Vitalwerte!', 'info', 2800);
+      }
     } else {
       document.body.classList.remove('view-mode-exam');
       if (elBtnViewModeLearn) elBtnViewModeLearn.classList.add('active');
@@ -7772,7 +7822,9 @@ Tedavi:
         elExamSimulationBar.style.display = 'none';
       }
     }
-    saveState();
+    if (shouldSave) {
+      saveState();
+    }
   }
 
   if (elBtnViewModeLearn) elBtnViewModeLearn.addEventListener('click', () => applyViewMode('learn'));
@@ -8021,10 +8073,15 @@ Tedavi:
       filteredQuestions = getFilteredQuestions();
       if (!filteredQuestions.length) return;
       const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
       const noteVal = elUserNoteText ? elUserNoteText.value.trim() : '';
 
       if (!state.userNotes) state.userNotes = {};
+      if (!state.notes) state.notes = {};
+      if (!state.notesUpdatedAt) state.notesUpdatedAt = {};
       state.userNotes[currentQ.id] = noteVal;
+      state.notes[currentQ.id] = noteVal;
+      state.notesUpdatedAt[currentQ.id] = Date.now();
 
       saveState(); // Saves locally & pushes to cloud debounced!
 
@@ -8037,18 +8094,26 @@ Tedavi:
     });
   }
 
+  let noteInputDebounceTimer = null;
   if (elUserNoteText) {
     elUserNoteText.addEventListener('input', () => {
-      filteredQuestions = getFilteredQuestions();
-      if (!filteredQuestions.length) return;
+      if (!filteredQuestions.length) filteredQuestions = getFilteredQuestions();
       const currentQ = filteredQuestions[state.currentIndex];
+      if (!currentQ) return;
       if (!state.userNotes) state.userNotes = {};
+      if (!state.notes) state.notes = {};
+      if (!state.notesUpdatedAt) state.notesUpdatedAt = {};
       state.userNotes[currentQ.id] = elUserNoteText.value;
+      state.notes[currentQ.id] = elUserNoteText.value;
+      state.notesUpdatedAt[currentQ.id] = Date.now();
       const elUserNoteBadge = document.getElementById('user-note-badge');
       if (elUserNoteBadge) {
         elUserNoteBadge.style.display = elUserNoteText.value.trim() ? 'inline-flex' : 'none';
       }
-      saveState(); // Auto-saves to local & cloud on every keystroke!
+      if (noteInputDebounceTimer) clearTimeout(noteInputDebounceTimer);
+      noteInputDebounceTimer = setTimeout(() => {
+        saveState();
+      }, 450);
     });
   }
 
@@ -8372,6 +8437,9 @@ Tedavi:
       const isScored = !!mockExamEngine.scores[idx];
       btn.textContent = `${domainLabels[idx] || 'Fall ' + (idx + 1)}` + (isScored ? ' ✓' : '');
       btn.addEventListener('click', () => {
+        if (mockSpeechRecognizer && isMockRecording) {
+          try { mockSpeechRecognizer.stop(); } catch (e) {}
+        }
         mockExamEngine.currentCaseIndex = idx;
         renderMockExamActiveCase();
       });
@@ -8564,7 +8632,7 @@ Tedavi:
             <button type="button" class="btn-scratch-tag" data-tag="[D: Drugs] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ D</button>
             <button type="button" class="btn-scratch-tag" data-tag="[E: Environment] " style="padding: 2px 7px; font-size: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); cursor: pointer;">+ E</button>
           </div>
-          <textarea id="mock-scratchpad-input" class="mock-scratchpad-textarea" placeholder="Sözlü cevabınızı yapılandırmak için buraya hızlı notlar alın (örn. A: FiO2 1.0, C: Noradrenalin 10 µg bolus)...">${mockCandidateNotes[mockExamEngine.currentCaseIndex] || ''}</textarea>
+          <textarea id="mock-scratchpad-input" class="mock-scratchpad-textarea" placeholder="Sözlü cevabınızı yapılandırmak için buraya hızlı notlar alın (örn. A: FiO2 1.0, C: Noradrenalin 10 µg bolus)...">${escapeHtml(mockCandidateNotes[mockExamEngine.currentCaseIndex] || '')}</textarea>
         </div>
 
         <!-- Quick Emergency SOPs Accordion -->
@@ -8739,7 +8807,7 @@ Tedavi:
                 ${evalRes.passed ? '✅ ÄKNO Rückmeldung: Bestanden' : '🚨 ÄKNO Rückmeldung: ' + (evalRes.koViolated ? 'K.O.-Kriterium verletzt!' : 'Nicht bestanden')}
               </strong>
               <div style="font-size: 0.85rem; margin-top: 5px; line-height: 1.45; color: var(--text-primary);">
-                ${evalRes.examinerFeedback || evalRes.feedback || evalRes.gradeText}
+                ${escapeHtml(evalRes.examinerFeedback || evalRes.feedback || evalRes.gradeText || '')}
               </div>
             </div>
           `;
@@ -8754,6 +8822,9 @@ Tedavi:
 
   function showMockExamSummary() {
     if (!mockExamEngine || !elMockExamReport) return;
+    if (mockSpeechRecognizer && isMockRecording) {
+      try { mockSpeechRecognizer.stop(); } catch (e) {}
+    }
     const summary = mockExamEngine.finishExam();
 
     if (elMockExamBodyContent) elMockExamBodyContent.style.display = 'none';
@@ -8762,8 +8833,9 @@ Tedavi:
 
     let scoresHtml = summary.scores.map((s, idx) => {
       if (!s) return '';
+      const safeTitle = escapeHtml(String(s.title || '').substring(0, 50));
       return `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
-        <span><strong>Fall ${idx + 1}:</strong> ${s.title.substring(0, 50)}...</span>
+        <span><strong>Fall ${idx + 1}:</strong> ${safeTitle}...</span>
         <strong style="font-size: 0.95rem;">${s.rating === 5 ? '🟢 Sehr Gut (1.0)' : (s.rating === 3 ? '🟡 Befriedigend (3.0)' : '🔴 Mangelhaft (5.0)')}</strong>
       </div>`;
     }).join('');
@@ -8799,6 +8871,13 @@ Tedavi:
     if (btnRestart) {
       btnRestart.addEventListener('click', () => {
         if (mockExamEngine) {
+          mockCandidateNotes = ['', '', '', ''];
+          isMockPaused = false;
+          if (elBtnMockPause) {
+            elBtnMockPause.textContent = '⏸️';
+            elBtnMockPause.title = 'Prüfung pausieren';
+          }
+          if (elMockTimerDisplay) elMockTimerDisplay.style.opacity = '1';
           mockExamEngine.startNewExam();
           renderMockExamActiveCase();
         }
@@ -8808,6 +8887,10 @@ Tedavi:
     const btnExit = document.getElementById('btn-mock-exit-final');
     if (btnExit) {
       btnExit.addEventListener('click', () => {
+        if (mockExamEngine) mockExamEngine.stopTimer();
+        if (mockSpeechRecognizer && isMockRecording) {
+          try { mockSpeechRecognizer.stop(); } catch (e) {}
+        }
         closeModal(elMockExamModal);
       });
     }
@@ -8835,7 +8918,9 @@ Tedavi:
   if (elMockExamTrigger && elMockExamModal) {
     elMockExamTrigger.addEventListener('click', () => {
       elMockExamModal.classList.add('active');
+      mockCandidateNotes = ['', '', '', ''];
       isMockPaused = false;
+      if (elMockTimerDisplay) elMockTimerDisplay.style.opacity = '1';
       if (elBtnMockPause) {
         elBtnMockPause.textContent = '⏸️';
         elBtnMockPause.title = 'Prüfung pausieren';
@@ -8877,6 +8962,7 @@ Tedavi:
   // --- Diagnostic Image Lightbox & Zoom Engine ---
   function initImageLightbox() {
     let lightboxModal = document.getElementById('image-lightbox-modal');
+    let lightboxCloseTimer = null;
     if (!lightboxModal) {
       lightboxModal = document.createElement('div');
       lightboxModal.id = 'image-lightbox-modal';
@@ -8884,7 +8970,7 @@ Tedavi:
       lightboxModal.style.display = 'none';
       lightboxModal.innerHTML = `
         <div class="modal-card" style="max-width: 95vw; max-height: 95vh; background: rgba(0,0,0,0.95); border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 1.5rem;">
-          <button class="modal-close" id="lightbox-close" style="position: absolute; top: 12px; right: 16px; color: #fff; font-size: 1.8rem; cursor: pointer; background: transparent; border: none; z-index: 10;">&times;</button>
+          <button class="modal-close" id="lightbox-close" aria-label="Schließen" style="position: absolute; top: 12px; right: 16px; color: #fff; font-size: 1.8rem; cursor: pointer; background: transparent; border: none; z-index: 10;">&times;</button>
           <img id="lightbox-img" src="" alt="Befund-Vergrößerung" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.6);" />
           <div id="lightbox-caption" style="color: #e2e8f0; margin-top: 12px; font-size: 0.95rem; text-align: center; font-weight: 500;"></div>
         </div>
@@ -8893,7 +8979,8 @@ Tedavi:
 
       const closeLightbox = () => {
         lightboxModal.classList.remove('active');
-        setTimeout(() => {
+        if (lightboxCloseTimer) clearTimeout(lightboxCloseTimer);
+        lightboxCloseTimer = setTimeout(() => {
           lightboxModal.style.display = 'none';
         }, 250);
       };
@@ -8909,8 +8996,12 @@ Tedavi:
 
     document.addEventListener('click', (e) => {
       if (e.target && e.target.classList.contains('question-image')) {
-        const imgSrc = e.target.src;
+        const imgSrc = e.target.getAttribute('src') || '';
         if (!imgSrc) return;
+        if (lightboxCloseTimer) {
+          clearTimeout(lightboxCloseTimer);
+          lightboxCloseTimer = null;
+        }
         const imgAlt = e.target.alt || 'Klinischer Befund';
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -8947,7 +9038,7 @@ Tedavi:
     else if (state.filterMode === 'dus_examiners') stageLabel = '🏛️ ÄKNO Düsseldorf';
     else if (state.filterMode === 'sm2_due') stageLabel = '🧠 Spaced Repetition';
     else if (state.filterMode === 'smart_session') stageLabel = '🎯 Smart Session';
-    else if (state.selectedCategory && state.selectedCategory !== 'all') stageLabel = state.selectedCategory;
+    else if (state.categoryFilter && state.categoryFilter !== 'all') stageLabel = state.categoryFilter;
 
     let modeLabel = 'Fallbasiert';
     if (state.studyMode === 'flashcard') modeLabel = 'Blitz-Karteikarten';
@@ -9129,6 +9220,7 @@ Tedavi:
       }
     });
     if (tbMic) tbMic.addEventListener('click', () => {
+      stopMedicalSpeech();
       if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
       }
@@ -9331,18 +9423,21 @@ Tedavi:
     wireStepNode('step-node-2', () => {
       toggleStep2(true);
       if (elBar1) elBar1.style.display = 'none';
-      if (elBar2 && !state.step3Expanded) elBar2.style.display = 'flex';
+      const isStep3AlreadyOpen = elPanelExaminer && elPanelExaminer.style.display !== 'none';
+      if (elBar2 && !isStep3AlreadyOpen) elBar2.style.display = 'flex';
       updateThumbBarNextLabel();
       const elVitals = document.getElementById('step2-container');
       if (elVitals) elVitals.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
     wireStepNode('step-node-3', () => {
-      if (!state.step2Expanded) toggleStep2(true);
+      const isStep2AlreadyOpen = elPanelVitals && elPanelVitals.style.display !== 'none';
+      if (!isStep2AlreadyOpen) toggleStep2(true);
       toggleStep3(true);
       if (elBar1) elBar1.style.display = 'none';
       if (elBar2) elBar2.style.display = 'none';
-      if (elBar3 && !state.answerRevealed) elBar3.style.display = 'flex';
+      const isRubricAlreadyOpen = elHighImpactRubric && elHighImpactRubric.style.display !== 'none';
+      if (elBar3 && !isRubricAlreadyOpen) elBar3.style.display = 'flex';
       updateThumbBarNextLabel();
       const elIntervention = document.getElementById('step3-container');
       if (elIntervention) elIntervention.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -9424,10 +9519,12 @@ Tedavi:
     if (!elModal) return;
 
     let podcastAudio = null;
-    let activeEpisodeIdx = 0;
+    let activeEpisodeIdx = -1;
     let currentSpeed = 1.15;
     let isDraggingSlider = false;
+    let pendingSeekSec = null;
     const episodes = (typeof window.PODCAST_MANIFEST !== 'undefined') ? window.PODCAST_MANIFEST : [];
+    const questionMap = new Map((typeof EXAM_QUESTIONS !== 'undefined' ? EXAM_QUESTIONS : []).map(q => [q.id, q]));
 
     const elTabsBar = document.getElementById('podcast-tabs-bar');
     const elTitle = document.getElementById('podcast-ep-title');
@@ -9444,12 +9541,25 @@ Tedavi:
     const elChaptersList = document.getElementById('podcast-chapters-list');
     const elChaptersCount = document.getElementById('podcast-chapters-count');
 
+    function getCaseDisplayLabel(caseId) {
+      const q = questionMap.get(caseId);
+      if (!q) return caseId;
+      const cat = q.category || '';
+      const raw = (q.oral_question_de || q.question_de || q.stem_de || '').replace(/\s+/g, ' ').trim();
+      const snippet = raw.length > 58 ? raw.slice(0, 56) + '…' : raw;
+      return cat ? `${cat} — ${snippet}` : (snippet || caseId);
+    }
+
     function openPodcastModal(epIdx = 0) {
       elModal.style.display = 'flex';
-      loadEpisode(epIdx);
+      elModal.classList.add('active');
+      if (activeEpisodeIdx === -1) {
+        loadEpisode(epIdx);
+      }
     }
 
     function closePodcastModal() {
+      elModal.classList.remove('active');
       elModal.style.display = 'none';
       if (podcastAudio && !podcastAudio.paused) {
         podcastAudio.pause();
@@ -9493,19 +9603,28 @@ Tedavi:
         if (elChaptersCount) elChaptersCount.textContent = `${ep.chapters.length} Fälle`;
 
         ep.chapters.forEach(ch => {
-          const item = document.createElement('div');
+          const item = document.createElement('button');
+          item.type = 'button';
           item.className = 'podcast-chapter-item';
           item.setAttribute('data-start-sec', ch.startSec);
-          item.innerHTML = `
-            <span class="podcast-chapter-title">Fall ${ch.number}: ${ch.caseId}</span>
-            <span class="podcast-chapter-time">${ch.formattedTime}</span>
-          `;
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'podcast-chapter-title';
+          titleSpan.textContent = `Fall ${ch.number}: ${getCaseDisplayLabel(ch.caseId)}`;
+          const timeSpan = document.createElement('span');
+          timeSpan.className = 'podcast-chapter-time';
+          timeSpan.textContent = ch.formattedTime;
+          item.appendChild(titleSpan);
+          item.appendChild(timeSpan);
           item.addEventListener('click', () => {
+            stopMedicalSpeech();
             seekTo(ch.startSec);
             if (podcastAudio && podcastAudio.paused) {
               podcastAudio.play().then(() => {
+                podcastAudio.playbackRate = currentSpeed;
                 if (elPlayBtn) elPlayBtn.textContent = '⏸️';
-              }).catch(() => {});
+              }).catch(() => {
+                showToast('⚠️ Podcast-Audiodatei konnte nicht gestartet werden.', 'warning', 3000);
+              });
             }
           });
           elChaptersList.appendChild(item);
@@ -9514,11 +9633,22 @@ Tedavi:
 
       if (!podcastAudio) {
         podcastAudio = new Audio();
+        podcastAudio.addEventListener('loadedmetadata', () => {
+          podcastAudio.playbackRate = currentSpeed;
+          if (pendingSeekSec !== null) {
+            podcastAudio.currentTime = Math.max(0, Math.min(pendingSeekSec, podcastAudio.duration || 9999));
+            pendingSeekSec = null;
+          }
+        });
+        podcastAudio.addEventListener('play', () => {
+          podcastAudio.playbackRate = currentSpeed;
+        });
         podcastAudio.addEventListener('timeupdate', updateProgress);
         podcastAudio.addEventListener('ended', () => {
           if (elPlayBtn) elPlayBtn.textContent = '▶️';
         });
       }
+      pendingSeekSec = null;
       podcastAudio.src = ep.filePath;
       podcastAudio.playbackRate = currentSpeed;
       if (elPlayBtn) elPlayBtn.textContent = '▶️';
@@ -9527,6 +9657,20 @@ Tedavi:
       if (elSlider) {
         elSlider.value = 0;
         elSlider.max = ep.durationSec || 100;
+      }
+
+      if ('mediaSession' in navigator && typeof MediaMetadata !== 'undefined') {
+        try {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: ep.title,
+            artist: 'Facharztprüfung Anästhesiologie (ÄKNO)',
+            album: ep.category || 'Audio-Podcast'
+          });
+          navigator.mediaSession.setActionHandler('play', () => elPlayBtn && podcastAudio.paused && elPlayBtn.click());
+          navigator.mediaSession.setActionHandler('pause', () => elPlayBtn && !podcastAudio.paused && elPlayBtn.click());
+          navigator.mediaSession.setActionHandler('seekbackward', () => seekTo((podcastAudio.currentTime || 0) - 15));
+          navigator.mediaSession.setActionHandler('seekforward', () => seekTo((podcastAudio.currentTime || 0) + 15));
+        } catch (e) {}
       }
     }
 
@@ -9556,8 +9700,11 @@ Tedavi:
     }
 
     function seekTo(sec) {
-      if (podcastAudio) {
+      if (!podcastAudio) return;
+      if (podcastAudio.readyState >= 1) {
         podcastAudio.currentTime = Math.max(0, Math.min(sec, podcastAudio.duration || 9999));
+      } else {
+        pendingSeekSec = sec;
       }
     }
 
@@ -9576,9 +9723,13 @@ Tedavi:
       elPlayBtn.addEventListener('click', () => {
         if (!podcastAudio) return;
         if (podcastAudio.paused) {
+          stopMedicalSpeech();
           podcastAudio.play().then(() => {
+            podcastAudio.playbackRate = currentSpeed;
             elPlayBtn.textContent = '⏸️';
-          }).catch(() => {});
+          }).catch(() => {
+            showToast('⚠️ Podcast-Wiedergabe fehlgeschlagen.', 'warning', 3000);
+          });
         } else {
           podcastAudio.pause();
           elPlayBtn.textContent = '▶️';
@@ -9629,7 +9780,7 @@ Tedavi:
   initBgaTrainer();
   initPodcastHub();
   initSeniorUXEnhancements();
-  if (state.viewMode) applyViewMode(state.viewMode);
+  if (state.viewMode) applyViewMode(state.viewMode, false);
   updateAnalytics();
   renderCurrentQuestion();
   refreshAudioDevicesList();

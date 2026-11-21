@@ -37,7 +37,7 @@ def load_questions():
         raise ValueError("Could not find EXAM_QUESTIONS in questions.js")
     
     # Use node to evaluate JSON-safe questions cleanly
-    cmd = ["node", "-e", "const fs=require('fs');const c=fs.readFileSync('questions.js','utf8');const m=c.match(/const EXAM_QUESTIONS = (\[[\\s\\S]*?\]);\\s*(?:if|$)/);console.log(JSON.stringify(eval(m[1])));"]
+    cmd = ["node", "-e", r"const fs=require('fs'),vm=require('vm');const c=fs.readFileSync('questions.js','utf8');console.log(JSON.stringify(vm.runInNewContext(c+'\nEXAM_QUESTIONS;')));"]
     res = subprocess.check_output(cmd, cwd=str(BASE_DIR), text=True)
     return json.loads(res)
 
@@ -70,11 +70,14 @@ def batch_clean_speech_texts(questions):
 def update_manifest():
     ensure_dirs()
     manifest = {}
-    for f in AUDIO_DIR.iterdir():
+    for f in sorted(AUDIO_DIR.iterdir(), key=lambda p: p.name):
         if f.suffix in [".m4a", ".mp3", ".wav"]:
             m = re.match(r"^(.+?)_fall_stem\.(m4a|mp3|wav)$", f.name)
             if m:
-                manifest[m.group(1)] = f"audio/cases/{f.name}"
+                qid = m.group(1)
+                # Always prioritize Gemini Studio .m4a over .mp3
+                if qid not in manifest or f.suffix == ".m4a":
+                    manifest[qid] = f"audio/cases/{f.name}"
 
     js_code = f"""/**
  * AUTO-GENERATED LOCAL AUDIO MANIFEST

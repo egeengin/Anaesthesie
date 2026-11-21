@@ -16,20 +16,25 @@
    * Pediatric emergency calculations based on age & weight
    */
   function calculatePediatrics(age, weight) {
-    const ageVal = parseFloat(age) || 4;
-    const wtVal = parseFloat(weight) || 16;
+    const parsedAge = parseFloat(age);
+    const ageVal = (Number.isFinite(parsedAge) && parsedAge >= 0) ? parsedAge : 4;
+    const parsedWt = parseFloat(weight);
+    const wtVal = (Number.isFinite(parsedWt) && parsedWt > 0) ? parsedWt : 16;
 
-    const uncuffed = (ageVal / 4) + 4.0;
-    const cuffed = (ageVal / 4) + 3.5;
-    const depth = (ageVal / 2) + 12;
-    const adrMg = (wtVal * 0.01).toFixed(2);
-    const adrMl = (wtVal * 0.1).toFixed(1);
-    const atropin = Math.max(0.1, wtVal * 0.02).toFixed(2);
+    // Neonatal / Infant (< 1 year) vs Child (>= 1 year) Cole/Motoyama tube sizing
+    const uncuffed = ageVal < 1 ? (wtVal < 3.5 ? 3.0 : 3.5) : Math.min(8.0, (ageVal / 4) + 4.0);
+    const cuffed = ageVal < 1 ? (wtVal < 3.5 ? 3.0 : 3.0) : Math.min(7.5, (ageVal / 4) + 3.5);
+    const depth = ageVal < 1 ? Math.max(7.0, Math.min(10.5, 6 + wtVal)) : Math.min(22.0, (ageVal / 2) + 12);
+    // Cap emergency single doses at ERC/AHA adult ceilings (Adrenalin 1.0 mg, Atropin 1.0 mg, Defib 200 J)
+    const adrMgNum = Math.min(1.0, wtVal * 0.01);
+    const adrMg = adrMgNum.toFixed(2);
+    const adrMl = (adrMgNum * 10).toFixed(1);
+    const atropin = Math.min(1.0, Math.max(0.1, wtVal * 0.02)).toFixed(2);
     const rocuronium = (wtVal * 0.6).toFixed(1);
     const rocuroniumRSI = (wtVal * 1.0).toFixed(1);
-    const defib = Math.round(wtVal * 4);
-    const fluidsMin = Math.round(wtVal * 10);
-    const fluidsMax = Math.round(wtVal * 20);
+    const defib = Math.min(200, Math.round(wtVal * 4));
+    const fluidsMin = Math.min(500, Math.round(wtVal * 10));
+    const fluidsMax = Math.min(1000, Math.round(wtVal * 20));
 
     return {
       age: ageVal,
@@ -53,7 +58,8 @@
    */
   function calculateARDS(gender, height) {
     const gen = gender === 'female' ? 'female' : 'male';
-    const ht = parseFloat(height) || 175;
+    const parsedHt = parseFloat(height);
+    const ht = (Number.isFinite(parsedHt) && parsedHt > 0) ? parsedHt : 175;
 
     const base = (gen === 'male') ? 50.0 : 45.5;
     const pbw = Math.max(30, base + 0.91 * (ht - 152.4));
@@ -74,14 +80,15 @@
    * Local Anesthetic maximum doses and Intralipid rescue bolus
    */
   function calculateLocalAnesthetics(weight) {
-    const wt = parseFloat(weight) || 70;
+    const parsedWt = parseFloat(weight);
+    const wt = (Number.isFinite(parsedWt) && parsedWt > 0) ? parsedWt : 70;
 
     const ropi = Math.min(300, Math.round(wt * 3.0));
     const bupi = Math.min(150, Math.round(wt * 2.0));
     const lidoPur = Math.min(300, Math.round(wt * 4.0));
     const lidoAdr = Math.min(500, Math.round(wt * 7.0));
     const prilo = Math.min(500, Math.round(wt * 6.0));
-    const lipidBolus = Math.round(wt * 1.5);
+    const lipidBolus = Math.min(150, Math.round(wt * 1.5));
 
     return {
       weight: wt,
@@ -95,20 +102,26 @@
   }
 
   /**
-   * Sodium deficit calculation & safe 24h limits (ODS prevention)
+   * Sodium deficit calculation & safe 24h limits (ODS / cerebral edema prevention)
    */
   function calculateSodium(demog, weight, naCurrent) {
     const dm = demog || 'male';
-    const wt = parseFloat(weight) || 70;
-    const naCur = parseFloat(naCurrent) || 118;
+    const parsedWt = parseFloat(weight);
+    const wt = (Number.isFinite(parsedWt) && parsedWt > 0) ? parsedWt : 70;
+    const parsedNa = parseFloat(naCurrent);
+    const naCur = (Number.isFinite(parsedNa) && parsedNa > 0) ? parsedNa : 118;
 
     let factor = 0.6;
     if (dm === 'female' || dm === 'elderly_male') factor = 0.5;
     else if (dm === 'elderly_female') factor = 0.45;
 
     const tbw = wt * factor;
-    const deficit = Math.max(0, Math.round(tbw * (140 - naCur)));
-    const maxDayNa = (naCur + 8).toFixed(0);
+    const isHyper = naCur > 140;
+    const deficit = isHyper ? 0 : Math.max(0, Math.round(tbw * (140 - naCur)));
+    const freeWaterDeficit = isHyper ? parseFloat((tbw * ((naCur / 140) - 1)).toFixed(1)) : 0;
+    const maxDayNa = isHyper
+      ? Math.max(140, naCur - 8).toFixed(0)
+      : Math.min(140, naCur + 8).toFixed(0);
 
     return {
       demog: dm,
@@ -117,22 +130,25 @@
       factor,
       tbw,
       deficit,
+      freeWaterDeficit,
+      isHypernatremia: isHyper,
       maxDayNa
     };
   }
 
   // --- Copy Helper ---
   function copyCalcValues(text, btn) {
-    if (navigator.clipboard) {
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
       navigator.clipboard.writeText(text).then(() => {
+        if (!btn) return;
         const orig = btn.innerHTML;
         btn.innerHTML = '✓ In Zwischenablage kopiert!';
-        btn.classList.add('copied');
+        if (btn.classList) btn.classList.add('copied');
         setTimeout(() => {
           btn.innerHTML = orig;
-          btn.classList.remove('copied');
+          if (btn.classList) btn.classList.remove('copied');
         }, 2200);
-      });
+      }).catch(() => {});
     }
   }
 

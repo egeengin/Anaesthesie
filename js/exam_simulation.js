@@ -80,7 +80,7 @@
         trap: "Permissive Hypotonie bei Schädel-Hirn-Trauma (absolutes K.O.-Kriterium!)",
         trap_tr: "Kafa travmasında permissif hipotansiyon uygulamak (kesin K.O. kriteri!) veya PEEP ile ICP'yi artırmak",
       },
-      speechIntro: "Schockraum Düsseldorf: Ein 34-jähriger Polytraumapatient präsentiert sich mit instabilem Becken, freier Flüssigkeit und schwerem SHT mit GCS 6 und Anisokorie. Blutdruck 75/40 mmHg. Wie lösen Sie das Dilemma zwischen permissiver Hypotonie und neuroprotektiver Perfusion, wie lautet das Tranexamsäure-Reğime und wie steuern Sie die Gerinnung mit ROTEM?",
+      speechIntro: "Schockraum Düsseldorf: Ein 34-jähriger Polytraumapatient präsentiert sich mit instabilem Becken, freier Flüssigkeit und schwerem SHT mit GCS 6 und Anisokorie. Blutdruck 75/40 mmHg. Wie lösen Sie das Dilemma zwischen permissiver Hypotonie und neuroprotektiver Perfusion, wie lautet das Tranexamsäure-Regime und wie steuern Sie die Gerinnung mit ROTEM?",
       speechIntro_tr: "Şok odasındayız meslektaşım: Şiddetli travmatik beyin hasarı (GKS 5, geniş anizokorik sağ pupil, acil kraniyotomi endikasyonu) olan 24 yaşında politravmalı bir hasta getiriliyor. Asistan arkadaş MAP 55 mmHg değerini 'permissif hipotansiyon' olarak tolere etmek istiyor. Pozisyonunuz nedir, hemodinamik hedef değerleriniz nelerdir ve permissif hipotansiyon burada neden kesin bir K.O. kriteridir?",
       crisis: {
         title: "⚡ Einklemmungszeichen im Schockraum!",
@@ -336,7 +336,7 @@
       },
       koCriteria: {
         forbiddenPatterns: [/spinalanästhesie durchführen/i, /pda stechen/i, /spinalanästhesie wähle/i],
-        failureReason: "Spinal- und Periduralanästhesie sind bei Thrombozyten < 50.000/µl wegen des Rışıkos eines raumfordernden spinalen Hämatoms mit permanenter Paraplegie streng verboten!",
+        failureReason: "Spinal- und Periduralanästhesie sind bei Thrombozyten < 50.000/µl wegen des Risikos eines raumfordernden spinalen Hämatoms mit permanenter Paraplegie streng verboten!",
         failureReason_tr: "Trombosit < 50.000/µl iken spinal veya epidural girisim yapilmasi spinal epidural hematom ve kalici felç riski nedeniyle kesinlikle yasaktir!",
         mandatoryKeywords: ["kontraindiziert", "hämatom", "vollnarkose", "rsi", "magnesium", "linksseitenkippung"]
       }
@@ -817,7 +817,7 @@
         prompt_de: "Nach Gabe von Neostigmin zur Reversierung klagt die Patientin über Speichelfluss, Bauchkrämpfe und zunehmende Muskelschwäche (TOF 40%). Liegt eine myasthene oder cholinerge Krise vor und wie handeln Sie?",
         prompt_tr: "Hasta sekresyon içinde boğuluyor, kas gücü sıfırlandı, bradikardi (40/dk)! Miyastenik kriz mi Kolinerjik kriz mi ve tedavisi nedir?!",
         vitals: { spo2: "87%", bp: "105/60", map: "75 mmHg", hr: "48 /min", etco2: "52 mmHg", temp: "36.7 °C", rhythm: "Bradykardie", alert: true },
-        targetAction: "Cholinerge Krise durch Neostigmin-Überdosierung! Re-Intubation/Beatmung sichern, Atropin i.v.; Sugammadex wäre das rışıkofreie Antidot der 1. Wahl bei Rocuronium gewesen!",
+        targetAction: "Cholinerge Krise durch Neostigmin-Überdosierung! Re-Intubation/Beatmung sichern, Atropin i.v.; Sugammadex wäre das risikofreie Antidot der 1. Wahl bei Rocuronium gewesen!",
         targetAction_tr: "KOLİNERJİK KRİZ (Aşırı asetilkolin uyarısı)! Havayolunu güvenceye al, derhal ATROPİN 1-2 mg İ.V. uygula (muskarinik etkileri bloke et); Roküronyum bloğu için Neostigmin yerine SUGAMMADEKS tercih edilmelidir!",
       },
       koCriteria: {
@@ -919,7 +919,7 @@
         trap_tr: "Cerrahın baskısına boyun eğip tüpün yeri kesinleşmeden kesi yapılmasına izin vermek",
       },
       speechIntro: "Notsectio im Kreißsaal: 29-jährige Erstgebärende mit Nabelschnurvorfall und fetaler Bradykardie (45/min). Patientin hat vor 2 Stunden gegessen. Erläutern Sie das sekundengenaue Vorgehen bei Vollnarkose (RSI), Lagerung und Zeitmanagement.",
-      speechIntro_tr: "Acil laparotomi için tok bir hastaya Hızlı Seri İndüksiyon (RSI) yapıyorsunuz. Tam laringoskopu ağıza yerleştirdiğiniz anda cerrah sabırsızlanıp 'Ben kesiyorum' diyerek neşteri cilde vurmaya hazırlanıyor. Ameliyathanede ne yaparsınız ve kesi izni kuralı nedir?",
+      speechIntro_tr: "Doğumhanede acil sezaryen (Notsectio): Göbek kordonu sarkması ve fetal bradikardi (45/dk) gelişen 29 yaşındaki primipar hasta 2 saat önce yemek yemiş. Hızlı seri indüksiyon (RSI), sol yan yatış pozisyonu ve kesi izni kuralını saniyesi saniyesine nasıl yönetirsiniz?",
       crisis: {
         title: "⚡ Chirurg setzt das Skalpell vor Intubation an!",
         title_tr: "⚡ Entübasyon ve Kaf Doğrulanmadan Kesi Girişimi!",
@@ -946,7 +946,7 @@
         trap_tr: "Anafilaktik şokta Adrenalin vermeden önce kortizon veya antihistaminik hazırlamaya kalkışmak",
       },
       speechIntro: "Ein 60-jähriger Patient entwickelt unmittelbar nach Narkoseeinleitung mit Rocuronium schwere Hypotonie (RR 55/30 mmHg), Tachykardie (130/min), Beatmungsdruckanstieg auf 42 mbar und Flush mit Urtikaria. Nennen Sie Diagnose, das unverzichtbare Medikament der 1. Wahl und dessen Dosierung.",
-      speechIntro_tr: "Antibiyotik infüzyonundan 2 dakika sonra genel anestezi altındaki hastada yaygın kızarıklık, bronkospazm (tepe basıncı 46 cmH2O) ve kan basıncında ani çöküş (RR 50/20 mmHg, nabız 140/dk) gelişiyor. Asistan hekim dolaptan Prednisolon (Kortizon) flakonunu alıp sulandırmaya çalışıyor. Bu yaklaşımı nasıl düzeltirsiniz?",
+      speechIntro_tr: "60 yaşında bir hastada Roküronyum ile anestezi indüksiyonundan hemen sonra ağır hipotansiyon (55/30 mmHg), taşikardi (130/dk), tepe basıncında 42 mbar'a yükselme, yaygın kızarıklık ve ürtiker gelişiyor. Tanınız nedir, ilk tercih hayat kurtarıcı ilaç ve dozu nedir?",
       crisis: {
         title: "⚡ Anaphylaktischer Schock dekompensiert!",
         title_tr: "⚡ Ağır Anafilaktik Şok & Yanlış İlaç Tercihi!",
@@ -1439,7 +1439,7 @@
         prompt_de: "Trotz 30 ml/kg balancierten Kristalloiden und 0,3 µg/kg/min Noradrenalin dümpelt der MAP bei 50 mmHg, Laktat steigt auf 6,5 mmol/l! Welche zwei medikamentösen Eskalationsschritte leiten Sie unverzüglich ein?!",
         prompt_tr: "30 ml/kg dengeli sıvıya ve 0.3 µg/kg/dk Noradrenalin infüzyonuna rağmen MAP 50 mmHg'de sürükleniyor, laktat 6.5 mmol/L'ye fırladı! Hangi iki acil basamak tedaviyi derhal devreye sokarsınız?!",
         vitals: { spo2: "90%", bp: "72/38", map: "49 mmHg", hr: "128 /min", etco2: "32 mmHg", temp: "39.5 °C", rhythm: "Sinustachykardie", alert: true },
-        targetAction: "1. Additive Gabe von Vasopressin (Argipressin 0,03 IE/min als Reinsubstanz fest dosiert), 2. Hydrocortison 200 mg/d i.v. bei vasopressor-refraktärem Schock, Dobutamin bei myokardialer Dysfunktion addieren, operative Fokusssanierung sofort erzwingen!",
+        targetAction: "1. Additive Gabe von Vasopressin (Argipressin 0,03 IE/min als Reinsubstanz fest dosiert), 2. Hydrocortison 200 mg/d i.v. bei vasopressor-refraktärem Schock, Dobutamin bei myokardialer Dysfunktion addieren, operative Fokussanierung sofort erzwingen!",
         targetAction_tr: "1. İkinci vazopressör olarak Vazopressin (Argipressin 0.03 IU/dk sabit infüzyon) ekle, 2. Dirençli şokta Hidrokortizon 200 mg/gün İ.V. başla, kardiyak yetmezlikte Dobutamin ekle, cerrahi odak kontrolünü derhal sağlat!",
       },
       koCriteria: {
@@ -1521,10 +1521,14 @@
       const reg = DUS_SIMULATION_REGISTRY[questionId];
       const cleanTranscript = (transcript || '').toLowerCase();
       
-      // 1. Check K.O. Criteria (Fatal Malpractice Traps)
+      // 1. Check K.O. Criteria (Fatal Malpractice Traps) with negation/contraindication awareness
       if (reg && reg.koCriteria && reg.koCriteria.forbiddenPatterns) {
+        const clauses = cleanTranscript.split(/[.!?;,\n]+/);
+        const negationRegex = /\b(kontraindiziert|kontraindikation|verboten|vermeide|vermeiden|vermieden|unterlassen|obsolet|abzulehnen|niemals|nie|nicht|kein|keine|keinen|keinesfalls|falsch|fehler|k\.o\.|verzicht|verzichten|abstand)\b/i;
+
         for (const pattern of reg.koCriteria.forbiddenPatterns) {
-          if (pattern.test(cleanTranscript)) {
+          const matchedClause = clauses.find(cl => pattern.test(cl));
+          if (matchedClause && !negationRegex.test(matchedClause)) {
             return {
               passed: false,
               grade: 5.0,
@@ -1631,20 +1635,25 @@
     }
 
     /**
-     * Starts a new 4-case oral examination drawn strictly from the 36 authentic Düsseldorf cases
+     * Starts a new 4-case oral examination drawn across all 54 authentic Düsseldorf cases
      */
     startNewExam() {
       if (!this.dusQuestions.length) return false;
 
-      // Group 36 cases by 4 clinical pillars
-      const pillar1 = this.dusQuestions.filter(q => q.category.includes('Allgemein') || q.category.includes('Atemweg') || q.category.includes('Thorax'));
-      const pillar2 = this.dusQuestions.filter(q => q.category.includes('Regional') || q.category.includes('Schmerz') || q.category.includes('Lokalanästhetika') || q.category.includes('Pharmakologie'));
-      const pillar3 = this.dusQuestions.filter(q => q.category.includes('Intensiv') || q.category.includes('Sepsis') || q.category.includes('Herz') || q.category.includes('Neuro'));
-      const pillar4 = this.dusQuestions.filter(q => q.category.includes('Notfall') || q.category.includes('Kinder') || q.category.includes('Geburtshilfe') || q.category.includes('Transfusion'));
+      // Group all 54 cases by 4 clinical pillars (including Geburtshilf*, Endokrin*, Urolog*, Anaphylax*)
+      const pillar1 = this.dusQuestions.filter(q => /Allgemein|Atemweg|Thorax|HNO/i.test(q.category));
+      const pillar2 = this.dusQuestions.filter(q => /Regional|Schmerz|Lokalanästhetika|Pharmakologie/i.test(q.category));
+      const pillar3 = this.dusQuestions.filter(q => /Intensiv|Sepsis|Herz|Neuro|Endokrin|Urolog/i.test(q.category));
+      const pillar4 = this.dusQuestions.filter(q => /Notfall|Kinder|Geburtshilf|Transfusion|Anaphylax/i.test(q.category));
 
+      const pickedIds = new Set();
       const pickOne = (arr) => {
-        const pool = (arr && arr.length) ? arr : this.dusQuestions;
-        return pool[Math.floor(Math.random() * pool.length)];
+        const primary = (arr || []).filter(q => !pickedIds.has(q.id));
+        const fallback = this.dusQuestions.filter(q => !pickedIds.has(q.id));
+        const pool = primary.length ? primary : (fallback.length ? fallback : this.dusQuestions);
+        const chosen = pool[Math.floor(Math.random() * pool.length)];
+        if (chosen && chosen.id) pickedIds.add(chosen.id);
+        return chosen;
       };
 
       this.activeCases = [
@@ -1728,21 +1737,33 @@
       let totalRating = 0;
       let ratedCases = 0;
       let hadKO = false;
-      let isStarRating = false;
+      const starRatings = [];
+      const germanGrades = [];
 
       this.scores.forEach(s => {
         if (s) {
           if (s.koViolated) hadKO = true;
           if (typeof s.rating === 'number') {
-            totalRating += s.rating;
-            ratedCases++;
-            isStarRating = true;
+            starRatings.push(s.rating);
           } else if (typeof s.grade === 'number') {
-            totalRating += s.grade;
-            ratedCases++;
+            germanGrades.push(s.grade);
           }
         }
       });
+
+      const isStarRating = starRatings.length > 0 && germanGrades.length === 0;
+      if (isStarRating) {
+        totalRating = starRatings.reduce((a, b) => a + b, 0);
+        ratedCases = starRatings.length;
+      } else {
+        // Normalize any mixed star ratings (1..5 high-is-good -> 6 - r = 5..1 German grade)
+        const normalizedGrades = [
+          ...germanGrades,
+          ...starRatings.map(r => Math.max(1, Math.min(5, 6 - r)))
+        ];
+        totalRating = normalizedGrades.reduce((a, b) => a + b, 0);
+        ratedCases = normalizedGrades.length;
+      }
 
       const avgRating = ratedCases ? (totalRating / ratedCases) : 0;
       let statusText = 'Nicht bestanden';

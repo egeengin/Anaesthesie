@@ -45,14 +45,14 @@ def clean_medical_text(text):
     def fix_gas(t):
         global counts
         
-        # PaO2
-        t_new = re.sub(r'\b[pP]\s*[aA]\s*[oO]\s*2\b', 'PaO₂', t)
+        # PaO2 (arterial: lowercase 'a') vs PAO2 (alveolar: uppercase 'A')
+        t_new = re.sub(r'\b[pP]\s*a\s*[oO]\s*2\b', 'PaO₂', t)
         # PaCO2
         t_new = re.sub(r'\b[pP]\s*[aA]\s*[cC][oO]\s*2\b', 'PaCO₂', t_new)
         # PECO2
         t_new = re.sub(r'\b[pP]\s*[eE]\s*[cC][oO]\s*2\b', 'PECO₂', t_new)
-        # PAO2
-        t_new = re.sub(r'\b[pP]\s*[aA]\s*[oO]\s*2\b', 'PAO₂', t_new) # capital A if distinct
+        # PAO2 (alveolar: uppercase 'A')
+        t_new = re.sub(r'\b[pP]\s*A\s*[oO]\s*2\b', 'PAO₂', t_new)
         # FiO2
         t_new = re.sub(r'\b[fF]\s*[iI]\s*[oO]\s*2\b', 'FiO₂', t_new)
         # pO2

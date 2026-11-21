@@ -613,7 +613,7 @@
         <div class="redefluss-chip-body" id="redefluss-body-step1" style="display: none;">
           <p class="redefluss-text-de" id="redefluss-de-step1">Zusammenfassend handelt es sich um einen Risikopatienten. Mein primäres anästhesiologisches Ziel ist...</p>
           <p class="redefluss-text-tr" id="redefluss-tr-step1">Özetle, acil müdahale gerektiren yüksek riskli bir hasta. Birincil anestezi hedefim...</p>
-          <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-1" data-step="1" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(1, this);">🔊 Redemittel vorlesen</button>
+          <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-1" data-step="1" type="button">🔊 Redemittel vorlesen</button>
         </div>
       </div>
 
@@ -715,7 +715,7 @@
 
         <!-- Question Image Container -->
         <div id="question-image-container" class="question-image-container" style="display: none;">
-          <img id="question-image" src="" alt="Abbildung zur Frage" class="question-image" />
+          <img id="question-image" alt="Abbildung zur Frage" class="question-image" loading="lazy" decoding="async" />
         </div>
 
         <div id="question-text" class="question-body">
@@ -986,7 +986,7 @@
               <div class="redefluss-chip-body" id="redefluss-body-step2" style="display: none;">
                 <p class="redefluss-text-de" id="redefluss-de-step2">Bei der systematischen Inspektion des Monitors fällt unmittelbar auf...</p>
                 <p class="redefluss-text-tr" id="redefluss-tr-step2">Monitörün sistematik incelemesinde derhal göze çarpan bulgu...</p>
-                <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-2" data-step="2" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(2, this);">🔊 Redemittel vorlesen</button>
+                <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-2" data-step="2" type="button">🔊 Redemittel vorlesen</button>
               </div>
             </div>
 
@@ -1067,7 +1067,7 @@
                 <div class="redefluss-chip-body" id="redefluss-body-step3" style="display: none;">
                   <p class="redefluss-text-de" id="redefluss-de-step3">Angesichts der akuten Gefährdung arbeite ich strikt nach dem ABCDE-Schema. Als Sofortmaßnahme...</p>
                   <p class="redefluss-text-tr" id="redefluss-tr-step3">Akut hayati tehlike karşısında kesinlikle ABCDE algoritmasına göre hareket ediyorum. İlk önlem olarak...</p>
-                  <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-3" data-step="3" type="button" onclick="window.speakRedeflussText && window.speakRedeflussText(3, this);">🔊 Redemittel vorlesen</button>
+                  <button class="btn-xs btn-text btn-speak-redefluss" id="btn-speak-redef-3" data-step="3" type="button">🔊 Redemittel vorlesen</button>
                 </div>
               </div>
 
@@ -2720,7 +2720,7 @@
 
   <!-- 🎧 Audio-Podcasts (Unterwegs Lernen / 20 Min.) Modal -->
   <div id="podcast-modal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="podcast-modal-title">
-    <div class="modal podcast-modal-content" style="max-width: 680px; width: 94vw; border-radius: 16px;">
+    <div class="modal-content podcast-modal-content" style="max-width: 680px; width: 94vw; border-radius: 16px;">
       <div class="modal-header">
         <div class="modal-title-group" style="display: flex; align-items: center; gap: 0.65rem;">
           <span class="modal-title-icon" style="font-size: 1.5rem;">🎧</span>
@@ -2737,15 +2737,15 @@
         <div class="podcast-tabs-bar" id="podcast-tabs-bar">
           <button type="button" class="podcast-tab-btn active" data-episode-idx="0">
             <strong>Folge 1</strong>
-            <span>Notfall-SOPs (10.8m)</span>
+            <span>Notfall-SOPs (10:45)</span>
           </button>
           <button type="button" class="podcast-tab-btn" data-episode-idx="1">
             <strong>Folge 2</strong>
-            <span>Intensiv &amp; Sepsis (14.9m)</span>
+            <span>Intensiv &amp; Sepsis (14:39)</span>
           </button>
           <button type="button" class="podcast-tab-btn" data-episode-idx="2">
             <strong>Folge 3</strong>
-            <span>Hochrisiko (18.1m)</span>
+            <span>Hochrisiko (18:08)</span>
           </button>
         </div>
 
@@ -2753,7 +2753,7 @@
         <div class="podcast-episode-card" id="podcast-episode-card">
           <div class="podcast-ep-meta">
             <span class="podcast-ep-badge" id="podcast-ep-badge">ÄKNO Düsseldorf</span>
-            <span class="podcast-ep-duration" id="podcast-ep-duration">10 Min. 48 Sek.</span>
+            <span class="podcast-ep-duration" id="podcast-ep-duration">10 Min. 45 Sek.</span>
           </div>
           <h3 class="podcast-ep-title" id="podcast-ep-title">Folge 1: Notfall-SOPs &amp; Hämodynamische Krisen</h3>
           <p class="podcast-ep-desc" id="podcast-ep-desc">Aortenklappenstenose, Spannungspneumothorax, MH, LAST, CICO, Anaphylaxie, Polytrauma &amp; Massivtransfusion.</p>
@@ -2775,7 +2775,7 @@
           <div class="podcast-scrub-row">
             <span id="podcast-time-cur" class="podcast-time-label">0:00</span>
             <input type="range" id="podcast-scrub-slider" class="podcast-scrub-slider" min="0" max="100" value="0" step="0.5" aria-label="Podcast Fortschritt">
-            <span id="podcast-time-dur" class="podcast-time-label">10:48</span>
+            <span id="podcast-time-dur" class="podcast-time-label">10:45</span>
           </div>
         </div>
 

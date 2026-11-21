@@ -67,6 +67,8 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request).catch(() => {
         return new Response(JSON.stringify({ offline: true, message: 'Offline mode active' }), {
+          status: 503,
+          statusText: 'Service Unavailable (Offline)',
           headers: { 'Content-Type': 'application/json' }
         });
       })
@@ -74,14 +76,16 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Local assets: Network-First with Cache Fallback
+  // Local assets: Network-First with Cache Fallback (normalize cache key without ?v= query string to avoid double-caching)
   event.respondWith(
     fetch(event.request)
       .then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200) {
+        if (networkResponse && networkResponse.status === 200 && event.request.method === 'GET') {
           const responseToCache = networkResponse.clone();
+          const cleanCacheUrl = new URL(event.request.url);
+          cleanCacheUrl.search = '';
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
+            cache.put(cleanCacheUrl.toString(), responseToCache);
           });
         }
         return networkResponse;

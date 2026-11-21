@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="study.css?v=11.4">
+  <link rel="stylesheet" href="study.css?v=12.1">
 </head>
 <body>
 
@@ -250,7 +250,10 @@
   </div>
 
   <!-- Load Dataset & Script -->
+  <script src="js/storage_sync.js"></script>
+  <script src="js/speech_engine.js?v=7.7"></script>
   <script src="js/audio_manifest.js?v=1.0"></script>
+  <script src="js/podcast_manifest.js?v=1.0"></script>
   <script src="js/curriculum_engine.js?v=10.4"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
   <script src="questions.js?v=9.0"></script>
@@ -258,8 +261,9 @@
   <script>
     if ('serviceWorker' in navigator) {
       let swRefreshing = false;
+      const hadController = Boolean(navigator.serviceWorker.controller);
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!swRefreshing) {
+        if (hadController && !swRefreshing) {
           swRefreshing = true;
           window.location.reload();
         }

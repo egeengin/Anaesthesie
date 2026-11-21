@@ -16,12 +16,19 @@
   const APP_STATE_KEY = 'facharzt_anaesthesie_state_v2';
   const AUTH_KEY = 'facharzt_auth_logged_in';
 
-  // Check auth
+  // Check auth (compatible with both index.html `facharzt_auth_v1` and standalone `facharzt_auth_logged_in`)
   const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
-  if (localStorage.getItem(AUTH_KEY) !== 'true' && !isLocal && !document.getElementById('auth-modal')) {
+  let hasStoredAuth = false;
+  try {
+    hasStoredAuth = localStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem('facharzt_auth_v1') === 'true';
+  } catch (e) {}
+  if (!hasStoredAuth && !isLocal && !document.getElementById('auth-modal')) {
     const entered = prompt('Giriş Şifresi (Standard-Passwort):', '');
     if (entered && entered.trim().toLowerCase() === 'egemelis') {
-      localStorage.setItem(AUTH_KEY, 'true');
+      try {
+        localStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem('facharzt_auth_v1', 'true');
+      } catch (e) {}
     } else {
       alert('Şifre hatalı veya giriş yapılmadı.');
       window.location.href = 'index.html';
@@ -29,15 +36,30 @@
     }
   }
 
-  const savedSettings = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || '{}');
-  const readStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '{}');
-  const starredStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_STARRED) || '{}');
+  let savedSettings = {};
+  let readStatus = {};
+  let starredStatus = {};
+  let appSavedTheme = null;
+  try {
+    savedSettings = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || '{}') || {};
+  } catch (e) {}
+  try {
+    readStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '{}') || {};
+  } catch (e) {}
+  try {
+    starredStatus = JSON.parse(localStorage.getItem(STORAGE_KEY_STARRED) || '{}') || {};
+  } catch (e) {}
   try {
     const appSaved = JSON.parse(localStorage.getItem(APP_STATE_KEY) || '{}');
-    if (appSaved && appSaved.flagged && typeof appSaved.flagged === 'object') {
-      Object.keys(appSaved.flagged).forEach(k => {
-        if (appSaved.flagged[k]) starredStatus[k] = true;
-      });
+    if (appSaved && typeof appSaved === 'object') {
+      if (['sepia', 'light', 'dark'].includes(appSaved.theme)) {
+        appSavedTheme = appSaved.theme;
+      }
+      if (appSaved.flagged && typeof appSaved.flagged === 'object') {
+        Object.keys(appSaved.flagged).forEach(k => {
+          if (appSaved.flagged[k]) starredStatus[k] = true;
+        });
+      }
     }
   } catch (e) {}
 
@@ -167,7 +189,7 @@
   }
 
   const state = {
-    theme: (savedSettings.theme && savedSettings.theme !== 'light') ? savedSettings.theme : 'sepia', // Default to warm sepia, or user's explicit preference
+    theme: appSavedTheme || (['sepia', 'light', 'dark'].includes(savedSettings.theme) ? savedSettings.theme : 'sepia'), // Sync with app theme or user's explicit preference (including light!)
     fontSize: savedSettings.fontSize || 17, // 15, 17, 19, 21
     viewMode: savedSettings.viewMode || 'hover', // 'hover', 'bilingual', 'german'
     activeRecallMode: !!savedSettings.activeRecallMode, // true = start with Vitals & First-3-Actions prompt hidden answer
@@ -1042,9 +1064,9 @@
 
                       ${examSynthesis ? (() => {
                         const renderTierItem = (it) => {
-                          const plainDE = (it.de || '').replace(/<[^>]+>/g, '');
-                          const plainTR = (it.tr || '').replace(/<[^>]+>/g, '');
-                          return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${plainDE}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${it.tr}</div></div>`;
+                          const plainDE = (it.de || '').replace(/<\/?[a-zA-Z][^>]*>/g, '');
+                          const plainTR = (it.tr || '').replace(/<\/?[a-zA-Z][^>]*>/g, '');
+                          return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${escapeHtml(plainDE)}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${escapeHtml(plainTR)}</div></div>`;
                         };
                         return `
                           <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
@@ -1156,19 +1178,25 @@
       recordDailyRead(id, false);
     }
 
-    localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(readStatus));
+    try {
+      localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(readStatus));
+    } catch (e) {}
     updateProgressBar();
     try {
       const appState = JSON.parse(localStorage.getItem('facharzt_anaesthesie_state_v2') || '{}');
       appState.studyReadStatus = readStatus;
       localStorage.setItem('facharzt_anaesthesie_state_v2', JSON.stringify(appState));
       if (window.StorageSync && typeof window.StorageSync.pushToCloud === 'function') {
-        window.StorageSync.pushToCloud(appState);
+        if (studyCloudPushTimer) clearTimeout(studyCloudPushTimer);
+        studyCloudPushTimer = setTimeout(() => {
+          window.StorageSync.pushToCloud(appState);
+        }, 1200);
       }
     } catch (e) {
       console.warn('[StudySync] Background sync to appState failed:', e);
     }
   }
+  let studyCloudPushTimer = null;
 
   function setupAutoReadObserver() {
     if (autoReadObserver) {
@@ -1190,7 +1218,7 @@
           autoReadObserver.unobserve(card);
           return;
         }
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
           if (!autoReadTimers.has(id)) {
             const timer = setTimeout(() => {
               autoReadTimers.delete(id);
@@ -1207,7 +1235,7 @@
           autoReadTimers.delete(id);
         }
       });
-    }, { threshold: [0.45] });
+    }, { threshold: [0.15] });
 
     document.querySelectorAll('.study-card').forEach(card => {
       const id = card.id ? card.id.replace(/^card-/, '') : '';
@@ -1250,7 +1278,9 @@
           delete starredStatus[id];
           btn.classList.remove('starred');
         }
-        localStorage.setItem(STORAGE_KEY_STARRED, JSON.stringify(starredStatus));
+        try {
+          localStorage.setItem(STORAGE_KEY_STARRED, JSON.stringify(starredStatus));
+        } catch (err) {}
         try {
           const appState = JSON.parse(localStorage.getItem(APP_STATE_KEY) || '{}');
           appState.flagged = appState.flagged || {};
@@ -1270,7 +1300,9 @@
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const text = btn.getAttribute('data-text');
-        const cardId = btn.getAttribute('data-card-id') || btn.closest('.study-card')?.getAttribute('data-id');
+        // Only use pre-rendered stem audio when button explicitly carries data-card-id (top card button);
+        // sub-section buttons omit data-card-id so they speak their own section text!
+        const cardId = btn.getAttribute('data-card-id') || null;
         speakGerman(text, btn, cardId);
       });
     });
@@ -1574,6 +1606,9 @@
       : null;
 
     if (localAudioSrc) {
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch (e) {}
+      }
       if (studyAudioPlayer && !studyAudioPlayer.paused) {
         studyAudioPlayer.pause();
         studyAudioPlayer.currentTime = 0;
@@ -1600,8 +1635,20 @@
         if (btnEl) resetSpeakingButton(btnEl);
         if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
       };
-      studyAudioPlayer.play().catch(() => {});
+      studyAudioPlayer.play().catch(() => {
+        if (btnEl) resetSpeakingButton(btnEl);
+        if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
+      });
       return;
+    }
+
+    if (studyAudioPlayer && !studyAudioPlayer.paused) {
+      studyAudioPlayer.pause();
+      studyAudioPlayer.currentTime = 0;
+      if (currentSpeakingBtn && currentSpeakingBtn !== btnEl) {
+        resetSpeakingButton(currentSpeakingBtn);
+        currentSpeakingBtn = null;
+      }
     }
 
     if (!('speechSynthesis' in window) || !text) return;

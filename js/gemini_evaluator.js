@@ -159,7 +159,6 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
           }
         ],
         generationConfig: {
-          temperature: 0.2,
           responseMimeType: 'application/json'
         }
       };
@@ -184,7 +183,8 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       }
 
       const data = await res.json();
-      const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      const parts = data?.candidates?.[0]?.content?.parts || [];
+      const rawText = parts.filter(p => typeof p.text === 'string' && !p.thought).map(p => p.text).join('\n').trim();
       if (!rawText) throw new Error('EMPTY_GEMINI_RESPONSE');
 
       let jsonString = rawText.replace(/```json/gi, '').replace(/```/gi, '').trim();
@@ -235,10 +235,7 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
             { text: prompt },
             { inline_data: { mime_type: mimeType, data: base64 } }
           ]
-        }],
-        generationConfig: {
-          temperature: 0
-        }
+        }]
       };
 
       let text;
@@ -253,11 +250,19 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
 
     async _callGeminiText(model, apiKey, payload) {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timer = controller ? setTimeout(() => controller.abort(), 20000) : null;
+      let res;
+      try {
+        res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller ? controller.signal : undefined,
+          body: JSON.stringify(payload)
+        });
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
       if (!res.ok) {
         const errorText = await res.text();
         throw new Error(`HTTP ${res.status}: ${errorText}`);
@@ -367,7 +372,7 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt ohne Markdown-Codeblöcke (\`\`
       }
 
       const runPromise = (async () => {
-        const candidateModels = ['gemini-2.5-flash-preview-tts', 'gemini-3.8-flash-lite-tts', 'gemini-3.8-flash-tts'];
+        const candidateModels = ['gemini-3.8-flash-tts', 'gemini-3.8-flash-lite-tts'];
         const payload = {
           contents: [{
             parts: [{

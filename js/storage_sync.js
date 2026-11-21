@@ -46,13 +46,15 @@
       if (localState.flagged[id]) robustFlagged[id] = true;
     });
 
-    // 3. Notes union: prefer newer timestamp when available, otherwise preserve present or longer note
-    const robustNotes = { ...(cloudState.notes || {}) };
+    // 3. Notes union: support both `notes` and `userNotes` keys, prefer newer timestamp
+    const cloudNotesSrc = { ...(cloudState.userNotes || {}), ...(cloudState.notes || {}) };
+    const localNotesSrc = { ...(localState.userNotes || {}), ...(localState.notes || {}) };
+    const robustNotes = { ...cloudNotesSrc };
     const cloudNotesTs = cloudState.notesUpdatedAt || {};
     const localNotesTs = localState.notesUpdatedAt || {};
     const robustNotesTs = { ...cloudNotesTs };
-    Object.keys(localState.notes || {}).forEach(id => {
-      const lNote = localState.notes[id];
+    Object.keys(localNotesSrc).forEach(id => {
+      const lNote = localNotesSrc[id];
       const cNote = robustNotes[id];
       const lTs = Number(localNotesTs[id] || 0);
       const cTs = Number(cloudNotesTs[id] || 0);
@@ -67,9 +69,9 @@
       }
     });
 
-    // 4. SM-2 Spaced Repetition cards (robustSm2): preserve latest review timestamp
-    const cloudSm2 = cloudState.sm2Cards || {};
-    const localSm2 = localState.sm2Cards || {};
+    // 4. SM-2 Spaced Repetition cards (support both `sm2Cards` and `sm2Data`): preserve latest review timestamp
+    const cloudSm2 = { ...(cloudState.sm2Data || {}), ...(cloudState.sm2Cards || {}) };
+    const localSm2 = { ...(localState.sm2Data || {}), ...(localState.sm2Cards || {}) };
     const allSm2Ids = new Set([...Object.keys(cloudSm2), ...Object.keys(localSm2)]);
     const robustSm2 = {};
     allSm2Ids.forEach(id => {
@@ -84,19 +86,24 @@
       }
     });
 
-    // 5. Daily reviews union
-    const robustDaily = { ...(cloudState.dailyReviews || {}) };
-    Object.keys(localState.dailyReviews || {}).forEach(dateStr => {
-      robustDaily[dateStr] = Math.max(robustDaily[dateStr] || 0, localState.dailyReviews[dateStr] || 0);
+    // 5. Daily reviews union (support both `dailyReviews` and `dailyCount`)
+    const cloudDailySrc = { ...(cloudState.dailyCount || {}), ...(cloudState.dailyReviews || {}) };
+    const localDailySrc = { ...(localState.dailyCount || {}), ...(localState.dailyReviews || {}) };
+    const robustDaily = { ...cloudDailySrc };
+    Object.keys(localDailySrc).forEach(dateStr => {
+      robustDaily[dateStr] = Math.max(robustDaily[dateStr] || 0, localDailySrc[dateStr] || 0);
     });
 
     merged.answers = robustAnswers;
     merged.flagged = robustFlagged;
     merged.notes = robustNotes;
+    merged.userNotes = robustNotes;
     merged.notesUpdatedAt = robustNotesTs;
     merged.sm2Cards = robustSm2;
+    merged.sm2Data = robustSm2;
     merged.dailyReviews = robustDaily;
-        merged.streak = Math.max(cloudState.streak || 0, localState.streak || 0);
+    merged.dailyCount = robustDaily;
+    merged.streak = Math.max(cloudState.streak || 0, localState.streak || 0);
 
     // 6. Study Read Status union (Melis Lesemappe)
     const cloudRead = cloudState.studyReadStatus || {};
@@ -160,15 +167,19 @@
 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 4000);
-      const res = await fetch(endpoint, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
+      let res;
+      try {
+        res = await fetch(endpoint, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
-      return res.ok;
+      return Boolean(res && res.ok);
     } catch (e) {
       return false;
     }
@@ -181,8 +192,12 @@
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 3500);
-      const res = await fetch(endpoint, { signal: controller.signal });
-      clearTimeout(timeoutId);
+      let res;
+      try {
+        res = await fetch(endpoint, { signal: controller.signal });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       if (res.ok) {
         const json = await res.json();

@@ -40,6 +40,9 @@ global.navigator = {
   assert.strictEqual(SM2.formatDueDate(null), 'Heute fällig');
   assert.strictEqual(SM2.formatDueDate(Date.now() + 3600 * 1000), 'Morgen fällig');
   assert(SM2.formatDueDate(Date.now() + 86400000 * 3 - 1000).includes('3 Tagen'));
+  const sm2Nan = SM2.calculateSM2(NaN, { repetition: -3, interval: -5, easeFactor: -1 });
+  assert(Number.isFinite(sm2Nan.easeFactor) && sm2Nan.easeFactor >= 1.3, 'SM2 must guard against NaN/negative inputs');
+  assert.strictEqual(SM2.isDueToday(null), true);
   console.log('[PASS] Unit 1: js/sm2.js (100% functions)');
 
   // 2. js/storage_sync.js (100% functions)
@@ -76,6 +79,17 @@ global.navigator = {
   assert.strictEqual(await StorageSync.pushToCloud({ streak: 4 }), false);
   assert.strictEqual(await StorageSync.fetchFromCloud(), null);
   global.fetch = origFetch;
+
+  // Verify 3-way schema sync (userNotes <-> notes, sm2Data <-> sm2Cards, dailyCount <-> dailyReviews)
+  const mergedSync = StorageSync.mergeCloudState(
+    { userNotes: { q1: 'local note' }, sm2Data: { q1: { interval: 6, lastReviewed: 200 } }, dailyCount: { '2026-11-21': 5 } },
+    { notes: { q2: 'cloud note' }, sm2Cards: { q2: { interval: 3, lastReviewed: 100 } }, dailyReviews: { '2026-11-21': 8 } }
+  );
+  assert.strictEqual(mergedSync.userNotes.q1, 'local note');
+  assert.strictEqual(mergedSync.userNotes.q2, 'cloud note');
+  assert.strictEqual(mergedSync.sm2Data.q1.interval, 6);
+  assert.strictEqual(mergedSync.sm2Data.q2.interval, 3);
+  assert.strictEqual(mergedSync.dailyCount['2026-11-21'], 8);
   console.log('[PASS] Unit 2: js/storage_sync.js (100% functions)');
 
   // 3. js/storage_idb.js (LocalStorage fallback + mocked IndexedDB)
@@ -224,6 +238,17 @@ global.navigator = {
   assert(na.deficit > 0 && na.maxDayNa === '128');
   const naElderly = Calculators.calculateSodium('elderly_female', 60, 118);
   assert.strictEqual(naElderly.factor, 0.45);
+  // Edge cases: neonate age=0, negative values, adult caps, hypernatremia
+  const pedNeonate = Calculators.calculatePediatrics(0, 3.5);
+  assert.strictEqual(pedNeonate.age, 0, 'Neonate age=0 must not default to 4');
+  assert(pedNeonate.cuffed <= 3.5 && pedNeonate.depth <= 10.5, 'Neonate ETT size and depth must be safe');
+  const pedTeen = Calculators.calculatePediatrics(15, 80);
+  assert.strictEqual(pedTeen.defib, 200, 'Defibrillation energy must cap at 200 J');
+  assert.strictEqual(pedTeen.atropin, '1.00', 'Atropine single dose must cap at 1.00 mg');
+  const naHyper = Calculators.calculateSodium('male', 70, 160);
+  assert.strictEqual(naHyper.isHypernatremia, true);
+  assert.strictEqual(naHyper.maxDayNa, '152', 'Hypernatremia 24h target must lower Na by max 8 mmol/l');
+  assert(naHyper.freeWaterDeficit > 0, 'Hypernatremia must compute free water deficit');
 
   Calculators.init(() => {});
   assert(fakeElements.get('peds-calc-results').innerHTML.includes('Tubus'), 'Pediatrics UI rendered');
@@ -270,6 +295,13 @@ global.navigator = {
   assert(SpeechEngine.getVoiceQualityBadge(voices[0]).length > 0);
   assert(SpeechEngine.getCleanVoiceDisplayName('Microsoft Katja Online (Natural) - German').length > 0);
   assert(SpeechEngine.createGoogleTtsUrl('Hallo').includes('translate.google.com'));
+  // Clinical regression checks for speech preprocessing
+  const defibSpeech = SpeechEngine.prepareMedicalTextForSpeech('Defibrillation mit 200 J biphasisch, Kinder 4 J/kg.');
+  assert(defibSpeech.includes('200 Joule') && !defibSpeech.includes('200 Jahre'), '200 J must be read as Joule, not Jahre');
+  const gcsSpeech = SpeechEngine.prepareMedicalTextForSpeech('Patient wach, GCS 15/15, Kanüle 16/18 G.');
+  assert(!gcsSpeech.includes('Blutdruck'), 'GCS 15/15 and 16/18 G must not be misread as blood pressure');
+  const ineqSpeech = SpeechEngine.prepareMedicalTextForSpeech('SpO₂ < 80% -> Sofort Intubation! PaO₂ < 60 mmHg');
+  assert(ineqSpeech.includes('unter 80') && ineqSpeech.includes('unter 60'), 'Clinical < inequalities must not be stripped as HTML tags');
   console.log('[PASS] Unit 5: js/speech_engine.js (100% functions)');
 
   // 6. js/voice.js
@@ -432,7 +464,31 @@ global.navigator = {
   const sumKo = sim.finishExam();
   assert.strictEqual(sumKo.hadKO, true);
   sim.stopTimer();
-  console.log('[PASS] Unit 9: js/exam_simulation.js');
+
+  // Verify negation-aware K.O. radar does not fail candidates stating contraindications
+  const aksNegated = MockExamSimulation.evaluateCandidateAnswer(
+    'q_dus_01',
+    'Eine Spinalanästhesie ist bei schwerer Aortenklappenstenose absolut kontraindiziert! Ich halte den Sinusrhythmus 60-80, Vorlast hoch und gebe Noradrenalin nach arteriellem Zugang.',
+    []
+  );
+  assert.strictEqual(aksNegated.koViolated, false, 'Stating that Spinalanästhesie is kontraindiziert must NOT trigger K.O. failure');
+
+  // Verify CurriculumEngine LAST word-boundary precision & Podcast/Audio manifest file existence
+  const CurriculumEngine = require('./js/curriculum_engine.js');
+  for (const id of ['q_dus_10', 'q_dus_13', 'q_dus_21', 'q_dus_37', 'q_dus_39', 'q_dus_54']) {
+    const qObj = questions.find(q => q.id === id);
+    const mon = CurriculumEngine.getDataFirstDiagnosticMonitor(qObj);
+    assert(mon && mon.profile !== 'last', `${id} must not be misclassified as LAST (got ${mon && mon.profile})`);
+  }
+  require('./js/audio_manifest.js');
+  require('./js/podcast_manifest.js');
+  Object.values(global.LOCAL_AUDIO_MANIFEST || {}).forEach(relPath => {
+    assert(fs.existsSync(path.join(__dirname, relPath)), `Missing audio file in LOCAL_AUDIO_MANIFEST: ${relPath}`);
+  });
+  (global.PODCAST_MANIFEST || []).forEach(ep => {
+    assert(fs.existsSync(path.join(__dirname, ep.filePath)), `Missing podcast episode file: ${ep.filePath}`);
+  });
+  console.log('[PASS] Unit 9: js/exam_simulation.js, js/curriculum_engine.js & audio manifests');
 
   console.log('\n🎉 ALL HIGH-COVERAGE UNIT SUITES PASSED!\n');
 })();

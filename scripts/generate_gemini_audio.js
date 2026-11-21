@@ -31,18 +31,29 @@ function ensureDirectories() {
 }
 
 function createWavBuffer(pcmBuffer, sampleRate = 24000) {
-  // Audio hygiene: trim any trailing digital noise/burst output by TTS model
+  // Audio hygiene: only trim an isolated trailing click/burst separated from speech by silence
   const totalSamples = Math.floor(pcmBuffer.length / 2);
-  let spikeStart = totalSamples;
+  let lastSpeechEnd = totalSamples;
+  const tailWindow = Math.min(totalSamples, 4800); // last 200ms only
+  let foundSilenceGap = false;
+  let burstStart = totalSamples;
 
-  for (let i = totalSamples - 1; i >= Math.max(0, totalSamples - 15000); i--) {
+  for (let i = totalSamples - 1; i >= totalSamples - tailWindow; i--) {
     const s = Math.abs(pcmBuffer.readInt16LE(i * 2));
-    if (s > 3000) {
-      spikeStart = i;
+    if (!foundSilenceGap) {
+      if (s > 8000) {
+        burstStart = i;
+      } else if (burstStart < totalSamples && s < 250) {
+        foundSilenceGap = true;
+      }
+    } else if (s > 1500) {
+      // Reached actual speech before the silence gap; keep speech intact
+      lastSpeechEnd = burstStart;
+      break;
     }
   }
 
-  const cutPoint = (spikeStart < totalSamples) ? Math.max(0, spikeStart - 200) : totalSamples;
+  const cutPoint = (foundSilenceGap && lastSpeechEnd < totalSamples) ? Math.max(0, lastSpeechEnd - 48) : totalSamples;
   const fadeLen = 480; // 20ms fade out
   const fadeStart = Math.max(0, cutPoint - fadeLen);
   const silenceSamples = 2400; // 100ms pure zero padding
@@ -97,9 +108,10 @@ function convertWavToM4a(wavPath, m4aPath) {
 }
 
 async function synthesizeText(text, voiceName = 'Charon', maxRetries = 3) {
-  // Pin strictly to the highest-fidelity Gemini 2.5 model (Charon studio voice)
+  // Current Gemini 3.8 TTS models (gemini-2.5-flash-preview-tts was shut down 2026-11-17)
   const models = [
-    'gemini-2.5-flash-preview-tts'
+    'gemini-3.8-flash-tts',
+    'gemini-3.8-flash-lite-tts'
   ];
   // Direct text without English intro to prevent the model from pronouncing English instructions
   const cleanPrompt = text;

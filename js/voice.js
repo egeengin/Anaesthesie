@@ -78,7 +78,7 @@
     }
 
     stopListening() {
-      if (this.recognition && this.isListening) {
+      if (this.recognition) {
         try {
           this.recognition.stop();
         } catch (e) {
@@ -124,7 +124,8 @@
         [/\bkiko\b|\bciko\b|\bkoniotomie\b/g, ' cico koniotomie front-of-neck '],
         [/\brote\s*m\b|\brotem\b/g, ' rotem thromboelastometrie gerinnung '],
         [/\btxa\b|\btranexam\b/g, ' tranexamsäure txa gerinnung '],
-        [/\bnora\b|\barkamin\b|\barternol\b/g, ' noradrenalin vasopressor svr '],
+        [/\bnora\b|\barterenol\b|\barternol\b/g, ' noradrenalin vasopressor svr '],
+        [/\bakrinor\b/g, ' akrinor cafedrin theodrenalin vasopressor '],
         [/\bsupra\b|\bsuprarenin\b/g, ' adrenalin suprarenin reanimation '],
         [/\bbga\b|\bblutgas\b/g, ' blutgasanalyse bga säure-basen '],
 
@@ -193,7 +194,7 @@
 
         let hits = 0;
         pearlKeywords.forEach(pk => {
-          if (spokenKeywords.some(sk => sk.includes(pk) || pk.includes(sk))) {
+          if (spokenKeywords.some(sk => sk === pk || (sk.length >= 4 && pk.length >= 4 && (sk.includes(pk) || pk.includes(sk))))) {
             hits++;
             keywordsMatched.push(pk);
           }

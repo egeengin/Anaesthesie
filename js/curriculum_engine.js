@@ -12,7 +12,7 @@
   // ─────────────────────────────────────────────────────────────────────────────
   const CORE_SURVIVAL_KEYWORDS = [
     'maligne hyperthermie', 'dantrolen',
-    'last', 'lokalanästhetika-intoxikation', 'intralipid',
+    /\blast\b/, 'lokalanästhetika-intoxikation', 'intralipid',
     'schwieriger atemweg', 'cico', 'koniotomie', 'efona', 'videolaryngoskop',
     'anaphylaxie', 'adrenalin',
     'aspiration', 'rsi', 'krikoiddruck',
@@ -32,7 +32,7 @@
    * Initializes curriculum stages on the questions dataset
    * Stage 1: Top-50 High-Yield Überlebensfälle (Düsseldorf protocol & core emergencies)
    * Stage 2: Klinische Vertiefung (Remaining open case & image routine scenarios)
-   * Stage 3: ÄKNO Generalprobe (45-Min Mock Exam)
+   * Stage 3: ÄKNO Generalprobe (45-Min Mock Exam / Faktenwissen)
    */
   function tagCurriculumStages(questions) {
     if (!Array.isArray(questions)) return;
@@ -41,7 +41,9 @@
       const isDus = !!q.is_dus_protocol || (q.source_book && q.source_book.includes('Düsseldorf'));
       const text = ((q.stem_de || '') + ' ' + (q.question_de || '') + ' ' + (q.answer_de || '') + ' ' + (q.category || '')).toLowerCase();
       
-      const isSurvivalCore = CORE_SURVIVAL_KEYWORDS.some(kw => text.includes(kw));
+      const isSurvivalCore = CORE_SURVIVAL_KEYWORDS.some(kw =>
+        kw instanceof RegExp ? kw.test(text) : text.includes(kw)
+      );
 
       if (isDus || (isSurvivalCore && q.question_type !== 'options')) {
         q.stage = 1;
@@ -49,7 +51,7 @@
       } else if (q.question_type === 'open' || q.image) {
         q.stage = 2;
       } else {
-        q.stage = 2; // MCQ converted to oral intermediate questions
+        q.stage = 3; // MCQ Faktenwissen / Generalprobe pool
       }
     });
   }
@@ -835,7 +837,7 @@
       s4tr = 'Sürekli Dantrolen titrasyonunu organize ediyor, hastayı en fazla 38.5°C ye kadar soğutuyor ve 24 saatlik nüks takibi için cerrahi yoğun bakıma devrediyorum.';
     }
     // 3. LAST / Lokalanästhetika-Intoxikation
-    else if (text.includes('last') || text.includes('lokalanästhetika') || text.includes('intralipid')) {
+    else if (/\b(?:last|lokalanästhetika-?intox(?:ikation)?|intralipid|lipid-rescue)\b/i.test(text)) {
       s1de = 'Es besteht der V.a. eine systemische Lokalanästhetika-Intoxikation (LAST). Ich stoppe sofort jede weitere Injektion, sichere die Atemwege mit 100% O2 und aktiviere das Lipid-Rescue-Protokoll.';
       s1tr = 'Sistemik lokal anestezik toksisitesi (LAST) şüphesi mevcuttur. Her türlü enjeksiyonu derhal durduruyor, havayolunu %100 O2 ile emniyete alıyor ve Lipid Kurtarma protokolünü devreye sokuyorum.';
       s2de = 'Am Monitor sehe ich typische neuro- und kardiotoxische Warnzeichen: tonisch-klonische Aktivität gefolgt von QRS-Verbreiterung, ventrikulären Arrhythmien bis zum Kreislaufstillstand.';
@@ -1341,14 +1343,14 @@
 
     if (text.includes('patientenverfügung') || text.includes('therapiebegrenz') || text.includes('palliativ')) {
       return {
-        title: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1901a BGB)',
-        titleTR: 'Hasta Vasiyeti & Sağlık Vekaletnamesi (§ 1827 / § 1901a BGB)',
-        topic: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1901a BGB)',
+        title: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1827 BGB (ehem. § 1901a BGB))',
+        titleTR: 'Hasta Vasiyeti & Sağlık Vekaletnamesi (§ 1827 / § 1827 BGB (ehem. § 1901a BGB))',
+        topic: 'Patientenverfügung & Vorsorgevollmacht (§ 1827 / § 1827 BGB (ehem. § 1901a BGB))',
         scenario: 'Schwerstkranker Intensivpatient mit schriftlicher Patientenverfügung zum Verzicht auf Reanimation und Beatmung.',
         scenarioTR: 'Reanimasyon ve mekanik ventilasyonu reddeden yazılı hasta vasiyeti bulunan kritik yoğun bakım hastası.',
-        rule: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
-        ruleDE: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1901a BGB). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
-        ruleTR: 'Yazılı hasta vasiyeti, mevcut klinik duruma uyuyorsa bağlayıcıdır (§ 1827 BGB, eski § 1901a BGB). Hekim ile vekil arasında tedavi sınırlandırması konusunda fikir birliği varsa vesayet mahkemesi iznine gerek yoktur.',
+        rule: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1827 BGB (ehem. § 1901a BGB)). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
+        ruleDE: 'Eine schriftliche Patientenverfügung entfaltet unmittelbare Verbindlichkeit, wenn sie auf die aktuelle Lebens- und Behandlungssituation zutrifft (§ 1827 BGB, früher § 1827 BGB (ehem. § 1901a BGB)). Ein Betreuungsgericht muss bei Konsens zwischen Bevollmächtigtem und Arzt NICHT eingeschaltet werden.',
+        ruleTR: 'Yazılı hasta vasiyeti, mevcut klinik duruma uyuyorsa bağlayıcıdır (§ 1827 BGB, eski § 1827 BGB (ehem. § 1901a BGB)). Hekim ile vekil arasında tedavi sınırlandırması konusunda fikir birliği varsa vesayet mahkemesi iznine gerek yoktur.',
         guideline: 'Grundsätze der Bundesärztekammer zur ärztlichen Sterbebegleitung & DGAI Ethikkommission.',
         paragraph: '§ 1827 BGB (ehem. § 1901a) & § 1828 BGB'
       };
@@ -1482,7 +1484,7 @@
     if (text.includes('bauchaorten') || text.includes('aortenaneurysma') || text.includes('aortendissektion') || text.includes('declamping') || text.includes('cross-clamping') || text.includes('evar')) {
       return 'rbaa';
     }
-    if (text.includes('schrittmacher') || text.includes('icd') || text.includes('kardioverter') || text.includes('magnetauflage') || text.includes('voo') || text.includes('do0')) {
+    if (text.includes('schrittmacher') || text.includes('icd') || text.includes('kardioverter') || text.includes('magnetauflage') || text.includes('voo') || text.includes('doo')) {
       return 'pacemaker';
     }
     if (text.includes('reanimation') || text.includes('acls') || text.includes('kammerflimmern') || text.includes('asystolie') || text.includes('herzdruckmassage')) {
@@ -1491,7 +1493,7 @@
     if (text.includes('maligne hyperthermie') || text.includes('dantrolen') || text.includes('masseterspasmus')) {
       return 'mh';
     }
-    if (text.includes('last') || text.includes('lokalanästhetika-intox') || text.includes('intralipid') || text.includes('lipid-rescue') || (text.includes('bupivacain') && text.includes('krampf'))) {
+    if (/\b(?:last|lokalanästhetika-?intox(?:ikation)?|intralipid|lipid-rescue)\b/i.test(text) || (text.includes('bupivacain') && text.includes('krampf'))) {
       return 'last';
     }
     if (text.includes('anaphylax') || text.includes('allergisch') || text.includes('bronchospasmus')) {

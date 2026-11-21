@@ -15,20 +15,25 @@
    * @returns {object} { repetition, interval, easeFactor, dueDate }
    */
   function calculateSM2(quality, itemState) {
-    let rep = (itemState && itemState.repetition) || 0;
-    let interval = (itemState && itemState.interval) || 1;
-    let ease = (itemState && itemState.easeFactor) || SM2_DEFAULT_EASE;
+    const rawRep = itemState && Number(itemState.repetition);
+    const rawInterval = itemState && Number(itemState.interval);
+    const rawEase = itemState && Number(itemState.easeFactor);
 
-    // Constrain quality between 0 and 5
-    quality = Math.max(0, Math.min(5, Math.round(quality)));
+    let rep = (Number.isFinite(rawRep) && rawRep >= 0) ? Math.floor(rawRep) : 0;
+    let interval = (Number.isFinite(rawInterval) && rawInterval >= 1) ? rawInterval : 1;
+    let ease = (Number.isFinite(rawEase) && rawEase >= 1.3) ? rawEase : SM2_DEFAULT_EASE;
 
-    if (quality >= 3) {
+    // Constrain quality between 0 and 5 (guarding NaN/undefined)
+    const numQuality = Number(quality);
+    const safeQuality = Number.isFinite(numQuality) ? Math.max(0, Math.min(5, Math.round(numQuality))) : 0;
+
+    if (safeQuality >= 3) {
       if (rep === 0) {
         interval = 1;
       } else if (rep === 1) {
         interval = 6;
       } else {
-        interval = Math.round(interval * ease);
+        interval = Math.max(1, Math.round(interval * ease));
       }
       rep += 1;
     } else {
@@ -37,8 +42,8 @@
     }
 
     // Update ease factor: EF' = EF + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02))
-    ease = ease + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
-    if (ease < 1.3) ease = 1.3;
+    ease = ease + (0.1 - (5 - safeQuality) * (0.08 + (5 - safeQuality) * 0.02));
+    if (!Number.isFinite(ease) || ease < 1.3) ease = 1.3;
 
     const dueDate = Date.now() + interval * 24 * 60 * 60 * 1000;
 

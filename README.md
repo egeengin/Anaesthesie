@@ -10,7 +10,7 @@ Ein hochmodernes, interaktives Lern- und Prüfungssystem für die **mündliche F
 
 1. **Vollständiger, klinisch validierter Fragenkatalog (669 Prüfungsfragen)**:
    - **332 strukturierte MCQs / Mehrfachaussagen** (*Kehl & Wilke*).
-   - **322 komplexe klinische Kasuistiken** (*Annecke & Hohn, Winterhalter*).
+   - **337 mündliche klinische Kasuistiken & Falldialoge** (*Annecke & Hohn, Winterhalter, ÄKNO & AMBOSS Curriculum*), darunter:
    - **54 authentische Düsseldorfer Original-Prüfungsprotokolle** (`q_dus_01` bis `q_dus_54`) mit detaillierten Prüferprofilen (*Prof. Annecke, Prof. Kienbaum, Prof. Hohn, Prof. Wappler, Prof. Kindgen-Milles*).
    - **0 Datenanomalien**: Alle OCR-Silbentrennungen, Formelartefakte und abgeschnittenen Zeilenenden vollständig bereinigt.
 
@@ -70,6 +70,6 @@ Anwendung im Browser öffnen: **`http://localhost:8080`** (oder port 8085).
 ## 🧪 Test Suite & Qualitätssicherung
 
 ```bash
-node test_oral_exam_suite.js
+npm test
 ```
-✅ **46 von 46 Test-Suites bestanden (100% Coverage)**.
+✅ **47 von 47 Test-Suites + 9 High-Coverage Unit-Suites bestanden (100% Coverage)**.

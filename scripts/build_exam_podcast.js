@@ -66,9 +66,22 @@ function getPcmFromAudioFile(filePath) {
     execSync(`/usr/bin/afconvert -f WAVE -d LEI16 -c 1 -r 24000 "${filePath}" "${tmpWav}"`, { stdio: 'ignore' });
     const buf = fs.readFileSync(tmpWav);
     fs.unlinkSync(tmpWav);
-    const dataIdx = buf.indexOf('data');
-    if (dataIdx === -1) return null;
-    return buf.slice(dataIdx + 8);
+    // Walk RIFF subchunks properly to locate 'data' chunk and respect its byte length
+    if (buf.length < 44 || buf.toString('ascii', 0, 4) !== 'RIFF' || buf.toString('ascii', 8, 12) !== 'WAVE') {
+      return null;
+    }
+    let offset = 12;
+    while (offset + 8 <= buf.length) {
+      const chunkId = buf.toString('ascii', offset, offset + 4);
+      const chunkSize = buf.readUInt32LE(offset + 4);
+      const dataStart = offset + 8;
+      if (chunkId === 'data') {
+        const dataEnd = Math.min(buf.length, dataStart + chunkSize);
+        return buf.slice(dataStart, dataEnd);
+      }
+      offset = dataStart + chunkSize + (chunkSize % 2);
+    }
+    return null;
   } catch (e) {
     if (fs.existsSync(tmpWav)) fs.unlinkSync(tmpWav);
     return null;
@@ -145,9 +158,10 @@ function buildEpisode(ep) {
 
     // Mark chapter start
     const startSec = Math.round((currentSampleOffset / 24000) * 10) / 10;
+    const chapterNum = chapters.length + 1;
     chapters.push({
       caseId: qId,
-      number: idx + 1,
+      number: chapterNum,
       startSec: startSec,
       formattedTime: `${Math.floor(startSec / 60)}:${Math.floor(startSec % 60).toString().padStart(2, '0')}`
     });

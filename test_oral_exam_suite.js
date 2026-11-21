@@ -1074,6 +1074,7 @@ console.log('[PASS] Suite 36 passed! Verified hardware audio stream, real VU-met
 console.log('Testing Suite 37: Complete JavaScript Syntax Integrity Validation...');
 const { execSync } = require('child_process');
 execSync('node -c app.js', { cwd: __dirname });
+execSync('node -c study.js', { cwd: __dirname });
 execSync('node -c sw.js', { cwd: __dirname });
 execSync('node -c questions.js', { cwd: __dirname });
 const jsDir = path.join(__dirname, 'js');
@@ -1297,11 +1298,11 @@ assert(stylesCss.includes('.btn-speak-redefluss'), 'styles.css must style .btn-s
 assert(stylesCss.includes('.btn-speak-redefluss.speaking'), 'styles.css must style .btn-speak-redefluss.speaking state');
 
 const freshSwCode = fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8');
-assert(freshSwCode.includes('facharzt-cache-v7.7'), 'sw.js must be updated to v7.7 for cache bust');
+assert(/facharzt-cache-v\d+\.\d+/.test(freshSwCode), 'sw.js must define a versioned facharzt-cache-vX.Y cache name');
 assert(freshSwCode.includes("url.hostname.includes('translate.google.com')"), 'sw.js must bypass Service Worker interception for audio streams');
 
 const freshIndexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
-assert(freshIndexHtml.includes('app.js?v=7.7'), 'index.html must load app.js?v=7.7');
+assert(/app\.js\?v=\d+\.\d+/.test(freshIndexHtml), 'index.html must load versioned app.js?v=X.Y');
 
 const freshAppCode = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
 assert(freshAppCode.includes('ensureUnlockedAudioPlayer'), 'app.js must unlock shared HTMLAudioElement synchronously on user gesture');

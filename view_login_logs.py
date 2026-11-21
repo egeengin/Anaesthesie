@@ -13,7 +13,7 @@ import ssl
 LOG_ENDPOINT = "https://api.restful-api.dev/objects/ff8081819f7e10ae019fdac6f09e07e8"
 
 def fetch_logs():
-    ctx = ssl._create_unverified_context()
+    ctx = ssl.create_default_context()
     req = urllib.request.Request(LOG_ENDPOINT, headers={"User-Agent": "SecurityLogViewer/1.0"})
     try:
         with urllib.request.urlopen(req, context=ctx) as resp:
