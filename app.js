@@ -5891,7 +5891,12 @@ Tedavi:
   }
 
   function closeModal(modalEl) {
-    if (modalEl) modalEl.classList.remove('active');
+    if (!modalEl) return;
+    modalEl.classList.remove('active');
+    if (modalEl._opener && typeof modalEl._opener.focus === 'function' && document.body.contains(modalEl._opener)) {
+      try { modalEl._opener.focus(); } catch (e) {}
+      modalEl._opener = null;
+    }
   }
 
   // --- Keyboard Shortcuts Quick HUD Modal ---
@@ -7229,7 +7234,8 @@ Tedavi:
       return;
     }
 
-    // New text or different trigger button -> stop prior session and start fresh
+    // New text or different trigger button -> clear old completion callback so interrupted speech doesn't trigger it
+    onSpeechCompleteCallback = null;
     stopMedicalSpeech();
 
     if (!cleanText || !cleanText.trim()) return;

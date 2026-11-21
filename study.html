@@ -127,7 +127,7 @@
             </button>
           </div>
 
-          <button id="btn-theme-toggle" class="btn-icon-setting" title="Sepia (Sıcak Sarımsı Okuma)">
+          <button id="btn-theme-toggle" class="btn-icon-setting" type="button" aria-label="Tema Değiştir (Sepia / Aydınlık / Gece)" title="Sepia (Sıcak Sarımsı Okuma)">
             <span>📜</span>
           </button>
         </div>
@@ -195,11 +195,11 @@
   </nav>
 
   <!-- Google NotebookLM Modal -->
-  <div id="modal-notebooklm" class="study-modal-backdrop">
+  <div id="modal-notebooklm" class="study-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="notebooklm-modal-title">
     <div class="study-modal-card">
       <div class="modal-header-row">
-        <h3>🎙️ Google NotebookLM Entegrasyonu</h3>
-        <button id="btn-close-notebook-modal" class="btn-modal-close">✕</button>
+        <h3 id="notebooklm-modal-title">🎙️ Google NotebookLM Entegrasyonu</h3>
+        <button id="btn-close-notebook-modal" class="btn-modal-close" type="button" aria-label="Kapat">✕</button>
       </div>
       
       <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55;">
@@ -256,8 +256,8 @@
   <script src="js/podcast_manifest.js?v=1.0"></script>
   <script src="js/curriculum_engine.js?v=10.4"></script>
   <script src="js/exam_simulation.js?v=9.0"></script>
-  <script src="questions.js?v=9.0"></script>
-  <script src="study.js?v=12.29"></script>
+  <script src="questions.js?v=9.1"></script>
+  <script src="study.js?v=12.30"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let swRefreshing = false;
@@ -269,7 +269,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.29')
+        navigator.serviceWorker.register('./sw.js?v=12.30')
           .then(reg => {
             if (typeof reg.update === 'function') {
               reg.update();

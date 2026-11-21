@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.29'; // upgraded from facharzt-cache-v7.7 - German Stopp/Neustart audio labels
+const CACHE_NAME = 'facharzt-cache-v12.30'; // upgraded from facharzt-cache-v12.29 - full review fixes & accessibility
 const CORE_ASSETS = [
   './',
   './index.html',

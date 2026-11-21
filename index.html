@@ -183,10 +183,10 @@
               </button>
             </div>
           </div>
-          <button id="theme-toggle" class="pill-btn" title="Sepia (Sıcak Sarımsı Okuma) / Aydınlık / Gece">
+          <button id="theme-toggle" class="pill-btn" type="button" aria-label="Tema Değiştir (Sepia / Aydınlık / Gece)" title="Sepia (Sıcak Sarımsı Okuma) / Aydınlık / Gece">
             <span>📜</span>
           </button>
-          <button id="settings-trigger" class="pill-btn" title="Einstellungen & Datensicherung">
+          <button id="settings-trigger" class="pill-btn" type="button" aria-label="Ayarlar ve Yedekleme" title="Einstellungen & Datensicherung">
             <span>⚙️</span>
           </button>
         </div>
@@ -219,8 +219,8 @@
         <!-- Live Search Bar -->
         <div class="search-bar-wrapper">
           <span class="search-icon">🔍</span>
-          <input type="text" id="study-search-input" class="search-input" placeholder="Vaka veya ilaç ara..." autocomplete="off" />
-          <button id="study-btn-clear-search" class="btn-clear-search" title="Aramayı Temizle">✕</button>
+          <input type="text" id="study-search-input" class="search-input" aria-label="Vaka veya ilaç ara" placeholder="Vaka veya ilaç ara..." autocomplete="off" />
+          <button id="study-btn-clear-search" class="btn-clear-search" type="button" aria-label="Aramayı Temizle" title="Aramayı Temizle">✕</button>
         </div>
 
         <!-- Single Apple-Style Consolidated Toolbar -->
@@ -1555,7 +1555,7 @@
   </nav>
 
   <!-- Question Direct Jump Modal Grid -->
-  <div id="jump-modal" class="modal-backdrop">
+  <div id="jump-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-header">
         <h2>Fragenübersicht & Navigation</h2>
@@ -1582,7 +1582,7 @@
   </div>
 
   <!-- Official User Guide & Study Manual Modal -->
-  <div id="user-guide-modal" class="modal-backdrop">
+  <div id="user-guide-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 880px;">
       <div class="modal-header">
         <h2>📖 Facharztprüfung Anästhesiologie — Offizieller Benutzerleitfaden</h2>
@@ -1671,7 +1671,7 @@
   </div>
 
   <!-- Settings & Backup Modal -->
-  <div id="settings-modal" class="modal-backdrop">
+  <div id="settings-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-header">
         <h2>Einstellungen & Geräte-Synchronisation</h2>
@@ -1760,7 +1760,7 @@
   </div>
 
   <!-- Emergency Drug & Protocol Pocket Cards Modal -->
-  <div id="pocket-cards-modal" class="modal-backdrop">
+  <div id="pocket-cards-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 900px;">
       <div class="modal-header">
         <h2>📇 Anästhesie Notfall- & Medikamenten-Taschenkarte</h2>
@@ -2010,7 +2010,7 @@
   </div>
 
   <!-- ==================== ÄKNO DÜSSELDORF PRÜFUNGS-REIFE & READINESS RADAR MODAL ==================== -->
-  <div id="readiness-modal" class="modal-backdrop">
+  <div id="readiness-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 880px;">
       <div class="modal-header">
         <div>
@@ -2137,7 +2137,7 @@
   </div>
 
   <!-- ÄKNO Düsseldorf Examiners & Protocols Modal -->
-  <div id="aekno-guide-modal" class="modal-backdrop">
+  <div id="aekno-guide-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 960px;">
       <div class="modal-header">
         <div>
@@ -2373,7 +2373,7 @@
   </div>
 
   <!-- Clinical Anesthesia Calculator Modal -->
-  <div id="calc-modal" class="modal-backdrop">
+  <div id="calc-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 860px;">
       <div class="modal-header">
         <h2>🧮 Klinik- & Facharzt-Rechner</h2>
@@ -2528,7 +2528,7 @@
   </button>
 
   <!-- Interactive Keyboard Shortcuts Quick HUD Modal -->
-  <div id="shortcut-modal" class="modal-backdrop">
+  <div id="shortcut-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 640px;">
       <div class="modal-header">
         <h2 style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.2rem;">
@@ -2578,7 +2578,7 @@
   </div>
 
   <!-- Abbreviations & Acronyms Guide Modal (Kürzel- & Fachwortlexikon / Kısaltmalar Kılavuzu) -->
-  <div id="abbrev-modal" class="modal-backdrop">
+  <div id="abbrev-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content abbrev-modal-dialog">
       <div class="modal-header">
         <div class="abbrev-header-title">
@@ -2625,7 +2625,7 @@
   </div>
 
   <!-- BGA Trainer Modal (ÄKNO Blutgasanalyse-Trainer) -->
-  <div id="bga-trainer-modal" class="modal-backdrop">
+  <div id="bga-trainer-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content bga-modal-card">
       <div class="modal-header">
         <div class="modal-header-title">
@@ -2658,7 +2658,7 @@
   </div>
 
   <!-- Quick Onboarding & Exam Guide Modal (Popup) -->
-  <div id="onboarding-modal" class="modal-backdrop">
+  <div id="onboarding-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-content" style="max-width: 680px; width: 92vw; border-radius: 16px;">
       <div class="modal-header">
         <div class="modal-header-title">
@@ -2804,18 +2804,22 @@
   <script src="js/storage_idb.js"></script>
   <script src="js/sm2.js"></script>
   <script src="js/voice.js"></script>
-  <script src="config.local.js" onerror="void 0;"></script>
-  <script src="js/gemini_evaluator.js?v=11.8"></script>
+  <script>
+    if (['localhost', '127.0.0.1', '0.0.0.0'].includes(location.hostname) || location.protocol === 'file:') {
+      document.write('<script src="config.local.js" onerror="void 0;"><\/script>');
+    }
+  </script>
+  <script src="js/gemini_evaluator.js?v=12.30"></script>
   <script src="js/abbreviations_data.js"></script>
-  <script src="js/exam_simulation.js"></script>
-  <script src="js/calculators.js"></script>
-  <script src="js/storage_sync.js"></script>
-  <script src="js/speech_engine.js?v=7.7"></script>
-  <script src="js/curriculum_engine.js?v=10.4"></script>
+  <script src="js/exam_simulation.js?v=12.30"></script>
+  <script src="js/calculators.js?v=12.30"></script>
+  <script src="js/storage_sync.js?v=12.30"></script>
+  <script src="js/speech_engine.js?v=12.30"></script>
+  <script src="js/curriculum_engine.js?v=12.30"></script>
   <script src="js/audio_manifest.js?v=1.0"></script>
   <script src="js/podcast_manifest.js?v=1.0"></script>
-  <script src="questions.js?v=9.0"></script>
-  <script src="app.js?v=7.7"></script>
+  <script src="questions.js?v=9.1"></script>
+  <script src="app.js?v=12.30"></script>
 
   <!-- Service Worker Registration for Offline PWA Mode -->
   <script>
@@ -2829,7 +2833,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.29')
+        navigator.serviceWorker.register('./sw.js?v=12.30')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2844,7 +2848,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=12.29"></script>
+  <script src="study.js?v=12.30"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');
@@ -2853,6 +2857,12 @@
       const viewExam = document.getElementById('exam-view-wrapper');
 
       function switchMasterView(targetView, savePref = true) {
+        if (typeof window.stopMedicalSpeech === 'function') {
+          window.stopMedicalSpeech();
+        }
+        if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
         const thumbBar = document.getElementById("mobile-thumb-bar");
         if (thumbBar) thumbBar.style.display = (targetView === "study") ? "none" : "";
         if (!viewStudy || !viewExam) return;

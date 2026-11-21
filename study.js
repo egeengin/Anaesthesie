@@ -1333,6 +1333,16 @@
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
     document.querySelectorAll('.trans-interactive').forEach(el => {
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+      if (!el.hasAttribute('role')) el.setAttribute('role', 'button');
+
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+
       el.addEventListener('mouseenter', () => {
         if (state.viewMode !== 'hover') return;
         if (isTouchDevice) return;
@@ -1388,6 +1398,7 @@
     if (!elDesktopTooltip || !elTooltipText) return;
     elTooltipText.textContent = textTR;
     elDesktopTooltip.classList.add('visible');
+    elDesktopTooltip.setAttribute('aria-hidden', 'false');
 
     const rect = targetEl.getBoundingClientRect();
     const tooltipWidth = 340;
@@ -1402,7 +1413,10 @@
   }
 
   function hideDesktopTooltip() {
-    if (elDesktopTooltip) elDesktopTooltip.classList.remove('visible');
+    if (elDesktopTooltip) {
+      elDesktopTooltip.classList.remove('visible');
+      elDesktopTooltip.setAttribute('aria-hidden', 'true');
+    }
   }
 
   function showMobileSheet(textDE, textTR) {
@@ -2013,13 +2027,18 @@
     setText('#user-guide-trigger .item-title', 'Benutzerhandbuch', 'Kullanım Kılavuzu');
     setText('#user-guide-trigger .item-sub', 'Prüfungsleitfaden & Tipps', 'Sınav Rehberi & İpuçları');
 
-    const searchInp = document.getElementById('study-search-input');
+    const searchInp = document.getElementById('study-search-input') || document.getElementById('search-input');
     if (searchInp) searchInp.placeholder = isGerman ? 'Fall oder Medikament suchen...' : 'Vaka veya ilaç ara...';
 
     setText('#study-btn-toggle-categories .category-drawer-label', 'Themen', 'Konular (60)');
+    setText('#btn-toggle-categories .category-drawer-label', 'Themen', 'Konular (60)');
     setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="unread"] .quick-filter-label', 'Ungelesen', 'Okunmamış');
     setText('#study-view-wrapper .btn-study-quick-filter[data-quick-filter="starred"] .quick-filter-label', 'Markiert', 'Kritik');
+    setText('.btn-study-quick-filter[data-quick-filter="unread"] .quick-filter-label', 'Ungelesen', 'Okunmamış');
+    setText('.btn-study-quick-filter[data-quick-filter="starred"] .quick-filter-label', 'Markiert', 'Kritik');
     setText('#study-btn-load-more', 'Mehr anzeigen', 'Daha Fazla Göster');
+    setText('#btn-load-more', 'Mehr anzeigen', 'Daha Fazla Göster');
+    setHtml('#btn-active-recall-toggle', '<span>⚡</span> Testmodus', '<span>⚡</span> Test Modu');
     setText('#audio-restart-text', 'Neustart', 'Baştan');
     setText('#study-btn-prev-bottom', '← Zurück', '← Önceki');
     setText('#study-btn-next-bottom', 'Weiter →', 'Sonraki →');

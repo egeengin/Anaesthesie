@@ -124,6 +124,21 @@
   --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+[data-theme="sepia"] {
+  --bg-primary: #F5EBD8;
+  --bg-secondary: #FCF6EA;
+  --bg-tertiary: #EADCC4;
+  --card-bg: #FCF6EA;
+  --card-border: #DFCFB4;
+  --surface: #FCF6EA;
+  --bg-main: #F5EBD8;
+  --text-main: #2E2218;
+  --text-primary: #2E2218;
+  --text-secondary: #5C4B3B;
+  --text-muted: #6E5C4A;
+  --border-color: #DFCFB4;
+}
+
 [data-theme="dark"] {
   /* Medical Night Shift & ICU Breakroom High-Contrast Palette */
   --bg-primary: #12100E;
@@ -262,6 +277,11 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .container {
