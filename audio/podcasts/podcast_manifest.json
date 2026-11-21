@@ -148,9 +148,9 @@
       "q_dus_35"
     ],
     "filePath": "audio/podcasts/ep_02_intensiv_sepsis.m4a",
-    "durationSec": 895.3,
-    "durationFormatted": "14 Min. 55 Sek.",
-    "fileSizeMb": 6.54,
+    "durationSec": 879.6,
+    "durationFormatted": "14 Min. 39 Sek.",
+    "fileSizeMb": 6.49,
     "chapters": [
       {
         "caseId": "q_dus_16",
@@ -197,80 +197,80 @@
       {
         "caseId": "q_dus_23",
         "number": 8,
-        "startSec": 346.5,
+        "startSec": 346.1,
         "formattedTime": "5:46"
       },
       {
         "caseId": "q_dus_24",
         "number": 9,
-        "startSec": 393,
-        "formattedTime": "6:33"
+        "startSec": 389.2,
+        "formattedTime": "6:29"
       },
       {
         "caseId": "q_dus_25",
         "number": 10,
-        "startSec": 434.8,
-        "formattedTime": "7:14"
+        "startSec": 429.6,
+        "formattedTime": "7:09"
       },
       {
         "caseId": "q_dus_26",
         "number": 11,
-        "startSec": 460.5,
-        "formattedTime": "7:40"
+        "startSec": 455.2,
+        "formattedTime": "7:35"
       },
       {
         "caseId": "q_dus_27",
         "number": 12,
-        "startSec": 502.1,
-        "formattedTime": "8:22"
+        "startSec": 494.3,
+        "formattedTime": "8:14"
       },
       {
         "caseId": "q_dus_28",
         "number": 13,
-        "startSec": 534.6,
-        "formattedTime": "8:54"
+        "startSec": 526.2,
+        "formattedTime": "8:46"
       },
       {
         "caseId": "q_dus_29",
         "number": 14,
-        "startSec": 590.4,
-        "formattedTime": "9:50"
+        "startSec": 583.8,
+        "formattedTime": "9:43"
       },
       {
         "caseId": "q_dus_30",
         "number": 15,
-        "startSec": 634.5,
-        "formattedTime": "10:34"
+        "startSec": 625.7,
+        "formattedTime": "10:25"
       },
       {
         "caseId": "q_dus_31",
         "number": 16,
-        "startSec": 664.2,
-        "formattedTime": "11:04"
+        "startSec": 654.3,
+        "formattedTime": "10:54"
       },
       {
         "caseId": "q_dus_32",
         "number": 17,
-        "startSec": 695.4,
-        "formattedTime": "11:35"
+        "startSec": 683.1,
+        "formattedTime": "11:23"
       },
       {
         "caseId": "q_dus_33",
         "number": 18,
-        "startSec": 745.3,
-        "formattedTime": "12:25"
+        "startSec": 733.6,
+        "formattedTime": "12:13"
       },
       {
         "caseId": "q_dus_34",
         "number": 19,
-        "startSec": 808.4,
-        "formattedTime": "13:28"
+        "startSec": 792.7,
+        "formattedTime": "13:12"
       },
       {
         "caseId": "q_dus_35",
         "number": 20,
-        "startSec": 845.7,
-        "formattedTime": "14:05"
+        "startSec": 830,
+        "formattedTime": "13:50"
       }
     ]
   },
