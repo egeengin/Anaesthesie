@@ -156,12 +156,18 @@ function buildEpisode(ep) {
       continue;
     }
 
+    const ansM4aPath = path.join(AUDIO_CASES_DIR, `${qId}_antwort.m4a`);
+    const ansMp3Path = path.join(AUDIO_CASES_DIR, `${qId}_antwort.mp3`);
+    const ansAudio = fs.existsSync(ansM4aPath) ? ansM4aPath : (fs.existsSync(ansMp3Path) ? ansMp3Path : null);
+    const ansPcm = ansAudio ? getPcmFromAudioFile(ansAudio) : null;
+
     // Mark chapter start
     const startSec = Math.round((currentSampleOffset / 24000) * 10) / 10;
     const chapterNum = chapters.length + 1;
     chapters.push({
       caseId: qId,
       number: chapterNum,
+      hasAnswer: !!ansPcm,
       startSec: startSec,
       formattedTime: `${Math.floor(startSec / 60)}:${Math.floor(startSec % 60).toString().padStart(2, '0')}`
     });
@@ -179,15 +185,21 @@ function buildEpisode(ep) {
     pcmParts.push(casePcm);
     currentSampleOffset += (casePcm.length / 2);
 
-    // 4. Thinking pause before next case
+    // 4. Thinking pause before answer (or next case)
     pcmParts.push(thinkingPause);
     currentSampleOffset += (thinkingPause.length / 2);
 
-    // 5. Short transition
+    // 5. Case answer (if generated)
+    if (ansPcm) {
+      pcmParts.push(ansPcm);
+      currentSampleOffset += (ansPcm.length / 2);
+    }
+
+    // 6. Short transition
     pcmParts.push(chapterTransition);
     currentSampleOffset += (chapterTransition.length / 2);
 
-    console.log(`  ✓ Added [Fall ${idx + 1}] ${qId} at ${chapters[chapters.length - 1].formattedTime}`);
+    console.log(`  ✓ Added [Fall ${idx + 1}] ${qId}${ansPcm ? ' (+ Antwort)' : ' (ohne Antwort)'} at ${chapters[chapters.length - 1].formattedTime}`);
   }
 
   const totalPcm = Buffer.concat(pcmParts);

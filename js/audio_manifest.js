@@ -6,6 +6,8 @@
   global.LOCAL_AUDIO_MANIFEST = {
   "q_amboss_01": "audio/cases/q_amboss_01_fall_stem.m4a",
   "q_amboss_02": "audio/cases/q_amboss_02_fall_stem.m4a",
+  "q_amboss_03": "audio/cases/q_amboss_03_fall_stem.m4a",
+  "q_amboss_04": "audio/cases/q_amboss_04_fall_stem.m4a",
   "q_dus_01": "audio/cases/q_dus_01_fall_stem.m4a",
   "q_dus_02": "audio/cases/q_dus_02_fall_stem.m4a",
   "q_dus_03": "audio/cases/q_dus_03_fall_stem.m4a",

@@ -227,6 +227,7 @@ async function main() {
   let voice = 'Charon';
   let prefix = '';
   let force = false;
+  let answersOnly = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--limit' && args[i + 1]) limit = parseInt(args[++i], 10);
@@ -234,6 +235,7 @@ async function main() {
     if (args[i] === '--voice' && args[i + 1]) voice = args[++i];
     if (args[i] === '--prefix' && args[i + 1]) prefix = args[++i];
     if (args[i] === '--force') force = true;
+    if (args[i] === '--answers') answersOnly = true;
   }
 
   // Load questions
@@ -249,7 +251,13 @@ async function main() {
     questions = questions.filter(q => q.id.startsWith(prefix));
     console.log(`Filtered ${questions.length} questions matching prefix "${prefix}".`);
   }
-  console.log(`Processing up to ${limit} questions with delay ${delayMs}ms...`);
+  const QA_COMPLETED_PATH = path.resolve(__dirname, '../audio/qa_completed.json');
+  let qaCompleted = new Set();
+  if (fs.existsSync(QA_COMPLETED_PATH)) {
+    try { qaCompleted = new Set(JSON.parse(fs.readFileSync(QA_COMPLETED_PATH, 'utf8'))); } catch (e) {}
+  }
+
+  console.log(`Processing up to ${limit} ${answersOnly ? 'answers (merging into single Q+A file)' : 'questions'} with delay ${delayMs}ms...`);
 
   let count = 0;
   let skipped = 0;
@@ -261,23 +269,46 @@ async function main() {
     const m4aPath = path.join(AUDIO_DIR, `${baseName}.m4a`);
     const wavPath = path.join(AUDIO_DIR, `${baseName}.wav`);
 
-    if (!force && (fs.existsSync(m4aPath) || fs.existsSync(wavPath))) {
+    if (answersOnly) {
+      if (!force && qaCompleted.has(q.id)) {
+        skipped++;
+        continue;
+      }
+    } else if (!force && (fs.existsSync(m4aPath) || fs.existsSync(wavPath))) {
       skipped++;
       continue;
     }
 
-    const rawText = q.stem_de || q.question_de || '';
-    const cleanSpeech = SpeechEngine.prepareMedicalTextForSpeech(rawText);
-    if (!cleanSpeech || cleanSpeech.length < 5) {
+    const rawText = answersOnly ? (q.oral_answer_de || q.answer_de || '') : (q.stem_de || q.question_de || '');
+    const prepared = SpeechEngine.prepareMedicalTextForSpeech(rawText);
+    const cleanSpeech = answersOnly ? `Antwort: ${prepared}` : prepared;
+    if (!prepared || prepared.length < 5) {
       skipped++;
       continue;
     }
 
-    console.log(`[${count + 1}] Generating audio for ${q.id} (${cleanSpeech.length} chars)...`);
+    console.log(`[${count + 1}] Generating ${answersOnly ? 'answer' : 'audio'} for ${q.id} (${cleanSpeech.length} chars)...`);
     try {
       const wavBuf = await synthesizeText(cleanSpeech, voice);
-      fs.writeFileSync(wavPath, wavBuf);
-      convertWavToM4a(wavPath, m4aPath);
+      if (answersOnly && fs.existsSync(m4aPath)) {
+        // Merge existing question stem + 3s pause + new answer into the single _fall_stem.m4a file
+        const { getPcmFromAudioFile, createWavHeader } = require('./merge_qa_audio.js');
+        const ansTmpWav = path.join(AUDIO_DIR, `${q.id}_ans_tmp.wav`);
+        fs.writeFileSync(ansTmpWav, wavBuf);
+        const ansPcm = wavBuf.slice(44);
+        const stemPcm = getPcmFromAudioFile(m4aPath);
+        if (fs.existsSync(ansTmpWav)) fs.unlinkSync(ansTmpWav);
+        const pausePcm = Buffer.alloc(Math.floor(24000 * 3.0) * 2);
+        const combinedPcm = stemPcm ? Buffer.concat([stemPcm, pausePcm, ansPcm]) : ansPcm;
+        const combinedHeader = createWavHeader(combinedPcm.length, 24000);
+        fs.writeFileSync(wavPath, Buffer.concat([combinedHeader, combinedPcm]));
+        convertWavToM4a(wavPath, m4aPath);
+        qaCompleted.add(q.id);
+        fs.writeFileSync(QA_COMPLETED_PATH, JSON.stringify(Array.from(qaCompleted).sort(), null, 2), 'utf8');
+      } else {
+        fs.writeFileSync(wavPath, wavBuf);
+        convertWavToM4a(wavPath, m4aPath);
+      }
       const mp3Path = path.join(AUDIO_DIR, `${baseName}.mp3`);
       if (fs.existsSync(mp3Path)) {
         try { fs.unlinkSync(mp3Path); } catch (e) {}
