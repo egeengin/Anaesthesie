@@ -1434,7 +1434,7 @@ assert(studyHtmlCode.includes('St. Antonius-Hospital Eschweiler'), 'study.html m
 assert(studyHtmlCode.includes('btn-active-recall-toggle'), 'study.html must include #btn-active-recall-toggle');
 assert(freshIndexHtml.includes('study-btn-active-recall-toggle'), 'index.html must include #study-btn-active-recall-toggle');
 assert(studyJsCode.includes('melis-monitor-strip'), 'study.js must render .melis-monitor-strip');
-assert(studyJsCode.includes('melis-three-actions-box'), 'study.js must render .melis-three-actions-box');
+assert(studyJsCode.includes('melis-deep-dive-grid'), 'study.js must render .melis-deep-dive-grid');
 assert(studyJsCode.includes('updateDynamicQuestionCounts'), 'study.js must define updateDynamicQuestionCounts');
 assert(studyCssCode.includes('.melis-monitor-strip'), 'study.css must style .melis-monitor-strip');
 

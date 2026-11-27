@@ -916,29 +916,10 @@
             </div>
           </div>
 
-          ${state.activeRecallMode && (monitorData || threeActionsChallenge) ? `
-            ${monitorHtml}
-            ${threeActionsChallenge ? `
-              <div class="melis-three-actions-box">
-                <details class="melis-self-check-details">
-                  <summary class="melis-self-check-summary">✍️ Kendi İlk 3 Hamlemi Yaz / Kontrol Et (İsteğe Bağlı)</summary>
-                  <div class="melis-self-check-inputs">
-                    <input type="text" class="melis-step-input" placeholder="1. Acil Hamle (örn. 100% O₂, Kauter Stopp, ABCDE)..." />
-                    <input type="text" class="melis-step-input" placeholder="2. Acil Hamle (örn. Nedensel ilaç / Doz)..." />
-                    <input type="text" class="melis-step-input" placeholder="3. Acil Hamle (örn. Monitörizasyon / K.O. önlemi)..." />
-                  </div>
-                </details>
-                <button type="button" class="btn-reveal-turn" data-card-id="${q.id}" title="${isTurnHidden ? '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını Aç' : '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle'}">
-                  ${isTurnHidden
-                    ? '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken'
-                    : '🔒 Erste 3 Maßnahmen &amp; Musterantwort ausblenden'}
-                </button>
-              </div>
-            ` : ''}
-          ` : ''}
+          ${state.activeRecallMode && monitorData ? monitorHtml : ''}
 
           <!-- REVEALABLE CLINICAL TURN CONTAINER -->
-          <div id="turn-reveal-${q.id}" class="${isTurnHidden ? 'melis-hidden-turn' : ''}">
+          <div id="turn-reveal-${q.id}">
 
             ${state.activeRecallMode && threeActionsHtml ? `<div style="margin-top: 12px;">${threeActionsHtml}</div>` : ''}
 
@@ -1253,29 +1234,6 @@
         // sub-section buttons omit data-card-id so they speak their own section text!
         const cardId = btn.getAttribute('data-card-id') || null;
         speakGerman(text, btn, cardId);
-      });
-    });
-
-    document.querySelectorAll('.btn-reveal-turn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const cardId = btn.getAttribute('data-card-id');
-        const turnBox = document.getElementById(`turn-reveal-${cardId}`);
-        if (!turnBox) return;
-
-        const isCurrentlyHidden = turnBox.classList.contains('melis-hidden-turn');
-        if (isCurrentlyHidden) {
-          turnBox.classList.remove('melis-hidden-turn');
-          state.revealedCards[cardId] = true;
-          btn.innerHTML = '🔒 Erste 3 Maßnahmen &amp; Musterantwort ausblenden';
-          btn.title = '🇹🇷 Kendimi Test Etmek İçin Cevabı Gizle';
-          triggerHapticFeedback();
-        } else {
-          turnBox.classList.add('melis-hidden-turn');
-          delete state.revealedCards[cardId];
-          btn.innerHTML = '🎯 Erste 3 Maßnahmen &amp; Musterantwort aufdecken';
-          btn.title = '🇹🇷 İlk 3 Hamlemi Düşündüm — Uzman Cevabını & First-Principles Analizini Aç';
-        }
       });
     });
 
