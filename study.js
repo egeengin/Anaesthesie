@@ -879,34 +879,7 @@
       const hasDrawer2 = !!(dosagesHtml || interventionHtml || tipHtml || examinerProfileHtml);
       const hasDrawer3 = !!(firstPrinciples || examSynthesis || bedsideComm);
 
-      const hasQuickActions = !!(threeActionsChallenge && Array.isArray(threeActionsChallenge.firstThreeActions) && threeActionsChallenge.firstThreeActions.length > 0);
       const trapDE = (q.examiner_profile && q.examiner_profile.trap) ? q.examiner_profile.trap : (q.examiner_tip || '');
-      const trapTR = (q.examiner_profile && q.examiner_profile.trap) ? (q.examiner_profile.trap_tr || '') : (q.examiner_tip_tr || '');
-
-      const cheatStripHtml = (hasQuickActions || trapDE) ? `
-        <div class="melis-30sec-cheat-strip">
-          ${hasQuickActions ? `
-            <div class="melis-30sec-actions-row">
-              <span class="melis-30sec-tag">⚡ 30s-Fokus:</span>
-              <span class="melis-30sec-actions-text">
-                ${threeActionsChallenge.firstThreeActions.map((act, i) => `
-                  <span class="melis-30sec-step"><strong>${i + 1}.</strong> ${renderInteractiveGerman(act.actionDE, act.actionTR)}</span>
-                `).join('<span class="melis-30sec-sep"> · </span>')}
-              </span>
-            </div>
-            <div class="inline-bilingual-tr melis-30sec-tr">
-              🇹🇷 ${threeActionsChallenge.firstThreeActions.map((act, i) => `${i + 1}. ${escapeHtml(act.actionTR || act.actionDE)}`).join(' · ')}
-            </div>
-          ` : ''}
-          ${trapDE ? `
-            <div class="melis-30sec-ko-row">
-              <span class="melis-30sec-ko-badge">⚠️ K.O.:</span>
-              <span>${renderInteractiveGerman(trapDE, trapTR)}</span>
-            </div>
-            ${trapTR ? `<div class="inline-bilingual-tr melis-30sec-tr">🇹🇷 ${escapeHtml(trapTR)}</div>` : ''}
-          ` : ''}
-        </div>
-      ` : '';
 
       const redTextDE = redeflussStep1 ? (redeflussStep1.de || redeflussStep1.textDE || '') : '';
       const mainCardAudioText = [
@@ -997,7 +970,6 @@
                   🇹🇷 "${escapeHtml(redeflussStep1.tr || redeflussStep1.textTR || '')}"
                 </div>
               ` : ''}
-              ${cheatStripHtml}
               <div class="oral-answer-content">
                 ${renderFormattedOralAnswer(answerDE, answerTR)}
               </div>
