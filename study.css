@@ -418,8 +418,50 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
   font-size: 0.84rem;
   font-weight: 600;
+}
+
+.progress-header-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-jump-unread {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  background: rgba(2, 132, 199, 0.08);
+  color: var(--primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.btn-jump-unread:hover,
+.btn-jump-unread:active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .btn-jump-unread {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+[data-theme="sepia"] .btn-jump-unread {
+  background: rgba(14, 116, 144, 0.09);
+  border-color: rgba(14, 116, 144, 0.28);
 }
 
 .progress-status {
@@ -936,7 +978,26 @@ body {
   padding: 24px 28px;
   box-shadow: none;
   position: relative;
-  transition: border-color 0.18s ease, background-color 0.18s ease;
+  scroll-margin-top: 84px;
+  transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.25s ease;
+}
+
+@keyframes studyJumpPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.42);
+    border-color: var(--primary);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(2, 132, 199, 0);
+    border-color: var(--primary);
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+
+.study-card-jump-pulse {
+  animation: studyJumpPulse 1.6s ease-out;
 }
 
 .study-card:hover {

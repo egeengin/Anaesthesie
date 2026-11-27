@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback for instant updates and reliable offline operation
  */
 
-const CACHE_NAME = 'facharzt-cache-v12.31'; // upgraded from facharzt-cache-v12.30 - simplified Melis study flow & floating Q+A mini player
+const CACHE_NAME = 'facharzt-cache-v12.32'; // upgraded from facharzt-cache-v12.30 - simplified Melis study flow & floating Q+A mini player
 const CORE_ASSETS = [
   './',
   './index.html',

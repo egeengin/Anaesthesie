@@ -332,6 +332,7 @@
   const elProgressBarFill = document.getElementById('study-progress-bar-fill') || document.getElementById('progress-bar-fill');
   const elProgressText = document.getElementById('study-progress-status-text') || document.getElementById('progress-status-text');
   const elProgressPercentage = document.getElementById('study-progress-percentage') || document.getElementById('progress-percentage');
+  const elBtnJumpUnread = document.getElementById('study-btn-jump-unread') || document.getElementById('btn-jump-unread');
   const elStreakBadge = document.getElementById('study-progress-streak') || document.getElementById('progress-streak');
   const elBtnLoadMore = document.getElementById('study-btn-load-more') || document.getElementById('btn-load-more');
   const elLoadMoreWrapper = document.getElementById('study-load-more-wrapper') || document.getElementById('load-more-wrapper');
@@ -456,7 +457,7 @@
   }
 
   // --- Filtering & Searching ---
-  function getFilteredList() {
+  function getBaseFilteredList() {
     let list = allQuestions;
 
     if (state.searchQuery && state.searchQuery.trim()) {
@@ -476,6 +477,12 @@
       list = list.filter(isOptionItem);
     }
 
+    return list;
+  }
+
+  function getFilteredList() {
+    let list = getBaseFilteredList();
+
     if (state.activeStatusFilter === 'read') {
       list = list.filter(item => !!readStatus[item.id]);
     } else if (state.activeStatusFilter === 'unread') {
@@ -485,6 +492,28 @@
     }
 
     return list;
+  }
+
+  function jumpToFirstUnread() {
+    const filtered = getFilteredList();
+    const firstUnreadIdx = filtered.findIndex(item => !readStatus[item.id]);
+    if (firstUnreadIdx === -1) return;
+
+    const targetItem = filtered[firstUnreadIdx];
+    if (firstUnreadIdx >= state.visibleCount) {
+      state.visibleCount = Math.ceil((firstUnreadIdx + 1) / state.pageSize) * state.pageSize;
+      renderFeed(false);
+    }
+
+    const card = document.getElementById(`card-${targetItem.id}`);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      card.classList.remove('study-card-jump-pulse');
+      void card.offsetWidth;
+      card.classList.add('study-card-jump-pulse');
+      setTimeout(() => card.classList.remove('study-card-jump-pulse'), 1800);
+      triggerHapticFeedback();
+    }
   }
 
   // --- Format Oral Question (Multi-line Case Vignette + Examiner Sub-Questions) ---
@@ -634,23 +663,36 @@
       if (window.CurriculumEngine) {
         try {
           const gt = window.CurriculumEngine.getMedicalGroundTruth(q);
-          if (gt && gt.guideline && gt.guideline.awmf) {
+          if (gt && gt.guideline && gt.guideline.awmf && gt.guideline.title !== 'DGAI / BDA Empfehlungen & S3-Leitlinien Standards') {
             groundTruth = gt;
           }
           if (typeof window.CurriculumEngine.getDataFirstDiagnosticMonitor === 'function') {
-            monitorData = window.CurriculumEngine.getDataFirstDiagnosticMonitor(q);
+            const md = window.CurriculumEngine.getDataFirstDiagnosticMonitor(q);
+            if (md && md.scenarioBadgeDE !== 'OP / Intensivstation · Perioperatives Akut- & Risikomanagement') {
+              monitorData = md;
+            }
           }
           if (typeof window.CurriculumEngine.getImmediateThreeActionsChallenge === 'function') {
             threeActionsChallenge = window.CurriculumEngine.getImmediateThreeActionsChallenge(q);
           }
           if (typeof window.CurriculumEngine.getFirstPrinciplesPhysiology === 'function') {
-            firstPrinciples = window.CurriculumEngine.getFirstPrinciplesPhysiology(q);
+            const fp = window.CurriculumEngine.getFirstPrinciplesPhysiology(q);
+            if (fp && !(fp.formulaOrPrinciple || '').startsWith('DO₂ = HZV × CaO₂')) {
+              firstPrinciples = fp;
+            }
           }
           if (typeof window.CurriculumEngine.getBedsideCommunicationAndJargon === 'function') {
-            bedsideComm = window.CurriculumEngine.getBedsideCommunicationAndJargon(q);
+            const bc = window.CurriculumEngine.getBedsideCommunicationAndJargon(q);
+            if (bc && !(bc.fruehbesprechungDE || '').startsWith('„Guten Morgen in die Runde (Frühbesprechung St. Antonius-Hospital Eschweiler)')) {
+              bedsideComm = bc;
+            }
           }
           if (typeof window.CurriculumEngine.getThreeTierExamSynthesis === 'function') {
-            examSynthesis = window.CurriculumEngine.getThreeTierExamSynthesis(q);
+            const es = window.CurriculumEngine.getThreeTierExamSynthesis(q);
+            const firstT1 = (es && es.tier1Immediate && es.tier1Immediate.items && es.tier1Immediate.items[0] && es.tier1Immediate.items[0].de) || '';
+            if (es && !firstT1.includes('Sofortige Problemerkennung nach ABCDE, Oberarzt-Backup rufen')) {
+              examSynthesis = es;
+            }
           }
         } catch (_) {}
       }
@@ -1901,6 +1943,27 @@
         : `${goalPrefix} Bugün: ${todayCount}/5`;
       elStreakBadge.title = `Günlük hedef: 5 vaka (Bugün: ${todayCount}${streakDays >= 2 ? ', Seri: ' + streakDays + ' gün' : ''}). Çekirdek sözlü vakalar (${openRead}/${openTotal}) günde 8 vaka hızıyla tahmini kalan: ${remainingCore > 0 ? daysLeft + ' gün' : 'Tamamlandı'}.`;
     }
+
+    // Update live "▶ Devam Et (#N)" button + live unread count on filter pill
+    const baseFiltered = getBaseFilteredList();
+    const unreadInBase = baseFiltered.filter(item => !readStatus[item.id]).length;
+    document.querySelectorAll('.btn-study-quick-filter[data-quick-filter="unread"] .quick-filter-label').forEach(lbl => {
+      lbl.textContent = isDe ? `Ungelesen (${unreadInBase})` : `Okunmamış (${unreadInBase})`;
+    });
+
+    if (elBtnJumpUnread) {
+      const filtered = getFilteredList();
+      const firstUnreadIdx = filtered.findIndex(item => !readStatus[item.id]);
+      if (firstUnreadIdx > 0) {
+        const targetQ = filtered[firstUnreadIdx];
+        const globalNum = allQuestions.findIndex(x => x.id === targetQ.id) + 1;
+        elBtnJumpUnread.style.display = 'inline-flex';
+        elBtnJumpUnread.innerHTML = isDe ? `<span>▶</span> Weiter (#${globalNum})` : `<span>▶</span> Devam Et (#${globalNum})`;
+        elBtnJumpUnread.title = isDe ? `Direkt zum ersten ungelesenen Fall (#${globalNum}) springen` : `İlk okunmamış vakaya (#${globalNum}) direkt git`;
+      } else {
+        elBtnJumpUnread.style.display = 'none';
+      }
+    }
   }
 
   function initCategories() {
@@ -2300,6 +2363,13 @@
     elBtnLoadMore.addEventListener('click', () => {
       state.visibleCount += state.pageSize;
       renderFeed(false);
+    });
+  }
+
+  if (elBtnJumpUnread) {
+    elBtnJumpUnread.addEventListener('click', (e) => {
+      e.preventDefault();
+      jumpToFirstUnread();
     });
   }
 
