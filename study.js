@@ -287,6 +287,30 @@
       `;
       document.body.appendChild(modal);
     }
+
+    if (!document.getElementById('study-mini-audio-bar')) {
+      const bar = document.createElement('div');
+      bar.id = 'study-mini-audio-bar';
+      bar.className = 'study-mini-audio-bar';
+      bar.setAttribute('role', 'region');
+      bar.setAttribute('aria-label', 'Audio Player');
+      bar.innerHTML = `
+        <div class="study-mini-top-row">
+          <div id="study-mini-audio-title" class="study-mini-title">🎧 Vaka Dinleniyor</div>
+          <div class="study-mini-top-actions">
+            <button type="button" id="study-mini-audio-speed" class="study-mini-speed-btn" title="Oynatma Hızı">1.25x</button>
+            <button type="button" id="study-mini-audio-close" class="study-mini-close-btn" title="Kapat ve Durdur" aria-label="Kapat">✕</button>
+          </div>
+        </div>
+        <div class="study-mini-controls-row">
+          <button type="button" id="study-mini-audio-playpause" class="study-mini-ctl-btn study-mini-play" title="Duraklat / Devam Et" aria-label="Duraklat">⏸️</button>
+          <button type="button" id="study-mini-audio-restart" class="study-mini-ctl-btn" title="Baştan Başla" aria-label="Baştan">⏮️</button>
+          <input type="range" id="study-mini-audio-slider" class="study-mini-slider" min="0" max="100" step="0.5" value="0" aria-label="Ses İlerleme" />
+          <span id="study-mini-audio-time" class="study-mini-time">0:00 / 0:00</span>
+        </div>
+      `;
+      document.body.appendChild(bar);
+    }
   }
 
   ensureTooltipsAndModals();
@@ -528,11 +552,15 @@
       } else if (rawDe.startsWith('•') || rawDe.startsWith('-') || rawDe.startsWith('–')) {
         const cleanDe = rawDe.replace(/^[•\-–]\s*/, '').trim();
         const cleanTr = rawTr.replace(/^[•\-–]\s*/, '').trim();
+        const leadMatch = cleanDe.match(/^([^:]{2,45}:)\s+(.+)$/);
+        const bulletBody = leadMatch
+          ? `<strong class="oral-key-label">${escapeHtml(leadMatch[1])}</strong> ${renderInteractiveGerman(leadMatch[2], cleanTr)}`
+          : renderInteractiveGerman(cleanDe, cleanTr);
         html += `
           <div class="oral-answer-bullet-row">
             <span class="oral-bullet-icon">▸</span>
             <div class="oral-bullet-content">
-              <div class="oral-bullet-de">${renderInteractiveGerman(cleanDe, cleanTr)}</div>
+              <div class="oral-bullet-de">${bulletBody}</div>
               ${cleanTr ? `<div class="inline-bilingual-tr" style="margin-top: 4px;">🇹🇷 ${escapeHtml(cleanTr)}</div>` : ''}
             </div>
           </div>
@@ -873,8 +901,8 @@
         `;
       })() : '';
 
-      const hasDrawer2 = !!(dosagesHtml || interventionHtml || tipHtml || examinerProfileHtml);
-      const hasDrawer3 = !!(firstPrinciples || examSynthesis || bedsideComm);
+      const hasPrimaryDetails = !!(tipHtml || dosagesHtml || interventionHtml || monitorData || examinerProfileHtml);
+      const hasSubDetails = !!(firstPrinciples || examSynthesis || bedsideComm);
 
       const trapDE = (q.examiner_profile && q.examiner_profile.trap) ? q.examiner_profile.trap : (q.examiner_tip || '');
 
@@ -885,7 +913,7 @@
       ].filter(Boolean).join('\n\n');
 
       html += `
-        <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}">
+        <article class="study-card ${isRead ? 'is-read' : ''}" id="card-${q.id}" data-id="${q.id}" data-label="#${globalIndex || (idx + 1)} · ${escapeHtml(q.category || 'Anästhesie')}">
           <div class="card-header-bar">
             <div class="card-badges">
               <span class="badge-case-number">#${globalIndex || (idx + 1)}</span>
@@ -897,7 +925,7 @@
               <button class="btn-card-action btn-star-card ${isStarred ? 'starred' : ''}" data-id="${q.id}" title="Kritik Vaka Olarak Yıldızla">
                 <span>⭐</span>
               </button>
-              <button class="btn-card-action btn-pronounce-card" data-card-id="${q.id}" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Model Cevap ve K.O.-İpucunu Sesli Dinle">
+              <button class="btn-card-action btn-pronounce-card" data-card-id="${q.id}" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru ve Model Cevabı Sesli Dinle">
                 <span>🔊</span> ${state.viewMode === 'german' ? 'Anhören' : 'Dinle'}
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
@@ -916,12 +944,14 @@
             </div>
           </div>
 
-          ${state.activeRecallMode && monitorData ? monitorHtml : ''}
+          ${isTurnHidden ? `
+            <button type="button" class="btn-simple-reveal" data-card-id="${q.id}">
+              <span>👁️</span> ${state.viewMode === 'german' ? 'Antwort zeigen' : 'Cevabı Göster'}
+            </button>
+          ` : ''}
 
           <!-- REVEALABLE CLINICAL TURN CONTAINER -->
-          <div id="turn-reveal-${q.id}">
-
-            ${state.activeRecallMode && threeActionsHtml ? `<div style="margin-top: 12px;">${threeActionsHtml}</div>` : ''}
+          <div id="turn-reveal-${q.id}" class="${isTurnHidden ? 'study-answer-hidden' : ''}">
 
             <!-- 🩺 FACHARZT-MUSTERANTWORT -->
             <div class="oral-answer-card-box">
@@ -933,124 +963,109 @@
               </div>
             </div>
 
-            ${((!state.activeRecallMode && (monitorData || threeActionsChallenge)) || hasDrawer2 || hasDrawer3) ? `
+            ${(hasPrimaryDetails || hasSubDetails) ? `
               <div class="melis-deep-dive-grid">
-                ${!state.activeRecallMode && (monitorData || threeActionsChallenge) ? `
-                  <details class="melis-module-details">
-                    <summary class="melis-module-summary" title="🇹🇷 Monitör, Kan Gazı (BGA) ve İlk 3 Acil Hamle">
-                      <span>📟 Monitor, BGA &amp; Erste 3 Maßnahmen</span>
-                      <span class="melis-drawer-caret">▾</span>
-                    </summary>
-                    <div class="melis-module-body">
-                      ${monitorHtml}
-                      ${threeActionsHtml}
-                    </div>
-                  </details>
-                ` : ''}
-
-                ${hasDrawer2 ? `
-                  <details class="melis-module-details">
-                    <summary class="melis-module-summary" title="🇹🇷 Kılavuz Dozları, Jüri Müdahalesi & K.O. İpucu">
-                      <span>💊 Dosierungen, K.O.-Tipp &amp; Prüfer-Profil</span>
-                      <span class="melis-drawer-caret">▾</span>
-                    </summary>
-                    <div class="melis-module-body">
-                      ${dosagesHtml}
-                      ${interventionHtml}
-                      ${tipHtml}
-                      ${examinerProfileHtml}
-                    </div>
-                  </details>
-                ` : ''}
-
-                ${hasDrawer3 ? `
-                  <details class="melis-module-details">
-                    <summary class="melis-module-summary" title="🇹🇷 Patofizyoloji, 3 Kademeli Sınav Sentezi ve Klinik Almanca">
-                      <span>🧠 First-Principles, 3-Stufen-Synthese &amp; Klinik-Deutsch</span>
-                      <span class="melis-drawer-caret">▾</span>
-                    </summary>
-                    <div class="melis-module-body">
-                      ${firstPrinciples ? `
-                        <div class="melis-sub-section">
-                          <div class="melis-formula-pill">📐 ${escapeHtml(firstPrinciples.formulaOrPrinciple)}</div>
-                          <div style="margin-bottom: 10px;">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                              <strong style="color: var(--primary);">⚙️ Pathophysiologisches Prinzip:</strong>
-                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.mechanismDE)}">🔊 Dinle</button>
-                            </div>
-                            <div>${renderInteractiveGerman(firstPrinciples.mechanismDE, firstPrinciples.mechanismTR)}</div>
-                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.mechanismTR)}</div>
-                          </div>
-                          <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                              <strong style="color: var(--text-primary);">💊 Pharmakologische Kinetik:</strong>
-                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.pharmacologyDE)}">🔊 Dinle</button>
-                            </div>
-                            <div>${renderInteractiveGerman(firstPrinciples.pharmacologyDE, firstPrinciples.pharmacologyTR)}</div>
-                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.pharmacologyTR)}</div>
-                          </div>
-                        </div>
-                      ` : ''}
-
-                      ${examSynthesis ? (() => {
-                        const renderTierItem = (it) => {
-                          const plainDE = (it.de || '').replace(/<\/?[a-zA-Z][^>]*>/g, '');
-                          const plainTR = (it.tr || '').replace(/<\/?[a-zA-Z][^>]*>/g, '');
-                          return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${escapeHtml(plainDE)}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${escapeHtml(plainTR)}</div></div>`;
-                        };
-                        return `
-                          <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
-                            <div class="melis-tier-block" style="border-left: 3px solid var(--accent-rose);">
-                              <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${renderInteractiveGerman(examSynthesis.tier1Immediate.titleDE, examSynthesis.tier1Immediate.titleTR)}</div>
-                              ${examSynthesis.tier1Immediate.items.map(renderTierItem).join('')}
-                            </div>
-                            <div class="melis-tier-block" style="border-left: 3px solid var(--primary);">
-                              <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${renderInteractiveGerman(examSynthesis.tier2Diagnostics.titleDE, examSynthesis.tier2Diagnostics.titleTR)}</div>
-                              ${examSynthesis.tier2Diagnostics.items.map(renderTierItem).join('')}
-                            </div>
-                            <div class="melis-tier-block" style="border-left: 3px solid var(--accent-emerald);">
-                              <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${renderInteractiveGerman(examSynthesis.tier3Pharmacology.titleDE, examSynthesis.tier3Pharmacology.titleTR)}</div>
-                              ${examSynthesis.tier3Pharmacology.items.map(renderTierItem).join('')}
-                            </div>
-                          </div>
-                        `;
-                      })() : ''}
-
-                      ${bedsideComm ? `
-                        <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
-                          <div style="margin-bottom: 10px;">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                              <strong style="color: var(--primary);" title="🇹🇷 Sabah Toplantısı &amp; Kıdemli Devri">🏥 Frühbesprechung:</strong>
-                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
-                            </div>
-                            <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
-                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.fruehbesprechungTR)}</div>
-                          </div>
-                          <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
-                              <strong style="color: var(--accent-emerald);" title="🇹🇷 Hasta/Yakını Aydınlatma Cümlesi">🤝 Prämedikationsgespräch:</strong>
-                              <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
-                            </div>
-                            <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
-                            <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.praemedikationTR)}</div>
-                          </div>
-                          <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
-                            <strong style="color: #b45309; font-size: var(--font-base);" title="🇹🇷 Hastane Kısaltmaları">🔤 Klinik-Jargon &amp; Abkürzungen:</strong>
-                            <div class="melis-jargon-grid">
-                              ${(bedsideComm.jargonTerms || []).map(jt => `
-                                <div class="melis-jargon-card">
-                                  <div><strong style="color: var(--primary);">${escapeHtml(jt.abbr)}</strong> — <strong>${escapeHtml(jt.termDE)}</strong></div>
-                                  <div style="margin-top: 2px; color: var(--text-secondary);">${renderInteractiveGerman(jt.meaningDE, jt.meaningTR)}</div>
-                                  <div class="inline-bilingual-tr" style="margin-top: 2px; color: var(--text-muted); font-size: var(--font-sm);">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
+                <details class="melis-module-details melis-single-details">
+                  <summary class="melis-module-summary">
+                    <span>${state.viewMode === 'german' ? '✨ Details · K.O.-Tipp, Dosierungen &amp; Monitor' : '✨ Ek Bilgiler · K.O.-İpucu, Dozlar &amp; Monitör'}</span>
+                    <span class="melis-drawer-caret">▾</span>
+                  </summary>
+                  <div class="melis-module-body">
+                    ${tipHtml}
+                    ${dosagesHtml}
+                    ${interventionHtml}
+                    ${monitorHtml}
+                    ${examinerProfileHtml}
+                    ${hasSubDetails ? `
+                      <details class="melis-sub-details">
+                        <summary class="melis-sub-summary">
+                          <span>${state.viewMode === 'german' ? '🧠 Pathophysiologie &amp; Klinik-Deutsch' : '🧠 Fizyoloji &amp; Klinik İfadeler'}</span>
+                          <span class="melis-drawer-caret">▾</span>
+                        </summary>
+                        <div class="melis-sub-body">
+                          ${firstPrinciples ? `
+                            <div class="melis-sub-section">
+                              <div class="melis-formula-pill">📐 ${escapeHtml(firstPrinciples.formulaOrPrinciple)}</div>
+                              <div style="margin-bottom: 10px;">
+                                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                                  <strong style="color: var(--primary);">⚙️ Pathophysiologisches Prinzip:</strong>
+                                  <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.mechanismDE)}">🔊 Dinle</button>
                                 </div>
-                              `).join('')}
+                                <div>${renderInteractiveGerman(firstPrinciples.mechanismDE, firstPrinciples.mechanismTR)}</div>
+                                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.mechanismTR)}</div>
+                              </div>
+                              <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                                  <strong style="color: var(--text-primary);">💊 Pharmakologische Kinetik:</strong>
+                                  <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(firstPrinciples.pharmacologyDE)}">🔊 Dinle</button>
+                                </div>
+                                <div>${renderInteractiveGerman(firstPrinciples.pharmacologyDE, firstPrinciples.pharmacologyTR)}</div>
+                                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(firstPrinciples.pharmacologyTR)}</div>
+                              </div>
                             </div>
-                          </div>
+                          ` : ''}
+
+                          ${examSynthesis ? (() => {
+                            const renderTierItem = (it) => {
+                              const plainDE = (it.de || '').replace(/<\/?[a-zA-Z][^>]*>/g, '');
+                              const plainTR = (it.tr || '').replace(/<\/?[a-zA-Z][^>]*>/g, '');
+                              return `<div style="margin-bottom:4px;">• <span class="trans-interactive" data-tr="${escapeHtml(plainTR)}" data-de="${escapeHtml(plainDE)}">${escapeHtml(plainDE)}</span><div class="inline-bilingual-tr" style="color:var(--text-muted); font-size:var(--font-sm);">🇹🇷 ${escapeHtml(plainTR)}</div></div>`;
+                            };
+                            return `
+                              <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
+                                <div class="melis-tier-block" style="border-left: 3px solid var(--accent-rose);">
+                                  <div style="font-weight: 800; color: var(--accent-rose); margin-bottom: 4px;">🚨 ${renderInteractiveGerman(examSynthesis.tier1Immediate.titleDE, examSynthesis.tier1Immediate.titleTR)}</div>
+                                  ${examSynthesis.tier1Immediate.items.map(renderTierItem).join('')}
+                                </div>
+                                <div class="melis-tier-block" style="border-left: 3px solid var(--primary);">
+                                  <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;">🔬 ${renderInteractiveGerman(examSynthesis.tier2Diagnostics.titleDE, examSynthesis.tier2Diagnostics.titleTR)}</div>
+                                  ${examSynthesis.tier2Diagnostics.items.map(renderTierItem).join('')}
+                                </div>
+                                <div class="melis-tier-block" style="border-left: 3px solid var(--accent-emerald);">
+                                  <div style="font-weight: 800; color: var(--accent-emerald); margin-bottom: 4px;">💊 ${renderInteractiveGerman(examSynthesis.tier3Pharmacology.titleDE, examSynthesis.tier3Pharmacology.titleTR)}</div>
+                                  ${examSynthesis.tier3Pharmacology.items.map(renderTierItem).join('')}
+                                </div>
+                              </div>
+                            `;
+                          })() : ''}
+
+                          ${bedsideComm ? `
+                            <div class="melis-sub-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
+                              <div style="margin-bottom: 10px;">
+                                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                                  <strong style="color: var(--primary);" title="🇹🇷 Sabah Toplantısı &amp; Kıdemli Devri">🏥 Frühbesprechung:</strong>
+                                  <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.fruehbesprechungDE)}">🔊 Dinle</button>
+                                </div>
+                                <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.fruehbesprechungDE, bedsideComm.fruehbesprechungTR)}</div>
+                                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.fruehbesprechungTR)}</div>
+                              </div>
+                              <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px;">
+                                  <strong style="color: var(--accent-emerald);" title="🇹🇷 Hasta/Yakını Aydınlatma Cümlesi">🤝 Prämedikationsgespräch:</strong>
+                                  <button class="btn-card-action btn-pronounce-card" style="padding: 2px 8px; font-size: var(--font-xs);" data-text="${escapeHtml(bedsideComm.praemedikationDE)}">🔊 Dinle</button>
+                                </div>
+                                <div style="font-style: italic;">${renderInteractiveGerman(bedsideComm.praemedikationDE, bedsideComm.praemedikationTR)}</div>
+                                <div class="inline-bilingual-tr" style="margin-top: 3px;">🇹🇷 ${escapeHtml(bedsideComm.praemedikationTR)}</div>
+                              </div>
+                              <div style="padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                                <strong style="color: #b45309; font-size: var(--font-base);" title="🇹🇷 Hastane Kısaltmaları">🔤 Klinik-Jargon &amp; Abkürzungen:</strong>
+                                <div class="melis-jargon-grid">
+                                  ${(bedsideComm.jargonTerms || []).map(jt => `
+                                    <div class="melis-jargon-card">
+                                      <div><strong style="color: var(--primary);">${escapeHtml(jt.abbr)}</strong> — <strong>${escapeHtml(jt.termDE)}</strong></div>
+                                      <div style="margin-top: 2px; color: var(--text-secondary);">${renderInteractiveGerman(jt.meaningDE, jt.meaningTR)}</div>
+                                      <div class="inline-bilingual-tr" style="margin-top: 2px; color: var(--text-muted); font-size: var(--font-sm);">🇹🇷 ${escapeHtml(jt.meaningTR)}</div>
+                                    </div>
+                                  `).join('')}
+                                </div>
+                              </div>
+                            </div>
+                          ` : ''}
                         </div>
-                      ` : ''}
-                    </div>
-                  </details>
-                ` : ''}
+                      </details>
+                    ` : ''}
+                  </div>
+                </details>
               </div>
             ` : ''}
 
@@ -1280,11 +1295,26 @@
       });
     });
 
-    // Collapsible Turkish translation blocks (like Exam Mode)
-    document.querySelectorAll('.study-card div.inline-bilingual-tr').forEach(trBox => {
-      if (trBox.dataset.trCollapsibleInit) return;
-      if (!trBox.textContent || !trBox.textContent.trim()) return;
-      trBox.dataset.trCollapsibleInit = '1';
+    document.querySelectorAll('.btn-simple-reveal').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cardId = btn.getAttribute('data-card-id');
+        const turnBox = document.getElementById(`turn-reveal-${cardId}`);
+        if (turnBox) {
+          turnBox.classList.remove('study-answer-hidden');
+        }
+        state.revealedCards[cardId] = true;
+        btn.style.display = 'none';
+        triggerHapticFeedback();
+      });
+    });
+
+    // Collapsible Turkish translation blocks: ONE single button per section box
+    document.querySelectorAll('.study-card .oral-question-card-box, .study-card .oral-answer-card-box').forEach(box => {
+      if (box.dataset.trBoxInit) return;
+      const trBoxes = Array.from(box.querySelectorAll('div.inline-bilingual-tr')).filter(el => el.textContent && el.textContent.trim());
+      if (trBoxes.length === 0) return;
+      box.dataset.trBoxInit = '1';
 
       const toggleBtn = document.createElement('button');
       toggleBtn.type = 'button';
@@ -1293,11 +1323,12 @@
       toggleBtn.textContent = '🇹🇷 Türkçe Çeviri ▾';
       toggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = trBox.classList.toggle('is-open');
-        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        toggleBtn.textContent = isOpen ? '🇹🇷 Çeviriyi Gizle ▴' : '🇹🇷 Türkçe Çeviri ▾';
+        const nextOpen = toggleBtn.getAttribute('aria-expanded') !== 'true';
+        trBoxes.forEach(tb => tb.classList.toggle('is-open', nextOpen));
+        toggleBtn.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+        toggleBtn.textContent = nextOpen ? '🇹🇷 Çeviriyi Gizle ▴' : '🇹🇷 Türkçe Çeviri ▾';
       });
-      trBox.parentNode.insertBefore(toggleBtn, trBox);
+      box.appendChild(toggleBtn);
     });
   }
 
@@ -1503,6 +1534,18 @@
   let currentSpeakingBtn = null;
   let speechSessionId = 0;
   let studyAudioPlayer = null;
+  let studyAudioSpeed = 1.25;
+  try {
+    const savedSpeed = parseFloat(localStorage.getItem('facharzt_study_audio_speed'));
+    if (savedSpeed >= 0.75 && savedSpeed <= 2.5) studyAudioSpeed = savedSpeed;
+  } catch (e) {}
+
+  function formatStudyTime(sec) {
+    if (!sec || isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  }
 
   function resetSpeakingButton(btn) {
     if (!btn) return;
@@ -1512,54 +1555,196 @@
     }
   }
 
-  function speakGerman(text, btnEl = null, cardId = null) {
-    if (typeof window.speakText === 'function') {
-      const localAudio = (typeof window.LOCAL_AUDIO_MANIFEST !== 'undefined' && cardId && window.LOCAL_AUDIO_MANIFEST[cardId])
-        ? window.LOCAL_AUDIO_MANIFEST[cardId]
-        : null;
-      window.speakText(text, btnEl, null, localAudio);
+  function hideStudyMiniAudioBar() {
+    const bar = document.getElementById('study-mini-audio-bar');
+    if (bar) bar.classList.remove('visible');
+  }
+
+  function syncStudyMiniAudioUI() {
+    const elPlayPause = document.getElementById('study-mini-audio-playpause');
+    const elSpeed = document.getElementById('study-mini-audio-speed');
+    const elSlider = document.getElementById('study-mini-audio-slider');
+    const elTime = document.getElementById('study-mini-audio-time');
+    if (elSpeed) elSpeed.textContent = `${studyAudioSpeed}x`;
+    if (!studyAudioPlayer) return;
+    const isPlaying = !studyAudioPlayer.paused;
+    if (elPlayPause) elPlayPause.textContent = isPlaying ? '⏸️' : '▶️';
+    const cur = studyAudioPlayer.currentTime || 0;
+    const dur = (studyAudioPlayer.duration && !isNaN(studyAudioPlayer.duration)) ? studyAudioPlayer.duration : 0;
+    if (elSlider && dur > 0 && !elSlider.dataset.dragging) {
+      elSlider.max = dur;
+      elSlider.value = cur;
+    }
+    if (elTime) elTime.textContent = `${formatStudyTime(cur)} / ${formatStudyTime(dur)}`;
+    if (currentSpeakingBtn) {
+      if (isPlaying) {
+        currentSpeakingBtn.classList.add('is-speaking');
+        currentSpeakingBtn.innerHTML = `<span>⏸️</span> ${state.viewMode === 'german' ? 'Pause' : 'Duraklat'}`;
+      } else {
+        currentSpeakingBtn.classList.add('is-speaking');
+        currentSpeakingBtn.innerHTML = `<span>▶️</span> ${state.viewMode === 'german' ? 'Weiter' : 'Devam'}`;
+      }
+    }
+  }
+
+  function bindStudyMiniAudioBar(labelText) {
+    const bar = document.getElementById('study-mini-audio-bar');
+    if (!bar) return;
+    const elTitle = document.getElementById('study-mini-audio-title');
+    if (elTitle && labelText) elTitle.textContent = `🎧 ${labelText}`;
+    bar.classList.add('visible');
+
+    if (bar.dataset.bound) {
+      syncStudyMiniAudioUI();
       return;
     }
+    bar.dataset.bound = '1';
 
-    // Direct pre-rendered high-fidelity studio audio support in Lernen & Lesen (study.html)
+    const elPlayPause = document.getElementById('study-mini-audio-playpause');
+    const elRestart = document.getElementById('study-mini-audio-restart');
+    const elSlider = document.getElementById('study-mini-audio-slider');
+    const elSpeed = document.getElementById('study-mini-audio-speed');
+    const elClose = document.getElementById('study-mini-audio-close');
+
+    if (elPlayPause) {
+      elPlayPause.addEventListener('click', () => {
+        if (!studyAudioPlayer) return;
+        if (studyAudioPlayer.paused) {
+          studyAudioPlayer.playbackRate = studyAudioSpeed;
+          studyAudioPlayer.play().catch(() => {});
+        } else {
+          studyAudioPlayer.pause();
+        }
+        syncStudyMiniAudioUI();
+      });
+    }
+    if (elRestart) {
+      elRestart.addEventListener('click', () => {
+        if (!studyAudioPlayer) return;
+        studyAudioPlayer.currentTime = 0;
+        studyAudioPlayer.playbackRate = studyAudioSpeed;
+        studyAudioPlayer.play().catch(() => {});
+        syncStudyMiniAudioUI();
+      });
+    }
+    if (elSpeed) {
+      const speeds = [1.0, 1.25, 1.5, 1.75, 2.0];
+      elSpeed.addEventListener('click', () => {
+        const idx = (speeds.indexOf(studyAudioSpeed) + 1) % speeds.length;
+        studyAudioSpeed = speeds[idx];
+        try { localStorage.setItem('facharzt_study_audio_speed', String(studyAudioSpeed)); } catch (e) {}
+        if (studyAudioPlayer) studyAudioPlayer.playbackRate = studyAudioSpeed;
+        syncStudyMiniAudioUI();
+      });
+    }
+    if (elSlider) {
+      elSlider.addEventListener('input', (e) => {
+        elSlider.dataset.dragging = '1';
+        const val = parseFloat(e.target.value) || 0;
+        const dur = (studyAudioPlayer && studyAudioPlayer.duration) || 0;
+        const elTime = document.getElementById('study-mini-audio-time');
+        if (elTime) elTime.textContent = `${formatStudyTime(val)} / ${formatStudyTime(dur)}`;
+      });
+      elSlider.addEventListener('change', (e) => {
+        delete elSlider.dataset.dragging;
+        if (studyAudioPlayer) {
+          studyAudioPlayer.currentTime = parseFloat(e.target.value) || 0;
+        }
+        syncStudyMiniAudioUI();
+      });
+    }
+    if (elClose) {
+      elClose.addEventListener('click', stopStudyAudioPlayer);
+    }
+    syncStudyMiniAudioUI();
+  }
+
+  function stopStudyAudioPlayer() {
+    if (studyAudioPlayer) {
+      try {
+        studyAudioPlayer.pause();
+        studyAudioPlayer.currentTime = 0;
+      } catch (e) {}
+    }
+    if (currentSpeakingBtn) {
+      resetSpeakingButton(currentSpeakingBtn);
+      currentSpeakingBtn = null;
+    }
+    hideStudyMiniAudioBar();
+  }
+  window.stopStudyAudioPlayer = stopStudyAudioPlayer;
+
+  function speakGerman(text, btnEl = null, cardId = null) {
+    // Prioritize local pre-rendered Q+A neural audio when available on card buttons
     const localAudioSrc = (typeof window.LOCAL_AUDIO_MANIFEST !== 'undefined' && cardId && window.LOCAL_AUDIO_MANIFEST[cardId])
       ? window.LOCAL_AUDIO_MANIFEST[cardId]
       : null;
 
     if (localAudioSrc) {
+      if (typeof window.stopMedicalSpeech === 'function') {
+        try { window.stopMedicalSpeech(); } catch (e) {}
+      }
       if ('speechSynthesis' in window) {
         try { window.speechSynthesis.cancel(); } catch (e) {}
       }
+
+      // Clicking the same card button toggles Pause / Resume in place
+      if (studyAudioPlayer && currentSpeakingBtn === btnEl && studyAudioPlayer.src && studyAudioPlayer.src.includes(localAudioSrc)) {
+        if (studyAudioPlayer.paused) {
+          studyAudioPlayer.playbackRate = studyAudioSpeed;
+          studyAudioPlayer.play().catch(() => {});
+        } else {
+          studyAudioPlayer.pause();
+        }
+        syncStudyMiniAudioUI();
+        return;
+      }
+
       if (studyAudioPlayer && !studyAudioPlayer.paused) {
         studyAudioPlayer.pause();
         studyAudioPlayer.currentTime = 0;
-        const wasSame = (currentSpeakingBtn === btnEl);
-        if (currentSpeakingBtn) resetSpeakingButton(currentSpeakingBtn);
-        currentSpeakingBtn = null;
-        if (wasSame) return;
       }
       if (currentSpeakingBtn) resetSpeakingButton(currentSpeakingBtn);
       currentSpeakingBtn = btnEl;
-      if (btnEl) {
-        if (!btnEl.dataset.origHtml) btnEl.dataset.origHtml = btnEl.innerHTML;
-        btnEl.classList.add('is-speaking');
-        btnEl.innerHTML = `<span>🔊</span> Stopp`;
+      if (btnEl && !btnEl.dataset.origHtml) {
+        btnEl.dataset.origHtml = btnEl.innerHTML;
       }
-      if (!studyAudioPlayer) studyAudioPlayer = new Audio();
+
+      if (!studyAudioPlayer) {
+        studyAudioPlayer = new Audio();
+        studyAudioPlayer.addEventListener('timeupdate', syncStudyMiniAudioUI);
+        studyAudioPlayer.addEventListener('loadedmetadata', syncStudyMiniAudioUI);
+        studyAudioPlayer.addEventListener('play', syncStudyMiniAudioUI);
+        studyAudioPlayer.addEventListener('pause', syncStudyMiniAudioUI);
+        studyAudioPlayer.addEventListener('ended', () => {
+          if (currentSpeakingBtn) resetSpeakingButton(currentSpeakingBtn);
+          currentSpeakingBtn = null;
+          hideStudyMiniAudioBar();
+        });
+        studyAudioPlayer.addEventListener('error', () => {
+          if (currentSpeakingBtn) resetSpeakingButton(currentSpeakingBtn);
+          currentSpeakingBtn = null;
+          hideStudyMiniAudioBar();
+        });
+      }
+
       studyAudioPlayer.src = localAudioSrc;
-      studyAudioPlayer.playbackRate = 1.15;
-      studyAudioPlayer.onended = () => {
-        if (btnEl) resetSpeakingButton(btnEl);
-        if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
-      };
-      studyAudioPlayer.onerror = () => {
-        if (btnEl) resetSpeakingButton(btnEl);
-        if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
-      };
+      studyAudioPlayer.playbackRate = studyAudioSpeed;
+      const cardEl = btnEl ? btnEl.closest('.study-card') : null;
+      const label = (cardEl && cardEl.getAttribute('data-label')) || cardId;
+      bindStudyMiniAudioBar(label);
       studyAudioPlayer.play().catch(() => {
         if (btnEl) resetSpeakingButton(btnEl);
         if (currentSpeakingBtn === btnEl) currentSpeakingBtn = null;
+        hideStudyMiniAudioBar();
       });
+      return;
+    }
+
+    stopStudyAudioPlayer();
+
+    if (typeof window.speakText === 'function') {
+      window.speakText(text, btnEl, null, null);
       return;
     }
 
@@ -1666,39 +1851,42 @@
     if (state.activeType === 'options') {
       percentage = optTotal > 0 ? Math.round((optRead / optTotal) * 100) : 0;
       statusText = isDe
-        ? `📚 Stufe 3 Themen: ${optRead} / ${optTotal} · Gesamt: ${readCount}/${total}`
-        : `📚 Aşama 3 Konu: ${optRead} / ${optTotal} · Toplam: ${readCount}/${total}`;
+        ? `📚 Themen: ${optRead} / ${optTotal}`
+        : `📚 Konu: ${optRead} / ${optTotal}`;
     } else if (state.activeType === 'open') {
       percentage = openTotal > 0 ? Math.round((openRead / openTotal) * 100) : 0;
       statusText = isDe
-        ? `🏥 Kernfälle: ${openRead} / ${openTotal} · Gesamt: ${readCount}/${total}`
-        : `🏥 Çekirdek Vakalar: ${openRead} / ${openTotal} · Toplam: ${readCount}/${total}`;
+        ? `🏥 Fälle: ${openRead} / ${openTotal}`
+        : `🏥 Vaka: ${openRead} / ${openTotal}`;
     } else if (state.activeType === 'dus' || dusRead < dusTotal) {
       percentage = dusTotal > 0 ? Math.round((dusRead / dusTotal) * 100) : 0;
       if (dusTotal > 0 && dusRead >= dusTotal) {
         statusText = isDe
-          ? `✅ ÄKNO Stufe 1 Fertig (${dusRead}/${dusTotal}) · Prüfungsbereit!`
-          : `✅ ÄKNO Aşama 1 Tamam (${dusRead}/${dusTotal}) · Sınav Başvurusuna Hazırsın!`;
+          ? `✅ ÄKNO (${dusRead}/${dusTotal}) Fertig`
+          : `✅ ÄKNO (${dusRead}/${dusTotal}) Tamam`;
       } else {
         statusText = isDe
-          ? `🏛️ ÄKNO Stufe 1: ${dusRead} / ${dusTotal} · Gesamt: ${readCount}/${total}`
-          : `🏛️ ÄKNO Aşama 1: ${dusRead} / ${dusTotal} · Toplam: ${readCount}/${total}`;
+          ? `🏛️ ÄKNO: ${dusRead} / ${dusTotal}`
+          : `🏛️ ÄKNO: ${dusRead} / ${dusTotal}`;
       }
     } else if (openRead < openTotal) {
       percentage = openTotal > 0 ? Math.round((openRead / openTotal) * 100) : 0;
       statusText = isDe
-        ? `✅ ÄKNO Fertig · 🏥 Stufe 2 Fälle: ${openRead} / ${openTotal}`
-        : `✅ ÄKNO Tamam · 🏥 Aşama 2 Vaka: ${openRead} / ${openTotal}`;
+        ? `🏥 Fälle: ${openRead} / ${openTotal}`
+        : `🏥 Vaka: ${openRead} / ${openTotal}`;
     } else {
       percentage = total > 0 ? Math.round((readCount / total) * 100) : 0;
       statusText = isDe
-        ? `🎓 Alle Fälle & Themen: ${readCount} / ${total}`
-        : `🎓 Tüm Vaka & Konular: ${readCount} / ${total}`;
+        ? `🎓 Gesamt: ${readCount} / ${total}`
+        : `🎓 Tümü: ${readCount} / ${total}`;
     }
 
     if (elProgressBarFill) elProgressBarFill.style.width = `${percentage}%`;
     if (elProgressPercentage) elProgressPercentage.textContent = isDe ? `${percentage}%` : `%${percentage}`;
-    if (elProgressText) elProgressText.textContent = statusText;
+    if (elProgressText) {
+      elProgressText.textContent = statusText;
+      elProgressText.title = `Toplam ilerleme: ${readCount}/${total} · ÄKNO: ${dusRead}/${dusTotal} · Vaka: ${openRead}/${openTotal} · Konu: ${optRead}/${optTotal}`;
+    }
 
     if (elStreakBadge) {
       const todayCount = getTodayReadCount();
@@ -1706,16 +1894,12 @@
       const remainingCore = Math.max(0, openTotal - openRead);
       const daysLeft = Math.ceil(remainingCore / 8);
       const goalPrefix = todayCount >= 5 ? '✅' : '☕';
-      const etaText = remainingCore > 0
-        ? (isDe ? `⏳ ~${daysLeft} Tage` : `⏳ ~${daysLeft} gün`)
-        : (isDe ? '🎓 Prüfungsreif!' : '🎓 Sınav Hazır!');
-      const streakText = streakDays >= 2 ? ` · 🔥 ${streakDays}${isDe ? 'T' : 'g'}` : '';
       elStreakBadge.style.display = 'inline-flex';
       elStreakBadge.classList.toggle('goal-met', todayCount >= 5);
       elStreakBadge.textContent = isDe
-        ? `${goalPrefix} Heute: ${todayCount}/5 · ${etaText}${streakText}`
-        : `${goalPrefix} Bugün: ${todayCount}/5 · ${etaText}${streakText}`;
-      elStreakBadge.title = `Günlük mikro hedef: 5 vaka (Bugün: ${todayCount}). Çekirdek sözlü vakalar (${openRead}/${openTotal}) günde 8 vaka hızıyla tahmini kalan süre: ${remainingCore > 0 ? daysLeft + ' gün' : 'Tamamlandı'}.`;
+        ? `${goalPrefix} Heute: ${todayCount}/5`
+        : `${goalPrefix} Bugün: ${todayCount}/5`;
+      elStreakBadge.title = `Günlük hedef: 5 vaka (Bugün: ${todayCount}${streakDays >= 2 ? ', Seri: ' + streakDays + ' gün' : ''}). Çekirdek sözlü vakalar (${openRead}/${openTotal}) günde 8 vaka hızıyla tahmini kalan: ${remainingCore > 0 ? daysLeft + ' gün' : 'Tamamlandı'}.`;
     }
   }
 
@@ -1913,7 +2097,7 @@
     setText('#master-btn-study strong', 'Lernen & Lesen', 'Çalışma & Okuma');
     setText('#master-btn-exam strong', 'Prüfungssimulator', 'Sınav Simülatörü');
     setText('#nav-tools-menu-btn .pill-btn-text', 'Werkzeuge', 'Araçlar');
-    setHtml('#study-btn-active-recall-toggle', '<span>🙈</span> Antworten ausblenden', '<span>🙈</span> Cevapları Gizle');
+    setHtml('#study-btn-active-recall-toggle', state.activeRecallMode ? '<span>👁️</span> Antworten zeigen' : '<span>🙈</span> Antworten ausblenden', state.activeRecallMode ? '<span>👁️</span> Cevapları Göster' : '<span>🙈</span> Cevapları Gizle');
     setText('#study-aa-dropdown .aa-popover-label', 'Schriftgröße', 'Yazı Boyutu');
 
     // Tools dropdown items
@@ -1945,7 +2129,7 @@
     setText('.btn-study-quick-filter[data-quick-filter="starred"] .quick-filter-label', 'Markiert', 'Kritik');
     setText('#study-btn-load-more', 'Mehr anzeigen', 'Daha Fazla Göster');
     setText('#btn-load-more', 'Mehr anzeigen', 'Daha Fazla Göster');
-    setHtml('#btn-active-recall-toggle', '<span>⚡</span> Testmodus', '<span>⚡</span> Test Modu');
+    setHtml('#btn-active-recall-toggle', state.activeRecallMode ? '<span>👁️</span> Antworten zeigen' : '<span>🙈</span> Antworten ausblenden', state.activeRecallMode ? '<span>👁️</span> Cevapları Göster' : '<span>🙈</span> Cevapları Gizle');
     setText('#audio-restart-text', 'Neustart', 'Baştan');
     setText('#study-btn-prev-bottom', '← Zurück', '← Önceki');
     setText('#study-btn-next-bottom', 'Weiter →', 'Sonraki →');
@@ -2168,14 +2352,15 @@
 
   function applyActiveRecallMode(enabled) {
     if (!elActiveRecallToggle) return;
+    const isDe = document.body.classList.contains('mode-german-only') || state.viewMode === 'german';
     if (enabled) {
       elActiveRecallToggle.classList.add('active');
-      elActiveRecallToggle.innerHTML = '<span>⚡</span> Test Modu';
-      elActiveRecallToggle.title = 'İlk 3 Hamle Test Modu: AÇIK (Tıkla ve Kapat)';
+      elActiveRecallToggle.innerHTML = isDe ? '<span>👁️</span> Antworten zeigen' : '<span>👁️</span> Cevapları Göster';
+      elActiveRecallToggle.title = 'Cevaplar gizli (Kapatmak için tıkla)';
     } else {
       elActiveRecallToggle.classList.remove('active');
-      elActiveRecallToggle.innerHTML = '<span>⚡</span> Test Modu';
-      elActiveRecallToggle.title = 'Önce Vitals & Senaryoyu Gör, İlk 3 Acil Hamleni Düşün, Sonra Uzman Cevabını Aç';
+      elActiveRecallToggle.innerHTML = isDe ? '<span>🙈</span> Antworten ausblenden' : '<span>🙈</span> Cevapları Gizle';
+      elActiveRecallToggle.title = 'Cevapları gizleyip kendini test et';
     }
   }
 

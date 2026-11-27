@@ -9767,9 +9767,17 @@ Tedavi:
     }
 
     if (elTabsBar) {
+      const tabTopics = ['Notfall-SOPs', 'Intensiv & Sepsis', 'Hochrisiko'];
       elTabsBar.querySelectorAll('.podcast-tab-btn').forEach(btn => {
+        const epIdx = parseInt(btn.getAttribute('data-episode-idx'), 10);
+        const ep = episodes[epIdx];
+        const subSpan = btn.querySelector('span');
+        if (subSpan && ep) {
+          const minCount = Math.round((ep.durationSec || 0) / 60);
+          const topic = tabTopics[epIdx] || ep.category || '';
+          subSpan.textContent = minCount > 0 ? `${topic} · ${minCount} dk` : topic;
+        }
         btn.addEventListener('click', () => {
-          const epIdx = parseInt(btn.getAttribute('data-episode-idx'), 10);
           loadEpisode(epIdx);
         });
       });

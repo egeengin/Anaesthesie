@@ -21,8 +21,8 @@
   <meta name="theme-color" content="#8D6346">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=12.3">
-  <link rel="stylesheet" href="study.css?v=12.1">
+  <link rel="stylesheet" href="styles.css?v=12.31">
+  <link rel="stylesheet" href="study.css?v=12.31">
 </head>
 <body>
 
@@ -2726,7 +2726,7 @@
           <span class="modal-title-icon" style="font-size: 1.5rem;">🎧</span>
           <div>
             <h2 id="podcast-modal-title" class="modal-title" style="margin: 0; font-size: 1.15rem; font-weight: 700;">Audio-Podcasts • Unterwegs Lernen</h2>
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Facharztprüfung Anästhesiologie • 15-20 Min. Thematische Episoden</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Facharztprüfung Anästhesiologie • Soru + Cevap (Yolda Dinle)</div>
           </div>
         </div>
         <button id="podcast-modal-close" class="btn-icon" title="Schließen (Esc)" aria-label="Schließen">✕</button>
@@ -2737,15 +2737,15 @@
         <div class="podcast-tabs-bar" id="podcast-tabs-bar">
           <button type="button" class="podcast-tab-btn active" data-episode-idx="0">
             <strong>Folge 1</strong>
-            <span>Notfall-SOPs (10:45)</span>
+            <span>Notfall-SOPs</span>
           </button>
           <button type="button" class="podcast-tab-btn" data-episode-idx="1">
             <strong>Folge 2</strong>
-            <span>Intensiv &amp; Sepsis (14:39)</span>
+            <span>Intensiv &amp; Sepsis</span>
           </button>
           <button type="button" class="podcast-tab-btn" data-episode-idx="2">
             <strong>Folge 3</strong>
-            <span>Hochrisiko (18:08)</span>
+            <span>Hochrisiko</span>
           </button>
         </div>
 
@@ -2809,17 +2809,17 @@
       document.write('<script src="config.local.js" onerror="void 0;"><\/script>');
     }
   </script>
-  <script src="js/gemini_evaluator.js?v=12.30"></script>
+  <script src="js/gemini_evaluator.js?v=12.31"></script>
   <script src="js/abbreviations_data.js"></script>
-  <script src="js/exam_simulation.js?v=12.30"></script>
-  <script src="js/calculators.js?v=12.30"></script>
-  <script src="js/storage_sync.js?v=12.30"></script>
-  <script src="js/speech_engine.js?v=12.30"></script>
-  <script src="js/curriculum_engine.js?v=12.30"></script>
-  <script src="js/audio_manifest.js?v=1.0"></script>
-  <script src="js/podcast_manifest.js?v=1.0"></script>
+  <script src="js/exam_simulation.js?v=12.31"></script>
+  <script src="js/calculators.js?v=12.31"></script>
+  <script src="js/storage_sync.js?v=12.31"></script>
+  <script src="js/speech_engine.js?v=12.31"></script>
+  <script src="js/curriculum_engine.js?v=12.31"></script>
+  <script src="js/audio_manifest.js?v=1.1"></script>
+  <script src="js/podcast_manifest.js?v=1.1"></script>
   <script src="questions.js?v=9.1"></script>
-  <script src="app.js?v=12.30"></script>
+  <script src="app.js?v=12.31"></script>
 
   <!-- Service Worker Registration for Offline PWA Mode -->
   <script>
@@ -2833,7 +2833,7 @@
         }
       });
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=12.30')
+        navigator.serviceWorker.register('./sw.js?v=12.31')
           .then((reg) => {
             console.log('[PWA] Service Worker registered successfully, scope:', reg.scope);
             if (typeof reg.update === 'function') {
@@ -2848,7 +2848,7 @@
   </script>
 
   <!-- Study Engine & Master View Switcher Controller -->
-  <script src="study.js?v=12.30"></script>
+  <script src="study.js?v=12.31"></script>
   <script>
     (function() {
       const btnStudy = document.getElementById('master-btn-study');
@@ -2859,6 +2859,9 @@
       function switchMasterView(targetView, savePref = true) {
         if (typeof window.stopMedicalSpeech === 'function') {
           window.stopMedicalSpeech();
+        }
+        if (typeof window.stopStudyAudioPlayer === 'function') {
+          window.stopStudyAudioPlayer();
         }
         if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
           try { window.speechSynthesis.cancel(); } catch (e) {}
