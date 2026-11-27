@@ -920,15 +920,6 @@
             ${monitorHtml}
             ${threeActionsChallenge ? `
               <div class="melis-three-actions-box">
-                <div class="melis-three-actions-prompt">
-                  <div>
-                    <span>⚡ ${renderInteractiveGerman(threeActionsChallenge.vignetteTriggerDE, threeActionsChallenge.vignetteTriggerTR)}</span>
-                    <div class="inline-bilingual-tr" style="margin-top: 3px; font-weight: 500;">🇹🇷 ${escapeHtml(threeActionsChallenge.vignetteTriggerTR)}</div>
-                  </div>
-                  <button class="btn-card-action btn-pronounce-card" style="padding: 3px 9px; font-size: var(--font-xs);" data-text="${escapeHtml(threeActionsChallenge.vignetteTriggerDE)}">
-                    🔊 Prüfer
-                  </button>
-                </div>
                 <details class="melis-self-check-details">
                   <summary class="melis-self-check-summary">✍️ Kendi İlk 3 Hamlemi Yaz / Kontrol Et (İsteğe Bağlı)</summary>
                   <div class="melis-self-check-inputs">
