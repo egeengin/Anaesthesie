@@ -168,9 +168,9 @@
       "q_dus_35"
     ],
     "filePath": "audio/podcasts/ep_02_intensiv_sepsis.m4a",
-    "durationSec": 1758.5,
-    "durationFormatted": "29 Min. 18 Sek.",
-    "fileSizeMb": 13.28,
+    "durationSec": 3436.1,
+    "durationFormatted": "57 Min. 16 Sek.",
+    "fileSizeMb": 26.41,
     "chapters": [
       {
         "caseId": "q_dus_16",
@@ -225,92 +225,92 @@
         "caseId": "q_dus_23",
         "number": 8,
         "hasAnswer": false,
-        "startSec": 1223.9,
-        "formattedTime": "20:23"
+        "startSec": 1372.5,
+        "formattedTime": "22:52"
       },
       {
         "caseId": "q_dus_24",
         "number": 9,
         "hasAnswer": false,
-        "startSec": 1267,
-        "formattedTime": "21:07"
+        "startSec": 1534.7,
+        "formattedTime": "25:34"
       },
       {
         "caseId": "q_dus_25",
         "number": 10,
         "hasAnswer": false,
-        "startSec": 1307.3,
-        "formattedTime": "21:47"
+        "startSec": 1689.3,
+        "formattedTime": "28:09"
       },
       {
         "caseId": "q_dus_26",
         "number": 11,
         "hasAnswer": false,
-        "startSec": 1333,
-        "formattedTime": "22:13"
+        "startSec": 1836.3,
+        "formattedTime": "30:36"
       },
       {
         "caseId": "q_dus_27",
         "number": 12,
         "hasAnswer": false,
-        "startSec": 1372.1,
-        "formattedTime": "22:52"
+        "startSec": 1965.4,
+        "formattedTime": "32:45"
       },
       {
         "caseId": "q_dus_28",
         "number": 13,
         "hasAnswer": false,
-        "startSec": 1404,
-        "formattedTime": "23:24"
+        "startSec": 2122,
+        "formattedTime": "35:22"
       },
       {
         "caseId": "q_dus_29",
         "number": 14,
         "hasAnswer": false,
-        "startSec": 1461.6,
-        "formattedTime": "24:21"
+        "startSec": 2302.8,
+        "formattedTime": "38:22"
       },
       {
         "caseId": "q_dus_30",
         "number": 15,
         "hasAnswer": false,
-        "startSec": 1503.5,
-        "formattedTime": "25:03"
+        "startSec": 2450.7,
+        "formattedTime": "40:50"
       },
       {
         "caseId": "q_dus_31",
         "number": 16,
         "hasAnswer": false,
-        "startSec": 1532.1,
-        "formattedTime": "25:32"
+        "startSec": 2627.2,
+        "formattedTime": "43:47"
       },
       {
         "caseId": "q_dus_32",
         "number": 17,
         "hasAnswer": false,
-        "startSec": 1560.9,
-        "formattedTime": "26:00"
+        "startSec": 2771.8,
+        "formattedTime": "46:11"
       },
       {
         "caseId": "q_dus_33",
         "number": 18,
         "hasAnswer": false,
-        "startSec": 1611.4,
-        "formattedTime": "26:51"
+        "startSec": 2966,
+        "formattedTime": "49:26"
       },
       {
         "caseId": "q_dus_34",
         "number": 19,
         "hasAnswer": false,
-        "startSec": 1670.5,
-        "formattedTime": "27:50"
+        "startSec": 3124.8,
+        "formattedTime": "52:04"
       },
       {
         "caseId": "q_dus_35",
         "number": 20,
         "hasAnswer": false,
-        "startSec": 1707.8,
-        "formattedTime": "28:27"
+        "startSec": 3281.7,
+        "formattedTime": "54:41"
       }
     ]
   },
@@ -342,9 +342,9 @@
       "q_dus_54"
     ],
     "filePath": "audio/podcasts/ep_03_hochrisiko_speziell.m4a",
-    "durationSec": 1300,
-    "durationFormatted": "21 Min. 40 Sek.",
-    "fileSizeMb": 9.85,
+    "durationSec": 2431.9,
+    "durationFormatted": "40 Min. 31 Sek.",
+    "fileSizeMb": 18.63,
     "chapters": [
       {
         "caseId": "q_dus_36",
@@ -357,127 +357,127 @@
         "caseId": "q_dus_37",
         "number": 2,
         "hasAnswer": false,
-        "startSec": 33.7,
-        "formattedTime": "0:33"
+        "startSec": 144.4,
+        "formattedTime": "2:24"
       },
       {
         "caseId": "q_dus_38",
         "number": 3,
         "hasAnswer": false,
-        "startSec": 76.4,
-        "formattedTime": "1:16"
+        "startSec": 311.8,
+        "formattedTime": "5:11"
       },
       {
         "caseId": "q_dus_39",
         "number": 4,
         "hasAnswer": false,
-        "startSec": 127.1,
-        "formattedTime": "2:07"
+        "startSec": 539.5,
+        "formattedTime": "8:59"
       },
       {
         "caseId": "q_dus_40",
         "number": 5,
         "hasAnswer": false,
-        "startSec": 195.8,
-        "formattedTime": "3:15"
+        "startSec": 811.9,
+        "formattedTime": "13:31"
       },
       {
         "caseId": "q_dus_41",
         "number": 6,
         "hasAnswer": false,
-        "startSec": 309.1,
-        "formattedTime": "5:09"
+        "startSec": 1083.4,
+        "formattedTime": "18:03"
       },
       {
         "caseId": "q_dus_42",
         "number": 7,
         "hasAnswer": false,
-        "startSec": 465.4,
-        "formattedTime": "7:45"
+        "startSec": 1418.7,
+        "formattedTime": "23:38"
       },
       {
         "caseId": "q_dus_43",
         "number": 8,
         "hasAnswer": false,
-        "startSec": 526.7,
-        "formattedTime": "8:46"
+        "startSec": 1658.7,
+        "formattedTime": "27:38"
       },
       {
         "caseId": "q_dus_44",
         "number": 9,
         "hasAnswer": false,
-        "startSec": 587.1,
-        "formattedTime": "9:47"
+        "startSec": 1719.1,
+        "formattedTime": "28:39"
       },
       {
         "caseId": "q_dus_45",
         "number": 10,
         "hasAnswer": false,
-        "startSec": 641.3,
-        "formattedTime": "10:41"
+        "startSec": 1773.3,
+        "formattedTime": "29:33"
       },
       {
         "caseId": "q_dus_46",
         "number": 11,
         "hasAnswer": false,
-        "startSec": 771.2,
-        "formattedTime": "12:51"
+        "startSec": 1903.2,
+        "formattedTime": "31:43"
       },
       {
         "caseId": "q_dus_47",
         "number": 12,
         "hasAnswer": false,
-        "startSec": 822.6,
-        "formattedTime": "13:42"
+        "startSec": 1954.6,
+        "formattedTime": "32:34"
       },
       {
         "caseId": "q_dus_48",
         "number": 13,
         "hasAnswer": false,
-        "startSec": 884.1,
-        "formattedTime": "14:44"
+        "startSec": 2016,
+        "formattedTime": "33:36"
       },
       {
         "caseId": "q_dus_49",
         "number": 14,
         "hasAnswer": false,
-        "startSec": 935.9,
-        "formattedTime": "15:35"
+        "startSec": 2067.8,
+        "formattedTime": "34:27"
       },
       {
         "caseId": "q_dus_50",
         "number": 15,
         "hasAnswer": false,
-        "startSec": 989.8,
-        "formattedTime": "16:29"
+        "startSec": 2121.8,
+        "formattedTime": "35:21"
       },
       {
         "caseId": "q_dus_51",
         "number": 16,
         "hasAnswer": false,
-        "startSec": 1050.6,
-        "formattedTime": "17:30"
+        "startSec": 2182.6,
+        "formattedTime": "36:22"
       },
       {
         "caseId": "q_dus_52",
         "number": 17,
         "hasAnswer": false,
-        "startSec": 1123.9,
-        "formattedTime": "18:43"
+        "startSec": 2255.9,
+        "formattedTime": "37:35"
       },
       {
         "caseId": "q_dus_53",
         "number": 18,
         "hasAnswer": false,
-        "startSec": 1175.9,
-        "formattedTime": "19:35"
+        "startSec": 2307.9,
+        "formattedTime": "38:27"
       },
       {
         "caseId": "q_dus_54",
         "number": 19,
         "hasAnswer": false,
-        "startSec": 1235.2,
-        "formattedTime": "20:35"
+        "startSec": 2367.1,
+        "formattedTime": "39:27"
       }
     ]
   }
