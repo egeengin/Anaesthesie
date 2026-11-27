@@ -192,7 +192,7 @@
     theme: appSavedTheme || (['sepia', 'light', 'dark'].includes(savedSettings.theme) ? savedSettings.theme : 'sepia'), // Sync with app theme or user's explicit preference (including light!)
     fontSize: savedSettings.fontSize || 17, // 15, 17, 19, 21
     viewMode: savedSettings.viewMode || 'hover', // 'hover', 'bilingual', 'german'
-    activeRecallMode: !!savedSettings.activeRecallMode, // true = start with Vitals & First-3-Actions prompt hidden answer
+    activeRecallMode: false, // Always show answers directly on Lernen & Lesen without requiring a click
     revealedCards: {}, // per-card reveal state when activeRecallMode is true
     activeCategory: 'all',
     activeType: 'all', // 'all', 'dus', 'open', 'options'
