@@ -596,7 +596,6 @@
       const answerTR = q.oral_answer_tr || q.answer_tr || '';
 
       // Melis Pedagogical Engine Enrichment (Data-First Monitor, First-3-Actions, First-Principles, Bedside Comm & 3-Tier Synthesis)
-      let redeflussStep1 = null;
       let groundTruth = null;
       let monitorData = null;
       let threeActionsChallenge = null;
@@ -606,8 +605,6 @@
 
       if (window.CurriculumEngine) {
         try {
-          const rf = window.CurriculumEngine.getRedeflussBaukasten(q);
-          if (rf && rf.step1) redeflussStep1 = rf.step1;
           const gt = window.CurriculumEngine.getMedicalGroundTruth(q);
           if (gt && gt.guideline && gt.guideline.awmf) {
             groundTruth = gt;
@@ -881,10 +878,8 @@
 
       const trapDE = (q.examiner_profile && q.examiner_profile.trap) ? q.examiner_profile.trap : (q.examiner_tip || '');
 
-      const redTextDE = redeflussStep1 ? (redeflussStep1.de || redeflussStep1.textDE || '') : '';
       const mainCardAudioText = [
         questionDE ? `Prüferfrage: ${questionDE}` : '',
-        redTextDE ? `Redeeinstieg: ${redTextDE}` : '',
         answerDE ? `Musterantwort: ${answerDE}` : '',
         trapDE ? `K.O.-Tipp: ${trapDE}` : ''
       ].filter(Boolean).join('\n\n');
@@ -902,7 +897,7 @@
               <button class="btn-card-action btn-star-card ${isStarred ? 'starred' : ''}" data-id="${q.id}" title="Kritik Vaka Olarak Yıldızla">
                 <span>⭐</span>
               </button>
-              <button class="btn-card-action btn-pronounce-card" data-card-id="${q.id}" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Redeeinstieg, Model Cevap ve K.O.-İpucunu Sesli Dinle">
+              <button class="btn-card-action btn-pronounce-card" data-card-id="${q.id}" data-text="${escapeHtml(mainCardAudioText)}" title="Almanca Soru, Model Cevap ve K.O.-İpucunu Sesli Dinle">
                 <span>🔊</span> ${state.viewMode === 'german' ? 'Anhören' : 'Dinle'}
               </button>
               <button class="btn-card-action btn-toggle-read ${isRead ? 'active-read' : ''}" data-id="${q.id}">
@@ -961,15 +956,6 @@
               <div class="oral-role-badge candidate-role-badge" title="🇹🇷 Örnek Uzman Cevabı">
                 <span>🩺</span> Facharzt-Musterantwort
               </div>
-              ${redeflussStep1 ? `
-                <div class="melis-inline-redeeinstieg">
-                  <span>🗣️ „${renderInteractiveGerman(redeflussStep1.de || redeflussStep1.textDE, redeflussStep1.tr || redeflussStep1.textTR)}“</span>
-                  <button class="btn-card-action btn-pronounce-card" style="padding: 2px 7px; font-size: var(--font-xs); flex-shrink: 0;" data-text="${escapeHtml(redeflussStep1.de || redeflussStep1.textDE || '')}" title="Redeeinstieg dinle">🔊</button>
-                </div>
-                <div class="inline-bilingual-tr" style="margin-bottom: 10px;">
-                  🇹🇷 "${escapeHtml(redeflussStep1.tr || redeflussStep1.textTR || '')}"
-                </div>
-              ` : ''}
               <div class="oral-answer-content">
                 ${renderFormattedOralAnswer(answerDE, answerTR)}
               </div>
